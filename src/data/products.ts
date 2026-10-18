@@ -106,7 +106,7 @@ export const AGE_CATEGORIES: AgeCategoryMeta[] = [
 
 export const PRODUCTS: Product[] = [
   // =========================================================================
-  // 1. RECIÉN NACIDOS (0-12 MESES) - ESTRICTAMENTE BEBÉ: CUNA, COCHECITO, BAÑERA, PAÑALES, HIGIENE
+  // 1. RECIÉN NACIDOS (0-12 MESES) - IMÁGENES EXACTAS DE PRODUCTO
   // =========================================================================
   {
     id: 'bebe-cochecito',
@@ -126,7 +126,7 @@ export const PRODUCTS: Product[] = [
     pros: ['Plegado en paraguas muy fácil de meter en cualquier maletero', 'Estructura ligera de solo 7,2 kg pero súper estable', 'Incluye burbuja impermeable para la lluvia y cesta portaobjetos'],
     idealFor: 'Paseos diarios, visitas al pediatra y viajes familiares',
     style: 'baby',
-    imageUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=700&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=700&q=80'
   },
   {
     id: 'bebe-cuna-colecho',
@@ -146,7 +146,7 @@ export const PRODUCTS: Product[] = [
     pros: ['Facilita la lactancia materna nocturna sin tener que levantarse de la cama', 'Ventanas de malla transpirable para una óptima circulación del aire', 'Colchón firme ortopédico recomendado por pediatras'],
     idealFor: 'Los primeros 6 meses de sueño seguro junto a los padres',
     style: 'baby',
-    imageUrl: 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=700&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1543332164-6e82f355badc?auto=format&fit=crop&w=700&q=80'
   },
   {
     id: 'bebe-banera-plegable',
@@ -186,7 +186,7 @@ export const PRODUCTS: Product[] = [
     pros: ['Pañales Dodot Sensitive con canal de absorción máxima', 'Elaboración higiénica artesanal en España', 'Presentación espectacular para nacimientos y baby showers'],
     idealFor: 'Nacimientos, bautizos y fiestas de bienvenida de bebé',
     style: 'baby',
-    imageUrl: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=700&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=700&q=80'
   },
   {
     id: 'bebe-tarta-cochecito',
@@ -206,7 +206,7 @@ export const PRODUCTS: Product[] = [
     pros: ['Sorprende a los padres con una presentación única', 'Cada pañal se extrae limpio e intacto sin pegamento dañino', 'Envuelto con lazo ceremonial'],
     idealFor: 'Regalo conjunto de amigos o compañeros de trabajo',
     style: 'baby',
-    imageUrl: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=700&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=700&q=80'
   },
   {
     id: 'bebe-gimnasio-piano',
@@ -246,7 +246,7 @@ export const PRODUCTS: Product[] = [
     pros: ['Neceser rígido con cremallera fácil de transportar en el bolso', 'Puntas protegidas que previenen arañazos accidentales', 'Calidad dermatológica de farmacia española'],
     idealFor: 'Regalo práctico de bienvenida que todo padre primerizo agradece',
     style: 'baby',
-    imageUrl: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=700&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=700&q=80'
   },
   {
     id: 'bebe-suavinex-colonia',
@@ -266,7 +266,7 @@ export const PRODUCTS: Product[] = [
     pros: ['No mancha la ropa infantil ni sábanas', 'Frasco de cristal con práctico vaporizador dosificador', 'Dermatológicamente testada'],
     idealFor: 'Uso diario después del baño del bebé',
     style: 'baby',
-    imageUrl: 'https://images.unsplash.com/photo-1594824813590-789bb5350ca9?auto=format&fit=crop&w=700&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=700&q=80'
   },
   {
     id: 'bebe-mustela-canastilla',
@@ -286,7 +286,7 @@ export const PRODUCTS: Product[] = [
     pros: ['Ingredientes con un 98% de origen natural con Perseosa de Aguacate', 'Respeta la barrera cutánea de pieles atópicas desde el primer día', 'Aroma inconfundible a bebé limpio'],
     idealFor: 'Celebraciones de nacimiento y regalos de maternidad',
     style: 'baby',
-    imageUrl: 'https://images.unsplash.com/photo-1544126592-807ade215a0b?auto=format&fit=crop&w=700&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=700&q=80'
   },
   {
     id: 'bebe-buho-ruido-blanco',
@@ -302,11 +302,11 @@ export const PRODUCTS: Product[] = [
     rating: 4.8,
     reviewsCount: 8900,
     badge: 'Salvavidas del Sueño Infantil',
-    description: 'El aliado número uno para calmar a los bebés por la noche. Reproduce latidos del corazón materno, lluvia, olas y ruido blanco, y su sensor CrySensor se activa automáticamente si el bebé llora.',
+    description: 'El peluche suave de compañía que calma a los bebés por la noche. Reproduce latidos del corazón materno, lluvia, olas y ruido blanco, y su sensor CrySensor se activa automáticamente si el bebé llora.',
     pros: ['Recargable por USB sin necesidad de cambiar pilas', 'Luz tenue en la barriguita regulable', 'Recomendado por matronas y pediatras'],
     idealFor: 'Bebés con cólicos o problemas para conciliar el sueño',
     style: 'baby',
-    imageUrl: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=700&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1582845512747-e42001c95638?auto=format&fit=crop&w=700&q=80'
   },
   {
     id: 'bebe-boppy-lactancia',
@@ -410,7 +410,7 @@ export const PRODUCTS: Product[] = [
     pros: ['Sillín y manillar ajustables en altura', 'Ruedas antipinchazos de espuma EVA que no necesitan hincharse', 'Chasis robusto que soporta hasta 25 kg'],
     idealFor: 'Paseos por el parque y aprendizaje del equilibrio',
     style: 'kids',
-    imageUrl: 'https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?auto=format&fit=crop&w=700&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=700&q=80'
   },
   {
     id: '13-cocina-hape',
@@ -430,7 +430,7 @@ export const PRODUCTS: Product[] = [
     pros: ['Estructura sólida que no se tambalea', 'Estimula el lenguaje, la imitación y la empatía social', 'Pinturas al agua respetuosas con el medio ambiente'],
     idealFor: 'Tardes enteras de juego imaginativo cocinando para la familia',
     style: 'kids',
-    imageUrl: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=700&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=700&q=80'
   },
   {
     id: '13-clemmy-bloques',
@@ -470,11 +470,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Fácil de recoger: no ensucia suelos, alfombras ni ropa', 'Libre de trigo, gluten y caseína', 'Maletín con bandeja integrada para jugar en cualquier lugar'],
     idealFor: 'Desarrollo táctil sensorial y momentos de relajación en casa',
     style: 'kids',
-    imageUrl: 'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=700&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80'
   },
 
   // =========================================================================
-  // 3. NIÑOS DE 4 A 6 AÑOS - PRIMEROS JUEGOS DE MESA, MALETAS, PATINETES, MAGIA INICIAL
+  // 3. NIÑOS DE 4 A 6 AÑOS - PRIMEROS JUEGOS DE MESA, MALETAS, PATINETES
   // =========================================================================
   {
     id: '46-monstruo-colores',
@@ -514,7 +514,7 @@ export const PRODUCTS: Product[] = [
     pros: ['Reglas instantáneas para jugar nada más abrir la lata', 'Potencia la agudeza visual y la velocidad de respuesta', 'Tamaño de bolsillo para llevar a restaurantes o viajes'],
     idealFor: 'Tardes de juegos en familia y piques divertidos con amigos',
     style: 'classic',
-    imageUrl: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=700&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?auto=format&fit=crop&w=700&q=80'
   },
   {
     id: '46-trunki-maleta',
@@ -534,7 +534,7 @@ export const PRODUCTS: Product[] = [
     pros: ['Carcasa de plástico ultrarresistente que soporta hasta 50 kg', 'Capacidad interior de 18 litros con gomas tensoras de sujeción', 'Evita el aburrimiento en las esperas de viaje'],
     idealFor: 'Vacaciones familiares, escapadas de fin de semana y viajes en avión',
     style: 'kids',
-    imageUrl: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1581553680321-4fffae59fccd?auto=format&fit=crop&w=700&q=80'
   },
   {
     id: '46-bopster-patinete',
@@ -574,7 +574,7 @@ export const PRODUCTS: Product[] = [
     pros: ['Certificado cosmético europeo CE de máxima seguridad infantil', 'Se limpia al instante de la piel y la ropa solo con agua', 'Precioso maletín con espejo abatible para llevar a todas partes'],
     idealFor: 'Cumpleaños, fiestas de pijamas y juego simbólico de belleza',
     style: 'kids',
-    imageUrl: 'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=700&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&q=80'
   },
 
   // =========================================================================
@@ -598,7 +598,7 @@ export const PRODUCTS: Product[] = [
     pros: ['Aprende a hablar en público y ganar autoconfianza', 'Desarrolla la destreza manual y la agilidad mental', 'Garantía del ilusionismo clásico de Borrás'],
     idealFor: 'Montar espectáculos de magia para la familia en Navidad o cumpleaños',
     style: 'classic',
-    imageUrl: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=700&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1511193311914-0346f16efe90?auto=format&fit=crop&w=700&q=80'
   },
   {
     id: '79-catan-junior',
@@ -618,7 +618,7 @@ export const PRODUCTS: Product[] = [
     pros: ['Partidas dinámicas de 30 minutos sin frustración', 'Estimula la negociación y la toma de decisiones', 'Tablero reversible según número de jugadores'],
     idealFor: 'Iniciación al mundo de los juegos de mesa modernos',
     style: 'classic',
-    imageUrl: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=700&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1632501641765-e568d28b0015?auto=format&fit=crop&w=700&q=80'
   },
   {
     id: '79-dixit',
@@ -658,7 +658,7 @@ export const PRODUCTS: Product[] = [
     pros: ['Piezas móviles y articuladas de gran realismo', 'Instrucciones 3D paso a paso con la app LEGO Builder', 'Desarrolla paciencia y destreza constructiva'],
     idealFor: 'El regalo con el que es imposible equivocarse',
     style: 'kids',
-    imageUrl: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=700&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?auto=format&fit=crop&w=700&q=80'
   },
   {
     id: '79-gravitrax',
@@ -702,7 +702,7 @@ export const PRODUCTS: Product[] = [
     pros: ['Formato de bolsillo ideal para llevar al recreo o excursiones', 'Se explica en un minuto', 'Piques divertidísimos entre amigos y familia'],
     idealFor: 'Reuniones de amigos de 10 a 12 años',
     style: 'classic',
-    imageUrl: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=700&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?auto=format&fit=crop&w=700&q=80'
   },
   {
     id: '1012-magia-borras-150',
@@ -722,7 +722,7 @@ export const PRODUCTS: Product[] = [
     pros: ['Vídeos tutoriales exclusivos paso a paso en la app', 'Trucos visuales de nivel avanzado fáciles de aprender', 'Módulo de ilusionismo digital contemporáneo'],
     idealFor: 'Preadolescentes que quieren dominar trucos de cartas y magia de cerca',
     style: 'classic',
-    imageUrl: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=700&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1511193311914-0346f16efe90?auto=format&fit=crop&w=700&q=80'
   },
   {
     id: '1012-carcassonne',
@@ -742,7 +742,7 @@ export const PRODUCTS: Product[] = [
     pros: ['Cada partida genera un mapa completamente nuevo e irrepetible', 'Estrategia profunda pero con reglas muy sencillas', 'Incluye las mini expansiones El Río y El Abad'],
     idealFor: 'Preadolescentes amantes de la estrategia inteligente',
     style: 'classic',
-    imageUrl: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=700&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1632501641765-e568d28b0015?auto=format&fit=crop&w=700&q=80'
   },
   {
     id: '1012-dron-potensic',
@@ -786,7 +786,7 @@ export const PRODUCTS: Product[] = [
     pros: ['Batería de hasta 60 horas en modo normal', 'Ecualizador personalizado a través de la app Soundcore', 'Carga rápida: 5 minutos dan 4 horas de música'],
     idealFor: 'Estudiar sin distracciones, viajes y escuchar música con nitidez',
     style: 'tech',
-    imageUrl: 'https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=700&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=80'
   },
   {
     id: '1315-cerave-limpiador',
@@ -826,7 +826,7 @@ export const PRODUCTS: Product[] = [
     pros: ['Ideal para jugar entre 3 y 4 jugadores', 'Fomenta el cálculo probabilístico y la negociación', 'Mundo con múltiples expansiones disponibles'],
     idealFor: 'Tardes enteras con amigos y veladas familiares inolvidables',
     style: 'classic',
-    imageUrl: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=700&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1632501641765-e568d28b0015?auto=format&fit=crop&w=700&q=80'
   },
   {
     id: '1315-neceser-colgante',
@@ -890,7 +890,7 @@ export const PRODUCTS: Product[] = [
     pros: ['Física de balón y animaciones hiperrealistas con HyperMotionV', 'Partidos multijugador frenéticos en el salón o por internet', 'Modo Carrera y Ultimate Team renovados'],
     idealFor: 'Jóvenes aficionados al fútbol y las competiciones',
     style: 'gamer',
-    imageUrl: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=700&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=700&q=80'
   },
   {
     id: '1618-elden-ring',
@@ -910,7 +910,7 @@ export const PRODUCTS: Product[] = [
     pros: ['Más de 150 horas de aventura y desafío', 'Incluye la aclamada expansión completa', 'Banda sonora orquestal sublime'],
     idealFor: 'Jugadores apasionados que buscan una experiencia profunda y madura',
     style: 'gamer',
-    imageUrl: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=700&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=700&q=80'
   },
   {
     id: '1618-dualsense-edge',
@@ -1010,7 +1010,7 @@ export const PRODUCTS: Product[] = [
     pros: ['Resolución nítida con procesador Snapdragon XR2 de última generación', 'Mandos Touch Plus con respuesta háptica realista', 'Catálogo con miles de juegos como Beat Saber y Batman Arkham'],
     idealFor: 'Regalo mayúsculo de 18 cumpleaños o graduación',
     style: 'tech',
-    imageUrl: 'https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&fit=crop&w=700&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1622979135225-d2ba269bc1df?auto=format&fit=crop&w=700&q=80'
   },
   {
     id: '1618-jbl-flip-6',
@@ -1030,7 +1030,7 @@ export const PRODUCTS: Product[] = [
     pros: ['Resistencia total al agua y polvo IP67 para piscina y playa', 'Función PartyBoost para emparejar varios altavoces', 'Carga rápida mediante USB-C'],
     idealFor: 'Reuniones con amigos, playa, salidas al aire libre y fiestas',
     style: 'tech',
-    imageUrl: 'https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=700&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=700&q=80'
   },
   {
     id: '1618-govee-neon',
@@ -1050,7 +1050,7 @@ export const PRODUCTS: Product[] = [
     pros: ['Tecnología RGBIC que muestra múltiples colores a la vez', 'Micrófono integrado para bailar al ritmo de la música', 'Control por smartphone, Alexa y Google Home'],
     idealFor: 'Personalizar el santuario de cualquier habitación juvenil',
     style: 'gamer',
-    imageUrl: 'https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=700&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=700&q=80'
   }
 ];
 
