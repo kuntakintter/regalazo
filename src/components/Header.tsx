@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Gift, Sparkles, Moon, Flame, Gamepad2, Baby, Search, Menu, X, ShieldCheck } from 'lucide-react';
+import { Gift, Sparkles, Moon, Flame, Gamepad2, Baby, Search, Menu, X } from 'lucide-react';
 
 interface HeaderProps {
   currentTheme: 'baby' | 'kids' | 'gamer' | 'emo' | 'tech' | 'classic';
@@ -26,19 +26,6 @@ export default function Header({ currentTheme, onThemeChange, onSearchChange, se
         ? 'bg-rose-50/90 border-rose-200/80 text-rose-950'
         : 'bg-white/95 border-slate-200 text-slate-900 shadow-xs'
     }`}>
-      {/* Top Banner Amazon Tag & Trust Indicator */}
-      <div className={`py-1.5 px-4 text-xs font-medium text-center flex items-center justify-center gap-2 border-b ${
-        currentTheme === 'emo'
-          ? 'bg-neutral-900/80 border-neutral-800 text-neutral-400'
-          : currentTheme === 'baby'
-          ? 'bg-pink-100/60 border-pink-200 text-rose-700'
-          : 'bg-amber-500/10 border-amber-500/20 text-amber-900'
-      }`}>
-        <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 inline" />
-        <span>Recomendaciones verificadas de Amazon España</span>
-        <span className="hidden sm:inline opacity-70">• Enlaces de Afiliado Oficiales (StoreID: vapegadgets22-21)</span>
-      </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 gap-4">
           
@@ -67,13 +54,13 @@ export default function Header({ currentTheme, onThemeChange, onSearchChange, se
           </Link>
 
           {/* Quick Search Bar */}
-          <div className="hidden md:flex flex-1 max-w-md relative">
+          <div className="flex-1 max-w-lg relative">
             <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 opacity-40" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => onSearchChange?.(e.target.value)}
-              placeholder="Buscar pastel de pañales, juegos PS5, montessori..."
+              placeholder="Buscar juguetes, juegos PS5, Scalextric, pañales..."
               className={`w-full pl-10 pr-4 py-2 text-sm rounded-full border outline-none transition-all ${
                 isDark
                   ? 'bg-neutral-900/90 border-neutral-700 text-white placeholder-neutral-500 focus:border-rose-500 focus:ring-1 focus:ring-rose-500'
@@ -82,12 +69,6 @@ export default function Header({ currentTheme, onThemeChange, onSearchChange, se
             />
           </div>
 
-          {/* Tagline / Trust Indicator */}
-          <div className="hidden lg:flex items-center gap-2 text-xs font-semibold opacity-75">
-            <span className="px-3 py-1 rounded-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 flex items-center gap-1.5">
-              <span>🎁</span> Recomendaciones Curadas de 0 a 18 Años
-            </span>
-          </div>
         </div>
 
         {/* Mobile Search */}
