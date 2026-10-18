@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { Product } from '@/data/products';
-import { getAmazonAffiliateUrl } from '@/lib/amazon';
+import { getAmazonProductUrl, getAmazonSearchUrl } from '@/lib/amazon';
 import { ExternalLink, Star, CheckCircle2, Heart, Share2, Sparkles, ShoppingBag } from 'lucide-react';
 
 interface ProductCardProps {
@@ -15,7 +15,13 @@ export default function ProductCard({ product, currentTheme }: ProductCardProps)
   const [copied, setCopied] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
 
-  const affiliateUrl = getAmazonAffiliateUrl(product.searchQuery);
+  // Enlace directo al producto específico en Amazon España
+  const directProductUrl = product.asin
+    ? getAmazonProductUrl(product.asin)
+    : getAmazonSearchUrl(product.searchQuery);
+
+  // Enlace secundario para ver catálogo amplio de modelos similares
+  const searchSimilarUrl = getAmazonSearchUrl(product.searchQuery);
   const isDark = currentTheme === 'emo' || currentTheme === 'gamer';
 
   const handleShare = async () => {
@@ -24,16 +30,15 @@ export default function ProductCard({ product, currentTheme }: ProductCardProps)
         await navigator.share({
           title: product.title,
           text: product.description,
-          url: affiliateUrl,
+          url: directProductUrl,
         });
       } catch {
-        // Fallback to clipboard
-        navigator.clipboard.writeText(affiliateUrl);
+        navigator.clipboard.writeText(directProductUrl);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
       }
     } else {
-      navigator.clipboard.writeText(affiliateUrl);
+      navigator.clipboard.writeText(directProductUrl);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     }
@@ -51,16 +56,24 @@ export default function ProductCard({ product, currentTheme }: ProductCardProps)
     }`}>
       {/* Product Image & Badges */}
       <div className="relative aspect-4/3 overflow-hidden bg-slate-100 dark:bg-neutral-800">
-        <Image
-          src={product.imageUrl}
-          alt={product.title}
-          fill
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-108"
-        />
+        <a 
+          href={directProductUrl}
+          target="_blank"
+          rel="nofollow sponsored noopener noreferrer"
+          aria-label={`Ver ${product.title} en Amazon`}
+          className="block w-full h-full cursor-pointer"
+        >
+          <Image
+            src={product.imageUrl}
+            alt={product.title}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-108"
+          />
+        </a>
         
         {/* Top Badges */}
-        <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-10">
+        <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-10 pointer-events-none">
           <span className={`px-3 py-1 rounded-full text-xs font-bold tracking-wide shadow-md backdrop-blur-md flex items-center gap-1 ${
             currentTheme === 'emo'
               ? 'bg-rose-950/90 text-rose-200 border border-rose-800/80'
@@ -83,21 +96,21 @@ export default function ProductCard({ product, currentTheme }: ProductCardProps)
           <button
             onClick={() => setIsLiked(!isLiked)}
             aria-label="Guardar en favoritos"
-            className="w-8 h-8 rounded-full bg-white/90 dark:bg-neutral-900/90 backdrop-blur-xs flex items-center justify-center text-slate-600 dark:text-neutral-300 hover:scale-110 transition-transform shadow-xs"
+            className="w-8 h-8 rounded-full bg-white/90 dark:bg-neutral-900/90 backdrop-blur-xs flex items-center justify-center text-slate-600 dark:text-neutral-300 hover:scale-110 transition-transform shadow-xs cursor-pointer"
           >
             <Heart className={`w-4 h-4 ${isLiked ? 'fill-rose-500 text-rose-500' : ''}`} />
           </button>
           <button
             onClick={handleShare}
             aria-label="Compartir idea"
-            className="w-8 h-8 rounded-full bg-white/90 dark:bg-neutral-900/90 backdrop-blur-xs flex items-center justify-center text-slate-600 dark:text-neutral-300 hover:scale-110 transition-transform shadow-xs"
+            className="w-8 h-8 rounded-full bg-white/90 dark:bg-neutral-900/90 backdrop-blur-xs flex items-center justify-center text-slate-600 dark:text-neutral-300 hover:scale-110 transition-transform shadow-xs cursor-pointer"
           >
             <Share2 className="w-4 h-4" />
           </button>
         </div>
 
         {/* Price Tag Overlay */}
-        <div className="absolute bottom-3 right-3 z-10">
+        <div className="absolute bottom-3 right-3 z-10 pointer-events-none">
           <span className="px-3 py-1 rounded-xl font-black text-sm bg-black/80 text-white backdrop-blur-md shadow-md border border-white/10">
             {product.priceText}
           </span>
@@ -127,7 +140,14 @@ export default function ProductCard({ product, currentTheme }: ProductCardProps)
 
         {/* H3 Title for perfect SEO structure */}
         <h3 className="font-bold text-base line-clamp-2 leading-snug mb-2 group-hover:text-indigo-600 dark:group-hover:text-rose-400 transition-colors">
-          {product.title}
+          <a
+            href={directProductUrl}
+            target="_blank"
+            rel="nofollow sponsored noopener noreferrer"
+            className="hover:underline"
+          >
+            {product.title}
+          </a>
         </h3>
 
         {/* Persuasive Description */}
@@ -153,9 +173,9 @@ export default function ProductCard({ product, currentTheme }: ProductCardProps)
 
         {/* CTAs */}
         <div className="space-y-2">
-          {/* Main Affiliate CTA */}
+          {/* Main Affiliate CTA: Direct Product Page with Tag */}
           <a
-            href={affiliateUrl}
+            href={directProductUrl}
             target="_blank"
             rel="nofollow sponsored noopener noreferrer"
             className={`w-full py-3 px-4 rounded-2xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-md transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] ${
@@ -175,7 +195,7 @@ export default function ProductCard({ product, currentTheme }: ProductCardProps)
 
           {/* Secondary CTA: Search similar options */}
           <a
-            href={affiliateUrl}
+            href={searchSimilarUrl}
             target="_blank"
             rel="nofollow sponsored noopener noreferrer"
             className="w-full py-1.5 px-3 rounded-xl text-[11px] font-medium text-center block opacity-60 hover:opacity-100 hover:underline transition-opacity"

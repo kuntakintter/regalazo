@@ -2,14 +2,29 @@ export const AMAZON_AFFILIATE_TAG = 'vapegadgets22-21';
 export const AMAZON_BASE_URL = 'https://www.amazon.es';
 
 /**
- * Genera el enlace de afiliado de Amazon España para una búsqueda o producto específico.
+ * Genera el enlace directo a la ficha del producto específico en Amazon España con el tag de afiliado.
+ */
+export function getAmazonProductUrl(asin: string): string {
+  const cleanTag = AMAZON_AFFILIATE_TAG;
+  return `${AMAZON_BASE_URL}/dp/${encodeURIComponent(asin)}/?tag=${cleanTag}&linkCode=ll1`;
+}
+
+/**
+ * Genera el enlace de búsqueda en Amazon España con el tag de afiliado.
+ */
+export function getAmazonSearchUrl(searchQuery: string): string {
+  const cleanTag = AMAZON_AFFILIATE_TAG;
+  return `${AMAZON_BASE_URL}/s?k=${encodeURIComponent(searchQuery)}&tag=${cleanTag}&linkCode=ll2`;
+}
+
+/**
+ * Helper unificado para producto directo (ASIN) o búsqueda general.
  */
 export function getAmazonAffiliateUrl(searchQueryOrAsin: string, isAsin: boolean = false): string {
-  const cleanTag = AMAZON_AFFILIATE_TAG;
   if (isAsin) {
-    return `${AMAZON_BASE_URL}/dp/${encodeURIComponent(searchQueryOrAsin)}?tag=${cleanTag}&linkCode=ll1`;
+    return getAmazonProductUrl(searchQueryOrAsin);
   }
-  return `${AMAZON_BASE_URL}/s?k=${encodeURIComponent(searchQueryOrAsin)}&tag=${cleanTag}&linkCode=ll2`;
+  return getAmazonSearchUrl(searchQueryOrAsin);
 }
 
 /**

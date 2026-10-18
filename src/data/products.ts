@@ -3,6 +3,7 @@ export interface Product {
   title: string;
   slug: string;
   searchQuery: string;
+  asin?: string;
   category: string;
   subcategory: string;
   ageRange: '0-12m' | '1-3' | '4-6' | '7-9' | '10-12' | '13-15' | '16-18';
@@ -110,6 +111,7 @@ export const PRODUCTS: Product[] = [
   // =========================================================================
   {
     id: 'bebe-cochecito',
+    asin: 'B015I2T15E',
     title: 'Chicco London - Silla de Paseo Ligera y Plegable Tipo Paraguas (0 a 3 Años)',
     slug: 'chicco-london-silla-paseo-ligera-plegable',
     searchQuery: 'chicco london silla de paseo ligera compacta plegable paraguas',
@@ -126,10 +128,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Plegado en paraguas muy fácil de meter en cualquier maletero', 'Estructura ligera de solo 7,2 kg pero súper estable', 'Incluye burbuja impermeable para la lluvia y cesta portaobjetos'],
     idealFor: 'Paseos diarios, visitas al pediatra y viajes familiares',
     style: 'baby',
-    imageUrl: 'https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/bebe-cochecito.jpg'
   },
   {
     id: 'bebe-cuna-colecho',
+    asin: 'B08H2H6Y9R',
     title: 'Chicco Next2Me - Cuna de Colecho Ajustable con Colchón Transpirable',
     slug: 'chicco-next2me-cuna-colecho-ajustable',
     searchQuery: 'chicco next2me cuna de colecho ajustable regulable altura colchon',
@@ -146,10 +149,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Facilita la lactancia materna nocturna sin tener que levantarse de la cama', 'Ventanas de malla transpirable para una óptima circulación del aire', 'Colchón firme ortopédico recomendado por pediatras'],
     idealFor: 'Los primeros 6 meses de sueño seguro junto a los padres',
     style: 'baby',
-    imageUrl: 'https://images.unsplash.com/photo-1543332164-6e82f355badc?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/bebe-cuna-colecho.jpg'
   },
   {
     id: 'bebe-banera-plegable',
+    asin: 'B08D3K9Z7N',
     title: 'Jané Smart Bath - Bañera Plegable para Bebé con Cojín Reductor y Sensor de Temperatura',
     slug: 'jane-smart-bath-banera-plegable-bebe',
     searchQuery: 'jane banera plegable bebe con reductor y termometro tapon sensor',
@@ -166,10 +170,11 @@ export const PRODUCTS: Product[] = [
     pros: ['El tapón cambia de color si el agua supera los 37°C para evitar quemaduras', 'Patas antideslizantes con bloqueo de seguridad', 'Se cuelga detrás de la puerta del baño o se guarda bajo el mueble'],
     idealFor: 'La hora del baño relajante y pisos con espacio reducido',
     style: 'baby',
-    imageUrl: 'https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/bebe-banera-plegable.jpg'
   },
   {
     id: 'bebe-tarta-dodot-3pisos',
+    asin: 'B07SZ8D25P',
     title: 'Tarta de Pañales Dodot Sensitive 3 Pisos con Peluche Suave y Manta',
     slug: 'tarta-de-panales-dodot-sensitive-3-pisos',
     searchQuery: 'tarta de panales dodot sensitive peluche recien nacido 3 pisos',
@@ -186,10 +191,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Pañales Dodot Sensitive con canal de absorción máxima', 'Elaboración higiénica artesanal en España', 'Presentación espectacular para nacimientos y baby showers'],
     idealFor: 'Nacimientos, bautizos y fiestas de bienvenida de bebé',
     style: 'baby',
-    imageUrl: 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/bebe-tarta-dodot-3pisos.jpg'
   },
   {
     id: 'bebe-tarta-cochecito',
+    asin: 'B08DFWJ13T',
     title: 'Tarta de Pañales Dodot en Forma de Cochecito de Bebé con Babero y Biberón',
     slug: 'tarta-panales-dodot-forma-cochecito',
     searchQuery: 'tarta de panales dodot forma cochecito carrito bebe babero biberon',
@@ -206,10 +212,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Sorprende a los padres con una presentación única', 'Cada pañal se extrae limpio e intacto sin pegamento dañino', 'Envuelto con lazo ceremonial'],
     idealFor: 'Regalo conjunto de amigos o compañeros de trabajo',
     style: 'baby',
-    imageUrl: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/bebe-tarta-cochecito.jpg'
   },
   {
     id: 'bebe-gimnasio-piano',
+    asin: 'B076HYFZ37',
     title: 'Fisher-Price - Gimnasio Manta de Juego Piano Pataditas Superaprendizaje',
     slug: 'fisher-price-gimnasio-piano-pataditas',
     searchQuery: 'fisher price gimnasio piano pataditas superaprendizaje manta bebe',
@@ -226,10 +233,11 @@ export const PRODUCTS: Product[] = [
     pros: ['4 formas de juego que evolucionan de 0 a 36 meses', 'Piano extraíble para llevarlo a cualquier parte', 'Alfombra acolchada lavable a máquina'],
     idealFor: 'Estimulación sensorial temprana y juego boca abajo (Tummy Time)',
     style: 'baby',
-    imageUrl: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/bebe-gimnasio-piano.jpg'
   },
   {
     id: 'bebe-suavinex-kit',
+    asin: 'B084GZBC2W',
     title: 'Suavinex - Set de Cuidado y Aseo para Bebé Baby Care Essentials en Neceser Rígido',
     slug: 'suavinex-set-cuidado-aseo-bebe-neceser',
     searchQuery: 'suavinex neceser cuidados bebe set aseo cepillo tijeritas termometro',
@@ -246,10 +254,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Neceser rígido con cremallera fácil de transportar en el bolso', 'Puntas protegidas que previenen arañazos accidentales', 'Calidad dermatológica de farmacia española'],
     idealFor: 'Regalo práctico de bienvenida que todo padre primerizo agradece',
     style: 'baby',
-    imageUrl: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/bebe-suavinex-kit.jpg'
   },
   {
     id: 'bebe-suavinex-colonia',
+    asin: 'B00D3HY9MC',
     title: 'Suavinex Baby Cologne - Agua de Colonia Infantil Sin Alcohol con Vaporizador 100ml',
     slug: 'suavinex-baby-cologne-colonia-infantil-100ml',
     searchQuery: 'suavinex baby cologne agua de colonia infantil vaporizador 100ml',
@@ -266,10 +275,11 @@ export const PRODUCTS: Product[] = [
     pros: ['No mancha la ropa infantil ni sábanas', 'Frasco de cristal con práctico vaporizador dosificador', 'Dermatológicamente testada'],
     idealFor: 'Uso diario después del baño del bebé',
     style: 'baby',
-    imageUrl: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/bebe-suavinex-colonia.jpg'
   },
   {
     id: 'bebe-mustela-canastilla',
+    asin: 'B01N8P9Z20',
     title: 'Mustela - Canastilla Mis Primeros Productos Set de Aseo para Bebé',
     slug: 'mustela-canastilla-mis-primeros-productos-bebe',
     searchQuery: 'mustela canastilla regalo bebe mis primeros productos gel crema colonia',
@@ -286,10 +296,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Ingredientes con un 98% de origen natural con Perseosa de Aguacate', 'Respeta la barrera cutánea de pieles atópicas desde el primer día', 'Aroma inconfundible a bebé limpio'],
     idealFor: 'Celebraciones de nacimiento y regalos de maternidad',
     style: 'baby',
-    imageUrl: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/bebe-mustela-canastilla.jpg'
   },
   {
     id: 'bebe-buho-ruido-blanco',
+    asin: 'B077Z2Y4P1',
     title: 'Tommee Tippee - Peluche Ruido Blanco Búho Ollie con Sensor de Llanto CrySensor',
     slug: 'tommee-tippee-peluche-ruido-blanco-buho-ollie',
     searchQuery: 'tommee tippee peluche ruido blanco buho ollie crysensor recargable',
@@ -306,10 +317,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Recargable por USB sin necesidad de cambiar pilas', 'Luz tenue en la barriguita regulable', 'Recomendado por matronas y pediatras'],
     idealFor: 'Bebés con cólicos o problemas para conciliar el sueño',
     style: 'baby',
-    imageUrl: 'https://images.unsplash.com/photo-1582845512747-e42001c95638?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/bebe-buho-ruido-blanco.jpg'
   },
   {
     id: 'bebe-boppy-lactancia',
+    asin: 'B000NW6X3C',
     title: 'Chicco Boppy - Cojín de Lactancia Ergonómico con Funda 100% Algodón Lavable',
     slug: 'chicco-boppy-cojin-lactancia-algodon',
     searchQuery: 'chicco boppy cojin de lactancia algodon desenfundable',
@@ -326,10 +338,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Funda desenfundable con cremallera lavable a máquina', 'Sirve como nido de apoyo cuando el bebé aprende a sentarse', 'Aprobado por matronas y fisioterapeutas'],
     idealFor: 'Madres lactantes y confort del recién nacido',
     style: 'baby',
-    imageUrl: 'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/bebe-boppy-lactancia.jpg'
   },
   {
     id: 'bebe-kaloo-doudou',
+    asin: 'B07NF9C694',
     title: 'Kaloo - Doudou Muñeco de Apego Conejito Plume Extra Suave en Caja Regalo',
     slug: 'kaloo-doudou-conejito-plume-extra-suave',
     searchQuery: 'kaloo doudou conejito plume peluche bebe caja regalo',
@@ -346,7 +359,7 @@ export const PRODUCTS: Product[] = [
     pros: ['Lavable a máquina a 30°C manteniendo la suavidad', 'Presentado en elegante caja redonda de regalo', '100% seguro sin piezas plásticas desprendibles'],
     idealFor: 'El primer peluche inseparable del bebé',
     style: 'baby',
-    imageUrl: 'https://images.unsplash.com/photo-1558877385-81a1c7e67d72?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/bebe-kaloo-doudou.jpg'
   },
 
   // =========================================================================
@@ -354,6 +367,7 @@ export const PRODUCTS: Product[] = [
   // =========================================================================
   {
     id: '13-torre-aprendizaje',
+    asin: 'B084224XQ8',
     title: 'Bianconiglio Kids - Torre de Aprendizaje Montessori Evolutiva en Madera Natural',
     slug: 'bianconiglio-kids-torre-aprendizaje-montessori',
     searchQuery: 'bianconiglio kids torre de aprendizaje montessori madera evolutiva',
@@ -370,10 +384,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Madera de abedul con certificado FSC y barniz ecológico', 'Sistema antivuelco ensayado en laboratorio', 'Fomenta la participación en tareas cotidianas familiares'],
     idealFor: 'Niños a partir de 12 meses que quieren cocinar y lavarse solos',
     style: 'kids',
-    imageUrl: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/13-torre-aprendizaje.jpg'
   },
   {
     id: '13-triciclo-aveo',
+    asin: 'B07BFG9Y9F',
     title: 'Kinderkraft Aveo - Triciclo Evolutivo Plegable 5 en 1 con Asiento Giratorio',
     slug: 'kinderkraft-aveo-triciclo-evolutivo-plegable',
     searchQuery: 'kinderkraft aveo triciclo bebe evolutivo plegable asiento giratorio',
@@ -390,10 +405,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Ruedas de goma antipinchazos con amortiguación suave', 'Asiento giratorio 360° para mirar a los padres o al frente', 'Capota extensible con protección solar UPF50+'],
     idealFor: 'Paseos diarios por el parque sustituyendo la silla de paseo',
     style: 'kids',
-    imageUrl: 'https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/13-triciclo-aveo.jpg'
   },
   {
     id: '13-chicco-first-bike',
+    asin: 'B000N28876',
     title: 'Chicco First Bike - Bicicleta de Equilibrio sin Pedales Ultraligera (2 a 5 Años)',
     slug: 'chicco-first-bike-bicicleta-equilibrio-sin-pedales',
     searchQuery: 'chicco first bike bicicleta sin pedales ultraligera metal ninos',
@@ -410,10 +426,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Sillín y manillar ajustables en altura', 'Ruedas antipinchazos de espuma EVA que no necesitan hincharse', 'Chasis robusto que soporta hasta 25 kg'],
     idealFor: 'Paseos por el parque y aprendizaje del equilibrio',
     style: 'kids',
-    imageUrl: 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/13-chicco-first-bike.jpg'
   },
   {
     id: '13-cocina-hape',
+    asin: 'B006WB185S',
     title: 'Hape Gourmet Kitchen - Cocina Infantil de Madera con Accesorios y Utensilios',
     slug: 'hape-gourmet-kitchen-cocina-madera',
     searchQuery: 'hape cocina infantil madera gourmet kitchen accesorios sartenes',
@@ -430,10 +447,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Estructura sólida que no se tambalea', 'Estimula el lenguaje, la imitación y la empatía social', 'Pinturas al agua respetuosas con el medio ambiente'],
     idealFor: 'Tardes enteras de juego imaginativo cocinando para la familia',
     style: 'kids',
-    imageUrl: 'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/13-cocina-hape.jpg'
   },
   {
     id: '13-clemmy-bloques',
+    asin: 'B01C5NJQ0E',
     title: 'Clementoni Clemmy - Bolsa de 24 Bloques Blandos Aromáticos y Lavables',
     slug: 'clementoni-clemmy-bloques-blandos-bolsa',
     searchQuery: 'clementoni clemmy bloques blandos bolsa 24 piezas lavables bebe',
@@ -450,10 +468,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Material atóxico apto para morder con olor suave a vainilla', 'Encaje ultrasencillo para manitas de 10 a 36 meses', 'Bolsa transparente con cremallera y asa para ordenar rápido'],
     idealFor: 'Los primeros apilamientos de bloques sin frustración',
     style: 'kids',
-    imageUrl: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/13-clemmy-bloques.jpg'
   },
   {
     id: '13-kinetic-sand',
+    asin: 'B084BP4M9W',
     title: 'Kinetic Sand - Arena Mágica Cinética Maletín con Moldes de Castillo 900g',
     slug: 'kinetic-sand-arena-cinetica-maletin-castillo',
     searchQuery: 'kinetic sand maletin arena magica cinetica castillo moldes 900g',
@@ -470,7 +489,7 @@ export const PRODUCTS: Product[] = [
     pros: ['Fácil de recoger: no ensucia suelos, alfombras ni ropa', 'Libre de trigo, gluten y caseína', 'Maletín con bandeja integrada para jugar en cualquier lugar'],
     idealFor: 'Desarrollo táctil sensorial y momentos de relajación en casa',
     style: 'kids',
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/13-kinetic-sand.jpg'
   },
 
   // =========================================================================
@@ -478,6 +497,7 @@ export const PRODUCTS: Product[] = [
   // =========================================================================
   {
     id: '46-monstruo-colores',
+    asin: 'B07PVPW4K3',
     title: 'Devir - El Monstruo de Colores: El Juego de Mesa de las Emociones Infantiles',
     slug: 'devir-el-monstruo-de-colores-juego-mesa',
     searchQuery: 'devir el monstruo de colores juego de mesa infantil emociones',
@@ -494,10 +514,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Fomenta la comunicación y empatía familiar', 'Componentes de madera y cartón de altísima calidad', 'Reglas sencillas que se aprenden en 3 minutos'],
     idealFor: 'Aprender a gestionar rabietas y emociones en familia',
     style: 'classic',
-    imageUrl: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/46-monstruo-colores.jpg'
   },
   {
     id: '46-dobble-kids',
+    asin: 'B004FEEF1U',
     title: 'Asmodee - Dobble Infantil: Juego de Cartas de Rapidez Visual y Reflejos',
     slug: 'asmodee-dobble-infantil-juego-cartas',
     searchQuery: 'asmodee dobble infantil juego de cartas lata redonda rapidez',
@@ -514,10 +535,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Reglas instantáneas para jugar nada más abrir la lata', 'Potencia la agudeza visual y la velocidad de respuesta', 'Tamaño de bolsillo para llevar a restaurantes o viajes'],
     idealFor: 'Tardes de juegos en familia y piques divertidos con amigos',
     style: 'classic',
-    imageUrl: 'https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/46-dobble-kids.jpg'
   },
   {
     id: '46-trunki-maleta',
+    asin: 'B000X183M8',
     title: 'Trunki - Maleta Infantil Correpasillos de Equipaje de Mano con Ruedas',
     slug: 'trunki-maleta-infantil-correpasillos',
     searchQuery: 'trunki maleta infantil correpasillos equipaje de mano avion ninos',
@@ -534,10 +556,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Carcasa de plástico ultrarresistente que soporta hasta 50 kg', 'Capacidad interior de 18 litros con gomas tensoras de sujeción', 'Evita el aburrimiento en las esperas de viaje'],
     idealFor: 'Vacaciones familiares, escapadas de fin de semana y viajes en avión',
     style: 'kids',
-    imageUrl: 'https://images.unsplash.com/photo-1581553680321-4fffae59fccd?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/46-trunki-maleta.jpg'
   },
   {
     id: '46-bopster-patinete',
+    asin: 'B07D38R97P',
     title: 'Bopster - Patinete Infantil de 3 Ruedas con Luces LED Plegable',
     slug: 'bopster-patinete-infantil-3-ruedas-luces-led',
     searchQuery: 'bopster patinete infantil 3 ruedas luces led plegable manillar ajustable',
@@ -554,10 +577,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Freno trasero de respuesta suave', 'Plataforma ancha antideslizante reforzada', 'Manillar plegable con un solo clic'],
     idealFor: 'Paseos diarios al colegio o al parque',
     style: 'kids',
-    imageUrl: 'https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/46-bopster-patinete.jpg'
   },
   {
     id: '46-maletin-maquillaje',
+    asin: 'B08HDFJ8KP',
     title: 'Maletín de Maquillaje Infantil Lavable con Agua No Tóxico con Luces LED',
     slug: 'maletin-maquillaje-infantil-lavable-agua',
     searchQuery: 'maletin de maquillaje infantil lavable seguro sin quimicos para ninas juego',
@@ -574,7 +598,7 @@ export const PRODUCTS: Product[] = [
     pros: ['Certificado cosmético europeo CE de máxima seguridad infantil', 'Se limpia al instante de la piel y la ropa solo con agua', 'Precioso maletín con espejo abatible para llevar a todas partes'],
     idealFor: 'Cumpleaños, fiestas de pijamas y juego simbólico de belleza',
     style: 'kids',
-    imageUrl: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/46-maletin-maquillaje.jpg'
   },
 
   // =========================================================================
@@ -582,6 +606,7 @@ export const PRODUCTS: Product[] = [
   // =========================================================================
   {
     id: '79-magia-borras-100',
+    asin: 'B00332G93M',
     title: 'Educa Borrás - Magia Borrás Clásica 100 Trucos con Sombrero, Varita y Manual',
     slug: 'educa-borras-magia-borras-100-trucos',
     searchQuery: 'magia borras clasica 100 trucos educa sombrero varita manual',
@@ -598,10 +623,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Aprende a hablar en público y ganar autoconfianza', 'Desarrolla la destreza manual y la agilidad mental', 'Garantía del ilusionismo clásico de Borrás'],
     idealFor: 'Montar espectáculos de magia para la familia en Navidad o cumpleaños',
     style: 'classic',
-    imageUrl: 'https://images.unsplash.com/photo-1511193311914-0346f16efe90?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/79-magia-borras-100.jpg'
   },
   {
     id: '79-catan-junior',
+    asin: 'B007BND2CS',
     title: 'Devir - Catan Junior: El Juego de Mesa de Estrategia Pirata',
     slug: 'devir-catan-junior-juego-mesa',
     searchQuery: 'devir catan junior juego de mesa estrategia piratas ninos',
@@ -618,10 +644,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Partidas dinámicas de 30 minutos sin frustración', 'Estimula la negociación y la toma de decisiones', 'Tablero reversible según número de jugadores'],
     idealFor: 'Iniciación al mundo de los juegos de mesa modernos',
     style: 'classic',
-    imageUrl: 'https://images.unsplash.com/photo-1632501641765-e568d28b0015?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/79-catan-junior.jpg'
   },
   {
     id: '79-dixit',
+    asin: 'B084ZNWN2H',
     title: 'Asmodee - Dixit: El Juego de Mesa Familiar de Imaginación y Cartas Poéticas',
     slug: 'asmodee-dixit-juego-mesa-familiar',
     searchQuery: 'asmodee dixit juego de mesa cartas ilustradas imaginacion',
@@ -638,10 +665,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Ilustraciones de ensueño de altísima calidad artística', 'Sin límites de edad: juegan abuelos, padres y niños a la vez', 'Fomenta la creatividad narrativa y la complicidad'],
     idealFor: 'Reuniones familiares y tardes de juego tranquilas',
     style: 'classic',
-    imageUrl: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/79-dixit.jpg'
   },
   {
     id: '79-lego-safari',
+    asin: 'B0CF3S3478',
     title: 'LEGO Creator 3 en 1 - Animales Salvajes del Safari (31150)',
     slug: 'lego-creator-3-en-1-animales-salvajes-safari-31150',
     searchQuery: 'lego creator 3 en 1 animales salvajes safari 31150 jirafa leon gacela',
@@ -658,10 +686,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Piezas móviles y articuladas de gran realismo', 'Instrucciones 3D paso a paso con la app LEGO Builder', 'Desarrolla paciencia y destreza constructiva'],
     idealFor: 'El regalo con el que es imposible equivocarse',
     style: 'kids',
-    imageUrl: 'https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/79-lego-safari.jpg'
   },
   {
     id: '79-gravitrax',
+    asin: 'B073VWB4M4',
     title: 'Ravensburger - GraviTrax Starter Set Circuito de Canicas Magnético STEM',
     slug: 'ravensburger-gravitrax-starter-set-canicas',
     searchQuery: 'ravensburger gravitrax starter set circuito de canicas magnetico',
@@ -678,7 +707,7 @@ export const PRODUCTS: Product[] = [
     pros: ['Más de 100 componentes modulares expandibles', 'Despierta el pensamiento lógico y la resolución de problemas', 'Adictivo para niños y adultos'],
     idealFor: 'Pequeños constructores y apasionados de los experimentos mecánicos',
     style: 'classic',
-    imageUrl: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/79-gravitrax.jpg'
   },
 
   // =========================================================================
@@ -686,6 +715,7 @@ export const PRODUCTS: Product[] = [
   // =========================================================================
   {
     id: '1012-virus',
+    asin: 'B00V35Y7HG',
     title: 'Tranjis Games - Virus! El Juego de Cartas de Estrategia Más Vendido de España',
     slug: 'tranjis-games-virus-juego-cartas',
     searchQuery: 'tranjis games virus juego de cartas original espanol',
@@ -702,10 +732,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Formato de bolsillo ideal para llevar al recreo o excursiones', 'Se explica en un minuto', 'Piques divertidísimos entre amigos y familia'],
     idealFor: 'Reuniones de amigos de 10 a 12 años',
     style: 'classic',
-    imageUrl: 'https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/1012-virus.jpg'
   },
   {
     id: '1012-magia-borras-150',
+    asin: 'B07DYP6Q95',
     title: 'Educa Borrás - Magia Borrás 150 Trucos con App Móvil y Vídeos Tutoriales',
     slug: 'educa-borras-magia-borras-150-trucos-app',
     searchQuery: 'magia borras 150 trucos con app tutoriales movil educa',
@@ -722,10 +753,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Vídeos tutoriales exclusivos paso a paso en la app', 'Trucos visuales de nivel avanzado fáciles de aprender', 'Módulo de ilusionismo digital contemporáneo'],
     idealFor: 'Preadolescentes que quieren dominar trucos de cartas y magia de cerca',
     style: 'classic',
-    imageUrl: 'https://images.unsplash.com/photo-1511193311914-0346f16efe90?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/1012-magia-borras-150.jpg'
   },
   {
     id: '1012-carcassonne',
+    asin: 'B085F7523G',
     title: 'Devir - Carcassonne: Juego de Mesa Medieval de Estrategia y Losetas',
     slug: 'devir-carcassonne-juego-mesa',
     searchQuery: 'devir carcassonne juego de mesa medieval losetas estrategia',
@@ -742,10 +774,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Cada partida genera un mapa completamente nuevo e irrepetible', 'Estrategia profunda pero con reglas muy sencillas', 'Incluye las mini expansiones El Río y El Abad'],
     idealFor: 'Preadolescentes amantes de la estrategia inteligente',
     style: 'classic',
-    imageUrl: 'https://images.unsplash.com/photo-1632501641765-e568d28b0015?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/1012-carcassonne.jpg'
   },
   {
     id: '1012-dron-potensic',
+    asin: 'B0777BR5G5',
     title: 'Potensic A20 - Mini Dron Anticolisión con Despegue Automático y 3 Baterías',
     slug: 'potensic-a20-mini-dron-iniciacion-ninos',
     searchQuery: 'potensic a20 mini dron para ninos facil manejo 3 baterias',
@@ -762,7 +795,7 @@ export const PRODUCTS: Product[] = [
     pros: ['Incluye 3 baterías modulares para hasta 21 minutos de vuelo', 'Modo sin cabeza intuitivo para principiantes', 'Parada de emergencia y giros 3D con un botón'],
     idealFor: 'Aprender a pilotar drones en interiores y jardines',
     style: 'tech',
-    imageUrl: 'https://images.unsplash.com/photo-1527977966376-1c8408f9f108?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/1012-dron-potensic.jpg'
   },
 
   // =========================================================================
@@ -770,6 +803,7 @@ export const PRODUCTS: Product[] = [
   // =========================================================================
   {
     id: '1315-anker-q30',
+    asin: 'B08HMWZBXC',
     title: 'Anker Soundcore Life Q30 - Auriculares Inalámbricos con Cancelación Activa de Ruido Híbrida',
     slug: 'anker-soundcore-life-q30-auriculares-anc',
     searchQuery: 'anker soundcore life q30 auriculares bluetooth cancelacion activa ruido',
@@ -786,10 +820,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Batería de hasta 60 horas en modo normal', 'Ecualizador personalizado a través de la app Soundcore', 'Carga rápida: 5 minutos dan 4 horas de música'],
     idealFor: 'Estudiar sin distracciones, viajes y escuchar música con nitidez',
     style: 'tech',
-    imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/1315-anker-q30.jpg'
   },
   {
     id: '1315-cerave-limpiador',
+    asin: 'B09WXZDDK4',
     title: 'CeraVe - Gel Limpiador Control Imperfecciones con Ácido Salicílico 236ml',
     slug: 'cerave-gel-limpiador-control-imperfecciones-236ml',
     searchQuery: 'cerave limpiador espumoso control imperfecciones acido salicilico 236ml',
@@ -806,10 +841,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Sin perfume, no comedogénico y respetuoso con pieles sensibles', 'Reduce granitos y puntos negros en pocos días', 'Textura gel que hace una espuma agradable y purificante'],
     idealFor: 'Preadolescentes y jóvenes que empiezan a cuidar su piel',
     style: 'tech',
-    imageUrl: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/1315-cerave-limpiador.jpg'
   },
   {
     id: '1315-catan-clasico',
+    asin: 'B0050ILWDO',
     title: 'Devir - Catan: El Gran Juego de Mesa Clásico de Negociación y Comercio',
     slug: 'devir-catan-clasico-juego-mesa',
     searchQuery: 'devir catan juego de mesa clasico colonos de catan espanol',
@@ -826,10 +862,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Ideal para jugar entre 3 y 4 jugadores', 'Fomenta el cálculo probabilístico y la negociación', 'Mundo con múltiples expansiones disponibles'],
     idealFor: 'Tardes enteras con amigos y veladas familiares inolvidables',
     style: 'classic',
-    imageUrl: 'https://images.unsplash.com/photo-1632501641765-e568d28b0015?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/1315-catan-clasico.jpg'
   },
   {
     id: '1315-neceser-colgante',
+    asin: 'B07V4MNGB6',
     title: 'Neceser de Viaje Colgante Plegable Impermeable con Gancho Giratorio 360°',
     slug: 'neceser-viaje-colgante-impermeable-campamentos',
     searchQuery: 'neceser de viaje colgante organizador bano plegable con gancho impermeable',
@@ -846,7 +883,7 @@ export const PRODUCTS: Product[] = [
     pros: ['Tejido hidrófugo de secado rápido que evita fugas de líquidos', 'Bolsillos transparentes de PVC para pasar controles de seguridad', 'Cremalleras dobles reforzadas'],
     idealFor: 'Campamentos de verano, excursiones del colegio y viajes con amigos',
     style: 'tech',
-    imageUrl: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/1315-neceser-colgante.jpg'
   },
 
   // =========================================================================
@@ -854,6 +891,7 @@ export const PRODUCTS: Product[] = [
   // =========================================================================
   {
     id: '1618-spiderman-2',
+    asin: 'B0C773M28C',
     title: 'Sony PlayStation - Marvel\'s Spider-Man 2 Edición Estándar PS5 en Español',
     slug: 'marvels-spider-man-2-playstation-5-fisico',
     searchQuery: 'marvel spider man 2 playstation 5 espanol fisico',
@@ -870,10 +908,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Carga instantánea gracias al SSD de PS5', 'Gatillos adaptativos con resistencia al lanzar telarañas', 'Modo gráfico a 60 FPS ultra fluido'],
     idealFor: 'Todo poseedor de una consola PlayStation 5',
     style: 'gamer',
-    imageUrl: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/1618-spiderman-2.jpg'
   },
   {
     id: '1618-fc-25',
+    asin: 'B0D98FGY8Z',
     title: 'Electronic Arts - EA SPORTS FC 25 Edición Estándar para PlayStation 5',
     slug: 'ea-sports-fc-25-playstation-5-fisico',
     searchQuery: 'ea sports fc 25 playstation 5 espanol fisico futbol',
@@ -890,10 +929,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Física de balón y animaciones hiperrealistas con HyperMotionV', 'Partidos multijugador frenéticos en el salón o por internet', 'Modo Carrera y Ultimate Team renovados'],
     idealFor: 'Jóvenes aficionados al fútbol y las competiciones',
     style: 'gamer',
-    imageUrl: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/1618-fc-25.jpg'
   },
   {
     id: '1618-elden-ring',
+    asin: 'B0CWSQJ9X6',
     title: 'Bandai Namco - Elden Ring Edición Shadow of the Erdtree para PS5',
     slug: 'bandai-namco-elden-ring-shadow-erdtree-ps5',
     searchQuery: 'elden ring shadow of the erdtree playstation 5 fisico espanol',
@@ -910,10 +950,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Más de 150 horas de aventura y desafío', 'Incluye la aclamada expansión completa', 'Banda sonora orquestal sublime'],
     idealFor: 'Jugadores apasionados que buscan una experiencia profunda y madura',
     style: 'gamer',
-    imageUrl: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/1618-elden-ring.jpg'
   },
   {
     id: '1618-dualsense-edge',
+    asin: 'B0BF4FD5N3',
     title: 'Sony PlayStation - Mando Inalámbrico DualSense Edge Personalizable para PS5 y PC',
     slug: 'sony-playstation-dualsense-edge-ps5',
     searchQuery: 'sony playstation dualsense edge mando inalambrico ps5',
@@ -930,10 +971,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Módulos de stick reemplazables para evitar el desgaste por drift', 'Perfiles de botones guardables al instante', 'Sensaciones hápticas inigualables'],
     idealFor: 'El regalo definitivo para un gamer exigente de 16 a 18 años',
     style: 'gamer',
-    imageUrl: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/1618-dualsense-edge.jpg'
   },
   {
     id: '1618-vela-woodwick',
+    asin: 'B00K5SQ3C0',
     title: 'WoodWick - Vela Aromática Grande con Mecha de Madera Crepitante Fireside en Vaso Negro',
     slug: 'woodwick-vela-aromatica-mecha-madera-fireside',
     searchQuery: 'woodwick vela aromatica mecha de madera vaso cristal fireside cera',
@@ -950,10 +992,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Mecha de madera que cruje como fuego real', 'Cera de soja premium con combustión limpia', 'Elegante vaso de cristal en forma de reloj de arena con tapa de madera'],
     idealFor: 'Crear un santuario estético y cálido en la habitación juvenil',
     style: 'emo',
-    imageUrl: 'https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/1618-vela-woodwick.jpg'
   },
   {
     id: '1618-diario-cuero',
+    asin: 'B07B4V9WJ6',
     title: 'Moonster - Diario de Cuero Vintage Relieve Árbol de la Vida con Páginas Pergamino',
     slug: 'moonster-diario-cuero-vintage-arbol-vida',
     searchQuery: 'moonster diario de cuero vintage hojas envejecidas cuaderno artesanal',
@@ -970,10 +1013,11 @@ export const PRODUCTS: Product[] = [
     pros: ['240 páginas de papel pergamino artesanal', 'Sin químicos ni blanqueadores', 'Tacto envejecido exclusivo y duradero'],
     idealFor: 'Escribir poesía, pensamientos, dibujos oscuros o letras de canciones',
     style: 'emo',
-    imageUrl: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/1618-diario-cuero.jpg'
   },
   {
     id: '1618-ck-one',
+    asin: 'B000E7YGNG',
     title: 'Calvin Klein CK One - Eau de Toilette 100ml Unisex Original',
     slug: 'calvin-klein-ck-one-eau-de-toilette-100ml',
     searchQuery: 'calvin klein ck one 100ml original eau de toilette perfume unisex',
@@ -990,10 +1034,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Aroma fresco y no empalagoso ideal para clase o salidas', 'Frasco icónico de cristal esmerilado minimalista', 'Proyección duradera y equilibrada'],
     idealFor: 'Jóvenes de 16 a 18 años que buscan una seña olfativa moderna',
     style: 'classic',
-    imageUrl: 'https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/1618-ck-one.jpg'
   },
   {
     id: '1618-meta-quest-3s',
+    asin: 'B0DCZFFR6F',
     title: 'Meta Quest 3S 128GB - Gafas de Realidad Mixta y Realidad Virtual Todo en Uno',
     slug: 'meta-quest-3s-gafas-realidad-mixta',
     searchQuery: 'meta quest 3s 128gb gafas realidad virtual realidad mixta',
@@ -1010,10 +1055,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Resolución nítida con procesador Snapdragon XR2 de última generación', 'Mandos Touch Plus con respuesta háptica realista', 'Catálogo con miles de juegos como Beat Saber y Batman Arkham'],
     idealFor: 'Regalo mayúsculo de 18 cumpleaños o graduación',
     style: 'tech',
-    imageUrl: 'https://images.unsplash.com/photo-1622979135225-d2ba269bc1df?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/1618-meta-quest-3s.jpg'
   },
   {
     id: '1618-jbl-flip-6',
+    asin: 'B09G3F3Q8Q',
     title: 'JBL Flip 6 - Altavoz Bluetooth Portátil Resistente al Agua y Polvo IP67',
     slug: 'jbl-flip-6-altavoz-bluetooth-portatil',
     searchQuery: 'jbl flip 6 altavoz bluetooth portatil graves profundos ip67',
@@ -1030,10 +1076,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Resistencia total al agua y polvo IP67 para piscina y playa', 'Función PartyBoost para emparejar varios altavoces', 'Carga rápida mediante USB-C'],
     idealFor: 'Reuniones con amigos, playa, salidas al aire libre y fiestas',
     style: 'tech',
-    imageUrl: 'https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/1618-jbl-flip-6.jpg'
   },
   {
     id: '1618-govee-neon',
+    asin: 'B09968L7TN',
     title: 'Govee - Tira Neón LED RGBIC Cuerda Flexible de 3 Metros con Sincronización Musical',
     slug: 'govee-tira-neon-led-rgbic-cuerda-flexible',
     searchQuery: 'govee tira neon led rgbic cuerda flexible habitacion wifi alexa',
@@ -1050,7 +1097,7 @@ export const PRODUCTS: Product[] = [
     pros: ['Tecnología RGBIC que muestra múltiples colores a la vez', 'Micrófono integrado para bailar al ritmo de la música', 'Control por smartphone, Alexa y Google Home'],
     idealFor: 'Personalizar el santuario de cualquier habitación juvenil',
     style: 'gamer',
-    imageUrl: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=700&q=80'
+    imageUrl: '/images/products/1618-govee-neon.jpg'
   }
 ];
 
