@@ -8,6 +8,7 @@ import ProductCard from '@/components/ProductCard';
 import GiftWizard from '@/components/GiftWizard';
 import SeoFaq from '@/components/SeoFaq';
 import ThemeAtmosphere from '@/components/ThemeAtmosphere';
+import AmazonLiveSearchCard from '@/components/AmazonLiveSearchCard';
 import { PRODUCTS, AGE_CATEGORIES, Product } from '@/data/products';
 import { Sparkles, Gift, Flame, Baby, Gamepad2, ShieldCheck, TrendingUp, Search } from 'lucide-react';
 
@@ -21,6 +22,7 @@ export default function HomePage() {
   // Handle age selection and automatically adapt theme mood
   const handleSelectAge = (age: string) => {
     setSelectedAge(age);
+    setSelectedCategory('all'); // Reset subcategory when switching age
     if (age === '0-12m') {
       setCurrentTheme('baby');
     } else if (age === '16-18') {
@@ -256,31 +258,51 @@ export default function HomePage() {
 
         {/* PRODUCTS GRID */}
         {filteredProducts.length > 0 ? (
-          <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16">
-            {filteredProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                currentTheme={currentTheme}
-              />
-            ))}
-          </section>
+          <>
+            <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12">
+              {filteredProducts.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  currentTheme={currentTheme}
+                />
+              ))}
+            </section>
+
+            {/* Universal Amazon Live Search Bar (Cookie & Global Search) */}
+            <AmazonLiveSearchCard
+              currentTheme={currentTheme}
+              initialQuery={searchQuery}
+              selectedPrice={selectedPrice}
+            />
+          </>
         ) : (
-          <div className="text-center py-16 px-4 rounded-3xl border border-dashed border-slate-300 dark:border-neutral-700 mb-16">
-            <Search className="w-12 h-12 mx-auto mb-3 opacity-30" />
-            <h3 className="text-lg font-bold mb-1">No se encontraron productos con estos filtros</h3>
-            <p className="text-xs opacity-70 mb-5">Prueba a seleccionar &quot;Todas las categorías&quot; o limpiar la búsqueda.</p>
-            <button
-              onClick={() => {
-                setSelectedAge('all');
-                setSelectedCategory('all');
-                setSelectedPrice('all');
-                setSearchQuery('');
-              }}
-              className="px-5 py-2.5 rounded-xl bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-700 transition-colors"
-            >
-              Restablecer todos los filtros
-            </button>
+          <div className="py-12 mb-16">
+            <div className="text-center py-10 px-4 rounded-3xl border border-dashed border-slate-300 dark:border-neutral-700 mb-8 bg-white/40 dark:bg-neutral-900/40">
+              <Search className="w-12 h-12 mx-auto mb-3 opacity-30" />
+              <h3 className="text-xl font-bold mb-2">¿Buscas un producto específico en Amazon?</h3>
+              <p className="text-sm opacity-80 mb-5 max-w-xl mx-auto">
+                No tenemos ese producto exacto en nuestro catálogo verificado local, pero puedes buscarlo directamente en <strong>Amazon España</strong> con un solo clic con las mejores ofertas y disponibilidad al momento.
+              </p>
+              <button
+                onClick={() => {
+                  setSelectedAge('all');
+                  setSelectedCategory('all');
+                  setSelectedPrice('all');
+                  setSearchQuery('');
+                }}
+                className="px-5 py-2.5 rounded-xl bg-slate-200 dark:bg-neutral-800 text-slate-800 dark:text-neutral-200 text-xs font-bold hover:bg-slate-300 dark:hover:bg-neutral-700 transition-colors"
+              >
+                Limpiar filtros locales
+              </button>
+            </div>
+
+            {/* Prominent Live Search on Amazon España */}
+            <AmazonLiveSearchCard
+              currentTheme={currentTheme}
+              initialQuery={searchQuery || 'ofertas regalos ninos y jovenes'}
+              selectedPrice={selectedPrice}
+            />
           </div>
         )}
 

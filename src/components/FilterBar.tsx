@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import { AGE_CATEGORIES, CATEGORIES_LIST, PRICE_FILTERS } from '@/data/products';
-import { Filter, X, Sparkles, Check } from 'lucide-react';
+import { AGE_CATEGORIES, AGE_SUBCATEGORIES_MAP, PRICE_FILTERS } from '@/data/products';
+import { Filter, X, Sparkles, Check, ChevronRight } from 'lucide-react';
 
 interface FilterBarProps {
   selectedAge: string;
@@ -29,6 +29,9 @@ export default function FilterBar({
 
   const hasActiveFilters = selectedAge !== 'all' || selectedCategory !== 'all' || selectedPrice !== 'all';
 
+  // Subcategorías específicas para la edad seleccionada (nunca mezcladas)
+  const availableSubcategories = AGE_SUBCATEGORIES_MAP[selectedAge] || AGE_SUBCATEGORIES_MAP['all'];
+
   const resetFilters = () => {
     onSelectAge('all');
     onSelectCategory('all');
@@ -45,12 +48,12 @@ export default function FilterBar({
         ? 'bg-white/80 border-rose-200 text-rose-950 shadow-rose-100/50'
         : 'bg-white border-slate-200 text-slate-900 shadow-slate-100'
     }`}>
-      {/* Age Selector Tabs */}
-      <div className="mb-5">
+      {/* 1. Age Selector Tabs */}
+      <div className="mb-4">
         <div className="flex items-center justify-between mb-2.5">
           <label className="text-xs font-bold uppercase tracking-wider opacity-70 flex items-center gap-1.5">
             <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-            1. Selecciona la Edad del Niño / Joven:
+            1. Selecciona la Edad:
           </label>
           <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-indigo-50 dark:bg-neutral-800 text-indigo-600 dark:text-indigo-400">
             {totalResults} ideas recomendadas
@@ -59,7 +62,10 @@ export default function FilterBar({
 
         <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-thin">
           <button
-            onClick={() => onSelectAge('all')}
+            onClick={() => {
+              onSelectAge('all');
+              onSelectCategory('all');
+            }}
             className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all border ${
               selectedAge === 'all'
                 ? currentTheme === 'emo'
@@ -74,7 +80,10 @@ export default function FilterBar({
           {AGE_CATEGORIES.map((cat) => (
             <button
               key={cat.id}
-              onClick={() => onSelectAge(cat.id)}
+              onClick={() => {
+                onSelectAge(cat.id);
+                onSelectCategory('all');
+              }}
               className={`px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all flex items-center gap-1.5 border ${
                 selectedAge === cat.id
                   ? cat.id === '16-18'
@@ -92,30 +101,41 @@ export default function FilterBar({
         </div>
       </div>
 
-      {/* Secondary Filters: Subcategory + Price Range */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 pt-3 border-t border-black/5 dark:border-white/10">
-        
-        {/* Subcategory */}
-        <div>
-          <label className="text-[11px] font-bold uppercase tracking-wider opacity-60 block mb-1.5">
-            Temática / Categoría
-          </label>
-          <select
-            value={selectedCategory}
-            onChange={(e) => onSelectCategory(e.target.value)}
-            className={`w-full text-xs sm:text-sm rounded-xl py-2 px-3 border outline-none font-medium cursor-pointer transition-colors ${
-              isDark
-                ? 'bg-neutral-800 border-neutral-700 text-white'
-                : 'bg-slate-50 border-slate-200 text-slate-800 hover:bg-white'
+      {/* 2. Quick Subcategory Pills matching strictly this age */}
+      <div className="mb-4">
+        <label className="text-[11px] font-bold uppercase tracking-wider opacity-60 block mb-2">
+          2. Filtrar por Tipo de Regalo ({selectedAge === '0-12m' ? 'Exclusivo Bebés' : selectedAge === 'all' ? 'Populares' : 'Para esta edad'}):
+        </label>
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-thin flex-wrap">
+          <button
+            onClick={() => onSelectCategory('all')}
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+              selectedCategory === 'all'
+                ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-xs'
+                : 'bg-black/5 dark:bg-white/5 hover:bg-black/10 opacity-80 hover:opacity-100'
             }`}
           >
-            <option value="all">Todas las temáticas</option>
-            {CATEGORIES_LIST.filter(c => c !== 'Todas las Categorías').map((cat) => (
-              <option key={cat} value={cat}>{cat}</option>
-            ))}
-          </select>
+            Todas las opciones
+          </button>
+          {availableSubcategories.map((subcat) => (
+            <button
+              key={subcat}
+              onClick={() => onSelectCategory(subcat)}
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                selectedCategory === subcat
+                  ? 'bg-indigo-600 text-white font-bold shadow-xs'
+                  : 'bg-black/5 dark:bg-white/5 hover:bg-black/10 opacity-80 hover:opacity-100'
+              }`}
+            >
+              {subcat}
+            </button>
+          ))}
         </div>
+      </div>
 
+      {/* 3. Price Filter + Reset */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3 border-t border-black/5 dark:border-white/10">
+        
         {/* Price Range */}
         <div>
           <label className="text-[11px] font-bold uppercase tracking-wider opacity-60 block mb-1.5">

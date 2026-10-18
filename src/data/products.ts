@@ -96,12 +96,12 @@ export const AGE_CATEGORIES: AgeCategoryMeta[] = [
   {
     id: '16-18',
     label: '16 a 18 Años',
-    tagline: 'Videojuegos PS5, setup gamer pro, estética Emo/Dark con velas y VR',
-    description: 'Desde lo último de PlayStation 5 (Spider-Man 2, FC 25, Elden Ring) y mandos pro hasta velas de mecha de madera, diarios de cuero vintage y gafas Meta Quest 3S.',
-    h1: 'Regalos Exclusivos para Jóvenes de 16 a 18 Años (Gamer, Emo & Tech)',
-    seoKeywords: ['juegos ps5 spiderman 2', 'regalos emo aesthetic velas', 'mando dualsense edge', 'meta quest 3s vr', 'calvin klein ck one'],
-    theme: 'emo',
-    icon: '🖤'
+    tagline: 'Tecnología, PlayStation 5, gaming, sonido y estilo personal',
+    description: 'Ideas destacadas para jóvenes y adolescentes de 16 a 18 años: desde videojuegos y periféricos gaming hasta sonido prémium, realidad virtual y accesorios de estilo personal.',
+    h1: 'Regalos para Jóvenes de 16 a 18 Años (Gaming, Tech y Estilo)',
+    seoKeywords: ['juegos ps5 spiderman 2', 'regalos 18 anos', 'mando dualsense edge', 'meta quest 3s vr', 'calvin klein ck one'],
+    theme: 'gamer',
+    icon: '⚡'
   }
 ];
 
@@ -980,7 +980,7 @@ export const PRODUCTS: Product[] = [
     slug: 'woodwick-vela-aromatica-mecha-madera-fireside',
     searchQuery: 'woodwick vela aromatica mecha de madera vaso cristal fireside cera',
     category: '16 a 18 Años',
-    subcategory: 'Estilo Emo y Dark Aesthetic',
+    subcategory: 'Estilo Personal, Cuadernos de Piel y Fragancias',
     ageRange: '16-18',
     gender: 'unisex',
     priceRange: '20-50',
@@ -1001,7 +1001,7 @@ export const PRODUCTS: Product[] = [
     slug: 'moonster-diario-cuero-vintage-arbol-vida',
     searchQuery: 'moonster diario de cuero vintage hojas envejecidas cuaderno artesanal',
     category: '16 a 18 Años',
-    subcategory: 'Estilo Emo y Dark Aesthetic',
+    subcategory: 'Estilo Personal, Cuadernos de Piel y Fragancias',
     ageRange: '16-18',
     gender: 'unisex',
     priceRange: '20-50',
@@ -1098,7 +1098,112 @@ export const PRODUCTS: Product[] = [
     idealFor: 'Personalizar el santuario de cualquier habitación juvenil',
     style: 'gamer',
     imageUrl: '/images/products/1618-govee-neon.jpg'
-  }
+  },
+  {
+    id: '13-lego-duplo',
+    asin: 'B07W4KVGJM',
+    title: 'LEGO DUPLO Classic - Caja de Ladrillos con Ruedas, Figuras y Piezas Grandes (10913)',
+    slug: 'lego-duplo-classic-caja-ladrillos-10913',
+    searchQuery: 'lego duplo classic caja de ladrillos 10913',
+    category: '1 a 3 Años',
+    subcategory: 'LEGO DUPLO y Construcción',
+    ageRange: '1-3',
+    gender: 'unisex',
+    priceRange: '20-50',
+    priceText: '29,99 €',
+    rating: 4.9,
+    reviewsCount: 15800,
+    badge: 'El Primer LEGO de Todo Niño',
+    description: 'Caja de 65 piezas grandes de construcción segura diseñadas para manos pequeñas. Incluye coche con ruedas funcionales, figuras de niño y niña, perro mascota y ladrillos numerados del 1 al 3.',
+    pros: ['Piezas grandes y seguras imposibles de tragar', 'Caja organizadora de plástico resistente para guardar todo en segundos', 'Estimula la motricidad fina, el reconocimiento espacial y los números'],
+    idealFor: 'Desarrollo psicomotriz y juego creativo libre a partir de 18 meses',
+    style: 'kids',
+    imageUrl: '/images/products/13-lego-duplo.jpg'
+  },
+  {
+    id: '46-carrera-mario',
+    asin: 'B07PQGP8B7',
+    title: 'Carrera First - Circuito de Carreras Nintendo Mario Kart con 2 Coches y Mandos Ergonómicos',
+    slug: 'carrera-first-circuito-carreras-mario-kart',
+    searchQuery: 'carrera first nintendo mario kart circuito coches',
+    category: '4 a 6 Años',
+    subcategory: 'Circuitos de Coches Infantiles',
+    ageRange: '4-6',
+    gender: 'unisex',
+    priceRange: '20-50',
+    priceText: '34,99 €',
+    rating: 4.8,
+    reviewsCount: 8200,
+    badge: 'El Circuito Favorito de Mario y Yoshi',
+    description: 'Circuito de carreras a escala 1:50 ideal para los más pequeños a partir de 3 años. Funciona a pilas con mandos regulados para manos infantiles y elementos interactivos en pista.',
+    pros: ['Mandos adaptados a manos infantiles con velocidad controlada', 'Incluye los coches oficiales de Mario y Yoshi', 'Montaje rápido tipo clic fácil de guardar'],
+    idealFor: 'Primeras carreras emocionantes en familia sin complicaciones',
+    style: 'kids',
+    imageUrl: '/images/products/46-carrera-mario.jpg'
+  },
+  {
+    id: '46-pikachu-peluche',
+    asin: 'B0B2X57MHG',
+    title: 'Pokémon - Peluche Interactivo de Pikachu con Luces en las Mejillas y Más de 20 Sonidos',
+    slug: 'pokemon-peluche-interactivo-pikachu-luces-sonidos',
+    searchQuery: 'pokemon peluche interactivo pikachu luces sonidos bizak',
+    category: '4 a 6 Años',
+    subcategory: 'Peluches Interactivos',
+    ageRange: '4-6',
+    gender: 'unisex',
+    priceRange: '20-50',
+    priceText: '32,95 €',
+    rating: 4.8,
+    reviewsCount: 6500,
+    badge: 'El Peluche Más Buscado por Fans de Pokémon',
+    description: 'Peluche oficial de Pikachu de tacto ultrasuave. Al acariciar su cabeza o barriga mueve sus orejitas, sus mejillas rojas se iluminan con electricidad y emite las voces y sonidos originales de Pikachu.',
+    pros: ['Más de 20 reacciones y sonidos auténticos de la serie', 'Mejillas con luz LED parpadeante como en el anime', 'Material hipoalergénico de primera calidad'],
+    idealFor: 'Niños y niñas que adoran Pokémon y buscan un amigo de peluche',
+    style: 'kids',
+    imageUrl: '/images/products/46-pikachu-peluche.jpg'
+  },
+  {
+    id: '79-scalextric-compact',
+    asin: 'B0F5Q6N2YM',
+    title: 'Scalextric Compact - Circuito Grand Challenge Escala 1:43 con 2 Coches GT y Mandos Turbo',
+    slug: 'scalextric-compact-circuito-grand-challenge',
+    searchQuery: 'scalextric compact grand challenge pista coches',
+    category: '7 a 9 Años',
+    subcategory: 'Scalextric y Pistas de Carreras',
+    ageRange: '7-9',
+    gender: 'unisex',
+    priceRange: '50-100',
+    priceText: '69,99 €',
+    rating: 4.8,
+    reviewsCount: 3900,
+    badge: 'La Experiencia Clásica de Velocidad',
+    description: 'Auténtico circuito Scalextric Compact a escala 1:43 con más de 4 metros de recorrido, curvas peraltadas, puente y dos mandos inalámbricos con función Turbo para adelantamientos épicos.',
+    pros: ['Mandos ergonómicos con botón Turbo de máxima aceleración', 'Espacio optimizado que cabe en cualquier salón o dormitorio', 'Coches resistentes con imán de agarre a la pista'],
+    idealFor: 'Piques de carreras entre padres, hijos y amigos',
+    style: 'classic',
+    imageUrl: '/images/products/79-scalextric-compact.jpg'
+  },
+  {
+    id: '79-coche-rc-exost',
+    asin: 'B07GVLZCSW',
+    title: 'Silverlit Exost 360 Cross - Coche Teledirigido Acrobático 4x4 Antigolpes con Giros 360°',
+    slug: 'silverlit-exost-360-cross-coche-teledirigido-acrobatico',
+    searchQuery: 'silverlit exost 360 cross coche teledirigido acrobatico',
+    category: '7 a 9 Años',
+    subcategory: 'Coches RC y Teledirigidos',
+    ageRange: '7-9',
+    gender: 'unisex',
+    priceRange: '20-50',
+    priceText: '26,99 €',
+    rating: 4.7,
+    reviewsCount: 11400,
+    badge: 'Indestructible en Todo Terreno',
+    description: 'El coche RC acrobático más resistente: rueda por ambos lados, realiza piruetas de 360 grados y supera cualquier obstáculo gracias a sus grandes neumáticos todoterreno ultra absorbentes.',
+    pros: ['Diseño reversible de doble cara: si vuelca, sigue corriendo', 'Velocidad de hasta 12 km/h con alcance de 25 metros', 'Soporta caídas por escaleras, tierra y asfalto'],
+    idealFor: 'Diversión todoterreno sin miedo a romper el juguete',
+    style: 'classic',
+    imageUrl: '/images/products/79-coche-rc-exost.jpg'
+  },
 ];
 
 export const CATEGORIES_LIST = [
@@ -1115,7 +1220,7 @@ export const CATEGORIES_LIST = [
   'Método Montessori y Madera',
   'Videojuegos y Accesorios PS5',
   'Setup Gamer y Periféricos',
-  'Estilo Emo y Dark Aesthetic',
+  'Estilo Personal, Cuadernos de Piel y Fragancias',
   'Tecnología y Gadgets',
   'Ciencia, STEM y Robótica'
 ];
@@ -1127,3 +1232,66 @@ export const PRICE_FILTERS = [
   { id: '50-100', label: '50 € a 100 € (Regalazo prémium)' },
   { id: '>100', label: 'Más de 100 € (Ocasión especial)' }
 ];
+
+export const AGE_SUBCATEGORIES_MAP: Record<string, string[]> = {
+  'all': [
+    'Peluches y Figuras',
+    'LEGO y Construcción',
+    'Scalextric y Circuitos de Coches',
+    'Coches RC y Teledirigidos',
+    'Juegos de Mesa y Cartas',
+    'Bicis y Patinetes con Ruedas',
+    'Juegos de Magia Borrás',
+    'Esenciales y Cuidado de Bebé',
+    'Videojuegos y Setup Gamer',
+    'Tecnología y Gadgets'
+  ],
+  '0-12m': [
+    'Cochecitos y Mobiliario de Bebé',
+    'Cunas de Colecho y Descanso',
+    'Bañeras e Higiene del Bebé',
+    'Tartas de Pañales',
+    'Juguetes y Peluches de Bebé',
+    'Droguería y Cuidado Infantil'
+  ],
+  '1-3': [
+    'Método Montessori y Madera',
+    'LEGO DUPLO y Construcción',
+    'Triciclos y Bicis Infantiles',
+    'Cocina Infantil y Juegos de Imitación',
+    'Bloques Blandos y Arena Mágica'
+  ],
+  '4-6': [
+    'Circuitos de Coches Infantiles',
+    'Juegos de Mesa Infantiles',
+    'Patinetes Infantiles con Ruedas LED',
+    'Peluches Interactivos',
+    'Maletas Infantiles Correpasillos'
+  ],
+  '7-9': [
+    'Scalextric y Pistas de Carreras',
+    'Coches RC y Teledirigidos',
+    'LEGO Creator y Construcción',
+    'Juegos de Magia Borrás',
+    'Juegos de Mesa y Estrategia Familiar',
+    'Circuitos GraviTrax y STEM'
+  ],
+  '10-12': [
+    'Juegos de Cartas Competitivos (Virus!)',
+    'Minidrones RC Anticolisión',
+    'Magia Borrás Avanzada con App',
+    'Juegos de Mesa Medievales (Carcassonne)'
+  ],
+  '13-15': [
+    'Auriculares Inalámbricos ANC',
+    'Juegos de Mesa Clásicos (Catan)',
+    'Cuidado Facial y Skincare',
+    'Kits de Viaje y Organizadores'
+  ],
+  '16-18': [
+    'Videojuegos y Accesorios PS5',
+    'Setup Gamer y Periféricos',
+    'Tecnología y Gadgets (VR, Audio)',
+    'Estilo Personal, Cuadernos de Piel y Fragancias'
+  ]
+};
