@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-primary: #f8fafc;
+    --text-primary: #0f172a;
+    --accent-glow: rgba(99, 102, 241, 0.15);
+  }
+
+  /* Tema Bebé / Recién Nacido: tonos pasteles, nubes y ositos */
+  [data-theme="baby"] {
+    --bg-primary: #fdf8f6;
+    --text-primary: #33202a;
+    --accent-glow: rgba(244, 114, 182, 0.2);
+  }
+
+  /* Tema Emo / Goth / Dark Aesthetic: velas, sombras y acentos oscuros */
+  [data-theme="emo"] {
+    --bg-primary: #09090b;
+    --text-primary: #f4f4f5;
+    --accent-glow: rgba(225, 29, 72, 0.25);
+  }
+
+  /* Tema Gamer / Cyberpunk: neón morado y azul */
+  [data-theme="gamer"] {
+    --bg-primary: #0a0b14;
+    --text-primary: #f8fafc;
+    --accent-glow: rgba(139, 92, 246, 0.3);
+  }
+}
+
+/* Background patterns */
+.bg-baby-pattern {
+  background-color: #fdf6f7;
+  background-image: radial-gradient(#f472b6 0.75px, transparent 0.75px), radial-gradient(#cbd5e1 0.75px, #fdf6f7 0.75px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+}
+
+.bg-emo-pattern {
+  background-color: #0b0b0e;
+  background-image: radial-gradient(circle at 50% 0%, rgba(136, 19, 55, 0.35), transparent 45%),
+                    radial-gradient(circle at 10% 80%, rgba(55, 48, 163, 0.2), transparent 40%);
+}
+
+.bg-gamer-pattern {
+  background-color: #0d0e1b;
+  background-image: linear-gradient(to right, rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Smooth transitions */
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+/* Floating animation for baby bears and candles */
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(2deg);
+  }
+}
+
+@keyframes flickerFlame {
+  0%, 100% { opacity: 0.85; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.08) translateY(-1px); }
+  75% { opacity: 0.7; transform: scale(0.96); }
+}
+
+.animate-float {
+  animation: floatGentle 5s ease-in-out infinite;
+}
+
+.animate-flicker {
+  animation: flickerFlame 2.5s ease-in-out infinite;
+}

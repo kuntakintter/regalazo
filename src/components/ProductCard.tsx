@@ -1,0 +1,197 @@
+'use client';
+
+import React, { useState } from 'react';
+import Image from 'next/image';
+import { Product } from '@/data/products';
+import { getAmazonAffiliateUrl } from '@/lib/amazon';
+import { ExternalLink, Star, CheckCircle2, Heart, Share2, Sparkles, ShoppingBag } from 'lucide-react';
+
+interface ProductCardProps {
+  product: Product;
+  currentTheme: string;
+}
+
+export default function ProductCard({ product, currentTheme }: ProductCardProps) {
+  const [copied, setCopied] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
+
+  const affiliateUrl = getAmazonAffiliateUrl(product.searchQuery);
+  const isDark = currentTheme === 'emo' || currentTheme === 'gamer';
+
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: product.title,
+          text: product.description,
+          url: affiliateUrl,
+        });
+      } catch {
+        // Fallback to clipboard
+        navigator.clipboard.writeText(affiliateUrl);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      }
+    } else {
+      navigator.clipboard.writeText(affiliateUrl);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
+
+  return (
+    <article className={`group flex flex-col rounded-3xl overflow-hidden border transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${
+      currentTheme === 'emo'
+        ? 'bg-neutral-900/90 border-neutral-800 text-neutral-100 hover:border-rose-900/80 shadow-rose-950/20'
+        : currentTheme === 'gamer'
+        ? 'bg-slate-900/90 border-purple-900/60 text-slate-100 hover:border-cyan-500/50 shadow-purple-950/20'
+        : currentTheme === 'baby'
+        ? 'bg-white border-rose-200/90 text-rose-950 hover:border-pink-300 shadow-rose-100/40'
+        : 'bg-white border-slate-200 text-slate-900 hover:border-indigo-200 shadow-slate-100'
+    }`}>
+      {/* Product Image & Badges */}
+      <div className="relative aspect-4/3 overflow-hidden bg-slate-100 dark:bg-neutral-800">
+        <Image
+          src={product.imageUrl}
+          alt={product.title}
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-108"
+        />
+        
+        {/* Top Badges */}
+        <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-10">
+          <span className={`px-3 py-1 rounded-full text-xs font-bold tracking-wide shadow-md backdrop-blur-md flex items-center gap-1 ${
+            currentTheme === 'emo'
+              ? 'bg-rose-950/90 text-rose-200 border border-rose-800/80'
+              : currentTheme === 'baby'
+              ? 'bg-pink-600/95 text-white'
+              : currentTheme === 'gamer'
+              ? 'bg-purple-900/90 text-purple-200 border border-purple-500/40'
+              : 'bg-amber-500 text-white'
+          }`}>
+            <Sparkles className="w-3 h-3" />
+            {product.badge}
+          </span>
+          <span className="self-start px-2 py-0.5 rounded-md text-[10px] font-semibold bg-black/60 text-white backdrop-blur-xs">
+            {product.subcategory}
+          </span>
+        </div>
+
+        {/* Action icons (Wishlist & Share) */}
+        <div className="absolute top-3 right-3 flex flex-col gap-1.5 z-10">
+          <button
+            onClick={() => setIsLiked(!isLiked)}
+            aria-label="Guardar en favoritos"
+            className="w-8 h-8 rounded-full bg-white/90 dark:bg-neutral-900/90 backdrop-blur-xs flex items-center justify-center text-slate-600 dark:text-neutral-300 hover:scale-110 transition-transform shadow-xs"
+          >
+            <Heart className={`w-4 h-4 ${isLiked ? 'fill-rose-500 text-rose-500' : ''}`} />
+          </button>
+          <button
+            onClick={handleShare}
+            aria-label="Compartir idea"
+            className="w-8 h-8 rounded-full bg-white/90 dark:bg-neutral-900/90 backdrop-blur-xs flex items-center justify-center text-slate-600 dark:text-neutral-300 hover:scale-110 transition-transform shadow-xs"
+          >
+            <Share2 className="w-4 h-4" />
+          </button>
+        </div>
+
+        {/* Price Tag Overlay */}
+        <div className="absolute bottom-3 right-3 z-10">
+          <span className="px-3 py-1 rounded-xl font-black text-sm bg-black/80 text-white backdrop-blur-md shadow-md border border-white/10">
+            {product.priceText}
+          </span>
+        </div>
+      </div>
+
+      {/* Product Content */}
+      <div className="p-5 flex flex-col flex-1">
+        
+        {/* Rating and Reviews */}
+        <div className="flex items-center gap-1.5 mb-2.5">
+          <div className="flex items-center text-amber-400">
+            {[...Array(5)].map((_, i) => (
+              <Star
+                key={i}
+                className={`w-3.5 h-3.5 ${
+                  i < Math.floor(product.rating)
+                    ? 'fill-amber-400 text-amber-400'
+                    : 'fill-slate-200 dark:fill-neutral-700 text-slate-200 dark:text-neutral-700'
+                }`}
+              />
+            ))}
+          </div>
+          <span className="text-xs font-bold">{product.rating}</span>
+          <span className="text-[11px] opacity-60">({product.reviewsCount.toLocaleString()} opiniones)</span>
+        </div>
+
+        {/* H3 Title for perfect SEO structure */}
+        <h3 className="font-bold text-base line-clamp-2 leading-snug mb-2 group-hover:text-indigo-600 dark:group-hover:text-rose-400 transition-colors">
+          {product.title}
+        </h3>
+
+        {/* Persuasive Description */}
+        <p className="text-xs opacity-80 leading-relaxed mb-4 line-clamp-3">
+          {product.description}
+        </p>
+
+        {/* Pros checklist */}
+        <ul className="mb-5 space-y-1.5 text-xs opacity-90">
+          {product.pros.map((pro, index) => (
+            <li key={index} className="flex items-start gap-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />
+              <span className="leading-tight">{pro}</span>
+            </li>
+          ))}
+        </ul>
+
+        {/* Ideal For hint */}
+        <div className="mt-auto pt-3 border-t border-black/5 dark:border-white/10 mb-4 text-[11px] opacity-70">
+          <span className="font-semibold">Ideal para: </span>
+          <span>{product.idealFor}</span>
+        </div>
+
+        {/* CTAs */}
+        <div className="space-y-2">
+          {/* Main Affiliate CTA */}
+          <a
+            href={affiliateUrl}
+            target="_blank"
+            rel="nofollow sponsored noopener noreferrer"
+            className={`w-full py-3 px-4 rounded-2xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-md transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] ${
+              currentTheme === 'emo'
+                ? 'bg-gradient-to-r from-rose-800 to-rose-950 text-white hover:from-rose-700 hover:to-rose-900 border border-rose-700/60 shadow-rose-950/40'
+                : currentTheme === 'gamer'
+                ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:from-purple-500 hover:to-indigo-500 shadow-purple-950/40'
+                : currentTheme === 'baby'
+                ? 'bg-gradient-to-r from-pink-500 to-rose-500 text-white hover:from-pink-400 hover:to-rose-400 shadow-rose-200'
+                : 'bg-[#FF9900] text-slate-950 hover:bg-[#ffad33] shadow-amber-500/20'
+            }`}
+          >
+            <ShoppingBag className="w-4 h-4" />
+            <span>Ver Mejor Precio en Amazon</span>
+            <ExternalLink className="w-3.5 h-3.5 opacity-80" />
+          </a>
+
+          {/* Secondary CTA: Search similar options */}
+          <a
+            href={affiliateUrl}
+            target="_blank"
+            rel="nofollow sponsored noopener noreferrer"
+            className="w-full py-1.5 px-3 rounded-xl text-[11px] font-medium text-center block opacity-60 hover:opacity-100 hover:underline transition-opacity"
+          >
+            Ver más modelos y opiniones en Amazon.es →
+          </a>
+        </div>
+
+        {/* Toast feedback when copied */}
+        {copied && (
+          <div className="text-center text-[10px] text-emerald-600 font-bold mt-1">
+            ✓ ¡Enlace copiado al portapapeles!
+          </div>
+        )}
+
+      </div>
+    </article>
+  );
+}
