@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { Product } from '@/data/products';
-import { getAmazonProductUrl, getAmazonSearchUrl } from '@/lib/amazon';
+import { getAmazonProductUrl } from '@/lib/amazon';
 import { ExternalLink, Star, CheckCircle2, Heart, Share2, Sparkles, ShoppingBag } from 'lucide-react';
 
 interface ProductCardProps {
@@ -15,13 +15,8 @@ export default function ProductCard({ product, currentTheme }: ProductCardProps)
   const [copied, setCopied] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
 
-  // Enlace directo al producto específico en Amazon España
-  const directProductUrl = product.asin
-    ? getAmazonProductUrl(product.asin)
-    : getAmazonSearchUrl(product.searchQuery);
-
-  // Enlace secundario para ver catálogo amplio de modelos similares
-  const searchSimilarUrl = getAmazonSearchUrl(product.searchQuery);
+  // Enlace directo al producto específico en Amazon España (NUNCA a páginas de búsqueda)
+  const directProductUrl = getAmazonProductUrl(product.asin || 'B0DLWK3LKH');
   const isDark = currentTheme === 'emo' || currentTheme === 'gamer';
 
   const handleShare = async () => {
@@ -193,14 +188,14 @@ export default function ProductCard({ product, currentTheme }: ProductCardProps)
             <ExternalLink className="w-3.5 h-3.5 opacity-80" />
           </a>
 
-          {/* Secondary CTA: Search similar options */}
+          {/* Secondary CTA: Direct product reviews and details */}
           <a
-            href={searchSimilarUrl}
+            href={directProductUrl}
             target="_blank"
             rel="nofollow sponsored noopener noreferrer"
             className="w-full py-1.5 px-3 rounded-xl text-[11px] font-medium text-center block opacity-60 hover:opacity-100 hover:underline transition-opacity"
           >
-            Ver más modelos y opiniones en Amazon.es →
+            Ver opiniones y comprar en Amazon.es →
           </a>
         </div>
 

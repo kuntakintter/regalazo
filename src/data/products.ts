@@ -111,8 +111,8 @@ export const PRODUCTS: Product[] = [
   // =========================================================================
   {
     id: 'bebe-cochecito',
-    asin: 'B015I2T15E',
-    title: 'Chicco London - Silla de Paseo Ligera y Plegable Tipo Paraguas (0 a 3 Años)',
+    asin: 'B0DLWK3LKH',
+    title: 'Chicco London Up - Silla de Paseo Ligera Plegable Tipo Paraguas Reclinable 4 Posiciones (0 a 3 Años)',
     slug: 'chicco-london-silla-paseo-ligera-plegable',
     searchQuery: 'chicco london silla de paseo ligera compacta plegable paraguas',
     category: 'Recién Nacidos',
