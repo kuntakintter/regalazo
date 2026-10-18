@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { AGE_CATEGORIES } from '@/data/products';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://regalaconacierto.es';
+  const baseUrl = 'https://regalazo.vercel.app';
 
   const categoryEntries = AGE_CATEGORIES.map((cat) => ({
     url: `${baseUrl}/#${cat.id}`,

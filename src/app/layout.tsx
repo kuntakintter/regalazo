@@ -2,9 +2,10 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Ideas de Regalo para Niños, Niñas y Adolescentes (0 a 18 Años) | RegalaConAcierto',
-  description: 'Encuentra el regalo perfecto para recién nacidos, niños y jóvenes de 0 a 18 años. Desde tartas de pañales originales y juguetes Montessori hasta videojuegos de PS5 y moda emo aesthetic. Recomendaciones verificadas de Amazon España.',
+  title: 'Regalazo⚡ | Ideas de Regalo para Niños y Jóvenes (0 a 18 Años)',
+  description: 'Descubre en Regalazo las mejores ideas de regalo para recién nacidos, niños y adolescentes de 0 a 18 años. Desde tartas de pañales hasta videojuegos de PS5 y estilo emo/aesthetic. Recomendaciones verificadas de Amazon España.',
   keywords: [
+    'regalazo',
     'ideas de regalo para ninos',
     'regalos recien nacido originales',
     'tarta de panales personalizada',
@@ -15,9 +16,9 @@ export const metadata: Metadata = {
     'que regalar a un nino',
     'mejores regalos infantiles amazon'
   ],
-  authors: [{ name: 'RegalaConAcierto Equipo Editorial' }],
-  creator: 'RegalaConAcierto',
-  publisher: 'RegalaConAcierto',
+  authors: [{ name: 'Regalazo Editorial' }],
+  creator: 'Regalazo',
+  publisher: 'Regalazo',
   robots: {
     index: true,
     follow: true,
@@ -32,26 +33,26 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'es_ES',
-    url: 'https://regalaconacierto.es',
-    siteName: 'RegalaConAcierto.es',
-    title: 'Guía de Regalos para Bebés, Niños y Jóvenes (0-18 Años)',
-    description: 'Recomendaciones curadas y contrastadas de Amazon España para acertar siempre con tu regalo.',
+    url: 'https://regalazo.vercel.app',
+    siteName: 'Regalazo',
+    title: 'Regalazo⚡ | Guía de Regalos de 0 a 18 Años',
+    description: 'Encuentra el regalo perfecto en segundos con recomendaciones contrastadas de Amazon España.',
     images: [
       {
         url: 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=1200&h=630&q=80',
         width: 1200,
         height: 630,
-        alt: 'Regalos recomendados para niños y adolescentes',
+        alt: 'Regalazo - Recomendaciones de regalos para niños y jóvenes',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Ideas de Regalo para Niños y Jóvenes (0 a 18 Años)',
+    title: 'Regalazo⚡ | Ideas de Regalo de 0 a 18 Años',
     description: 'Guía definitiva con recomendaciones verificadas de Amazon España.',
   },
   alternates: {
-    canonical: 'https://regalaconacierto.es',
+    canonical: 'https://regalazo.vercel.app',
   },
 };
 
@@ -64,11 +65,11 @@ export default function RootLayout({
   const webSiteSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'RegalaConAcierto',
-    url: 'https://regalaconacierto.es',
+    name: 'Regalazo',
+    url: 'https://regalazo.vercel.app',
     potentialAction: {
       '@type': 'SearchAction',
-      target: 'https://regalaconacierto.es/?q={search_term_string}',
+      target: 'https://regalazo.vercel.app/?q={search_term_string}',
       'query-input': 'required name=search_term_string',
     },
   };

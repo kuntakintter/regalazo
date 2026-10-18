@@ -1,7 +1,7 @@
 {
-  "name": "pequeregalos-ideas",
+  "name": "regalazo",
   "version": "1.0.0",
-  "description": "El mejor recomendador de regalos para niños, niñas y adolescentes de 0 a 18 años optimizado para SEO y Amazon Afiliados",
+  "description": "Regalazo - El recomendador más potente de regalos para bebés, niños y jóvenes de 0 a 18 años con enlaces de afiliado de Amazon España",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

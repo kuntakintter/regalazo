@@ -44,22 +44,25 @@ export default function Header({ currentTheme, onThemeChange, onSearchChange, se
           
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 shrink-0 group">
-            <div className={`w-10 h-10 rounded-xl flex items-center justify-center shadow-md transition-transform group-hover:scale-105 ${
+            <div className={`w-10 h-10 rounded-2xl flex items-center justify-center shadow-lg transition-transform group-hover:scale-110 ${
               currentTheme === 'emo'
-                ? 'bg-gradient-to-br from-rose-900 to-neutral-900 text-rose-200 border border-rose-800/50'
+                ? 'bg-gradient-to-br from-rose-900 to-neutral-900 text-rose-200 border border-rose-800/50 shadow-rose-950/40'
                 : currentTheme === 'baby'
-                ? 'bg-gradient-to-br from-pink-400 to-amber-300 text-white'
+                ? 'bg-gradient-to-br from-pink-400 to-amber-300 text-white shadow-pink-200'
                 : currentTheme === 'gamer'
-                ? 'bg-gradient-to-br from-purple-600 to-cyan-500 text-white'
-                : 'bg-gradient-to-br from-indigo-600 to-pink-500 text-white'
+                ? 'bg-gradient-to-br from-purple-600 via-indigo-600 to-cyan-500 text-white shadow-purple-950/50'
+                : 'bg-gradient-to-br from-amber-500 via-rose-500 to-indigo-600 text-white shadow-indigo-200'
             }`}>
-              <Gift className="w-5 h-5" />
+              <Gift className="w-5 h-5 animate-pulse" />
             </div>
             <div>
-              <span className="text-lg font-black tracking-tight block leading-none">
-                Regala<span className={currentTheme === 'emo' ? 'text-rose-400' : 'text-indigo-600'}>ConAcierto</span>
-              </span>
-              <span className="text-[10px] tracking-wide uppercase font-semibold opacity-60">0 a 18 Años</span>
+              <div className="flex items-center gap-1">
+                <span className="text-xl font-black tracking-tight block leading-none">
+                  REGAL<span className={currentTheme === 'emo' ? 'text-rose-400' : 'text-indigo-600'}>AZO</span>
+                </span>
+                <span className="text-amber-500 text-xs font-black">⚡</span>
+              </div>
+              <span className="text-[10px] tracking-wider uppercase font-extrabold opacity-60">0 a 18 Años</span>
             </div>
           </Link>
 

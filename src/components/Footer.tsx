@@ -50,13 +50,13 @@ export default function Footer({ currentTheme }: FooterProps) {
               <div className="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center">
                 <Gift className="w-4 h-4" />
               </div>
-              <span className="font-black text-base tracking-tight">RegalaConAcierto</span>
+              <span className="font-black text-lg tracking-tight">REGALAZO⚡</span>
             </div>
             <p className="text-xs opacity-75 leading-relaxed">
-              La guía experta de recomendaciones de regalos para niños y jóvenes de 0 a 18 años. Analizamos y seleccionamos los productos con mejores valoraciones y satisfacción garantizada en Amazon España.
+              La plataforma más dinámica de recomendaciones de regalos para niños y jóvenes de 0 a 18 años. Analizamos y seleccionamos los productos con mejores valoraciones y satisfacción garantizada en Amazon España.
             </p>
             <div className="text-[11px] opacity-60">
-              Hecho con <Heart className="w-3 h-3 text-rose-500 inline fill-rose-500" /> para ayudar a familias a acertar siempre.
+              Hecho con <Heart className="w-3 h-3 text-rose-500 inline fill-rose-500" /> para que encuentres el regalo perfecto en segundos.
             </div>
           </div>
 
@@ -117,7 +117,7 @@ export default function Footer({ currentTheme }: FooterProps) {
         {/* Bottom Bar */}
         <div className="border-t border-black/5 dark:border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs opacity-60">
           <div>
-            © {new Date().getFullYear()} RegalaConAcierto.es • Todos los derechos reservados.
+            © {new Date().getFullYear()} Regalazo (regalazo.vercel.app) • Todos los derechos reservados.
           </div>
           <div className="flex gap-4">
             <span className="hover:underline cursor-pointer">Aviso Legal</span>
