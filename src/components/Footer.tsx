@@ -83,11 +83,12 @@ export default function Footer({ currentTheme }: FooterProps) {
             </h3>
             <ul className="space-y-2 text-xs opacity-80">
               <li><a href="#catalogo-productos" className="hover:underline">Tartas de Pañales Personalizadas</a></li>
+              <li><a href="#catalogo-productos" className="hover:underline">Perfumería y Colonias Juveniles</a></li>
+              <li><a href="#catalogo-productos" className="hover:underline">Maquillaje Infantil y Skincare Teen</a></li>
+              <li><a href="#catalogo-productos" className="hover:underline">Kits de Viaje y Maletas Infantiles</a></li>
+              <li><a href="#catalogo-productos" className="hover:underline">Droguería y Cuidado del Bebé</a></li>
               <li><a href="#catalogo-productos" className="hover:underline">Juegos PS5 para Chicos y Chicas</a></li>
               <li><a href="#catalogo-productos" className="hover:underline">Regalos Emo, Dark Aesthetic y Velas</a></li>
-              <li><a href="#catalogo-productos" className="hover:underline">Juguetes de Madera Montessori</a></li>
-              <li><a href="#catalogo-productos" className="hover:underline">Auriculares con Cancelación de Ruido</a></li>
-              <li><a href="#catalogo-productos" className="hover:underline">Juegos de Mesa Familiares</a></li>
             </ul>
           </div>
 
