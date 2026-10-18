@@ -25,10 +25,44 @@ export default function HomePage() {
       setCurrentTheme('baby');
     } else if (age === '16-18') {
       setCurrentTheme('emo');
-    } else if (age === '10-12' || age === '13-15') {
+    } else if (age === '13-15') {
       setCurrentTheme('gamer');
     } else if (age === '1-3' || age === '4-6') {
       setCurrentTheme('kids');
+    } else {
+      setCurrentTheme('classic');
+    }
+  };
+
+  // Handle category selection with automatic theme reflection
+  const handleSelectCategory = (cat: string) => {
+    setSelectedCategory(cat);
+    const catLower = cat.toLowerCase();
+    if (catLower.includes('pañal') || catLower.includes('cochecito') || catLower.includes('bañera') || catLower.includes('cuidado infantil') || catLower.includes('bebé')) {
+      setCurrentTheme('baby');
+    } else if (catLower.includes('emo') || catLower.includes('vela')) {
+      setCurrentTheme('emo');
+    } else if (catLower.includes('ps5') || catLower.includes('gamer')) {
+      setCurrentTheme('gamer');
+    } else if (selectedAge !== 'all') {
+      handleSelectAge(selectedAge);
+    } else {
+      setCurrentTheme('classic');
+    }
+  };
+
+  // Handle live search with smart atmospheric theme detection
+  const handleSearchChange = (query: string) => {
+    setSearchQuery(query);
+    const q = query.toLowerCase();
+    if (q.includes('bebe') || q.includes('bebé') || q.includes('cuna') || q.includes('cochecito') || q.includes('pañal') || q.includes('bañera') || q.includes('lactancia') || q.includes('doudou')) {
+      setCurrentTheme('baby');
+    } else if (q.includes('emo') || q.includes('vela') || q.includes('gotico') || q.includes('gótico') || q.includes('grunge')) {
+      setCurrentTheme('emo');
+    } else if (q.includes('ps5') || q.includes('gamer') || q.includes('mando') || q.includes('videojuego')) {
+      setCurrentTheme('gamer');
+    } else if (selectedAge !== 'all') {
+      handleSelectAge(selectedAge);
     } else {
       setCurrentTheme('classic');
     }
@@ -111,7 +145,7 @@ export default function HomePage() {
         currentTheme={currentTheme}
         onThemeChange={setCurrentTheme}
         searchQuery={searchQuery}
-        onSearchChange={setSearchQuery}
+        onSearchChange={handleSearchChange}
       />
 
       {/* Main Content Area */}
@@ -212,7 +246,7 @@ export default function HomePage() {
             selectedAge={selectedAge}
             onSelectAge={handleSelectAge}
             selectedCategory={selectedCategory}
-            onSelectCategory={setSelectedCategory}
+            onSelectCategory={handleSelectCategory}
             selectedPrice={selectedPrice}
             onSelectPrice={setSelectedPrice}
             currentTheme={currentTheme}

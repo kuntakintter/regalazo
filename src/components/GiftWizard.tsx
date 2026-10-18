@@ -36,20 +36,27 @@ export default function GiftWizard({ onApplyRecommendation, currentTheme }: Gift
 
     if (selectedAge === '0-12m') {
       suggestedTheme = 'baby';
+      if (selectedVibe === 'baby-gear') suggestedCategory = 'Cochecitos y Mobiliario de Bebé';
       if (selectedVibe === 'baby-care') suggestedCategory = 'Tartas de Pañales';
     } else if (selectedAge === '16-18') {
+      suggestedTheme = 'emo';
       if (selectedVibe === 'emo') {
-        suggestedTheme = 'emo';
         suggestedCategory = 'Estilo Emo y Dark Aesthetic';
       } else if (selectedVibe === 'gamer') {
         suggestedTheme = 'gamer';
-        suggestedCategory = 'Videojuegos PS5';
+        suggestedCategory = 'Videojuegos y Accesorios PS5';
       }
+    } else if (selectedVibe === 'magic') {
+      suggestedCategory = 'Juegos de Magia e Ilusionismo';
+    } else if (selectedVibe === 'board-games') {
+      suggestedCategory = 'Juegos de Mesa y Cartas';
     } else if (selectedVibe === 'montessori') {
-      suggestedCategory = 'Método Montessori';
+      suggestedCategory = 'Método Montessori y Madera';
     } else if (selectedVibe === 'gamer') {
       suggestedTheme = 'gamer';
-      suggestedCategory = 'Videojuegos PS5';
+      suggestedCategory = 'Videojuegos y Accesorios PS5';
+    } else if (selectedVibe === 'beauty-travel') {
+      suggestedCategory = 'Kits de Viaje y Maletas';
     }
 
     onApplyRecommendation({
@@ -145,15 +152,17 @@ export default function GiftWizard({ onApplyRecommendation, currentTheme }: Gift
       {/* STEP 2: Style & Personality */}
       {step === 2 && (
         <div className="space-y-4">
-          <label className="block text-sm font-bold">2. ¿Qué estilo o personalidad le define mejor?</label>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+          <label className="block text-sm font-bold">2. ¿Qué estilo o temática estás buscando?</label>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
             {[
-              { id: 'baby-care', label: 'Tartas de Pañales y Afecto', icon: '🍼' },
-              { id: 'montessori', label: 'Madera, Montessori y Educativo', icon: '🌿' },
+              { id: 'baby-gear', label: 'Cunas, Carritos y Bañeras', icon: '🚼' },
+              { id: 'baby-care', label: 'Tartas de Pañales y Doudous', icon: '🍼' },
+              { id: 'board-games', label: 'Juegos de Mesa y Cartas (Virus, Catan)', icon: '🎲' },
+              { id: 'magic', label: 'Juegos de Magia e Ilusionismo', icon: '🎩' },
+              { id: 'montessori', label: 'Montessori, Madera y Equilibrio', icon: '🌿' },
               { id: 'gamer', label: 'Videojuegos PS5 y Gaming', icon: '🎮' },
               { id: 'emo', label: 'Emo, Gótico, Velas y Aesthetic', icon: '🕯️' },
-              { id: 'creative', label: 'Creativo, Dibujo y Manualidades', icon: '🎨' },
-              { id: 'any', label: 'Sorpréndeme con lo más vendido', icon: '⭐' },
+              { id: 'beauty-travel', label: 'Skincare, Belleza y Maletas', icon: '🧴' },
             ].map((item) => (
               <button
                 key={item.id}
