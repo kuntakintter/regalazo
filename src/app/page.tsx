@@ -25,11 +25,13 @@ export default function HomePage() {
   const handleSelectAge = (age: string) => {
     setSelectedAge(age);
     setSelectedCategory('all'); // Reset subcategory when switching age
+    if (selectedPrice !== 'all') setSelectedPrice('all'); // Reset price so no empty states occur
   };
 
   // Handle category selection
   const handleSelectCategory = (cat: string) => {
     setSelectedCategory(cat);
+    if (selectedPrice !== 'all') setSelectedPrice('all'); // Reset price constraint
   };
 
   // Handle live search
@@ -72,11 +74,20 @@ export default function HomePage() {
         return false;
       }
 
-      // 4. Category / Subcategory filter
+      // 4. Category / Subcategory filter (flexible bi-directional matching)
       if (!isSearching && selectedCategory !== 'all') {
-        const matchesCategory = product.category.toLowerCase().includes(selectedCategory.toLowerCase());
-        const matchesSubcategory = product.subcategory.toLowerCase().includes(selectedCategory.toLowerCase());
-        if (!matchesCategory && !matchesSubcategory) {
+        const sel = selectedCategory.toLowerCase();
+        const pCat = product.category.toLowerCase();
+        const pSub = product.subcategory.toLowerCase();
+
+        const matchesCat = pCat.includes(sel) || sel.includes(pCat);
+        const matchesSub = pSub.includes(sel) || sel.includes(pSub);
+
+        // Word overlap matching (e.g. "Tecnología", "Gadgets", "Fragancias", "Gamer")
+        const selWords = sel.replace(/[(),]/g, '').split(/\s+/).filter((w) => w.length > 3);
+        const wordMatch = selWords.some((w) => pSub.includes(w) || pCat.includes(w));
+
+        if (!matchesCat && !matchesSub && !wordMatch) {
           return false;
         }
       }
