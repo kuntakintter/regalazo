@@ -32,10 +32,10 @@ const FAQS: FaqItem[] = [
 ];
 
 interface SeoFaqProps {
-  currentTheme: string;
+  currentTheme?: string;
 }
 
-export default function SeoFaq({ currentTheme }: SeoFaqProps) {
+export default function SeoFaq({ currentTheme = 'classic' }: SeoFaqProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggleFaq = (index: number) => {
@@ -57,15 +57,7 @@ export default function SeoFaq({ currentTheme }: SeoFaqProps) {
   };
 
   return (
-    <section className={`rounded-3xl p-6 sm:p-10 mb-12 border transition-all ${
-      currentTheme === 'emo'
-        ? 'bg-neutral-900/70 border-neutral-800 text-neutral-100'
-        : currentTheme === 'gamer'
-        ? 'bg-slate-900/70 border-purple-900/50 text-slate-100'
-        : currentTheme === 'baby'
-        ? 'bg-white/80 border-rose-200 text-rose-950'
-        : 'bg-white border-slate-200 text-slate-900'
-    }`}>
+    <section className="rounded-3xl p-6 sm:p-10 mb-12 border border-slate-200 bg-white text-slate-900 shadow-xs">
       {/* Inject JSON-LD Schema */}
       <script
         type="application/ld+json"
@@ -74,10 +66,12 @@ export default function SeoFaq({ currentTheme }: SeoFaqProps) {
 
       <div className="flex items-center gap-2 mb-3">
         <HelpCircle className="w-5 h-5 text-indigo-500" />
-        <span className="text-xs font-bold uppercase tracking-wider opacity-60">Preguntas Frecuentes y Guía Experta</span>
+        <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
+          Preguntas Frecuentes y Guía Experta
+        </span>
       </div>
 
-      <h2 className="text-2xl sm:text-3xl font-black mb-6 tracking-tight">
+      <h2 className="text-2xl sm:text-3xl font-black mb-6 tracking-tight text-slate-900">
         Todo lo que necesitas saber para acertar con tu regalo
       </h2>
 
@@ -89,26 +83,28 @@ export default function SeoFaq({ currentTheme }: SeoFaqProps) {
               key={index}
               className={`rounded-2xl border transition-all ${
                 isOpen
-                  ? currentTheme === 'emo'
-                    ? 'border-rose-900 bg-neutral-900'
-                    : 'border-indigo-200 bg-indigo-50/30 dark:bg-neutral-800'
-                  : 'border-black/5 dark:border-white/5 hover:border-black/10'
+                  ? 'border-indigo-200 bg-indigo-50/60 shadow-xs'
+                  : 'border-slate-200 bg-white hover:bg-slate-50/80 hover:border-slate-300'
               }`}
             >
               <button
                 onClick={() => toggleFaq(index)}
-                className="w-full py-4 px-5 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base cursor-pointer"
+                className="w-full py-4 px-5 text-left flex items-center justify-between gap-4 cursor-pointer"
                 aria-expanded={isOpen}
               >
-                <span>{faq.question}</span>
+                <span className={`text-sm sm:text-base font-bold transition-colors ${
+                  isOpen ? 'text-indigo-950' : 'text-slate-800'
+                }`}>
+                  {faq.question}
+                </span>
                 <ChevronDown
                   className={`w-5 h-5 shrink-0 transition-transform duration-200 ${
-                    isOpen ? 'rotate-180 text-indigo-500' : 'opacity-40'
+                    isOpen ? 'rotate-180 text-indigo-600' : 'text-slate-400'
                   }`}
                 />
               </button>
               {isOpen && (
-                <div className="px-5 pb-5 text-xs sm:text-sm opacity-80 leading-relaxed border-t border-black/5 dark:border-white/5 pt-3">
+                <div className="px-5 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-indigo-100/80 pt-3">
                   {faq.answer}
                 </div>
               )}

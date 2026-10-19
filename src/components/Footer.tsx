@@ -25,14 +25,10 @@ export default function Footer({ currentTheme }: FooterProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Amazon Mandatory Affiliate Disclosure Callout */}
-        <div className={`p-4 rounded-2xl border mb-10 text-xs leading-relaxed flex items-start gap-3 ${
-          isDark
-            ? 'bg-neutral-900/80 border-neutral-800 text-neutral-400'
-            : 'bg-white border-slate-200 text-slate-600 shadow-xs'
-        }`}>
+        <div className="p-4 rounded-2xl border mb-10 text-xs leading-relaxed flex items-start gap-3 bg-white border-slate-200 text-slate-600 shadow-xs">
           <ShieldCheck className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
           <div>
-            <p className="font-semibold text-slate-900 dark:text-neutral-200 mb-1">
+            <p className="font-semibold text-slate-900 mb-1">
               Aviso Legal de Afiliación de Amazon España (StoreID: {AMAZON_AFFILIATE_TAG})
             </p>
             <p className="opacity-90">
@@ -62,7 +58,7 @@ export default function Footer({ currentTheme }: FooterProps) {
 
           {/* Col 2: Edades */}
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider mb-3 opacity-90 text-indigo-600 dark:text-indigo-400">
+            <h3 className="text-xs font-bold uppercase tracking-wider mb-3 opacity-90 text-indigo-600">
               Regalos por Edad
             </h3>
             <ul className="space-y-2 text-xs opacity-80">
@@ -78,7 +74,7 @@ export default function Footer({ currentTheme }: FooterProps) {
 
           {/* Col 3: Categorías Top SEO */}
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider mb-3 opacity-90 text-indigo-600 dark:text-indigo-400">
+            <h3 className="text-xs font-bold uppercase tracking-wider mb-3 opacity-90 text-indigo-600">
               Top Búsquedas
             </h3>
             <ul className="space-y-2 text-xs opacity-80">
@@ -94,7 +90,7 @@ export default function Footer({ currentTheme }: FooterProps) {
 
           {/* Col 4: Confianza y Garantía */}
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider mb-3 opacity-90 text-indigo-600 dark:text-indigo-400">
+            <h3 className="text-xs font-bold uppercase tracking-wider mb-3 opacity-90 text-indigo-600">
               Garantía de Compra
             </h3>
             <ul className="space-y-2 text-xs opacity-80">
@@ -116,7 +112,7 @@ export default function Footer({ currentTheme }: FooterProps) {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-black/5 dark:border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs opacity-60">
+        <div className="border-t border-slate-200 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs opacity-60">
           <div>
             © {new Date().getFullYear()} Regalazo (regalazo.vercel.app) • Todos los derechos reservados.
           </div>

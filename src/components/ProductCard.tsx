@@ -67,7 +67,7 @@ export default function ProductCard({ product, currentTheme }: ProductCardProps)
         : 'bg-white border-slate-200 text-slate-900 hover:border-indigo-200 shadow-slate-100'
     }`}>
       {/* Product Image & Badges */}
-      <div className="relative aspect-4/3 overflow-hidden bg-slate-100 dark:bg-neutral-800">
+      <div className="relative aspect-4/3 overflow-hidden bg-slate-100">
         <a 
           href={directProductUrl}
           target="_blank"
@@ -128,14 +128,14 @@ export default function ProductCard({ product, currentTheme }: ProductCardProps)
           <button
             onClick={() => setIsLiked(!isLiked)}
             aria-label="Guardar en favoritos"
-            className="w-8 h-8 rounded-full bg-white/90 dark:bg-neutral-900/90 backdrop-blur-xs flex items-center justify-center text-slate-600 dark:text-neutral-300 hover:scale-110 transition-transform shadow-xs cursor-pointer"
+            className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-xs flex items-center justify-center text-slate-700 hover:scale-110 transition-transform shadow-xs cursor-pointer"
           >
             <Heart className={`w-4 h-4 ${isLiked ? 'fill-rose-500 text-rose-500' : ''}`} />
           </button>
           <button
             onClick={handleShare}
             aria-label="Compartir idea"
-            className="w-8 h-8 rounded-full bg-white/90 dark:bg-neutral-900/90 backdrop-blur-xs flex items-center justify-center text-slate-600 dark:text-neutral-300 hover:scale-110 transition-transform shadow-xs cursor-pointer"
+            className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-xs flex items-center justify-center text-slate-700 hover:scale-110 transition-transform shadow-xs cursor-pointer"
           >
             <Share2 className="w-4 h-4" />
           </button>
@@ -182,7 +182,7 @@ export default function ProductCard({ product, currentTheme }: ProductCardProps)
                 className={`w-3.5 h-3.5 ${
                   i < Math.floor(product.rating)
                     ? 'fill-amber-400 text-amber-400'
-                    : 'fill-slate-200 dark:fill-neutral-700 text-slate-200 dark:text-neutral-700'
+                    : 'fill-slate-200 text-slate-200'
                 }`}
               />
             ))}
@@ -192,7 +192,7 @@ export default function ProductCard({ product, currentTheme }: ProductCardProps)
         </div>
 
         {/* H3 Title for perfect SEO structure */}
-        <h3 className="font-bold text-base line-clamp-2 leading-snug mb-2 group-hover:text-indigo-600 dark:group-hover:text-rose-400 transition-colors">
+        <h3 className="font-bold text-base line-clamp-2 leading-snug mb-2 group-hover:text-indigo-600 transition-colors">
           <a
             href={directProductUrl}
             target="_blank"
@@ -219,13 +219,13 @@ export default function ProductCard({ product, currentTheme }: ProductCardProps)
         </ul>
 
         {/* Ideal For hint */}
-        <div className="mt-auto pt-3 border-t border-black/5 dark:border-white/10 mb-4 text-[11px] opacity-70">
-          <span className="font-semibold">Ideal para: </span>
+        <div className="mt-auto pt-3 border-t border-slate-100 mb-4 text-[11px] text-slate-500">
+          <span className="font-semibold text-slate-700">Ideal para: </span>
           <span>{product.idealFor}</span>
         </div>
 
         {/* Live sync trust indicator */}
-        <div className="flex items-center justify-between mb-3 text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 dark:bg-emerald-500/15 px-2.5 py-1 rounded-lg">
+        <div className="flex items-center justify-between mb-3 text-[11px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-100 px-2.5 py-1 rounded-lg">
           <span className="flex items-center gap-1.5">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -233,7 +233,7 @@ export default function ProductCard({ product, currentTheme }: ProductCardProps)
             </span>
             <span>Precio al día en Amazon España</span>
           </span>
-          <span className="text-[10px] opacity-70 font-normal">Envío Prime</span>
+          <span className="text-[10px] text-emerald-800 font-normal">Envío Prime</span>
         </div>
 
         {/* CTAs */}
