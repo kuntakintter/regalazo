@@ -1,3 +1,5 @@
+export const AMAZON_AFFILIATE_TAG = 'vapegadgets22-21';
+
 export interface Product {
   id: string;
   title: string;
@@ -1433,7 +1435,7 @@ export const PRODUCTS: Product[] = [
     asin: 'B07PQGP8B7',
     title: 'Carrera First - Circuito de Carreras Nintendo Mario Kart con 2 Coches y Mandos Ergonómicos',
     slug: 'carrera-first-circuito-carreras-mario-kart',
-    searchQuery: 'carrera first nintendo mario kart circuito coches',
+    searchQuery: 'carrera first nintendo mario kart circuito coches scalextric scalestric pista carreras infantil',
     category: '4 a 6 Años',
     subcategory: 'Circuitos de Coches Infantiles',
     ageRange: '4-6',
@@ -1485,7 +1487,7 @@ export const PRODUCTS: Product[] = [
     asin: 'B0F5Q6N2YM',
     title: 'Scalextric Compact - Circuito Grand Challenge Escala 1:43 con 2 Coches GT y Mandos Turbo',
     slug: 'scalextric-compact-circuito-grand-challenge',
-    searchQuery: 'scalextric compact grand challenge pista coches',
+    searchQuery: 'scalextric scalestric escalextric escalestric compact grand challenge pista coches circuito carreras',
     category: '7 a 9 Años',
     subcategory: 'Scalextric y Pistas de Carreras',
     ageRange: '7-9',

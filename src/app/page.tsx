@@ -10,6 +10,7 @@ import SeoFaq from '@/components/SeoFaq';
 import ThemeAtmosphere from '@/components/ThemeAtmosphere';
 import AmazonLiveSearchCard from '@/components/AmazonLiveSearchCard';
 import { PRODUCTS, AGE_CATEGORIES, Product } from '@/data/products';
+import { matchesSearchQuery } from '@/utils/search';
 import { Sparkles, Gift, Flame, Baby, Gamepad2, ShieldCheck, TrendingUp, Search, Bot } from 'lucide-react';
 
 export default function HomePage() {
@@ -34,12 +35,25 @@ export default function HomePage() {
   // Handle live search
   const handleSearchChange = (query: string) => {
     setSearchQuery(query);
+    if (query.trim().length > 0) {
+      if (selectedAge !== 'all') setSelectedAge('all');
+      if (selectedCategory !== 'all') setSelectedCategory('all');
+    }
   };
 
   // Filter products based on search, age, category, gender, price
   const filteredProducts = useMemo(() => {
+    const isSearching = searchQuery.trim() !== '';
+
     return PRODUCTS.filter((product) => {
-      // Gender filter
+      // 1. Search query filter with smart phonetic typo tolerance and accent removal
+      if (isSearching) {
+        if (!matchesSearchQuery(product, searchQuery)) {
+          return false;
+        }
+      }
+
+      // 2. Gender filter
       if (selectedGender === 'reveal') {
         const isRevealSub = product.subcategory === 'Fiestas y Revelación de Género';
         const hasRevealKeyword =
@@ -53,13 +67,13 @@ export default function HomePage() {
         }
       }
 
-      // Age filter
-      if (selectedAge !== 'all' && product.ageRange !== selectedAge) {
+      // 3. Age filter (if searching globally, don't block matches)
+      if (!isSearching && selectedAge !== 'all' && product.ageRange !== selectedAge) {
         return false;
       }
 
-      // Category / Subcategory filter
-      if (selectedCategory !== 'all') {
+      // 4. Category / Subcategory filter
+      if (!isSearching && selectedCategory !== 'all') {
         const matchesCategory = product.category.toLowerCase().includes(selectedCategory.toLowerCase());
         const matchesSubcategory = product.subcategory.toLowerCase().includes(selectedCategory.toLowerCase());
         if (!matchesCategory && !matchesSubcategory) {
@@ -67,24 +81,12 @@ export default function HomePage() {
         }
       }
 
-      // Price filter
+      // 5. Price filter
       if (selectedPrice !== 'all') {
         if (selectedPrice === '<20' && product.priceRange !== '<20') return false;
         if (selectedPrice === '20-50' && product.priceRange !== '20-50') return false;
         if (selectedPrice === '50-100' && product.priceRange !== '50-100') return false;
         if (selectedPrice === '>100' && product.priceRange !== '>100') return false;
-      }
-
-      // Search query
-      if (searchQuery.trim() !== '') {
-        const query = searchQuery.toLowerCase().trim();
-        const matchesTitle = product.title.toLowerCase().includes(query);
-        const matchesDesc = product.description.toLowerCase().includes(query);
-        const matchesSub = product.subcategory.toLowerCase().includes(query);
-        const matchesSearchKey = product.searchQuery.toLowerCase().includes(query);
-        if (!matchesTitle && !matchesDesc && !matchesSub && !matchesSearchKey) {
-          return false;
-        }
       }
 
       return true;
