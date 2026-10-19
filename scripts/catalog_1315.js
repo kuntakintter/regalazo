@@ -24,8 +24,8 @@ add({
   pros: ['Batería brutal de 40 horas que dura toda la semana', 'Conexión multipunto para alternar entre el móvil y el ordenador', 'Almohadillas acolchadas suaves muy cómodas para estudiar'],
   idealFor: 'Escuchar música en el instituto, estudiar y llamadas con amigos',
   style: 'tech',
-  imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=700&q=80']
+  imageUrl: '/images/products/1315-jbl-tune-510bt-1.jpg',
+  images: ['/images/products/1315-jbl-tune-510bt-1.jpg']
 });
 
 add({
@@ -47,8 +47,8 @@ add({
   pros: ['Almohadillas de cuero proteico ultrasuaves que no aprietan con gafas', 'Modo transparencia para escuchar el entorno tocando el auricular derecho', 'Incluye estuche rígido de viaje prémium'],
   idealFor: 'Concentración total en época de exámenes y viajes en tren o autobús',
   style: 'tech',
-  imageUrl: '/images/products/1315-auriculares-1.jpg',
-  images: ['/images/products/1315-auriculares-1.jpg', '/images/products/1315-auriculares-2.jpg', '/images/products/1315-auriculares-3.jpg']
+  imageUrl: '/images/products/1315-anker-q30-1.jpg',
+  images: ['/images/products/1315-anker-q30-1.jpg']
 });
 
 add({
@@ -70,8 +70,8 @@ add({
   pros: ['5 horas continuas de reproducción con una sola carga', 'Tejido impermeable resistente y asa de cuerda integrada para colgar de la mochila', 'Diseño moderno disponible en colores urbanos'],
   idealFor: 'Poner música con amigos en el parque, la piscina o la habitación',
   style: 'tech',
-  imageUrl: 'https://images.unsplash.com/photo-1545454675-3531b543be5d?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1545454675-3531b543be5d?w=700&q=80']
+  imageUrl: '/images/products/1315-jbl-go-3-altavoz-bluetooth-1.jpg',
+  images: ['/images/products/1315-jbl-go-3-altavoz-bluetooth-1.jpg']
 });
 
 // 2. Cámaras Instantáneas y Fotografía
@@ -94,8 +94,8 @@ add({
   pros: ['Imprime fotos en papel fotográfico real al momento', 'Manejo facilísimo girando el objetivo', 'Diseño icónico disponible en colores pastel modernos'],
   idealFor: 'Capturar momentos únicos con amigos e imprimir recuerdos físicos',
   style: 'creativity',
-  imageUrl: 'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=700&q=80']
+  imageUrl: '/images/products/1315-fujifilm-instax-mini-12-1.jpg',
+  images: ['/images/products/1315-fujifilm-instax-mini-12-1.jpg']
 });
 
 add({
@@ -117,8 +117,8 @@ add({
   pros: ['Ilumina el rostro de forma homogénea eliminando sombras en videollamadas y vídeos', 'Soporte universal compatible con cualquier iPhone y Android', 'Alimentación por USB para conectar al cargador del móvil o batería externa'],
   idealFor: 'Crear contenido para redes sociales, videollamadas con amigos y tutoriales',
   style: 'tech',
-  imageUrl: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1542751371-adc38448a05e?w=700&q=80']
+  imageUrl: '/images/products/1315-aro-luz-tripode-tiktok-1.jpg',
+  images: ['/images/products/1315-aro-luz-tripode-tiktok-1.jpg']
 });
 
 add({
@@ -140,8 +140,8 @@ add({
   pros: ['Fotos con reverso adhesivo para pegar en la agenda o la pared', 'Modo fotos AR con realidad aumentada que reproduce un vídeo al escanear la foto', 'Conexión Bluetooth rápida con la app Xiaomi Home'],
   idealFor: 'Imprimir recuerdos de fiestas con amigos y personalizar libretas',
   style: 'tech',
-  imageUrl: 'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=700&q=80']
+  imageUrl: '/images/products/1315-impresora-bolsillo-bluetooth-1.jpg',
+  images: ['/images/products/1315-impresora-bolsillo-bluetooth-1.jpg']
 });
 
 // 3. Juegos de Mesa Clásicos (Catan)
@@ -164,8 +164,8 @@ add({
   pros: ['Tablero modular hexagonal que garantiza partidas 100% únicas', 'Negociación constante entre jugadores que fomenta la diplomacia y el pacto', 'Piezas de madera clásicas de alta calidad'],
   idealFor: 'Tardes enteras de juego con amigos y la mejor sobremesa familiar',
   style: 'classic',
-  imageUrl: '/images/products/1315-catan-1.jpg',
-  images: ['/images/products/1315-catan-1.jpg', '/images/products/1315-catan-2.jpg', '/images/products/1315-catan-3.jpg']
+  imageUrl: '/images/products/1315-catan-clasico-1.jpg',
+  images: ['/images/products/1315-catan-clasico-1.jpg']
 });
 
 add({
@@ -187,8 +187,8 @@ add({
   pros: ['Añade un nivel táctico mucho más profundo y desafiante', 'Componentes con barco bárbaro de madera y fichas de metrópolis', 'Requiere el juego Catan básico para jugar'],
   idealFor: 'Veteranos de Catán de 13 a 15 años que buscan partidas épicas',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80']
+  imageUrl: '/images/products/1315-catan-ciudades-caballeros-1.jpg',
+  images: ['/images/products/1315-catan-ciudades-caballeros-1.jpg']
 });
 
 add({
@@ -210,8 +210,8 @@ add({
   pros: ['Partidas frenéticas de 15 minutos llenas de traición y carcajadas', 'Ilustraciones exclusivas de la serie de animación', 'Juego independiente o combinable con el Exploding Kittens original'],
   idealFor: 'Piques rápidos en campamentos, viajes y quedadas de adolescentes',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80']
+  imageUrl: '/images/products/1315-exploding-kittens-good-evil-1.jpg',
+  images: ['/images/products/1315-exploding-kittens-good-evil-1.jpg']
 });
 
 // 4. Cuidado Facial, Skincare y Colonias (USER REQUESTED)
@@ -234,8 +234,8 @@ add({
   pros: ['Sin perfume, no comedogénico y respetuoso con pieles sensibles', 'Reduce granitos y puntos negros en pocos días', 'Textura gel que hace una espuma agradable y purificante'],
   idealFor: 'Preadolescentes y jóvenes que empiezan a cuidar su piel',
   style: 'tech',
-  imageUrl: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1556228720-195a672e8a03?w=700&q=80']
+  imageUrl: '/images/products/1315-cerave-gel-limpiador-1.jpg',
+  images: ['/images/products/1315-cerave-gel-limpiador-1.jpg']
 });
 
 add({
@@ -257,8 +257,8 @@ add({
   pros: ['Hacen desaparecer el granito durante la noche de forma indolora', 'Ultrafinos y transparentes: se pueden llevar puestos de día sin que se noten', 'No resecan ni despellejan la piel circundante'],
   idealFor: 'Salvar emergencias de granitos antes de fotos o eventos',
   style: 'tech',
-  imageUrl: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1556228720-195a672e8a03?w=700&q=80']
+  imageUrl: '/images/products/1315-parches-hidrocoloides-cosrx-1.jpg',
+  images: ['/images/products/1315-parches-hidrocoloides-cosrx-1.jpg']
 });
 
 add({
@@ -280,8 +280,8 @@ add({
   pros: ['Perfume ligero y moderno que proyecta frescura limpia', 'Frasco de cristal ondulado con relieve de surfista', 'Excelente fijación para el día a día'],
   idealFor: 'Chicos de 13 a 15 años que quieren un aroma con estilo surfero',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1594035910387-fea47794261f?w=700&q=80']
+  imageUrl: '/images/products/1315-colonia-hollister-wave-1.jpg',
+  images: ['/images/products/1315-colonia-hollister-wave-1.jpg']
 });
 
 // 5. Libros Juveniles, Fantasía y Manga (USER REQUESTED)
@@ -304,8 +304,8 @@ add({
   pros: ['Historia tierna, realista y respetuosa sobre descubrir la identidad', 'Formato novela gráfica de lectura fluida con ilustraciones emotivas', 'La serie juvenil más leída y recomendada por adolescentes'],
   idealFor: 'Amantes del romance juvenil, la inclusión y las novelas gráficas',
   style: 'creativity',
-  imageUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80']
+  imageUrl: '/images/products/1315-heartstopper-tomo-1-1.jpg',
+  images: ['/images/products/1315-heartstopper-tomo-1-1.jpg']
 });
 
 add({
@@ -327,8 +327,8 @@ add({
   pros: ['El inicio de la mayor aventura épica del cómic japonés', 'Valores de lealtad, perseverancia ante la adversidad y compañerismo', 'Edición clásica de Planeta Cómic de alta calidad'],
   idealFor: 'Iniciarse en el fascinante mundo del anime y la cultura otaku',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1512820790803-83ca734da794?w=700&q=80']
+  imageUrl: '/images/products/1315-one-piece-tomo-1-1.jpg',
+  images: ['/images/products/1315-one-piece-tomo-1-1.jpg']
 });
 
 add({
@@ -350,8 +350,8 @@ add({
   pros: ['Ritmo vertiginoso sin un solo segundo de respiro', 'Protagonista femenina valiente, astuta e inolvidable', 'Crítica social lúcida que despierta el pensamiento crítico'],
   idealFor: 'Adolescentes que buscan una lectura adictiva e inteligente',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=700&q=80']
+  imageUrl: '/images/products/1315-juegos-del-hambre-novela-1.jpg',
+  images: ['/images/products/1315-juegos-del-hambre-novela-1.jpg']
 });
 
 // 6. Papelería Creativa y Bullet Journal (USER REQUESTED)
@@ -374,8 +374,8 @@ add({
   pros: ['Cero traspaso de tinta: dibuja y escribe con cualquier rotulador', 'Apertura plana de 180° para escribir cómodamente en ambos lados', 'Diseño estético minimalista con bordes de hojas dorados'],
   idealFor: 'Organizar apuntes escolares, metas personales y dibujo creativo',
   style: 'creativity',
-  imageUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80']
+  imageUrl: '/images/products/1315-cuaderno-bullet-journal-a5-1.jpg',
+  images: ['/images/products/1315-cuaderno-bullet-journal-a5-1.jpg']
 });
 
 add({
@@ -397,8 +397,8 @@ add({
   pros: ['Gama de tonos pastel aesthetic preciosos que no cansan la vista', 'Punta pincel indestructible que aguanta presiones intensas', 'Flujo de tinta constante y suave sin manchas'],
   idealFor: 'Ilustración, lettering de títulos en apuntes y tarjetas artesanales',
   style: 'creativity',
-  imageUrl: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=700&q=80']
+  imageUrl: '/images/products/1315-tombow-dual-brush-pastel-1.jpg',
+  images: ['/images/products/1315-tombow-dual-brush-pastel-1.jpg']
 });
 
 add({
@@ -420,8 +420,8 @@ add({
   pros: ['Capacidad descomunal para más de 80 bolígrafos, regla de 20cm y calculadora', 'Lona resistente al agua y a desgarros lavable', 'Cremalleras metálicas dobles reforzadas'],
   idealFor: 'Llevar todos los rotuladores y útiles ordenados al instituto',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80']
+  imageUrl: '/images/products/1315-estuche-gran-capacidad-tres-pisos-1.jpg',
+  images: ['/images/products/1315-estuche-gran-capacidad-tres-pisos-1.jpg']
 });
 
 // 7. Moda Juvenil, Sudaderas y Gorras (USER REQUESTED)
@@ -444,8 +444,8 @@ add({
   pros: ['100% fibra acrílica suave de tacto lana que no pica', 'Corte ajustado moderno por encima de las orejas', 'Gran variedad de colores sobrios (negro, mostaza, verde militar)'],
   idealFor: 'Completar cualquier look casual de entretiempo e invierno',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=700&q=80']
+  imageUrl: '/images/products/1315-gorro-beanie-pescador-1.jpg',
+  images: ['/images/products/1315-gorro-beanie-pescador-1.jpg']
 });
 
 add({
@@ -467,8 +467,8 @@ add({
   pros: ['Gramaje pesado que mantiene la estructura y no se deforma al lavar', 'Tacto súper agradable sobre la piel sin camisetas interiores', 'Estilo aesthetic atemporal'],
   idealFor: 'Ir al instituto cómodo y con estilo todos los días',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=700&q=80']
+  imageUrl: '/images/products/1315-sudadera-hoodie-basica-premium-1.jpg',
+  images: ['/images/products/1315-sudadera-hoodie-basica-premium-1.jpg']
 });
 
 add({
@@ -490,8 +490,8 @@ add({
   pros: ['Material balístico ultrarresistente que no se raya ni se desgasta', 'Múltiples bolsillos con cremalleras estancas', 'Se puede llevar al hombro, cruzada o enganchada al cinturón'],
   idealFor: 'Festivales, salidas de tarde y fines de semana',
   style: 'tech',
-  imageUrl: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&q=80']
+  imageUrl: '/images/products/1315-bandolera-tactica-pequena-1.jpg',
+  images: ['/images/products/1315-bandolera-tactica-pequena-1.jpg']
 });
 
 // 8. Mochilas Urbanas y Viaje
@@ -514,8 +514,8 @@ add({
   pros: ['Bolsillo para portátil de hasta 15,6 pulgadas con protección acolchada 3D', 'Material impermeable que repele la lluvia y los líquidos', 'Bolsillo secreto en los tirantes para abono transporte'],
   idealFor: 'El instituto, bachillerato y desplazamientos en autobús o metro',
   style: 'tech',
-  imageUrl: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&q=80']
+  imageUrl: '/images/products/1315-mochila-antirrobo-puerto-usb-1.jpg',
+  images: ['/images/products/1315-mochila-antirrobo-puerto-usb-1.jpg']
 });
 
 add({
@@ -537,8 +537,8 @@ add({
   pros: ['Tejido hidrófugo de secado rápido que evita fugas de líquidos', 'Bolsillos transparentes de PVC para pasar controles de seguridad', 'Cremalleras dobles reforzadas'],
   idealFor: 'Campamentos de verano, excursiones del colegio y viajes con amigos',
   style: 'tech',
-  imageUrl: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&q=80']
+  imageUrl: '/images/products/1315-neceser-viaje-colgante-gancho-1.jpg',
+  images: ['/images/products/1315-neceser-viaje-colgante-gancho-1.jpg']
 });
 
 add({
@@ -560,8 +560,8 @@ add({
   pros: ['Bolsillo de plástico estanco para ropa de piscina o sudada', 'Correa de hombro acolchada extraíble y asas reforzadas', 'Cumple medidas oficiales para llevar como equipaje de mano'],
   idealFor: 'Entrenamientos deportivos diarios, natación y escapadas de fin de semana',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&q=80']
+  imageUrl: '/images/products/1315-bolsa-deporte-zapatero-independiente-1.jpg',
+  images: ['/images/products/1315-bolsa-deporte-zapatero-independiente-1.jpg']
 });
 
 console.log('13-15 years old products successfully loaded.');

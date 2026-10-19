@@ -25,7 +25,7 @@ add({
   idealFor: 'El regalo definitivo para un gamer exigente de 16 a 18 años',
   style: 'gamer',
   imageUrl: '/images/products/1618-dualsense-edge-1.jpg',
-  images: ['/images/products/1618-dualsense-edge-1.jpg', '/images/products/1618-dualsense-edge-2.jpg', '/images/products/1618-dualsense-edge-3.jpg']
+  images: ['/images/products/1618-dualsense-edge-1.jpg','/images/products/1618-dualsense-edge-2.jpg','/images/products/1618-dualsense-edge-3.jpg']
 });
 
 add({
@@ -47,8 +47,8 @@ add({
   pros: ['Aprovecha al 100% los gatillos adaptativos y la vibración háptica del mando DualSense', 'Gráficos de nueva generación con trazado de rayos (Ray Tracing)', 'Alterna al instante entre Peter Parker con el simbionte y Miles Morales'],
   idealFor: 'Cualquier poseedor de una consola PlayStation 5',
   style: 'gamer',
-  imageUrl: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=700&q=80']
+  imageUrl: '/images/products/1618-spiderman-2-1.jpg',
+  images: ['/images/products/1618-spiderman-2-1.jpg']
 });
 
 add({
@@ -70,8 +70,8 @@ add({
   pros: ['Sistema de acoplamiento por clic magnético inferior súper cómodo', 'Carga los mandos tan rápido como si estuvieran conectados directamente a la PS5', 'Mantiene la mesa de juego ordenada y los mandos siempre con batería al 100%'],
   idealFor: 'El setup gaming de cualquier jugador de PlayStation 5',
   style: 'gamer',
-  imageUrl: 'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=700&q=80']
+  imageUrl: '/images/products/1618-estacion-carga-dualsense-1.jpg',
+  images: ['/images/products/1618-estacion-carga-dualsense-1.jpg']
 });
 
 // 2. Setup Gamer y Periféricos PC
@@ -94,8 +94,8 @@ add({
   pros: ['Sensor óptico ultrapreciso sin suavizado ni aceleración', '11 botones configurables para macros de Fortnite, Valorant y LoL', 'Pesas extraíbles de 3,6 g para ajustar el peso a tu gusto'],
   idealFor: 'Jugadores exigentes de PC y consolas que buscan máxima ventaja',
   style: 'gamer',
-  imageUrl: 'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=700&q=80']
+  imageUrl: '/images/products/1618-logitech-g502-hero-1.jpg',
+  images: ['/images/products/1618-logitech-g502-hero-1.jpg']
 });
 
 add({
@@ -117,8 +117,8 @@ add({
   pros: ['Switches mecánicos táctiles con respuesta inmediata sin ruido molesto', 'Teclas de PBT prémium que no se desgastan ni cogen brillo con el tiempo', 'Anti-ghosting con rollover de 6 teclas simultáneas'],
   idealFor: 'Completar el setup gaming definitivo con máxima durabilidad',
   style: 'gamer',
-  imageUrl: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=700&q=80']
+  imageUrl: '/images/products/1618-logitech-g413-se-1.jpg',
+  images: ['/images/products/1618-logitech-g413-se-1.jpg']
 });
 
 add({
@@ -140,8 +140,8 @@ add({
   pros: ['Espacio total para movimientos de ratón sin límites', 'Base de goma antideslizante gruesa de 4 mm', 'Iluminación reactiva con Discord y videojuegos compatibles'],
   idealFor: 'Estética espectacular en el escritorio y precisión en partidas online',
   style: 'gamer',
-  imageUrl: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=700&q=80']
+  imageUrl: '/images/products/1618-steelseries-qck-prism-xl-1.jpg',
+  images: ['/images/products/1618-steelseries-qck-prism-xl-1.jpg']
 });
 
 // 3. Tecnología, Audio Hi-Fi y Wearables
@@ -164,8 +164,8 @@ add({
   pros: ['Totalmente inalámbrico: enciende y juega en cualquier habitación sin cables', 'Catálogo enorme con juegos como Beat Saber, Batman Arkham Shadow y Roblox', 'Resolución ultranítida con sonido espacial 3D integrado'],
   idealFor: 'El regalo tecnológico más deseado de los 18 años',
   style: 'tech',
-  imageUrl: 'https://images.unsplash.com/photo-1593508512255-86ab42a8e620?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1593508512255-86ab42a8e620?w=700&q=80']
+  imageUrl: '/images/products/1618-meta-quest-3s-1.jpg',
+  images: ['/images/products/1618-meta-quest-3s-1.jpg']
 });
 
 add({
@@ -187,8 +187,8 @@ add({
   pros: ['El silencio más absoluto del mercado para estudiar y desconectar', 'Sonido audiófilo con graves profundos y agudos cristalinos', 'Comodidad extrema con almohadillas de uretano que no fatigan la cabeza'],
   idealFor: 'Concentración total para Selectividad, universidad y amantes de la música',
   style: 'tech',
-  imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=700&q=80']
+  imageUrl: '/images/products/1618-sony-wh1000xm4-1.jpg',
+  images: ['/images/products/1618-sony-wh1000xm4-1.jpg']
 });
 
 add({
@@ -210,8 +210,8 @@ add({
   pros: ['Diseño óptico asimétrico que ilumina solo la mesa, nunca la pantalla', 'Temperatura de color ajustable de luz cálida a blanca fría', 'Alimentación por puerto USB del ordenador o cargador'],
   idealFor: 'Estudiar de noche, programar y sesiones nocturnas de gaming',
   style: 'tech',
-  imageUrl: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1542751371-adc38448a05e?w=700&q=80']
+  imageUrl: '/images/products/1618-quntis-barra-luz-monitor-1.jpg',
+  images: ['/images/products/1618-quntis-barra-luz-monitor-1.jpg']
 });
 
 // 4. Perfumería y Fragancias (SEPARATED AS USER REQUESTED)
@@ -235,7 +235,7 @@ add({
   idealFor: 'El primer perfume de firma para chicos y chicas de 16 a 18 años',
   style: 'classic',
   imageUrl: '/images/products/1618-ck-one-1.jpg',
-  images: ['/images/products/1618-ck-one-1.jpg', '/images/products/1618-ck-one-2.jpg', '/images/products/1618-ck-one-3.jpg']
+  images: ['/images/products/1618-ck-one-1.jpg','/images/products/1618-ck-one-2.jpg','/images/products/1618-ck-one-3.jpg']
 });
 
 add({
@@ -258,7 +258,7 @@ add({
   idealFor: 'Crear un santuario estético y cálido en la habitación juvenil',
   style: 'emo',
   imageUrl: '/images/products/1618-vela-woodwick-1.jpg',
-  images: ['/images/products/1618-vela-woodwick-1.jpg', '/images/products/1618-vela-woodwick-2.jpg', '/images/products/1618-vela-woodwick-3.jpg']
+  images: ['/images/products/1618-vela-woodwick-1.jpg','/images/products/1618-vela-woodwick-2.jpg','/images/products/1618-vela-woodwick-3.jpg']
 });
 
 add({
@@ -280,8 +280,8 @@ add({
   pros: ['Aroma sofisticado pero fresco que proyecta madurez y confianza', 'Excelente fijación en piel y ropa durante más de 8 horas', 'Frasco icónico de cristal macizo'],
   idealFor: 'Graduaciones, eventos elegantes y primeras citas',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=80']
+  imageUrl: '/images/products/1618-hugo-boss-bottled-eau-toilette-1.jpg',
+  images: ['/images/products/1618-hugo-boss-bottled-eau-toilette-1.jpg']
 });
 
 // 5. Libros y Novelas Juveniles (USER REQUESTED)
@@ -304,8 +304,8 @@ add({
   pros: ['Enfoque científico práctico y ameno sin tópicos vacíos de autoayuda', 'Técnicas inmediatas para vencer la procrastinación y la adicción al móvil', 'Cambia radicalmente la mentalidad de estudio y disciplina'],
   idealFor: 'Jóvenes que se preparan para su futuro universitario o profesional',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80']
+  imageUrl: '/images/products/1618-habitos-atomicos-james-clear-1.jpg',
+  images: ['/images/products/1618-habitos-atomicos-james-clear-1.jpg']
 });
 
 add({
@@ -327,8 +327,8 @@ add({
   pros: ['Lenguaje fresco y directo sin rodeos que conecta al 100% con la mentalidad juvenil', 'Alivia la presión social de tener que ser siempre feliz y exitoso', 'Lectura ágil y sumamente entretenida'],
   idealFor: 'Adolescentes que sienten agobio por expectativas ajenas y redes sociales',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=700&q=80']
+  imageUrl: '/images/products/1618-el-sutil-arte-mark-manson-1.jpg',
+  images: ['/images/products/1618-el-sutil-arte-mark-manson-1.jpg']
 });
 
 add({
@@ -350,8 +350,8 @@ add({
   pros: ['Trama adictiva que te mantiene despierto leyendo hasta las 3 de la mañana', 'Química arrolladora entre los protagonistas y combates aéreos épicos', 'Edición de lujo en tapa dura con cantos tintados'],
   idealFor: 'Lectores apasionados de la fantasía épica, dragones y BookTok',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1512820790803-83ca734da794?w=700&q=80']
+  imageUrl: '/images/products/1618-alas-de-sangre-rebecca-yarros-1.jpg',
+  images: ['/images/products/1618-alas-de-sangre-rebecca-yarros-1.jpg']
 });
 
 // 6. Cuadernos de Piel y Papelería Artesanal (SEPARATED AS USER REQUESTED)
@@ -375,7 +375,7 @@ add({
   idealFor: 'Escribir poesía, pensamientos, dibujos oscuros o letras de canciones',
   style: 'emo',
   imageUrl: '/images/products/1618-diario-cuero-1.jpg',
-  images: ['/images/products/1618-diario-cuero-1.jpg', '/images/products/1618-diario-cuero-2.jpg', '/images/products/1618-diario-cuero-3.jpg']
+  images: ['/images/products/1618-diario-cuero-1.jpg','/images/products/1618-diario-cuero-2.jpg','/images/products/1618-diario-cuero-3.jpg']
 });
 
 add({
@@ -397,8 +397,8 @@ add({
   pros: ['Equilibrio de peso perfecto en la mano para escribir durante horas', 'Elegante estuche de terciopelo listo para regalar', 'Compatible con cartuchos universales y tintas de frasco'],
   idealFor: 'Firmar exámenes importantes, escribir cartas personales y caligrafía',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80']
+  imageUrl: '/images/products/1618-pluma-estilografica-dryden-1.jpg',
+  images: ['/images/products/1618-pluma-estilografica-dryden-1.jpg']
 });
 
 add({
@@ -420,8 +420,8 @@ add({
   pros: ['Diseño mítico atemporal de elegancia minimalista', 'Apertura plana total de 180° que facilita la escritura en cualquier lugar', 'Materiales de archivo resistentes que duran décadas'],
   idealFor: 'Tomar notas en la universidad, reflexiones de vida e ideas creativas',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80']
+  imageUrl: '/images/products/1618-moleskine-clasico-tapa-dura-1.jpg',
+  images: ['/images/products/1618-moleskine-clasico-tapa-dura-1.jpg']
 });
 
 // 7. Moda Urbana, Ropa y Accesorios (SEPARATED AS USER REQUESTED)
@@ -444,8 +444,8 @@ add({
   pros: ['Grosor de solo 8 mm: olvídate de las carteras gruesas e incómodas', 'Capacidad elástica para hasta 12 tarjetas y pinza metálica para billetes', 'Acabado en fibra de carbono mate de estética prémium'],
   idealFor: 'Jóvenes que buscan practicidad minimalista y estilo tecnológico',
   style: 'tech',
-  imageUrl: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&q=80']
+  imageUrl: '/images/products/1618-cartera-rfid-fibra-carbono-1.jpg',
+  images: ['/images/products/1618-cartera-rfid-fibra-carbono-1.jpg']
 });
 
 add({
@@ -467,8 +467,8 @@ add({
   pros: ['Tacto envejecido exclusivo y caída holgada muy favorecedora', 'Tejido pesado de 380 GSM que abriga de verdad', 'La prenda más buscada en moda urbana actual'],
   idealFor: 'Looks informales con vaqueros anchos o pantalones cargo',
   style: 'emo',
-  imageUrl: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=700&q=80']
+  imageUrl: '/images/products/1618-sudadera-grunge-vintage-1.jpg',
+  images: ['/images/products/1618-sudadera-grunge-vintage-1.jpg']
 });
 
 add({
@@ -490,8 +490,8 @@ add({
   pros: ['Filtro 100% UV400 que protege la vista contra rayos UVA y UVB', 'Bisagras de resorte que se adaptan a cualquier tamaño de cara sin apretar', 'Incluye funda rígida, paño de microfibra y tarjeta de test de polarizado'],
   idealFor: 'Verano, conducir, festivales y uso diario con estilo atemporal',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=700&q=80']
+  imageUrl: '/images/products/1618-gafas-sol-polarizadas-retro-1.jpg',
+  images: ['/images/products/1618-gafas-sol-polarizadas-retro-1.jpg']
 });
 
 console.log('16-18 years old products successfully loaded.');

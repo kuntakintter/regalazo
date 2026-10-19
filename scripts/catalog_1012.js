@@ -25,7 +25,7 @@ add({
   idealFor: 'Piques divertidos, tardes con amigos y sobremesas familiares',
   style: 'classic',
   imageUrl: '/images/products/1012-virus-1.jpg',
-  images: ['/images/products/1012-virus-1.jpg', '/images/products/1012-virus-2.jpg', '/images/products/1012-virus-3.jpg']
+  images: ['/images/products/1012-virus-1.jpg','/images/products/1012-virus-2.jpg','/images/products/1012-virus-3.jpg']
 });
 
 add({
@@ -47,8 +47,8 @@ add({
   pros: ['Añade una capa de estrategia competitiva más profunda al juego original', 'Nuevas cartas de acción como el Traje Protector o el Desliz Médico', 'Requiere una copia del juego Virus! original'],
   idealFor: 'Fans del juego Virus! que quieren llevar la emoción al siguiente nivel',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80']
+  imageUrl: '/images/products/1012-virus-2-evolution-1.jpg',
+  images: ['/images/products/1012-virus-2-evolution-1.jpg']
 });
 
 add({
@@ -70,8 +70,8 @@ add({
   pros: ['Tensión desternillante hasta el último segundo de la partida', 'Ilustraciones surrealistas creadas por The Oatmeal', 'Se aprende a jugar en 2 minutos'],
   idealFor: 'Reuniones de amigos, fiestas de cumpleaños y campamentos',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80']
+  imageUrl: '/images/products/1012-exploding-kittens-original-1.jpg',
+  images: ['/images/products/1012-exploding-kittens-original-1.jpg']
 });
 
 // 2. Drones RC y Robótica STEM
@@ -94,8 +94,8 @@ add({
   pros: ['Protectores de hélice enjaulados 360° que no dañan muebles ni dedos', 'Incluye 3 baterías modulares para volar hasta 21 minutos', 'Modo sin cabeza (Headless) que orienta los mandos según el piloto'],
   idealFor: 'Pilotos novatos que quieren aprender acrobacias aéreas en casa',
   style: 'tech',
-  imageUrl: '/images/products/1012-dron-1.jpg',
-  images: ['/images/products/1012-dron-1.jpg', '/images/products/1012-dron-2.jpg', '/images/products/1012-dron-3.jpg']
+  imageUrl: '/images/products/1012-dron-potensic-1.jpg',
+  images: ['/images/products/1012-dron-potensic-1.jpg']
 });
 
 add({
@@ -117,8 +117,8 @@ add({
   pros: ['Aprender lógica de programación real jugando', 'Chasis de aluminio resistente compatible con piezas de LEGO', 'Aplicación móvil con juegos guiados y control remoto'],
   idealFor: 'Jóvenes curiosos que adoran la informática, la ciencia y la tecnología',
   style: 'tech',
-  imageUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80']
+  imageUrl: '/images/products/1012-makeblock-mbot-robot-1.jpg',
+  images: ['/images/products/1012-makeblock-mbot-robot-1.jpg']
 });
 
 add({
@@ -140,8 +140,8 @@ add({
   pros: ['Adaptador universal para smartphone que permite hacer fotos de la luna', 'Trípode de aluminio estable regulable en altura con bandeja portaoculares', 'Bolsa de transporte acolchada para salir al campo o a la montaña'],
   idealFor: 'Noches de verano observando estrellas, eclipses y constelaciones',
   style: 'tech',
-  imageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=700&q=80']
+  imageUrl: '/images/products/1012-telescopio-astronomico-movil-1.jpg',
+  images: ['/images/products/1012-telescopio-astronomico-movil-1.jpg']
 });
 
 // 3. Juegos de Mesa y Escape Room
@@ -164,8 +164,8 @@ add({
   pros: ['Partidas siempre diferentes porque el tablero se crea desde cero cada vez', 'Fácil de aprender pero con una profundidad táctica infinita', 'Incluye las expansiones de El Río y El Abad en la caja base'],
   idealFor: 'Tardes de fin de semana con amigos y familia donde cada decisión cuenta',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80']
+  imageUrl: '/images/products/1012-carcassonne-juego-mesa-1.jpg',
+  images: ['/images/products/1012-carcassonne-juego-mesa-1.jpg']
 });
 
 add({
@@ -187,8 +187,8 @@ add({
   pros: ['Decodificador electrónico con llaves físicas que confirman si el código es correcto', 'Fomenta el trabajo en equipo, la lógica deductiva y la comunicación bajo presión', 'Banda sonora envolvente disponible en la app oficial gratuita'],
   idealFor: 'Fiestas con amigos, cumpleaños y tardes de misterio colaborativo',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80']
+  imageUrl: '/images/products/1012-escape-room-the-game-familiar-1.jpg',
+  images: ['/images/products/1012-escape-room-the-game-familiar-1.jpg']
 });
 
 add({
@@ -210,8 +210,8 @@ add({
   pros: ['Componentes de cartón troquelado 3D espectaculares que se van montando', 'Reglas muy ágiles sin entreturno aburrido: todo el mundo juega rápido', 'Bandejas organizadoras exclusivas para sacar a la mesa en 1 minuto'],
   idealFor: 'Preadolescentes que buscan un juego de civilizaciones moderno y visual',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80']
+  imageUrl: '/images/products/1012-7-wonders-architects-1.jpg',
+  images: ['/images/products/1012-7-wonders-architects-1.jpg']
 });
 
 // 4. Libros Juveniles y Cómics (USER REQUESTED)
@@ -234,8 +234,8 @@ add({
   pros: ['Humor tronchante que conecta de inmediato con cualquier chico de 10 a 12 años', 'Texto en caligrafía juvenil intercalado con viñetas de cómic en cada página', 'La puerta de entrada infalible para no lectores'],
   idealFor: 'Risas garantizadas en la cama antes de apagar la luz',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80']
+  imageUrl: '/images/products/1012-diario-de-greg-1-1.jpg',
+  images: ['/images/products/1012-diario-de-greg-1-1.jpg']
 });
 
 add({
@@ -257,8 +257,8 @@ add({
   pros: ['La saga que ha marcado la infancia de millones de personas en todo el mundo', 'Valores de amistad inquebrantable, valentía, superación y lealtad', 'Traducción clásica impecable de Salamandra'],
   idealFor: 'Descubrir el andén 9 y 3/4 a la edad perfecta',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1512820790803-83ca734da794?w=700&q=80']
+  imageUrl: '/images/products/1012-harry-potter-piedra-filosofal-1.jpg',
+  images: ['/images/products/1012-harry-potter-piedra-filosofal-1.jpg']
 });
 
 add({
@@ -280,8 +280,8 @@ add({
   pros: ['Herramienta pedagógica magistral contra el acoso y la indiferencia en las aulas', 'Trama que atrapa el corazón y provoca conversaciones necesarias en familia', 'Capítulos breves de intensidad emocional arrolladora'],
   idealFor: 'Despertar la empatía y la valentía de no mirar hacia otro lado',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=700&q=80']
+  imageUrl: '/images/products/1012-invisible-eloy-moreno-1.jpg',
+  images: ['/images/products/1012-invisible-eloy-moreno-1.jpg']
 });
 
 // 5. Manualidades, Lettering y Creatividad (USER REQUESTED)
@@ -304,8 +304,8 @@ add({
   pros: ['Tinta al agua acuarelable que permite degradados y sombras espectaculares', 'Puntas de fibra japonesa que recuperan la forma sin abrirse tras meses de uso', 'Incluye estuche con asa para llevar a clase o de viaje'],
   idealFor: 'Decorar apuntes escolares, títulos de libretas y tarjetas personalizadas',
   style: 'creativity',
-  imageUrl: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=700&q=80']
+  imageUrl: '/images/products/1012-kit-lettering-rotuladores-pincel-1.jpg',
+  images: ['/images/products/1012-kit-lettering-rotuladores-pincel-1.jpg']
 });
 
 add({
@@ -327,8 +327,8 @@ add({
   pros: ['Pintura a base de agua inodora de secado ultrarrápido y máxima resistencia', 'Puntas reversibles y lavables que no se obstruyen', 'Colores vivos que tapan totalmente el fondo sobre el que se pinta'],
   idealFor: 'Personalizar zapatillas deportivas, monopatines y regalos artesanales',
   style: 'creativity',
-  imageUrl: 'https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80']
+  imageUrl: '/images/products/1012-posca-rotuladores-acrilicos-8-1.jpg',
+  images: ['/images/products/1012-posca-rotuladores-acrilicos-8-1.jpg']
 });
 
 add({
@@ -350,8 +350,8 @@ add({
   pros: ['Cerradura de metal robusta con cientos de combinaciones posibles', 'Bolígrafo espía con linterna UV para mensajes ultra secretos', 'Hojas gruesas rayadas que no traspasan la tinta'],
   idealFor: 'Escribir pensamientos íntimos, sueños y anécdotas de preadolescente',
   style: 'creativity',
-  imageUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80']
+  imageUrl: '/images/products/1012-diario-secreto-candado-huella-1.jpg',
+  images: ['/images/products/1012-diario-secreto-candado-huella-1.jpg']
 });
 
 // 6. Magia Borrás Avanzada
@@ -374,8 +374,8 @@ add({
   pros: ['Efecto de luces D\'Lite que asombra tanto a niños como a adultos', 'Vídeos explicativos en la app impartidos por magos profesionales', 'Permite grabar vídeos increíbles para compartir con amigos'],
   idealFor: 'Preadolescentes amantes de los trucos visuales modernos y las redes',
   style: 'tech',
-  imageUrl: '/images/products/1012-magia-1.jpg',
-  images: ['/images/products/1012-magia-1.jpg', '/images/products/1012-magia-2.jpg', '/images/products/1012-magia-3.jpg']
+  imageUrl: '/images/products/1012-magia-borras-150-1.jpg',
+  images: ['/images/products/1012-magia-borras-150-1.jpg']
 });
 
 add({
@@ -397,8 +397,8 @@ add({
   pros: ['Trucos que parecen auténticos poderes psíquicos sin torpezas mecánicas', 'Accesorios de alta precisión con acabados discretos', 'Guía con trucos de psicología y desvío de atención'],
   idealFor: 'Sorprender a compañeros de clase y familiares con retos intelectuales',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80']
+  imageUrl: '/images/products/1012-set-magia-mentalismo-closeup-1.jpg',
+  images: ['/images/products/1012-set-magia-mentalismo-closeup-1.jpg']
 });
 
 add({
@@ -420,8 +420,8 @@ add({
   pros: ['Mecanismo de madera sin cerraduras visibles de gran ingenio mecánico', 'Desafío mental irresistible para amigos que intentan abrirla', 'Perfecta para esconder pequeños tesoros personales'],
   idealFor: 'Amantes de los acertijos, escape rooms y rompecabezas mecánicos',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80']
+  imageUrl: '/images/products/1012-caja-misterio-escape-magia-1.jpg',
+  images: ['/images/products/1012-caja-misterio-escape-magia-1.jpg']
 });
 
 // 7. Colonias y Cuidado Juvenil (USER REQUESTED)
@@ -444,8 +444,8 @@ add({
   pros: ['Aroma limpio y ligero que no marea ni resulta pesado', 'Frasco icónico de cristal esmerilado con vaporizador desmontable', 'Garantía 100% original de Calvin Klein en Amazon'],
   idealFor: 'El paso a la etapa de secundaria sintiéndose seguros y arreglados',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1594035910387-fea47794261f?w=700&q=80']
+  imageUrl: '/images/products/1012-ck-one-50ml-juvenil-1.jpg',
+  images: ['/images/products/1012-ck-one-50ml-juvenil-1.jpg']
 });
 
 add({
@@ -467,8 +467,8 @@ add({
   pros: ['Excelente duración tras las clases de Educación Física', 'Formato resistente ideal para llevar en la bolsa de deporte', 'Precio económico para uso diario sin remordimientos'],
   idealFor: 'La bolsa de deporte de fútbol, baloncesto o natación',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=80']
+  imageUrl: '/images/products/1012-adidas-eau-de-toilette-juvenil-1.jpg',
+  images: ['/images/products/1012-adidas-eau-de-toilette-juvenil-1.jpg']
 });
 
 add({
@@ -490,8 +490,8 @@ add({
   pros: ['Fórmula sin alcohol, sulfatos ni jabones agresivos', 'Los parches de hidrocoloide curan el granito en una noche sin marcas', 'Enseña una rutina de higiene facial saludable desde el principio'],
   idealFor: 'Preadolescentes que empiezan a notar los cambios de la piel',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1556228720-195a672e8a03?w=700&q=80']
+  imageUrl: '/images/products/1012-kit-primeros-cuidados-faciales-1.jpg',
+  images: ['/images/products/1012-kit-primeros-cuidados-faciales-1.jpg']
 });
 
 // 8. Moda Urbana, Sudaderas y Mochilas (USER REQUESTED)
@@ -514,8 +514,8 @@ add({
   pros: ['Interior perchado ultrasuave que no pica ni pierde pelo al lavar', 'Corte moderno con hombros caídos de estilo skate y gaming', 'Combina genial con pantalones cargo y zapatillas'],
   idealFor: 'El uniforme informal diario del colegio y fines de semana',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=700&q=80']
+  imageUrl: '/images/products/1012-sudadera-hoodie-oversize-1.jpg',
+  images: ['/images/products/1012-sudadera-hoodie-oversize-1.jpg']
 });
 
 add({
@@ -537,8 +537,8 @@ add({
   pros: ['Cremalleras reforzadas con tiradores ergonómicos fáciles de abrir', 'Tejido antidesgarro que aguanta lluvia ligera', 'Bolsillo trasero de seguridad antirrobo pegado al cuerpo'],
   idealFor: 'Tardes en el parque, excursiones escolares y salidas con amigos',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&q=80']
+  imageUrl: '/images/products/1012-rinonera-cruzada-impermeable-1.jpg',
+  images: ['/images/products/1012-rinonera-cruzada-impermeable-1.jpg']
 });
 
 add({
@@ -560,8 +560,8 @@ add({
   pros: ['Puntera sin costuras molestas que no aprieta los dedos', 'Algodón elástico de alta durabilidad que no hace bolitas tras los lavados', '5 pares diferentes en una bonita caja de regalo'],
   idealFor: 'Un detalle con estilo y personalidad propia para el día a día',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1582966772680-860e372bb558?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1582966772680-860e372bb558?w=700&q=80']
+  imageUrl: '/images/products/1012-pack-calcetines-divertidos-1.jpg',
+  images: ['/images/products/1012-pack-calcetines-divertidos-1.jpg']
 });
 
 console.log('10-12 years old products successfully loaded.');

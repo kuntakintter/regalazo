@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const { AGE_CATEGORIES, AGE_SUBCATEGORIES_MAP, PRICE_FILTERS } = require('../src/data/categories.ts');
+const { AGE_CATEGORIES, AGE_SUBCATEGORIES_MAP, PRICE_FILTERS, GENERAL_CATEGORY_MAPPING } = require('../src/data/categories.ts');
 const { products } = require('./catalog_012');
 require('./catalog_13');
 require('./catalog_46');
@@ -33,11 +33,11 @@ const code = `// ===============================================================
 // Afiliación oficial con Amazon España (tag: vapegadgets22-21)
 // ============================================================================
 
-import { AGE_CATEGORIES, AGE_SUBCATEGORIES_MAP, PRICE_FILTERS, AgeCategoryMeta } from './categories';
+import { AGE_CATEGORIES, AGE_SUBCATEGORIES_MAP, PRICE_FILTERS, GENERAL_CATEGORY_MAPPING, AgeCategoryMeta } from './categories';
 
 export const AMAZON_AFFILIATE_TAG = 'vapegadgets22-21';
 
-export { AGE_CATEGORIES, AGE_SUBCATEGORIES_MAP, PRICE_FILTERS };
+export { AGE_CATEGORIES, AGE_SUBCATEGORIES_MAP, PRICE_FILTERS, GENERAL_CATEGORY_MAPPING };
 export type { AgeCategoryMeta };
 
 export interface Product {

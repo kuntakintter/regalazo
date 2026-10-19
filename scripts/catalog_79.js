@@ -24,8 +24,8 @@ add({
   pros: ['Mandos inalámbricos o ergonómicos con botón turbo de aceleración puntual', 'Pistas de enganche rápido fácil de montar y desmontar en el salón', 'Cuentavueltas mecánico para saber quién ha ganado la carrera'],
   idealFor: 'Duelos de velocidad legendarios entre padres e hijos',
   style: 'classic',
-  imageUrl: '/images/products/79-scalextric-1.jpg',
-  images: ['/images/products/79-scalextric-1.jpg', '/images/products/79-scalextric-2.jpg', '/images/products/79-scalextric-3.jpg']
+  imageUrl: '/images/products/79-scalextric-compact-1.jpg',
+  images: ['/images/products/79-scalextric-compact-1.jpg']
 });
 
 add({
@@ -47,8 +47,8 @@ add({
   pros: ['Zona de cruce de pistas para añadir emoción estratégica', 'Coches con tracción magnética reforzada para curvas rápidas', 'Ocupa un espacio moderado compatible con alfombras estándar'],
   idealFor: 'Aficionados a las carreras de rally y la conducción técnica',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=700&q=80']
+  imageUrl: '/images/products/79-scalextric-rally-champions-1.jpg',
+  images: ['/images/products/79-scalextric-rally-champions-1.jpg']
 });
 
 add({
@@ -70,8 +70,8 @@ add({
   pros: ['Trazado largo con múltiples configuraciones de montaje posibles', 'Coches con gran adherencia y tampografía oficial de marcas', 'Transformador de pared para jugar sin gastar pilas'],
   idealFor: 'Tardes enteras de competición con amigos en casa',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80']
+  imageUrl: '/images/products/79-carrera-go-dtm-speed-1.jpg',
+  images: ['/images/products/79-carrera-go-dtm-speed-1.jpg']
 });
 
 // 2. Coches RC y Teledirigidos
@@ -94,8 +94,8 @@ add({
   pros: ['Incluye 2 baterías recargables para más de 45 minutos de juego ininterrumpido', 'Emisora 2.4 GHz anti-interferencias con alcance de 80 metros', 'Parachoques delantero reforzado anti-choques'],
   idealFor: 'Correr en parques, caminos de tierra y exteriores con total libertad',
   style: 'classic',
-  imageUrl: '/images/products/79-coche-rc-1.jpg',
-  images: ['/images/products/79-coche-rc-1.jpg', '/images/products/79-coche-rc-2.jpg', '/images/products/79-coche-rc-3.jpg']
+  imageUrl: '/images/products/79-coche-rc-exost-1.jpg',
+  images: ['/images/products/79-coche-rc-exost-1.jpg']
 });
 
 add({
@@ -117,8 +117,8 @@ add({
   pros: ['Giro de 360 grados sobre su propio eje a toda velocidad', 'Diseño indestructible que absorbe cualquier caída por las escaleras', 'Fácil de manejar por niños sin frustración de que el coche vuelque'],
   idealFor: 'Diversión desenfadada tanto dentro del salón como en la terraza',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80']
+  imageUrl: '/images/products/79-coche-acrobatico-360-led-1.jpg',
+  images: ['/images/products/79-coche-acrobatico-360-led-1.jpg']
 });
 
 add({
@@ -140,8 +140,8 @@ add({
   pros: ['Supera obstáculos que paran a otros coches teledirigidos', 'Motor de alto torque con refrigeración pasiva', 'Chasis sellado resistente a salpicaduras de agua'],
   idealFor: 'Escapadas al campo, senderos de montaña y playas de arena compacta',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=700&q=80']
+  imageUrl: '/images/products/79-monster-truck-rc-gigante-1.jpg',
+  images: ['/images/products/79-monster-truck-rc-gigante-1.jpg']
 });
 
 // 3. LEGO Creator y Construcción
@@ -164,8 +164,8 @@ add({
   pros: ['3 dinosaurios diferentes en una sola caja', 'Articulaciones en cabeza, cola y patas para exponer en diferentes posturas', 'Excelente relación calidad-precio por pieza'],
   idealFor: 'Amantes de los dinosaurios, Jurassic Park y la construcción modular',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80']
+  imageUrl: '/images/products/79-lego-creator-dinosaurio-trex-1.jpg',
+  images: ['/images/products/79-lego-creator-dinosaurio-trex-1.jpg']
 });
 
 add({
@@ -187,8 +187,8 @@ add({
   pros: ['Más de 100 componentes modulares expandibles', 'Cañón magnético que dispara las canicas cuesta arriba', 'Fomenta la resolución de problemas lógicos de ingeniería'],
   idealFor: 'Mentes curiosas y futuros ingenieros que adoran los desafíos de física',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=700&q=80']
+  imageUrl: '/images/products/79-gravitrax-1.jpg',
+  images: ['/images/products/79-gravitrax-1.jpg']
 });
 
 add({
@@ -210,8 +210,8 @@ add({
   pros: ['Bisagras traseras que abren el castillo para jugar en su interior', 'Incluye dragón articulado que escupe fuego y 3 caballeros armados', '1426 piezas de construcción absorbente'],
   idealFor: 'Horas de construcción profunda e historias medievales épicas',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80']
+  imageUrl: '/images/products/79-lego-creator-castillo-medieval-1.jpg',
+  images: ['/images/products/79-lego-creator-castillo-medieval-1.jpg']
 });
 
 // 4. Juegos de Magia Borrás
@@ -234,8 +234,8 @@ add({
   pros: ['Libro de instrucciones con dibujos paso a paso muy claros para niños', 'Desarrolla la oratoria en público, la seguridad escénica y la destreza manual', 'Trucos con impacto visual inmediato que dejan boquiabiertos a los padres'],
   idealFor: 'Montar espectáculos de magia en las sobremesas familiares y cumpleaños',
   style: 'classic',
-  imageUrl: '/images/products/79-magia-1.jpg',
-  images: ['/images/products/79-magia-1.jpg', '/images/products/79-magia-2.jpg', '/images/products/79-magia-3.jpg']
+  imageUrl: '/images/products/79-magia-borras-100-1.jpg',
+  images: ['/images/products/79-magia-borras-100-1.jpg']
 });
 
 add({
@@ -257,8 +257,8 @@ add({
   pros: ['Mayor variedad de trucos mecánicos y de habilidad manual', 'Permite armar un espectáculo completo de más de 30 minutos', 'Materiales resistentes de plástico inyectado y barajas tratadas'],
   idealFor: 'Peques que quieren dar el salto a trucos más profesionales',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80']
+  imageUrl: '/images/products/79-magia-borras-150-trucos-1.jpg',
+  images: ['/images/products/79-magia-borras-150-trucos-1.jpg']
 });
 
 add({
@@ -280,8 +280,8 @@ add({
   pros: ['Deslizamiento perfecto patentado insustituible por otras barajas', 'Trucos basados en principios matemáticos que nunca fallan', 'Desarrolla la memoria de trabajo y la agilidad de los dedos'],
   idealFor: 'Llevar siempre en el bolsillo y dejar atónitos a amigos y familiares',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80']
+  imageUrl: '/images/products/79-baraja-magia-bicycle-trucos-1.jpg',
+  images: ['/images/products/79-baraja-magia-bicycle-trucos-1.jpg']
 });
 
 // 5. Juegos de Mesa y Estrategia Familiar
@@ -305,7 +305,7 @@ add({
   idealFor: 'Tardes de juegos familiares de estrategia y entretenimiento',
   style: 'classic',
   imageUrl: '/images/products/79-catan-junior-1.jpg',
-  images: ['/images/products/79-catan-junior-1.jpg', '/images/products/79-catan-junior-2.jpg', '/images/products/79-catan-junior-3.jpg']
+  images: ['/images/products/79-catan-junior-1.jpg']
 });
 
 add({
@@ -327,8 +327,8 @@ add({
   pros: ['Premia la creatividad, la empatía y la complicidad familiar', 'Reglas ultra sencillas aptas para niños de 8 años y abuelos de 80', 'Piezas de madera en forma de conejos de colores en el marcador'],
   idealFor: 'Sobremesas familiares sin conflictos ni competitividad agresiva',
   style: 'creativity',
-  imageUrl: 'https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80']
+  imageUrl: '/images/products/79-dixit-juego-de-mesa-1.jpg',
+  images: ['/images/products/79-dixit-juego-de-mesa-1.jpg']
 });
 
 add({
@@ -350,8 +350,8 @@ add({
   pros: ['Gimnasia cerebral trepidante que engancha al segundo de empezar', 'Piezas de madera pulida muy agradables al tacto', 'Los niños suelen ganar a los adultos por su mayor velocidad de procesamiento visual'],
   idealFor: 'Risas aseguradas y piques amistosos en familia',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80']
+  imageUrl: '/images/products/79-fantasma-blitz-1.jpg',
+  images: ['/images/products/79-fantasma-blitz-1.jpg']
 });
 
 // 6. Libros y Cómics Infantiles (USER REQUESTED)
@@ -374,8 +374,8 @@ add({
   pros: ['Consigue que niños que odian leer devoren páginas sin parar', 'Ilustraciones tipo viñeta dinámica de gran impacto visual', 'Encuadernación de lujo con portada en relieve metalizado'],
   idealFor: 'Fomentar el hábito de la lectura autónoma en Primaria',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80']
+  imageUrl: '/images/products/79-los-compas-diamantito-legendario-1.jpg',
+  images: ['/images/products/79-los-compas-diamantito-legendario-1.jpg']
 });
 
 add({
@@ -397,8 +397,8 @@ add({
   pros: ['Ilustraciones en rosa y negro con toques de purpurina mágica en cada página', 'Capítulos cortos con letra grande y clara ideales para leer solos', 'Personaje entrañable que celebra ser diferente'],
   idealFor: 'La transición de cuentos infantiles a primeras novelas juveniles',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1512820790803-83ca734da794?w=700&q=80']
+  imageUrl: '/images/products/79-isadora-moon-va-al-colegio-1.jpg',
+  images: ['/images/products/79-isadora-moon-va-al-colegio-1.jpg']
 });
 
 add({
@@ -420,8 +420,8 @@ add({
   pros: ['Letra grande y tipografía amigable diseñada para lectores de 7 a 9 años', 'Dibujos espectaculares en todas las páginas llenos de color y ritmo', 'Tramas llenas de misterio, amistad y mascotas mágicas'],
   idealFor: 'Lectura nocturna antes de dormir que engancha desde el primer capítulo',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=700&q=80']
+  imageUrl: '/images/products/79-anna-kadabra-club-luna-llena-1.jpg',
+  images: ['/images/products/79-anna-kadabra-club-luna-llena-1.jpg']
 });
 
 // 7. Manualidades y Kits Creativos (USER REQUESTED)
@@ -444,8 +444,8 @@ add({
   pros: ['Horas de entretenimiento concentrado que desconecta de las pantallas', 'Gomas de alta elasticidad que no se rompen al trenzar', 'Maletín con compartimentos para tener todo recogido y ordenado'],
   idealFor: 'Hacer regalos hechos a mano a amigos y familiares en el recreo',
   style: 'creativity',
-  imageUrl: 'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80']
+  imageUrl: '/images/products/79-kit-pulseras-gomas-telar-1.jpg',
+  images: ['/images/products/79-kit-pulseras-gomas-telar-1.jpg']
 });
 
 add({
@@ -467,8 +467,8 @@ add({
   pros: ['Agujas seguras de plástico con las que es imposible pincharse', 'Agujeros pre-taladrados en el fieltro que facilitan la puntada recta', 'Incluye todo: hilos de colores, relleno esponjoso y tijeras infantiles'],
   idealFor: 'Desarrollar la paciencia, la precisión motriz y el orgullo de crear sus propios peluches',
   style: 'creativity',
-  imageUrl: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=700&q=80']
+  imageUrl: '/images/products/79-kit-costura-peluches-fieltro-1.jpg',
+  images: ['/images/products/79-kit-costura-peluches-fieltro-1.jpg']
 });
 
 add({
@@ -490,8 +490,8 @@ add({
   pros: ['Cero químicos peligrosos ni pegamentos tóxicos', 'La estación agitadora evita derrames en la mesa', 'Texturas elásticas aromáticas súper satisfactorias'],
   idealFor: 'Experimentos sensoriales seguros en tardes de cumpleaños',
   style: 'creativity',
-  imageUrl: 'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80']
+  imageUrl: '/images/products/79-fabrica-slime-diy-sin-borax-1.jpg',
+  images: ['/images/products/79-fabrica-slime-diy-sin-borax-1.jpg']
 });
 
 // 8. Colonias y Cuidado Personal Infantil (USER REQUESTED)
@@ -514,8 +514,8 @@ add({
   pros: ['Sensación deportiva de polo recién lavado', 'Fórmula ligera que no resulta pesada para niños en Primaria', 'Frasco blanco lacado con el emblemático cocodrilo bordado'],
   idealFor: 'Ocasiones especiales, celebraciones de comunión y fines de semana',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=80']
+  imageUrl: '/images/products/79-colonia-lacoste-junior-fresca-1.jpg',
+  images: ['/images/products/79-colonia-lacoste-junior-fresca-1.jpg']
 });
 
 add({
@@ -537,8 +537,8 @@ add({
   pros: ['Protege los labios del frío y el viento evitando grietas en invierno', 'Aromas deliciosos que huelen como la bebida real sin dejar color artificial', 'Lata metálica vintage reutilizable para guardar pequeños tesoros'],
   idealFor: 'Llevar en el estuche del colegio y cuidar los labios con una sonrisa',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80']
+  imageUrl: '/images/products/79-lip-smacker-balsamos-sabores-1.jpg',
+  images: ['/images/products/79-lip-smacker-balsamos-sabores-1.jpg']
 });
 
 add({
@@ -560,8 +560,8 @@ add({
   pros: ['Neceser de alta calidad multiusos para el baño o el cole', 'La fragancia más regalada y celebrada en cumpleaños y comuniones', 'Embalaje de lujo listo para obsequiar sin envolver'],
   idealFor: 'El regalo con el que siempre se acierta',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1594035910387-fea47794261f?w=700&q=80']
+  imageUrl: '/images/products/79-tous-neceser-colonia-kids-1.jpg',
+  images: ['/images/products/79-tous-neceser-colonia-kids-1.jpg']
 });
 
 // 9. Moda y Ropa Deportiva Infantil (USER REQUESTED)
@@ -584,8 +584,8 @@ add({
   pros: ['Luz de fondo electroluminiscente de 7 colores seleccionables', 'Aprender a leer la hora digital, usar el cronómetro en carreras y alarma', 'Muy ligero y cómodo en muñecas pequeñas'],
   idealFor: 'Primer reloj de muñeca para el colegio y actividades deportivas',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=80']
+  imageUrl: '/images/products/79-reloj-digital-deportivo-50m-1.jpg',
+  images: ['/images/products/79-reloj-digital-deportivo-50m-1.jpg']
 });
 
 add({
@@ -607,8 +607,8 @@ add({
   pros: ['Banda interior absorbente que retiene el sudor al correr', 'Talla adaptable que acompaña el crecimiento de los 6 a los 11 años', 'Diseño limpio y moderno que combina con cualquier chándal'],
   idealFor: 'Excursiones al aire libre, campamentos y deportes escolares',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=700&q=80']
+  imageUrl: '/images/products/79-gorra-deportiva-ajustable-uv-1.jpg',
+  images: ['/images/products/79-gorra-deportiva-ajustable-uv-1.jpg']
 });
 
 add({
@@ -630,8 +630,8 @@ add({
   pros: ['Costuras reforzadas en puntos de tensión que aguantan todo el curso', 'Compartimento acolchado para tablet o carpetas A4 grandes', 'Bolsillos laterales elásticos para la botella de agua'],
   idealFor: 'La vuelta al cole en Primaria con comodidad y ligereza',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&q=80']
+  imageUrl: '/images/products/79-mochila-escolar-juvenil-estuche-1.jpg',
+  images: ['/images/products/79-mochila-escolar-juvenil-estuche-1.jpg']
 });
 
 console.log('7-9 years old products successfully loaded.');

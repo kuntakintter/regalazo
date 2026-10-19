@@ -88,9 +88,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Familias activas que buscan comodidad y plegado instantáneo",
     "style": "baby",
-    "imageUrl": "https://images.unsplash.com/photo-1591088398332-8a7791972843?w=700&q=80",
+    "imageUrl": "/images/products/012-carrito-kinderkraft-grande-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1591088398332-8a7791972843?w=700&q=80"
+      "/images/products/012-carrito-kinderkraft-grande-1.jpg"
     ]
   },
   {
@@ -116,9 +116,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Tener al bebé entretenido y seguro cerca de ti en casa",
     "style": "baby",
-    "imageUrl": "https://images.unsplash.com/photo-1519689680058-324335c77eba?w=700&q=80",
+    "imageUrl": "/images/products/012-hamaca-babybjorn-bliss-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1519689680058-324335c77eba?w=700&q=80"
+      "/images/products/012-hamaca-babybjorn-bliss-1.jpg"
     ]
   },
   {
@@ -144,11 +144,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Lactancia materna y noches tranquilas con apego seguro",
     "style": "baby",
-    "imageUrl": "/images/products/bebe-cuna-1.jpg",
+    "imageUrl": "/images/products/bebe-cuna-colecho-1.jpg",
     "images": [
-      "/images/products/bebe-cuna-1.jpg",
-      "/images/products/bebe-cuna-2.jpg",
-      "/images/products/bebe-cuna-3.jpg"
+      "/images/products/bebe-cuna-colecho-1.jpg"
     ]
   },
   {
@@ -174,9 +172,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Calmar llantos, cólicos de lactante y siestas plácidas",
     "style": "baby",
-    "imageUrl": "https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=700&q=80",
+    "imageUrl": "/images/products/012-nutria-fisher-price-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=700&q=80"
+      "/images/products/012-nutria-fisher-price-1.jpg"
     ]
   },
   {
@@ -202,9 +200,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Dormir con temperatura constante sin riesgo de asfixia",
     "style": "baby",
-    "imageUrl": "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=700&q=80",
+    "imageUrl": "/images/products/012-saco-dormir-bebe-tog-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=700&q=80"
+      "/images/products/012-saco-dormir-bebe-tog-1.jpg"
     ]
   },
   {
@@ -230,11 +228,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "El baño diario sin miedo a resbalones ni malas posturas",
     "style": "baby",
-    "imageUrl": "/images/products/bebe-banera-1.jpg",
+    "imageUrl": "/images/products/bebe-banera-plegable-1.jpg",
     "images": [
-      "/images/products/bebe-banera-1.jpg",
-      "/images/products/bebe-banera-2.jpg",
-      "/images/products/bebe-banera-3.jpg"
+      "/images/products/bebe-banera-plegable-1.jpg"
     ]
   },
   {
@@ -260,9 +256,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "El bolso del hospital de maternidad y primeros cuidados en casa",
     "style": "baby",
-    "imageUrl": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=700&q=80",
+    "imageUrl": "/images/products/bebe-suavinex-kit-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=700&q=80"
+      "/images/products/bebe-suavinex-kit-1.jpg"
     ]
   },
   {
@@ -288,9 +284,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Asegurar que el agua esté siempre a los 37°C recomendados",
     "style": "baby",
-    "imageUrl": "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=700&q=80",
+    "imageUrl": "/images/products/012-termometro-bano-patito-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=700&q=80"
+      "/images/products/012-termometro-bano-patito-1.jpg"
     ]
   },
   {
@@ -316,11 +312,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "El regalo estrella en el hospital, baby shower o bautizo",
     "style": "baby",
-    "imageUrl": "/images/products/bebe-tarta-1.jpg",
+    "imageUrl": "/images/products/bebe-tarta-dodot-3pisos-1.jpg",
     "images": [
-      "/images/products/bebe-tarta-1.jpg",
-      "/images/products/bebe-tarta-2.jpg",
-      "/images/products/bebe-tarta-3.jpg"
+      "/images/products/bebe-tarta-dodot-3pisos-1.jpg"
     ]
   },
   {
@@ -346,9 +340,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Regalo práctico y de máxima garantía farmacéutica",
     "style": "baby",
-    "imageUrl": "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=700&q=80",
+    "imageUrl": "/images/products/bebe-mustela-canastilla-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=700&q=80"
+      "/images/products/bebe-mustela-canastilla-1.jpg"
     ]
   },
   {
@@ -374,9 +368,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Compañeros de trabajo o amigos que quieren hacer un detalle inolvidable",
     "style": "baby",
-    "imageUrl": "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=700&q=80",
+    "imageUrl": "/images/products/012-cesta-bienvenida-bebe-madera-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=700&q=80"
+      "/images/products/012-cesta-bienvenida-bebe-madera-1.jpg"
     ]
   },
   {
@@ -402,9 +396,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "La etapa de dentición y el desarrollo sensorial temprano",
     "style": "baby",
-    "imageUrl": "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80",
+    "imageUrl": "/images/products/012-sophie-la-girafe-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80"
+      "/images/products/012-sophie-la-girafe-1.jpg"
     ]
   },
   {
@@ -430,9 +424,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Estimular el gateo, los reflejos y el juego boca abajo (tummy time)",
     "style": "baby",
-    "imageUrl": "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=700&q=80",
+    "imageUrl": "/images/products/bebe-gimnasio-piano-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=700&q=80"
+      "/images/products/bebe-gimnasio-piano-1.jpg"
     ]
   },
   {
@@ -458,9 +452,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Bebés de 3 a 9 meses que empiezan a agarrar objetos",
     "style": "baby",
-    "imageUrl": "https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=700&q=80",
+    "imageUrl": "/images/products/012-mordedor-winkel-manhattan-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=700&q=80"
+      "/images/products/012-mordedor-winkel-manhattan-1.jpg"
     ]
   },
   {
@@ -486,9 +480,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Estimular la visión y concentración durante los primeros meses",
     "style": "baby",
-    "imageUrl": "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80",
+    "imageUrl": "/images/products/012-libro-tela-alto-contraste-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80"
+      "/images/products/012-libro-tela-alto-contraste-1.jpg"
     ]
   },
   {
@@ -514,9 +508,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Despertar la curiosidad táctil en el cochecito o la cuna",
     "style": "baby",
-    "imageUrl": "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=700&q=80",
+    "imageUrl": "/images/products/012-libro-tela-colitas-animales-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=700&q=80"
+      "/images/products/012-libro-tela-colitas-animales-1.jpg"
     ]
   },
   {
@@ -542,9 +536,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Transformar el momento del baño en una experiencia divertida",
     "style": "baby",
-    "imageUrl": "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=700&q=80",
+    "imageUrl": "/images/products/012-libro-bano-magico-cambia-color-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=700&q=80"
+      "/images/products/012-libro-bano-magico-cambia-color-1.jpg"
     ]
   },
   {
@@ -570,9 +564,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Aromatizar la ropita, el cepillo de pelo y tras el baño",
     "style": "baby",
-    "imageUrl": "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=700&q=80",
+    "imageUrl": "/images/products/bebe-suavinex-colonia-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=700&q=80"
+      "/images/products/bebe-suavinex-colonia-1.jpg"
     ]
   },
   {
@@ -598,9 +592,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Refrescar al bebé en verano y peinar los primeros cabellos",
     "style": "baby",
-    "imageUrl": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=80",
+    "imageUrl": "/images/products/012-mustela-agua-colonia-sin-alcohol-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=80"
+      "/images/products/012-mustela-agua-colonia-sin-alcohol-1.jpg"
     ]
   },
   {
@@ -626,9 +620,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Uso diario en toda la casa, cuna y ropa de cama",
     "style": "baby",
-    "imageUrl": "https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?w=700&q=80",
+    "imageUrl": "/images/products/012-colonia-denenes-original-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?w=700&q=80"
+      "/images/products/012-colonia-denenes-original-1.jpg"
     ]
   },
   {
@@ -654,9 +648,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "El fondo de armario diario del primer año de vida",
     "style": "baby",
-    "imageUrl": "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=700&q=80",
+    "imageUrl": "/images/products/012-pack-bodies-carters-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=700&q=80"
+      "/images/products/012-pack-bodies-carters-1.jpg"
     ]
   },
   {
@@ -682,9 +676,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Gatear y ponerse de pie manteniendo los pies abrigados",
     "style": "baby",
-    "imageUrl": "https://images.unsplash.com/photo-1519689680058-324335c77eba?w=700&q=80",
+    "imageUrl": "/images/products/012-patucos-cuero-suave-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1519689680058-324335c77eba?w=700&q=80"
+      "/images/products/012-patucos-cuero-suave-1.jpg"
     ]
   },
   {
@@ -710,9 +704,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "La etapa de babeo de los primeros dientes y tomas de leche",
     "style": "baby",
-    "imageUrl": "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=700&q=80",
+    "imageUrl": "/images/products/012-pack-baberos-bandana-algodon-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=700&q=80"
+      "/images/products/012-pack-baberos-bandana-algodon-1.jpg"
     ]
   },
   {
@@ -740,9 +734,7 @@ export const PRODUCTS: Product[] = [
     "style": "baby",
     "imageUrl": "/images/products/bebe-canon-confeti-1.jpg",
     "images": [
-      "/images/products/bebe-canon-confeti-1.jpg",
-      "/images/products/bebe-canon-confeti-2.jpg",
-      "/images/products/bebe-canon-confeti-3.jpg"
+      "/images/products/bebe-canon-confeti-1.jpg"
     ]
   },
   {
@@ -770,9 +762,7 @@ export const PRODUCTS: Product[] = [
     "style": "baby",
     "imageUrl": "/images/products/bebe-globo-enigma-1.jpg",
     "images": [
-      "/images/products/bebe-globo-enigma-1.jpg",
-      "/images/products/bebe-globo-enigma-2.jpg",
-      "/images/products/bebe-globo-enigma-3.jpg"
+      "/images/products/bebe-globo-enigma-1.jpg"
     ]
   },
   {
@@ -800,9 +790,7 @@ export const PRODUCTS: Product[] = [
     "style": "baby",
     "imageUrl": "/images/products/bebe-polvo-holi-1.jpg",
     "images": [
-      "/images/products/bebe-polvo-holi-1.jpg",
-      "/images/products/bebe-polvo-holi-2.jpg",
-      "/images/products/bebe-polvo-holi-3.jpg"
+      "/images/products/bebe-polvo-holi-1.jpg"
     ]
   },
   {
@@ -828,11 +816,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Fomentar la independencia y la colaboración en tareas del hogar",
     "style": "kids",
-    "imageUrl": "/images/products/13-torre-1.jpg",
+    "imageUrl": "/images/products/13-torre-aprendizaje-1.jpg",
     "images": [
-      "/images/products/13-torre-1.jpg",
-      "/images/products/13-torre-2.jpg",
-      "/images/products/13-torre-3.jpg"
+      "/images/products/13-torre-aprendizaje-1.jpg"
     ]
   },
   {
@@ -858,9 +844,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Canalizar la energía de los golpes en música armoniosa",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80",
+    "imageUrl": "/images/products/13-hape-banco-martillo-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80"
+      "/images/products/13-hape-banco-martillo-1.jpg"
     ]
   },
   {
@@ -886,9 +872,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Tardes de juego educativo en la alfombra del salón",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=700&q=80",
+    "imageUrl": "/images/products/13-cubo-multiactividades-madera-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=700&q=80"
+      "/images/products/13-cubo-multiactividades-madera-1.jpg"
     ]
   },
   {
@@ -914,9 +900,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Primeros juegos de construcción creativa y aprendizaje de números",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=700&q=80",
+    "imageUrl": "/images/products/13-lego-duplo-tren-numeros-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=700&q=80"
+      "/images/products/13-lego-duplo-tren-numeros-1.jpg"
     ]
   },
   {
@@ -942,9 +928,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Desarrollar la motricidad fina y la creatividad libre",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80",
+    "imageUrl": "/images/products/13-lego-duplo-caja-ladrillos-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80"
+      "/images/products/13-lego-duplo-caja-ladrillos-1.jpg"
     ]
   },
   {
@@ -970,9 +956,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Pequeños apasionados por los vehículos de emergencia",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=700&q=80",
+    "imageUrl": "/images/products/13-lego-duplo-camion-bomberos-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=700&q=80"
+      "/images/products/13-lego-duplo-camion-bomberos-1.jpg"
     ]
   },
   {
@@ -998,9 +984,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Aprender equilibrio y coordinación motriz al aire libre",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?w=700&q=80",
+    "imageUrl": "/images/products/13-chicco-first-bike-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?w=700&q=80"
+      "/images/products/13-chicco-first-bike-1.jpg"
     ]
   },
   {
@@ -1026,9 +1012,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Paseos largos donde el niño alterna entre pedalear y dejarse empujar",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1502744688674-c619d1586c9e?w=700&q=80",
+    "imageUrl": "/images/products/13-besrey-triciclo-5en1-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1502744688674-c619d1586c9e?w=700&q=80"
+      "/images/products/13-besrey-triciclo-5en1-1.jpg"
     ]
   },
   {
@@ -1054,9 +1040,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "El primer cumpleaños y fotos de recuerdo inolvidables",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80",
+    "imageUrl": "/images/products/13-correpasillos-vintage-retro-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80"
+      "/images/products/13-correpasillos-vintage-retro-1.jpg"
     ]
   },
   {
@@ -1082,9 +1068,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Inculcar el amor por la lectura antes de dormir",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80",
+    "imageUrl": "/images/products/13-libro-pollo-pepe-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80"
+      "/images/products/13-libro-pollo-pepe-1.jpg"
     ]
   },
   {
@@ -1110,9 +1096,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Acompañar la operación pañal de los 2 años sin presiones",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=700&q=80",
+    "imageUrl": "/images/products/13-libro-puedo-mirar-panal-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=700&q=80"
+      "/images/products/13-libro-puedo-mirar-panal-1.jpg"
     ]
   },
   {
@@ -1138,9 +1124,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "La lectura relajante de los últimos 10 minutos del día",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=700&q=80",
+    "imageUrl": "/images/products/13-libro-beso-antes-dormir-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=700&q=80"
+      "/images/products/13-libro-beso-antes-dormir-1.jpg"
     ]
   },
   {
@@ -1166,9 +1152,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Juegos de rol e imitación cotidiana para pequeños chefs",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=700&q=80",
+    "imageUrl": "/images/products/13-hape-cocinita-madera-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=700&q=80"
+      "/images/products/13-hape-cocinita-madera-1.jpg"
     ]
   },
   {
@@ -1194,9 +1180,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Aprender los nombres de las comidas saludables y motricidad bimanual",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80",
+    "imageUrl": "/images/products/13-alimentos-madera-velcro-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80"
+      "/images/products/13-alimentos-madera-velcro-1.jpg"
     ]
   },
   {
@@ -1222,9 +1208,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Superar la ansiedad médica y desarrollar la empatía y los cuidados",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=700&q=80",
+    "imageUrl": "/images/products/13-maletin-medico-infantil-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=700&q=80"
+      "/images/products/13-maletin-medico-infantil-1.jpg"
     ]
   },
   {
@@ -1250,9 +1236,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Tardes de juego creativo y modelado manual en familia",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80",
+    "imageUrl": "/images/products/13-play-doh-dentista-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80"
+      "/images/products/13-play-doh-dentista-1.jpg"
     ]
   },
   {
@@ -1278,9 +1264,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Primeras obras de arte, estampación de manitas y pies",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=700&q=80",
+    "imageUrl": "/images/products/13-crayola-pintura-dedos-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=700&q=80"
+      "/images/products/13-crayola-pintura-dedos-1.jpg"
     ]
   },
   {
@@ -1306,9 +1292,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Juego sensorial tranquilo en casa los días de lluvia",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80",
+    "imageUrl": "/images/products/13-kinetic-sand-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80"
+      "/images/products/13-kinetic-sand-1.jpg"
     ]
   },
   {
@@ -1334,9 +1320,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Antes de salir a la guardería o al parque infantil",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=700&q=80",
+    "imageUrl": "/images/products/13-colonia-suavinex-kids-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=700&q=80"
+      "/images/products/13-colonia-suavinex-kids-1.jpg"
     ]
   },
   {
@@ -1362,9 +1348,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "El ritual del baño antes de dormir para bajar la energía",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=80",
+    "imageUrl": "/images/products/13-colonia-denenes-felices-suenos-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=80"
+      "/images/products/13-colonia-denenes-felices-suenos-1.jpg"
     ]
   },
   {
@@ -1390,9 +1376,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Bebés y niños de piel muy sensible o con dermatitis atópica",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?w=700&q=80",
+    "imageUrl": "/images/products/13-klorane-petit-brin-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?w=700&q=80"
+      "/images/products/13-klorane-petit-brin-1.jpg"
     ]
   },
   {
@@ -1418,9 +1404,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "La transición del gateo a la marcha autónoma y la guardería",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=700&q=80",
+    "imageUrl": "/images/products/13-zapatillas-attipas-ergonomicas-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=700&q=80"
+      "/images/products/13-zapatillas-attipas-ergonomicas-1.jpg"
     ]
   },
   {
@@ -1446,9 +1432,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Saltar en los charcos y paseos con lluvia al salir de la guardería",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=700&q=80",
+    "imageUrl": "/images/products/13-chubasquero-infantil-animales-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=700&q=80"
+      "/images/products/13-chubasquero-infantil-animales-1.jpg"
     ]
   },
   {
@@ -1474,9 +1460,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Llevar la muda de recambio, merienda y pañales a la escuela infantil",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&q=80",
+    "imageUrl": "/images/products/13-mochila-guarderia-arnes-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&q=80"
+      "/images/products/13-mochila-guarderia-arnes-1.jpg"
     ]
   },
   {
@@ -1502,11 +1488,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Iniciarse en el mundo del slot y las carreras en casa",
     "style": "kids",
-    "imageUrl": "/images/products/46-mario-circuito-1.jpg",
+    "imageUrl": "/images/products/46-carrera-mario-1.jpg",
     "images": [
-      "/images/products/46-mario-circuito-1.jpg",
-      "/images/products/46-mario-circuito-2.jpg",
-      "/images/products/46-mario-circuito-3.jpg"
+      "/images/products/46-carrera-mario-1.jpg"
     ]
   },
   {
@@ -1532,9 +1516,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Competiciones trepidantes y partidas llenas de adrenalina",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=700&q=80",
+    "imageUrl": "/images/products/46-hot-wheels-choques-aereos-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=700&q=80"
+      "/images/products/46-hot-wheels-choques-aereos-1.jpg"
     ]
   },
   {
@@ -1560,9 +1544,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Mantener organizados todos los coches de juguete en la habitación",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80",
+    "imageUrl": "/images/products/46-hot-wheels-garaje-gigante-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80"
+      "/images/products/46-hot-wheels-garaje-gigante-1.jpg"
     ]
   },
   {
@@ -1588,11 +1572,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Fomentar la inteligencia emocional y la comunicación familiar en la sobremesa",
     "style": "kids",
-    "imageUrl": "/images/products/46-monstruo-1.jpg",
+    "imageUrl": "/images/products/46-monstruo-colores-1.jpg",
     "images": [
-      "/images/products/46-monstruo-1.jpg",
-      "/images/products/46-monstruo-2.jpg",
-      "/images/products/46-monstruo-3.jpg"
+      "/images/products/46-monstruo-colores-1.jpg"
     ]
   },
   {
@@ -1618,9 +1600,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Restaurantes, viajes en coche, tren y sobremesas divertidas",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80",
+    "imageUrl": "/images/products/46-dobble-infantil-kids-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80"
+      "/images/products/46-dobble-infantil-kids-1.jpg"
     ]
   },
   {
@@ -1646,9 +1628,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Primeros duelos de estrategia lógica entre hermanos y amigos",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80",
+    "imageUrl": "/images/products/46-conecta-4-clasico-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80"
+      "/images/products/46-conecta-4-clasico-1.jpg"
     ]
   },
   {
@@ -1674,11 +1656,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Paseos diarios al colegio, parques y fines de semana activos",
     "style": "kids",
-    "imageUrl": "/images/products/46-patinete-1.jpg",
+    "imageUrl": "/images/products/46-bopster-patinete-1.jpg",
     "images": [
-      "/images/products/46-patinete-1.jpg",
-      "/images/products/46-patinete-2.jpg",
-      "/images/products/46-patinete-3.jpg"
+      "/images/products/46-bopster-patinete-1.jpg"
     ]
   },
   {
@@ -1704,9 +1684,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "El regalo estrella que durará años sin perder rendimiento",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1502744688674-c619d1586c9e?w=700&q=80",
+    "imageUrl": "/images/products/46-micro-maxi-deluxe-led-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1502744688674-c619d1586c9e?w=700&q=80"
+      "/images/products/46-micro-maxi-deluxe-led-1.jpg"
     ]
   },
   {
@@ -1732,9 +1712,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Seguridad imprescindible en bici, patinete y patines",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80",
+    "imageUrl": "/images/products/46-casco-infantil-luz-seguridad-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80"
+      "/images/products/46-casco-infantil-luz-seguridad-1.jpg"
     ]
   },
   {
@@ -1760,9 +1740,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Aprender a poner nombre a lo que sienten día a día",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80",
+    "imageUrl": "/images/products/46-monstruo-de-colores-libro-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80"
+      "/images/products/46-monstruo-de-colores-libro-1.jpg"
     ]
   },
   {
@@ -1788,9 +1768,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Reforzar la seguridad en sí mismos y la convivencia con amigos",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=700&q=80",
+    "imageUrl": "/images/products/46-de-mayor-quiero-ser-feliz-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=700&q=80"
+      "/images/products/46-de-mayor-quiero-ser-feliz-1.jpg"
     ]
   },
   {
@@ -1816,9 +1796,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Aprender el valor de la autenticidad y la autoestima",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=700&q=80",
+    "imageUrl": "/images/products/46-yo-voy-conmigo-libro-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=700&q=80"
+      "/images/products/46-yo-voy-conmigo-libro-1.jpg"
     ]
   },
   {
@@ -1844,9 +1824,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Tardes de pintura, colorear mandalas y proyectos de dibujo escolar",
     "style": "creativity",
-    "imageUrl": "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=700&q=80",
+    "imageUrl": "/images/products/46-maletin-dibujo-madera-150-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=700&q=80"
+      "/images/products/46-maletin-dibujo-madera-150-1.jpg"
     ]
   },
   {
@@ -1872,9 +1852,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Desarrollar la motricidad fina, la paciencia y crear llaveros propios",
     "style": "creativity",
-    "imageUrl": "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80",
+    "imageUrl": "/images/products/46-aquabeads-estuche-expert-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80"
+      "/images/products/46-aquabeads-estuche-expert-1.jpg"
     ]
   },
   {
@@ -1900,9 +1880,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Colorear libros de dibujos y primeros trazos escolares",
     "style": "creativity",
-    "imageUrl": "https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80",
+    "imageUrl": "/images/products/46-crayola-rotuladores-lavables-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80"
+      "/images/products/46-crayola-rotuladores-lavables-1.jpg"
     ]
   },
   {
@@ -1928,9 +1908,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Compañero inseparable de aventuras y juego simbólico",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=700&q=80",
+    "imageUrl": "/images/products/46-furby-interactivo-morado-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=700&q=80"
+      "/images/products/46-furby-interactivo-morado-1.jpg"
     ]
   },
   {
@@ -1956,9 +1936,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Aprender la responsabilidad de cuidar una mascota sin riesgos",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80",
+    "imageUrl": "/images/products/46-bitzee-mascota-digital-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80"
+      "/images/products/46-bitzee-mascota-digital-1.jpg"
     ]
   },
   {
@@ -1984,9 +1964,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Niños que sueñan con tener su primer perrito en casa",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=700&q=80",
+    "imageUrl": "/images/products/46-perrito-interactivo-respira-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=700&q=80"
+      "/images/products/46-perrito-interactivo-respira-1.jpg"
     ]
   },
   {
@@ -2012,9 +1992,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Juegos de imaginación activa y cumpleaños temáticos",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1502744688674-c619d1586c9e?w=700&q=80",
+    "imageUrl": "/images/products/46-capa-mascara-superheroes-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1502744688674-c619d1586c9e?w=700&q=80"
+      "/images/products/46-capa-mascara-superheroes-1.jpg"
     ]
   },
   {
@@ -2040,9 +2020,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Carnaval, funciones escolares y tardes mágicas en el castillo",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1519689680058-324335c77eba?w=700&q=80",
+    "imageUrl": "/images/products/46-vestido-princesa-accesorios-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1519689680058-324335c77eba?w=700&q=80"
+      "/images/products/46-vestido-princesa-accesorios-1.jpg"
     ]
   },
   {
@@ -2068,9 +2048,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Noches frías de invierno y maratones de películas de dibujos",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=700&q=80",
+    "imageUrl": "/images/products/46-pijama-kigurumi-dinosaurio-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=700&q=80"
+      "/images/products/46-pijama-kigurumi-dinosaurio-1.jpg"
     ]
   },
   {
@@ -2096,9 +2076,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "El primer perfume \"de mayor\" para cumpleaños y reuniones familiares",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=700&q=80",
+    "imageUrl": "/images/products/46-colonia-tous-kids-chico-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=700&q=80"
+      "/images/products/46-colonia-tous-kids-chico-1.jpg"
     ]
   },
   {
@@ -2124,9 +2104,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Detalle refinado para niñas de 4 a 6 años",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=80",
+    "imageUrl": "/images/products/46-colonia-tous-kids-chica-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=80"
+      "/images/products/46-colonia-tous-kids-chica-1.jpg"
     ]
   },
   {
@@ -2152,9 +2132,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Cumpleaños y regalo sorpresa para fans de Frozen",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?w=700&q=80",
+    "imageUrl": "/images/products/46-colonia-disney-frozen-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?w=700&q=80"
+      "/images/products/46-colonia-disney-frozen-1.jpg"
     ]
   },
   {
@@ -2180,11 +2160,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Duelos de velocidad legendarios entre padres e hijos",
     "style": "classic",
-    "imageUrl": "/images/products/79-scalextric-1.jpg",
+    "imageUrl": "/images/products/79-scalextric-compact-1.jpg",
     "images": [
-      "/images/products/79-scalextric-1.jpg",
-      "/images/products/79-scalextric-2.jpg",
-      "/images/products/79-scalextric-3.jpg"
+      "/images/products/79-scalextric-compact-1.jpg"
     ]
   },
   {
@@ -2210,9 +2188,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Aficionados a las carreras de rally y la conducción técnica",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=700&q=80",
+    "imageUrl": "/images/products/79-scalextric-rally-champions-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=700&q=80"
+      "/images/products/79-scalextric-rally-champions-1.jpg"
     ]
   },
   {
@@ -2238,9 +2216,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Tardes enteras de competición con amigos en casa",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80",
+    "imageUrl": "/images/products/79-carrera-go-dtm-speed-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80"
+      "/images/products/79-carrera-go-dtm-speed-1.jpg"
     ]
   },
   {
@@ -2266,11 +2244,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Correr en parques, caminos de tierra y exteriores con total libertad",
     "style": "classic",
-    "imageUrl": "/images/products/79-coche-rc-1.jpg",
+    "imageUrl": "/images/products/79-coche-rc-exost-1.jpg",
     "images": [
-      "/images/products/79-coche-rc-1.jpg",
-      "/images/products/79-coche-rc-2.jpg",
-      "/images/products/79-coche-rc-3.jpg"
+      "/images/products/79-coche-rc-exost-1.jpg"
     ]
   },
   {
@@ -2296,9 +2272,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Diversión desenfadada tanto dentro del salón como en la terraza",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80",
+    "imageUrl": "/images/products/79-coche-acrobatico-360-led-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80"
+      "/images/products/79-coche-acrobatico-360-led-1.jpg"
     ]
   },
   {
@@ -2324,9 +2300,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Escapadas al campo, senderos de montaña y playas de arena compacta",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=700&q=80",
+    "imageUrl": "/images/products/79-monster-truck-rc-gigante-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=700&q=80"
+      "/images/products/79-monster-truck-rc-gigante-1.jpg"
     ]
   },
   {
@@ -2352,9 +2328,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Amantes de los dinosaurios, Jurassic Park y la construcción modular",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80",
+    "imageUrl": "/images/products/79-lego-creator-dinosaurio-trex-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80"
+      "/images/products/79-lego-creator-dinosaurio-trex-1.jpg"
     ]
   },
   {
@@ -2380,9 +2356,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Mentes curiosas y futuros ingenieros que adoran los desafíos de física",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=700&q=80",
+    "imageUrl": "/images/products/79-gravitrax-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=700&q=80"
+      "/images/products/79-gravitrax-1.jpg"
     ]
   },
   {
@@ -2408,9 +2384,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Horas de construcción profunda e historias medievales épicas",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80",
+    "imageUrl": "/images/products/79-lego-creator-castillo-medieval-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80"
+      "/images/products/79-lego-creator-castillo-medieval-1.jpg"
     ]
   },
   {
@@ -2436,11 +2412,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Montar espectáculos de magia en las sobremesas familiares y cumpleaños",
     "style": "classic",
-    "imageUrl": "/images/products/79-magia-1.jpg",
+    "imageUrl": "/images/products/79-magia-borras-100-1.jpg",
     "images": [
-      "/images/products/79-magia-1.jpg",
-      "/images/products/79-magia-2.jpg",
-      "/images/products/79-magia-3.jpg"
+      "/images/products/79-magia-borras-100-1.jpg"
     ]
   },
   {
@@ -2466,9 +2440,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Peques que quieren dar el salto a trucos más profesionales",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80",
+    "imageUrl": "/images/products/79-magia-borras-150-trucos-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80"
+      "/images/products/79-magia-borras-150-trucos-1.jpg"
     ]
   },
   {
@@ -2494,9 +2468,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Llevar siempre en el bolsillo y dejar atónitos a amigos y familiares",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80",
+    "imageUrl": "/images/products/79-baraja-magia-bicycle-trucos-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80"
+      "/images/products/79-baraja-magia-bicycle-trucos-1.jpg"
     ]
   },
   {
@@ -2524,9 +2498,7 @@ export const PRODUCTS: Product[] = [
     "style": "classic",
     "imageUrl": "/images/products/79-catan-junior-1.jpg",
     "images": [
-      "/images/products/79-catan-junior-1.jpg",
-      "/images/products/79-catan-junior-2.jpg",
-      "/images/products/79-catan-junior-3.jpg"
+      "/images/products/79-catan-junior-1.jpg"
     ]
   },
   {
@@ -2552,9 +2524,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Sobremesas familiares sin conflictos ni competitividad agresiva",
     "style": "creativity",
-    "imageUrl": "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80",
+    "imageUrl": "/images/products/79-dixit-juego-de-mesa-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80"
+      "/images/products/79-dixit-juego-de-mesa-1.jpg"
     ]
   },
   {
@@ -2580,9 +2552,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Risas aseguradas y piques amistosos en familia",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80",
+    "imageUrl": "/images/products/79-fantasma-blitz-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80"
+      "/images/products/79-fantasma-blitz-1.jpg"
     ]
   },
   {
@@ -2608,9 +2580,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Fomentar el hábito de la lectura autónoma en Primaria",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80",
+    "imageUrl": "/images/products/79-los-compas-diamantito-legendario-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80"
+      "/images/products/79-los-compas-diamantito-legendario-1.jpg"
     ]
   },
   {
@@ -2636,9 +2608,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "La transición de cuentos infantiles a primeras novelas juveniles",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=700&q=80",
+    "imageUrl": "/images/products/79-isadora-moon-va-al-colegio-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=700&q=80"
+      "/images/products/79-isadora-moon-va-al-colegio-1.jpg"
     ]
   },
   {
@@ -2664,9 +2636,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Lectura nocturna antes de dormir que engancha desde el primer capítulo",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=700&q=80",
+    "imageUrl": "/images/products/79-anna-kadabra-club-luna-llena-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=700&q=80"
+      "/images/products/79-anna-kadabra-club-luna-llena-1.jpg"
     ]
   },
   {
@@ -2692,9 +2664,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Hacer regalos hechos a mano a amigos y familiares en el recreo",
     "style": "creativity",
-    "imageUrl": "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80",
+    "imageUrl": "/images/products/79-kit-pulseras-gomas-telar-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80"
+      "/images/products/79-kit-pulseras-gomas-telar-1.jpg"
     ]
   },
   {
@@ -2720,9 +2692,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Desarrollar la paciencia, la precisión motriz y el orgullo de crear sus propios peluches",
     "style": "creativity",
-    "imageUrl": "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=700&q=80",
+    "imageUrl": "/images/products/79-kit-costura-peluches-fieltro-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=700&q=80"
+      "/images/products/79-kit-costura-peluches-fieltro-1.jpg"
     ]
   },
   {
@@ -2748,9 +2720,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Experimentos sensoriales seguros en tardes de cumpleaños",
     "style": "creativity",
-    "imageUrl": "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80",
+    "imageUrl": "/images/products/79-fabrica-slime-diy-sin-borax-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80"
+      "/images/products/79-fabrica-slime-diy-sin-borax-1.jpg"
     ]
   },
   {
@@ -2776,9 +2748,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Ocasiones especiales, celebraciones de comunión y fines de semana",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=80",
+    "imageUrl": "/images/products/79-colonia-lacoste-junior-fresca-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=80"
+      "/images/products/79-colonia-lacoste-junior-fresca-1.jpg"
     ]
   },
   {
@@ -2804,9 +2776,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Llevar en el estuche del colegio y cuidar los labios con una sonrisa",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80",
+    "imageUrl": "/images/products/79-lip-smacker-balsamos-sabores-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80"
+      "/images/products/79-lip-smacker-balsamos-sabores-1.jpg"
     ]
   },
   {
@@ -2832,9 +2804,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "El regalo con el que siempre se acierta",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=700&q=80",
+    "imageUrl": "/images/products/79-tous-neceser-colonia-kids-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=700&q=80"
+      "/images/products/79-tous-neceser-colonia-kids-1.jpg"
     ]
   },
   {
@@ -2860,9 +2832,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Primer reloj de muñeca para el colegio y actividades deportivas",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=80",
+    "imageUrl": "/images/products/79-reloj-digital-deportivo-50m-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=80"
+      "/images/products/79-reloj-digital-deportivo-50m-1.jpg"
     ]
   },
   {
@@ -2888,9 +2860,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Excursiones al aire libre, campamentos y deportes escolares",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=700&q=80",
+    "imageUrl": "/images/products/79-gorra-deportiva-ajustable-uv-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=700&q=80"
+      "/images/products/79-gorra-deportiva-ajustable-uv-1.jpg"
     ]
   },
   {
@@ -2916,9 +2888,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "La vuelta al cole en Primaria con comodidad y ligereza",
     "style": "kids",
-    "imageUrl": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&q=80",
+    "imageUrl": "/images/products/79-mochila-escolar-juvenil-estuche-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&q=80"
+      "/images/products/79-mochila-escolar-juvenil-estuche-1.jpg"
     ]
   },
   {
@@ -2974,9 +2946,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Fans del juego Virus! que quieren llevar la emoción al siguiente nivel",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80",
+    "imageUrl": "/images/products/1012-virus-2-evolution-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80"
+      "/images/products/1012-virus-2-evolution-1.jpg"
     ]
   },
   {
@@ -3002,9 +2974,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Reuniones de amigos, fiestas de cumpleaños y campamentos",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80",
+    "imageUrl": "/images/products/1012-exploding-kittens-original-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80"
+      "/images/products/1012-exploding-kittens-original-1.jpg"
     ]
   },
   {
@@ -3030,11 +3002,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Pilotos novatos que quieren aprender acrobacias aéreas en casa",
     "style": "tech",
-    "imageUrl": "/images/products/1012-dron-1.jpg",
+    "imageUrl": "/images/products/1012-dron-potensic-1.jpg",
     "images": [
-      "/images/products/1012-dron-1.jpg",
-      "/images/products/1012-dron-2.jpg",
-      "/images/products/1012-dron-3.jpg"
+      "/images/products/1012-dron-potensic-1.jpg"
     ]
   },
   {
@@ -3060,9 +3030,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Jóvenes curiosos que adoran la informática, la ciencia y la tecnología",
     "style": "tech",
-    "imageUrl": "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80",
+    "imageUrl": "/images/products/1012-makeblock-mbot-robot-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80"
+      "/images/products/1012-makeblock-mbot-robot-1.jpg"
     ]
   },
   {
@@ -3088,9 +3058,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Noches de verano observando estrellas, eclipses y constelaciones",
     "style": "tech",
-    "imageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=700&q=80",
+    "imageUrl": "/images/products/1012-telescopio-astronomico-movil-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=700&q=80"
+      "/images/products/1012-telescopio-astronomico-movil-1.jpg"
     ]
   },
   {
@@ -3116,9 +3086,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Tardes de fin de semana con amigos y familia donde cada decisión cuenta",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80",
+    "imageUrl": "/images/products/1012-carcassonne-juego-mesa-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80"
+      "/images/products/1012-carcassonne-juego-mesa-1.jpg"
     ]
   },
   {
@@ -3144,9 +3114,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Fiestas con amigos, cumpleaños y tardes de misterio colaborativo",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80",
+    "imageUrl": "/images/products/1012-escape-room-the-game-familiar-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80"
+      "/images/products/1012-escape-room-the-game-familiar-1.jpg"
     ]
   },
   {
@@ -3172,9 +3142,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Preadolescentes que buscan un juego de civilizaciones moderno y visual",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80",
+    "imageUrl": "/images/products/1012-7-wonders-architects-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80"
+      "/images/products/1012-7-wonders-architects-1.jpg"
     ]
   },
   {
@@ -3200,9 +3170,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Risas garantizadas en la cama antes de apagar la luz",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80",
+    "imageUrl": "/images/products/1012-diario-de-greg-1-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80"
+      "/images/products/1012-diario-de-greg-1-1.jpg"
     ]
   },
   {
@@ -3228,9 +3198,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Descubrir el andén 9 y 3/4 a la edad perfecta",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=700&q=80",
+    "imageUrl": "/images/products/1012-harry-potter-piedra-filosofal-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=700&q=80"
+      "/images/products/1012-harry-potter-piedra-filosofal-1.jpg"
     ]
   },
   {
@@ -3256,9 +3226,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Despertar la empatía y la valentía de no mirar hacia otro lado",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=700&q=80",
+    "imageUrl": "/images/products/1012-invisible-eloy-moreno-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=700&q=80"
+      "/images/products/1012-invisible-eloy-moreno-1.jpg"
     ]
   },
   {
@@ -3284,9 +3254,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Decorar apuntes escolares, títulos de libretas y tarjetas personalizadas",
     "style": "creativity",
-    "imageUrl": "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=700&q=80",
+    "imageUrl": "/images/products/1012-kit-lettering-rotuladores-pincel-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=700&q=80"
+      "/images/products/1012-kit-lettering-rotuladores-pincel-1.jpg"
     ]
   },
   {
@@ -3312,9 +3282,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Personalizar zapatillas deportivas, monopatines y regalos artesanales",
     "style": "creativity",
-    "imageUrl": "https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80",
+    "imageUrl": "/images/products/1012-posca-rotuladores-acrilicos-8-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80"
+      "/images/products/1012-posca-rotuladores-acrilicos-8-1.jpg"
     ]
   },
   {
@@ -3340,9 +3310,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Escribir pensamientos íntimos, sueños y anécdotas de preadolescente",
     "style": "creativity",
-    "imageUrl": "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80",
+    "imageUrl": "/images/products/1012-diario-secreto-candado-huella-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80"
+      "/images/products/1012-diario-secreto-candado-huella-1.jpg"
     ]
   },
   {
@@ -3368,11 +3338,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Preadolescentes amantes de los trucos visuales modernos y las redes",
     "style": "tech",
-    "imageUrl": "/images/products/1012-magia-1.jpg",
+    "imageUrl": "/images/products/1012-magia-borras-150-1.jpg",
     "images": [
-      "/images/products/1012-magia-1.jpg",
-      "/images/products/1012-magia-2.jpg",
-      "/images/products/1012-magia-3.jpg"
+      "/images/products/1012-magia-borras-150-1.jpg"
     ]
   },
   {
@@ -3398,9 +3366,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Sorprender a compañeros de clase y familiares con retos intelectuales",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80",
+    "imageUrl": "/images/products/1012-set-magia-mentalismo-closeup-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80"
+      "/images/products/1012-set-magia-mentalismo-closeup-1.jpg"
     ]
   },
   {
@@ -3426,9 +3394,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Amantes de los acertijos, escape rooms y rompecabezas mecánicos",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80",
+    "imageUrl": "/images/products/1012-caja-misterio-escape-magia-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80"
+      "/images/products/1012-caja-misterio-escape-magia-1.jpg"
     ]
   },
   {
@@ -3454,9 +3422,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "El paso a la etapa de secundaria sintiéndose seguros y arreglados",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=700&q=80",
+    "imageUrl": "/images/products/1012-ck-one-50ml-juvenil-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=700&q=80"
+      "/images/products/1012-ck-one-50ml-juvenil-1.jpg"
     ]
   },
   {
@@ -3482,9 +3450,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "La bolsa de deporte de fútbol, baloncesto o natación",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=80",
+    "imageUrl": "/images/products/1012-adidas-eau-de-toilette-juvenil-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=80"
+      "/images/products/1012-adidas-eau-de-toilette-juvenil-1.jpg"
     ]
   },
   {
@@ -3510,9 +3478,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Preadolescentes que empiezan a notar los cambios de la piel",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=700&q=80",
+    "imageUrl": "/images/products/1012-kit-primeros-cuidados-faciales-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=700&q=80"
+      "/images/products/1012-kit-primeros-cuidados-faciales-1.jpg"
     ]
   },
   {
@@ -3538,9 +3506,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "El uniforme informal diario del colegio y fines de semana",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=700&q=80",
+    "imageUrl": "/images/products/1012-sudadera-hoodie-oversize-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=700&q=80"
+      "/images/products/1012-sudadera-hoodie-oversize-1.jpg"
     ]
   },
   {
@@ -3566,9 +3534,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Tardes en el parque, excursiones escolares y salidas con amigos",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&q=80",
+    "imageUrl": "/images/products/1012-rinonera-cruzada-impermeable-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&q=80"
+      "/images/products/1012-rinonera-cruzada-impermeable-1.jpg"
     ]
   },
   {
@@ -3594,9 +3562,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Un detalle con estilo y personalidad propia para el día a día",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1582966772680-860e372bb558?w=700&q=80",
+    "imageUrl": "/images/products/1012-pack-calcetines-divertidos-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1582966772680-860e372bb558?w=700&q=80"
+      "/images/products/1012-pack-calcetines-divertidos-1.jpg"
     ]
   },
   {
@@ -3622,9 +3590,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Escuchar música en el instituto, estudiar y llamadas con amigos",
     "style": "tech",
-    "imageUrl": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=700&q=80",
+    "imageUrl": "/images/products/1315-jbl-tune-510bt-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=700&q=80"
+      "/images/products/1315-jbl-tune-510bt-1.jpg"
     ]
   },
   {
@@ -3650,11 +3618,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Concentración total en época de exámenes y viajes en tren o autobús",
     "style": "tech",
-    "imageUrl": "/images/products/1315-auriculares-1.jpg",
+    "imageUrl": "/images/products/1315-anker-q30-1.jpg",
     "images": [
-      "/images/products/1315-auriculares-1.jpg",
-      "/images/products/1315-auriculares-2.jpg",
-      "/images/products/1315-auriculares-3.jpg"
+      "/images/products/1315-anker-q30-1.jpg"
     ]
   },
   {
@@ -3680,9 +3646,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Poner música con amigos en el parque, la piscina o la habitación",
     "style": "tech",
-    "imageUrl": "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=700&q=80",
+    "imageUrl": "/images/products/1315-jbl-go-3-altavoz-bluetooth-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=700&q=80"
+      "/images/products/1315-jbl-go-3-altavoz-bluetooth-1.jpg"
     ]
   },
   {
@@ -3708,9 +3674,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Capturar momentos únicos con amigos e imprimir recuerdos físicos",
     "style": "creativity",
-    "imageUrl": "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=700&q=80",
+    "imageUrl": "/images/products/1315-fujifilm-instax-mini-12-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=700&q=80"
+      "/images/products/1315-fujifilm-instax-mini-12-1.jpg"
     ]
   },
   {
@@ -3736,9 +3702,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Crear contenido para redes sociales, videollamadas con amigos y tutoriales",
     "style": "tech",
-    "imageUrl": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=700&q=80",
+    "imageUrl": "/images/products/1315-aro-luz-tripode-tiktok-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=700&q=80"
+      "/images/products/1315-aro-luz-tripode-tiktok-1.jpg"
     ]
   },
   {
@@ -3764,9 +3730,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Imprimir recuerdos de fiestas con amigos y personalizar libretas",
     "style": "tech",
-    "imageUrl": "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=700&q=80",
+    "imageUrl": "/images/products/1315-impresora-bolsillo-bluetooth-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=700&q=80"
+      "/images/products/1315-impresora-bolsillo-bluetooth-1.jpg"
     ]
   },
   {
@@ -3792,11 +3758,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Tardes enteras de juego con amigos y la mejor sobremesa familiar",
     "style": "classic",
-    "imageUrl": "/images/products/1315-catan-1.jpg",
+    "imageUrl": "/images/products/1315-catan-clasico-1.jpg",
     "images": [
-      "/images/products/1315-catan-1.jpg",
-      "/images/products/1315-catan-2.jpg",
-      "/images/products/1315-catan-3.jpg"
+      "/images/products/1315-catan-clasico-1.jpg"
     ]
   },
   {
@@ -3822,9 +3786,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Veteranos de Catán de 13 a 15 años que buscan partidas épicas",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80",
+    "imageUrl": "/images/products/1315-catan-ciudades-caballeros-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80"
+      "/images/products/1315-catan-ciudades-caballeros-1.jpg"
     ]
   },
   {
@@ -3850,9 +3814,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Piques rápidos en campamentos, viajes y quedadas de adolescentes",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80",
+    "imageUrl": "/images/products/1315-exploding-kittens-good-evil-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80"
+      "/images/products/1315-exploding-kittens-good-evil-1.jpg"
     ]
   },
   {
@@ -3878,9 +3842,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Preadolescentes y jóvenes que empiezan a cuidar su piel",
     "style": "tech",
-    "imageUrl": "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=700&q=80",
+    "imageUrl": "/images/products/1315-cerave-gel-limpiador-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=700&q=80"
+      "/images/products/1315-cerave-gel-limpiador-1.jpg"
     ]
   },
   {
@@ -3906,9 +3870,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Salvar emergencias de granitos antes de fotos o eventos",
     "style": "tech",
-    "imageUrl": "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=700&q=80",
+    "imageUrl": "/images/products/1315-parches-hidrocoloides-cosrx-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=700&q=80"
+      "/images/products/1315-parches-hidrocoloides-cosrx-1.jpg"
     ]
   },
   {
@@ -3934,9 +3898,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Chicos de 13 a 15 años que quieren un aroma con estilo surfero",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=700&q=80",
+    "imageUrl": "/images/products/1315-colonia-hollister-wave-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=700&q=80"
+      "/images/products/1315-colonia-hollister-wave-1.jpg"
     ]
   },
   {
@@ -3962,9 +3926,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Amantes del romance juvenil, la inclusión y las novelas gráficas",
     "style": "creativity",
-    "imageUrl": "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80",
+    "imageUrl": "/images/products/1315-heartstopper-tomo-1-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80"
+      "/images/products/1315-heartstopper-tomo-1-1.jpg"
     ]
   },
   {
@@ -3990,9 +3954,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Iniciarse en el fascinante mundo del anime y la cultura otaku",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=700&q=80",
+    "imageUrl": "/images/products/1315-one-piece-tomo-1-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=700&q=80"
+      "/images/products/1315-one-piece-tomo-1-1.jpg"
     ]
   },
   {
@@ -4018,9 +3982,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Adolescentes que buscan una lectura adictiva e inteligente",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=700&q=80",
+    "imageUrl": "/images/products/1315-juegos-del-hambre-novela-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=700&q=80"
+      "/images/products/1315-juegos-del-hambre-novela-1.jpg"
     ]
   },
   {
@@ -4046,9 +4010,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Organizar apuntes escolares, metas personales y dibujo creativo",
     "style": "creativity",
-    "imageUrl": "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80",
+    "imageUrl": "/images/products/1315-cuaderno-bullet-journal-a5-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80"
+      "/images/products/1315-cuaderno-bullet-journal-a5-1.jpg"
     ]
   },
   {
@@ -4074,9 +4038,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Ilustración, lettering de títulos en apuntes y tarjetas artesanales",
     "style": "creativity",
-    "imageUrl": "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=700&q=80",
+    "imageUrl": "/images/products/1315-tombow-dual-brush-pastel-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=700&q=80"
+      "/images/products/1315-tombow-dual-brush-pastel-1.jpg"
     ]
   },
   {
@@ -4102,9 +4066,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Llevar todos los rotuladores y útiles ordenados al instituto",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80",
+    "imageUrl": "/images/products/1315-estuche-gran-capacidad-tres-pisos-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80"
+      "/images/products/1315-estuche-gran-capacidad-tres-pisos-1.jpg"
     ]
   },
   {
@@ -4130,9 +4094,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Completar cualquier look casual de entretiempo e invierno",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=700&q=80",
+    "imageUrl": "/images/products/1315-gorro-beanie-pescador-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=700&q=80"
+      "/images/products/1315-gorro-beanie-pescador-1.jpg"
     ]
   },
   {
@@ -4158,9 +4122,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Ir al instituto cómodo y con estilo todos los días",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=700&q=80",
+    "imageUrl": "/images/products/1315-sudadera-hoodie-basica-premium-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=700&q=80"
+      "/images/products/1315-sudadera-hoodie-basica-premium-1.jpg"
     ]
   },
   {
@@ -4186,9 +4150,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Festivales, salidas de tarde y fines de semana",
     "style": "tech",
-    "imageUrl": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&q=80",
+    "imageUrl": "/images/products/1315-bandolera-tactica-pequena-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&q=80"
+      "/images/products/1315-bandolera-tactica-pequena-1.jpg"
     ]
   },
   {
@@ -4214,9 +4178,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "El instituto, bachillerato y desplazamientos en autobús o metro",
     "style": "tech",
-    "imageUrl": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&q=80",
+    "imageUrl": "/images/products/1315-mochila-antirrobo-puerto-usb-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&q=80"
+      "/images/products/1315-mochila-antirrobo-puerto-usb-1.jpg"
     ]
   },
   {
@@ -4242,9 +4206,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Campamentos de verano, excursiones del colegio y viajes con amigos",
     "style": "tech",
-    "imageUrl": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&q=80",
+    "imageUrl": "/images/products/1315-neceser-viaje-colgante-gancho-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&q=80"
+      "/images/products/1315-neceser-viaje-colgante-gancho-1.jpg"
     ]
   },
   {
@@ -4270,9 +4234,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Entrenamientos deportivos diarios, natación y escapadas de fin de semana",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&q=80",
+    "imageUrl": "/images/products/1315-bolsa-deporte-zapatero-independiente-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&q=80"
+      "/images/products/1315-bolsa-deporte-zapatero-independiente-1.jpg"
     ]
   },
   {
@@ -4328,9 +4292,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Cualquier poseedor de una consola PlayStation 5",
     "style": "gamer",
-    "imageUrl": "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=700&q=80",
+    "imageUrl": "/images/products/1618-spiderman-2-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=700&q=80"
+      "/images/products/1618-spiderman-2-1.jpg"
     ]
   },
   {
@@ -4356,9 +4320,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "El setup gaming de cualquier jugador de PlayStation 5",
     "style": "gamer",
-    "imageUrl": "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=700&q=80",
+    "imageUrl": "/images/products/1618-estacion-carga-dualsense-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=700&q=80"
+      "/images/products/1618-estacion-carga-dualsense-1.jpg"
     ]
   },
   {
@@ -4384,9 +4348,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Jugadores exigentes de PC y consolas que buscan máxima ventaja",
     "style": "gamer",
-    "imageUrl": "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=700&q=80",
+    "imageUrl": "/images/products/1618-logitech-g502-hero-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=700&q=80"
+      "/images/products/1618-logitech-g502-hero-1.jpg"
     ]
   },
   {
@@ -4412,9 +4376,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Completar el setup gaming definitivo con máxima durabilidad",
     "style": "gamer",
-    "imageUrl": "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=700&q=80",
+    "imageUrl": "/images/products/1618-logitech-g413-se-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=700&q=80"
+      "/images/products/1618-logitech-g413-se-1.jpg"
     ]
   },
   {
@@ -4440,9 +4404,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Estética espectacular en el escritorio y precisión en partidas online",
     "style": "gamer",
-    "imageUrl": "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=700&q=80",
+    "imageUrl": "/images/products/1618-steelseries-qck-prism-xl-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=700&q=80"
+      "/images/products/1618-steelseries-qck-prism-xl-1.jpg"
     ]
   },
   {
@@ -4468,9 +4432,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "El regalo tecnológico más deseado de los 18 años",
     "style": "tech",
-    "imageUrl": "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?w=700&q=80",
+    "imageUrl": "/images/products/1618-meta-quest-3s-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?w=700&q=80"
+      "/images/products/1618-meta-quest-3s-1.jpg"
     ]
   },
   {
@@ -4496,9 +4460,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Concentración total para Selectividad, universidad y amantes de la música",
     "style": "tech",
-    "imageUrl": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=700&q=80",
+    "imageUrl": "/images/products/1618-sony-wh1000xm4-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=700&q=80"
+      "/images/products/1618-sony-wh1000xm4-1.jpg"
     ]
   },
   {
@@ -4524,9 +4488,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Estudiar de noche, programar y sesiones nocturnas de gaming",
     "style": "tech",
-    "imageUrl": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=700&q=80",
+    "imageUrl": "/images/products/1618-quntis-barra-luz-monitor-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=700&q=80"
+      "/images/products/1618-quntis-barra-luz-monitor-1.jpg"
     ]
   },
   {
@@ -4612,9 +4576,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Graduaciones, eventos elegantes y primeras citas",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=80",
+    "imageUrl": "/images/products/1618-hugo-boss-bottled-eau-toilette-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=80"
+      "/images/products/1618-hugo-boss-bottled-eau-toilette-1.jpg"
     ]
   },
   {
@@ -4640,9 +4604,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Jóvenes que se preparan para su futuro universitario o profesional",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80",
+    "imageUrl": "/images/products/1618-habitos-atomicos-james-clear-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80"
+      "/images/products/1618-habitos-atomicos-james-clear-1.jpg"
     ]
   },
   {
@@ -4668,9 +4632,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Adolescentes que sienten agobio por expectativas ajenas y redes sociales",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=700&q=80",
+    "imageUrl": "/images/products/1618-el-sutil-arte-mark-manson-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=700&q=80"
+      "/images/products/1618-el-sutil-arte-mark-manson-1.jpg"
     ]
   },
   {
@@ -4696,9 +4660,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Lectores apasionados de la fantasía épica, dragones y BookTok",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=700&q=80",
+    "imageUrl": "/images/products/1618-alas-de-sangre-rebecca-yarros-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=700&q=80"
+      "/images/products/1618-alas-de-sangre-rebecca-yarros-1.jpg"
     ]
   },
   {
@@ -4754,9 +4718,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Firmar exámenes importantes, escribir cartas personales y caligrafía",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80",
+    "imageUrl": "/images/products/1618-pluma-estilografica-dryden-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80"
+      "/images/products/1618-pluma-estilografica-dryden-1.jpg"
     ]
   },
   {
@@ -4782,9 +4746,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Tomar notas en la universidad, reflexiones de vida e ideas creativas",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80",
+    "imageUrl": "/images/products/1618-moleskine-clasico-tapa-dura-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80"
+      "/images/products/1618-moleskine-clasico-tapa-dura-1.jpg"
     ]
   },
   {
@@ -4810,9 +4774,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Jóvenes que buscan practicidad minimalista y estilo tecnológico",
     "style": "tech",
-    "imageUrl": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&q=80",
+    "imageUrl": "/images/products/1618-cartera-rfid-fibra-carbono-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&q=80"
+      "/images/products/1618-cartera-rfid-fibra-carbono-1.jpg"
     ]
   },
   {
@@ -4838,9 +4802,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Looks informales con vaqueros anchos o pantalones cargo",
     "style": "emo",
-    "imageUrl": "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=700&q=80",
+    "imageUrl": "/images/products/1618-sudadera-grunge-vintage-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=700&q=80"
+      "/images/products/1618-sudadera-grunge-vintage-1.jpg"
     ]
   },
   {
@@ -4866,9 +4830,9 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Verano, conducir, festivales y uso diario con estilo atemporal",
     "style": "classic",
-    "imageUrl": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=700&q=80",
+    "imageUrl": "/images/products/1618-gafas-sol-polarizadas-retro-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=700&q=80"
+      "/images/products/1618-gafas-sol-polarizadas-retro-1.jpg"
     ]
   }
 ];

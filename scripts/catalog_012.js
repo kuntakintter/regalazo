@@ -48,7 +48,7 @@ add({
   idealFor: 'Paseos diarios, visitas al pediatra y viajes familiares',
   style: 'baby',
   imageUrl: '/images/products/bebe-cochecito-1.jpg',
-  images: ['/images/products/bebe-cochecito-1.jpg', '/images/products/bebe-cochecito-2.jpg', '/images/products/bebe-cochecito-3.jpg']
+  images: ['/images/products/bebe-cochecito-1.jpg','/images/products/bebe-cochecito-2.jpg','/images/products/bebe-cochecito-3.jpg']
 });
 
 add({
@@ -70,8 +70,8 @@ add({
   pros: ['Amortiguación en las 4 ruedas anti-pinchazos de espuma EVA', 'Capota extensible XL con filtro solar UPF50+', 'Respaldo con ajuste fluido hasta posición completamente tumbada'],
   idealFor: 'Familias activas que buscan comodidad y plegado instantáneo',
   style: 'baby',
-  imageUrl: 'https://images.unsplash.com/photo-1591088398332-8a7791972843?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1591088398332-8a7791972843?w=700&q=80']
+  imageUrl: '/images/products/012-carrito-kinderkraft-grande-1.jpg',
+  images: ['/images/products/012-carrito-kinderkraft-grande-1.jpg']
 });
 
 add({
@@ -93,8 +93,8 @@ add({
   pros: ['Funda de algodón 100% desenfundable y lavable a máquina', 'Se pliega totalmente plana para guardar bajo la cama o viajar', '3 posiciones de inclinación: jugar, descansar y dormir'],
   idealFor: 'Tener al bebé entretenido y seguro cerca de ti en casa',
   style: 'baby',
-  imageUrl: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1519689680058-324335c77eba?w=700&q=80']
+  imageUrl: '/images/products/012-hamaca-babybjorn-bliss-1.jpg',
+  images: ['/images/products/012-hamaca-babybjorn-bliss-1.jpg']
 });
 
 // 2. Cunas de Colecho y Descanso
@@ -117,8 +117,8 @@ add({
   pros: ['Apertura y cierre del lateral con una sola mano desde la cama', 'Modo balancín relajante para calmar al bebé en segundos', 'Colchón transpirable incluido con tejido de malla de ventilación'],
   idealFor: 'Lactancia materna y noches tranquilas con apego seguro',
   style: 'baby',
-  imageUrl: '/images/products/bebe-cuna-1.jpg',
-  images: ['/images/products/bebe-cuna-1.jpg', '/images/products/bebe-cuna-2.jpg', '/images/products/bebe-cuna-3.jpg']
+  imageUrl: '/images/products/bebe-cuna-colecho-1.jpg',
+  images: ['/images/products/bebe-cuna-colecho-1.jpg']
 });
 
 add({
@@ -140,8 +140,8 @@ add({
   pros: ['Efecto relajante comprobado para conciliar el sueño en la cuna', 'Tejidos extrasuaves lavables a máquina retirando el módulo', 'Control de volumen y luces personalizable'],
   idealFor: 'Calmar llantos, cólicos de lactante y siestas plácidas',
   style: 'baby',
-  imageUrl: 'https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=700&q=80']
+  imageUrl: '/images/products/012-nutria-fisher-price-1.jpg',
+  images: ['/images/products/012-nutria-fisher-price-1.jpg']
 });
 
 add({
@@ -163,8 +163,8 @@ add({
   pros: ['Aislamiento térmico 2.5 TOG ideal para entretiempo e invierno (16-20°C)', 'Ajuste holgado en las caderas certificado como seguro por el IHDI', '100% algodón suave hipoalergénico'],
   idealFor: 'Dormir con temperatura constante sin riesgo de asfixia',
   style: 'baby',
-  imageUrl: 'https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=700&q=80']
+  imageUrl: '/images/products/012-saco-dormir-bebe-tog-1.jpg',
+  images: ['/images/products/012-saco-dormir-bebe-tog-1.jpg']
 });
 
 // 3. Bañeras e Higiene del Bebé
@@ -187,8 +187,8 @@ add({
   pros: ['Hamaca de malla ajustable con bordes acolchados que sujeta la cabeza', 'Gancho integrado para colgar en la barra de la ducha y secar al aire', 'Libre de BPA, PVC y ftalatos'],
   idealFor: 'El baño diario sin miedo a resbalones ni malas posturas',
   style: 'baby',
-  imageUrl: '/images/products/bebe-banera-1.jpg',
-  images: ['/images/products/bebe-banera-1.jpg', '/images/products/bebe-banera-2.jpg', '/images/products/bebe-banera-3.jpg']
+  imageUrl: '/images/products/bebe-banera-plegable-1.jpg',
+  images: ['/images/products/bebe-banera-plegable-1.jpg']
 });
 
 add({
@@ -210,8 +210,8 @@ add({
   pros: ['Materiales de grado médico seguros para recién nacidos', 'Estuche rígido perfecto para llevar en el bolso maternal', 'Colores pastel elegantes'],
   idealFor: 'El bolso del hospital de maternidad y primeros cuidados en casa',
   style: 'baby',
-  imageUrl: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=700&q=80']
+  imageUrl: '/images/products/bebe-suavinex-kit-1.jpg',
+  images: ['/images/products/bebe-suavinex-kit-1.jpg']
 });
 
 add({
@@ -233,8 +233,8 @@ add({
   pros: ['Lectura rápida en grados Celsius con pantalla digital clara', 'Totalmente sumergible y resistente a golpes', 'Sirve como juguete de baño para cuando crezca'],
   idealFor: 'Asegurar que el agua esté siempre a los 37°C recomendados',
   style: 'baby',
-  imageUrl: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=700&q=80']
+  imageUrl: '/images/products/012-termometro-bano-patito-1.jpg',
+  images: ['/images/products/012-termometro-bano-patito-1.jpg']
 });
 
 // 4. Tartas de Pañales y Canastillas
@@ -257,8 +257,8 @@ add({
   pros: ['50 pañales Dodot Sensitive 100% aprovechables', 'Presentación espectacular lista para regalar con lazo y tarjeta', 'Incluye peluche de terciopelo homologado CE desde 0 meses'],
   idealFor: 'El regalo estrella en el hospital, baby shower o bautizo',
   style: 'baby',
-  imageUrl: '/images/products/bebe-tarta-1.jpg',
-  images: ['/images/products/bebe-tarta-1.jpg', '/images/products/bebe-tarta-2.jpg', '/images/products/bebe-tarta-3.jpg']
+  imageUrl: '/images/products/bebe-tarta-dodot-3pisos-1.jpg',
+  images: ['/images/products/bebe-tarta-dodot-3pisos-1.jpg']
 });
 
 add({
@@ -280,8 +280,8 @@ add({
   pros: ['Fórmulas con 98% de ingredientes de origen natural', 'Incluye crema bálsamo 1 2 3 para prevenir rojeces del pañal', 'Bolso con compartimentos reutilizable para el carrito'],
   idealFor: 'Regalo práctico y de máxima garantía farmacéutica',
   style: 'baby',
-  imageUrl: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1556228720-195a672e8a03?w=700&q=80']
+  imageUrl: '/images/products/bebe-mustela-canastilla-1.jpg',
+  images: ['/images/products/bebe-mustela-canastilla-1.jpg']
 });
 
 add({
@@ -303,8 +303,8 @@ add({
   pros: ['Materiales naturales de madera de haya sin barnices químicos', 'Manta ultrasuave que no pierde pelo tras los lavados', 'Caja de madera reutilizable para guardar recuerdos del bebé'],
   idealFor: 'Compañeros de trabajo o amigos que quieren hacer un detalle inolvidable',
   style: 'baby',
-  imageUrl: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=700&q=80']
+  imageUrl: '/images/products/012-cesta-bienvenida-bebe-madera-1.jpg',
+  images: ['/images/products/012-cesta-bienvenida-bebe-madera-1.jpg']
 });
 
 // 5. Juguetes Sensoriales y Mordedores
@@ -327,8 +327,8 @@ add({
   pros: ['Material 100% natural masticable totalmente seguro libre de químicos', 'Emite un suave silbido al apretarla que estimula el oído', 'Textura suave y flexible muy fácil de agarrar con manitas pequeñas'],
   idealFor: 'La etapa de dentición y el desarrollo sensorial temprano',
   style: 'baby',
-  imageUrl: 'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80']
+  imageUrl: '/images/products/012-sophie-la-girafe-1.jpg',
+  images: ['/images/products/012-sophie-la-girafe-1.jpg']
 });
 
 add({
@@ -350,8 +350,8 @@ add({
   pros: ['Manta acolchada lavable a máquina con divertidos animales', 'Tecnología Inteligente que adapta canciones al crecimiento del bebé', 'Fortalece la musculatura del cuello, espalda y piernas'],
   idealFor: 'Estimular el gateo, los reflejos y el juego boca abajo (tummy time)',
   style: 'baby',
-  imageUrl: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=700&q=80']
+  imageUrl: '/images/products/bebe-gimnasio-piano-1.jpg',
+  images: ['/images/products/bebe-gimnasio-piano-1.jpg']
 });
 
 add({
@@ -373,8 +373,8 @@ add({
   pros: ['Diseño premiado que entrena el agarre con dos manos', 'Sonajero central que produce un sonido suave no estridente', 'Se puede enfriar en el frigorífico'],
   idealFor: 'Bebés de 3 a 9 meses que empiezan a agarrar objetos',
   style: 'baby',
-  imageUrl: 'https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=700&q=80']
+  imageUrl: '/images/products/012-mordedor-winkel-manhattan-1.jpg',
+  images: ['/images/products/012-mordedor-winkel-manhattan-1.jpg']
 });
 
 // 6. Libros Blandos y Cuentos de Tela (USER REQUESTED)
@@ -397,8 +397,8 @@ add({
   pros: ['Costuras reforzadas resistentes a tirones y lavable a mano', 'Cintas laterales para atar a los barrotes de la cuna o el cochecito', 'Material no tóxico y seguro para morder'],
   idealFor: 'Estimular la visión y concentración durante los primeros meses',
   style: 'baby',
-  imageUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80']
+  imageUrl: '/images/products/012-libro-tela-alto-contraste-1.jpg',
+  images: ['/images/products/012-libro-tela-alto-contraste-1.jpg']
 });
 
 add({
@@ -420,8 +420,8 @@ add({
   pros: ['Colitas 3D irresistibles para tirar, tocar y morder', 'Papel crujiente interior y chirriador sonoro al apretar', 'Anilla de agarre para colgar de la capota del cochecito'],
   idealFor: 'Despertar la curiosidad táctil en el cochecito o la cuna',
   style: 'baby',
-  imageUrl: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1512820790803-83ca734da794?w=700&q=80']
+  imageUrl: '/images/products/012-libro-tela-colitas-animales-1.jpg',
+  images: ['/images/products/012-libro-tela-colitas-animales-1.jpg']
 });
 
 add({
@@ -443,8 +443,8 @@ add({
   pros: ['Material impermeable de secado rápido sin moho', 'Bordes redondeados y páginas muy fáciles de pasar con manitas mojadas', 'Hace del baño un momento divertido de juego y lectura'],
   idealFor: 'Transformar el momento del baño en una experiencia divertida',
   style: 'baby',
-  imageUrl: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=700&q=80']
+  imageUrl: '/images/products/012-libro-bano-magico-cambia-color-1.jpg',
+  images: ['/images/products/012-libro-bano-magico-cambia-color-1.jpg']
 });
 
 // 7. Colonias y Cuidado de Bebé (USER REQUESTED)
@@ -467,8 +467,8 @@ add({
   pros: ['Aroma fresco y delicado que toda la familia querrá usar', 'No reseca la piel ni mancha la ropa', 'Fabricada en España con control dermatológico pediátrico'],
   idealFor: 'Aromatizar la ropita, el cepillo de pelo y tras el baño',
   style: 'baby',
-  imageUrl: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1594035910387-fea47794261f?w=700&q=80']
+  imageUrl: '/images/products/bebe-suavinex-colonia-1.jpg',
+  images: ['/images/products/bebe-suavinex-colonia-1.jpg']
 });
 
 add({
@@ -490,8 +490,8 @@ add({
   pros: ['Cero alcohol para la máxima protección de pieles atópicas', 'Extracto de manzanilla con efecto calmante', 'Formato generoso de 200ml con dosificador'],
   idealFor: 'Refrescar al bebé en verano y peinar los primeros cabellos',
   style: 'baby',
-  imageUrl: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=80']
+  imageUrl: '/images/products/012-mustela-agua-colonia-sin-alcohol-1.jpg',
+  images: ['/images/products/012-mustela-agua-colonia-sin-alcohol-1.jpg']
 });
 
 add({
@@ -513,8 +513,8 @@ add({
   pros: ['Formato familiar de 600ml de excelente relación calidad-precio', 'Testado dermatológicamente para uso diario', 'Aroma clásico inolvidable'],
   idealFor: 'Uso diario en toda la casa, cuna y ropa de cama',
   style: 'baby',
-  imageUrl: 'https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?w=700&q=80']
+  imageUrl: '/images/products/012-colonia-denenes-original-1.jpg',
+  images: ['/images/products/012-colonia-denenes-original-1.jpg']
 });
 
 // 8. Ropa, Bodies y Patucos (USER REQUESTED)
@@ -537,8 +537,8 @@ add({
   pros: ['100% algodón transpirable extrasuave que no encoge al lavar', 'Hombros expandibles para desvestir sin tirones de orejas', 'Costuras planas que no rozan la piel'],
   idealFor: 'El fondo de armario diario del primer año de vida',
   style: 'baby',
-  imageUrl: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=700&q=80']
+  imageUrl: '/images/products/012-pack-bodies-carters-1.jpg',
+  images: ['/images/products/012-pack-bodies-carters-1.jpg']
 });
 
 add({
@@ -560,8 +560,8 @@ add({
   pros: ['Suela de ante rugosa que evita resbalones en parquet y baldosas', 'Cuero blando flexible que no comprime los dedos', 'Fáciles de poner y difíciles de quitar por el bebé'],
   idealFor: 'Gatear y ponerse de pie manteniendo los pies abrigados',
   style: 'baby',
-  imageUrl: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1519689680058-324335c77eba?w=700&q=80']
+  imageUrl: '/images/products/012-patucos-cuero-suave-1.jpg',
+  images: ['/images/products/012-patucos-cuero-suave-1.jpg']
 });
 
 add({
@@ -583,8 +583,8 @@ add({
   pros: ['Doble capa que mantiene la ropa seca todo el día', 'Cierres de corchetes ajustables a medida que crece el cuello', 'Diseños estampados unisex modernos'],
   idealFor: 'La etapa de babeo de los primeros dientes y tomas de leche',
   style: 'baby',
-  imageUrl: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=700&q=80']
+  imageUrl: '/images/products/012-pack-baberos-bandana-algodon-1.jpg',
+  images: ['/images/products/012-pack-baberos-bandana-algodon-1.jpg']
 });
 
 // 9. Fiestas y Revelación de Género
@@ -608,7 +608,7 @@ add({
   idealFor: 'El momento clímax de la fiesta de revelación de género y fotos inolvidables',
   style: 'baby',
   imageUrl: '/images/products/bebe-canon-confeti-1.jpg',
-  images: ['/images/products/bebe-canon-confeti-1.jpg', '/images/products/bebe-canon-confeti-2.jpg', '/images/products/bebe-canon-confeti-3.jpg']
+  images: ['/images/products/bebe-canon-confeti-1.jpg']
 });
 
 add({
@@ -631,7 +631,7 @@ add({
   idealFor: 'La cuenta atrás de la fiesta sorpresa familiar',
   style: 'baby',
   imageUrl: '/images/products/bebe-globo-enigma-1.jpg',
-  images: ['/images/products/bebe-globo-enigma-1.jpg', '/images/products/bebe-globo-enigma-2.jpg', '/images/products/bebe-globo-enigma-3.jpg']
+  images: ['/images/products/bebe-globo-enigma-1.jpg']
 });
 
 add({
@@ -654,7 +654,7 @@ add({
   idealFor: 'Sesiones fotográficas al aire libre de alto impacto visual',
   style: 'baby',
   imageUrl: '/images/products/bebe-polvo-holi-1.jpg',
-  images: ['/images/products/bebe-polvo-holi-1.jpg', '/images/products/bebe-polvo-holi-2.jpg', '/images/products/bebe-polvo-holi-3.jpg']
+  images: ['/images/products/bebe-polvo-holi-1.jpg']
 });
 
 console.log(`Generated 0-12m successfully: ${products.length} products.`);

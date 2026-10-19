@@ -24,8 +24,8 @@ add({
   pros: ['Funciona a pilas (tipo C) sin cables para jugar en cualquier rincón del suelo', 'Mandos adaptados específicamente a manitas de niños desde 3-4 años', 'Carreras vibrantes entre Mario y Yoshi'],
   idealFor: 'Iniciarse en el mundo del slot y las carreras en casa',
   style: 'kids',
-  imageUrl: '/images/products/46-mario-circuito-1.jpg',
-  images: ['/images/products/46-mario-circuito-1.jpg', '/images/products/46-mario-circuito-2.jpg', '/images/products/46-mario-circuito-3.jpg']
+  imageUrl: '/images/products/46-carrera-mario-1.jpg',
+  images: ['/images/products/46-carrera-mario-1.jpg']
 });
 
 add({
@@ -47,8 +47,8 @@ add({
   pros: ['Propulsor a pilas que mantiene los coches circulando sin parar', 'La zona de choque crea colisiones épicas e impredecibles', 'Se pliega por la mitad para guardar de forma compacta'],
   idealFor: 'Competiciones trepidantes y partidas llenas de adrenalina',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=700&q=80']
+  imageUrl: '/images/products/46-hot-wheels-choques-aereos-1.jpg',
+  images: ['/images/products/46-hot-wheels-choques-aereos-1.jpg']
 });
 
 add({
@@ -70,8 +70,8 @@ add({
   pros: ['Capacidad para almacenar y ordenar más de 35 coches Hot Wheels', 'Conectable con otras pistas de Hot Wheels City', 'Asa superior integrada para mover el garaje fácilmente'],
   idealFor: 'Mantener organizados todos los coches de juguete en la habitación',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80']
+  imageUrl: '/images/products/46-hot-wheels-garaje-gigante-1.jpg',
+  images: ['/images/products/46-hot-wheels-garaje-gigante-1.jpg']
 });
 
 // 2. Juegos de Mesa Infantiles
@@ -94,8 +94,8 @@ add({
   pros: ['Partidas cooperativas: todos los niños ganan o pierden juntos sin enfados', 'Herramienta psicológica excepcional para que los niños expresen cómo se sienten', 'Componentes de madera y figuras de cartón grueso de alta calidad'],
   idealFor: 'Fomentar la inteligencia emocional y la comunicación familiar en la sobremesa',
   style: 'kids',
-  imageUrl: '/images/products/46-monstruo-1.jpg',
-  images: ['/images/products/46-monstruo-1.jpg', '/images/products/46-monstruo-2.jpg', '/images/products/46-monstruo-3.jpg']
+  imageUrl: '/images/products/46-monstruo-colores-1.jpg',
+  images: ['/images/products/46-monstruo-colores-1.jpg']
 });
 
 add({
@@ -117,8 +117,8 @@ add({
   pros: ['Reglas explicadas en 10 segundos para jugar con amigos y abuelos', 'Entrena la agilidad mental, la atención sostenida y el vocabulario', 'Caja metálica redonda ultra compacta que cabe en cualquier bolsillo'],
   idealFor: 'Restaurantes, viajes en coche, tren y sobremesas divertidas',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=700&q=80']
+  imageUrl: '/images/products/46-dobble-infantil-kids-1.jpg',
+  images: ['/images/products/46-dobble-infantil-kids-1.jpg']
 });
 
 add({
@@ -140,8 +140,8 @@ add({
   pros: ['Enseña anticipación táctica y pensamiento espacial básico', 'Palanca de vaciado rápido que deja caer todas las fichas para una revancha instantánea', 'Montaje robusto y rápido'],
   idealFor: 'Primeros duelos de estrategia lógica entre hermanos y amigos',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80']
+  imageUrl: '/images/products/46-conecta-4-clasico-1.jpg',
+  images: ['/images/products/46-conecta-4-clasico-1.jpg']
 });
 
 // 3. Patinetes con Ruedas LED
@@ -164,8 +164,8 @@ add({
   pros: ['Luces dinámicas autoalimentadas por dinamo magnética', 'Manillar de aluminio ajustable en 4 alturas (acompaña de los 3 a los 8 años)', 'Plegado rápido mediante tirador para meterlo en el maletero o llevarlo en la mano'],
   idealFor: 'Paseos diarios al colegio, parques y fines de semana activos',
   style: 'kids',
-  imageUrl: '/images/products/46-patinete-1.jpg',
-  images: ['/images/products/46-patinete-1.jpg', '/images/products/46-patinete-2.jpg', '/images/products/46-patinete-3.jpg']
+  imageUrl: '/images/products/46-bopster-patinete-1.jpg',
+  images: ['/images/products/46-bopster-patinete-1.jpg']
 });
 
 add({
@@ -187,8 +187,8 @@ add({
   pros: ['Sensación de deslizamiento ultra suave y silenciosa', 'Capacidad de carga de hasta 70 kg con estructura irrompible', 'Reflectantes traseros y ruedas LED de alta intensidad'],
   idealFor: 'El regalo estrella que durará años sin perder rendimiento',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1502744688674-c619d1586c9e?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1502744688674-c619d1586c9e?w=700&q=80']
+  imageUrl: '/images/products/46-micro-maxi-deluxe-led-1.jpg',
+  images: ['/images/products/46-micro-maxi-deluxe-led-1.jpg']
 });
 
 add({
@@ -210,8 +210,8 @@ add({
   pros: ['14 orificios de ventilación que evitan el exceso de sudor en la cabeza', 'Rueda milimétrica para ajustarse perfecto al contorno del cráneo', 'Correa acolchada en la barbilla anti-pellizcos'],
   idealFor: 'Seguridad imprescindible en bici, patinete y patines',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80']
+  imageUrl: '/images/products/46-casco-infantil-luz-seguridad-1.jpg',
+  images: ['/images/products/46-casco-infantil-luz-seguridad-1.jpg']
 });
 
 // 4. Cuentos y Primeros Lectores (USER REQUESTED)
@@ -234,8 +234,8 @@ add({
   pros: ['Ilustraciones en técnica collage inolvidables que cautivan a los peques', 'Vocabulario emocional accesible y enriquecedor', 'Encuadernación de lujo en tapa dura resistente'],
   idealFor: 'Aprender a poner nombre a lo que sienten día a día',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80']
+  imageUrl: '/images/products/46-monstruo-de-colores-libro-1.jpg',
+  images: ['/images/products/46-monstruo-de-colores-libro-1.jpg']
 });
 
 add({
@@ -257,8 +257,8 @@ add({
   pros: ['Historias sencillas con situaciones cotidianas con las que se identifican al instante', 'Lenguaje positivo que fomenta una mentalidad optimista y resiliente', 'Guía con consejos prácticos para padres al final de cada cuento'],
   idealFor: 'Reforzar la seguridad en sí mismos y la convivencia con amigos',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1512820790803-83ca734da794?w=700&q=80']
+  imageUrl: '/images/products/46-de-mayor-quiero-ser-feliz-1.jpg',
+  images: ['/images/products/46-de-mayor-quiero-ser-feliz-1.jpg']
 });
 
 add({
@@ -280,8 +280,8 @@ add({
   pros: ['Mensaje vital sobre nunca dejar de ser uno mismo para complacer a los demás', 'Ilustraciones expresivas llenas de sensibilidad y humor', 'Lectura que deja huella en niños y adultos'],
   idealFor: 'Aprender el valor de la autenticidad y la autoestima',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=700&q=80']
+  imageUrl: '/images/products/46-yo-voy-conmigo-libro-1.jpg',
+  images: ['/images/products/46-yo-voy-conmigo-libro-1.jpg']
 });
 
 // 5. Manualidades, Dibujo y Pintura (USER REQUESTED)
@@ -304,8 +304,8 @@ add({
   pros: ['150 materiales artísticos no tóxicos certificados CE', 'Maletín de madera resistente con compartimento para cada utensilio', 'Estimula horas de concentración y desarrollo creativo'],
   idealFor: 'Tardes de pintura, colorear mandalas y proyectos de dibujo escolar',
   style: 'creativity',
-  imageUrl: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=700&q=80']
+  imageUrl: '/images/products/46-maletin-dibujo-madera-150-1.jpg',
+  images: ['/images/products/46-maletin-dibujo-madera-150-1.jpg']
 });
 
 add({
@@ -327,8 +327,8 @@ add({
   pros: ['100% seguro para niños sin necesidad de supervisión de plancha caliente', 'Incluye más de 1200 cuentas brillantes y en forma de joya', 'Bolígrafo dispensador de perlas ergonómico y pulverizador de agua'],
   idealFor: 'Desarrollar la motricidad fina, la paciencia y crear llaveros propios',
   style: 'creativity',
-  imageUrl: 'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80']
+  imageUrl: '/images/products/46-aquabeads-estuche-expert-1.jpg',
+  images: ['/images/products/46-aquabeads-estuche-expert-1.jpg']
 });
 
 add({
@@ -350,8 +350,8 @@ add({
   pros: ['Tinta ultra lavable patentada que no mancha permanentemente las mesas ni la ropa', 'Punta resistente que no se hunde aunque el niño apriete con fuerza', '24 colores brillantes y variados'],
   idealFor: 'Colorear libros de dibujos y primeros trazos escolares',
   style: 'creativity',
-  imageUrl: 'https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80']
+  imageUrl: '/images/products/46-crayola-rotuladores-lavables-1.jpg',
+  images: ['/images/products/46-crayola-rotuladores-lavables-1.jpg']
 });
 
 // 6. Peluches Interactivos y Muñecos
@@ -374,8 +374,8 @@ add({
   pros: ['No requiere conexión a internet ni apps móviles: 100% seguro para niños', 'Reacciona al tacto, abrazos, cosquillas y cepillado de pelo', 'Incluye adornos y peine para crear peinados'],
   idealFor: 'Compañero inseparable de aventuras y juego simbólico',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=700&q=80']
+  imageUrl: '/images/products/46-furby-interactivo-morado-1.jpg',
+  images: ['/images/products/46-furby-interactivo-morado-1.jpg']
 });
 
 add({
@@ -397,8 +397,8 @@ add({
   pros: ['Sensación táctil real de acariciar una imagen de luz holográfica', 'No tiene pantallas dañinas para la vista', 'Tamaño de bolsillo para llevar en la mochila a cualquier sitio'],
   idealFor: 'Aprender la responsabilidad de cuidar una mascota sin riesgos',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80']
+  imageUrl: '/images/products/46-bitzee-mascota-digital-1.jpg',
+  images: ['/images/products/46-bitzee-mascota-digital-1.jpg']
 });
 
 add({
@@ -420,8 +420,8 @@ add({
   pros: ['Más de 35 sonidos realistas de cachorro alegre y somnoliento', 'Pelaje sedoso y peso equilibrado para abrazar en la cama', 'Fomenta el cariño y el juego de cuidado afectivo'],
   idealFor: 'Niños que sueñan con tener su primer perrito en casa',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=700&q=80']
+  imageUrl: '/images/products/46-perrito-interactivo-respira-1.jpg',
+  images: ['/images/products/46-perrito-interactivo-respira-1.jpg']
 });
 
 // 7. Disfraces y Ropa Infantil (USER REQUESTED)
@@ -444,8 +444,8 @@ add({
   pros: ['Cierres de velcro de seguridad que se sueltan si se enganchan', 'Satén de doble cara lavable muy brillante y ligero para volar', 'Pack de 5 para jugar con amigos y hermanos en fiestas de pijamas'],
   idealFor: 'Juegos de imaginación activa y cumpleaños temáticos',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1502744688674-c619d1586c9e?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1502744688674-c619d1586c9e?w=700&q=80']
+  imageUrl: '/images/products/46-capa-mascara-superheroes-1.jpg',
+  images: ['/images/products/46-capa-mascara-superheroes-1.jpg']
 });
 
 add({
@@ -467,8 +467,8 @@ add({
   pros: ['Forro interior de algodón 100% respetuoso con pieles atópicas', 'Cremallera trasera oculta resistente y elástico en la cintura', 'Accesorios de plástico irrompible con fijación segura'],
   idealFor: 'Carnaval, funciones escolares y tardes mágicas en el castillo',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1519689680058-324335c77eba?w=700&q=80']
+  imageUrl: '/images/products/46-vestido-princesa-accesorios-1.jpg',
+  images: ['/images/products/46-vestido-princesa-accesorios-1.jpg']
 });
 
 add({
@@ -490,8 +490,8 @@ add({
   pros: ['Forro polar esponjoso que aísla del frío sin pesar', 'Cremallera en la parte trasera para ir al baño sin desvestirse entero', 'Puños elásticos en tobillos y muñecas que no se suben'],
   idealFor: 'Noches frías de invierno y maratones de películas de dibujos',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=700&q=80']
+  imageUrl: '/images/products/46-pijama-kigurumi-dinosaurio-1.jpg',
+  images: ['/images/products/46-pijama-kigurumi-dinosaurio-1.jpg']
 });
 
 // 8. Colonias Infantiles Frescas (USER REQUESTED)
@@ -514,8 +514,8 @@ add({
   pros: ['Fórmula dermatológicamente testada respetuosa con pieles jóvenes', 'Aroma alegre que perdura durante toda la jornada escolar', 'Tapón metálico icónico del osito Tous con gorra'],
   idealFor: 'El primer perfume "de mayor" para cumpleaños y reuniones familiares',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1594035910387-fea47794261f?w=700&q=80']
+  imageUrl: '/images/products/46-colonia-tous-kids-chico-1.jpg',
+  images: ['/images/products/46-colonia-tous-kids-chico-1.jpg']
 });
 
 add({
@@ -537,8 +537,8 @@ add({
   pros: ['Sin sensación pegajosa, vaporización fina y uniforme', 'Aroma dulce y fresco a limpio que no satura', 'Presentación en caja decorada perfecta para regalo'],
   idealFor: 'Detalle refinado para niñas de 4 a 6 años',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=80']
+  imageUrl: '/images/products/46-colonia-tous-kids-chica-1.jpg',
+  images: ['/images/products/46-colonia-tous-kids-chica-1.jpg']
 });
 
 add({
@@ -560,8 +560,8 @@ add({
   pros: ['Fórmula suave hipoalergénica sin parabenos', 'Frasco de cristal decorado con siluetas de Elsa y Anna', 'Incluye joya de fantasía a juego en la caja de regalo'],
   idealFor: 'Cumpleaños y regalo sorpresa para fans de Frozen',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?w=700&q=80']
+  imageUrl: '/images/products/46-colonia-disney-frozen-1.jpg',
+  images: ['/images/products/46-colonia-disney-frozen-1.jpg']
 });
 
 console.log('4-6 years old products successfully loaded.');

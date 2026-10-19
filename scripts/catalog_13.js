@@ -24,8 +24,8 @@ add({
   pros: ['Estructura antivuelco robusta con barras de seguridad traseras', 'Se convierte en mesa de dibujo en 30 segundos sin herramientas', 'Madera de pino maciza barnizada al agua suave al tacto'],
   idealFor: 'Fomentar la independencia y la colaboración en tareas del hogar',
   style: 'kids',
-  imageUrl: '/images/products/13-torre-1.jpg',
-  images: ['/images/products/13-torre-1.jpg', '/images/products/13-torre-2.jpg', '/images/products/13-torre-3.jpg']
+  imageUrl: '/images/products/13-torre-aprendizaje-1.jpg',
+  images: ['/images/products/13-torre-aprendizaje-1.jpg']
 });
 
 add({
@@ -47,8 +47,8 @@ add({
   pros: ['Pinturas con base de agua no tóxicas resistentes a golpes', 'Desarrolla la coordinación ojo-mano y el sentido del ritmo', 'Madera certificada FSC de alta durabilidad'],
   idealFor: 'Canalizar la energía de los golpes en música armoniosa',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80']
+  imageUrl: '/images/products/13-hape-banco-martillo-1.jpg',
+  images: ['/images/products/13-hape-banco-martillo-1.jpg']
 });
 
 add({
@@ -70,8 +70,8 @@ add({
   pros: ['Bordes biselados y esquinas redondeadas sin astillas', 'Estimula el razonamiento espacial y el reconocimiento de colores', 'Ocupa muy poco espacio al invertir la tapa'],
   idealFor: 'Tardes de juego educativo en la alfombra del salón',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=700&q=80']
+  imageUrl: '/images/products/13-cubo-multiactividades-madera-1.jpg',
+  images: ['/images/products/13-cubo-multiactividades-madera-1.jpg']
 });
 
 // 2. LEGO DUPLO y Construcción
@@ -94,8 +94,8 @@ add({
   pros: ['Piezas grandes homologadas anti-atragantamiento', 'Favorece el desarrollo motriz temprano y el reconocimiento de colores', 'Ruedas funcionales para deslizar por alfombra y suelo'],
   idealFor: 'Primeros juegos de construcción creativa y aprendizaje de números',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=700&q=80']
+  imageUrl: '/images/products/13-lego-duplo-tren-numeros-1.jpg',
+  images: ['/images/products/13-lego-duplo-tren-numeros-1.jpg']
 });
 
 add({
@@ -117,8 +117,8 @@ add({
   pros: ['Incluye caja plástica apilable para recoger todo en 1 minuto', 'Ladrillos compatibles con todos los sets de LEGO DUPLO', 'Instrucciones sencillas de montaje con ideas creativas'],
   idealFor: 'Desarrollar la motricidad fina y la creatividad libre',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=700&q=80']
+  imageUrl: '/images/products/13-lego-duplo-caja-ladrillos-1.jpg',
+  images: ['/images/products/13-lego-duplo-caja-ladrillos-1.jpg']
 });
 
 add({
@@ -140,8 +140,8 @@ add({
   pros: ['Luces y sonidos llamativos que despiertan la emoción del rescate', 'Piezas resistentes a caídas y fáciles de encajar', 'Fomenta la empatía y los juegos de ayuda mutua'],
   idealFor: 'Pequeños apasionados por los vehículos de emergencia',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=700&q=80']
+  imageUrl: '/images/products/13-lego-duplo-camion-bomberos-1.jpg',
+  images: ['/images/products/13-lego-duplo-camion-bomberos-1.jpg']
 });
 
 // 3. Triciclos y Bicis de Equilibrio
@@ -164,8 +164,8 @@ add({
   pros: ['Pesa muy poco: el peque la maneja sin esfuerzo', 'Ruedas macizas de EVA que nunca se desinflan ni pinchan', 'Manillar y sillín ajustables para acompañar el crecimiento'],
   idealFor: 'Aprender equilibrio y coordinación motriz al aire libre',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?w=700&q=80']
+  imageUrl: '/images/products/13-chicco-first-bike-1.jpg',
+  images: ['/images/products/13-chicco-first-bike-1.jpg']
 });
 
 add({
@@ -187,8 +187,8 @@ add({
   pros: ['Barra de empuje ajustable en altura para dirigirlo con una mano', 'Pedales desmontables que se guardan bajo el chasis', 'Asiento ergonómico acolchado muy cómodo'],
   idealFor: 'Paseos largos donde el niño alterna entre pedalear y dejarse empujar',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1502744688674-c619d1586c9e?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1502744688674-c619d1586c9e?w=700&q=80']
+  imageUrl: '/images/products/13-besrey-triciclo-5en1-1.jpg',
+  images: ['/images/products/13-besrey-triciclo-5en1-1.jpg']
 });
 
 add({
@@ -210,8 +210,8 @@ add({
   pros: ['Chasis de metal indestructible que pasa de generación en generación', 'Ruedas de goma silenciosas que cuidan el parquet', 'Queda precioso como decoración en el dormitorio infantil'],
   idealFor: 'El primer cumpleaños y fotos de recuerdo inolvidables',
   style: 'classic',
-  imageUrl: 'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80']
+  imageUrl: '/images/products/13-correpasillos-vintage-retro-1.jpg',
+  images: ['/images/products/13-correpasillos-vintage-retro-1.jpg']
 });
 
 // 4. Cuentos y Libros Infantiles (USER REQUESTED)
@@ -234,8 +234,8 @@ add({
   pros: ['Pop-ups gigantes que provocan risas y asombro en cada página', 'Textos rimados muy fáciles de memorizar para los más pequeños', 'Cartón grueso resistente a manos curiosas'],
   idealFor: 'Inculcar el amor por la lectura antes de dormir',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80']
+  imageUrl: '/images/products/13-libro-pollo-pepe-1.jpg',
+  images: ['/images/products/13-libro-pollo-pepe-1.jpg']
 });
 
 add({
@@ -257,8 +257,8 @@ add({
   pros: ['Solapas interactivas en cada pañal que los niños adoran levantar', 'Desdramatiza el proceso de ir al baño con humor e inteligencia', 'Recomendado por psicólogos y educadores infantiles'],
   idealFor: 'Acompañar la operación pañal de los 2 años sin presiones',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1512820790803-83ca734da794?w=700&q=80']
+  imageUrl: '/images/products/13-libro-puedo-mirar-panal-1.jpg',
+  images: ['/images/products/13-libro-puedo-mirar-panal-1.jpg']
 });
 
 add({
@@ -280,8 +280,8 @@ add({
   pros: ['Formato de cartón duro con esquinas redondeadas anti-arañazos', 'Ritmo pausado ideal para bajar pulsaciones antes de dormir', 'Refuerza el vínculo afectivo de apego'],
   idealFor: 'La lectura relajante de los últimos 10 minutos del día',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=700&q=80']
+  imageUrl: '/images/products/13-libro-beso-antes-dormir-1.jpg',
+  images: ['/images/products/13-libro-beso-antes-dormir-1.jpg']
 });
 
 // 5. Cocina Infantil y Juegos de Imitación
@@ -304,8 +304,8 @@ add({
   pros: ['Acabados redondeados pulidos con pinturas al agua no tóxicas', 'Diseño compacto que encaja perfecto en cualquier dormitorio', 'Incluye sartén, olla y espátula de acero inoxidable'],
   idealFor: 'Juegos de rol e imitación cotidiana para pequeños chefs',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=700&q=80']
+  imageUrl: '/images/products/13-hape-cocinita-madera-1.jpg',
+  images: ['/images/products/13-hape-cocinita-madera-1.jpg']
 });
 
 add({
@@ -327,8 +327,8 @@ add({
   pros: ['El velcro ofrece una resistencia táctil ideal para entrenar la fuerza de corte', 'Madera maciza con pinturas no tóxicas resistentes a golpes', 'Incluye tabla de cortar y cajita de madera para guardar'],
   idealFor: 'Aprender los nombres de las comidas saludables y motricidad bimanual',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&q=80']
+  imageUrl: '/images/products/13-alimentos-madera-velcro-1.jpg',
+  images: ['/images/products/13-alimentos-madera-velcro-1.jpg']
 });
 
 add({
@@ -350,8 +350,8 @@ add({
   pros: ['Fonendoscopio con sonido realista de latido cardíaco', 'Piezas de madera sin aristas ni plásticos frágiles', 'Maletín de tela con cremallera fácil de transportar'],
   idealFor: 'Superar la ansiedad médica y desarrollar la empatía y los cuidados',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=700&q=80']
+  imageUrl: '/images/products/13-maletin-medico-infantil-1.jpg',
+  images: ['/images/products/13-maletin-medico-infantil-1.jpg']
 });
 
 // 6. Manualidades, Plastilina y Pintura (USER REQUESTED)
@@ -374,8 +374,8 @@ add({
   pros: ['Incluye 8 botes de plastilina Play-Doh segura sin tóxicos', 'Fomenta la motricidad fina y la creatividad manual', 'El torno emite sonido realista sin peligro alguno'],
   idealFor: 'Tardes de juego creativo y modelado manual en familia',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80']
+  imageUrl: '/images/products/13-play-doh-dentista-1.jpg',
+  images: ['/images/products/13-play-doh-dentista-1.jpg']
 });
 
 add({
@@ -397,8 +397,8 @@ add({
   pros: ['Fórmula no tóxica certificada dermatológicamente', 'Botes con dosificador antigoteo para no desperdiciar pintura', 'Fomenta la libre expresión artística y la coordinación sensorial'],
   idealFor: 'Primeras obras de arte, estampación de manitas y pies',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=700&q=80']
+  imageUrl: '/images/products/13-crayola-pintura-dedos-1.jpg',
+  images: ['/images/products/13-crayola-pintura-dedos-1.jpg']
 });
 
 add({
@@ -420,8 +420,8 @@ add({
   pros: ['Efecto antiestrés fascinante para niños y adultos', 'Incluye bandeja propia para jugar sobre la mesa sin derrames', 'Libre de trigo, gluten y caseína'],
   idealFor: 'Juego sensorial tranquilo en casa los días de lluvia',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&q=80']
+  imageUrl: '/images/products/13-kinetic-sand-1.jpg',
+  images: ['/images/products/13-kinetic-sand-1.jpg']
 });
 
 // 7. Colonias Infantiles y Cuidado (USER REQUESTED)
@@ -444,8 +444,8 @@ add({
   pros: ['No mancha la ropa y dura horas en el pelo y camisetas', 'Frasco de cristal grueso con pulverizador ergonómico', 'Aroma unisex fresco y optimista'],
   idealFor: 'Antes de salir a la guardería o al parque infantil',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1594035910387-fea47794261f?w=700&q=80']
+  imageUrl: '/images/products/13-colonia-suavinex-kids-1.jpg',
+  images: ['/images/products/13-colonia-suavinex-kids-1.jpg']
 });
 
 add({
@@ -467,8 +467,8 @@ add({
   pros: ['Ayuda a conciliar el sueño gracias a la aromaterapia natural', 'Fórmula hipoalergénica con 92% de ingredientes naturales', 'Formato grande para usar generosamente en sábanas y ropa'],
   idealFor: 'El ritual del baño antes de dormir para bajar la energía',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=80']
+  imageUrl: '/images/products/13-colonia-denenes-felices-suenos-1.jpg',
+  images: ['/images/products/13-colonia-denenes-felices-suenos-1.jpg']
 });
 
 add({
@@ -490,8 +490,8 @@ add({
   pros: ['Cero alcohol y máxima tolerancia cutánea', 'Efecto relajante patentado que induce bienestar', 'Precioso frasco con tapón de madera natural'],
   idealFor: 'Bebés y niños de piel muy sensible o con dermatitis atópica',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?w=700&q=80']
+  imageUrl: '/images/products/13-klorane-petit-brin-1.jpg',
+  images: ['/images/products/13-klorane-petit-brin-1.jpg']
 });
 
 // 8. Ropa y Zapatillas Primeros Pasos (USER REQUESTED)
@@ -514,8 +514,8 @@ add({
   pros: ['Suela de silicona microperforada transpirable y antideslizante', 'Se lavan cómodamente en la lavadora con el resto de ropa', 'Se ponen como un calcetín: el niño aprende a calzarse solo'],
   idealFor: 'La transición del gateo a la marcha autónoma y la guardería',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=700&q=80']
+  imageUrl: '/images/products/13-zapatillas-attipas-ergonomicas-1.jpg',
+  images: ['/images/products/13-zapatillas-attipas-ergonomicas-1.jpg']
 });
 
 add({
@@ -537,8 +537,8 @@ add({
   pros: ['Tejido ecológico ligero que no huele a plástico y se seca rápido', 'Botones a presión fáciles de abrochar con dedos pequeños', 'Corte amplio que permite llevar abrigo debajo'],
   idealFor: 'Saltar en los charcos y paseos con lluvia al salir de la guardería',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=700&q=80']
+  imageUrl: '/images/products/13-chubasquero-infantil-animales-1.jpg',
+  images: ['/images/products/13-chubasquero-infantil-animales-1.jpg']
 });
 
 add({
@@ -560,8 +560,8 @@ add({
   pros: ['Correa de sujeción pectoral con clip para que los tirantes no resbalen', 'Bolsillo lateral de malla elástica para la botella de agua', 'Forro interior lavable con etiqueta personalizada para poner el nombre'],
   idealFor: 'Llevar la muda de recambio, merienda y pañales a la escuela infantil',
   style: 'kids',
-  imageUrl: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&q=80',
-  images: ['https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&q=80']
+  imageUrl: '/images/products/13-mochila-guarderia-arnes-1.jpg',
+  images: ['/images/products/13-mochila-guarderia-arnes-1.jpg']
 });
 
 console.log('1-3 years old products successfully loaded.');
