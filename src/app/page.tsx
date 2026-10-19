@@ -200,7 +200,7 @@ export default function HomePage() {
               <span>
                 Ideas de Regalo para Todas las Edades:{' '}
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500">
-                  0 a +18 Años
+                  De 0 a más de 18 Años
                 </span>
               </span>
             )}
@@ -209,7 +209,7 @@ export default function HomePage() {
           <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed mb-6 max-w-2xl mx-auto">
             {currentAgeMeta
               ? currentAgeMeta.description
-              : 'Descubre recomendaciones contrastadas para acertar siempre: desde recién nacidos y niños, hasta tecnología, gaming, Smartbox, maquetas y perfumería para adultos (+18). Compra con la garantía oficial de Amazon España.'}
+              : 'Descubre recomendaciones contrastadas para acertar siempre: desde recién nacidos y niños, hasta tecnología, smartphones, gaming, Smartbox, maquetas y perfumería para adultos y mayores de 18 años. Compra con la garantía oficial de Amazon España.'}
           </p>
 
           {/* AI COPILOT POPUP TRIGGER BUTTON IN HERO */}

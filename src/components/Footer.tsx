@@ -45,7 +45,7 @@ export default function Footer({ currentTheme }: FooterProps) {
           <div className="space-y-3">
             <BrandLogo size="compact" showSubtitle={false} />
             <p className="text-xs opacity-75 leading-relaxed">
-              La plataforma más completa de recomendaciones de regalos para todas las edades: bebés, niños, jóvenes y adultos (+18 años). Analizamos y seleccionamos los productos con mejores valoraciones y satisfacción garantizada en Amazon España.
+              La plataforma más completa de recomendaciones de regalos para todas las edades: bebés, niños, jóvenes y adultos a partir de 18 años. Analizamos y seleccionamos los productos con mejores valoraciones y satisfacción garantizada en Amazon España.
             </p>
             <div className="text-[11px] opacity-60">
               Hecho con <Heart className="w-3 h-3 text-rose-500 inline fill-rose-500" /> para que encuentres el regalo perfecto en segundos.

@@ -40,7 +40,7 @@ export default function BrandLogo({ size = 'normal', showSubtitle = true }: Bran
           </span>
           <span className="text-[9px] text-slate-300 font-bold">•</span>
           <span className="text-[9.5px] uppercase tracking-[0.12em] font-extrabold text-indigo-600">
-            0 a +18 Años
+            De 0 a más de 18 Años
           </span>
         </div>
       )}
