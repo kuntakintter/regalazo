@@ -13,7 +13,7 @@ import AmazonGridDiscoveryCard from '@/components/AmazonGridDiscoveryCard';
 import { PRODUCTS, AGE_CATEGORIES, GENERAL_CATEGORY_MAPPING, Product } from '@/data/products';
 import { matchesSearchQuery } from '@/utils/search';
 import {
-  Sparkles,
+  BadgePercent,
   Gift,
   Flame,
   Baby,
@@ -234,7 +234,7 @@ export default function HomePage() {
               Basado en Valoraciones Reales 4.5+ ★
             </span>
             <span className="flex items-center gap-1.5">
-              <Sparkles className="w-4 h-4 text-amber-500" />
+              <BadgePercent className="w-4 h-4 text-amber-500" />
               Precios y Ofertas al Día
             </span>
           </div>

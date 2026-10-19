@@ -3,7 +3,7 @@
 import React from 'react';
 import { AGE_CATEGORIES, AGE_SUBCATEGORIES_MAP } from '@/data/products';
 import {
-  Sparkles,
+  LayoutGrid,
   X,
   Check,
   SlidersHorizontal,
@@ -233,13 +233,13 @@ export default function FilterBar({
                 : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100'
             }`}
           >
-            <Sparkles className={`w-4 h-4 ${selectedAge === 'all' ? 'text-amber-300' : 'text-amber-500'}`} />
+            <LayoutGrid className={`w-4 h-4 ${selectedAge === 'all' ? 'text-indigo-400' : 'text-slate-500'}`} />
             <span>Todas las Edades</span>
           </button>
 
           {AGE_CATEGORIES.map((cat) => {
             const ageIconData = AGE_ICONS[cat.id];
-            const IconComp = ageIconData ? ageIconData.icon : Sparkles;
+            const IconComp = ageIconData ? ageIconData.icon : LayoutGrid;
             const iconColor = ageIconData ? ageIconData.color : 'text-indigo-500';
             const isActive = selectedAge === cat.id;
 
