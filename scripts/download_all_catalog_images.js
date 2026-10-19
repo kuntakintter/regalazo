@@ -10,6 +10,7 @@ require('./catalog_79');
 require('./catalog_1012');
 require('./catalog_1315');
 require('./catalog_1618');
+require('./catalog_18plus');
 
 const PRODUCTS_DIR = path.join(__dirname, '../public/images/products');
 if (!fs.existsSync(PRODUCTS_DIR)) {
@@ -231,7 +232,7 @@ export interface Product {
   asin?: string;
   category: string;
   subcategory: string;
-  ageRange: '0-12m' | '1-3' | '4-6' | '7-9' | '10-12' | '13-15' | '16-18';
+  ageRange: '0-12m' | '1-3' | '4-6' | '7-9' | '10-12' | '13-15' | '16-18' | '+18';
   gender: 'unisex' | 'girl' | 'boy';
   priceRange: '<20' | '20-50' | '50-100' | '>100';
   priceText: string;

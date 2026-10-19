@@ -67,6 +67,14 @@ export const SEO_AGE_ROUTES: Record<string, SeoRouteMeta> = {
     description: 'Lo último en mandos y accesorios de PS5, setup gamer, gafas de realidad virtual, fragancias unisex, libretas de cuero artesanal y periféricos de alto rendimiento.',
     keywords: ['regalos 16 años chico', 'regalos 18 años chica', 'mandos ps5 dualsense edge', 'accesorios gaming pc', 'fragancias jovenes']
   },
+  'adultos-mas-de-18-anos': {
+    ageId: '+18',
+    ageSlug: 'adultos-mas-de-18-anos',
+    title: 'Mejores Regalos para Adultos (+18 Años) | Smartbox, LEGO Icons y Robótica 2026',
+    h1: 'Ideas de Regalo Originales para Adultos y Mayores de 18 Años (+18)',
+    description: 'Selección de regalos para adultos: cajas regalo Smartbox de escapadas y cenas gourmet, sets LEGO Icons Botánicos, maquetas y robótica avanzada, drones con cámara 4K y juegos de mesa estratégicos con garantía oficial Amazon España.',
+    keywords: ['regalos para adultos', 'regalos originales mayores 18 años', 'cajas smartbox escapada', 'lego icons adultos', 'drones con camara 4k', 'juegos de mesa expertos adultos']
+  },
   'fiesta-revelacion-genero': {
     ageId: 'reveal',
     ageSlug: 'fiesta-revelacion-genero',

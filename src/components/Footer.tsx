@@ -49,7 +49,7 @@ export default function Footer({ currentTheme }: FooterProps) {
               <span className="font-black text-lg tracking-tight">REGALAZO⚡</span>
             </div>
             <p className="text-xs opacity-75 leading-relaxed">
-              La plataforma más dinámica de recomendaciones de regalos para niños y jóvenes de 0 a 18 años. Analizamos y seleccionamos los productos con mejores valoraciones y satisfacción garantizada en Amazon España.
+              La plataforma más completa de recomendaciones de regalos para todas las edades: bebés, niños, jóvenes y adultos (+18 años). Analizamos y seleccionamos los productos con mejores valoraciones y satisfacción garantizada en Amazon España.
             </p>
             <div className="text-[11px] opacity-60">
               Hecho con <Heart className="w-3 h-3 text-rose-500 inline fill-rose-500" /> para que encuentres el regalo perfecto en segundos.
@@ -69,6 +69,7 @@ export default function Footer({ currentTheme }: FooterProps) {
               <li><a href="#catalogo-productos" className="hover:underline">Preadolescentes (10 a 12 Años)</a></li>
               <li><a href="#catalogo-productos" className="hover:underline">Adolescentes (13 a 15 Años)</a></li>
               <li><a href="#catalogo-productos" className="hover:underline">Jóvenes (16 a 18 Años - Gaming & Estilo)</a></li>
+              <li><a href="#catalogo-productos" className="hover:underline">Adultos y Mayores de 18 Años (+18)</a></li>
             </ul>
           </div>
 

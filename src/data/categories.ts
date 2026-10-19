@@ -1,5 +1,5 @@
 export interface AgeCategoryMeta {
-  id: '0-12m' | '1-3' | '4-6' | '7-9' | '10-12' | '13-15' | '16-18';
+  id: '0-12m' | '1-3' | '4-6' | '7-9' | '10-12' | '13-15' | '16-18' | '+18';
   label: string;
   tagline: string;
   description: string;
@@ -79,6 +79,16 @@ export const AGE_CATEGORIES: AgeCategoryMeta[] = [
     seoKeywords: ['juegos ps5 spiderman 2', 'mando dualsense edge ps5', 'calvin klein ck one original', 'diario cuero vintage moonster', 'regalos 18 anos chico chica'],
     theme: 'gamer',
     icon: '⚡'
+  },
+  {
+    id: '+18',
+    label: 'Adultos (+18)',
+    tagline: 'Cajas Smartbox, robótica avanzada, maquetas LEGO Icons, juegos expertos y gourmet',
+    description: 'Los mejores regalos para adultos y mayores de 18 años: escapadas y spas de fin de semana con Smartbox, coleccionismo y sets botánicos LEGO Icons, robótica y drones con cámara 4K, juegos de mesa estratégicos y experiencias gourmet.',
+    h1: 'Ideas de Regalo Originales para Adultos y Mayores de 18 Años (+18)',
+    seoKeywords: ['regalos para adultos', 'smartbox escapada spa', 'lego icons botanicals', 'drones camara 4k', 'juegos de mesa adultos', 'regalos originales hombre mujer'],
+    theme: 'classic',
+    icon: '🎯'
   }
 ];
 
@@ -176,6 +186,15 @@ export const AGE_SUBCATEGORIES_MAP: Record<string, string[]> = {
     'Cuadernos de Piel y Papelería Artesanal',
     'Moda Urbana, Ropa y Accesorios'
   ],
+  '+18': [
+    'Escapadas y Experiencias (Smartbox)',
+    'LEGO Icons y Maquetas para Adultos',
+    'Juegos de Mesa para Adultos y Parejas',
+    'Drones, Robótica y RC Avanzado',
+    'Tecnología, Audio Hi-Fi y Smart Home',
+    'Café de Especialidad y Coctelería Gourmet',
+    'Perfumería Prémium de Autor'
+  ],
   'reveal': [
     'Fiestas y Revelación de Género'
   ]
@@ -187,11 +206,13 @@ export const GENERAL_CATEGORY_MAPPING: Record<string, string[]> = {
     'Juegos de Mesa y Estrategia Familiar',
     'Juegos de Cartas Competitivos (Virus!)',
     'Juegos de Mesa y Escape Room',
-    'Juegos de Mesa Clásicos (Catan)'
+    'Juegos de Mesa Clásicos (Catan)',
+    'Juegos de Mesa para Adultos y Parejas'
   ],
   'LEGO y Construcción': [
     'LEGO DUPLO y Construcción',
-    'LEGO Creator y Construcción'
+    'LEGO Creator y Construcción',
+    'LEGO Icons y Maquetas para Adultos'
   ],
   'Scalextric y Circuitos de Coches': [
     'Circuitos de Coches Infantiles',
@@ -218,7 +239,14 @@ export const GENERAL_CATEGORY_MAPPING: Record<string, string[]> = {
     'Colonias y Cuidado Personal Infantil',
     'Colonias y Cuidado Juvenil',
     'Cuidado Facial, Skincare y Colonias',
-    'Perfumería y Fragancias'
+    'Perfumería y Fragancias',
+    'Perfumería Prémium de Autor'
+  ],
+  'Escapadas y Experiencias': [
+    'Escapadas y Experiencias (Smartbox)'
+  ],
+  'Gourmet, Café y Coctelería': [
+    'Café de Especialidad y Coctelería Gourmet'
   ],
   'Manualidades y Creatividad': [
     'Manualidades, Plastilina y Pintura',
@@ -246,10 +274,12 @@ export const GENERAL_CATEGORY_MAPPING: Record<string, string[]> = {
   ],
   'Tecnología y Gadgets': [
     'Drones RC y Robótica STEM',
+    'Drones, Robótica y RC Avanzado',
     'Magia Borrás Avanzada',
     'Auriculares Inalámbricos y Audio',
     'Cámaras Instantáneas y Fotografía',
-    'Tecnología, Audio Hi-Fi y Wearables'
+    'Tecnología, Audio Hi-Fi y Wearables',
+    'Tecnología, Audio Hi-Fi y Smart Home'
   ],
   'Bicis y Patinetes con Ruedas': [
     'Triciclos y Bicis de Equilibrio',

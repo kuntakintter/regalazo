@@ -71,7 +71,7 @@ export default function Header({ currentTheme = 'classic', onThemeChange, onSear
                 </span>
                 <span className="text-amber-500 text-xs font-black">⚡</span>
               </div>
-              <span className="text-[10px] tracking-wider uppercase font-extrabold opacity-60">0 a 18 Años</span>
+              <span className="text-[10px] tracking-wider uppercase font-extrabold opacity-60">0 a +18 Años</span>
             </div>
           </Link>
 

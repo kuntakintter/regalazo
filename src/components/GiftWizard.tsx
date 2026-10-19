@@ -107,6 +107,16 @@ export default function GiftWizard({ isOpen, onClose, onApplyRecommendation }: G
       { id: 'leather-journals', label: 'Cuadernos de Piel y Papelería Artesanal (Moonster)', icon: '📓', category: 'Cuadernos de Piel y Papelería Artesanal' },
       { id: 'urban-fashion-style', label: 'Moda Urbana, Ropa y Accesorios', icon: '🕶️', category: 'Moda Urbana, Ropa y Accesorios' },
     ],
+    '+18': [
+      { id: 'all-18plus', label: 'Ver Todo para Adultos (+18)', icon: '🌟', category: 'all' },
+      { id: 'smartbox-escapes', label: 'Escapadas, Spa y Experiencias Gourmet (Smartbox)', icon: '✈️', category: 'Escapadas y Experiencias' },
+      { id: 'lego-icons', label: 'LEGO Icons Botánico y Maquetas de Colección', icon: '🌸', category: 'LEGO Icons y Maquetas para Adultos' },
+      { id: 'adult-boardgames', label: 'Juegos de Mesa y Estrategia (Terraforming Mars, Wingspan)', icon: '🎲', category: 'Juegos de Mesa para Adultos y Parejas' },
+      { id: 'drones-rc-pro', label: 'Drones 4K, Buggy RC y Robótica Arduino', icon: '🛸', category: 'Drones, Robótica y RC Avanzado' },
+      { id: 'tech-audio-hifi', label: 'Kindle, Audio Hi-Fi y Smart Home (Bose, Philips Hue)', icon: '⚡', category: 'Tecnología, Audio Hi-Fi y Smart Home' },
+      { id: 'coffee-cocktails', label: 'Café de Especialidad y Coctelería Gourmet (Cecotec, Hario)', icon: '☕', category: 'Café de Especialidad y Coctelería Gourmet' },
+      { id: 'premium-perfumes', label: 'Perfumería Prémium de Autor (Dior Sauvage, Armani Sì, Tom Ford)', icon: '✨', category: 'Perfumería Prémium de Autor' },
+    ],
     'all': [
       { id: 'all-everything', label: 'Ver Catálogo Completo (Todas las Ideas)', icon: '🌟', category: 'all' },
       { id: 'all-boardgames', label: 'Juegos de Mesa y Cartas (Virus, Catan)', icon: '🎲', category: 'Juegos de Mesa y Cartas' },
@@ -238,7 +248,7 @@ export default function GiftWizard({ isOpen, onClose, onApplyRecommendation }: G
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-2">
                 {[
                   { id: '0-12m', label: 'Bebé (0-12m)', icon: '🧸' },
                   { id: '1-3', label: '1 a 3 Años', icon: '🧩' },
@@ -247,6 +257,7 @@ export default function GiftWizard({ isOpen, onClose, onApplyRecommendation }: G
                   { id: '10-12', label: '10 a 12 Años', icon: '👾' },
                   { id: '13-15', label: '13 a 15 Años', icon: '🎧' },
                   { id: '16-18', label: '16 a 18 Años', icon: '🖤' },
+                  { id: '+18', label: 'Adultos (+18)', icon: '🥂' },
                   { id: 'all', label: 'Todas las edades', icon: '🌟' },
                 ].map((item) => (
                   <button

@@ -8,7 +8,7 @@ const products = [];
 
 function add(p) {
   // Validate ageRange
-  if (!['0-12m', '1-3', '4-6', '7-9', '10-12', '13-15', '16-18'].includes(p.ageRange)) {
+  if (!['0-12m', '1-3', '4-6', '7-9', '10-12', '13-15', '16-18', '+18'].includes(p.ageRange)) {
     throw new Error(`Invalid ageRange ${p.ageRange} for ${p.id}`);
   }
   // Validate subcategory exists in age

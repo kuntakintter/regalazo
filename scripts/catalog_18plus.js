@@ -1,0 +1,497 @@
+const { add } = require('./catalog_012');
+
+// =========================================================================
+// ADULTOS (+18 AÑOS) - SMARTBOX, ROBÓTICA, LEGO ICONS, EXPERIENCIAS & GOURMET
+// =========================================================================
+
+// 1. Escapadas y Experiencias (Smartbox)
+add({
+  id: '18plus-smartbox-3-dias-con-encanto',
+  asin: 'B08F2CVZ99',
+  title: 'Smartbox - Caja Regalo 3 Días con Encanto (2 Noches con Desayunos para 2 Personas)',
+  slug: 'smartbox-3-dias-con-encanto-caja-regalo',
+  searchQuery: 'smartbox 3 dias con encanto caja regalo 2 noches desayunos dos personas',
+  category: 'Adultos (+18)',
+  subcategory: 'Escapadas y Experiencias (Smartbox)',
+  ageRange: '+18',
+  gender: 'unisex',
+  priceRange: '50-100',
+  priceText: '99,90 €',
+  rating: 4.8,
+  reviewsCount: 14200,
+  badge: 'La Caja Regalo Más Vendida de España',
+  description: 'La experiencia de desconexión definitiva para parejas o amigos. Incluye 2 noches con desayunos a elegir entre más de 2.700 estancias rurales, hoteles con encanto y posadas históricas de España y Europa con validez renovable.',
+  pros: ['Validez de 3 años y 3 meses con cambio gratuito e ilimitado', 'Más de 2.700 hoteles con encanto en España y Portugal', 'Presentación en elegante cofre físico listo para regalar'],
+  idealFor: 'Aniversarios, cumpleaños de 20, 30, 40 o 50 años y parejas',
+  style: 'classic',
+  imageUrl: '',
+  images: []
+});
+
+add({
+  id: '18plus-smartbox-spa-relax-dos',
+  asin: 'B07DFNY9Z1',
+  title: 'Smartbox - Caja Regalo Spa y Relax para Dos (Acceso a Circuito Termal, Balneario o Masaje)',
+  slug: 'smartbox-spa-y-relax-para-dos-caja-regalo',
+  searchQuery: 'smartbox spa y relax para dos personas circuito termal masaje balneario',
+  category: 'Adultos (+18)',
+  subcategory: 'Escapadas y Experiencias (Smartbox)',
+  ageRange: '+18',
+  gender: 'unisex',
+  priceRange: '20-50',
+  priceText: '49,90 €',
+  rating: 4.7,
+  reviewsCount: 9800,
+  badge: 'Desconexión y Bienestar en Pareja',
+  description: 'Un momento de desconexión absoluta para recargar energías. Acceso a circuitos de hidroterapia, spas urbanos, balnearios de aguas termales o masajes con aceites aromáticos para 2 personas.',
+  pros: ['Experiencias en más de 1.800 spas y centros de hidroterapia', 'Reserva fácil desde la app de Smartbox', 'El regalo comodín perfecto para salir de la rutina'],
+  idealFor: 'Regalar un momento de descanso y cuidado personal en pareja',
+  style: 'classic',
+  imageUrl: '',
+  images: []
+});
+
+add({
+  id: '18plus-wonderbox-cena-gourmet-dos',
+  asin: 'B07GKL8901',
+  title: 'Wonderbox - Caja Regalo Momentos Gourmet para Dos (Cena con Maridaje en Restaurantes Seleccionados)',
+  slug: 'wonderbox-momentos-gourmet-cena-para-dos',
+  searchQuery: 'wonderbox momentos gourmet caja regalo cena maridaje dos personas restaurantes',
+  category: 'Adultos (+18)',
+  subcategory: 'Escapadas y Experiencias (Smartbox)',
+  ageRange: '+18',
+  gender: 'unisex',
+  priceRange: '50-100',
+  priceText: '59,90 €',
+  rating: 4.8,
+  reviewsCount: 7600,
+  badge: 'Experiencia Gastronómica para Paladares Exigentes',
+  description: 'Una experiencia culinaria inolvidable. Menús degustación, cocina de autor y maridaje de vinos en más de 1.500 restaurantes recomendados en guías gastronómicas y mesones tradicionales.',
+  pros: ['Gran variedad de restaurantes con alta puntuación gastronómica', 'Incluye platos principales, postres y bodega', 'Cofre físico prémium con guía ilustrada'],
+  idealFor: 'Foodies, celebraciones románticas y amantes del buen comer',
+  style: 'classic',
+  imageUrl: '',
+  images: []
+});
+
+// 2. LEGO Icons y Maquetas para Adultos
+add({
+  id: '18plus-lego-icons-bonsai',
+  asin: 'B08G417G4P',
+  title: 'LEGO Icons Bonsái - Árbol Botánico de Construcción para Adultos con Flores de Cerezo y Maceta',
+  slug: 'lego-icons-bonsai-arbol-botanico-10281',
+  searchQuery: 'lego icons 10281 bonsai arbol botanico decoracion adultos flores cerezo',
+  category: 'Adultos (+18)',
+  subcategory: 'LEGO Icons y Maquetas para Adultos',
+  ageRange: '+18',
+  gender: 'unisex',
+  priceRange: '20-50',
+  priceText: '39,99 €',
+  rating: 4.9,
+  reviewsCount: 32000,
+  badge: 'Top 1 Mundial en Colección Botánica LEGO',
+  description: 'El arte zen del bonsái llevado al universo LEGO. Incluye hojas verdes clásicas y flores de cerezo rosas intercambiables (con pequeñas ranitas ocultas). Incluye maceta rectangular y soporte con listones efecto madera.',
+  pros: ['Experiencia de montaje relajante y terapéutica', 'Piezas botánicas fabricadas a base de caña de azúcar sostenible', 'Elemento de decoración sofisticado para salón u oficina'],
+  idealFor: 'Amantes del diseño, la decoración de interiores y el mindfulness',
+  style: 'classic',
+  imageUrl: '',
+  images: []
+});
+
+add({
+  id: '18plus-lego-icons-ramo-flores',
+  asin: 'B0BJ4MD4B3',
+  title: 'LEGO Icons Ramo de Flores Silvestres - Set Botánico de Construcción Creativa para Adultos',
+  slug: 'lego-icons-ramo-flores-silvestres-10313',
+  searchQuery: 'lego icons 10313 ramo de flores silvestres botanic adultos decoracion',
+  category: 'Adultos (+18)',
+  subcategory: 'LEGO Icons y Maquetas para Adultos',
+  ageRange: '+18',
+  gender: 'unisex',
+  priceRange: '20-50',
+  priceText: '44,99 €',
+  rating: 4.9,
+  reviewsCount: 24500,
+  badge: 'Flores Eternas de Diseño Exclusivo',
+  description: 'Inspirado en acianos, lavanda, amapolas amarillas, perifollo verde, helechos y margaritas gerbera. Tallos ajustables en altura para personalizar el jarrón a tu gusto.',
+  pros: ['16 tallos individuales totalmente personalizables', 'Flores que nunca se marchitan ni necesitan agua', 'El regalo más viral y celebrado para parejas y amigos'],
+  idealFor: 'Decorar el hogar con estilo propio y regalar un detalle único',
+  style: 'classic',
+  imageUrl: '',
+  images: []
+});
+
+add({
+  id: '18plus-lego-star-wars-casco-vader',
+  asin: 'B08WWTY6R2',
+  title: 'LEGO Star Wars - Casco de Darth Vader Modelo de Coleccionista para Adultos con Soporte de Exposición',
+  slug: 'lego-star-wars-casco-darth-vader-75304',
+  searchQuery: 'lego star wars 75304 casco darth vader exposicion soporte placa adultos',
+  category: 'Adultos (+18)',
+  subcategory: 'LEGO Icons y Maquetas para Adultos',
+  ageRange: '+18',
+  gender: 'unisex',
+  priceRange: '50-100',
+  priceText: '64,95 €',
+  rating: 4.9,
+  reviewsCount: 18700,
+  badge: 'Pieza de Coleccionismo de Culto',
+  description: 'Recrea los icónicos detalles y siniestras formas del casco del Señor Oscuro de los Sith con ladrillos LEGO. Incluye base de exposición con placa de identificación para lucir en estanterías o despachos.',
+  pros: ['834 piezas con un nivel de fidelidad cinematográfica impresionante', 'Dimensiones compactas de más de 20 cm de altura ideales para vitrina', 'Licencia oficial de Lucasfilm / Disney'],
+  idealFor: 'Fans veteranos de Star Wars, coleccionistas y amantes del cine de ciencia ficción',
+  style: 'classic',
+  imageUrl: '',
+  images: []
+});
+
+// 3. Juegos de Mesa para Adultos y Parejas
+add({
+  id: '18plus-terraforming-mars-juego',
+  asin: 'B01GSYA4K2',
+  title: 'Maldito Games - Terraforming Mars (Juego de Mesa Estratégico de Conquista Espacial para Adultos)',
+  slug: 'terraforming-mars-juego-de-mesa-estrategia',
+  searchQuery: 'terraforming mars juego de mesa maldito games estrategia adultos cartas tablero',
+  category: 'Adultos (+18)',
+  subcategory: 'Juegos de Mesa para Adultos y Parejas',
+  ageRange: '+18',
+  gender: 'unisex',
+  priceRange: '50-100',
+  priceText: '54,95 €',
+  rating: 4.9,
+  reviewsCount: 11200,
+  badge: 'Top 5 de los Mejores Juegos de la Historia en BGG',
+  description: 'Ponte al frente de una megacorporación y compite para transformar Marte en un planeta habitable. Eleva la temperatura, crea océanos y planta bosques en una obra maestra de la gestión de recursos y motor de cartas.',
+  pros: ['Profundidad táctica inigualable con más de 200 proyectos diferentes', 'Modo en solitario fascinante y partidas multijugador épicas de 2 horas', 'Rejugabilidad prácticamente infinita'],
+  idealFor: 'Jugadores que buscan un reto intelectual profundo y noches de juego inolvidables',
+  style: 'classic',
+  imageUrl: '',
+  images: []
+});
+
+add({
+  id: '18plus-wingspan-juego-mesa',
+  asin: 'B07MY98HD8',
+  title: 'Maldito Games - Wingspan (Juego de Mesa Competitivo de Aves con Huevos y Comedero de Madera)',
+  slug: 'wingspan-juego-de-mesa-aves-competitivo',
+  searchQuery: 'wingspan juego de mesa aves maldito games huevos miniaturas cartas dados',
+  category: 'Adultos (+18)',
+  subcategory: 'Juegos de Mesa para Adultos y Parejas',
+  ageRange: '+18',
+  gender: 'unisex',
+  priceRange: '50-100',
+  priceText: '52,90 €',
+  rating: 4.9,
+  reviewsCount: 15300,
+  badge: 'Ganador del Premio Kennerspiel des Jahres',
+  description: 'Un juego relajante pero profundamente táctico sobre ornitología. Atrae a las mejores aves a tus reservas naturales combinando hábitats de bosque, pradera y humedal con preciosos huevos de colores y torre de dados en forma de casita de pájaros.',
+  pros: ['Diseño artístico y componentes visuales espectaculares', 'Mecánica fluida y adictiva apta para parejas y grupos de hasta 5 jugadores', 'Ilustraciones científicas hiperrealistas de más de 170 especies'],
+  idealFor: 'Tardes de café tranquilas, amantes de la naturaleza y parejas',
+  style: 'classic',
+  imageUrl: '',
+  images: []
+});
+
+add({
+  id: '18plus-guatafac-juego-fiesta',
+  asin: 'B07XDH9Y42',
+  title: 'Guatafac - ¿Unos Tragos? El Juego de Mesa de Cartas Divertido y Picante para Fiestas de Adultos',
+  slug: 'guatafac-unos-tragos-juego-de-cartas-fiesta',
+  searchQuery: 'guatafac juego de cartas adultos fiesta risas diversion preguntas 8 segundos',
+  category: 'Adultos (+18)',
+  subcategory: 'Juegos de Mesa para Adultos y Parejas',
+  ageRange: '+18',
+  gender: 'unisex',
+  priceRange: '20-50',
+  priceText: '24,95 €',
+  rating: 4.8,
+  reviewsCount: 19400,
+  badge: 'El Juego Más Divertido para Reuniones de Amigos',
+  description: 'Tienes 8 segundos para responder a preguntas delirantes y sinceras sin censura. El juego definitivo para romper el hielo en cenas, previas de fiesta y celebraciones de cumpleaños de adultos.',
+  pros: ['Partidas ultrarrápidas llenas de risas y anécdotas confesadas', '400 cartas con retos, preguntas ácidas y confesiones', 'Fabricado en Europa con papel ecológico certificado'],
+  idealFor: 'Cenas con amigos, barbacoas y quedadas de fin de semana',
+  style: 'classic',
+  imageUrl: '',
+  images: []
+});
+
+// 4. Drones, Robótica y RC Avanzado
+add({
+  id: '18plus-dji-mini-4k-dron',
+  asin: 'B0CX1G2Y4P',
+  title: 'DJI Mini 4K - Dron Ultraligero de Menos de 249g con Cámara 4K UHD y Transmisión de Vídeo a 10 km',
+  slug: 'dji-mini-4k-dron-ultraligero-camara-estabilizada',
+  searchQuery: 'dji mini 4k dron camara estabilizada gimbal 3 ejes 249g transmision video',
+  category: 'Adultos (+18)',
+  subcategory: 'Drones, Robótica y RC Avanzado',
+  ageRange: '+18',
+  gender: 'unisex',
+  priceRange: '>100',
+  priceText: '299,00 €',
+  rating: 4.9,
+  reviewsCount: 16800,
+  badge: 'El Mejor Dron de Viaje y Paisajes de Amazon',
+  description: 'Con un peso pluma inferior a 249 gramos (sin necesidad de examen en muchas normativas), ofrece grabación en 4K Ultra HD con estabilizador mecánico en 3 ejes, resistencia al viento de nivel 5 y 31 minutos de autonomía por batería.',
+  pros: ['Vídeo cinematográfico hiperestable en 4K UHD', 'Pesa solo 249 g: cabe en la palma de la mano y en cualquier mochila de senderismo', 'Retorno automático a casa (RTH) por GPS para máxima seguridad'],
+  idealFor: 'Viajeros, fotógrafos, senderistas y entusiastas de la tecnología',
+  style: 'tech',
+  imageUrl: '',
+  images: []
+});
+
+add({
+  id: '18plus-coche-rc-wltoys-124019-buggy',
+  asin: 'B08HR9M3K8',
+  title: 'Wltoys 124019 - Coche Teledirigido RC Buggy Todo Terreno 4x4 Escala 1:12 a 60 km/h Chasis Metálico',
+  slug: 'coche-teledirigido-rc-wltoys-124019-60kmh',
+  searchQuery: 'wltoys 124019 coche teledirigido rc 4x4 buggy chasis metal 60 kmh amortiguadores aceite',
+  category: 'Adultos (+18)',
+  subcategory: 'Drones, Robótica y RC Avanzado',
+  ageRange: '+18',
+  gender: 'boy',
+  priceRange: '50-100',
+  priceText: '99,99 €',
+  rating: 4.8,
+  reviewsCount: 6500,
+  badge: 'Pura Potencia RC y Velocidad Extrema (60 km/h)',
+  description: 'Un monstruo del radiocontrol para adultos. Motor 550 de alto par con tracción integral a las 4 ruedas, chasis reforzado de aleación de aluminio y amortiguadores hidráulicos de aceite regulables.',
+  pros: ['Alcanza 60 km/h reales sobre tierra, asfalto y hierba', 'Suspensión independiente con absorción de impactos brutales', 'Repuestos y mejoras disponibles mundialmente'],
+  idealFor: 'Adultos que quieren adrenalina pura de radiocontrol al aire libre',
+  style: 'tech',
+  imageUrl: '',
+  images: []
+});
+
+add({
+  id: '18plus-elegoo-arduino-kit-robotica',
+  asin: 'B01EWNUUUA',
+  title: 'ELEGOO Kit de Inicio Avanzado compatible con Arduino UNO R3 con Más de 200 Componentes y Tutoriales',
+  slug: 'elegoo-kit-iniciacion-robotica-arduino-uno-r3',
+  searchQuery: 'elegoo kit de inicio avanzado arduino uno r3 robotica sensores servomotores electronica',
+  category: 'Adultos (+18)',
+  subcategory: 'Drones, Robótica y RC Avanzado',
+  ageRange: '+18',
+  gender: 'unisex',
+  priceRange: '20-50',
+  priceText: '42,99 €',
+  rating: 4.8,
+  reviewsCount: 14200,
+  badge: 'El Kit de Robótica y Electrónica Nº 1 del Mercado',
+  description: 'El punto de entrada perfecto a la domótica, sensores y robótica. Incluye placa controladora, pantalla LCD, servomotores, módulos de relé, sensores de temperatura, distancia ultrasónica y guía paso a paso con código descargable.',
+  pros: ['Más de 63 tipos de componentes electrónicos de primera calidad', 'No requiere soldadura gracias a la placa de pruebas breadboard incluida', 'Permite crear alarmas caseras, robots y proyectos domóticos reales'],
+  idealFor: 'Ingenieros, programadores, manitas y amantes del movimiento Maker',
+  style: 'tech',
+  imageUrl: '',
+  images: []
+});
+
+// 5. Tecnología, Audio Hi-Fi y Smart Home
+add({
+  id: '18plus-kindle-paperwhite-16gb',
+  asin: 'B08N3TCP2F',
+  title: 'Kindle Paperwhite (16 GB) - Lector de eBooks con Pantalla de 6,8", Luz Cálida Ajustable y Resistente al Agua',
+  slug: 'kindle-paperwhite-16gb-luz-calida-regulable',
+  searchQuery: 'kindle paperwhite 16gb luz calida regulable pantalla 6 8 pulgadas resistente agua',
+  category: 'Adultos (+18)',
+  subcategory: 'Tecnología, Audio Hi-Fi y Smart Home',
+  ageRange: '+18',
+  gender: 'unisex',
+  priceRange: '>100',
+  priceText: '149,99 €',
+  rating: 4.9,
+  reviewsCount: 45000,
+  badge: 'El Mejor Lector de Libros Electrónicos del Planeta',
+  description: 'Pantalla de 300 ppp sin reflejos que se lee como papel impreso auténtico incluso bajo la luz directa del sol. Luz cálida ajustable para no cansar la vista de noche y hasta 10 semanas de batería con una sola carga por USB-C.',
+  pros: ['Resistencia al agua IPX8 para leer tranquilo en la bañera, piscina o playa', 'Batería legendaria de 10 semanas de duración', 'Miles de libros en tu bolsillo sin distracciones de notificaciones'],
+  idealFor: 'Cualquier adulto amante de la lectura y el aprendizaje continuo',
+  style: 'classic',
+  imageUrl: '',
+  images: []
+});
+
+add({
+  id: '18plus-philips-hue-kit-bombillas-led',
+  asin: 'B099NV8Q1J',
+  title: 'Philips Hue White & Color Ambiance - Pack de 2 Bombillas LED Inteligentes E27 con 16 Millones de Colores',
+  slug: 'philips-hue-pack-2-bombillas-led-inteligentes-e27',
+  searchQuery: 'philips hue white and color pack 2 bombillas inteligentes e27 alexa google home',
+  category: 'Adultos (+18)',
+  subcategory: 'Tecnología, Audio Hi-Fi y Smart Home',
+  ageRange: '+18',
+  gender: 'unisex',
+  priceRange: '50-100',
+  priceText: '84,95 €',
+  rating: 4.8,
+  reviewsCount: 18200,
+  badge: 'La Iluminación Inteligente Más Prestigiosa del Hogar',
+  description: 'Transforma al instante la atmósfera de tu salón o dormitorio. Control por voz compatible con Alexa, Apple HomeKit y Google Assistant, sincronización con películas y música y programación de encendido al amanecer.',
+  pros: ['16 millones de colores vibrantes y tonalidades de blanco cálido a frío', 'Control instantáneo por Bluetooth desde el móvil o mediante asistente de voz', 'Máxima durabilidad y eficiencia energética LED'],
+  idealFor: 'Crear ambientes cinematográficos y de relax en casa',
+  style: 'tech',
+  imageUrl: '',
+  images: []
+});
+
+add({
+  id: '18plus-bose-soundlink-flex-altavoz',
+  asin: 'B099TJGJ91',
+  title: 'Bose SoundLink Flex - Altavoz Bluetooth Portátil Resistente al Agua IP67 con Graves Profundos y Nítidos',
+  slug: 'bose-soundlink-flex-altavoz-bluetooth-portatil',
+  searchQuery: 'bose soundlink flex altavoz bluetooth portatil exterior resistente agua ip67',
+  category: 'Adultos (+18)',
+  subcategory: 'Tecnología, Audio Hi-Fi y Smart Home',
+  ageRange: '+18',
+  gender: 'unisex',
+  priceRange: '>100',
+  priceText: '139,00 €',
+  rating: 4.9,
+  reviewsCount: 22000,
+  badge: 'Fidelidad Acústica Hi-Fi Portátil de Bose',
+  description: 'Un sonido sorprendentemente potente, claro y envolvente en un cuerpo ultrarresistente a golpes, polvo y agua que incluso flota en la piscina. Tecnología PositionIQ que optimiza automáticamente el sonido según esté apoyado o colgado.',
+  pros: ['Calidad de sonido acústico inigualable con graves que llenan la sala', 'Certificación IP67 resistente a inmersiones completas', 'Batería de 12 horas de duración continua'],
+  idealFor: 'Barbacoas, viajes, hogar y melómanos exigentes',
+  style: 'classic',
+  imageUrl: '',
+  images: []
+});
+
+// 6. Café de Especialidad y Coctelería Gourmet
+add({
+  id: '18plus-cecotec-power-espresso-cafetera',
+  asin: 'B08F2CVZ98',
+  title: 'Cecotec Cafetera Express Power Espresso 20 Professionale - 20 Bares con Manómetro Tradicional y Vaporizador',
+  slug: 'cecotec-power-espresso-20-cafetera-express-manometro',
+  searchQuery: 'cecotec cafetera express power espresso 20 bars manometro vaporizador leche cafe molido',
+  category: 'Adultos (+18)',
+  subcategory: 'Café de Especialidad y Coctelería Gourmet',
+  ageRange: '+18',
+  gender: 'unisex',
+  priceRange: '50-100',
+  priceText: '89,90 €',
+  rating: 4.7,
+  reviewsCount: 28900,
+  badge: 'El Espresso Perfecto con Crema Densa en Casa',
+  description: 'Diseñada para auténticos amantes del café barista. Bomba de presión italiana de 20 bares con manómetro de control de presión en tiempo real y vaporizador orientable para emulsionar leche y preparar cappuccinos sedosos.',
+  pros: ['Bomba de 20 bares con tecnología ForceAroma para máxima crema', 'Manómetro de estilo retro vintage muy elegante en cocina', 'Bandeja calientatazas de acero inoxidable'],
+  idealFor: 'Adultos amantes del café recién molido y desayunos de calidad',
+  style: 'classic',
+  imageUrl: '',
+  images: []
+});
+
+add({
+  id: '18plus-kit-cocteleria-boston-acero',
+  asin: 'B07V2Q7K3Y',
+  title: 'Kit Profesional de Coctelería Boston en Acero Inoxidable con Coctelera, Medidor Jigger y Soporte de Bambú',
+  slug: 'kit-cocteleria-profesional-boston-soporte-bambu',
+  searchQuery: 'kit cocteleria profesional coctelera boston jigger colador cuchara soporte bambu barman',
+  category: 'Adultos (+18)',
+  subcategory: 'Café de Especialidad y Coctelería Gourmet',
+  ageRange: '+18',
+  gender: 'unisex',
+  priceRange: '20-50',
+  priceText: '36,99 €',
+  rating: 4.8,
+  reviewsCount: 9200,
+  badge: 'El Kit Definitivo para Fiestas y Cócteles Caseros',
+  description: 'Set completo de barman en acero inoxidable 304 de grado alimenticio. Incluye coctelera Shaker de 750ml, vaso medidor jigger doble, colador Hawthorne, mortero para mojitos, pinzas de hielo y elegante soporte de madera de bambú.',
+  pros: ['12 piezas esenciales para preparar mojitos, martinis, margaritas o negronis', 'Apto para lavavajillas sin perder brillo ni oxidarse', 'Soporte organizador de madera que viste cualquier mueble bar'],
+  idealFor: 'Anfitriones que disfrutan recibiendo visitas y preparando copas',
+  style: 'classic',
+  imageUrl: '',
+  images: []
+});
+
+add({
+  id: '18plus-hario-v60-kit-cafe-filtro',
+  asin: 'B00JJIO574',
+  title: 'Hario V60 - Set Completo de Café de Filtro Manual con Jarra de Cristal Servidora, Cono y Filtros de Papel',
+  slug: 'hario-v60-kit-cafe-filtro-manual-jarra-cristal',
+  searchQuery: 'hario v60 set cafe goteo filtro manual jarra cristal servidor barista',
+  category: 'Adultos (+18)',
+  subcategory: 'Café de Especialidad y Coctelería Gourmet',
+  ageRange: '+18',
+  gender: 'unisex',
+  priceRange: '20-50',
+  priceText: '28,95 €',
+  rating: 4.9,
+  reviewsCount: 16400,
+  badge: 'El Método de Extracción Preferido de los Baristas',
+  description: 'Fabricado en Japón, el método de goteo Hario V60 extrae las notas afrutadas y florales más sutiles del café de especialidad. Incluye cono de extracción con estrías espirales, jarra de vidrio resistente al calor y cuchara medidora.',
+  pros: ['Extrae el sabor más limpio, aromático y dulce del café', 'Vidrio japonés borosilicato de máxima resistencia térmica', 'Un ritual matutino de paz y sabor incomparable'],
+  idealFor: 'Gourmets del café de origen y amantes del café de filtro',
+  style: 'classic',
+  imageUrl: '',
+  images: []
+});
+
+// 7. Perfumería Prémium de Autor
+add({
+  id: '18plus-dior-sauvage-eau-de-toilette',
+  asin: 'B012CZFZ96',
+  title: 'Dior Sauvage - Eau de Toilette 100ml con Vaporizador Original para Hombre',
+  slug: 'dior-sauvage-eau-de-toilette-100ml',
+  searchQuery: 'dior sauvage eau de toilette 100ml perfume hombre original bergamota pimienta',
+  category: 'Adultos (+18)',
+  subcategory: 'Perfumería Prémium de Autor',
+  ageRange: '+18',
+  gender: 'boy',
+  priceRange: '>100',
+  priceText: '115,00 €',
+  rating: 4.9,
+  reviewsCount: 41000,
+  badge: 'La Fragancia Masculina Más Vendida y Reconocida del Mundo',
+  description: 'Un acto de creación inspirado en los grandes espacios abiertos. La frescura radiante y jugosa de la bergamota de Calabria se une a la potencia amaderada y noble del ambroxan. Un rastro inconfundible de magnetismo y virilidad.',
+  pros: ['Fijación descomunal que dura todo el día y noche', 'Halagado por el 99% de las personas que lo perciben', 'Tapón magnético icónico y cristal ahumado de alta gama'],
+  idealFor: 'El regalo de lujo definitivo para un hombre adulto',
+  style: 'classic',
+  imageUrl: '',
+  images: []
+});
+
+add({
+  id: '18plus-armani-si-eau-de-parfum',
+  asin: 'B00EDPTEY0',
+  title: 'Giorgio Armani Sì - Eau de Parfum 100ml con Notas de Grosella Negra, Rosa de Mayo y Vainilla',
+  slug: 'giorgio-armani-si-eau-de-parfum-100ml',
+  searchQuery: 'giorgio armani si eau de parfum 100ml perfume mujer original sofisticado',
+  category: 'Adultos (+18)',
+  subcategory: 'Perfumería Prémium de Autor',
+  ageRange: '+18',
+  gender: 'girl',
+  priceRange: '>100',
+  priceText: '109,00 €',
+  rating: 4.9,
+  reviewsCount: 26500,
+  badge: 'Elegancia Femenina Absoluta y Distinción Italiana',
+  description: '"Sì a la emoción, Sì a la libertad": Un perfume chipre afrutado de alta costura que combina néctar de grosella negra, corazón de freesia y rosa de mayo sobre una base envolvente de pachulí y madera rubia.',
+  pros: ['Aroma envolvente, refinado y muy sofisticado', 'Estela memorable que transmite éxito y seguridad', 'Frasco joya de líneas puras con tapón negro pulido'],
+  idealFor: 'Mujeres adultas que buscan una fragancia firma elegante para cualquier ocasión',
+  style: 'classic',
+  imageUrl: '',
+  images: []
+});
+
+add({
+  id: '18plus-tom-ford-black-orchid',
+  asin: 'B000P22U00',
+  title: 'Tom Ford Black Orchid - Eau de Parfum 50ml Unisex de Lujo con Orquídea Negra y Especias Raras',
+  slug: 'tom-ford-black-orchid-eau-de-parfum-50ml',
+  searchQuery: 'tom ford black orchid eau de parfum 50ml perfume unisex lujo orquidea negra',
+  category: 'Adultos (+18)',
+  subcategory: 'Perfumería Prémium de Autor',
+  ageRange: '+18',
+  gender: 'unisex',
+  priceRange: '>100',
+  priceText: '119,00 €',
+  rating: 4.8,
+  reviewsCount: 14000,
+  badge: 'La Joya de la Perfumería de Nicho y Lujo',
+  description: 'Una fragancia rica, oscura y voluptuosa que desafía las normas. Trufa negra aromática, bergamota chispeante, la legendaria orquídea negra de Tom Ford y notas de chocolate amargo, incienso y vainilla dulce.',
+  pros: ['Perfume de autor exclusivo con personalidad embriagadora', 'Proyección sublime y misteriosa que dura días en la ropa', 'Frasco de cristal acanalado negro azabache con placa dorada'],
+  idealFor: 'Personas exigentes que buscan un perfume de culto que nadie más lleva',
+  style: 'classic',
+  imageUrl: '',
+  images: []
+});
+
+console.log('Adults (+18) products successfully loaded.');
