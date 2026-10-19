@@ -219,29 +219,6 @@ export default function HomePage() {
           onApplyRecommendation={handleApplyRecommendation}
         />
 
-        {/* DYNAMIC AGE BANNER WHEN FILTERED */}
-        {currentAgeMeta && (
-          <div className="p-6 rounded-3xl mb-8 border border-indigo-100 bg-white shadow-xs transition-all flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-4">
-              <span className="text-4xl">{currentAgeMeta.icon}</span>
-              <div>
-                <h2 className="text-lg sm:text-xl font-black text-slate-900">{currentAgeMeta.label}</h2>
-                <p className="text-xs sm:text-sm text-slate-500">{currentAgeMeta.tagline}</p>
-              </div>
-            </div>
-            <div className="flex flex-wrap gap-1.5">
-              {currentAgeMeta.seoKeywords.map((kw, idx) => (
-                <span
-                  key={idx}
-                  className="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-slate-100 border border-slate-200 text-slate-700"
-                >
-                  #{kw}
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
-
         {/* FILTER BAR & SEARCH */}
         <div id="catalogo-productos">
           <FilterBar
@@ -256,6 +233,34 @@ export default function HomePage() {
             totalResults={filteredProducts.length}
           />
         </div>
+
+        {/* DYNAMIC AGE BANNER WHEN FILTERED (PLACED BELOW FILTER BAR AS REQUESTED) */}
+        {currentAgeMeta && (
+          <div className="p-5 sm:p-6 rounded-3xl my-6 border border-indigo-100 bg-white shadow-xs transition-all flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+            <div className="flex items-center gap-3.5">
+              <span className="text-3xl sm:text-4xl shrink-0">{currentAgeMeta.icon}</span>
+              <div>
+                <h2 className="text-base sm:text-lg font-black text-slate-900">{currentAgeMeta.label}</h2>
+                <p className="text-xs sm:text-sm text-slate-500 leading-snug">{currentAgeMeta.tagline}</p>
+              </div>
+            </div>
+            {currentAgeMeta.seoKeywords.length > 0 && (
+              <div className="flex flex-wrap items-center gap-1.5 pt-2 lg:pt-0 border-t lg:border-t-0 border-slate-100 w-full lg:w-auto">
+                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mr-1 shrink-0">
+                  Ideas destacadas:
+                </span>
+                {currentAgeMeta.seoKeywords.map((kw, idx) => (
+                  <span
+                    key={idx}
+                    className="px-2.5 py-1 rounded-xl text-xs font-semibold bg-slate-50 border border-slate-200 text-slate-700 shadow-2xs hover:border-indigo-300 transition-colors"
+                  >
+                    {kw}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
 
         {/* ACTIVE SEARCH BANNER IF SEARCHING */}
         {searchQuery.trim() !== '' && (
