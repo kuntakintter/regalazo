@@ -26,12 +26,20 @@ export default function HomePage() {
     setSelectedAge(age);
     setSelectedCategory('all'); // Reset subcategory when switching age
     if (selectedPrice !== 'all') setSelectedPrice('all'); // Reset price so no empty states occur
+    if (searchQuery) setSearchQuery(''); // Clear search so filters show results immediately
   };
 
   // Handle category selection
   const handleSelectCategory = (cat: string) => {
     setSelectedCategory(cat);
     if (selectedPrice !== 'all') setSelectedPrice('all'); // Reset price constraint
+    if (searchQuery) setSearchQuery(''); // Clear search so category shows results immediately
+  };
+
+  // Handle gender selection
+  const handleSelectGender = (gender: 'all' | 'boy' | 'girl' | 'reveal') => {
+    setSelectedGender(gender);
+    if (searchQuery) setSearchQuery(''); // Clear search so gender shows results immediately
   };
 
   // Handle live search
@@ -242,12 +250,28 @@ export default function HomePage() {
             selectedCategory={selectedCategory}
             onSelectCategory={handleSelectCategory}
             selectedGender={selectedGender}
-            onSelectGender={setSelectedGender}
+            onSelectGender={handleSelectGender}
             selectedPrice={selectedPrice}
             onSelectPrice={setSelectedPrice}
             totalResults={filteredProducts.length}
           />
         </div>
+
+        {/* ACTIVE SEARCH BANNER IF SEARCHING */}
+        {searchQuery.trim() !== '' && (
+          <div className="mb-6 flex flex-wrap items-center justify-between gap-3 p-4 bg-indigo-50/80 border border-indigo-200 rounded-2xl shadow-xs">
+            <div className="flex items-center gap-2.5 text-indigo-950 font-bold text-sm">
+              <span className="flex h-2.5 w-2.5 rounded-full bg-indigo-600 animate-pulse"></span>
+              <span>Resultados para la búsqueda: <mark className="bg-indigo-100 text-indigo-900 px-2 py-0.5 rounded font-black">&ldquo;{searchQuery}&rdquo;</mark></span>
+            </div>
+            <button
+              onClick={() => setSearchQuery('')}
+              className="text-xs bg-white text-indigo-700 px-3.5 py-1.5 rounded-xl border border-indigo-200 font-bold hover:bg-indigo-100 hover:text-indigo-900 transition-all shadow-xs cursor-pointer flex items-center gap-1.5"
+            >
+              <span>✕ Quitar búsqueda (ver todo)</span>
+            </button>
+          </div>
+        )}
 
         {/* PRODUCTS GRID */}
         {filteredProducts.length > 0 ? (

@@ -210,17 +210,17 @@ async function run() {
   console.log('========================================');
 
   // Now rewrite src/data/products.ts directly
-  const { AGE_CATEGORIES, AGE_SUBCATEGORIES_MAP, PRICE_FILTERS } = require('../src/data/categories.ts');
+  const { AGE_CATEGORIES, AGE_SUBCATEGORIES_MAP, PRICE_FILTERS, GENERAL_CATEGORY_MAPPING } = require('../src/data/categories.ts');
   const code = `// ============================================================================
 // CATÁLOGO COMPLETO DE PRODUCTOS VERIFICADOS - REGALAZO 2026
 // Afiliación oficial con Amazon España (tag: vapegadgets22-21)
 // ============================================================================
 
-import { AGE_CATEGORIES, AGE_SUBCATEGORIES_MAP, PRICE_FILTERS, AgeCategoryMeta } from './categories';
+import { AGE_CATEGORIES, AGE_SUBCATEGORIES_MAP, PRICE_FILTERS, GENERAL_CATEGORY_MAPPING, AgeCategoryMeta } from './categories';
 
 export const AMAZON_AFFILIATE_TAG = 'vapegadgets22-21';
 
-export { AGE_CATEGORIES, AGE_SUBCATEGORIES_MAP, PRICE_FILTERS };
+export { AGE_CATEGORIES, AGE_SUBCATEGORIES_MAP, PRICE_FILTERS, GENERAL_CATEGORY_MAPPING };
 export type { AgeCategoryMeta };
 
 export interface Product {
