@@ -1,23 +1,39 @@
 import { MetadataRoute } from 'next';
-import { AGE_CATEGORIES } from '@/data/products';
+import { SEO_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://regalazo.vercel.app';
 
-  const categoryEntries = AGE_CATEGORIES.map((cat) => ({
-    url: `${baseUrl}/#${cat.id}`,
-    lastModified: new Date(),
-    changeFrequency: 'daily' as const,
-    priority: 0.8,
-  }));
-
-  return [
+  // 1. Root Homepage
+  const routes: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       lastModified: new Date(),
-      changeFrequency: 'daily' as const,
+      changeFrequency: 'daily',
       priority: 1.0,
     },
-    ...categoryEntries,
   ];
+
+  // 2. Age Landing Pages (e.g. /bebes-0-a-12-meses, /ninos-1-a-3-anos...)
+  for (const route of Object.values(SEO_AGE_ROUTES)) {
+    routes.push({
+      url: `${baseUrl}/${route.ageSlug}`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.9,
+    });
+
+    // 3. Subcategory Landing Pages (e.g. /bebes-0-a-12-meses/cochecitos-y-mobiliario-de-bebe)
+    const subcategories = getSubcategorySlugMap(route.ageId);
+    for (const sub of subcategories) {
+      routes.push({
+        url: `${baseUrl}/${route.ageSlug}/${sub.slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly',
+        priority: 0.8,
+      });
+    }
+  }
+
+  return routes;
 }

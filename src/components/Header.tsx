@@ -8,13 +8,13 @@ import { PRODUCTS, AMAZON_AFFILIATE_TAG } from '@/data/products';
 import { matchesSearchQuery } from '@/utils/search';
 
 interface HeaderProps {
-  currentTheme: 'baby' | 'kids' | 'gamer' | 'emo' | 'tech' | 'classic';
-  onThemeChange: (theme: 'baby' | 'kids' | 'gamer' | 'emo' | 'tech' | 'classic') => void;
+  currentTheme?: 'baby' | 'kids' | 'gamer' | 'emo' | 'tech' | 'classic';
+  onThemeChange?: (theme: 'baby' | 'kids' | 'gamer' | 'emo' | 'tech' | 'classic') => void;
   onSearchChange?: (query: string) => void;
   searchQuery?: string;
 }
 
-export default function Header({ currentTheme, onSearchChange, searchQuery = '' }: HeaderProps) {
+export default function Header({ currentTheme = 'classic', onThemeChange, onSearchChange, searchQuery = '' }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);

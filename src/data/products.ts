@@ -108,7 +108,10 @@ export const AGE_CATEGORIES: AgeCategoryMeta[] = [
   }
 ];
 
+import { ADDITIONAL_VERIFIED_PRODUCTS } from './additionalProducts';
+
 export const PRODUCTS: Product[] = [
+  ...ADDITIONAL_VERIFIED_PRODUCTS,
   {
     id: 'bebe-canon-confeti',
     asin: 'B0B945FCKT',
