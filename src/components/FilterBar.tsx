@@ -171,28 +171,6 @@ export default function FilterBar({
             );
           })}
         </div>
-
-        {/* Active AI Gender Tag (if applied via wizard) */}
-        {selectedGender !== 'all' && (
-          <div className="mt-3 pt-3 border-t border-indigo-100/60 flex items-center justify-between text-xs">
-            <span className="text-slate-600 font-medium">
-              Filtro de género activo desde el asistente:{' '}
-              <strong className="text-indigo-700">
-                {selectedGender === 'boy'
-                  ? '👦 Para Chico'
-                  : selectedGender === 'girl'
-                  ? '👧 Para Chica'
-                  : '❓ Revelación de Género'}
-              </strong>
-            </span>
-            <button
-              onClick={() => onSelectGender('all')}
-              className="text-indigo-600 hover:text-indigo-800 font-bold underline cursor-pointer text-xs"
-            >
-              Quitar filtro de género
-            </button>
-          </div>
-        )}
       </div>
 
       {/* 2. SELECTOR DE EDAD */}
@@ -236,6 +214,66 @@ export default function FilterBar({
               <span>{cat.label}</span>
             </button>
           ))}
+        </div>
+      </div>
+
+      {/* 3. SELECTOR DE DESTINATARIO: PARA ÉL / PARA ELLA / UNISEX */}
+      <div className="pt-1">
+        <label className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5 mb-2.5">
+          <span className="text-sm">🎯</span>
+          ¿Para quién es el regalo?:
+        </label>
+
+        <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-thin">
+          <button
+            onClick={() => onSelectGender('all')}
+            className={`px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all border cursor-pointer flex items-center gap-1.5 ${
+              selectedGender === 'all'
+                ? 'bg-indigo-600 text-white border-indigo-600 shadow-xs'
+                : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100'
+            }`}
+          >
+            <span>✨</span>
+            <span>Todos / Unisex</span>
+          </button>
+
+          <button
+            onClick={() => onSelectGender('boy')}
+            className={`px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all border cursor-pointer flex items-center gap-1.5 ${
+              selectedGender === 'boy'
+                ? 'bg-blue-600 text-white border-blue-600 shadow-xs'
+                : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-blue-50 hover:text-blue-700'
+            }`}
+          >
+            <span>👦</span>
+            <span>Para Él</span>
+          </button>
+
+          <button
+            onClick={() => onSelectGender('girl')}
+            className={`px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all border cursor-pointer flex items-center gap-1.5 ${
+              selectedGender === 'girl'
+                ? 'bg-pink-600 text-white border-pink-600 shadow-xs'
+                : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-pink-50 hover:text-pink-700'
+            }`}
+          >
+            <span>👧</span>
+            <span>Para Ella</span>
+          </button>
+
+          {selectedAge === '0-12m' && (
+            <button
+              onClick={() => onSelectGender('reveal')}
+              className={`px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all border cursor-pointer flex items-center gap-1.5 ${
+                selectedGender === 'reveal'
+                  ? 'bg-amber-500 text-white border-amber-500 shadow-xs'
+                  : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-amber-50 hover:text-amber-700'
+              }`}
+            >
+              <span>🎉</span>
+              <span>Fiesta Revelación de Género</span>
+            </button>
+          )}
         </div>
       </div>
 
