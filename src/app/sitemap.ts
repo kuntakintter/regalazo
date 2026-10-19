@@ -35,5 +35,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   }
 
+  // 4. Mandatory Legal and Compliance Pages for Google & Amazon
+  const legalPages = ['aviso-legal', 'politica-de-privacidad', 'politica-de-cookies'];
+  for (const page of legalPages) {
+    routes.push({
+      url: `${baseUrl}/${page}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.3,
+    });
+  }
+
   return routes;
 }

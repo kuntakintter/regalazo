@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import CookieBanner from '@/components/CookieBanner';
 
 export const metadata: Metadata = {
   title: 'Regalazo⚡ | Ideas de Regalo para Niños y Jóvenes (0 a 18 Años)',
@@ -85,6 +86,7 @@ export default function RootLayout({
       </head>
       <body className="antialiased font-sans selection:bg-indigo-500 selection:text-white">
         {children}
+        <CookieBanner />
       </body>
     </html>
   );

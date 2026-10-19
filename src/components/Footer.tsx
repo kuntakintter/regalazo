@@ -112,14 +112,30 @@ export default function Footer({ currentTheme }: FooterProps) {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-slate-200 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs opacity-60">
+        <div className="border-t border-slate-200 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs opacity-75">
           <div>
-            © {new Date().getFullYear()} Regalazo (regalazo.vercel.app) • Todos los derechos reservados.
+            © {new Date().getFullYear()} Regalazo (buscaregalo.vercel.app) • Todos los derechos reservados.
           </div>
-          <div className="flex gap-4">
-            <span className="hover:underline cursor-pointer">Aviso Legal</span>
-            <span className="hover:underline cursor-pointer">Política de Privacidad</span>
-            <span className="hover:underline cursor-pointer">Política de Cookies</span>
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 font-medium">
+            <Link href="/aviso-legal" className="hover:text-indigo-600 hover:underline transition-colors">
+              Aviso Legal
+            </Link>
+            <Link href="/politica-de-privacidad" className="hover:text-indigo-600 hover:underline transition-colors">
+              Política de Privacidad
+            </Link>
+            <Link href="/politica-de-cookies" className="hover:text-indigo-600 hover:underline transition-colors">
+              Política de Cookies
+            </Link>
+            <button
+              onClick={() => {
+                if (typeof window !== 'undefined') {
+                  window.dispatchEvent(new Event('openCookieBanner'));
+                }
+              }}
+              className="text-slate-500 hover:text-indigo-600 hover:underline transition-colors cursor-pointer"
+            >
+              Preferencias de Cookies
+            </button>
           </div>
         </div>
 
