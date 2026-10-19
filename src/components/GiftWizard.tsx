@@ -2,17 +2,19 @@
 
 import React, { useState } from 'react';
 import confetti from 'canvas-confetti';
-import { Sparkles, ArrowRight, RotateCcw, Check, Heart, Gamepad2, Flame, Baby, Compass } from 'lucide-react';
+import { Sparkles, ArrowRight, RotateCcw, Check, Heart, X, Bot, Compass, User, DollarSign } from 'lucide-react';
 
 interface GiftWizardProps {
-  onApplyRecommendation: (filters: { age: string; category: string; price: string; theme: any }) => void;
-  currentTheme: string;
+  isOpen: boolean;
+  onClose: () => void;
+  onApplyRecommendation: (filters: { age: string; category: string; gender: 'all' | 'boy' | 'girl'; price: string }) => void;
 }
 
-export default function GiftWizard({ onApplyRecommendation, currentTheme }: GiftWizardProps) {
+export default function GiftWizard({ isOpen, onClose, onApplyRecommendation }: GiftWizardProps) {
   const [step, setStep] = useState(1);
+  const [selectedGender, setSelectedGender] = useState<'all' | 'boy' | 'girl'>('all');
   const [selectedAge, setSelectedAge] = useState<string>('0-12m');
-  const [selectedVibe, setSelectedVibe] = useState<string>('any');
+  const [selectedVibe, setSelectedVibe] = useState<string>('all-0-12m');
   const [selectedBudget, setSelectedBudget] = useState<string>('20-50');
 
   const triggerConfetti = () => {
@@ -20,12 +22,10 @@ export default function GiftWizard({ onApplyRecommendation, currentTheme }: Gift
       confetti({
         particleCount: 80,
         spread: 60,
-        origin: { y: 0.7 },
+        origin: { y: 0.6 },
         colors: ['#6366f1', '#ec4899', '#f59e0b', '#10b981'],
       });
-    } catch {
-      // Ignore if canvas-confetti is not loaded
-    }
+    } catch {}
   };
 
   const AGE_VIBES_MAP: Record<string, Array<{ id: string; label: string; icon: string; category: string }>> = {
@@ -46,7 +46,7 @@ export default function GiftWizard({ onApplyRecommendation, currentTheme }: Gift
     ],
     '4-6': [
       { id: 'all-4-6', label: 'Ver Todo de 4 a 6 Años', icon: '🌟', category: 'all' },
-      { id: 'board-kids', label: 'Juegos de Mesa Infantiles (El Monstruo de Colores, Dobble)', icon: '🎲', category: 'Juegos de Mesa Infantiles' },
+      { id: 'board-kids', label: 'Juegos de Mesa Infantiles (Monstruo de Colores, Dobble)', icon: '🎲', category: 'Juegos de Mesa Infantiles' },
       { id: 'mario-circuits', label: 'Circuitos de Coches Carrera Mario', icon: '🏎️', category: 'Circuitos de Coches Infantiles' },
       { id: 'scooters', label: 'Patinetes con Ruedas LED', icon: '🛴', category: 'Patinetes Infantiles con Ruedas LED' },
       { id: 'plush-inter', label: 'Peluches Interactivos Pokémon', icon: '⚡', category: 'Peluches Interactivos' },
@@ -105,26 +105,20 @@ export default function GiftWizard({ onApplyRecommendation, currentTheme }: Gift
     triggerConfetti();
 
     let suggestedCategory = 'all';
-    let suggestedTheme: 'baby' | 'kids' | 'gamer' | 'emo' | 'tech' | 'classic' = 'classic';
-
-    if (selectedAge === '0-12m') suggestedTheme = 'baby';
-    else if (selectedAge === '16-18') suggestedTheme = selectedVibe === 'ps5-games' || selectedVibe === 'gamer-setup' ? 'gamer' : 'emo';
-    else if (selectedAge === '13-15') suggestedTheme = 'gamer';
-    else if (selectedAge === '1-3' || selectedAge === '4-6') suggestedTheme = 'kids';
-
-    // Find category from selected vibe
     const currentOptions = AGE_VIBES_MAP[selectedAge] || AGE_VIBES_MAP['all'];
-    const matched = currentOptions.find(opt => opt.id === selectedVibe);
+    const matched = currentOptions.find((opt) => opt.id === selectedVibe);
     if (matched) {
       suggestedCategory = matched.category;
     }
 
     onApplyRecommendation({
+      gender: selectedGender,
       age: selectedAge,
       category: suggestedCategory,
       price: selectedBudget,
-      theme: suggestedTheme,
     });
+
+    onClose();
 
     const element = document.getElementById('catalogo-productos');
     if (element) {
@@ -132,174 +126,231 @@ export default function GiftWizard({ onApplyRecommendation, currentTheme }: Gift
     }
   };
 
-  const resetWizard = () => {
-    setStep(1);
-    setSelectedAge('0-12m');
-    setSelectedVibe('any');
-    setSelectedBudget('20-50');
-  };
+  if (!isOpen) return null;
 
-  const currentStep2Options = AGE_VIBES_MAP[selectedAge] || AGE_VIBES_MAP['all'];
+  const currentStep3Options = AGE_VIBES_MAP[selectedAge] || AGE_VIBES_MAP['all'];
 
   return (
-    <section className={`rounded-3xl p-6 sm:p-8 mb-12 border relative overflow-hidden transition-all duration-300 shadow-lg ${
-      currentTheme === 'emo'
-        ? 'bg-neutral-900/95 border-neutral-800 text-neutral-100 shadow-rose-950/30'
-        : currentTheme === 'gamer'
-        ? 'bg-slate-900/95 border-purple-900/80 text-slate-100 shadow-purple-950/30'
-        : currentTheme === 'baby'
-        ? 'bg-gradient-to-br from-pink-50/90 via-rose-50/70 to-amber-50/60 border-rose-200 text-rose-950 shadow-rose-100/50'
-        : 'bg-gradient-to-br from-indigo-50/80 via-white to-amber-50/40 border-slate-200 text-slate-900 shadow-slate-100'
-    }`}>
-      
-      {/* Decorative Badge */}
-      <div className="flex items-center justify-between mb-4">
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-indigo-600 text-white">
-          <Compass className="w-3.5 h-3.5" />
-          Asistente Interactivo de Regalos
-        </span>
-        <span className="text-xs font-bold opacity-60">Paso {step} de 3</span>
-      </div>
-
-      {/* Title */}
-      <h2 className="text-xl sm:text-2xl font-black mb-2 tracking-tight">
-        ¿Indeciso con el Regalo? Te ayudamos a acertar en 15 segundos
-      </h2>
-      <p className="text-xs sm:text-sm opacity-75 mb-6 max-w-2xl">
-        Responde 3 preguntas rápidas y nuestro algoritmo inteligente seleccionará las mejores ideas contrastadas de Amazon.es para no fallar.
-      </p>
-
-      {/* STEP 1: Age */}
-      {step === 1 && (
-        <div className="space-y-4">
-          <label className="block text-sm font-bold">1. ¿Qué edad tiene el homenajeado o peque?</label>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-            {[
-              { id: '0-12m', label: 'Bebé (0-12 meses)', icon: '🧸' },
-              { id: '1-3', label: '1 a 3 Años', icon: '🧩' },
-              { id: '4-6', label: '4 a 6 Años', icon: '🎨' },
-              { id: '7-9', label: '7 a 9 Años', icon: '🚀' },
-              { id: '10-12', label: '10 a 12 Años', icon: '👾' },
-              { id: '13-15', label: '13 a 15 Años', icon: '🎧' },
-              { id: '16-18', label: '16 a 18 Años (Jóvenes)', icon: '🖤' },
-              { id: 'all', label: 'Ver todos', icon: '🎁' },
-            ].map((item) => (
-              <button
-                key={item.id}
-                onClick={() => {
-                  setSelectedAge(item.id);
-                  const firstVibe = (AGE_VIBES_MAP[item.id] || AGE_VIBES_MAP['all'])[0]?.id || 'any';
-                  setSelectedVibe(firstVibe);
-                }}
-                className={`p-3.5 rounded-2xl text-left border text-xs sm:text-sm font-semibold transition-all flex items-center gap-2.5 ${
-                  selectedAge === item.id
-                    ? 'border-indigo-600 bg-indigo-600 text-white shadow-md'
-                    : 'border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 hover:bg-black/10'
-                }`}
-              >
-                <span className="text-xl">{item.icon}</span>
-                <span className="leading-tight">{item.label}</span>
-              </button>
-            ))}
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-md animate-in fade-in duration-200">
+      <div 
+        className="w-full max-w-2xl bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden relative flex flex-col max-h-[90vh]"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Header */}
+        <div className="p-5 sm:p-6 border-b border-slate-100 flex items-center justify-between bg-gradient-to-r from-indigo-50/80 via-white to-amber-50/50">
+          <div className="flex items-center gap-2.5">
+            <div className="w-10 h-10 rounded-2xl bg-indigo-600 text-white flex items-center justify-center shadow-md">
+              <Bot className="w-5 h-5 animate-pulse" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-black uppercase tracking-wider text-indigo-600 bg-indigo-100/70 px-2 py-0.5 rounded-full">
+                  Asistente Inteligente IA
+                </span>
+                <span className="text-xs text-slate-400 font-bold">Paso {step} de 4</span>
+              </div>
+              <h3 className="text-lg font-black text-slate-900 leading-tight">
+                ¿Te ayudamos a encontrar el regalo perfecto?
+              </h3>
+            </div>
           </div>
+          <button
+            onClick={onClose}
+            aria-label="Cerrar asistente"
+            className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center transition-colors cursor-pointer"
+          >
+            <X className="w-4 h-4" />
+          </button>
+        </div>
 
-          <div className="pt-4 flex justify-end">
+        {/* Modal Body */}
+        <div className="p-5 sm:p-6 overflow-y-auto flex-1">
+          
+          {/* STEP 1: GENDER */}
+          {step === 1 && (
+            <div className="space-y-4">
+              <div className="text-center sm:text-left">
+                <h4 className="text-base font-bold text-slate-900 mb-1">
+                  1. ¿Para quién estás buscando el regalo?
+                </h4>
+                <p className="text-xs text-slate-500">
+                  Filtraremos las recomendaciones para adaptar el estilo y acertar seguro.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                {[
+                  { id: 'boy', label: 'Para Chico / Niño', icon: '👦', desc: 'Juguetes, gaming, acción y tecnología' },
+                  { id: 'girl', label: 'Para Chica / Niña', icon: '👧', desc: 'Creatividad, estilo, juegos y peluches' },
+                  { id: 'all', label: 'Indiferente / Todos', icon: '🎁', desc: 'Regalos unisex y para cualquier ocasión' },
+                ].map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => setSelectedGender(item.id as any)}
+                    className={`p-4 rounded-2xl text-left border transition-all flex flex-col gap-2 ${
+                      selectedGender === item.id
+                        ? 'border-indigo-600 bg-indigo-50/70 text-indigo-950 shadow-sm ring-2 ring-indigo-500'
+                        : 'border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-800'
+                    }`}
+                  >
+                    <span className="text-3xl">{item.icon}</span>
+                    <span className="font-bold text-sm">{item.label}</span>
+                    <span className="text-[11px] text-slate-500 leading-tight">{item.desc}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* STEP 2: AGE */}
+          {step === 2 && (
+            <div className="space-y-4">
+              <div className="text-center sm:text-left">
+                <h4 className="text-base font-bold text-slate-900 mb-1">
+                  2. ¿Qué edad tiene el peque o joven?
+                </h4>
+                <p className="text-xs text-slate-500">
+                  Las temáticas y categorías se adaptarán estrictamente a este rango de edad.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-2">
+                {[
+                  { id: '0-12m', label: 'Bebé (0-12m)', icon: '🧸' },
+                  { id: '1-3', label: '1 a 3 Años', icon: '🧩' },
+                  { id: '4-6', label: '4 a 6 Años', icon: '🎨' },
+                  { id: '7-9', label: '7 a 9 Años', icon: '🚀' },
+                  { id: '10-12', label: '10 a 12 Años', icon: '👾' },
+                  { id: '13-15', label: '13 a 15 Años', icon: '🎧' },
+                  { id: '16-18', label: '16 a 18 Años', icon: '🖤' },
+                  { id: 'all', label: 'Todas las edades', icon: '🌟' },
+                ].map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => {
+                      setSelectedAge(item.id);
+                      const firstVibe = (AGE_VIBES_MAP[item.id] || AGE_VIBES_MAP['all'])[0]?.id || 'any';
+                      setSelectedVibe(firstVibe);
+                    }}
+                    className={`p-3.5 rounded-2xl text-left border text-xs sm:text-sm font-semibold transition-all flex items-center gap-2.5 ${
+                      selectedAge === item.id
+                        ? 'border-indigo-600 bg-indigo-600 text-white shadow-md'
+                        : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100'
+                    }`}
+                  >
+                    <span className="text-xl">{item.icon}</span>
+                    <span className="leading-tight">{item.label}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* STEP 3: VIBE / THEME */}
+          {step === 3 && (
+            <div className="space-y-4">
+              <div className="text-center sm:text-left">
+                <h4 className="text-base font-bold text-slate-900 mb-1">
+                  3. ¿Qué estilo o temática le apasiona?
+                </h4>
+                <p className="text-xs text-slate-500">
+                  Puedes elegir &quot;Ver Todo&quot; para no limitarte o elegir una categoría específica.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2 max-h-[45vh] overflow-y-auto pr-1">
+                {currentStep3Options.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => setSelectedVibe(item.id)}
+                    className={`p-3.5 rounded-2xl text-left border text-xs sm:text-sm font-semibold transition-all flex items-center gap-2.5 ${
+                      selectedVibe === item.id
+                        ? 'border-indigo-600 bg-indigo-600 text-white shadow-md'
+                        : item.category === 'all'
+                        ? 'border-amber-400 bg-amber-50 text-amber-950 font-bold hover:bg-amber-100'
+                        : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100'
+                    }`}
+                  >
+                    <span className="text-xl shrink-0">{item.icon}</span>
+                    <span className="leading-tight">{item.label}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* STEP 4: BUDGET */}
+          {step === 4 && (
+            <div className="space-y-4">
+              <div className="text-center sm:text-left">
+                <h4 className="text-base font-bold text-slate-900 mb-1">
+                  4. ¿Cuál es tu presupuesto aproximado?
+                </h4>
+                <p className="text-xs text-slate-500">
+                  Mostraremos las mejores opciones con la mejor relación calidad-precio en Amazon.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                {[
+                  { id: '<20', label: 'Menos de 20 €', desc: 'Detalles económicos, regalos escolares y amigos invisibles' },
+                  { id: '20-50', label: '20 € a 50 €', desc: 'El rango más equilibrado para cumpleaños y detalles familiares' },
+                  { id: '50-100', label: '50 € a 100 €', desc: 'Regalos prémium, juguetes interactivos y periféricos' },
+                  { id: '>100', label: 'Más de 100 €', desc: 'Ocasiones especiales, cochecitos, consolas y realidad virtual' },
+                  { id: 'all', label: 'Cualquier presupuesto', desc: 'Ver todas las recomendaciones sin límite de precio' },
+                ].map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => setSelectedBudget(item.id)}
+                    className={`p-4 rounded-2xl text-left border transition-all flex flex-col gap-1 ${
+                      selectedBudget === item.id
+                        ? 'border-indigo-600 bg-indigo-50 text-indigo-950 ring-2 ring-indigo-500'
+                        : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100'
+                    }`}
+                  >
+                    <span className="font-black text-sm">{item.label}</span>
+                    <span className="text-[11px] text-slate-500 leading-tight">{item.desc}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+        </div>
+
+        {/* Footer Navigation */}
+        <div className="p-4 sm:p-5 border-t border-slate-100 bg-slate-50/80 flex items-center justify-between">
+          {step > 1 ? (
             <button
-              onClick={() => setStep(2)}
-              className="px-6 py-2.5 rounded-xl bg-indigo-600 text-white text-xs sm:text-sm font-bold flex items-center gap-2 hover:bg-indigo-700 transition-colors shadow-sm"
+              onClick={() => setStep(step - 1)}
+              className="text-xs font-bold text-slate-500 hover:text-slate-800 px-3 py-2"
             >
-              <span>Continuar al Paso 2</span>
+              ← Volver al paso {step - 1}
+            </button>
+          ) : (
+            <div />
+          )}
+
+          {step < 4 ? (
+            <button
+              onClick={() => setStep(step + 1)}
+              className="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-bold flex items-center gap-2 shadow-sm transition-all"
+            >
+              <span>Continuar al Paso {step + 1}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
-          </div>
-        </div>
-      )}
-
-      {/* STEP 2: Style & Personality */}
-      {step === 2 && (
-        <div className="space-y-4">
-          <label className="block text-sm font-bold">2. ¿Qué estilo o temática estás buscando?</label>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-            {currentStep2Options.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => setSelectedVibe(item.id)}
-                className={`p-3.5 rounded-2xl text-left border text-xs sm:text-sm font-semibold transition-all flex items-center gap-2.5 ${
-                  selectedVibe === item.id
-                    ? 'border-indigo-600 bg-indigo-600 text-white shadow-md scale-[1.02]'
-                    : item.category === 'all'
-                    ? 'border-amber-400/40 bg-amber-500/10 text-amber-950 dark:text-amber-200 hover:bg-amber-500/20 font-bold'
-                    : 'border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 hover:bg-black/10'
-                }`}
-              >
-                <span className="text-xl">{item.icon}</span>
-                <span className="leading-tight">{item.label}</span>
-              </button>
-            ))}
-          </div>
-
-          <div className="pt-4 flex justify-between items-center">
-            <button
-              onClick={() => setStep(1)}
-              className="text-xs font-semibold opacity-70 hover:opacity-100 flex items-center gap-1"
-            >
-              ← Volver atrás
-            </button>
-            <button
-              onClick={() => setStep(3)}
-              className="px-6 py-2.5 rounded-xl bg-indigo-600 text-white text-xs sm:text-sm font-bold flex items-center gap-2 hover:bg-indigo-700 transition-colors shadow-sm"
-            >
-              <span>Continuar al Paso 3</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* STEP 3: Budget */}
-      {step === 3 && (
-        <div className="space-y-4">
-          <label className="block text-sm font-bold">3. ¿Qué presupuesto te has fijado?</label>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-            {[
-              { id: '<20', label: 'Menos de 20 €', desc: 'Detalle o regalo escolar' },
-              { id: '20-50', label: '20 € a 50 €', desc: 'Rango ideal de cumpleaños' },
-              { id: '50-100', label: '50 € a 100 €', desc: 'Regalo conjunto prémium' },
-              { id: 'all', label: 'Sin límite', desc: 'Buscamos lo mejor de lo mejor' },
-            ].map((item) => (
-              <button
-                key={item.id}
-                onClick={() => setSelectedBudget(item.id)}
-                className={`p-3.5 rounded-2xl text-left border text-xs sm:text-sm font-semibold transition-all flex flex-col justify-between ${
-                  selectedBudget === item.id
-                    ? 'border-indigo-600 bg-indigo-600 text-white shadow-md'
-                    : 'border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 hover:bg-black/10'
-                }`}
-              >
-                <span className="font-bold text-sm mb-1">{item.label}</span>
-                <span className="text-[11px] opacity-80">{item.desc}</span>
-              </button>
-            ))}
-          </div>
-
-          <div className="pt-4 flex justify-between items-center">
-            <button
-              onClick={() => setStep(2)}
-              className="text-xs font-semibold opacity-70 hover:opacity-100 flex items-center gap-1"
-            >
-              ← Volver atrás
-            </button>
+          ) : (
             <button
               onClick={handleFinish}
-              className="px-8 py-3 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-sm font-black flex items-center gap-2 hover:from-emerald-500 hover:to-teal-500 transition-all shadow-md hover:scale-105 active:scale-95"
+              className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 hover:opacity-95 text-white text-xs sm:text-sm font-black flex items-center gap-2 shadow-md transition-all scale-102"
             >
-              <Sparkles className="w-4 h-4" />
-              <span>¡Encontrar mi Regalo Ideal!</span>
+              <Sparkles className="w-4 h-4 text-amber-300" />
+              <span>Ver Recomendaciones IA</span>
             </button>
-          </div>
+          )}
         </div>
-      )}
 
-    </section>
+      </div>
+    </div>
   );
 }
