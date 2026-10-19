@@ -14,8 +14,8 @@ const FAQS: FaqItem[] = [
     answer: 'El regalo más agradecido e indiscutible para los padres primerizos son las tartas de pañales de calidad (como Dodot Sensitive) combinadas con productos de primera necesidad: muselinas de bambú, cremas calmantes de caléndula, doudous de apego y recuerdos como marcos de huellas en arcilla atóxica. Los pañales suponen el mayor gasto mensual durante el primer año, por lo que una presentación bonita y artesanal une utilidad y emoción.'
   },
   {
-    question: '¿Qué ideas de regalo triunfan con adolescentes de 16 a 18 años con estética Emo, Grunge o Gótica?',
-    answer: 'Los jóvenes de 16 a 18 años con estética alternativa o "dark aesthetic" valoran los detalles con atmósfera: velas aromáticas de soja negra con mecha de madera crujiente, diarios encuadernados en cuero vintage con hojas de pergamino, lámparas de luna o candelabros forjados, sudaderas oversize grunge y barajas de tarot ilustrado de coleccionista. Son regalos íntimos que respetan y celebran su identidad personal.'
+    question: '¿Qué ideas de regalo triunfan con adolescentes de 16 a 18 años que buscan estilo propio y personalidad?',
+    answer: 'Los jóvenes de 16 a 18 años valoran los detalles con personalidad propia: velas aromáticas WoodWick con mecha de madera crujiente, diarios encuadernados en cuero vintage con hojas de pergamino, auriculares de alta fidelidad, iluminación ambiental neón y fragancias icónicas como CK One. Son regalos que conectan de verdad con sus gustos e identidad.'
   },
   {
     question: '¿Cuáles son los mejores juegos y accesorios de PS5 para regalar a chicos y chicas?',

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { Product } from '@/data/products';
 import { getAmazonProductUrl } from '@/lib/amazon';
-import { ExternalLink, Star, CheckCircle2, Heart, Share2, Sparkles, ShoppingBag } from 'lucide-react';
+import { ExternalLink, Star, CheckCircle2, Heart, Share2, Sparkles, ShoppingBag, ChevronLeft, ChevronRight, Camera } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
@@ -14,6 +14,11 @@ interface ProductCardProps {
 export default function ProductCard({ product, currentTheme }: ProductCardProps) {
   const [copied, setCopied] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
+  const [activeImgIndex, setActiveImgIndex] = useState(0);
+
+  // Fallback to imageUrl if images array is not provided
+  const imagesList = product.images && product.images.length > 0 ? product.images : [product.imageUrl];
+  const currentImgSrc = imagesList[activeImgIndex] || product.imageUrl;
 
   // Enlace directo al producto específico en Amazon España (NUNCA a páginas de búsqueda)
   const directProductUrl = getAmazonProductUrl(product.asin || 'B0DLWK3LKH');
@@ -39,6 +44,18 @@ export default function ProductCard({ product, currentTheme }: ProductCardProps)
     }
   };
 
+  const handlePrevImage = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setActiveImgIndex((prev) => (prev > 0 ? prev - 1 : imagesList.length - 1));
+  };
+
+  const handleNextImage = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setActiveImgIndex((prev) => (prev < imagesList.length - 1 ? prev + 1 : 0));
+  };
+
   return (
     <article className={`group flex flex-col rounded-3xl overflow-hidden border transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${
       currentTheme === 'emo'
@@ -59,13 +76,33 @@ export default function ProductCard({ product, currentTheme }: ProductCardProps)
           className="block w-full h-full cursor-pointer"
         >
           <Image
-            src={product.imageUrl}
-            alt={product.title}
+            src={currentImgSrc}
+            alt={`${product.title} - Foto ${activeImgIndex + 1}`}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-108"
+            className="object-cover transition-all duration-500 group-hover:scale-105"
           />
         </a>
+
+        {/* Multi-image navigation arrows (visible on hover or always on touch) */}
+        {imagesList.length > 1 && (
+          <>
+            <button
+              onClick={handlePrevImage}
+              aria-label="Ver imagen anterior"
+              className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center backdrop-blur-md opacity-80 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity z-20 cursor-pointer shadow-md"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={handleNextImage}
+              aria-label="Ver siguiente imagen"
+              className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center backdrop-blur-md opacity-80 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity z-20 cursor-pointer shadow-md"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </>
+        )}
         
         {/* Top Badges */}
         <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-10 pointer-events-none">
@@ -103,6 +140,27 @@ export default function ProductCard({ product, currentTheme }: ProductCardProps)
             <Share2 className="w-4 h-4" />
           </button>
         </div>
+
+        {/* Multi-image indicator & dots */}
+        {imagesList.length > 1 && (
+          <div className="absolute bottom-3 left-3 z-10 flex items-center gap-1 bg-black/60 backdrop-blur-md px-2 py-1 rounded-full text-white text-[10px] font-bold">
+            <Camera className="w-3 h-3 opacity-80 mr-0.5" />
+            {imagesList.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setActiveImgIndex(idx);
+                }}
+                aria-label={`Ver foto ${idx + 1}`}
+                className={`h-1.5 rounded-full transition-all cursor-pointer ${
+                  activeImgIndex === idx ? 'w-4 bg-white' : 'w-1.5 bg-white/40 hover:bg-white/80'
+                }`}
+              />
+            ))}
+          </div>
+        )}
 
         {/* Price Tag Overlay */}
         <div className="absolute bottom-3 right-3 z-10 pointer-events-none">

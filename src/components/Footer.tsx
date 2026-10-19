@@ -72,7 +72,7 @@ export default function Footer({ currentTheme }: FooterProps) {
               <li><a href="#catalogo-productos" className="hover:underline">Primaria y Estrategia (7 a 9 Años)</a></li>
               <li><a href="#catalogo-productos" className="hover:underline">Preadolescentes (10 a 12 Años)</a></li>
               <li><a href="#catalogo-productos" className="hover:underline">Adolescentes (13 a 15 Años)</a></li>
-              <li><a href="#catalogo-productos" className="hover:underline">Jóvenes (16 a 18 Años - Emo/Gamer)</a></li>
+              <li><a href="#catalogo-productos" className="hover:underline">Jóvenes (16 a 18 Años - Gaming & Estilo)</a></li>
             </ul>
           </div>
 
@@ -88,7 +88,7 @@ export default function Footer({ currentTheme }: FooterProps) {
               <li><a href="#catalogo-productos" className="hover:underline">Kits de Viaje y Maletas Infantiles</a></li>
               <li><a href="#catalogo-productos" className="hover:underline">Droguería y Cuidado del Bebé</a></li>
               <li><a href="#catalogo-productos" className="hover:underline">Juegos PS5 para Chicos y Chicas</a></li>
-              <li><a href="#catalogo-productos" className="hover:underline">Regalos Emo, Dark Aesthetic y Velas</a></li>
+              <li><a href="#catalogo-productos" className="hover:underline">Cuadernos Vintage de Piel y Fragancias</a></li>
             </ul>
           </div>
 

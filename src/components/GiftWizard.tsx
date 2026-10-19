@@ -28,35 +28,73 @@ export default function GiftWizard({ onApplyRecommendation, currentTheme }: Gift
     }
   };
 
+  const AGE_VIBES_MAP: Record<string, Array<{ id: string; label: string; icon: string; category: string }>> = {
+    '0-12m': [
+      { id: 'baby-strollers', label: 'Cunas, Carritos y Bañeras', icon: '🚼', category: 'Cochecitos y Mobiliario de Bebé' },
+      { id: 'baby-diapers', label: 'Tartas de Pañales Artesanales', icon: '🎂', category: 'Tartas de Pañales' },
+      { id: 'baby-hygiene', label: 'Droguería, Aseo y Canastillas', icon: '🧴', category: 'Droguería y Cuidado Infantil' },
+      { id: 'baby-toys', label: 'Peluches de Apego y Doudous', icon: '🧸', category: 'Juguetes y Peluches de Bebé' },
+    ],
+    '1-3': [
+      { id: 'montessori', label: 'Método Montessori y Madera', icon: '🌿', category: 'Método Montessori y Madera' },
+      { id: 'duplo', label: 'LEGO DUPLO y Construcción', icon: '🧱', category: 'LEGO DUPLO y Construcción' },
+      { id: 'trikes', label: 'Triciclos y Bicis de Equilibrio', icon: '🚲', category: 'Triciclos y Bicis Infantiles' },
+      { id: 'imitation', label: 'Cocinas y Juegos de Imitación', icon: '🍳', category: 'Cocina Infantil y Juegos de Imitación' },
+    ],
+    '4-6': [
+      { id: 'board-kids', label: 'Juegos de Mesa Infantiles', icon: '🎲', category: 'Juegos de Mesa Infantiles' },
+      { id: 'mario-circuits', label: 'Circuitos de Coches Carrera Mario', icon: '🏎️', category: 'Circuitos de Coches Infantiles' },
+      { id: 'scooters', label: 'Patinetes con Ruedas LED', icon: '🛴', category: 'Patinetes Infantiles con Ruedas LED' },
+      { id: 'plush-inter', label: 'Peluches Interactivos Pokémon', icon: '⚡', category: 'Peluches Interactivos' },
+    ],
+    '7-9': [
+      { id: 'scalextric', label: 'Scalextric y Circuitos de Carreras', icon: '🏁', category: 'Scalextric y Pistas de Carreras' },
+      { id: 'rc-cars', label: 'Coches RC y Teledirigidos Acrobáticos', icon: '🎮', category: 'Coches RC y Teledirigidos' },
+      { id: 'magic-borras', label: 'Juegos de Magia Borrás (100 Trucos)', icon: '🎩', category: 'Juegos de Magia Borrás' },
+      { id: 'stem-lego', label: 'LEGO Creator 3 en 1 y STEM', icon: '🧱', category: 'LEGO Creator y Construcción' },
+    ],
+    '10-12': [
+      { id: 'virus-games', label: 'Juegos de Cartas (Virus!)', icon: '🃏', category: 'Juegos de Cartas Competitivos (Virus!)' },
+      { id: 'drones', label: 'Minidrones Anticolisión con Despegue', icon: '🛸', category: 'Minidrones RC Anticolisión' },
+      { id: 'magic-app', label: 'Magia Borrás Avanzada con App', icon: '✨', category: 'Magia Borrás Avanzada con App' },
+      { id: 'carcassonne', label: 'Juegos de Estrategia (Carcassonne)', icon: '🏰', category: 'Juegos de Mesa Medievales (Carcassonne)' },
+    ],
+    '13-15': [
+      { id: 'headphones', label: 'Auriculares ANC Inalámbricos', icon: '🎧', category: 'Auriculares Inalámbricos ANC' },
+      { id: 'catan', label: 'Juegos de Mesa Clásicos (Catán)', icon: '🎲', category: 'Juegos de Mesa Clásicos (Catan)' },
+      { id: 'skincare', label: 'Cuidado Facial y Skincare CeraVe', icon: '✨', category: 'Cuidado Facial y Skincare' },
+      { id: 'travel-kit', label: 'Kits y Neceseres de Viaje', icon: '🧳', category: 'Kits de Viaje y Organizadores' },
+    ],
+    '16-18': [
+      { id: 'ps5-games', label: 'Videojuegos PS5 y Mandos DualSense Pro', icon: '🎮', category: 'Videojuegos y Accesorios PS5' },
+      { id: 'gamer-setup', label: 'Setup Gamer, Neón y Sonido JBL', icon: '💡', category: 'Setup Gamer y Periféricos' },
+      { id: 'personal-style', label: 'Estilo Personal, Cuadernos de Cuero y Fragancias', icon: '📓', category: 'Estilo Personal, Cuadernos de Piel y Fragancias' },
+      { id: 'tech-vr', label: 'Realidad Virtual Meta Quest', icon: '🥽', category: 'Tecnología y Gadgets (VR, Audio)' },
+    ],
+    'all': [
+      { id: 'all-baby', label: 'Esenciales de Bebé y Pañales', icon: '🍼', category: 'Esenciales y Cuidado de Bebé' },
+      { id: 'all-toys', label: 'Scalextric, Coches RC y LEGO', icon: '🏎️', category: 'Scalextric y Circuitos de Coches' },
+      { id: 'all-games', label: 'Juegos de Mesa Familiares (Virus, Catan)', icon: '🎲', category: 'Juegos de Mesa y Cartas' },
+      { id: 'all-gaming', label: 'Videojuegos PS5 y Setup Gamer', icon: '🎮', category: 'Videojuegos y Setup Gamer' },
+    ]
+  };
+
   const handleFinish = () => {
     triggerConfetti();
 
     let suggestedCategory = 'all';
     let suggestedTheme: 'baby' | 'kids' | 'gamer' | 'emo' | 'tech' | 'classic' = 'classic';
 
-    if (selectedAge === '0-12m') {
-      suggestedTheme = 'baby';
-      if (selectedVibe === 'baby-gear') suggestedCategory = 'Cochecitos y Mobiliario de Bebé';
-      if (selectedVibe === 'baby-care') suggestedCategory = 'Tartas de Pañales';
-    } else if (selectedAge === '16-18') {
-      suggestedTheme = 'emo';
-      if (selectedVibe === 'emo') {
-        suggestedCategory = 'Estilo Emo y Dark Aesthetic';
-      } else if (selectedVibe === 'gamer') {
-        suggestedTheme = 'gamer';
-        suggestedCategory = 'Videojuegos y Accesorios PS5';
-      }
-    } else if (selectedVibe === 'magic') {
-      suggestedCategory = 'Juegos de Magia e Ilusionismo';
-    } else if (selectedVibe === 'board-games') {
-      suggestedCategory = 'Juegos de Mesa y Cartas';
-    } else if (selectedVibe === 'montessori') {
-      suggestedCategory = 'Método Montessori y Madera';
-    } else if (selectedVibe === 'gamer') {
-      suggestedTheme = 'gamer';
-      suggestedCategory = 'Videojuegos y Accesorios PS5';
-    } else if (selectedVibe === 'beauty-travel') {
-      suggestedCategory = 'Kits de Viaje y Maletas';
+    if (selectedAge === '0-12m') suggestedTheme = 'baby';
+    else if (selectedAge === '16-18') suggestedTheme = selectedVibe === 'ps5-games' || selectedVibe === 'gamer-setup' ? 'gamer' : 'emo';
+    else if (selectedAge === '13-15') suggestedTheme = 'gamer';
+    else if (selectedAge === '1-3' || selectedAge === '4-6') suggestedTheme = 'kids';
+
+    // Find category from selected vibe
+    const currentOptions = AGE_VIBES_MAP[selectedAge] || AGE_VIBES_MAP['all'];
+    const matched = currentOptions.find(opt => opt.id === selectedVibe);
+    if (matched) {
+      suggestedCategory = matched.category;
     }
 
     onApplyRecommendation({
@@ -78,6 +116,8 @@ export default function GiftWizard({ onApplyRecommendation, currentTheme }: Gift
     setSelectedVibe('any');
     setSelectedBudget('20-50');
   };
+
+  const currentStep2Options = AGE_VIBES_MAP[selectedAge] || AGE_VIBES_MAP['all'];
 
   return (
     <section className={`rounded-3xl p-6 sm:p-8 mb-12 border relative overflow-hidden transition-all duration-300 shadow-lg ${
@@ -124,7 +164,11 @@ export default function GiftWizard({ onApplyRecommendation, currentTheme }: Gift
             ].map((item) => (
               <button
                 key={item.id}
-                onClick={() => setSelectedAge(item.id)}
+                onClick={() => {
+                  setSelectedAge(item.id);
+                  const firstVibe = (AGE_VIBES_MAP[item.id] || AGE_VIBES_MAP['all'])[0]?.id || 'any';
+                  setSelectedVibe(firstVibe);
+                }}
                 className={`p-3.5 rounded-2xl text-left border text-xs sm:text-sm font-semibold transition-all flex items-center gap-2.5 ${
                   selectedAge === item.id
                     ? 'border-indigo-600 bg-indigo-600 text-white shadow-md'
@@ -154,16 +198,7 @@ export default function GiftWizard({ onApplyRecommendation, currentTheme }: Gift
         <div className="space-y-4">
           <label className="block text-sm font-bold">2. ¿Qué estilo o temática estás buscando?</label>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-            {[
-              { id: 'baby-gear', label: 'Cunas, Carritos y Bañeras', icon: '🚼' },
-              { id: 'baby-care', label: 'Tartas de Pañales y Doudous', icon: '🍼' },
-              { id: 'board-games', label: 'Juegos de Mesa y Cartas (Virus, Catan)', icon: '🎲' },
-              { id: 'magic', label: 'Juegos de Magia e Ilusionismo', icon: '🎩' },
-              { id: 'montessori', label: 'Montessori, Madera y Equilibrio', icon: '🌿' },
-              { id: 'gamer', label: 'Videojuegos PS5 y Gaming', icon: '🎮' },
-              { id: 'emo', label: 'Emo, Gótico, Velas y Aesthetic', icon: '🕯️' },
-              { id: 'beauty-travel', label: 'Skincare, Belleza y Maletas', icon: '🧴' },
-            ].map((item) => (
+            {currentStep2Options.map((item) => (
               <button
                 key={item.id}
                 onClick={() => setSelectedVibe(item.id)}

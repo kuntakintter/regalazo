@@ -19,6 +19,7 @@ export interface Product {
   idealFor: string;
   style: 'baby' | 'kids' | 'gamer' | 'emo' | 'tech' | 'creativity' | 'classic';
   imageUrl: string;
+  images?: string[];
 }
 
 export interface AgeCategoryMeta {
@@ -128,7 +129,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Plegado en paraguas muy fácil de meter en cualquier maletero', 'Estructura ligera de solo 7,2 kg pero súper estable', 'Incluye burbuja impermeable para la lluvia y cesta portaobjetos'],
     idealFor: 'Paseos diarios, visitas al pediatra y viajes familiares',
     style: 'baby',
-    imageUrl: '/images/products/bebe-cochecito.jpg'
+    imageUrl: '/images/products/bebe-cochecito-1.jpg',
+    images: [
+      '/images/products/bebe-cochecito-1.jpg',
+      '/images/products/bebe-cochecito-2.jpg',
+      '/images/products/bebe-cochecito-3.jpg'
+    ]
   },
   {
     id: 'bebe-cuna-colecho',
@@ -149,7 +155,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Facilita la lactancia materna nocturna sin tener que levantarse de la cama', 'Ventanas de malla transpirable para una óptima circulación del aire', 'Colchón firme ortopédico recomendado por pediatras'],
     idealFor: 'Los primeros 6 meses de sueño seguro junto a los padres',
     style: 'baby',
-    imageUrl: '/images/products/bebe-cuna-colecho.jpg'
+    imageUrl: '/images/products/bebe-cuna-colecho-1.jpg',
+    images: [
+      '/images/products/bebe-cuna-colecho-1.jpg',
+      '/images/products/bebe-cuna-colecho-2.jpg',
+      '/images/products/bebe-cuna-colecho-3.jpg'
+    ]
   },
   {
     id: 'bebe-banera-plegable',
@@ -170,7 +181,12 @@ export const PRODUCTS: Product[] = [
     pros: ['El tapón cambia de color si el agua supera los 37°C para evitar quemaduras', 'Patas antideslizantes con bloqueo de seguridad', 'Se cuelga detrás de la puerta del baño o se guarda bajo el mueble'],
     idealFor: 'La hora del baño relajante y pisos con espacio reducido',
     style: 'baby',
-    imageUrl: '/images/products/bebe-banera-plegable.jpg'
+    imageUrl: '/images/products/bebe-banera-plegable-1.jpg',
+    images: [
+      '/images/products/bebe-banera-plegable-1.jpg',
+      '/images/products/bebe-banera-plegable-2.jpg',
+      '/images/products/bebe-banera-plegable-3.jpg'
+    ]
   },
   {
     id: 'bebe-tarta-dodot-3pisos',
@@ -191,7 +207,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Pañales Dodot Sensitive con canal de absorción máxima', 'Elaboración higiénica artesanal en España', 'Presentación espectacular para nacimientos y baby showers'],
     idealFor: 'Nacimientos, bautizos y fiestas de bienvenida de bebé',
     style: 'baby',
-    imageUrl: '/images/products/bebe-tarta-dodot-3pisos.jpg'
+    imageUrl: '/images/products/bebe-tarta-dodot-3pisos-1.jpg',
+    images: [
+      '/images/products/bebe-tarta-dodot-3pisos-1.jpg',
+      '/images/products/bebe-tarta-dodot-3pisos-2.jpg'
+    ]
   },
   {
     id: 'bebe-tarta-cochecito',
@@ -212,7 +232,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Sorprende a los padres con una presentación única', 'Cada pañal se extrae limpio e intacto sin pegamento dañino', 'Envuelto con lazo ceremonial'],
     idealFor: 'Regalo conjunto de amigos o compañeros de trabajo',
     style: 'baby',
-    imageUrl: '/images/products/bebe-tarta-cochecito.jpg'
+    imageUrl: '/images/products/bebe-tarta-cochecito-1.jpg',
+    images: [
+      '/images/products/bebe-tarta-cochecito-1.jpg',
+      '/images/products/bebe-tarta-cochecito-2.jpg',
+      '/images/products/bebe-tarta-cochecito-3.jpg'
+    ]
   },
   {
     id: 'bebe-gimnasio-piano',
@@ -233,7 +258,12 @@ export const PRODUCTS: Product[] = [
     pros: ['4 formas de juego que evolucionan de 0 a 36 meses', 'Piano extraíble para llevarlo a cualquier parte', 'Alfombra acolchada lavable a máquina'],
     idealFor: 'Estimulación sensorial temprana y juego boca abajo (Tummy Time)',
     style: 'baby',
-    imageUrl: '/images/products/bebe-gimnasio-piano.jpg'
+    imageUrl: '/images/products/bebe-gimnasio-piano-1.jpg',
+    images: [
+      '/images/products/bebe-gimnasio-piano-1.jpg',
+      '/images/products/bebe-gimnasio-piano-2.jpg',
+      '/images/products/bebe-gimnasio-piano-3.jpg'
+    ]
   },
   {
     id: 'bebe-suavinex-kit',
@@ -254,7 +284,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Neceser rígido con cremallera fácil de transportar en el bolso', 'Puntas protegidas que previenen arañazos accidentales', 'Calidad dermatológica de farmacia española'],
     idealFor: 'Regalo práctico de bienvenida que todo padre primerizo agradece',
     style: 'baby',
-    imageUrl: '/images/products/bebe-suavinex-kit.jpg'
+    imageUrl: '/images/products/bebe-suavinex-kit-1.jpg',
+    images: [
+      '/images/products/bebe-suavinex-kit-1.jpg',
+      '/images/products/bebe-suavinex-kit-2.jpg',
+      '/images/products/bebe-suavinex-kit-3.jpg'
+    ]
   },
   {
     id: 'bebe-suavinex-colonia',
@@ -275,7 +310,12 @@ export const PRODUCTS: Product[] = [
     pros: ['No mancha la ropa infantil ni sábanas', 'Frasco de cristal con práctico vaporizador dosificador', 'Dermatológicamente testada'],
     idealFor: 'Uso diario después del baño del bebé',
     style: 'baby',
-    imageUrl: '/images/products/bebe-suavinex-colonia.jpg'
+    imageUrl: '/images/products/bebe-suavinex-colonia-1.jpg',
+    images: [
+      '/images/products/bebe-suavinex-colonia-1.jpg',
+      '/images/products/bebe-suavinex-colonia-2.jpg',
+      '/images/products/bebe-suavinex-colonia-3.jpg'
+    ]
   },
   {
     id: 'bebe-mustela-canastilla',
@@ -296,7 +336,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Ingredientes con un 98% de origen natural con Perseosa de Aguacate', 'Respeta la barrera cutánea de pieles atópicas desde el primer día', 'Aroma inconfundible a bebé limpio'],
     idealFor: 'Celebraciones de nacimiento y regalos de maternidad',
     style: 'baby',
-    imageUrl: '/images/products/bebe-mustela-canastilla.jpg'
+    imageUrl: '/images/products/bebe-mustela-canastilla-1.jpg',
+    images: [
+      '/images/products/bebe-mustela-canastilla-1.jpg',
+      '/images/products/bebe-mustela-canastilla-2.jpg'
+    ]
   },
   {
     id: 'bebe-buho-ruido-blanco',
@@ -317,7 +361,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Recargable por USB sin necesidad de cambiar pilas', 'Luz tenue en la barriguita regulable', 'Recomendado por matronas y pediatras'],
     idealFor: 'Bebés con cólicos o problemas para conciliar el sueño',
     style: 'baby',
-    imageUrl: '/images/products/bebe-buho-ruido-blanco.jpg'
+    imageUrl: '/images/products/bebe-buho-ruido-blanco-1.jpg',
+    images: [
+      '/images/products/bebe-buho-ruido-blanco-1.jpg',
+      '/images/products/bebe-buho-ruido-blanco-2.jpg',
+      '/images/products/bebe-buho-ruido-blanco-3.jpg'
+    ]
   },
   {
     id: 'bebe-boppy-lactancia',
@@ -338,7 +387,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Funda desenfundable con cremallera lavable a máquina', 'Sirve como nido de apoyo cuando el bebé aprende a sentarse', 'Aprobado por matronas y fisioterapeutas'],
     idealFor: 'Madres lactantes y confort del recién nacido',
     style: 'baby',
-    imageUrl: '/images/products/bebe-boppy-lactancia.jpg'
+    imageUrl: '/images/products/bebe-boppy-lactancia-1.jpg',
+    images: [
+      '/images/products/bebe-boppy-lactancia-1.jpg',
+      '/images/products/bebe-boppy-lactancia-2.jpg'
+    ]
   },
   {
     id: 'bebe-kaloo-doudou',
@@ -359,7 +412,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Lavable a máquina a 30°C manteniendo la suavidad', 'Presentado en elegante caja redonda de regalo', '100% seguro sin piezas plásticas desprendibles'],
     idealFor: 'El primer peluche inseparable del bebé',
     style: 'baby',
-    imageUrl: '/images/products/bebe-kaloo-doudou.jpg'
+    imageUrl: '/images/products/bebe-kaloo-doudou-1.jpg',
+    images: [
+      '/images/products/bebe-kaloo-doudou-1.jpg',
+      '/images/products/bebe-kaloo-doudou-2.jpg',
+      '/images/products/bebe-kaloo-doudou-3.jpg'
+    ]
   },
 
   // =========================================================================
@@ -384,7 +442,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Madera de abedul con certificado FSC y barniz ecológico', 'Sistema antivuelco ensayado en laboratorio', 'Fomenta la participación en tareas cotidianas familiares'],
     idealFor: 'Niños a partir de 12 meses que quieren cocinar y lavarse solos',
     style: 'kids',
-    imageUrl: '/images/products/13-torre-aprendizaje.jpg'
+    imageUrl: '/images/products/13-torre-aprendizaje-1.jpg',
+    images: [
+      '/images/products/13-torre-aprendizaje-1.jpg',
+      '/images/products/13-torre-aprendizaje-2.jpg',
+      '/images/products/13-torre-aprendizaje-3.jpg'
+    ]
   },
   {
     id: '13-triciclo-aveo',
@@ -405,7 +468,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Ruedas de goma antipinchazos con amortiguación suave', 'Asiento giratorio 360° para mirar a los padres o al frente', 'Capota extensible con protección solar UPF50+'],
     idealFor: 'Paseos diarios por el parque sustituyendo la silla de paseo',
     style: 'kids',
-    imageUrl: '/images/products/13-triciclo-aveo.jpg'
+    imageUrl: '/images/products/13-triciclo-aveo-1.jpg',
+    images: [
+      '/images/products/13-triciclo-aveo-1.jpg',
+      '/images/products/13-triciclo-aveo-2.jpg',
+      '/images/products/13-triciclo-aveo-3.jpg'
+    ]
   },
   {
     id: '13-chicco-first-bike',
@@ -426,7 +494,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Sillín y manillar ajustables en altura', 'Ruedas antipinchazos de espuma EVA que no necesitan hincharse', 'Chasis robusto que soporta hasta 25 kg'],
     idealFor: 'Paseos por el parque y aprendizaje del equilibrio',
     style: 'kids',
-    imageUrl: '/images/products/13-chicco-first-bike.jpg'
+    imageUrl: '/images/products/13-chicco-first-bike-1.jpg',
+    images: [
+      '/images/products/13-chicco-first-bike-1.jpg',
+      '/images/products/13-chicco-first-bike-2.jpg',
+      '/images/products/13-chicco-first-bike-3.jpg'
+    ]
   },
   {
     id: '13-cocina-hape',
@@ -447,7 +520,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Estructura sólida que no se tambalea', 'Estimula el lenguaje, la imitación y la empatía social', 'Pinturas al agua respetuosas con el medio ambiente'],
     idealFor: 'Tardes enteras de juego imaginativo cocinando para la familia',
     style: 'kids',
-    imageUrl: '/images/products/13-cocina-hape.jpg'
+    imageUrl: '/images/products/13-cocina-hape-1.jpg',
+    images: [
+      '/images/products/13-cocina-hape-1.jpg',
+      '/images/products/13-cocina-hape-2.jpg',
+      '/images/products/13-cocina-hape-3.jpg'
+    ]
   },
   {
     id: '13-clemmy-bloques',
@@ -468,7 +546,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Material atóxico apto para morder con olor suave a vainilla', 'Encaje ultrasencillo para manitas de 10 a 36 meses', 'Bolsa transparente con cremallera y asa para ordenar rápido'],
     idealFor: 'Los primeros apilamientos de bloques sin frustración',
     style: 'kids',
-    imageUrl: '/images/products/13-clemmy-bloques.jpg'
+    imageUrl: '/images/products/13-clemmy-bloques-1.jpg',
+    images: [
+      '/images/products/13-clemmy-bloques-1.jpg',
+      '/images/products/13-clemmy-bloques-2.jpg',
+      '/images/products/13-clemmy-bloques-3.jpg'
+    ]
   },
   {
     id: '13-kinetic-sand',
@@ -489,7 +572,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Fácil de recoger: no ensucia suelos, alfombras ni ropa', 'Libre de trigo, gluten y caseína', 'Maletín con bandeja integrada para jugar en cualquier lugar'],
     idealFor: 'Desarrollo táctil sensorial y momentos de relajación en casa',
     style: 'kids',
-    imageUrl: '/images/products/13-kinetic-sand.jpg'
+    imageUrl: '/images/products/13-kinetic-sand-1.jpg',
+    images: [
+      '/images/products/13-kinetic-sand-1.jpg',
+      '/images/products/13-kinetic-sand-2.jpg',
+      '/images/products/13-kinetic-sand-3.jpg'
+    ]
   },
 
   // =========================================================================
@@ -514,7 +602,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Fomenta la comunicación y empatía familiar', 'Componentes de madera y cartón de altísima calidad', 'Reglas sencillas que se aprenden en 3 minutos'],
     idealFor: 'Aprender a gestionar rabietas y emociones en familia',
     style: 'classic',
-    imageUrl: '/images/products/46-monstruo-colores.jpg'
+    imageUrl: '/images/products/46-monstruo-colores-1.jpg',
+    images: [
+      '/images/products/46-monstruo-colores-1.jpg',
+      '/images/products/46-monstruo-colores-2.jpg',
+      '/images/products/46-monstruo-colores-3.jpg'
+    ]
   },
   {
     id: '46-dobble-kids',
@@ -535,7 +628,10 @@ export const PRODUCTS: Product[] = [
     pros: ['Reglas instantáneas para jugar nada más abrir la lata', 'Potencia la agudeza visual y la velocidad de respuesta', 'Tamaño de bolsillo para llevar a restaurantes o viajes'],
     idealFor: 'Tardes de juegos en familia y piques divertidos con amigos',
     style: 'classic',
-    imageUrl: '/images/products/46-dobble-kids.jpg'
+    imageUrl: '/images/products/46-dobble-kids-1.jpg',
+    images: [
+      '/images/products/46-dobble-kids-1.jpg'
+    ]
   },
   {
     id: '46-trunki-maleta',
@@ -556,7 +652,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Carcasa de plástico ultrarresistente que soporta hasta 50 kg', 'Capacidad interior de 18 litros con gomas tensoras de sujeción', 'Evita el aburrimiento en las esperas de viaje'],
     idealFor: 'Vacaciones familiares, escapadas de fin de semana y viajes en avión',
     style: 'kids',
-    imageUrl: '/images/products/46-trunki-maleta.jpg'
+    imageUrl: '/images/products/46-trunki-maleta-1.jpg',
+    images: [
+      '/images/products/46-trunki-maleta-1.jpg',
+      '/images/products/46-trunki-maleta-2.jpg',
+      '/images/products/46-trunki-maleta-3.jpg'
+    ]
   },
   {
     id: '46-bopster-patinete',
@@ -577,7 +678,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Freno trasero de respuesta suave', 'Plataforma ancha antideslizante reforzada', 'Manillar plegable con un solo clic'],
     idealFor: 'Paseos diarios al colegio o al parque',
     style: 'kids',
-    imageUrl: '/images/products/46-bopster-patinete.jpg'
+    imageUrl: '/images/products/46-bopster-patinete-1.jpg',
+    images: [
+      '/images/products/46-bopster-patinete-1.jpg',
+      '/images/products/46-bopster-patinete-2.jpg',
+      '/images/products/46-bopster-patinete-3.jpg'
+    ]
   },
   {
     id: '46-maletin-maquillaje',
@@ -598,7 +704,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Certificado cosmético europeo CE de máxima seguridad infantil', 'Se limpia al instante de la piel y la ropa solo con agua', 'Precioso maletín con espejo abatible para llevar a todas partes'],
     idealFor: 'Cumpleaños, fiestas de pijamas y juego simbólico de belleza',
     style: 'kids',
-    imageUrl: '/images/products/46-maletin-maquillaje.jpg'
+    imageUrl: '/images/products/46-maletin-maquillaje-1.jpg',
+    images: [
+      '/images/products/46-maletin-maquillaje-1.jpg',
+      '/images/products/46-maletin-maquillaje-2.jpg',
+      '/images/products/46-maletin-maquillaje-3.jpg'
+    ]
   },
 
   // =========================================================================
@@ -623,7 +734,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Aprende a hablar en público y ganar autoconfianza', 'Desarrolla la destreza manual y la agilidad mental', 'Garantía del ilusionismo clásico de Borrás'],
     idealFor: 'Montar espectáculos de magia para la familia en Navidad o cumpleaños',
     style: 'classic',
-    imageUrl: '/images/products/79-magia-borras-100.jpg'
+    imageUrl: '/images/products/79-magia-borras-100-1.jpg',
+    images: [
+      '/images/products/79-magia-borras-100-1.jpg',
+      '/images/products/79-magia-borras-100-2.jpg',
+      '/images/products/79-magia-borras-100-3.jpg'
+    ]
   },
   {
     id: '79-catan-junior',
@@ -644,7 +760,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Partidas dinámicas de 30 minutos sin frustración', 'Estimula la negociación y la toma de decisiones', 'Tablero reversible según número de jugadores'],
     idealFor: 'Iniciación al mundo de los juegos de mesa modernos',
     style: 'classic',
-    imageUrl: '/images/products/79-catan-junior.jpg'
+    imageUrl: '/images/products/79-catan-junior-1.jpg',
+    images: [
+      '/images/products/79-catan-junior-1.jpg',
+      '/images/products/79-catan-junior-2.jpg',
+      '/images/products/79-catan-junior-3.jpg'
+    ]
   },
   {
     id: '79-dixit',
@@ -665,7 +786,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Ilustraciones de ensueño de altísima calidad artística', 'Sin límites de edad: juegan abuelos, padres y niños a la vez', 'Fomenta la creatividad narrativa y la complicidad'],
     idealFor: 'Reuniones familiares y tardes de juego tranquilas',
     style: 'classic',
-    imageUrl: '/images/products/79-dixit.jpg'
+    imageUrl: '/images/products/79-dixit-1.jpg',
+    images: [
+      '/images/products/79-dixit-1.jpg',
+      '/images/products/79-dixit-2.jpg',
+      '/images/products/79-dixit-3.jpg'
+    ]
   },
   {
     id: '79-lego-safari',
@@ -686,7 +812,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Piezas móviles y articuladas de gran realismo', 'Instrucciones 3D paso a paso con la app LEGO Builder', 'Desarrolla paciencia y destreza constructiva'],
     idealFor: 'El regalo con el que es imposible equivocarse',
     style: 'kids',
-    imageUrl: '/images/products/79-lego-safari.jpg'
+    imageUrl: '/images/products/79-lego-safari-1.jpg',
+    images: [
+      '/images/products/79-lego-safari-1.jpg',
+      '/images/products/79-lego-safari-2.jpg',
+      '/images/products/79-lego-safari-3.jpg'
+    ]
   },
   {
     id: '79-gravitrax',
@@ -707,7 +838,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Más de 100 componentes modulares expandibles', 'Despierta el pensamiento lógico y la resolución de problemas', 'Adictivo para niños y adultos'],
     idealFor: 'Pequeños constructores y apasionados de los experimentos mecánicos',
     style: 'classic',
-    imageUrl: '/images/products/79-gravitrax.jpg'
+    imageUrl: '/images/products/79-gravitrax-1.jpg',
+    images: [
+      '/images/products/79-gravitrax-1.jpg',
+      '/images/products/79-gravitrax-2.jpg',
+      '/images/products/79-gravitrax-3.jpg'
+    ]
   },
 
   // =========================================================================
@@ -732,7 +868,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Formato de bolsillo ideal para llevar al recreo o excursiones', 'Se explica en un minuto', 'Piques divertidísimos entre amigos y familia'],
     idealFor: 'Reuniones de amigos de 10 a 12 años',
     style: 'classic',
-    imageUrl: '/images/products/1012-virus.jpg'
+    imageUrl: '/images/products/1012-virus-1.jpg',
+    images: [
+      '/images/products/1012-virus-1.jpg',
+      '/images/products/1012-virus-2.jpg',
+      '/images/products/1012-virus-3.jpg'
+    ]
   },
   {
     id: '1012-magia-borras-150',
@@ -753,7 +894,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Vídeos tutoriales exclusivos paso a paso en la app', 'Trucos visuales de nivel avanzado fáciles de aprender', 'Módulo de ilusionismo digital contemporáneo'],
     idealFor: 'Preadolescentes que quieren dominar trucos de cartas y magia de cerca',
     style: 'classic',
-    imageUrl: '/images/products/1012-magia-borras-150.jpg'
+    imageUrl: '/images/products/1012-magia-borras-150-1.jpg',
+    images: [
+      '/images/products/1012-magia-borras-150-1.jpg',
+      '/images/products/1012-magia-borras-150-2.jpg',
+      '/images/products/1012-magia-borras-150-3.jpg'
+    ]
   },
   {
     id: '1012-carcassonne',
@@ -774,7 +920,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Cada partida genera un mapa completamente nuevo e irrepetible', 'Estrategia profunda pero con reglas muy sencillas', 'Incluye las mini expansiones El Río y El Abad'],
     idealFor: 'Preadolescentes amantes de la estrategia inteligente',
     style: 'classic',
-    imageUrl: '/images/products/1012-carcassonne.jpg'
+    imageUrl: '/images/products/1012-carcassonne-1.jpg',
+    images: [
+      '/images/products/1012-carcassonne-1.jpg',
+      '/images/products/1012-carcassonne-2.jpg',
+      '/images/products/1012-carcassonne-3.jpg'
+    ]
   },
   {
     id: '1012-dron-potensic',
@@ -795,7 +946,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Incluye 3 baterías modulares para hasta 21 minutos de vuelo', 'Modo sin cabeza intuitivo para principiantes', 'Parada de emergencia y giros 3D con un botón'],
     idealFor: 'Aprender a pilotar drones en interiores y jardines',
     style: 'tech',
-    imageUrl: '/images/products/1012-dron-potensic.jpg'
+    imageUrl: '/images/products/1012-dron-potensic-1.jpg',
+    images: [
+      '/images/products/1012-dron-potensic-1.jpg',
+      '/images/products/1012-dron-potensic-2.jpg',
+      '/images/products/1012-dron-potensic-3.jpg'
+    ]
   },
 
   // =========================================================================
@@ -820,7 +976,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Batería de hasta 60 horas en modo normal', 'Ecualizador personalizado a través de la app Soundcore', 'Carga rápida: 5 minutos dan 4 horas de música'],
     idealFor: 'Estudiar sin distracciones, viajes y escuchar música con nitidez',
     style: 'tech',
-    imageUrl: '/images/products/1315-anker-q30.jpg'
+    imageUrl: '/images/products/1315-anker-q30-1.jpg',
+    images: [
+      '/images/products/1315-anker-q30-1.jpg',
+      '/images/products/1315-anker-q30-2.jpg',
+      '/images/products/1315-anker-q30-3.jpg'
+    ]
   },
   {
     id: '1315-cerave-limpiador',
@@ -841,7 +1002,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Sin perfume, no comedogénico y respetuoso con pieles sensibles', 'Reduce granitos y puntos negros en pocos días', 'Textura gel que hace una espuma agradable y purificante'],
     idealFor: 'Preadolescentes y jóvenes que empiezan a cuidar su piel',
     style: 'tech',
-    imageUrl: '/images/products/1315-cerave-limpiador.jpg'
+    imageUrl: '/images/products/1315-cerave-limpiador-1.jpg',
+    images: [
+      '/images/products/1315-cerave-limpiador-1.jpg',
+      '/images/products/1315-cerave-limpiador-2.jpg',
+      '/images/products/1315-cerave-limpiador-3.jpg'
+    ]
   },
   {
     id: '1315-catan-clasico',
@@ -862,7 +1028,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Ideal para jugar entre 3 y 4 jugadores', 'Fomenta el cálculo probabilístico y la negociación', 'Mundo con múltiples expansiones disponibles'],
     idealFor: 'Tardes enteras con amigos y veladas familiares inolvidables',
     style: 'classic',
-    imageUrl: '/images/products/1315-catan-clasico.jpg'
+    imageUrl: '/images/products/1315-catan-clasico-1.jpg',
+    images: [
+      '/images/products/1315-catan-clasico-1.jpg',
+      '/images/products/1315-catan-clasico-2.jpg',
+      '/images/products/1315-catan-clasico-3.jpg'
+    ]
   },
   {
     id: '1315-neceser-colgante',
@@ -883,7 +1054,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Tejido hidrófugo de secado rápido que evita fugas de líquidos', 'Bolsillos transparentes de PVC para pasar controles de seguridad', 'Cremalleras dobles reforzadas'],
     idealFor: 'Campamentos de verano, excursiones del colegio y viajes con amigos',
     style: 'tech',
-    imageUrl: '/images/products/1315-neceser-colgante.jpg'
+    imageUrl: '/images/products/1315-neceser-colgante-1.jpg',
+    images: [
+      '/images/products/1315-neceser-colgante-1.jpg',
+      '/images/products/1315-neceser-colgante-2.jpg',
+      '/images/products/1315-neceser-colgante-3.jpg'
+    ]
   },
 
   // =========================================================================
@@ -908,7 +1084,11 @@ export const PRODUCTS: Product[] = [
     pros: ['Carga instantánea gracias al SSD de PS5', 'Gatillos adaptativos con resistencia al lanzar telarañas', 'Modo gráfico a 60 FPS ultra fluido'],
     idealFor: 'Todo poseedor de una consola PlayStation 5',
     style: 'gamer',
-    imageUrl: '/images/products/1618-spiderman-2.jpg'
+    imageUrl: '/images/products/1618-spiderman-2-1.jpg',
+    images: [
+      '/images/products/1618-spiderman-2-1.jpg',
+      '/images/products/1618-spiderman-2-2.jpg'
+    ]
   },
   {
     id: '1618-fc-25',
@@ -929,7 +1109,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Física de balón y animaciones hiperrealistas con HyperMotionV', 'Partidos multijugador frenéticos en el salón o por internet', 'Modo Carrera y Ultimate Team renovados'],
     idealFor: 'Jóvenes aficionados al fútbol y las competiciones',
     style: 'gamer',
-    imageUrl: '/images/products/1618-fc-25.jpg'
+    imageUrl: '/images/products/1618-fc-25-1.jpg',
+    images: [
+      '/images/products/1618-fc-25-1.jpg',
+      '/images/products/1618-fc-25-2.jpg',
+      '/images/products/1618-fc-25-3.jpg'
+    ]
   },
   {
     id: '1618-elden-ring',
@@ -950,7 +1135,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Más de 150 horas de aventura y desafío', 'Incluye la aclamada expansión completa', 'Banda sonora orquestal sublime'],
     idealFor: 'Jugadores apasionados que buscan una experiencia profunda y madura',
     style: 'gamer',
-    imageUrl: '/images/products/1618-elden-ring.jpg'
+    imageUrl: '/images/products/1618-elden-ring-1.jpg',
+    images: [
+      '/images/products/1618-elden-ring-1.jpg',
+      '/images/products/1618-elden-ring-2.jpg',
+      '/images/products/1618-elden-ring-3.jpg'
+    ]
   },
   {
     id: '1618-dualsense-edge',
@@ -971,7 +1161,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Módulos de stick reemplazables para evitar el desgaste por drift', 'Perfiles de botones guardables al instante', 'Sensaciones hápticas inigualables'],
     idealFor: 'El regalo definitivo para un gamer exigente de 16 a 18 años',
     style: 'gamer',
-    imageUrl: '/images/products/1618-dualsense-edge.jpg'
+    imageUrl: '/images/products/1618-dualsense-edge-1.jpg',
+    images: [
+      '/images/products/1618-dualsense-edge-1.jpg',
+      '/images/products/1618-dualsense-edge-2.jpg',
+      '/images/products/1618-dualsense-edge-3.jpg'
+    ]
   },
   {
     id: '1618-vela-woodwick',
@@ -992,7 +1187,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Mecha de madera que cruje como fuego real', 'Cera de soja premium con combustión limpia', 'Elegante vaso de cristal en forma de reloj de arena con tapa de madera'],
     idealFor: 'Crear un santuario estético y cálido en la habitación juvenil',
     style: 'emo',
-    imageUrl: '/images/products/1618-vela-woodwick.jpg'
+    imageUrl: '/images/products/1618-vela-woodwick-1.jpg',
+    images: [
+      '/images/products/1618-vela-woodwick-1.jpg',
+      '/images/products/1618-vela-woodwick-2.jpg',
+      '/images/products/1618-vela-woodwick-3.jpg'
+    ]
   },
   {
     id: '1618-diario-cuero',
@@ -1013,7 +1213,12 @@ export const PRODUCTS: Product[] = [
     pros: ['240 páginas de papel pergamino artesanal', 'Sin químicos ni blanqueadores', 'Tacto envejecido exclusivo y duradero'],
     idealFor: 'Escribir poesía, pensamientos, dibujos oscuros o letras de canciones',
     style: 'emo',
-    imageUrl: '/images/products/1618-diario-cuero.jpg'
+    imageUrl: '/images/products/1618-diario-cuero-1.jpg',
+    images: [
+      '/images/products/1618-diario-cuero-1.jpg',
+      '/images/products/1618-diario-cuero-2.jpg',
+      '/images/products/1618-diario-cuero-3.jpg'
+    ]
   },
   {
     id: '1618-ck-one',
@@ -1034,7 +1239,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Aroma fresco y no empalagoso ideal para clase o salidas', 'Frasco icónico de cristal esmerilado minimalista', 'Proyección duradera y equilibrada'],
     idealFor: 'Jóvenes de 16 a 18 años que buscan una seña olfativa moderna',
     style: 'classic',
-    imageUrl: '/images/products/1618-ck-one.jpg'
+    imageUrl: '/images/products/1618-ck-one-1.jpg',
+    images: [
+      '/images/products/1618-ck-one-1.jpg',
+      '/images/products/1618-ck-one-2.jpg',
+      '/images/products/1618-ck-one-3.jpg'
+    ]
   },
   {
     id: '1618-meta-quest-3s',
@@ -1055,7 +1265,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Resolución nítida con procesador Snapdragon XR2 de última generación', 'Mandos Touch Plus con respuesta háptica realista', 'Catálogo con miles de juegos como Beat Saber y Batman Arkham'],
     idealFor: 'Regalo mayúsculo de 18 cumpleaños o graduación',
     style: 'tech',
-    imageUrl: '/images/products/1618-meta-quest-3s.jpg'
+    imageUrl: '/images/products/1618-meta-quest-3s-1.jpg',
+    images: [
+      '/images/products/1618-meta-quest-3s-1.jpg',
+      '/images/products/1618-meta-quest-3s-2.jpg',
+      '/images/products/1618-meta-quest-3s-3.jpg'
+    ]
   },
   {
     id: '1618-jbl-flip-6',
@@ -1076,7 +1291,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Resistencia total al agua y polvo IP67 para piscina y playa', 'Función PartyBoost para emparejar varios altavoces', 'Carga rápida mediante USB-C'],
     idealFor: 'Reuniones con amigos, playa, salidas al aire libre y fiestas',
     style: 'tech',
-    imageUrl: '/images/products/1618-jbl-flip-6.jpg'
+    imageUrl: '/images/products/1618-jbl-flip-6-1.jpg',
+    images: [
+      '/images/products/1618-jbl-flip-6-1.jpg',
+      '/images/products/1618-jbl-flip-6-2.jpg',
+      '/images/products/1618-jbl-flip-6-3.jpg'
+    ]
   },
   {
     id: '1618-govee-neon',
@@ -1097,7 +1317,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Tecnología RGBIC que muestra múltiples colores a la vez', 'Micrófono integrado para bailar al ritmo de la música', 'Control por smartphone, Alexa y Google Home'],
     idealFor: 'Personalizar el santuario de cualquier habitación juvenil',
     style: 'gamer',
-    imageUrl: '/images/products/1618-govee-neon.jpg'
+    imageUrl: '/images/products/1618-govee-neon-1.jpg',
+    images: [
+      '/images/products/1618-govee-neon-1.jpg',
+      '/images/products/1618-govee-neon-2.jpg',
+      '/images/products/1618-govee-neon-3.jpg'
+    ]
   },
   {
     id: '13-lego-duplo',
@@ -1118,7 +1343,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Piezas grandes y seguras imposibles de tragar', 'Caja organizadora de plástico resistente para guardar todo en segundos', 'Estimula la motricidad fina, el reconocimiento espacial y los números'],
     idealFor: 'Desarrollo psicomotriz y juego creativo libre a partir de 18 meses',
     style: 'kids',
-    imageUrl: '/images/products/13-lego-duplo.jpg'
+    imageUrl: '/images/products/13-lego-duplo-1.jpg',
+    images: [
+      '/images/products/13-lego-duplo-1.jpg',
+      '/images/products/13-lego-duplo-2.jpg',
+      '/images/products/13-lego-duplo-3.jpg'
+    ]
   },
   {
     id: '46-carrera-mario',
@@ -1139,7 +1369,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Mandos adaptados a manos infantiles con velocidad controlada', 'Incluye los coches oficiales de Mario y Yoshi', 'Montaje rápido tipo clic fácil de guardar'],
     idealFor: 'Primeras carreras emocionantes en familia sin complicaciones',
     style: 'kids',
-    imageUrl: '/images/products/46-carrera-mario.jpg'
+    imageUrl: '/images/products/46-carrera-mario-1.jpg',
+    images: [
+      '/images/products/46-carrera-mario-1.jpg',
+      '/images/products/46-carrera-mario-2.jpg',
+      '/images/products/46-carrera-mario-3.jpg'
+    ]
   },
   {
     id: '46-pikachu-peluche',
@@ -1160,7 +1395,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Más de 20 reacciones y sonidos auténticos de la serie', 'Mejillas con luz LED parpadeante como en el anime', 'Material hipoalergénico de primera calidad'],
     idealFor: 'Niños y niñas que adoran Pokémon y buscan un amigo de peluche',
     style: 'kids',
-    imageUrl: '/images/products/46-pikachu-peluche.jpg'
+    imageUrl: '/images/products/46-pikachu-peluche-1.jpg',
+    images: [
+      '/images/products/46-pikachu-peluche-1.jpg',
+      '/images/products/46-pikachu-peluche-2.jpg',
+      '/images/products/46-pikachu-peluche-3.jpg'
+    ]
   },
   {
     id: '79-scalextric-compact',
@@ -1181,7 +1421,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Mandos ergonómicos con botón Turbo de máxima aceleración', 'Espacio optimizado que cabe en cualquier salón o dormitorio', 'Coches resistentes con imán de agarre a la pista'],
     idealFor: 'Piques de carreras entre padres, hijos y amigos',
     style: 'classic',
-    imageUrl: '/images/products/79-scalextric-compact.jpg'
+    imageUrl: '/images/products/79-scalextric-compact-1.jpg',
+    images: [
+      '/images/products/79-scalextric-compact-1.jpg',
+      '/images/products/79-scalextric-compact-2.jpg',
+      '/images/products/79-scalextric-compact-3.jpg'
+    ]
   },
   {
     id: '79-coche-rc-exost',
@@ -1202,7 +1447,12 @@ export const PRODUCTS: Product[] = [
     pros: ['Diseño reversible de doble cara: si vuelca, sigue corriendo', 'Velocidad de hasta 12 km/h con alcance de 25 metros', 'Soporta caídas por escaleras, tierra y asfalto'],
     idealFor: 'Diversión todoterreno sin miedo a romper el juguete',
     style: 'classic',
-    imageUrl: '/images/products/79-coche-rc-exost.jpg'
+    imageUrl: '/images/products/79-coche-rc-exost-1.jpg',
+    images: [
+      '/images/products/79-coche-rc-exost-1.jpg',
+      '/images/products/79-coche-rc-exost-2.jpg',
+      '/images/products/79-coche-rc-exost-3.jpg'
+    ]
   },
 ];
 

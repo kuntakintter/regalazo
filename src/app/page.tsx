@@ -341,7 +341,7 @@ export default function HomePage() {
                 <span>🖤</span> Jóvenes y Adolescentes (13 a 18 Años)
               </h3>
               <p>
-                Los adolescentes buscan reafirmar su identidad propia. En lugar de regalos genéricos, triunfan los artículos con atmósfera: desde videojuegos de <strong>PlayStation 5</strong> y periféricos de setup gaming hasta <strong>estética alternativa (Emo, Grunge, Dark Aesthetic)</strong> con velas de cera de soja negra, diarios encuadernados en piel vintage y auriculares de alta fidelidad con cancelación de ruido.
+                Los adolescentes buscan reafirmar su identidad propia. En lugar de regalos genéricos, triunfan los artículos con personalidad: desde videojuegos de <strong>PlayStation 5</strong> y periféricos de setup gaming hasta <strong>estilo personal y creativo</strong> con velas aromáticas WoodWick, diarios encuadernados en piel vintage y auriculares de alta fidelidad con cancelación de ruido.
               </p>
             </div>
           </div>
