@@ -63,11 +63,11 @@ export default function ProductCard({ product, currentTheme }: ProductCardProps)
         : currentTheme === 'gamer'
         ? 'bg-slate-900/90 border-purple-900/60 text-slate-100 hover:border-cyan-500/50 shadow-purple-950/20'
         : currentTheme === 'baby'
-        ? 'bg-white border-rose-200/90 text-rose-950 hover:border-pink-300 shadow-rose-100/40'
-        : 'bg-white border-slate-200 text-slate-900 hover:border-indigo-200 shadow-slate-100'
+        ? 'bg-white border-rose-200/90 text-rose-950 hover:border-pink-300 shadow-sm'
+        : 'bg-white border-slate-200/90 text-slate-900 hover:border-indigo-300 shadow-sm'
     }`}>
       {/* Product Image & Badges */}
-      <div className="relative aspect-4/3 overflow-hidden bg-slate-100">
+      <div className="relative aspect-4/3 overflow-hidden bg-white">
         <a 
           href={directProductUrl}
           target="_blank"
