@@ -21,6 +21,10 @@ export function normalizeSearchText(str: string): string {
     .replace(/\b(balon|balones)\b/g, 'balon')
     .replace(/\b(legos)\b/g, 'lego')
     .replace(/\b(revelacion)\b/g, 'revelacion')
+    .replace(/\b(hawei|huawey)\b/g, 'huawei')
+    .replace(/\b(aifon|ifone|ipone)\b/g, 'iphone')
+    .replace(/\b(sansung|sansun)\b/g, 'samsung')
+    .replace(/\b(movil|moviles|celular|celulares|telefono|telefonos)\b/g, 'smartphone')
     .trim();
 }
 

@@ -26,7 +26,8 @@ import {
   Crown,
   Coins,
   Calendar,
-  Target
+  Target,
+  Smartphone
 } from 'lucide-react';
 
 const AGE_ICONS: Record<string, { icon: React.ComponentType<{ className?: string }>; color: string }> = {
@@ -339,19 +340,26 @@ export default function FilterBar({
           >
             Todas las opciones
           </button>
-          {availableSubcategories.map((subcat) => (
-            <button
-              key={subcat}
-              onClick={() => onSelectCategory(subcat)}
-              className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
-                selectedCategory === subcat
-                  ? 'bg-indigo-600 text-white font-bold shadow-xs'
-                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-              }`}
-            >
-              {subcat}
-            </button>
-          ))}
+          {availableSubcategories.map((subcat) => {
+            const isSmartphone = subcat === 'Smartphones y Telefonía';
+            const isSelected = selectedCategory === subcat;
+            return (
+              <button
+                key={subcat}
+                onClick={() => onSelectCategory(subcat)}
+                className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+                  isSelected
+                    ? 'bg-indigo-600 text-white font-bold shadow-xs'
+                    : isSmartphone
+                    ? 'bg-indigo-50 text-indigo-700 border border-indigo-200/80 hover:bg-indigo-100 font-bold'
+                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                }`}
+              >
+                {isSmartphone && <Smartphone className={`w-3.5 h-3.5 ${isSelected ? 'text-white' : 'text-indigo-600'}`} />}
+                <span>{subcat}</span>
+              </button>
+            );
+          })}
         </div>
       </div>
 

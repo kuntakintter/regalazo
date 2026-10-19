@@ -102,6 +102,7 @@ export const PRICE_FILTERS = [
 
 export const AGE_SUBCATEGORIES_MAP: Record<string, string[]> = {
   'all': [
+    'Smartphones y Telefonía',
     'Juegos de Mesa y Cartas',
     'LEGO y Construcción',
     'Scalextric y Circuitos de Coches',
@@ -168,6 +169,7 @@ export const AGE_SUBCATEGORIES_MAP: Record<string, string[]> = {
     'Moda Urbana, Sudaderas y Mochilas'
   ],
   '13-15': [
+    'Smartphones y Telefonía',
     'Auriculares Inalámbricos y Audio',
     'Cámaras Instantáneas y Fotografía',
     'Juegos de Mesa Clásicos (Catan)',
@@ -178,6 +180,7 @@ export const AGE_SUBCATEGORIES_MAP: Record<string, string[]> = {
     'Mochilas Urbanas y Viaje'
   ],
   '16-18': [
+    'Smartphones y Telefonía',
     'Videojuegos y Accesorios PS5',
     'Setup Gamer y Periféricos PC',
     'Tecnología, Audio Hi-Fi y Wearables',
@@ -187,6 +190,7 @@ export const AGE_SUBCATEGORIES_MAP: Record<string, string[]> = {
     'Moda Urbana, Ropa y Accesorios'
   ],
   '+18': [
+    'Smartphones y Telefonía',
     'Escapadas y Experiencias (Smartbox)',
     'LEGO Icons y Maquetas para Adultos',
     'Juegos de Mesa para Adultos y Parejas',
@@ -201,6 +205,9 @@ export const AGE_SUBCATEGORIES_MAP: Record<string, string[]> = {
 };
 
 export const GENERAL_CATEGORY_MAPPING: Record<string, string[]> = {
+  'Smartphones y Telefonía': [
+    'Smartphones y Telefonía'
+  ],
   'Juegos de Mesa y Cartas': [
     'Juegos de Mesa Infantiles',
     'Juegos de Mesa y Estrategia Familiar',

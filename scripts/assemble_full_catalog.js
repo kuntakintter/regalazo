@@ -10,6 +10,7 @@ require('./catalog_1012');
 require('./catalog_1315');
 require('./catalog_1618');
 require('./catalog_18plus');
+require('./catalog_smartphones');
 
 console.log(`Total assembled products: ${products.length}`);
 
