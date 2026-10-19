@@ -168,32 +168,32 @@ export default function Header({ currentTheme = 'classic', onThemeChange, onSear
                         onClick={handleSearchSubmit}
                         className="flex-1 text-center py-2 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-colors cursor-pointer"
                       >
-                        Ver todos los resultados en el catálogo
+                        Ver en catálogo ({liveMatches.length})
                       </button>
                       <a
                         href={amazonSearchUrl}
                         target="_blank"
-                        rel="nofollow noopener noreferrer"
-                        className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-bold transition-colors"
+                        rel="noopener noreferrer sponsored"
+                        className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 text-xs font-black transition-colors shadow-xs"
                       >
-                        <span>Buscar en Amazon</span>
+                        <span>Ver todo en Amazon.es (+50.000)</span>
                         <ExternalLink className="w-3.5 h-3.5" />
                       </a>
                     </div>
                   </div>
                 ) : (
-                  <div className="p-4 text-center">
+                  <div className="p-5 text-center bg-gradient-to-b from-white to-amber-50/40">
                     <p className="text-xs text-slate-600 mb-3">
-                      No encontramos coincidencias exactas para &quot;<strong>{searchQuery}</strong>&quot; en las recomendaciones locales.
+                      ¿Buscas &quot;<strong>{searchQuery}</strong>&quot;? Encuéntralo con envío rápido y garantía oficial en Amazon España.
                     </p>
                     <a
                       href={amazonSearchUrl}
                       target="_blank"
-                      rel="nofollow noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs transition-colors shadow-sm"
+                      rel="noopener noreferrer sponsored"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-xs transition-transform hover:scale-102 shadow-md cursor-pointer"
                     >
                       <span>Buscar &quot;{searchQuery}&quot; en Amazon España</span>
-                      <ExternalLink className="w-3.5 h-3.5" />
+                      <ExternalLink className="w-4 h-4" />
                     </a>
                   </div>
                 )}

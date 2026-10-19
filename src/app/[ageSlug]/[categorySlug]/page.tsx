@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import ProductCard from '@/components/ProductCard';
 import SeoFaq from '@/components/SeoFaq';
 import AmazonLiveSearchCard from '@/components/AmazonLiveSearchCard';
+import AmazonGridDiscoveryCard from '@/components/AmazonGridDiscoveryCard';
 import ThemeAtmosphere from '@/components/ThemeAtmosphere';
 import { PRODUCTS } from '@/data/products';
 import { SEO_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
@@ -207,6 +208,10 @@ export default async function SubcategoryLandingPage({ params }: PageProps) {
                   currentTheme="classic"
                 />
               ))}
+              <AmazonGridDiscoveryCard
+                selectedCategory={currentSub.label}
+                selectedAge={ageMeta.ageId}
+              />
             </div>
           ) : (
             <div className="text-center py-12 px-4 rounded-3xl border border-dashed border-slate-300 mb-8 bg-white/60">

@@ -7,6 +7,7 @@ import ProductCard from '@/components/ProductCard';
 import FilterBar from '@/components/FilterBar';
 import SeoFaq from '@/components/SeoFaq';
 import AmazonLiveSearchCard from '@/components/AmazonLiveSearchCard';
+import AmazonGridDiscoveryCard from '@/components/AmazonGridDiscoveryCard';
 import ThemeAtmosphere from '@/components/ThemeAtmosphere';
 import { PRODUCTS, Product } from '@/data/products';
 import { SEO_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
@@ -209,6 +210,9 @@ export default async function AgeLandingPage({ params }: PageProps) {
                 currentTheme="classic"
               />
             ))}
+            <AmazonGridDiscoveryCard
+              selectedAge={routeMeta.ageId}
+            />
           </div>
 
           {/* Amazon live card for custom search */}

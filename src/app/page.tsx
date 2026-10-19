@@ -9,6 +9,7 @@ import GiftWizard from '@/components/GiftWizard';
 import SeoFaq from '@/components/SeoFaq';
 import ThemeAtmosphere from '@/components/ThemeAtmosphere';
 import AmazonLiveSearchCard from '@/components/AmazonLiveSearchCard';
+import AmazonGridDiscoveryCard from '@/components/AmazonGridDiscoveryCard';
 import { PRODUCTS, AGE_CATEGORIES, GENERAL_CATEGORY_MAPPING, Product } from '@/data/products';
 import { matchesSearchQuery } from '@/utils/search';
 import { Sparkles, Gift, Flame, Baby, Gamepad2, ShieldCheck, TrendingUp, Search, Bot } from 'lucide-react';
@@ -289,6 +290,11 @@ export default function HomePage() {
                   currentTheme="classic"
                 />
               ))}
+              <AmazonGridDiscoveryCard
+                searchQuery={searchQuery}
+                selectedAge={selectedAge}
+                selectedCategory={selectedCategory}
+              />
             </section>
 
             {/* Universal Amazon Live Search Bar (Cookie & Global Search) */}
