@@ -108,7 +108,7 @@ export default function GiftWizard({ isOpen, onClose, onApplyRecommendation }: G
       { id: 'urban-fashion-style', label: 'Moda Urbana, Ropa y Accesorios', icon: '🕶️', category: 'Moda Urbana, Ropa y Accesorios' },
     ],
     '+18': [
-      { id: 'all-18plus', label: 'Ver Todo para Adultos (+18)', icon: '🌟', category: 'all' },
+      { id: 'all-18plus', label: 'Ver Todo a Partir de 18 Años', icon: '🌟', category: 'all' },
       { id: 'smartbox-escapes', label: 'Escapadas, Spa y Experiencias Gourmet (Smartbox)', icon: '✈️', category: 'Escapadas y Experiencias' },
       { id: 'lego-icons', label: 'LEGO Icons Botánico y Maquetas de Colección', icon: '🌸', category: 'LEGO Icons y Maquetas para Adultos' },
       { id: 'adult-boardgames', label: 'Juegos de Mesa y Estrategia (Terraforming Mars, Wingspan)', icon: '🎲', category: 'Juegos de Mesa para Adultos y Parejas' },
@@ -257,7 +257,7 @@ export default function GiftWizard({ isOpen, onClose, onApplyRecommendation }: G
                   { id: '10-12', label: '10 a 12 Años', icon: '👾' },
                   { id: '13-15', label: '13 a 15 Años', icon: '🎧' },
                   { id: '16-18', label: '16 a 18 Años', icon: '🖤' },
-                  { id: '+18', label: 'Adultos (+18)', icon: '🥂' },
+                  { id: '+18', label: 'A partir de 18 Años', icon: '🥂' },
                   { id: 'all', label: 'Todas las edades', icon: '🌟' },
                 ].map((item) => (
                   <button

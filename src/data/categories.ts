@@ -82,11 +82,11 @@ export const AGE_CATEGORIES: AgeCategoryMeta[] = [
   },
   {
     id: '+18',
-    label: 'Adultos (+18)',
-    tagline: 'Cajas Smartbox, robótica avanzada, maquetas LEGO Icons, juegos expertos y gourmet',
-    description: 'Los mejores regalos para adultos y mayores de 18 años: escapadas y spas de fin de semana con Smartbox, coleccionismo y sets botánicos LEGO Icons, robótica y drones con cámara 4K, juegos de mesa estratégicos y experiencias gourmet.',
-    h1: 'Ideas de Regalo Originales para Adultos y Mayores de 18 Años (+18)',
-    seoKeywords: ['regalos para adultos', 'smartbox escapada spa', 'lego icons botanicals', 'drones camara 4k', 'juegos de mesa adultos', 'regalos originales hombre mujer'],
+    label: 'A partir de 18 Años',
+    tagline: 'Cajas Smartbox, robótica avanzada, maquetas LEGO Icons, smartphones insignia y gourmet',
+    description: 'Los mejores regalos a partir de 18 años y adultos: escapadas y spas de fin de semana con Smartbox, smartphones buques insignia, coleccionismo LEGO Icons, robótica y drones 4K, juegos de mesa estratégicos y experiencias gourmet.',
+    h1: 'Ideas de Regalo Originales a Partir de 18 Años (Adultos)',
+    seoKeywords: ['regalos a partir de 18 años', 'regalos para adultos', 'smartbox escapada spa', 'lego icons botanicals', 'smartphones buques insignia', 'drones camara 4k', 'juegos de mesa adultos', 'regalos originales hombre mujer'],
     theme: 'classic',
     icon: '🎯'
   }

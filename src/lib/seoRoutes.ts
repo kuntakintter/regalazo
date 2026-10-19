@@ -70,10 +70,10 @@ export const SEO_AGE_ROUTES: Record<string, SeoRouteMeta> = {
   'adultos-mas-de-18-anos': {
     ageId: '+18',
     ageSlug: 'adultos-mas-de-18-anos',
-    title: 'Mejores Regalos para Adultos (+18 Años) | Smartbox, LEGO Icons y Robótica 2026',
-    h1: 'Ideas de Regalo Originales para Adultos y Mayores de 18 Años (+18)',
-    description: 'Selección de regalos para adultos: cajas regalo Smartbox de escapadas y cenas gourmet, sets LEGO Icons Botánicos, maquetas y robótica avanzada, drones con cámara 4K y juegos de mesa estratégicos con garantía oficial Amazon España.',
-    keywords: ['regalos para adultos', 'regalos originales mayores 18 años', 'cajas smartbox escapada', 'lego icons adultos', 'drones con camara 4k', 'juegos de mesa expertos adultos']
+    title: 'Mejores Regalos a Partir de 18 Años (Adultos) | Smartbox, LEGO Icons y Smartphones 2026',
+    h1: 'Ideas de Regalo Originales a Partir de 18 Años (Adultos)',
+    description: 'Selección de regalos a partir de 18 años y adultos: cajas regalo Smartbox de escapadas y cenas gourmet, smartphones buque insignia, sets LEGO Icons Botánicos, maquetas y robótica avanzada, drones con cámara 4K y juegos de mesa estratégicos con garantía oficial Amazon España.',
+    keywords: ['regalos a partir de 18 años', 'regalos para adultos', 'regalos originales mayores 18 años', 'cajas smartbox escapada', 'lego icons adultos', 'smartphones buques insignia', 'drones con camara 4k', 'juegos de mesa expertos adultos']
   },
   'fiesta-revelacion-genero': {
     ageId: 'reveal',

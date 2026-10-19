@@ -65,7 +65,7 @@ export default function Footer({ currentTheme }: FooterProps) {
               <li><a href="#catalogo-productos" className="hover:underline">Preadolescentes (10 a 12 Años)</a></li>
               <li><a href="#catalogo-productos" className="hover:underline">Adolescentes (13 a 15 Años)</a></li>
               <li><a href="#catalogo-productos" className="hover:underline">Jóvenes (16 a 18 Años - Gaming & Estilo)</a></li>
-              <li><a href="#catalogo-productos" className="hover:underline">Adultos y Mayores de 18 Años (+18)</a></li>
+              <li><a href="#catalogo-productos" className="hover:underline">A partir de 18 Años (Adultos)</a></li>
             </ul>
           </div>
 
