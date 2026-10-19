@@ -2,7 +2,43 @@
 
 import React from 'react';
 import { AGE_CATEGORIES, AGE_SUBCATEGORIES_MAP } from '@/data/products';
-import { Sparkles, X, Check, SlidersHorizontal, RotateCcw } from 'lucide-react';
+import {
+  Sparkles,
+  X,
+  Check,
+  SlidersHorizontal,
+  RotateCcw,
+  Baby,
+  Puzzle,
+  Palette,
+  Wand2,
+  Rocket,
+  Headphones,
+  Gamepad2,
+  Wine,
+  User,
+  Users,
+  Heart,
+  PartyPopper,
+  Tag,
+  Gift,
+  Gem,
+  Crown,
+  Coins,
+  Calendar,
+  Target
+} from 'lucide-react';
+
+const AGE_ICONS: Record<string, { icon: React.ComponentType<{ className?: string }>; color: string }> = {
+  '0-12m': { icon: Baby, color: 'text-rose-500' },
+  '1-3': { icon: Puzzle, color: 'text-emerald-500' },
+  '4-6': { icon: Palette, color: 'text-amber-500' },
+  '7-9': { icon: Wand2, color: 'text-indigo-500' },
+  '10-12': { icon: Rocket, color: 'text-blue-500' },
+  '13-15': { icon: Headphones, color: 'text-violet-500' },
+  '16-18': { icon: Gamepad2, color: 'text-purple-600' },
+  '+18': { icon: Wine, color: 'text-rose-600' },
+};
 
 interface FilterBarProps {
   selectedAge: string;
@@ -144,29 +180,31 @@ export default function FilterBar({
             Accesos rápidos:
           </span>
           {[
-            { id: 'all', label: '🌟 Cualquier Presupuesto', val: 150 },
-            { id: '20', label: '🏷️ Hasta 20 €', val: 20 },
-            { id: '50', label: '🎁 Hasta 50 €', val: 50 },
-            { id: '100', label: '💎 Hasta 100 €', val: 100 },
-            { id: '>100', label: '👑 Más de 100 €', val: 150 },
+            { id: 'all', label: 'Cualquier Presupuesto', icon: Coins, iconColor: 'text-amber-500' },
+            { id: '20', label: 'Hasta 20 €', icon: Tag, iconColor: 'text-emerald-500' },
+            { id: '50', label: 'Hasta 50 €', icon: Gift, iconColor: 'text-indigo-500' },
+            { id: '100', label: 'Hasta 100 €', icon: Gem, iconColor: 'text-purple-500' },
+            { id: '>100', label: 'Más de 100 €', icon: Crown, iconColor: 'text-amber-600' },
           ].map((preset) => {
             const isActive =
               preset.id === selectedPrice ||
               (preset.id === '20' && selectedPrice === '<20') ||
               (preset.id === '50' && selectedPrice === '20-50') ||
               (preset.id === '100' && selectedPrice === '50-100');
+            const IconComp = preset.icon;
 
             return (
               <button
                 key={preset.id}
                 onClick={() => onSelectPrice(preset.id)}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all border cursor-pointer ${
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all border cursor-pointer flex items-center gap-1.5 ${
                   isActive
                     ? 'bg-indigo-600 text-white border-indigo-600 shadow-xs'
                     : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-100'
                 }`}
               >
-                {preset.label}
+                <IconComp className={`w-3.5 h-3.5 ${isActive ? 'text-white' : preset.iconColor}`} />
+                <span>{preset.label}</span>
               </button>
             );
           })}
@@ -176,9 +214,9 @@ export default function FilterBar({
       {/* 2. SELECTOR DE EDAD */}
       <div>
         <div className="flex items-center justify-between mb-2.5">
-          <label className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
-            <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-            Selecciona la Edad:
+          <label className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-2">
+            <Calendar className="w-4 h-4 text-indigo-600" />
+            <span>Selecciona la Edad:</span>
           </label>
         </div>
 
@@ -188,89 +226,97 @@ export default function FilterBar({
               onSelectAge('all');
               onSelectCategory('all');
             }}
-            className={`px-3.5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all border cursor-pointer ${
+            className={`px-3.5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all flex items-center gap-2 border cursor-pointer ${
               selectedAge === 'all'
                 ? 'bg-slate-900 text-white border-slate-900 shadow-sm'
                 : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100'
             }`}
           >
-            🌟 Todas las Edades (0 a 18)
+            <Sparkles className={`w-4 h-4 ${selectedAge === 'all' ? 'text-amber-300' : 'text-amber-500'}`} />
+            <span>Todas las Edades</span>
           </button>
 
-          {AGE_CATEGORIES.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => {
-                onSelectAge(cat.id);
-                onSelectCategory('all');
-              }}
-              className={`px-3.5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all flex items-center gap-1.5 border cursor-pointer ${
-                selectedAge === cat.id
-                  ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm'
-                  : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100'
-              }`}
-            >
-              <span>{cat.icon}</span>
-              <span>{cat.label}</span>
-            </button>
-          ))}
+          {AGE_CATEGORIES.map((cat) => {
+            const ageIconData = AGE_ICONS[cat.id];
+            const IconComp = ageIconData ? ageIconData.icon : Sparkles;
+            const iconColor = ageIconData ? ageIconData.color : 'text-indigo-500';
+            const isActive = selectedAge === cat.id;
+
+            return (
+              <button
+                key={cat.id}
+                onClick={() => {
+                  onSelectAge(cat.id);
+                  onSelectCategory('all');
+                }}
+                className={`px-3.5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all flex items-center gap-2 border cursor-pointer ${
+                  isActive
+                    ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm'
+                    : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100'
+                }`}
+              >
+                <IconComp className={`w-4 h-4 ${isActive ? 'text-white' : iconColor}`} />
+                <span>{cat.label}</span>
+              </button>
+            );
+          })}
         </div>
       </div>
 
       {/* 3. SELECTOR DE DESTINATARIO: PARA ÉL / PARA ELLA / UNISEX */}
       <div className="pt-1">
-        <label className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5 mb-2.5">
-          <span className="text-sm">🎯</span>
-          ¿Para quién es el regalo?:
+        <label className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-2 mb-2.5">
+          <Target className="w-4 h-4 text-indigo-600" />
+          <span>¿Para quién es el regalo?:</span>
         </label>
 
         <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-thin">
           <button
             onClick={() => onSelectGender('all')}
-            className={`px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all border cursor-pointer flex items-center gap-1.5 ${
+            className={`px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all border cursor-pointer flex items-center gap-2 ${
               selectedGender === 'all'
                 ? 'bg-indigo-600 text-white border-indigo-600 shadow-xs'
                 : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100'
             }`}
           >
-            <span>✨</span>
+            <Users className={`w-4 h-4 ${selectedGender === 'all' ? 'text-white' : 'text-indigo-600'}`} />
             <span>Todos / Unisex</span>
           </button>
 
           <button
             onClick={() => onSelectGender('boy')}
-            className={`px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all border cursor-pointer flex items-center gap-1.5 ${
+            className={`px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all border cursor-pointer flex items-center gap-2 ${
               selectedGender === 'boy'
                 ? 'bg-blue-600 text-white border-blue-600 shadow-xs'
                 : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-blue-50 hover:text-blue-700'
             }`}
           >
-            <span>👦</span>
+            <User className={`w-4 h-4 ${selectedGender === 'boy' ? 'text-white' : 'text-blue-600'}`} />
             <span>Para Él</span>
           </button>
 
           <button
             onClick={() => onSelectGender('girl')}
-            className={`px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all border cursor-pointer flex items-center gap-1.5 ${
+            className={`px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all border cursor-pointer flex items-center gap-2 ${
               selectedGender === 'girl'
                 ? 'bg-pink-600 text-white border-pink-600 shadow-xs'
                 : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-pink-50 hover:text-pink-700'
             }`}
           >
-            <span>👧</span>
+            <Heart className={`w-4 h-4 ${selectedGender === 'girl' ? 'text-white' : 'text-pink-600'}`} />
             <span>Para Ella</span>
           </button>
 
           {selectedAge === '0-12m' && (
             <button
               onClick={() => onSelectGender('reveal')}
-              className={`px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all border cursor-pointer flex items-center gap-1.5 ${
+              className={`px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all border cursor-pointer flex items-center gap-2 ${
                 selectedGender === 'reveal'
                   ? 'bg-amber-500 text-white border-amber-500 shadow-xs'
                   : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-amber-50 hover:text-amber-700'
               }`}
             >
-              <span>🎉</span>
+              <PartyPopper className={`w-4 h-4 ${selectedGender === 'reveal' ? 'text-white' : 'text-amber-500'}`} />
               <span>Fiesta Revelación de Género</span>
             </button>
           )}

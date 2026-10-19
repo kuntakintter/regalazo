@@ -12,7 +12,34 @@ import AmazonLiveSearchCard from '@/components/AmazonLiveSearchCard';
 import AmazonGridDiscoveryCard from '@/components/AmazonGridDiscoveryCard';
 import { PRODUCTS, AGE_CATEGORIES, GENERAL_CATEGORY_MAPPING, Product } from '@/data/products';
 import { matchesSearchQuery } from '@/utils/search';
-import { Sparkles, Gift, Flame, Baby, Gamepad2, ShieldCheck, TrendingUp, Search, Bot } from 'lucide-react';
+import {
+  Sparkles,
+  Gift,
+  Flame,
+  Baby,
+  Puzzle,
+  Palette,
+  Wand2,
+  Rocket,
+  Headphones,
+  Gamepad2,
+  Wine,
+  ShieldCheck,
+  TrendingUp,
+  Search,
+  Bot
+} from 'lucide-react';
+
+const AGE_BANNER_ICONS: Record<string, { icon: React.ComponentType<{ className?: string }>; bg: string; color: string }> = {
+  '0-12m': { icon: Baby, bg: 'bg-rose-50 border-rose-200', color: 'text-rose-600' },
+  '1-3': { icon: Puzzle, bg: 'bg-emerald-50 border-emerald-200', color: 'text-emerald-600' },
+  '4-6': { icon: Palette, bg: 'bg-amber-50 border-amber-200', color: 'text-amber-600' },
+  '7-9': { icon: Wand2, bg: 'bg-indigo-50 border-indigo-200', color: 'text-indigo-600' },
+  '10-12': { icon: Rocket, bg: 'bg-blue-50 border-blue-200', color: 'text-blue-600' },
+  '13-15': { icon: Headphones, bg: 'bg-violet-50 border-violet-200', color: 'text-violet-600' },
+  '16-18': { icon: Gamepad2, bg: 'bg-purple-50 border-purple-200', color: 'text-purple-600' },
+  '+18': { icon: Wine, bg: 'bg-rose-50 border-rose-200', color: 'text-rose-700' },
+};
 
 export default function HomePage() {
   const [selectedAge, setSelectedAge] = useState<string>('all');
@@ -239,7 +266,17 @@ export default function HomePage() {
         {currentAgeMeta && (
           <div className="p-5 sm:p-6 rounded-3xl my-6 border border-indigo-100 bg-white shadow-xs transition-all flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
             <div className="flex items-center gap-3.5">
-              <span className="text-3xl sm:text-4xl shrink-0">{currentAgeMeta.icon}</span>
+              {(() => {
+                const badge = AGE_BANNER_ICONS[currentAgeMeta.id];
+                const IconComp = badge ? badge.icon : Gift;
+                const bgClass = badge ? badge.bg : 'bg-indigo-50 border-indigo-200';
+                const textClass = badge ? badge.color : 'text-indigo-600';
+                return (
+                  <div className={`w-11 h-11 sm:w-12 sm:h-12 rounded-2xl ${bgClass} border flex items-center justify-center shadow-xs shrink-0`}>
+                    <IconComp className={`w-5 h-5 sm:w-6 sm:h-6 ${textClass}`} />
+                  </div>
+                );
+              })()}
               <div>
                 <h2 className="text-base sm:text-lg font-black text-slate-900">{currentAgeMeta.label}</h2>
                 <p className="text-xs sm:text-sm text-slate-500 leading-snug">{currentAgeMeta.tagline}</p>
