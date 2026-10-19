@@ -7,10 +7,10 @@ import ThemeAtmosphere from '@/components/ThemeAtmosphere';
 import { Shield, Lock, Eye, ArrowLeft, CheckCircle2 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Política de Privacidad (RGPD) | Regalazo',
+  title: 'Política de Privacidad (RGPD) | Un Buen Regalo',
   description: 'Política de Privacidad y Protección de Datos personales conforme al Reglamento General de Protección de Datos (RGPD) y la LOPDGDD.',
   alternates: {
-    canonical: 'https://buscaregalo.vercel.app/politica-de-privacidad',
+    canonical: 'https://unbuenregalo.vercel.app/politica-de-privacidad',
   },
 };
 
@@ -43,7 +43,7 @@ export default function PoliticaPrivacidadPage() {
               Política de Privacidad y Protección de Datos
             </h1>
             <p className="text-sm text-slate-500 mt-2">
-              En Regalazo respetamos al 100% tu privacidad. No comercializamos con tus datos personales ni almacenamos información bancaria.
+              En Un Buen Regalo respetamos al 100% tu privacidad. No comercializamos con tus datos personales ni almacenamos información bancaria.
             </p>
           </header>
 
@@ -79,7 +79,7 @@ export default function PoliticaPrivacidadPage() {
               1. Responsable del Tratamiento de tus Datos
             </h2>
             <p>
-              El responsable del tratamiento de los datos recabados en este sitio web es el equipo gestor de <strong>Regalazo</strong> (accesible desde https://buscaregalo.vercel.app). Nos comprometemos a tratar todos los datos de conformidad con el Reglamento (UE) 2016/679 del Parlamento Europeo (RGPD) y la Ley Orgánica 3/2018 (LOPDGDD).
+              El responsable del tratamiento de los datos recabados en este sitio web es el equipo gestor de <strong>Un Buen Regalo</strong> (accesible desde https://unbuenregalo.vercel.app). Nos comprometemos a tratar todos los datos de conformidad con el Reglamento (UE) 2016/679 del Parlamento Europeo (RGPD) y la Ley Orgánica 3/2018 (LOPDGDD).
             </p>
           </section>
 
@@ -90,7 +90,7 @@ export default function PoliticaPrivacidadPage() {
               2. Datos que Recopilamos y Finalidad
             </h2>
             <p>
-              En Regalazo minimizamos la recolección de datos al mínimo técnico indispensable:
+              En Un Buen Regalo minimizamos la recolección de datos al mínimo técnico indispensable:
             </p>
             <ul className="list-disc pl-5 space-y-1.5 text-xs sm:text-sm text-slate-600">
               <li>
@@ -127,7 +127,7 @@ export default function PoliticaPrivacidadPage() {
               4. Comunicación de Datos a Terceros
             </h2>
             <p>
-              Regalazo <strong>no vende, alquila ni cede datos personales a terceros</strong> bajo ningún concepto. Únicamente proveedores tecnológicos esenciales de alojamiento y distribución de contenido (como Vercel Inc. para la infraestructura web de alta disponibilidad) pueden procesar datos técnicos bajo estrictos acuerdos de procesamiento conformes al marco de privacidad UE-EE.UU.
+              Un Buen Regalo <strong>no vende, alquila ni cede datos personales a terceros</strong> bajo ningún concepto. Únicamente proveedores tecnológicos esenciales de alojamiento y distribución de contenido (como Vercel Inc. para la infraestructura web de alta disponibilidad) pueden procesar datos técnicos bajo estrictos acuerdos de procesamiento conformes al marco de privacidad UE-EE.UU.
             </p>
           </section>
 

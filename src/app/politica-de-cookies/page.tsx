@@ -8,10 +8,10 @@ import { Cookie, ShieldCheck, Settings, ArrowLeft, Info } from 'lucide-react';
 import { AMAZON_AFFILIATE_TAG } from '@/lib/amazon';
 
 export const metadata: Metadata = {
-  title: 'Política de Cookies | Regalazo',
-  description: 'Información clara y transparente sobre el uso de cookies propias, técnicas y de afiliados de Amazon en Regalazo conforme a la AEPD.',
+  title: 'Política de Cookies | Un Buen Regalo',
+  description: 'Información clara y transparente sobre el uso de cookies propias, técnicas y de afiliados de Amazon en Un Buen Regalo conforme a la AEPD.',
   alternates: {
-    canonical: 'https://buscaregalo.vercel.app/politica-de-cookies',
+    canonical: 'https://unbuenregalo.vercel.app/politica-de-cookies',
   },
 };
 
@@ -44,7 +44,7 @@ export default function PoliticaCookiesPage() {
               Política de Cookies
             </h1>
             <p className="text-sm text-slate-500 mt-2">
-              Te explicamos qué son las cookies, cuáles utilizamos en Regalazo y cómo puedes gestionarlas o desactivarlas en cualquier momento.
+              Te explicamos qué son las cookies, cuáles utilizamos en Un Buen Regalo y cómo puedes gestionarlas o desactivarlas en cualquier momento.
             </p>
           </header>
 
@@ -59,14 +59,14 @@ export default function PoliticaCookiesPage() {
             </p>
           </section>
 
-          {/* 2. Qué cookies usamos en Regalazo */}
+          {/* 2. Qué cookies usamos en Un Buen Regalo */}
           <section className="space-y-4 text-sm text-slate-700 leading-relaxed">
             <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
               <Cookie className="w-4 h-4 text-indigo-600" />
               2. Tipos de Cookies Utilizadas en este Sitio Web
             </h2>
             <p>
-              En Regalazo utilizamos cookies estrictamente necesarias para el funcionamiento del sitio web, así como cookies de terceros asociadas al programa de recomendación:
+              En Un Buen Regalo utilizamos cookies estrictamente necesarias para el funcionamiento del sitio web, así como cookies de terceros asociadas al programa de recomendación:
             </p>
 
             <div className="space-y-3">
@@ -86,7 +86,7 @@ export default function PoliticaCookiesPage() {
                   Al hacer clic en el botón de compra o ver oferta de cualquier producto, eres redirigido a Amazon.es a través de nuestro enlace de afiliado (con identificador oficial <code>{AMAZON_AFFILIATE_TAG}</code>).
                 </p>
                 <p className="text-xs text-slate-600">
-                  Amazon instala una cookie técnica de rastreo en tu navegador con una duración habitual de 24 horas para identificar que la visita provino de Regalazo y poder acreditar la comisión si decides realizar una compra. Esta cookie no recopila datos personales sensibles como tu nombre o tarjeta de crédito.
+                  Amazon instala una cookie técnica de rastreo en tu navegador con una duración habitual de 24 horas para identificar que la visita provino de Un Buen Regalo y poder acreditar la comisión si decides realizar una compra. Esta cookie no recopila datos personales sensibles como tu nombre o tarjeta de crédito.
                 </p>
               </div>
 
@@ -117,7 +117,7 @@ export default function PoliticaCookiesPage() {
                 </thead>
                 <tbody className="divide-y divide-slate-100 text-slate-600">
                   <tr>
-                    <td className="p-3 font-mono font-semibold">regalazo_cookie_consent</td>
+                    <td className="p-3 font-mono font-semibold">unbuenregalo_cookie_consent</td>
                     <td className="p-3">Propia</td>
                     <td className="p-3">Almacenar la preferencia de aceptación del banner de cookies</td>
                     <td className="p-3">1 año</td>

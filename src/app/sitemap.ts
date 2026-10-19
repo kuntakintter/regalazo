@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { SEO_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://regalazo.vercel.app';
+  const baseUrl = 'https://unbuenregalo.vercel.app';
 
   // 1. Root Homepage
   const routes: MetadataRoute.Sitemap = [

@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/'],
     },
-    sitemap: 'https://regalazo.vercel.app/sitemap.xml',
+    sitemap: 'https://unbuenregalo.vercel.app/sitemap.xml',
   };
 }

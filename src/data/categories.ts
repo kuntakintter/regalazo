@@ -96,7 +96,7 @@ export const PRICE_FILTERS = [
   { id: 'all', label: 'Cualquier Presupuesto' },
   { id: '<20', label: 'Menos de 20 € (Detalles económicos)' },
   { id: '20-50', label: '20 € a 50 € (Regalo perfecto)' },
-  { id: '50-100', label: '50 € a 100 € (Regalazo prémium)' },
+  { id: '50-100', label: '50 € a 100 € (Gran regalo prémium)' },
   { id: '>100', label: 'Más de 100 € (Ocasión especial)' }
 ];
 

@@ -1,7 +1,7 @@
 {
-  "name": "regalazo",
+  "name": "un-buen-regalo",
   "version": "1.0.0",
-  "description": "Regalazo - El recomendador más potente de regalos para bebés, niños y jóvenes de 0 a 18 años con enlaces de afiliado de Amazon España",
+  "description": "Un Buen Regalo - El recomendador más potente de regalos para todas las edades (0 a +18 años) con enlaces de afiliado de Amazon España",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

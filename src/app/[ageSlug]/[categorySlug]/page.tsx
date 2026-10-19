@@ -44,9 +44,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const currentSub = subcategories.find((s) => s.slug === categorySlug);
   if (!currentSub) return {};
 
-  const pageTitle = `Mejores ${currentSub.label} (${ageMeta.h1}) | Regalazo 2026`;
+  const pageTitle = `Mejores ${currentSub.label} (${ageMeta.h1}) | Un Buen Regalo 2026`;
   const pageDesc = `Descubre los mejores productos y ofertas en ${currentSub.label} para ${ageMeta.h1}. Opiniones reales, marcas oficiales y garantía directa de Amazon España.`;
-  const canonicalUrl = `https://regalazo.vercel.app/${ageSlug}/${categorySlug}`;
+  const canonicalUrl = `https://unbuenregalo.vercel.app/${ageSlug}/${categorySlug}`;
 
   return {
     title: pageTitle,
@@ -59,7 +59,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: pageDesc,
       url: canonicalUrl,
       type: 'website',
-      siteName: 'Regalazo',
+      siteName: 'Un Buen Regalo',
       locale: 'es_ES',
     },
   };
@@ -97,19 +97,19 @@ export default async function SubcategoryLandingPage({ params }: PageProps) {
         '@type': 'ListItem',
         position: 1,
         name: 'Inicio',
-        item: 'https://regalazo.vercel.app',
+        item: 'https://unbuenregalo.vercel.app',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: ageMeta.h1,
-        item: `https://regalazo.vercel.app/${ageSlug}`,
+        item: `https://unbuenregalo.vercel.app/${ageSlug}`,
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: currentSub.label,
-        item: `https://regalazo.vercel.app/${ageSlug}/${categorySlug}`,
+        item: `https://unbuenregalo.vercel.app/${ageSlug}/${categorySlug}`,
       },
     ],
   };

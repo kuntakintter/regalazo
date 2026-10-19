@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Cookie, ShieldCheck, Check, X } from 'lucide-react';
 
-const STORAGE_KEY = 'regalazo_cookie_consent';
+const STORAGE_KEY = 'unbuenregalo_cookie_consent';
 
 export default function CookieBanner() {
   const [isVisible, setIsVisible] = useState(false);

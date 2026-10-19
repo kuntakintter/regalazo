@@ -8,10 +8,10 @@ import { ShieldCheck, Scale, FileText, ArrowLeft, ExternalLink } from 'lucide-re
 import { AMAZON_AFFILIATE_TAG } from '@/lib/amazon';
 
 export const metadata: Metadata = {
-  title: 'Aviso Legal | Regalazo',
-  description: 'Información legal, condiciones de uso y divulgación obligatoria del programa de Afiliados de Amazon España para Regalazo.',
+  title: 'Aviso Legal | Un Buen Regalo',
+  description: 'Información legal, condiciones de uso y divulgación obligatoria del programa de Afiliados de Amazon España para Un Buen Regalo.',
   alternates: {
-    canonical: 'https://buscaregalo.vercel.app/aviso-legal',
+    canonical: 'https://unbuenregalo.vercel.app/aviso-legal',
   },
 };
 
@@ -55,7 +55,7 @@ export default function AvisoLegalPage() {
               <span>Divulgación Obligatoria del Programa de Afiliados de Amazon</span>
             </div>
             <p>
-              En calidad de Afiliado de Amazon, <strong>Regalazo</strong> (buscaregalo.vercel.app) obtiene ingresos por las compras adscritas que cumplen los requisitos aplicables. El identificador oficial de asociado asignado es <strong>{AMAZON_AFFILIATE_TAG}</strong>.
+              En calidad de Afiliado de Amazon, <strong>Un Buen Regalo</strong> (unbuenregalo.vercel.app) obtiene ingresos por las compras adscritas que cumplen los requisitos aplicables. El identificador oficial de asociado asignado es <strong>{AMAZON_AFFILIATE_TAG}</strong>.
             </p>
             <p className="text-xs opacity-90">
               Esto significa que al hacer clic en los enlaces de compra de nuestra web y completar un pedido en Amazon.es, podemos recibir una pequeña comisión de recomendación. <strong>Esto no supone jamás un coste adicional para ti</strong>: el precio que pagas en Amazon es exactamente el mismo (o menor si hay ofertas activas).
@@ -72,8 +72,8 @@ export default function AvisoLegalPage() {
               En cumplimiento del artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), se informa de los datos de la presente plataforma:
             </p>
             <ul className="list-disc pl-5 space-y-1 text-xs sm:text-sm text-slate-600">
-              <li><strong>Denominación comercial:</strong> Regalazo</li>
-              <li><strong>Sitio Web:</strong> https://buscaregalo.vercel.app</li>
+              <li><strong>Denominación comercial:</strong> Un Buen Regalo</li>
+              <li><strong>Sitio Web:</strong> https://unbuenregalo.vercel.app</li>
               <li><strong>Actividad:</strong> Portal informativo, agregador editorial y recomendador de ideas de regalo para bebés, niños y adolescentes con monetización mediante enlaces de afiliación.</li>
               <li><strong>Contacto legal:</strong> A través de los canales de atención y reporte habilitados en el sitio web.</li>
             </ul>
@@ -86,7 +86,7 @@ export default function AvisoLegalPage() {
               2. Objeto y Naturaleza del Servicio
             </h2>
             <p>
-              Regalazo no es una tienda online física ni almacena, vende, envía ni factura los productos mostrados. Nuestra labor es estrictamente <strong>editorial, comparativa y de recomendación</strong> de productos verificados.
+              Un Buen Regalo no es una tienda online física ni almacena, vende, envía ni factura los productos mostrados. Nuestra labor es estrictamente <strong>editorial, comparativa y de recomendación</strong> de productos verificados.
             </p>
             <p>
               Cualquier transacción de compra, garantía, envío o devolución se celebra y gestiona íntegramente en la plataforma de destino (<strong>Amazon.es</strong>) bajo sus propias condiciones de venta y políticas de protección al consumidor.
@@ -100,7 +100,7 @@ export default function AvisoLegalPage() {
               3. Propiedad Intelectual y Marcas
             </h2>
             <p>
-              El código fuente, diseño gráfico, logotipos, arquitectura de software, bases de datos y textos elaborados por el equipo de Regalazo están protegidos por las leyes de propiedad intelectual e industrial.
+              El código fuente, diseño gráfico, logotipos, arquitectura de software, bases de datos y textos elaborados por el equipo de Un Buen Regalo están protegidos por las leyes de propiedad intelectual e industrial.
             </p>
             <p>
               Las marcas comerciales, logotipos de productos, nombres de fabricantes (como LEGO, Hot Wheels, Scalextric, Sony, Nintendo, Chicco, Tous, etc.) e imágenes de producto mostradas pertenecen a sus respectivos propietarios y se utilizan únicamente con fines legítimos de identificación y referencia en el marco del comercio de afiliación.

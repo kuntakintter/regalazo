@@ -67,7 +67,7 @@ export default function Header({ currentTheme = 'classic', onThemeChange, onSear
             <div>
               <div className="flex items-center gap-1">
                 <span className="text-xl font-black tracking-tight block leading-none">
-                  REGAL<span className="text-indigo-600">AZO</span>
+                  UN BUEN <span className="text-indigo-600">REGALO</span>
                 </span>
                 <span className="text-amber-500 text-xs font-black">⚡</span>
               </div>

@@ -14,7 +14,7 @@ export const SEO_AGE_ROUTES: Record<string, SeoRouteMeta> = {
   'bebes-0-a-12-meses': {
     ageId: '0-12m',
     ageSlug: 'bebes-0-a-12-meses',
-    title: 'Mejores Regalos para Bebés y Recién Nacidos (0 a 12 Meses) | Regalazo 2026',
+    title: 'Mejores Regalos para Bebés y Recién Nacidos (0 a 12 Meses) | Un Buen Regalo 2026',
     h1: 'Ideas de Regalo para Bebés y Recién Nacidos (0 a 12 Meses)',
     description: 'Descubre los regalos más útiles y celebrados para bebés de 0 a 1 año: tartas de pañales, cochecitos ligeros, cunas colecho, juguetes sensoriales y sets de fiesta revelación de género. Garantía oficial Amazon España.',
     keywords: ['regalos bebes recien nacidos', 'regalo bebe 1 año', 'tartas de pañales', 'cochecitos de bebe ligeros', 'cuna colecho recomendada']
@@ -22,7 +22,7 @@ export const SEO_AGE_ROUTES: Record<string, SeoRouteMeta> = {
   'ninos-1-a-3-anos': {
     ageId: '1-3',
     ageSlug: 'ninos-1-a-3-anos',
-    title: 'Mejores Regalos para Niños y Niñas de 1 a 3 Años | Regalazo 2026',
+    title: 'Mejores Regalos para Niños y Niñas de 1 a 3 Años | Un Buen Regalo 2026',
     h1: 'Ideas de Regalo para Primeros Pasos (1 a 3 Años)',
     description: 'Guía de compra de juguetes Montessori, torres de aprendizaje de madera, LEGO DUPLO, triciclos evolutivos y juegos de motricidad para niños de 1, 2 y 3 años recomendados por pediatras.',
     keywords: ['regalos niños 1 año', 'regalos niños 2 años', 'regalos niños 3 años', 'juguetes montessori madera', 'lego duplo']
@@ -30,7 +30,7 @@ export const SEO_AGE_ROUTES: Record<string, SeoRouteMeta> = {
   'ninos-4-a-6-anos': {
     ageId: '4-6',
     ageSlug: 'ninos-4-a-6-anos',
-    title: 'Mejores Regalos para Niños de 4 a 6 Años | Regalazo 2026',
+    title: 'Mejores Regalos para Niños de 4 a 6 Años | Un Buen Regalo 2026',
     h1: 'Ideas de Regalo para Infantil y Creatividad (4 a 6 Años)',
     description: 'Circuitos de coches de Mario Kart, patinetes con ruedas LED, primeros juegos de mesa familiares, peluches interactivos y maletas correpasillos para peques de 4 a 6 años.',
     keywords: ['regalos niños 4 años', 'regalos niños 5 años', 'regalos niños 6 años', 'circuitos coches infantiles', 'patinete niño ruedas led']
@@ -46,7 +46,7 @@ export const SEO_AGE_ROUTES: Record<string, SeoRouteMeta> = {
   'ninos-10-a-12-anos': {
     ageId: '10-12',
     ageSlug: 'ninos-10-a-12-anos',
-    title: 'Mejores Regalos para Preadolescentes de 10 a 12 Años | Regalazo 2026',
+    title: 'Mejores Regalos para Preadolescentes de 10 a 12 Años | Un Buen Regalo 2026',
     h1: 'Ideas de Regalo para Preadolescentes (10 a 12 Años)',
     description: 'Juegos de cartas competitivos como Virus!, minidrones resistentes a golpes, juegos de mesa de estrategia, escape rooms domésticos y robótica para chicas y chicos de 10 a 12 años.',
     keywords: ['regalos niños 10 años', 'regalos niños 11 años', 'regalos niños 12 años', 'juego virus cartas', 'minidrones infantiles con camara']
@@ -54,7 +54,7 @@ export const SEO_AGE_ROUTES: Record<string, SeoRouteMeta> = {
   'jovenes-13-a-15-anos': {
     ageId: '13-15',
     ageSlug: 'jovenes-13-a-15-anos',
-    title: 'Mejores Regalos para Adolescentes de 13 a 15 Años | Regalazo 2026',
+    title: 'Mejores Regalos para Adolescentes de 13 a 15 Años | Un Buen Regalo 2026',
     h1: 'Ideas de Regalo para Adolescentes (13 a 15 Años)',
     description: 'Auriculares inalámbricos con cancelación de ruido, cámaras instantáneas tipo Instax, juego Catan oficial, mochilas urbanas antirrobo y cuidado facial teen.',
     keywords: ['regalos adolescentes 13 años', 'regalos adolescentes 14 años', 'regalos adolescentes 15 años', 'auriculares inalambricos jbl', 'catan juego de mesa']

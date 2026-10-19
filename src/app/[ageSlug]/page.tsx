@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const meta = SEO_AGE_ROUTES[ageSlug];
   if (!meta) return {};
 
-  const canonicalUrl = `https://regalazo.vercel.app/${ageSlug}`;
+  const canonicalUrl = `https://unbuenregalo.vercel.app/${ageSlug}`;
 
   return {
     title: meta.title,
@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: meta.description,
       url: canonicalUrl,
       type: 'website',
-      siteName: 'Regalazo',
+      siteName: 'Un Buen Regalo',
       locale: 'es_ES',
     },
     twitter: {
@@ -87,7 +87,7 @@ export default async function AgeLandingPage({ params }: PageProps) {
       position: idx + 1,
       name: p.title,
       description: p.description,
-      image: `https://regalazo.vercel.app${p.imageUrl}`,
+      image: `https://unbuenregalo.vercel.app${p.imageUrl}`,
     })),
   };
 
@@ -100,13 +100,13 @@ export default async function AgeLandingPage({ params }: PageProps) {
         '@type': 'ListItem',
         position: 1,
         name: 'Inicio',
-        item: 'https://regalazo.vercel.app',
+        item: 'https://unbuenregalo.vercel.app',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: routeMeta.h1,
-        item: `https://regalazo.vercel.app/${ageSlug}`,
+        item: `https://unbuenregalo.vercel.app/${ageSlug}`,
       },
     ],
   };

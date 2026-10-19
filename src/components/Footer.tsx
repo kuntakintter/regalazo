@@ -46,7 +46,7 @@ export default function Footer({ currentTheme }: FooterProps) {
               <div className="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center">
                 <Gift className="w-4 h-4" />
               </div>
-              <span className="font-black text-lg tracking-tight">REGALAZO⚡</span>
+              <span className="font-black text-lg tracking-tight">UN BUEN REGALO⚡</span>
             </div>
             <p className="text-xs opacity-75 leading-relaxed">
               La plataforma más completa de recomendaciones de regalos para todas las edades: bebés, niños, jóvenes y adultos (+18 años). Analizamos y seleccionamos los productos con mejores valoraciones y satisfacción garantizada en Amazon España.
@@ -115,7 +115,7 @@ export default function Footer({ currentTheme }: FooterProps) {
         {/* Bottom Bar */}
         <div className="border-t border-slate-200 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs opacity-75">
           <div>
-            © {new Date().getFullYear()} Regalazo (buscaregalo.vercel.app) • Todos los derechos reservados.
+            © {new Date().getFullYear()} Un Buen Regalo (unbuenregalo.vercel.app) • Todos los derechos reservados.
           </div>
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 font-medium">
             <Link href="/aviso-legal" className="hover:text-indigo-600 hover:underline transition-colors">
