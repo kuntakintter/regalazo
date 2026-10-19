@@ -81,12 +81,25 @@ export default function HomePage() {
         }
       }
 
-      // 5. Price filter
+      // 5. Price filter (supports numeric max budget from slider + preset ranges)
       if (selectedPrice !== 'all') {
-        if (selectedPrice === '<20' && product.priceRange !== '<20') return false;
-        if (selectedPrice === '20-50' && product.priceRange !== '20-50') return false;
-        if (selectedPrice === '50-100' && product.priceRange !== '50-100') return false;
-        if (selectedPrice === '>100' && product.priceRange !== '>100') return false;
+        const prodPrice =
+          parseFloat(product.priceText.replace(/[^0-9,.]/g, '').replace(',', '.')) || 0;
+
+        if (selectedPrice === '<20') {
+          if (prodPrice > 20) return false;
+        } else if (selectedPrice === '20-50') {
+          if (prodPrice < 20 || prodPrice > 50) return false;
+        } else if (selectedPrice === '50-100') {
+          if (prodPrice < 50 || prodPrice > 100) return false;
+        } else if (selectedPrice === '>100') {
+          if (prodPrice < 100) return false;
+        } else {
+          const maxBudget = Number(selectedPrice);
+          if (!isNaN(maxBudget) && maxBudget < 150) {
+            if (prodPrice > maxBudget) return false;
+          }
+        }
       }
 
       return true;
