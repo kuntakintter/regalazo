@@ -4,7 +4,7 @@ import './globals.css';
 import CookieBanner from '@/components/CookieBanner';
 
 export const metadata: Metadata = {
-  title: 'Un Buen Regalo⚡ | Ideas de Regalo para Todas las Edades (0 a +18 Años)',
+  title: 'Un Buen Regalo | Ideas de Regalo para Todas las Edades (0 a +18 Años)',
   description: 'Descubre en Un Buen Regalo las mejores ideas de regalo para recién nacidos, niños, adolescentes y adultos (+18). Desde tartas de pañales hasta videojuegos, robótica, Smartbox y perfumería. Recomendaciones verificadas de Amazon España.',
   keywords: [
     'un buen regalo',
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     locale: 'es_ES',
     url: 'https://unbuenregalo.vercel.app',
     siteName: 'Un Buen Regalo',
-    title: 'Un Buen Regalo⚡ | Guía de Regalos de 0 a +18 Años',
+    title: 'Un Buen Regalo | Guía de Regalos de 0 a +18 Años',
     description: 'Encuentra el regalo perfecto en segundos con recomendaciones contrastadas de Amazon España.',
     images: [
       {
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Un Buen Regalo⚡ | Ideas de Regalo de 0 a +18 Años',
+    title: 'Un Buen Regalo | Ideas de Regalo de 0 a +18 Años',
     description: 'Guía definitiva con recomendaciones verificadas de Amazon España.',
   },
   alternates: {

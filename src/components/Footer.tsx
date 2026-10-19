@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Gift, ShieldCheck, Heart, Sparkles, ShoppingBag } from 'lucide-react';
+import BrandLogo from '@/components/BrandLogo';
 import { AMAZON_DISCLOSURE, AMAZON_AFFILIATE_TAG } from '@/lib/amazon';
 
 interface FooterProps {
@@ -42,12 +43,7 @@ export default function Footer({ currentTheme }: FooterProps) {
           
           {/* Col 1: Brand */}
           <div className="space-y-3">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center">
-                <Gift className="w-4 h-4" />
-              </div>
-              <span className="font-black text-lg tracking-tight">UN BUEN REGALO⚡</span>
-            </div>
+            <BrandLogo size="compact" showSubtitle={false} />
             <p className="text-xs opacity-75 leading-relaxed">
               La plataforma más completa de recomendaciones de regalos para todas las edades: bebés, niños, jóvenes y adultos (+18 años). Analizamos y seleccionamos los productos con mejores valoraciones y satisfacción garantizada en Amazon España.
             </p>

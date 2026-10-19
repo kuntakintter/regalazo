@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Gift, Search, X, ExternalLink, ArrowRight, Star } from 'lucide-react';
+import BrandLogo from '@/components/BrandLogo';
 import { PRODUCTS, AMAZON_AFFILIATE_TAG } from '@/data/products';
 import { matchesSearchQuery } from '@/utils/search';
 
@@ -60,20 +61,7 @@ export default function Header({ currentTheme = 'classic', onThemeChange, onSear
         <div className="flex items-center justify-between h-16 gap-4">
           
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 shrink-0 group">
-            <div className="w-10 h-10 rounded-2xl flex items-center justify-center shadow-lg transition-transform group-hover:scale-110 bg-gradient-to-br from-amber-500 via-rose-500 to-indigo-600 text-white shadow-indigo-200">
-              <Gift className="w-5 h-5 animate-pulse" />
-            </div>
-            <div>
-              <div className="flex items-center gap-1">
-                <span className="text-xl font-black tracking-tight block leading-none">
-                  UN BUEN <span className="text-indigo-600">REGALO</span>
-                </span>
-                <span className="text-amber-500 text-xs font-black">⚡</span>
-              </div>
-              <span className="text-[10px] tracking-wider uppercase font-extrabold opacity-60">0 a +18 Años</span>
-            </div>
-          </Link>
+          <BrandLogo />
 
           {/* Quick Search Bar with Live Suggestions Dropdown */}
           <div ref={dropdownRef} className="flex-1 max-w-lg relative">
