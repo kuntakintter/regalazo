@@ -243,6 +243,8 @@ export default function HomePage() {
         {/* AI GIFT ASSISTANT MODAL (POPUP) */}
         <GiftWizard
           isOpen={isAiModalOpen}
+          initialAge={selectedAge}
+          initialGender={selectedGender}
           onClose={() => setIsAiModalOpen(false)}
           onApplyRecommendation={handleApplyRecommendation}
         />
