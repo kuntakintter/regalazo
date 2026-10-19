@@ -9,7 +9,7 @@ import GiftWizard from '@/components/GiftWizard';
 import SeoFaq from '@/components/SeoFaq';
 import ThemeAtmosphere from '@/components/ThemeAtmosphere';
 import AmazonLiveSearchCard from '@/components/AmazonLiveSearchCard';
-import { PRODUCTS, AGE_CATEGORIES, Product } from '@/data/products';
+import { PRODUCTS, AGE_CATEGORIES, GENERAL_CATEGORY_MAPPING, Product } from '@/data/products';
 import { matchesSearchQuery } from '@/utils/search';
 import { Sparkles, Gift, Flame, Baby, Gamepad2, ShieldCheck, TrendingUp, Search, Bot } from 'lucide-react';
 
@@ -76,18 +76,22 @@ export default function HomePage() {
 
       // 4. Category / Subcategory filter
       if (!isSearching && selectedCategory !== 'all') {
-        const sel = selectedCategory.toLowerCase().trim();
-        const pSub = product.subcategory.toLowerCase().trim();
+        const sel = selectedCategory.trim();
 
-        // Exact subcategory match
-        const matchesExact = pSub === sel;
-
-        // When "all" ages is selected, allow general cross-age category matching
-        const matchesGeneralAll =
-          selectedAge === 'all' && (pSub.includes(sel) || sel.includes(pSub));
-
-        if (!matchesExact && !matchesGeneralAll) {
-          return false;
+        if (selectedAge !== 'all') {
+          // Strict exact match for specific age
+          if (product.subcategory.toLowerCase() !== sel.toLowerCase()) {
+            return false;
+          }
+        } else {
+          // For "all ages", match via canonical category mapping or exact subcategory
+          const allowedSubcategories = GENERAL_CATEGORY_MAPPING[sel] || [sel];
+          const matchesMapping = allowedSubcategories.some(
+            (allowed) => allowed.toLowerCase() === product.subcategory.toLowerCase()
+          );
+          if (!matchesMapping) {
+            return false;
+          }
         }
       }
 

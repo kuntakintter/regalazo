@@ -180,3 +180,82 @@ export const AGE_SUBCATEGORIES_MAP: Record<string, string[]> = {
     'Fiestas y Revelación de Género'
   ]
 };
+
+export const GENERAL_CATEGORY_MAPPING: Record<string, string[]> = {
+  'Juegos de Mesa y Cartas': [
+    'Juegos de Mesa Infantiles',
+    'Juegos de Mesa y Estrategia Familiar',
+    'Juegos de Cartas Competitivos (Virus!)',
+    'Juegos de Mesa y Escape Room',
+    'Juegos de Mesa Clásicos (Catan)'
+  ],
+  'LEGO y Construcción': [
+    'LEGO DUPLO y Construcción',
+    'LEGO Creator y Construcción'
+  ],
+  'Scalextric y Circuitos de Coches': [
+    'Circuitos de Coches Infantiles',
+    'Scalextric y Pistas de Carreras',
+    'Coches RC y Teledirigidos'
+  ],
+  'Videojuegos y Setup Gamer': [
+    'Videojuegos y Accesorios PS5',
+    'Setup Gamer y Periféricos PC'
+  ],
+  'Libros y Lectura Infantil y Juvenil': [
+    'Libros Blandos y Cuentos de Tela',
+    'Cuentos y Libros Infantiles',
+    'Cuentos y Primeros Lectores',
+    'Libros y Cómics Infantiles',
+    'Libros Juveniles y Cómics',
+    'Libros Juveniles, Fantasía y Manga',
+    'Libros y Novelas Juveniles'
+  ],
+  'Perfumería, Colonias y Fragancias': [
+    'Colonias y Cuidado de Bebé',
+    'Colonias Infantiles y Cuidado',
+    'Colonias Infantiles Frescas',
+    'Colonias y Cuidado Personal Infantil',
+    'Colonias y Cuidado Juvenil',
+    'Cuidado Facial, Skincare y Colonias',
+    'Perfumería y Fragancias'
+  ],
+  'Manualidades y Creatividad': [
+    'Manualidades, Plastilina y Pintura',
+    'Manualidades, Dibujo y Pintura',
+    'Manualidades y Kits Creativos',
+    'Manualidades, Lettering y Creatividad',
+    'Papelería Creativa y Bullet Journal',
+    'Cuadernos de Piel y Papelería Artesanal'
+  ],
+  'Moda, Ropa y Accesorios': [
+    'Ropa, Bodies y Patucos',
+    'Ropa y Zapatillas Primeros Pasos',
+    'Disfraces y Ropa Infantil',
+    'Moda y Ropa Deportiva Infantil',
+    'Moda Urbana, Sudaderas y Mochilas',
+    'Moda Juvenil, Sudaderas y Gorras',
+    'Moda Urbana, Ropa y Accesorios'
+  ],
+  'Cochecitos y Esenciales de Bebé': [
+    'Cochecitos y Mobiliario de Bebé',
+    'Cunas de Colecho y Descanso',
+    'Bañeras e Higiene del Bebé',
+    'Tartas de Pañales y Canastillas',
+    'Juguetes Sensoriales y Mordedores'
+  ],
+  'Tecnología y Gadgets': [
+    'Drones RC y Robótica STEM',
+    'Magia Borrás Avanzada',
+    'Auriculares Inalámbricos y Audio',
+    'Cámaras Instantáneas y Fotografía',
+    'Tecnología, Audio Hi-Fi y Wearables'
+  ],
+  'Bicis y Patinetes con Ruedas': [
+    'Triciclos y Bicis de Equilibrio',
+    'Patinetes con Ruedas LED'
+  ],
+  'Fiestas y Revelación de Género': [
+    'Fiestas y Revelación de Género'
+  ]
+};
