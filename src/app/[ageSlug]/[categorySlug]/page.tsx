@@ -76,22 +76,16 @@ export default async function SubcategoryLandingPage({ params }: PageProps) {
 
   if (!currentSub) notFound();
 
-  // Filter products for this age AND subcategory (flexible bi-directional keyword matching)
-  const targetSub = currentSub.label.toLowerCase();
+  // Filter products for this age AND subcategory
+  const targetSub = currentSub.label.toLowerCase().trim();
   const matchedProducts = PRODUCTS.filter((p) => {
     // Check age match
     if (ageMeta.ageId !== 'reveal' && p.ageRange !== ageMeta.ageId) {
       return false;
     }
 
-    const pSub = p.subcategory.toLowerCase();
-    const pCat = p.category.toLowerCase();
-
-    const matchesSub = pSub.includes(targetSub) || targetSub.includes(pSub);
-    const words = targetSub.replace(/[(),]/g, '').split(/\s+/).filter((w) => w.length > 3);
-    const wordMatch = words.some((w) => pSub.includes(w) || pCat.includes(w));
-
-    return matchesSub || wordMatch;
+    const pSub = p.subcategory.toLowerCase().trim();
+    return pSub === targetSub;
   });
 
   // Breadcrumb schema

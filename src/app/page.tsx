@@ -74,20 +74,19 @@ export default function HomePage() {
         return false;
       }
 
-      // 4. Category / Subcategory filter (flexible bi-directional matching)
+      // 4. Category / Subcategory filter
       if (!isSearching && selectedCategory !== 'all') {
-        const sel = selectedCategory.toLowerCase();
-        const pCat = product.category.toLowerCase();
-        const pSub = product.subcategory.toLowerCase();
+        const sel = selectedCategory.toLowerCase().trim();
+        const pSub = product.subcategory.toLowerCase().trim();
 
-        const matchesCat = pCat.includes(sel) || sel.includes(pCat);
-        const matchesSub = pSub.includes(sel) || sel.includes(pSub);
+        // Exact subcategory match
+        const matchesExact = pSub === sel;
 
-        // Word overlap matching (e.g. "Tecnología", "Gadgets", "Fragancias", "Gamer")
-        const selWords = sel.replace(/[(),]/g, '').split(/\s+/).filter((w) => w.length > 3);
-        const wordMatch = selWords.some((w) => pSub.includes(w) || pCat.includes(w));
+        // When "all" ages is selected, allow general cross-age category matching
+        const matchesGeneralAll =
+          selectedAge === 'all' && (pSub.includes(sel) || sel.includes(pSub));
 
-        if (!matchesCat && !matchesSub && !wordMatch) {
+        if (!matchesExact && !matchesGeneralAll) {
           return false;
         }
       }
