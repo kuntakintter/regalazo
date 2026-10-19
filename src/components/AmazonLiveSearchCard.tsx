@@ -53,28 +53,28 @@ export default function AmazonLiveSearchCard({
         
         {/* Left: Persuasive Text */}
         <div className="flex-1 text-center md:text-left">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#FF9900]/15 text-[#b36b00] dark:text-amber-300 mb-2.5">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black bg-amber-400 text-slate-950 shadow-xs mb-3 border border-amber-500/20">
             <ShoppingCart className="w-3.5 h-3.5" />
             <span>Buscador Oficial de Amazon España</span>
           </div>
 
-          <h3 className="text-lg sm:text-2xl font-black tracking-tight leading-snug mb-1.5">
+          <h3 className="text-lg sm:text-2xl font-black tracking-tight leading-snug mb-1.5 text-slate-900">
             {customTerm ? (
               <span>
-                ¿Buscas <span className="text-[#FF9900]">&quot;{customTerm}&quot;</span> en Amazon?
+                ¿Buscas <span className="text-amber-600">&quot;{customTerm}&quot;</span> en Amazon?
               </span>
             ) : (
               <span>¿Buscas un producto específico en Amazon?</span>
             )}
           </h3>
 
-          <p className="text-xs sm:text-sm opacity-80 leading-relaxed max-w-xl">
+          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-xl">
             Encuentra cualquier marca o artículo (ej. <em>One Million, Scalextric, LEGO, PS5, zapatillas</em>) con los mejores precios, opiniones verificadas y envío rápido Prime.
           </p>
 
           {/* Quick budget pills */}
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-1.5 mt-3">
-            <span className="text-[11px] font-semibold opacity-60">Filtrar por:</span>
+            <span className="text-[11px] font-bold text-slate-500">Filtrar por:</span>
             {[
               { id: 'all', label: 'Cualquier precio' },
               { id: '<20', label: '< 20 €' },
@@ -85,10 +85,10 @@ export default function AmazonLiveSearchCard({
               <button
                 key={b.id}
                 onClick={() => setActiveBudget(b.id)}
-                className={`px-2.5 py-0.5 rounded-lg text-[11px] font-medium transition-all ${
+                className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all border cursor-pointer ${
                   activeBudget === b.id
-                    ? 'bg-[#FF9900] text-slate-950 font-bold shadow-xs'
-                    : 'bg-black/5 dark:bg-white/10 hover:bg-black/10'
+                    ? 'bg-amber-400 text-slate-950 border-amber-500 shadow-xs'
+                    : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-100'
                 }`}
               >
                 {b.label}
