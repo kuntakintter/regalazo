@@ -9,8 +9,8 @@ interface FilterBarProps {
   onSelectAge: (age: string) => void;
   selectedCategory: string;
   onSelectCategory: (cat: string) => void;
-  selectedGender: 'all' | 'boy' | 'girl';
-  onSelectGender: (gender: 'all' | 'boy' | 'girl') => void;
+  selectedGender: 'all' | 'boy' | 'girl' | 'reveal';
+  onSelectGender: (gender: 'all' | 'boy' | 'girl' | 'reveal') => void;
   selectedPrice: string;
   onSelectPrice: (price: string) => void;
   totalResults: number;
@@ -42,17 +42,18 @@ export default function FilterBar({
   return (
     <div className="rounded-2xl p-4 sm:p-6 mb-8 border border-slate-200 bg-white text-slate-900 shadow-sm transition-all">
       
-      {/* 1. Gender Filter: Chico / Chica / Todos */}
+      {/* 1. Gender & Occasion Filter: Chico / Chica / Revelación / Todos */}
       <div className="mb-5 pb-4 border-b border-slate-100">
         <label className="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5 mb-2.5">
           <Sparkles className="w-3.5 h-3.5 text-indigo-500" />
-          1. ¿Para quién es el regalo?
+          1. ¿Para quién u ocasión es el regalo?
         </label>
         <div className="flex items-center gap-2 flex-wrap">
           {[
-            { id: 'all', label: 'Todos / Indiferente', icon: '🎁' },
+            { id: 'all', label: 'Todos los Regalos', icon: '🎁' },
             { id: 'boy', label: 'Para Chico / Niño', icon: '👦' },
             { id: 'girl', label: 'Para Chica / Niña', icon: '👧' },
+            { id: 'reveal', label: 'Fiesta Revelación de Género & Enigma', icon: '❓' },
           ].map((g) => (
             <button
               key={g.id}

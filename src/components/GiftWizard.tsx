@@ -7,12 +7,12 @@ import { Sparkles, ArrowRight, RotateCcw, Check, Heart, X, Bot, Compass, User, D
 interface GiftWizardProps {
   isOpen: boolean;
   onClose: () => void;
-  onApplyRecommendation: (filters: { age: string; category: string; gender: 'all' | 'boy' | 'girl'; price: string }) => void;
+  onApplyRecommendation: (filters: { age: string; category: string; gender: 'all' | 'boy' | 'girl' | 'reveal'; price: string }) => void;
 }
 
 export default function GiftWizard({ isOpen, onClose, onApplyRecommendation }: GiftWizardProps) {
   const [step, setStep] = useState(1);
-  const [selectedGender, setSelectedGender] = useState<'all' | 'boy' | 'girl'>('all');
+  const [selectedGender, setSelectedGender] = useState<'all' | 'boy' | 'girl' | 'reveal'>('all');
   const [selectedAge, setSelectedAge] = useState<string>('0-12m');
   const [selectedVibe, setSelectedVibe] = useState<string>('all-0-12m');
   const [selectedBudget, setSelectedBudget] = useState<string>('20-50');
@@ -31,6 +31,7 @@ export default function GiftWizard({ isOpen, onClose, onApplyRecommendation }: G
   const AGE_VIBES_MAP: Record<string, Array<{ id: string; label: string; icon: string; category: string }>> = {
     '0-12m': [
       { id: 'all-0-12m', label: 'Ver Todo de Bebé (0-12m)', icon: '🌟', category: 'all' },
+      { id: 'baby-reveal', label: 'Fiestas y Revelación de Género', icon: '❓', category: 'Fiestas y Revelación de Género' },
       { id: 'baby-strollers', label: 'Cunas, Carritos y Bañeras', icon: '🚼', category: 'Cochecitos y Mobiliario de Bebé' },
       { id: 'baby-diapers', label: 'Tartas de Pañales Artesanales', icon: '🎂', category: 'Tartas de Pañales' },
       { id: 'baby-hygiene', label: 'Droguería, Aseo y Canastillas', icon: '🧴', category: 'Droguería y Cuidado Infantil' },
@@ -178,11 +179,12 @@ export default function GiftWizard({ isOpen, onClose, onApplyRecommendation }: G
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                 {[
-                  { id: 'boy', label: 'Para Chico / Niño', icon: '👦', desc: 'Juguetes, gaming, acción y tecnología' },
-                  { id: 'girl', label: 'Para Chica / Niña', icon: '👧', desc: 'Creatividad, estilo, juegos y peluches' },
-                  { id: 'all', label: 'Indiferente / Todos', icon: '🎁', desc: 'Regalos unisex y para cualquier ocasión' },
+                  { id: 'all', label: 'Todos los Regalos / Unisex', icon: '🎁', desc: 'Ideas universales válidas para cualquier ocasión y estilo' },
+                  { id: 'boy', label: 'Para Chico / Niño', icon: '👦', desc: 'Juguetes de acción, coches RC, gaming y tecnología' },
+                  { id: 'girl', label: 'Para Chica / Niña', icon: '👧', desc: 'Creatividad, peluches, juegos y estilo propio' },
+                  { id: 'reveal', label: 'Fiesta Revelación de Género', icon: '❓', desc: 'Cañones de confeti/humo, globos enigma sorpresa y decoración' },
                 ].map((item) => (
                   <button
                     key={item.id}

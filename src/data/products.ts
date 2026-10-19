@@ -107,6 +107,84 @@ export const AGE_CATEGORIES: AgeCategoryMeta[] = [
 ];
 
 export const PRODUCTS: Product[] = [
+  {
+    id: 'bebe-canon-confeti',
+    asin: 'B0B945FCKT',
+    title: 'Pack de 4 Cañones de Confeti para Revelación de Género de Bebé (2 Rosas y 2 Azules)',
+    slug: 'pack-4-canones-confeti-revelacion-genero-bebe',
+    searchQuery: 'canones confeti revelacion genero bebe gender reveal',
+    category: 'Recién Nacidos',
+    subcategory: 'Fiestas y Revelación de Género',
+    ageRange: '0-12m',
+    gender: 'unisex',
+    priceRange: '<20',
+    priceText: '16,99 €',
+    rating: 4.8,
+    reviewsCount: 3200,
+    badge: 'Superventas Revelación de Género',
+    description: 'Pack de 4 cañones de confeti biodegradable de 30 cm para fiesta de revelación de sexo del bebé. Vienen con pegatinas secretas para tapar el color y disparan una lluvia brillante de hasta 6 metros de altura.',
+    pros: ['Confeti biodegradable no tóxico seguro para exteriores', 'Pegatinas incógnita para mantener la sorpresa hasta el momento del disparo', 'Lanzamiento suave con giro de base apto para futuros papás y padrinos'],
+    idealFor: 'El momento clímax de la fiesta de revelación de género y fotos inolvidables',
+    style: 'baby',
+    imageUrl: '/images/products/bebe-canon-confeti-1.jpg',
+    images: [
+      '/images/products/bebe-canon-confeti-1.jpg',
+      '/images/products/bebe-canon-confeti-2.jpg',
+      '/images/products/bebe-canon-confeti-3.jpg'
+    ]
+  },
+  {
+    id: 'bebe-globo-enigma',
+    asin: 'B0BXB7YQ5Z',
+    title: 'Globo Gigante Enigma 90 cm Revelación de Género Bebé ("¿Niño o Niña?") con Confeti Doble',
+    slug: 'globo-gigante-enigma-90cm-revelacion-genero-bebe',
+    searchQuery: 'globo gigante enigma revelacion genero bebe 90 cm nino nina',
+    category: 'Recién Nacidos',
+    subcategory: 'Fiestas y Revelación de Género',
+    ageRange: '0-12m',
+    gender: 'unisex',
+    priceRange: '<20',
+    priceText: '11,99 €',
+    rating: 4.7,
+    reviewsCount: 1850,
+    badge: 'El Globo Enigma Más Viral',
+    description: 'Globo de látex negro opaco gigante de 90 cm de diámetro con la inscripción "¿Niño o Niña?". Incluye dos bolsas de confeti rosa y azul para rellenar en secreto antes de inflar con helio o aire.',
+    pros: ['Látex negro 100% opaco imposible de traslucir antes del pinchazo', 'Incluye aguja con lazo decorativo para explotar el globo', 'Crea una lluvia espectacular de confeti flotante en cámara lenta'],
+    idealFor: 'La cuenta atrás de la fiesta sorpresa familiar',
+    style: 'baby',
+    imageUrl: '/images/products/bebe-globo-enigma-1.jpg',
+    images: [
+      '/images/products/bebe-globo-enigma-1.jpg',
+      '/images/products/bebe-globo-enigma-2.jpg',
+      '/images/products/bebe-globo-enigma-3.jpg'
+    ]
+  },
+  {
+    id: 'bebe-polvo-holi',
+    asin: 'B08FCVTYFG',
+    title: 'PrimePure - Cañones de Humo de Polvo Holi y Confeti Metálico Gender Reveal',
+    slug: 'primepure-canones-humo-polvo-holi-confeti-gender-reveal',
+    searchQuery: 'canones humo polvo holi confeti fiesta revelacion genero',
+    category: 'Recién Nacidos',
+    subcategory: 'Fiestas y Revelación de Género',
+    ageRange: '0-12m',
+    gender: 'unisex',
+    priceRange: '20-50',
+    priceText: '22,90 €',
+    rating: 4.9,
+    reviewsCount: 2400,
+    badge: 'Efecto Nube de Humo Espectacular',
+    description: 'Set de cañones combinados que disparan una nube de humo densa y vibrante de polvo de almidón de maíz 100% natural mezclado con confeti metalizado reflectante.',
+    pros: ['Polvo holi lavable 100% vegetal que se retira con agua', 'Disparo de alta densidad perfecto para vídeos virales de TikTok e Instagram', 'Mecanismo de compresión de aire sin pólvora ni pirotecnia'],
+    idealFor: 'Sesiones fotográficas al aire libre de alto impacto visual',
+    style: 'baby',
+    imageUrl: '/images/products/bebe-polvo-holi-1.jpg',
+    images: [
+      '/images/products/bebe-polvo-holi-1.jpg',
+      '/images/products/bebe-polvo-holi-2.jpg',
+      '/images/products/bebe-polvo-holi-3.jpg'
+    ]
+  },
   // =========================================================================
   // 1. RECIÉN NACIDOS (0-12 MESES) - IMÁGENES EXACTAS DE PRODUCTO
   // =========================================================================
@@ -1485,6 +1563,7 @@ export const PRICE_FILTERS = [
 
 export const AGE_SUBCATEGORIES_MAP: Record<string, string[]> = {
   'all': [
+    'Fiestas y Revelación de Género',
     'Peluches y Figuras',
     'LEGO y Construcción',
     'Scalextric y Circuitos de Coches',
@@ -1497,6 +1576,7 @@ export const AGE_SUBCATEGORIES_MAP: Record<string, string[]> = {
     'Tecnología y Gadgets'
   ],
   '0-12m': [
+    'Fiestas y Revelación de Género',
     'Cochecitos y Mobiliario de Bebé',
     'Cunas de Colecho y Descanso',
     'Bañeras e Higiene del Bebé',

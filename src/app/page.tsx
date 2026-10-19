@@ -15,7 +15,7 @@ import { Sparkles, Gift, Flame, Baby, Gamepad2, ShieldCheck, TrendingUp, Search,
 export default function HomePage() {
   const [selectedAge, setSelectedAge] = useState<string>('all');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [selectedGender, setSelectedGender] = useState<'all' | 'boy' | 'girl'>('all');
+  const [selectedGender, setSelectedGender] = useState<'all' | 'boy' | 'girl' | 'reveal'>('all');
   const [selectedPrice, setSelectedPrice] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
@@ -39,8 +39,15 @@ export default function HomePage() {
   // Filter products based on search, age, category, gender, price
   const filteredProducts = useMemo(() => {
     return PRODUCTS.filter((product) => {
-      // Gender filter (if boy or girl is selected, allow unisex or specific match)
-      if (selectedGender !== 'all') {
+      // Gender filter
+      if (selectedGender === 'reveal') {
+        const isRevealSub = product.subcategory === 'Fiestas y Revelación de Género';
+        const hasRevealKeyword =
+          product.title.toLowerCase().includes('revelación') ||
+          product.description.toLowerCase().includes('revelación') ||
+          product.searchQuery.toLowerCase().includes('revelacion');
+        if (!isRevealSub && !hasRevealKeyword) return false;
+      } else if (selectedGender !== 'all') {
         if (product.gender !== 'unisex' && product.gender !== selectedGender) {
           return false;
         }
@@ -90,7 +97,7 @@ export default function HomePage() {
   }, [selectedAge]);
 
   // Handle recommendation from AI wizard
-  const handleApplyRecommendation = (filters: { age: string; category: string; gender: 'all' | 'boy' | 'girl'; price: string }) => {
+  const handleApplyRecommendation = (filters: { age: string; category: string; gender: 'all' | 'boy' | 'girl' | 'reveal'; price: string }) => {
     setSelectedAge(filters.age);
     setSelectedCategory(filters.category);
     setSelectedGender(filters.gender);
