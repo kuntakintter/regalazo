@@ -16,16 +16,14 @@ export default function ProductCard({ product, currentTheme }: ProductCardProps)
   const [isLiked, setIsLiked] = useState(false);
   const [activeImgIndex, setActiveImgIndex] = useState(0);
 
-  // Fallback to imageUrl if images array is not provided
-  const fallbackPlaceholder = 'https://m.media-amazon.com/images/I/71uF2XB0kML._AC_UL320_.jpg';
-  const imagesList = product.images && product.images.length > 0 ? product.images : [product.imageUrl];
-  const rawImg = imagesList[activeImgIndex] || product.imageUrl;
-  const validImgSrc = rawImg && rawImg.trim() !== '' ? rawImg : fallbackPlaceholder;
-  const [imgSrc, setImgSrc] = useState(validImgSrc);
+  // Multi-image navigation
+  const imagesList = product.images && product.images.length > 0 ? product.images : (product.imageUrl ? [product.imageUrl] : []);
+  const currentImgSrc = imagesList[activeImgIndex] || product.imageUrl || '';
+  const [hasImgError, setHasImgError] = useState(false);
 
   React.useEffect(() => {
-    setImgSrc(validImgSrc);
-  }, [validImgSrc]);
+    setHasImgError(false);
+  }, [currentImgSrc]);
 
   // Enlace directo al producto específico en Amazon España (NUNCA a páginas de búsqueda)
   const directProductUrl = getAmazonProductUrl(product.asin || 'B0DLWK3LKH');
@@ -80,16 +78,28 @@ export default function ProductCard({ product, currentTheme }: ProductCardProps)
           target="_blank"
           rel="nofollow sponsored noopener noreferrer"
           aria-label={`Ver ${product.title} en Amazon`}
-          className="block w-full h-full cursor-pointer"
+          className="block w-full h-full cursor-pointer relative"
         >
-          <Image
-            src={imgSrc}
-            alt={`${product.title} - Foto ${activeImgIndex + 1}`}
-            fill
-            onError={() => setImgSrc(fallbackPlaceholder)}
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover transition-all duration-500 group-hover:scale-105"
-          />
+          {currentImgSrc && !hasImgError ? (
+            <Image
+              src={currentImgSrc}
+              alt={`${product.title} - Foto ${activeImgIndex + 1}`}
+              fill
+              onError={() => setHasImgError(true)}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="object-cover transition-all duration-500 group-hover:scale-105"
+            />
+          ) : (
+            <div className="w-full h-full bg-gradient-to-br from-slate-100 to-slate-200 flex flex-col items-center justify-center text-slate-400 p-4 text-center">
+              <ShoppingBag className="w-10 h-10 mb-2 text-slate-400 opacity-60" />
+              <span className="text-[11px] font-bold text-slate-600 line-clamp-2 px-2">
+                {product.title}
+              </span>
+              <span className="text-[10px] text-amber-600 font-extrabold mt-1">
+                Ver foto en Amazon.es →
+              </span>
+            </div>
+          )}
         </a>
 
         {/* Multi-image navigation arrows (visible on hover or always on touch) */}

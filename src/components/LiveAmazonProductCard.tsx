@@ -20,13 +20,11 @@ export default function LiveAmazonProductCard({
   const [copied, setCopied] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
 
-  const fallbackPlaceholder = 'https://m.media-amazon.com/images/I/71uF2XB0kML._AC_UL320_.jpg';
-  const validImg = product.imageUrl && product.imageUrl.trim() !== '' ? product.imageUrl : fallbackPlaceholder;
-  const [imgSrc, setImgSrc] = useState(validImg);
+  const [hasImgError, setHasImgError] = useState(false);
 
   React.useEffect(() => {
-    setImgSrc(validImg);
-  }, [validImg]);
+    setHasImgError(false);
+  }, [product.imageUrl]);
 
   // Direct product URL with affiliate tag
   const directProductUrl = product.asin
@@ -62,16 +60,28 @@ export default function LiveAmazonProductCard({
           target="_blank"
           rel="nofollow sponsored noopener noreferrer"
           aria-label={`Ver ${product.title} en Amazon`}
-          className="block w-full h-full cursor-pointer"
+          className="block w-full h-full cursor-pointer relative"
         >
-          <Image
-            src={imgSrc}
-            alt={product.title}
-            fill
-            onError={() => setImgSrc(fallbackPlaceholder)}
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover transition-all duration-500 group-hover:scale-105"
-          />
+          {product.imageUrl && !hasImgError ? (
+            <Image
+              src={product.imageUrl}
+              alt={product.title}
+              fill
+              onError={() => setHasImgError(true)}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="object-cover transition-all duration-500 group-hover:scale-105"
+            />
+          ) : (
+            <div className="w-full h-full bg-gradient-to-br from-slate-100 to-slate-200 flex flex-col items-center justify-center text-slate-400 p-4 text-center">
+              <ShoppingBag className="w-10 h-10 mb-2 text-slate-400 opacity-60" />
+              <span className="text-[11px] font-bold text-slate-600 line-clamp-2 px-2">
+                {product.title}
+              </span>
+              <span className="text-[10px] text-amber-600 font-extrabold mt-1">
+                Ver oferta en Amazon.es →
+              </span>
+            </div>
+          )}
         </a>
 
         {/* Top Badges */}

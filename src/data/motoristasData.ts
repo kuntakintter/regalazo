@@ -50,7 +50,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   // CASCOS
   {
     id: 'moto-casco-ls2-modular',
-    asin: 'B07M6T5DCS',
+    asin: 'B0C7VX2L7Y',
     title: 'LS2 Strobe Casco Moto Modular Abatible con Doble Visera Solar',
     category: 'cascos',
     categoryLabel: 'Cascos de Moto',
@@ -60,7 +60,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
     priceNumeric: 119.0,
     rating: 4.6,
     reviewsCount: 3820,
-    imageUrl: 'https://m.media-amazon.com/images/I/61k0e-z-0LL._AC_SL1200_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/71H0m4iFJLL._AC_UL320_.jpg',
     badge: 'Nº 1 Más Vendido',
     description: 'Casco modular abatible con calota aerodinámica en termoplástico HPTT, visor solar retráctil y cierre micrométrico reforzado.',
     pros: [
@@ -73,7 +73,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   },
   {
     id: 'moto-casco-agv-k1s',
-    asin: 'B0BSN3N3J7',
+    asin: 'B0FHKZMNV6',
     title: 'AGV K1 S Casco de Moto Integral Deportivo Homologado ECE 22.06',
     category: 'cascos',
     categoryLabel: 'Cascos de Moto',
@@ -83,7 +83,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
     priceNumeric: 189.95,
     rating: 4.8,
     reviewsCount: 1420,
-    imageUrl: 'https://m.media-amazon.com/images/I/61pE7aV9RPL._AC_SL1200_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/71ATE-ticZL._AC_UL320_.jpg',
     badge: 'Top Seguridad ECE 22.06',
     description: 'Heredero de la tecnología de MotoGP con spoiler aerodinámico probado en túnel de viento y máxima protección de impacto lateral.',
     pros: [
@@ -96,7 +96,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   },
   {
     id: 'moto-casco-ls2-rapid',
-    asin: 'B07C64GQ3F',
+    asin: 'B0FXY5173Q',
     title: 'LS2 Rapid II Casco Integral Urbano Ligero Antiarañazos',
     category: 'cascos',
     categoryLabel: 'Cascos de Moto',
@@ -106,7 +106,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
     priceNumeric: 69.9,
     rating: 4.5,
     reviewsCount: 2940,
-    imageUrl: 'https://m.media-amazon.com/images/I/61dF9xYJzPL._AC_SL1200_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/81pf7yGfy0L._AC_UL320_.jpg',
     badge: 'Mejor Relación Calidad/Precio',
     description: 'Casco integral ultra ligero (apenas 1.300 gramos) con ventilación frontal de tres puntos y pantalla con tratamiento anti-rayas.',
     pros: [
@@ -121,7 +121,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   // CHAQUETAS
   {
     id: 'moto-chaqueta-alpinestars-t-sps',
-    asin: 'B07ZP6M3L2',
+    asin: 'B0F5BWQT1V',
     title: 'Alpinestars T-SPS Chaqueta de Moto Impermeable con Protecciones Nucleon Flex Plus',
     category: 'chaquetas',
     categoryLabel: 'Chaquetas y Protecciones',
@@ -131,7 +131,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
     priceNumeric: 199.95,
     rating: 4.8,
     reviewsCount: 960,
-    imageUrl: 'https://m.media-amazon.com/images/I/71e-0S8s2BL._AC_SL1500_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/715Fa3zHr3L._AC_UL320_.jpg',
     badge: 'Protección Certificada CE',
     description: 'Tejido de poliéster 600D de alta densidad con membrana impermeable Drystar y forro térmico desmontable para usar todo el año.',
     pros: [
@@ -144,7 +144,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   },
   {
     id: 'moto-chaqueta-dainese-sevilla',
-    asin: 'B08WRX5G7K',
+    asin: 'B094411SPK',
     title: 'Dainese Sevilla Air Tex Chaqueta de Moto de Verano Perforada Ultraligera',
     category: 'chaquetas',
     categoryLabel: 'Chaquetas y Protecciones',
@@ -154,7 +154,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
     priceNumeric: 159.9,
     rating: 4.7,
     reviewsCount: 680,
-    imageUrl: 'https://m.media-amazon.com/images/I/71fD5yZ6lGL._AC_SL1500_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/51gy-6YMyLL._AC_UL320_.jpg',
     badge: 'Top Ventas Verano',
     description: 'Chaqueta de verano con tejido QuickDry y malla perforada para máxima ventilación sin renunciar a las protecciones Pro-Shape 2.0.',
     pros: [
@@ -169,7 +169,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   // GUANTES
   {
     id: 'moto-guantes-alpinestars-smx1',
-    asin: 'B07BNQZX9N',
+    asin: 'B078HH9N1F',
     title: 'Alpinestars SMX-1 Air V2 Guantes de Moto de Cuero y Malla con Nudillos de Carbono',
     category: 'guantes',
     categoryLabel: 'Guantes Homologados',
@@ -179,7 +179,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
     priceNumeric: 54.95,
     rating: 4.7,
     reviewsCount: 3120,
-    imageUrl: 'https://m.media-amazon.com/images/I/71C7a+E6GcL._AC_SL1500_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/71PlX-XOizL._AC_UL320_.jpg',
     badge: 'Compatible Pantalla Táctil',
     description: 'Guantes cortos de alto rendimiento con piel de cabra de primera calidad, malla transpirable 3D y protector de nudillos rígido.',
     pros: [
@@ -192,7 +192,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   },
   {
     id: 'moto-guantes-dainese-nembo',
-    asin: 'B07M7H2B5Q',
+    asin: 'B0GSW197P4',
     title: 'Dainese Nembo Gore-Tex Guantes de Invierno Térmicos 100% Impermeables',
     category: 'guantes',
     categoryLabel: 'Guantes Homologados',
@@ -202,7 +202,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
     priceNumeric: 149.0,
     rating: 4.8,
     reviewsCount: 750,
-    imageUrl: 'https://m.media-amazon.com/images/I/71uK5c6d3wL._AC_SL1500_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/51RIdrzJpHL._AC_UL320_.jpg',
     badge: 'Membrana Gore-Tex Original',
     description: 'Protección absoluta contra el frío y la lluvia con membrana Gore-Tex con tecnología Gore Grip para no perder sensibilidad en el acelerador.',
     pros: [
@@ -217,7 +217,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   // INTERCOMUNICADORES
   {
     id: 'moto-intercom-cardo-spirit',
-    asin: 'B09M873J3P',
+    asin: 'B09MQ7R1D8',
     title: 'Cardo Spirit Intercomunicador de Moto Bluetooth HD con Altavoces de 32 mm',
     category: 'intercom',
     categoryLabel: 'Intercomunicadores & Audio',
@@ -226,7 +226,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
     priceNumeric: 89.95,
     rating: 4.7,
     reviewsCount: 2480,
-    imageUrl: 'https://m.media-amazon.com/images/I/61b7bM+P-kL._AC_SL1500_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/41GpPQefqxL._AC_UL320_.jpg',
     badge: '100% Impermeable IP67',
     description: 'Conexión piloto a pasajero hasta 400m, sonido nítido HD con cancelación de ruido de viento y actualización inalámbrica Over-The-Air.',
     pros: [
@@ -239,7 +239,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   },
   {
     id: 'moto-soporte-quadlock-amortiguador',
-    asin: 'B08F91V6G7',
+    asin: 'B0D9X94TSZ',
     title: 'Quad Lock Amortiguador de Vibraciones para Soporte de Móvil en Manillar de Moto',
     category: 'intercom',
     categoryLabel: 'Intercomunicadores & Audio',
@@ -248,7 +248,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
     priceNumeric: 19.95,
     rating: 4.8,
     reviewsCount: 14500,
-    imageUrl: 'https://m.media-amazon.com/images/I/61tJ0y7cZTL._AC_SL1500_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/51-y3OCeqYL._AC_UL320_.jpg',
     badge: 'Protector de Cámara Móvil',
     description: 'Módulo amortiguador elastómero de precisión que reduce más del 90% de las vibraciones de alta frecuencia que dañan los estabilizadores de cámara del iPhone y Android.',
     pros: [
@@ -263,7 +263,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   // ANTIRROBO
   {
     id: 'moto-antirrobo-alarma-disco',
-    asin: 'B07MDF3MGL',
+    asin: 'B09MW8RFSY',
     title: 'Antirrobo Disco de Moto con Alarma Sonora 110dB y Cable Recordatorio de Seguridad',
     category: 'antirrobo',
     categoryLabel: 'Antirrobos & Candados',
@@ -272,7 +272,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
     priceNumeric: 23.99,
     rating: 4.6,
     reviewsCount: 8640,
-    imageUrl: 'https://m.media-amazon.com/images/I/71z1F6yM6VL._AC_SL1500_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/71v7gsfQ7cL._AC_UL320_.jpg',
     badge: 'Alarma Potente 110 dB',
     description: 'Candado de disco de aleación de aluminio forjado impermeable con sensor de vibración que dispara una sirena disuasoria de 110 dB.',
     pros: [
@@ -285,7 +285,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   },
   {
     id: 'moto-candado-oxford-boss',
-    asin: 'B000R5424Y',
+    asin: 'B0H1WF59M8',
     title: 'Oxford Boss Candado de Disco Antirrobo Homologado Sold Secure Gold',
     category: 'antirrobo',
     categoryLabel: 'Antirrobos & Candados',
@@ -294,7 +294,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
     priceNumeric: 74.9,
     rating: 4.7,
     reviewsCount: 1890,
-    imageUrl: 'https://m.media-amazon.com/images/I/71YfQ-x4sGL._AC_SL1500_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/618jxcRJdmL._AC_UL320_.jpg',
     badge: 'Máxima Seguridad Gold',
     description: 'Arco de acero endurecido de 14mm resistente a cizallas, maza y sierras. Certificación oficial para compañías de seguros.',
     pros: [
@@ -309,7 +309,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   // ACCESORIOS Y MANTENIMIENTO
   {
     id: 'moto-mochila-pierna-impermeable',
-    asin: 'B08K8Y74Q9',
+    asin: 'B0DZ6QQCRR',
     title: 'Bolsa de Pierna Táctica para Moto Impermeable con Múltiples Bolsillos',
     category: 'accesorios',
     categoryLabel: 'Accesorios & Mantenimiento',
@@ -318,7 +318,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
     priceNumeric: 24.99,
     rating: 4.6,
     reviewsCount: 4210,
-    imageUrl: 'https://m.media-amazon.com/images/I/71c6t4k9UML._AC_SL1500_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/61aZp1ipTKL._AC_UL320_.jpg',
     badge: 'Súper Cómodo en Marcha',
     description: 'Bolsa ergonómica que se ajusta a la cintura y al muslo permitiendo llevar cartera, móvil, llaves y documentación sin molestar al sentarse.',
     pros: [
@@ -331,7 +331,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   },
   {
     id: 'moto-kit-limpiador-cascos-motul',
-    asin: 'B008KPPB6W',
+    asin: 'B075DDVT8C',
     title: 'Motul MC Care M1 + M2 Kit Limpieza de Casco Exterior e Interior Desinfectante',
     category: 'accesorios',
     categoryLabel: 'Accesorios & Mantenimiento',
@@ -340,7 +340,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
     priceNumeric: 19.5,
     rating: 4.7,
     reviewsCount: 5120,
-    imageUrl: 'https://m.media-amazon.com/images/I/61k9n12nZ1L._AC_SL1000_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/51kQzJ5wiuL._AC_UL320_.jpg',
     badge: 'Fórmula Oficial Motul',
     description: 'Pack profesional que incluye spray limpiador de viseras anti-mosquitos sin rayas y spray bactericida desodorizante para las almohadillas interiores.',
     pros: [
@@ -353,7 +353,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   },
   {
     id: 'moto-cargador-baterias-noco',
-    asin: 'B08246M7ZZ',
+    asin: 'B0828L4H1P',
     title: 'NOCO Genius 1 Cargador y Mantenedor de Batería Inteligente de Moto 6V y 12V',
     category: 'accesorios',
     categoryLabel: 'Accesorios & Mantenimiento',
@@ -362,7 +362,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
     priceNumeric: 39.95,
     rating: 4.8,
     reviewsCount: 22100,
-    imageUrl: 'https://m.media-amazon.com/images/I/61K6-lJ2VQL._AC_SL1500_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/81JQuz1J4mL._AC_UL320_.jpg',
     badge: 'Evita Baterías Muertas',
     description: 'Cargador inteligente que diagnostica, repara y mantiene la batería de la moto conectada durante semanas sin riesgo de sobrecarga.',
     pros: [
