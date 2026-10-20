@@ -20,6 +20,14 @@ export default function LiveAmazonProductCard({
   const [copied, setCopied] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
 
+  const fallbackPlaceholder = 'https://m.media-amazon.com/images/I/71uF2XB0kML._AC_UL320_.jpg';
+  const validImg = product.imageUrl && product.imageUrl.trim() !== '' ? product.imageUrl : fallbackPlaceholder;
+  const [imgSrc, setImgSrc] = useState(validImg);
+
+  React.useEffect(() => {
+    setImgSrc(validImg);
+  }, [validImg]);
+
   // Direct product URL with affiliate tag
   const directProductUrl = product.asin
     ? getAmazonProductUrl(product.asin)
@@ -57,9 +65,10 @@ export default function LiveAmazonProductCard({
           className="block w-full h-full cursor-pointer"
         >
           <Image
-            src={product.imageUrl}
+            src={imgSrc}
             alt={product.title}
             fill
+            onError={() => setImgSrc(fallbackPlaceholder)}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className="object-cover transition-all duration-500 group-hover:scale-105"
           />

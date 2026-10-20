@@ -4857,8 +4857,11 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "El regalo más deseado por chicos de 16 a 18 años para salir de fiesta",
     "style": "classic",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/51JrZp1Ro7L._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/51JrZp1Ro7L._AC_UL320_.jpg"
+    ],
+    "asin": "B00FFJ53PS"
   },
   {
     "id": "1618-carolina-herrera-good-girl",
@@ -4882,8 +4885,11 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Chicas de 16 a 18 años que buscan una fragancia con personalidad arrolladora",
     "style": "classic",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/6105I8y0O-L._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/6105I8y0O-L._AC_UL320_.jpg"
+    ],
+    "asin": "B0HK494NBY"
   },
   {
     "id": "1618-jean-paul-gaultier-le-male",
@@ -4907,8 +4913,11 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Chicos que quieren destacar con un aroma elegante y seductor",
     "style": "classic",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/51Hj0+qMZAL._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/51Hj0+qMZAL._AC_UL320_.jpg"
+    ],
+    "asin": "B001BAG38G"
   },
   {
     "id": "1618-versace-eros-eau-de-toilette",
@@ -4932,8 +4941,11 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Chicos enérgicos, seguros de sí mismos y amantes de la moda",
     "style": "classic",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/61RK2X2njQL._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/61RK2X2njQL._AC_UL320_.jpg"
+    ],
+    "asin": "B07SSC9T6J"
   },
   {
     "id": "1618-yves-saint-laurent-libre",
@@ -4957,8 +4969,11 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Chicas independientes, elegantes y con estilo sofisticado",
     "style": "classic",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/81PnK8PykiL._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/81PnK8PykiL._AC_UL320_.jpg"
+    ],
+    "asin": "B07X1YHB23"
   },
   {
     "id": "1618-sol-de-janeiro-cheirosa-68",
@@ -4982,8 +4997,11 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Chicas de 16 a 18 años amantes de las tendencias de belleza y skincare",
     "style": "classic",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/61eXe6NOAuL._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/61eXe6NOAuL._AC_UL320_.jpg"
+    ],
+    "asin": "B0DPTKS8SD"
   },
   {
     "id": "1618-tous-loveme-eau-de-parfum",
@@ -5007,8 +5025,11 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Celebrar los 16 o 18 años con un regalo inolvidable",
     "style": "classic",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/61RLatcxjeL._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/61RLatcxjeL._AC_UL320_.jpg"
+    ],
+    "asin": "B09NRRWC52"
   },
   {
     "id": "1618-victorias-secret-pure-seduction",
@@ -5032,8 +5053,11 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Regalo seguro y asequible para chicas jóvenes",
     "style": "classic",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/617EFSPGy6L._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/617EFSPGy6L._AC_UL320_.jpg"
+    ],
+    "asin": "B0058RZT0Q"
   },
   {
     "id": "1618-scalpers-the-club-eau-de-parfum",
@@ -5057,8 +5081,11 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Chicos de 16 a 18 años que visten estilo casual prémium",
     "style": "classic",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/71LXHUdDlzL._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71LXHUdDlzL._AC_UL320_.jpg"
+    ],
+    "asin": "B091SWJ1RG"
   },
   {
     "id": "1618-calvin-klein-ck-be",
@@ -5082,8 +5109,11 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Jóvenes que buscan un aroma personal, relajado y auténtico",
     "style": "emo",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/41EPcPx72GL._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/41EPcPx72GL._AC_UL320_.jpg"
+    ],
+    "asin": "B00JB44FX4"
   },
   {
     "id": "1618-ea-sports-fc-25-ps5",
@@ -5107,8 +5137,11 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Cualquier joven apasionado del fútbol y los videojuegos",
     "style": "gamer",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/81mm+VudgaL._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/81mm+VudgaL._AC_UL320_.jpg"
+    ],
+    "asin": "B0D94PQMTX"
   },
   {
     "id": "1618-hogwarts-legacy-ps5",
@@ -5132,8 +5165,11 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Fans de Harry Potter, la fantasía y los juegos de aventura profunda",
     "style": "gamer",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/711LbTnKy7L._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/711LbTnKy7L._AC_UL320_.jpg"
+    ],
+    "asin": "B0B9YR7FSJ"
   },
   {
     "id": "1618-sony-auriculares-pulse-3d",
@@ -5157,12 +5193,15 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Escuchar cada paso enemigo y sumergirse al máximo en los juegos",
     "style": "gamer",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/714PoUvZbYL._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/714PoUvZbYL._AC_UL320_.jpg"
+    ],
+    "asin": "B0GRWCXP1F"
   },
   {
     "id": "18plus-smartbox-3-dias-con-encanto",
-    "asin": "B08F2CVZ99",
+    "asin": "B07Z5LBN4K",
     "title": "Smartbox - Caja Regalo 3 Días con Encanto (2 Noches con Desayunos para 2 Personas)",
     "slug": "smartbox-3-dias-con-encanto-caja-regalo",
     "searchQuery": "smartbox 3 dias con encanto caja regalo 2 noches desayunos dos personas",
@@ -5183,12 +5222,14 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Aniversarios, cumpleaños de 20, 30, 40 o 50 años y parejas",
     "style": "classic",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/81JpTNR6UgL._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/81JpTNR6UgL._AC_UL320_.jpg"
+    ]
   },
   {
     "id": "18plus-smartbox-spa-relax-dos",
-    "asin": "B07DFNY9Z1",
+    "asin": "B07FGGBVLS",
     "title": "Smartbox - Caja Regalo Spa y Relax para Dos (Acceso a Circuito Termal, Balneario o Masaje)",
     "slug": "smartbox-spa-y-relax-para-dos-caja-regalo",
     "searchQuery": "smartbox spa y relax para dos personas circuito termal masaje balneario",
@@ -5209,12 +5250,14 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Regalar un momento de descanso y cuidado personal en pareja",
     "style": "classic",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/614JNT+ZA2L._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/614JNT+ZA2L._AC_UL320_.jpg"
+    ]
   },
   {
     "id": "18plus-wonderbox-cena-gourmet-dos",
-    "asin": "B07GKL8901",
+    "asin": "B07DVFQTFY",
     "title": "Wonderbox - Caja Regalo Momentos Gourmet para Dos (Cena con Maridaje en Restaurantes Seleccionados)",
     "slug": "wonderbox-momentos-gourmet-cena-para-dos",
     "searchQuery": "wonderbox momentos gourmet caja regalo cena maridaje dos personas restaurantes",
@@ -5235,12 +5278,14 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Foodies, celebraciones románticas y amantes del buen comer",
     "style": "classic",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/61t+2o8IYuL._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/61t+2o8IYuL._AC_UL320_.jpg"
+    ]
   },
   {
     "id": "18plus-lego-icons-bonsai",
-    "asin": "B08G417G4P",
+    "asin": "B08G4PCG8F",
     "title": "LEGO Icons Bonsái - Árbol Botánico de Construcción para Adultos con Flores de Cerezo y Maceta",
     "slug": "lego-icons-bonsai-arbol-botanico-10281",
     "searchQuery": "lego icons 10281 bonsai arbol botanico decoracion adultos flores cerezo",
@@ -5261,12 +5306,14 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Amantes del diseño, la decoración de interiores y el mindfulness",
     "style": "classic",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/814Zl0ypKrL._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/814Zl0ypKrL._AC_UL320_.jpg"
+    ]
   },
   {
     "id": "18plus-lego-icons-ramo-flores",
-    "asin": "B0BJ4MD4B3",
+    "asin": "B00BLHX6J8",
     "title": "LEGO Icons Ramo de Flores Silvestres - Set Botánico de Construcción Creativa para Adultos",
     "slug": "lego-icons-ramo-flores-silvestres-10313",
     "searchQuery": "lego icons 10313 ramo de flores silvestres botanic adultos decoracion",
@@ -5287,12 +5334,14 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Decorar el hogar con estilo propio y regalar un detalle único",
     "style": "classic",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/814YOdZbacL._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/814YOdZbacL._AC_UL320_.jpg"
+    ]
   },
   {
     "id": "18plus-lego-star-wars-casco-vader",
-    "asin": "B08WWTY6R2",
+    "asin": "B08G4GPS3Q",
     "title": "LEGO Star Wars - Casco de Darth Vader Modelo de Coleccionista para Adultos con Soporte de Exposición",
     "slug": "lego-star-wars-casco-darth-vader-75304",
     "searchQuery": "lego star wars 75304 casco darth vader exposicion soporte placa adultos",
@@ -5313,12 +5362,14 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Fans veteranos de Star Wars, coleccionistas y amantes del cine de ciencia ficción",
     "style": "classic",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/81+02T5DFSL._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/81+02T5DFSL._AC_UL320_.jpg"
+    ]
   },
   {
     "id": "18plus-terraforming-mars-juego",
-    "asin": "B01GSYA4K2",
+    "asin": "B071ZGGKQM",
     "title": "Maldito Games - Terraforming Mars (Juego de Mesa Estratégico de Conquista Espacial para Adultos)",
     "slug": "terraforming-mars-juego-de-mesa-estrategia",
     "searchQuery": "terraforming mars juego de mesa maldito games estrategia adultos cartas tablero",
@@ -5339,12 +5390,14 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Jugadores que buscan un reto intelectual profundo y noches de juego inolvidables",
     "style": "classic",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/81EUwqi8yyL._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/81EUwqi8yyL._AC_UL320_.jpg"
+    ]
   },
   {
     "id": "18plus-wingspan-juego-mesa",
-    "asin": "B07MY98HD8",
+    "asin": "B07QJCKY9C",
     "title": "Maldito Games - Wingspan (Juego de Mesa Competitivo de Aves con Huevos y Comedero de Madera)",
     "slug": "wingspan-juego-de-mesa-aves-competitivo",
     "searchQuery": "wingspan juego de mesa aves maldito games huevos miniaturas cartas dados",
@@ -5365,12 +5418,14 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Tardes de café tranquilas, amantes de la naturaleza y parejas",
     "style": "classic",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/61BGI6N6AgL._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/61BGI6N6AgL._AC_UL320_.jpg"
+    ]
   },
   {
     "id": "18plus-guatafac-juego-fiesta",
-    "asin": "B07XDH9Y42",
+    "asin": "B07X8CVLRP",
     "title": "Guatafac - ¿Unos Tragos? El Juego de Mesa de Cartas Divertido y Picante para Fiestas de Adultos",
     "slug": "guatafac-unos-tragos-juego-de-cartas-fiesta",
     "searchQuery": "guatafac juego de cartas adultos fiesta risas diversion preguntas 8 segundos",
@@ -5391,12 +5446,14 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Cenas con amigos, barbacoas y quedadas de fin de semana",
     "style": "classic",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/61qwMlLnf8L._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/61qwMlLnf8L._AC_UL320_.jpg"
+    ]
   },
   {
     "id": "18plus-dji-mini-4k-dron",
-    "asin": "B0CX1G2Y4P",
+    "asin": "B0F4WZ3Q2J",
     "title": "DJI Mini 4K - Dron Ultraligero de Menos de 249g con Cámara 4K UHD y Transmisión de Vídeo a 10 km",
     "slug": "dji-mini-4k-dron-ultraligero-camara-estabilizada",
     "searchQuery": "dji mini 4k dron camara estabilizada gimbal 3 ejes 249g transmision video",
@@ -5417,12 +5474,14 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Viajeros, fotógrafos, senderistas y entusiastas de la tecnología",
     "style": "tech",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/61WJJIK+AGL._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/61WJJIK+AGL._AC_UL320_.jpg"
+    ]
   },
   {
     "id": "18plus-coche-rc-wltoys-124019-buggy",
-    "asin": "B08HR9M3K8",
+    "asin": "B073FLBLC2",
     "title": "Wltoys 124019 - Coche Teledirigido RC Buggy Todo Terreno 4x4 Escala 1:12 a 60 km/h Chasis Metálico",
     "slug": "coche-teledirigido-rc-wltoys-124019-60kmh",
     "searchQuery": "wltoys 124019 coche teledirigido rc 4x4 buggy chasis metal 60 kmh amortiguadores aceite",
@@ -5443,12 +5502,14 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Adultos que quieren adrenalina pura de radiocontrol al aire libre",
     "style": "tech",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/81Q8+McdTNL._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/81Q8+McdTNL._AC_UL320_.jpg"
+    ]
   },
   {
     "id": "18plus-elegoo-arduino-kit-robotica",
-    "asin": "B01EWNUUUA",
+    "asin": "B01M9J4GCU",
     "title": "ELEGOO Kit de Inicio Avanzado compatible con Arduino UNO R3 con Más de 200 Componentes y Tutoriales",
     "slug": "elegoo-kit-iniciacion-robotica-arduino-uno-r3",
     "searchQuery": "elegoo kit de inicio avanzado arduino uno r3 robotica sensores servomotores electronica",
@@ -5469,12 +5530,14 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Ingenieros, programadores, manitas y amantes del movimiento Maker",
     "style": "tech",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/81iIi2jLtML._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/81iIi2jLtML._AC_UL320_.jpg"
+    ]
   },
   {
     "id": "18plus-kindle-paperwhite-16gb",
-    "asin": "B08N3TCP2F",
+    "asin": "B0CFPWLGF2",
     "title": "Kindle Paperwhite (16 GB) - Lector de eBooks con Pantalla de 6,8\", Luz Cálida Ajustable y Resistente al Agua",
     "slug": "kindle-paperwhite-16gb-luz-calida-regulable",
     "searchQuery": "kindle paperwhite 16gb luz calida regulable pantalla 6 8 pulgadas resistente agua",
@@ -5495,12 +5558,14 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Cualquier adulto amante de la lectura y el aprendizaje continuo",
     "style": "classic",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/614+CZU06rL._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/614+CZU06rL._AC_UL320_.jpg"
+    ]
   },
   {
     "id": "18plus-philips-hue-kit-bombillas-led",
-    "asin": "B099NV8Q1J",
+    "asin": "B07SQ2FZTK",
     "title": "Philips Hue White & Color Ambiance - Pack de 2 Bombillas LED Inteligentes E27 con 16 Millones de Colores",
     "slug": "philips-hue-pack-2-bombillas-led-inteligentes-e27",
     "searchQuery": "philips hue white and color pack 2 bombillas inteligentes e27 alexa google home",
@@ -5521,12 +5586,14 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Crear ambientes cinematográficos y de relax en casa",
     "style": "tech",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/71vDvAI1wxL._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71vDvAI1wxL._AC_UL320_.jpg"
+    ]
   },
   {
     "id": "18plus-bose-soundlink-flex-altavoz",
-    "asin": "B099TJGJ91",
+    "asin": "B0D6W8GSL3",
     "title": "Bose SoundLink Flex - Altavoz Bluetooth Portátil Resistente al Agua IP67 con Graves Profundos y Nítidos",
     "slug": "bose-soundlink-flex-altavoz-bluetooth-portatil",
     "searchQuery": "bose soundlink flex altavoz bluetooth portatil exterior resistente agua ip67",
@@ -5547,12 +5614,14 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Barbacoas, viajes, hogar y melómanos exigentes",
     "style": "classic",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/71i8Nqdix2L._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71i8Nqdix2L._AC_UL320_.jpg"
+    ]
   },
   {
     "id": "18plus-cecotec-power-espresso-cafetera",
-    "asin": "B08F2CVZ98",
+    "asin": "B07MJ6S1MV",
     "title": "Cecotec Cafetera Express Power Espresso 20 Professionale - 20 Bares con Manómetro Tradicional y Vaporizador",
     "slug": "cecotec-power-espresso-20-cafetera-express-manometro",
     "searchQuery": "cecotec cafetera express power espresso 20 bars manometro vaporizador leche cafe molido",
@@ -5573,12 +5642,14 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Adultos amantes del café recién molido y desayunos de calidad",
     "style": "classic",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/71lLByP8C3L._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71lLByP8C3L._AC_UL320_.jpg"
+    ]
   },
   {
     "id": "18plus-kit-cocteleria-boston-acero",
-    "asin": "B07V2Q7K3Y",
+    "asin": "B0FFGY91SL",
     "title": "Kit Profesional de Coctelería Boston en Acero Inoxidable con Coctelera, Medidor Jigger y Soporte de Bambú",
     "slug": "kit-cocteleria-profesional-boston-soporte-bambu",
     "searchQuery": "kit cocteleria profesional coctelera boston jigger colador cuchara soporte bambu barman",
@@ -5599,12 +5670,14 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Anfitriones que disfrutan recibiendo visitas y preparando copas",
     "style": "classic",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/71lm8QW14aL._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71lm8QW14aL._AC_UL320_.jpg"
+    ]
   },
   {
     "id": "18plus-hario-v60-kit-cafe-filtro",
-    "asin": "B00JJIO574",
+    "asin": "B0DMF4TRH4",
     "title": "Hario V60 - Set Completo de Café de Filtro Manual con Jarra de Cristal Servidora, Cono y Filtros de Papel",
     "slug": "hario-v60-kit-cafe-filtro-manual-jarra-cristal",
     "searchQuery": "hario v60 set cafe goteo filtro manual jarra cristal servidor barista",
@@ -5625,12 +5698,14 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Gourmets del café de origen y amantes del café de filtro",
     "style": "classic",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/51HKCT6qsFL._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/51HKCT6qsFL._AC_UL320_.jpg"
+    ]
   },
   {
     "id": "18plus-dior-sauvage-eau-de-toilette",
-    "asin": "B012CZFZ96",
+    "asin": "B0CLC87GS1",
     "title": "Dior Sauvage - Eau de Toilette 100ml con Vaporizador Original para Hombre",
     "slug": "dior-sauvage-eau-de-toilette-100ml",
     "searchQuery": "dior sauvage eau de toilette 100ml perfume hombre original bergamota pimienta",
@@ -5651,12 +5726,14 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "El regalo de lujo definitivo para un hombre adulto",
     "style": "classic",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/51F8MEfiKgL._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/51F8MEfiKgL._AC_UL320_.jpg"
+    ]
   },
   {
     "id": "18plus-armani-si-eau-de-parfum",
-    "asin": "B00EDPTEY0",
+    "asin": "B00G3C2G24",
     "title": "Giorgio Armani Sì - Eau de Parfum 100ml con Notas de Grosella Negra, Rosa de Mayo y Vainilla",
     "slug": "giorgio-armani-si-eau-de-parfum-100ml",
     "searchQuery": "giorgio armani si eau de parfum 100ml perfume mujer original sofisticado",
@@ -5677,12 +5754,14 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Mujeres adultas que buscan una fragancia firma elegante para cualquier ocasión",
     "style": "classic",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/61WqizhzKxL._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/61WqizhzKxL._AC_UL320_.jpg"
+    ]
   },
   {
     "id": "18plus-tom-ford-black-orchid",
-    "asin": "B000P22U00",
+    "asin": "B00329HKI6",
     "title": "Tom Ford Black Orchid - Eau de Parfum 50ml Unisex de Lujo con Orquídea Negra y Especias Raras",
     "slug": "tom-ford-black-orchid-eau-de-parfum-50ml",
     "searchQuery": "tom ford black orchid eau de parfum 50ml perfume unisex lujo orquidea negra",
@@ -5703,8 +5782,10 @@ export const PRODUCTS: Product[] = [
     ],
     "idealFor": "Personas exigentes que buscan un perfume de culto que nadie más lleva",
     "style": "classic",
-    "imageUrl": "",
-    "images": []
+    "imageUrl": "https://m.media-amazon.com/images/I/51SJv3HVEnL._AC_UL320_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/51SJv3HVEnL._AC_UL320_.jpg"
+    ]
   },
   {
     "id": "phone-galaxy-a55-5g",

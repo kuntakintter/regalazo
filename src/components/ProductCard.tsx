@@ -17,8 +17,15 @@ export default function ProductCard({ product, currentTheme }: ProductCardProps)
   const [activeImgIndex, setActiveImgIndex] = useState(0);
 
   // Fallback to imageUrl if images array is not provided
+  const fallbackPlaceholder = 'https://m.media-amazon.com/images/I/71uF2XB0kML._AC_UL320_.jpg';
   const imagesList = product.images && product.images.length > 0 ? product.images : [product.imageUrl];
-  const currentImgSrc = imagesList[activeImgIndex] || product.imageUrl;
+  const rawImg = imagesList[activeImgIndex] || product.imageUrl;
+  const validImgSrc = rawImg && rawImg.trim() !== '' ? rawImg : fallbackPlaceholder;
+  const [imgSrc, setImgSrc] = useState(validImgSrc);
+
+  React.useEffect(() => {
+    setImgSrc(validImgSrc);
+  }, [validImgSrc]);
 
   // Enlace directo al producto específico en Amazon España (NUNCA a páginas de búsqueda)
   const directProductUrl = getAmazonProductUrl(product.asin || 'B0DLWK3LKH');
@@ -76,9 +83,10 @@ export default function ProductCard({ product, currentTheme }: ProductCardProps)
           className="block w-full h-full cursor-pointer"
         >
           <Image
-            src={currentImgSrc}
+            src={imgSrc}
             alt={`${product.title} - Foto ${activeImgIndex + 1}`}
             fill
+            onError={() => setImgSrc(fallbackPlaceholder)}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className="object-cover transition-all duration-500 group-hover:scale-105"
           />
