@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { ExternalLink, Star, CheckCircle2, Heart, Share2, Sparkles, ShoppingBag } from 'lucide-react';
 import { LiveSearchResult } from '@/app/api/live-search/route';
 import { getAmazonProductUrl } from '@/lib/amazon';
+import { useCurrency } from '@/context/CurrencyContext';
 
 interface LiveAmazonProductCardProps {
   product: LiveSearchResult;
@@ -17,6 +18,7 @@ export default function LiveAmazonProductCard({
   categoryLabel = 'Amazon España',
   badgeLabel = 'Top Ventas Amazon',
 }: LiveAmazonProductCardProps) {
+  const { formatPrice } = useCurrency();
   const [copied, setCopied] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
 
@@ -116,7 +118,7 @@ export default function LiveAmazonProductCard({
         {/* Price Tag Overlay */}
         <div className="absolute bottom-3 right-3 z-10 pointer-events-none">
           <span className="px-3 py-1 rounded-xl font-black text-sm bg-black/80 text-white backdrop-blur-md shadow-md border border-white/10">
-            {product.priceText}
+            {formatPrice(product.priceText)}
           </span>
         </div>
       </div>

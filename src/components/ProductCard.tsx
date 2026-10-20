@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { Product } from '@/data/products';
 import { getAmazonProductUrl } from '@/lib/amazon';
+import { useCurrency } from '@/context/CurrencyContext';
 import { ExternalLink, Star, CheckCircle2, Heart, Share2, Sparkles, ShoppingBag, ChevronLeft, ChevronRight, Camera } from 'lucide-react';
 
 interface ProductCardProps {
@@ -12,6 +13,7 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, currentTheme }: ProductCardProps) {
+  const { formatPrice } = useCurrency();
   const [copied, setCopied] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const [activeImgIndex, setActiveImgIndex] = useState(0);
@@ -183,7 +185,7 @@ export default function ProductCard({ product, currentTheme }: ProductCardProps)
         {/* Price Tag Overlay */}
         <div className="absolute bottom-3 right-3 z-10 pointer-events-none">
           <span className="px-3 py-1 rounded-xl font-black text-sm bg-black/80 text-white backdrop-blur-md shadow-md border border-white/10">
-            {product.priceText}
+            {formatPrice(product.priceText)}
           </span>
         </div>
       </div>

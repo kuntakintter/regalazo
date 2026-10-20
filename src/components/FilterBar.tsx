@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { AGE_CATEGORIES, AGE_SUBCATEGORIES_MAP, CLOTHING_SUBFILTERS, isClothingCategory } from '@/data/products';
+import { useCurrency } from '@/context/CurrencyContext';
 import {
   LayoutGrid,
   X,
@@ -74,6 +75,7 @@ export default function FilterBar({
   onSelectSort,
   totalResults
 }: FilterBarProps) {
+  const { currency, currencySymbol } = useCurrency();
   const hasActiveFilters =
     selectedAge !== 'all' ||
     selectedCategory !== 'all' ||
@@ -123,11 +125,12 @@ export default function FilterBar({
     if (selectedPrice === 'all' || sliderValue >= 150) {
       return 'Cualquier Presupuesto (Sin límite)';
     }
-    if (selectedPrice === '<20') return 'Hasta 20 €';
-    if (selectedPrice === '20-50') return 'Entre 20 € y 50 €';
-    if (selectedPrice === '50-100') return 'Entre 50 € y 100 €';
-    if (selectedPrice === '>100') return 'Más de 100 €';
-    return `Hasta ${sliderValue} €`;
+    const isUsd = currency === 'USD';
+    if (selectedPrice === '<20') return isUsd ? 'Hasta $22' : 'Hasta 20 €';
+    if (selectedPrice === '20-50') return isUsd ? 'Entre $22 y $55' : 'Entre 20 € y 50 €';
+    if (selectedPrice === '50-100') return isUsd ? 'Entre $55 y $110' : 'Entre 50 € y 100 €';
+    if (selectedPrice === '>100') return isUsd ? 'Más de $110' : 'Más de 100 €';
+    return isUsd ? `Hasta $${Math.round(sliderValue * 1.08)}` : `Hasta ${sliderValue} €`;
   };
 
   return (
@@ -195,12 +198,12 @@ export default function FilterBar({
           />
           {/* Milestone markers below track */}
           <div className="flex justify-between text-[11px] font-bold text-slate-400 mt-1.5 px-0.5">
-            <span>15 €</span>
-            <span>30 €</span>
-            <span>50 €</span>
-            <span>75 €</span>
-            <span>100 €</span>
-            <span>150 €+ (Sin límite)</span>
+            <span>{currency === 'USD' ? '$16' : '15 €'}</span>
+            <span>{currency === 'USD' ? '$32' : '30 €'}</span>
+            <span>{currency === 'USD' ? '$55' : '50 €'}</span>
+            <span>{currency === 'USD' ? '$80' : '75 €'}</span>
+            <span>{currency === 'USD' ? '$110' : '100 €'}</span>
+            <span>{currency === 'USD' ? '$160+ (Sin límite)' : '150 €+ (Sin límite)'}</span>
           </div>
         </div>
 
@@ -211,10 +214,10 @@ export default function FilterBar({
           </span>
           {[
             { id: 'all', label: 'Cualquier Presupuesto', icon: Coins, iconColor: 'text-amber-500' },
-            { id: '20', label: 'Hasta 20 €', icon: Tag, iconColor: 'text-emerald-500' },
-            { id: '50', label: 'Hasta 50 €', icon: Gift, iconColor: 'text-indigo-500' },
-            { id: '100', label: 'Hasta 100 €', icon: Gem, iconColor: 'text-purple-500' },
-            { id: '>100', label: 'Más de 100 €', icon: Crown, iconColor: 'text-amber-600' },
+            { id: '20', label: currency === 'USD' ? 'Hasta $22' : 'Hasta 20 €', icon: Tag, iconColor: 'text-emerald-500' },
+            { id: '50', label: currency === 'USD' ? 'Hasta $55' : 'Hasta 50 €', icon: Gift, iconColor: 'text-indigo-500' },
+            { id: '100', label: currency === 'USD' ? 'Hasta $110' : 'Hasta 100 €', icon: Gem, iconColor: 'text-purple-500' },
+            { id: '>100', label: currency === 'USD' ? 'Más de $110' : 'Más de 100 €', icon: Crown, iconColor: 'text-amber-600' },
           ].map((preset) => {
             const isActive =
               preset.id === selectedPrice ||

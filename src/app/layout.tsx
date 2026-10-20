@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import './globals.css';
 import CookieBanner from '@/components/CookieBanner';
+import { CurrencyProvider } from '@/context/CurrencyContext';
 
 export const metadata: Metadata = {
   title: 'Un Buen Regalo | Ideas de Regalos para Todas las Edades',
@@ -139,8 +140,10 @@ export default function RootLayout({
       </head>
       <body className="antialiased font-sans selection:bg-indigo-500 selection:text-white">
         <div id="google_translate_element" style={{ display: 'none' }} />
-        {children}
-        <CookieBanner />
+        <CurrencyProvider>
+          {children}
+          <CookieBanner />
+        </CurrencyProvider>
       </body>
     </html>
   );

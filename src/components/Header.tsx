@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Gift, Search, X, ExternalLink, ArrowRight, Star, Loader2, Sparkles, ShoppingBag } from 'lucide-react';
 import BrandLogo from '@/components/BrandLogo';
 import LanguageSelector from '@/components/LanguageSelector';
+import { useCurrency } from '@/context/CurrencyContext';
 import { PRODUCTS, AMAZON_AFFILIATE_TAG } from '@/data/products';
 import { matchesSearchQuery } from '@/utils/search';
 
@@ -31,6 +32,7 @@ export default function Header({
   onSearchChange,
   searchQuery = '',
 }: HeaderProps) {
+  const { formatPrice } = useCurrency();
   const [isFocused, setIsFocused] = useState(false);
   const [amazonResults, setAmazonResults] = useState<AmazonLiveItem[]>([]);
   const [isLoadingAmazon, setIsLoadingAmazon] = useState(false);
@@ -195,7 +197,7 @@ export default function Header({
                               {product.title}
                             </h4>
                             <div className="flex items-center gap-2 mt-0.5">
-                              <span className="text-xs font-black text-indigo-600">{product.priceText}</span>
+                              <span className="text-xs font-black text-indigo-600">{formatPrice(product.priceText)}</span>
                               <span className="text-[11px] text-slate-400 flex items-center gap-0.5">
                                 <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
                                 {product.rating}
@@ -255,7 +257,7 @@ export default function Header({
                               {item.title}
                             </h4>
                             <div className="flex items-center gap-2 mt-0.5">
-                              <span className="text-xs font-black text-amber-700">{item.priceText}</span>
+                              <span className="text-xs font-black text-amber-700">{formatPrice(item.priceText)}</span>
                               <span className="text-[11px] text-slate-400 flex items-center gap-0.5">
                                 <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
                                 {item.rating}
