@@ -132,7 +132,7 @@ export default async function AgeLandingPage({ params }: PageProps) {
         <section className="text-center py-6 sm:py-8 max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-4 shadow-xs border border-slate-200 bg-white/90 backdrop-blur-md text-slate-800">
             <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span>Edición Verificada 2026 • Catálogo Oficial Amazon España</span>
+            <span>Edición Actualizada {new Date().getFullYear()} • Catálogo Verificado en Amazon</span>
           </div>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.15] mb-4 text-slate-900">
