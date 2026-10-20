@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Gift, Search, X, ExternalLink, ArrowRight, Star, Loader2, Sparkles, ShoppingBag } from 'lucide-react';
 import BrandLogo from '@/components/BrandLogo';
+import LanguageSelector from '@/components/LanguageSelector';
 import { PRODUCTS, AMAZON_AFFILIATE_TAG } from '@/data/products';
 import { matchesSearchQuery } from '@/utils/search';
 
@@ -328,21 +329,24 @@ export default function Header({
             )}
           </div>
 
-          {/* Desktop Right Quick Actions */}
-          <div className="hidden lg:flex items-center gap-2">
-            <Link
-              href="/motoristas"
-              className="px-3 py-1.5 rounded-full text-xs font-black bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 shadow-xs hover:shadow-md transition-all hover:scale-102 flex items-center gap-1"
-            >
-              <span>🏍️ Motoristas</span>
-              <span className="bg-black/20 text-[9px] px-1 rounded-full">Top</span>
-            </Link>
-            <Link
-              href="/gaming"
-              className="px-3 py-1.5 rounded-full text-xs font-bold bg-purple-100 hover:bg-purple-200 text-purple-900 transition-colors flex items-center gap-1"
-            >
-              <span>🎮 Gaming</span>
-            </Link>
+          {/* Right Actions: Language Selector & Quick Links */}
+          <div className="flex items-center gap-2">
+            <LanguageSelector />
+            <div className="hidden lg:flex items-center gap-2">
+              <Link
+                href="/motoristas"
+                className="px-3 py-1.5 rounded-full text-xs font-black bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 shadow-xs hover:shadow-md transition-all hover:scale-102 flex items-center gap-1"
+              >
+                <span>🏍️ Motoristas</span>
+                <span className="bg-black/20 text-[9px] px-1 rounded-full">Top</span>
+              </Link>
+              <Link
+                href="/gaming"
+                className="px-3 py-1.5 rounded-full text-xs font-bold bg-purple-100 hover:bg-purple-200 text-purple-900 transition-colors flex items-center gap-1"
+              >
+                <span>🎮 Gaming</span>
+              </Link>
+            </div>
           </div>
 
         </div>

@@ -80,3 +80,44 @@
 .animate-flicker {
   animation: flickerFlame 2.5s ease-in-out infinite;
 }
+
+/* ============================================================================
+   GOOGLE TRANSLATE SEAMLESS OVERRIDES (NATIVE LOOK & FEEL)
+   ============================================================================ */
+.goog-te-banner-frame.skiptranslate,
+.goog-te-banner-frame,
+iframe.goog-te-banner-frame {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+}
+
+body {
+  top: 0px !important;
+  position: static !important;
+}
+
+#goog-gt-tt,
+.goog-te-balloon-frame,
+.goog-tooltip,
+.goog-tooltip:hover {
+  display: none !important;
+}
+
+.goog-text-highlight {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf,
+.VIpgJd-ZVi9od-ORHb-OEVmcd,
+.VIpgJd-ZVi9od-l4eHX-hSRLGd,
+.VIpgJd-ZVi9od-SmfZ-OEGGo-ibnC6b {
+  display: none !important;
+}
+
+#google_translate_element {
+  display: none !important;
+}
+

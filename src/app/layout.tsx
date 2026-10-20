@@ -114,8 +114,30 @@ export default function RootLayout({
         <meta name="msvalidate.01" content="4AF0EBAFECCF6A3AA51203D44DE90AD6" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/favicon.svg" />
+        {/* Google Translate Integration */}
+        <Script
+          id="google-translate-init"
+          strategy="afterInteractive"
+        >
+          {`
+            function googleTranslateElementInit() {
+              if (window.google && window.google.translate) {
+                new window.google.translate.TranslateElement({
+                  pageLanguage: 'es',
+                  autoDisplay: false
+                }, 'google_translate_element');
+              }
+            }
+          `}
+        </Script>
+        <Script
+          id="google-translate-script"
+          strategy="afterInteractive"
+          src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+        />
       </head>
       <body className="antialiased font-sans selection:bg-indigo-500 selection:text-white">
+        <div id="google_translate_element" style={{ display: 'none' }} />
         {children}
         <CookieBanner />
       </body>

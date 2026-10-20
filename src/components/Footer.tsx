@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Gift, ShieldCheck, Heart, Sparkles, ShoppingBag } from 'lucide-react';
 import BrandLogo from '@/components/BrandLogo';
+import LanguageSelector from '@/components/LanguageSelector';
 import { AMAZON_DISCLOSURE, AMAZON_AFFILIATE_TAG } from '@/lib/amazon';
 
 interface FooterProps {
@@ -109,8 +110,9 @@ export default function Footer({ currentTheme }: FooterProps) {
 
         {/* Bottom Bar */}
         <div className="border-t border-slate-200 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs opacity-75">
-          <div>
-            © {new Date().getFullYear()} Un Buen Regalo (unbuenregalo.vercel.app) • Todos los derechos reservados.
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3">
+            <span>© {new Date().getFullYear()} Un Buen Regalo (unbuenregalo.vercel.app) • Todos los derechos reservados.</span>
+            <LanguageSelector />
           </div>
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 font-medium">
             <Link href="/aviso-legal" className="hover:text-indigo-600 hover:underline transition-colors">
