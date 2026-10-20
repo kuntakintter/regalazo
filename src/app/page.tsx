@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FilterBar from '@/components/FilterBar';
 import ProductCard from '@/components/ProductCard';
+import LiveAmazonProductCard from '@/components/LiveAmazonProductCard';
 import GiftWizard from '@/components/GiftWizard';
 import SeoFaq from '@/components/SeoFaq';
 import ThemeAtmosphere from '@/components/ThemeAtmosphere';
@@ -12,6 +13,7 @@ import AmazonLiveSearchCard from '@/components/AmazonLiveSearchCard';
 import AmazonGridDiscoveryCard from '@/components/AmazonGridDiscoveryCard';
 import { PRODUCTS, AGE_CATEGORIES, GENERAL_CATEGORY_MAPPING, Product } from '@/data/products';
 import { matchesSearchQuery } from '@/utils/search';
+import { LiveSearchResult } from '@/app/api/live-search/route';
 import {
   BadgePercent,
   Gift,
@@ -27,7 +29,10 @@ import {
   ShieldCheck,
   TrendingUp,
   Search,
-  Bot
+  Bot,
+  Sparkles,
+  Loader2,
+  RefreshCw
 } from 'lucide-react';
 
 const AGE_BANNER_ICONS: Record<string, { icon: React.ComponentType<{ className?: string }>; bg: string; color: string }> = {
@@ -49,30 +54,38 @@ export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
 
+  // Live Amazon products state to render in the grid
+  const [liveAmazonProducts, setLiveAmazonProducts] = useState<LiveSearchResult[]>([]);
+  const [isLoadingLive, setIsLoadingLive] = useState(false);
+
   // Handle age selection
   const handleSelectAge = (age: string) => {
     setSelectedAge(age);
-    setSelectedCategory('all'); // Reset subcategory when switching age
-    if (selectedPrice !== 'all') setSelectedPrice('all'); // Reset price so no empty states occur
-    if (searchQuery) setSearchQuery(''); // Clear search so filters show results immediately
+    setSelectedCategory('all');
+    if (selectedPrice !== 'all') setSelectedPrice('all');
+    if (searchQuery) setSearchQuery('');
+    setLiveAmazonProducts([]);
   };
 
   // Handle category selection
   const handleSelectCategory = (cat: string) => {
     setSelectedCategory(cat);
-    if (selectedPrice !== 'all') setSelectedPrice('all'); // Reset price constraint
-    if (searchQuery) setSearchQuery(''); // Clear search so category shows results immediately
+    if (selectedPrice !== 'all') setSelectedPrice('all');
+    if (searchQuery) setSearchQuery('');
+    setLiveAmazonProducts([]);
   };
 
   // Handle gender selection
   const handleSelectGender = (gender: 'all' | 'boy' | 'girl' | 'reveal') => {
     setSelectedGender(gender);
-    if (searchQuery) setSearchQuery(''); // Clear search so gender shows results immediately
+    if (searchQuery) setSearchQuery('');
+    setLiveAmazonProducts([]);
   };
 
   // Handle live search
   const handleSearchChange = (query: string) => {
     setSearchQuery(query);
+    setLiveAmazonProducts([]);
     if (query.trim().length > 0) {
       if (selectedAge !== 'all') setSelectedAge('all');
       if (selectedCategory !== 'all') setSelectedCategory('all');
@@ -84,7 +97,7 @@ export default function HomePage() {
     const isSearching = searchQuery.trim() !== '';
 
     return PRODUCTS.filter((product) => {
-      // 1. Search query filter with smart phonetic typo tolerance and accent removal
+      // 1. Search query filter
       if (isSearching) {
         if (!matchesSearchQuery(product, searchQuery)) {
           return false;
@@ -105,7 +118,7 @@ export default function HomePage() {
         }
       }
 
-      // 3. Age filter (if searching globally, don't block matches)
+      // 3. Age filter
       if (!isSearching && selectedAge !== 'all' && product.ageRange !== selectedAge) {
         return false;
       }
@@ -115,12 +128,10 @@ export default function HomePage() {
         const sel = selectedCategory.trim();
 
         if (selectedAge !== 'all') {
-          // Strict exact match for specific age
           if (product.subcategory.toLowerCase() !== sel.toLowerCase()) {
             return false;
           }
         } else {
-          // For "all ages", match via canonical category mapping or exact subcategory
           const allowedSubcategories = GENERAL_CATEGORY_MAPPING[sel] || [sel];
           const matchesMapping = allowedSubcategories.some(
             (allowed) => allowed.toLowerCase() === product.subcategory.toLowerCase()
@@ -131,7 +142,7 @@ export default function HomePage() {
         }
       }
 
-      // 5. Price filter (supports numeric max budget from slider + preset ranges)
+      // 5. Price filter
       if (selectedPrice !== 'all') {
         const prodPrice =
           parseFloat(product.priceText.replace(/[^0-9,.]/g, '').replace(',', '.')) || 0;
@@ -161,13 +172,83 @@ export default function HomePage() {
     return AGE_CATEGORIES.find((c) => c.id === selectedAge);
   }, [selectedAge]);
 
+  // Contextual live search phrase for Amazon API
+  const liveSearchQuery = useMemo(() => {
+    if (searchQuery.trim().length > 0) return searchQuery.trim();
+    if (selectedCategory && selectedCategory !== 'all') {
+      if (selectedAge && selectedAge !== 'all') {
+        return `${selectedCategory} ${selectedAge} anos`;
+      }
+      return selectedCategory;
+    }
+    if (selectedAge && selectedAge !== 'all') {
+      const ageMap: Record<string, string> = {
+        '0-12m': 'regalos bebes 0 a 12 meses',
+        '1-3': 'juguetes regalos ninos 1 a 3 anos',
+        '4-6': 'juegos y regalos ninos 4 a 6 anos',
+        '7-9': 'juegos y regalos ninos 7 a 9 anos',
+        '10-12': 'regalos y tecnologia ninos 10 a 12 anos',
+        '13-15': 'regalos adolescentes 13 a 15 anos',
+        '16-18': 'regalos jovenes 16 a 18 anos',
+        '+18': 'regalos adultos originales',
+      };
+      return ageMap[selectedAge] || `regalos ${selectedAge} anos`;
+    }
+    return 'ideas regalos originales amazon';
+  }, [searchQuery, selectedCategory, selectedAge]);
+
+  // Load live products into the grid
+  const handleLoadLiveToGrid = useCallback(async () => {
+    if (isLoadingLive) return;
+    setIsLoadingLive(true);
+    try {
+      const res = await fetch(`/api/live-search?q=${encodeURIComponent(liveSearchQuery)}&limit=6`);
+      const data = await res.json();
+      if (data.success && Array.isArray(data.results)) {
+        setLiveAmazonProducts((prev) => {
+          const existingAsins = new Set(prev.map((p) => p.asin));
+          const newItems = data.results.filter((p: LiveSearchResult) => !existingAsins.has(p.asin));
+          return [...prev, ...newItems];
+        });
+      }
+    } catch (err) {
+      console.error('Error fetching live Amazon products:', err);
+    } finally {
+      setIsLoadingLive(false);
+    }
+  }, [isLoadingLive, liveSearchQuery]);
+
+  // Auto-fetch live products when 0 local results match active filter
+  useEffect(() => {
+    if (filteredProducts.length === 0 && liveSearchQuery) {
+      let isMounted = true;
+      setIsLoadingLive(true);
+      fetch(`/api/live-search?q=${encodeURIComponent(liveSearchQuery)}&limit=6`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (isMounted && data.success && Array.isArray(data.results)) {
+            setLiveAmazonProducts(data.results);
+          }
+        })
+        .catch((err) => console.error(err))
+        .finally(() => {
+          if (isMounted) setIsLoadingLive(false);
+        });
+
+      return () => {
+        isMounted = false;
+      };
+    }
+  }, [filteredProducts.length, liveSearchQuery]);
+
   // Handle recommendation from AI wizard
   const handleApplyRecommendation = (filters: { age: string; category: string; gender: 'all' | 'boy' | 'girl' | 'reveal'; price: string }) => {
-    setSearchQuery(''); // Always reset search bar so wizard recommendations show immediately
+    setSearchQuery('');
     setSelectedAge(filters.age);
     setSelectedCategory(filters.category);
     setSelectedGender(filters.gender);
     setSelectedPrice(filters.price);
+    setLiveAmazonProducts([]);
   };
 
   return (
@@ -186,7 +267,7 @@ export default function HomePage() {
       {/* Main Content Area */}
       <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full z-10">
         
-        {/* HERO SECTION - Optimized for SEO H1 and CRO */}
+        {/* HERO SECTION */}
         <section className="text-center py-6 sm:py-10 max-w-4xl mx-auto">
           
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-4 shadow-xs border border-slate-200 bg-white/90 backdrop-blur-md text-slate-800">
@@ -261,11 +342,11 @@ export default function HomePage() {
             onSelectGender={handleSelectGender}
             selectedPrice={selectedPrice}
             onSelectPrice={setSelectedPrice}
-            totalResults={filteredProducts.length}
+            totalResults={filteredProducts.length + liveAmazonProducts.length}
           />
         </div>
 
-        {/* DYNAMIC AGE BANNER WHEN FILTERED (PLACED BELOW FILTER BAR AS REQUESTED) */}
+        {/* DYNAMIC AGE BANNER WHEN FILTERED */}
         {currentAgeMeta && (
           <div className="p-5 sm:p-6 rounded-3xl my-6 border border-indigo-100 bg-white shadow-xs transition-all flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
             <div className="flex items-center gap-3.5">
@@ -330,12 +411,50 @@ export default function HomePage() {
                   currentTheme="classic"
                 />
               ))}
+
+              {/* LIVE AMAZON PRODUCTS LOADED INTO GRID */}
+              {liveAmazonProducts.map((liveProd) => (
+                <LiveAmazonProductCard
+                  key={liveProd.asin}
+                  product={liveProd}
+                  categoryLabel={selectedCategory !== 'all' ? selectedCategory : 'Amazon España'}
+                  badgeLabel="En Directo Amazon"
+                />
+              ))}
+
+              {/* DISCOVERY / LOAD LIVE CARD IN SAME FORMAT */}
               <AmazonGridDiscoveryCard
                 searchQuery={searchQuery}
                 selectedAge={selectedAge}
                 selectedCategory={selectedCategory}
+                onLoadLiveToGrid={handleLoadLiveToGrid}
+                isLoadingLive={isLoadingLive}
+                hasLoadedLive={liveAmazonProducts.length > 0}
               />
             </section>
+
+            {/* Quick action bar to load more live products directly */}
+            {liveAmazonProducts.length === 0 && (
+              <div className="mb-12 flex justify-center">
+                <button
+                  onClick={handleLoadLiveToGrid}
+                  disabled={isLoadingLive}
+                  className="px-6 py-3.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border border-amber-300 text-amber-950 font-bold text-sm shadow-xs hover:shadow-md transition-all flex items-center gap-2 cursor-pointer disabled:opacity-70"
+                >
+                  {isLoadingLive ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin text-amber-700" />
+                      <span>Conectando con Amazon en directo...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles className="w-4 h-4 text-amber-600" />
+                      <span>Cargar más ofertas en directo de Amazon para esta selección</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            )}
 
             {/* Universal Amazon Live Search Bar (Cookie & Global Search) */}
             <AmazonLiveSearchCard
@@ -345,37 +464,100 @@ export default function HomePage() {
             />
           </>
         ) : (
-          <div className="py-12 mb-16">
-            <div className="text-center py-10 px-4 rounded-3xl border border-dashed border-slate-300 mb-8 bg-white/60">
-              <Search className="w-12 h-12 mx-auto mb-3 text-slate-400" />
-              <h3 className="text-xl font-bold mb-2 text-slate-900">¿Buscas un producto específico en Amazon?</h3>
-              <p className="text-sm text-slate-600 mb-5 max-w-xl mx-auto">
-                No tenemos ese producto exacto en nuestro catálogo verificado local, pero puedes buscarlo directamente en <strong>Amazon España</strong> con un solo clic con las mejores ofertas y disponibilidad al momento.
-              </p>
-              <button
-                onClick={() => {
-                  setSelectedAge('all');
-                  setSelectedCategory('all');
-                  setSelectedGender('all');
-                  setSelectedPrice('all');
-                  setSearchQuery('');
-                }}
-                className="px-5 py-2.5 rounded-xl bg-slate-200 text-slate-800 text-xs font-bold hover:bg-slate-300 transition-colors"
-              >
-                Limpiar filtros locales
-              </button>
-            </div>
+          <div className="mb-16">
+            {liveAmazonProducts.length > 0 ? (
+              <div>
+                {/* Live notice banner */}
+                <div className="mb-6 p-4 sm:p-5 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-3xl flex flex-wrap items-center justify-between gap-3 shadow-xs">
+                  <div className="flex items-center gap-3 text-amber-950 font-bold text-sm">
+                    <span className="p-2 bg-amber-400/20 text-amber-700 rounded-xl">
+                      <Sparkles className="w-5 h-5" />
+                    </span>
+                    <div>
+                      <p className="font-extrabold text-slate-900">
+                        Mostrando productos en directo de Amazon España para tu selección:
+                      </p>
+                      <p className="text-xs text-slate-600 font-normal">
+                        Precios, fotos y disponibilidad al día obtenidos en tiempo real de Amazon.es
+                      </p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => {
+                      setSelectedAge('all');
+                      setSelectedCategory('all');
+                      setSelectedGender('all');
+                      setSelectedPrice('all');
+                      setSearchQuery('');
+                      setLiveAmazonProducts([]);
+                    }}
+                    className="text-xs bg-white text-slate-800 px-4 py-2 rounded-xl border border-amber-200 font-bold hover:bg-amber-100 transition-all shadow-xs cursor-pointer"
+                  >
+                    Restablecer filtros
+                  </button>
+                </div>
 
-            {/* Prominent Live Search on Amazon España */}
-            <AmazonLiveSearchCard
-              currentTheme="classic"
-              initialQuery={searchQuery || 'ofertas regalos ninos y jovenes'}
-              selectedPrice={selectedPrice}
-            />
+                {/* Grid populated with live products in the user's preferred card format */}
+                <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12">
+                  {liveAmazonProducts.map((liveProd) => (
+                    <LiveAmazonProductCard
+                      key={liveProd.asin}
+                      product={liveProd}
+                      categoryLabel={selectedCategory !== 'all' ? selectedCategory : 'Amazon España'}
+                      badgeLabel="En Directo Amazon"
+                    />
+                  ))}
+                  <AmazonGridDiscoveryCard
+                    searchQuery={searchQuery}
+                    selectedAge={selectedAge}
+                    selectedCategory={selectedCategory}
+                    onLoadLiveToGrid={handleLoadLiveToGrid}
+                    isLoadingLive={isLoadingLive}
+                    hasLoadedLive={true}
+                  />
+                </section>
+              </div>
+            ) : isLoadingLive ? (
+              <div className="py-20 text-center flex flex-col items-center justify-center gap-3">
+                <Loader2 className="w-10 h-10 animate-spin text-amber-500" />
+                <h3 className="text-lg font-bold text-slate-900">Buscando productos en directo en Amazon España...</h3>
+                <p className="text-xs text-slate-500 max-w-md">
+                  Estamos consultando en tiempo real las mejores ofertas y disponibilidad para tus filtros activos.
+                </p>
+              </div>
+            ) : (
+              <div className="py-12 mb-16">
+                <div className="text-center py-10 px-4 rounded-3xl border border-dashed border-slate-300 mb-8 bg-white/60">
+                  <Search className="w-12 h-12 mx-auto mb-3 text-slate-400" />
+                  <h3 className="text-xl font-bold mb-2 text-slate-900">¿Buscas un producto específico en Amazon?</h3>
+                  <p className="text-sm text-slate-600 mb-5 max-w-xl mx-auto">
+                    No tenemos ese producto exacto en nuestro catálogo verificado local, pero puedes buscarlo directamente en <strong>Amazon España</strong> con un solo clic con las mejores ofertas y disponibilidad al momento.
+                  </p>
+                  <button
+                    onClick={() => {
+                      setSelectedAge('all');
+                      setSelectedCategory('all');
+                      setSelectedGender('all');
+                      setSelectedPrice('all');
+                      setSearchQuery('');
+                    }}
+                    className="px-5 py-2.5 rounded-xl bg-slate-200 text-slate-800 text-xs font-bold hover:bg-slate-300 transition-colors"
+                  >
+                    Limpiar filtros locales
+                  </button>
+                </div>
+
+                <AmazonLiveSearchCard
+                  currentTheme="classic"
+                  initialQuery={searchQuery || 'ofertas regalos ninos y jovenes'}
+                  selectedPrice={selectedPrice}
+                />
+              </div>
+            )}
           </div>
         )}
 
-        {/* SEO CONTENT SECTION - Rich Educational Buying Guides */}
+        {/* SEO CONTENT SECTION */}
         <section className="rounded-3xl p-6 sm:p-10 mb-12 border border-slate-200 bg-white text-slate-800 shadow-xs">
           <h2 className="text-2xl sm:text-3xl font-black mb-4 tracking-tight text-slate-900">
             Guía de Compra Inteligente: ¿Cómo acertar con el regalo según la edad?
@@ -402,7 +584,7 @@ export default function HomePage() {
                 <span>🎧</span> Jóvenes y Adolescentes (13 a 18 Años)
               </h3>
               <p>
-                Los adolescentes buscan reafirmar su identidad propia. En lugar de regalos genéricos, triunfan los artículos con personalidad: desde videojuegos de <strong>PlayStation 5</strong> y periféricos de setup gaming hasta <strong>estilo personal y creativo</strong> con velas aromáticas WoodWick, diarios encuadernados en piel vintage y auriculares de alta fidelidad con cancelación de ruido.
+                Los adolescentes buscan reafirmar su personalidad propia. En lugar de regalos genéricos, triunfan los artículos con personalidad: desde videojuegos de <strong>PlayStation 5</strong> y periféricos de setup gaming hasta <strong>estilo personal y creativo</strong> con velas aromáticas WoodWick, diarios encuadernados en piel vintage y auriculares de alta fidelidad con cancelación de ruido.
               </p>
             </div>
           </div>
