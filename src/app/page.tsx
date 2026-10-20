@@ -55,6 +55,7 @@ export default function HomePage() {
   const [selectedPrice, setSelectedPrice] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [sortBy, setSortBy] = useState<'featured' | 'price-asc' | 'price-desc' | 'rating'>('featured');
+  const [visibleCount, setVisibleCount] = useState<number>(24);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
 
   // Live Amazon products state to render in the grid
@@ -65,6 +66,7 @@ export default function HomePage() {
   const handleSelectAge = (age: string) => {
     setSelectedAge(age);
     setSelectedCategory('all');
+    setVisibleCount(24);
     if (selectedPrice !== 'all') setSelectedPrice('all');
     if (searchQuery) setSearchQuery('');
     setLiveAmazonProducts([]);
@@ -81,6 +83,7 @@ export default function HomePage() {
   // Handle gender selection
   const handleSelectGender = (gender: 'all' | 'boy' | 'girl' | 'reveal') => {
     setSelectedGender(gender);
+    setVisibleCount(24);
     if (searchQuery) setSearchQuery('');
     setLiveAmazonProducts([]);
   };
@@ -454,7 +457,7 @@ export default function HomePage() {
         {filteredProducts.length > 0 ? (
           <>
             <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12">
-              {sortedFilteredProducts.map((product) => (
+              {sortedFilteredProducts.slice(0, visibleCount).map((product) => (
                 <ProductCard
                   key={product.id}
                   product={product}
@@ -482,6 +485,22 @@ export default function HomePage() {
                 hasLoadedLive={liveAmazonProducts.length > 0}
               />
             </section>
+
+            {/* Botón Cargar Más Productos para aligerar el DOM y optimizar SEO */}
+            {sortedFilteredProducts.length > visibleCount && (
+              <div className="mb-12 flex flex-col items-center justify-center gap-2">
+                <button
+                  onClick={() => setVisibleCount((prev) => prev + 24)}
+                  className="px-8 py-4 rounded-2xl bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white font-black text-sm shadow-md hover:shadow-lg hover:shadow-indigo-500/20 transition-all flex items-center gap-2.5 cursor-pointer hover:scale-102 active:scale-98"
+                >
+                  <Sparkles className="w-4 h-4 text-amber-300" />
+                  <span>Cargar más ideas de regalo (+24 productos)</span>
+                </button>
+                <span className="text-xs text-slate-500 font-medium">
+                  Mostrando {Math.min(visibleCount, sortedFilteredProducts.length)} de {sortedFilteredProducts.length} ideas disponibles
+                </span>
+              </div>
+            )}
 
             {/* Quick action bar to load more live products directly */}
             {(selectedCategory !== 'all' || selectedAge !== 'all' || searchQuery.trim() !== '' || liveAmazonProducts.length > 0) && (

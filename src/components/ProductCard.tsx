@@ -210,7 +210,7 @@ export default function ProductCard({ product, currentTheme }: ProductCardProps)
         </div>
 
         {/* H3 Title for perfect SEO structure */}
-        <h3 className="font-bold text-base line-clamp-2 leading-snug mb-2 group-hover:text-indigo-600 transition-colors">
+        <h4 className="font-bold text-base line-clamp-2 leading-snug mb-2 group-hover:text-indigo-600 transition-colors">
           <a
             href={directProductUrl}
             target="_blank"
@@ -219,7 +219,7 @@ export default function ProductCard({ product, currentTheme }: ProductCardProps)
           >
             {product.title}
           </a>
-        </h3>
+        </h4>
 
         {/* Persuasive Description */}
         <p className="text-xs opacity-80 leading-relaxed mb-4 line-clamp-3">
@@ -277,14 +277,9 @@ export default function ProductCard({ product, currentTheme }: ProductCardProps)
           </a>
 
           {/* Secondary CTA: Direct product reviews and details */}
-          <a
-            href={directProductUrl}
-            target="_blank"
-            rel="nofollow sponsored noopener noreferrer"
-            className="w-full py-1.5 px-3 rounded-xl text-[11px] font-medium text-center block opacity-60 hover:opacity-100 hover:underline transition-opacity"
-          >
-            Ver opiniones y comprar en Amazon.es →
-          </a>
+          <div className="text-[11px] font-medium text-center opacity-65 pt-0.5">
+            ✓ Opiniones verificadas y garantía oficial en Amazon.es
+          </div>
         </div>
 
         {/* Toast feedback when copied */}

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="boxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5" />
+      <stop offset="100%" stop-color="#7c3aed" />
+    </linearGradient>
+    <linearGradient id="ribbonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+  </defs>
+  <!-- Background rounded box -->
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="url(#boxGrad)" />
+  <!-- Gift Base -->
+  <rect x="12" y="28" width="40" height="24" rx="4" fill="#ffffff" />
+  <!-- Gift Lid -->
+  <rect x="10" y="22" width="44" height="8" rx="3" fill="#f8fafc" />
+  <!-- Vertical Ribbon -->
+  <rect x="28" y="22" width="8" height="30" fill="url(#ribbonGrad)" />
+  <!-- Horizontal Ribbon -->
+  <rect x="10" y="36" width="44" height="6" fill="url(#ribbonGrad)" />
+  <!-- Ribbon Bow Left -->
+  <path d="M30 22 C22 14 18 18 26 22 Z" fill="url(#ribbonGrad)" />
+  <!-- Ribbon Bow Right -->
+  <path d="M34 22 C42 14 46 18 38 22 Z" fill="url(#ribbonGrad)" />
+  <!-- Sparkle -->
+  <circle cx="48" cy="14" r="2.5" fill="#fef08a" />
+</svg>

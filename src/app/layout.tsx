@@ -4,8 +4,16 @@ import './globals.css';
 import CookieBanner from '@/components/CookieBanner';
 
 export const metadata: Metadata = {
-  title: 'Un Buen Regalo | Ideas de Regalo para Todas las Edades (De 0 a más de 18 Años)',
-  description: 'Descubre en Un Buen Regalo las mejores ideas de regalo para recién nacidos, niños, adolescentes, jóvenes y adultos. Desde tartas de pañales hasta smartphones, videojuegos, robótica, Smartbox y perfumería. Recomendaciones verificadas de Amazon España.',
+  title: 'Un Buen Regalo | Ideas de Regalos para Todas las Edades',
+  description: 'Encuentra las mejores ideas de regalo para bebés, niños, jóvenes y adultos. Recomendaciones contrastadas y ofertas actualizadas con envío rápido Prime.',
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    apple: [
+      { url: '/favicon.svg' },
+    ],
+  },
   keywords: [
     'un buen regalo',
     'ideas de regalo',
@@ -104,6 +112,8 @@ export default function RootLayout({
         />
         <meta name="theme-color" content="#4f46e5" />
         <meta name="msvalidate.01" content="4AF0EBAFECCF6A3AA51203D44DE90AD6" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/favicon.svg" />
       </head>
       <body className="antialiased font-sans selection:bg-indigo-500 selection:text-white">
         {children}
