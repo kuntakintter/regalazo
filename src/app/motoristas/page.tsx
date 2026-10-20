@@ -295,7 +295,7 @@ export default function MotoristasPage() {
               </span>
             </div>
 
-            <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+            <div className="flex flex-wrap items-center gap-2">
               {MOTORISTA_CATEGORIES.map((cat) => (
                 <button
                   key={cat.id}
@@ -304,7 +304,7 @@ export default function MotoristasPage() {
                     setSelectedStyle('all');
                     setLiveAmazonProducts([]);
                   }}
-                  className={`px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all flex items-center gap-2 cursor-pointer ${
+                  className={`px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 cursor-pointer ${
                     selectedCategory === cat.id
                       ? 'bg-slate-900 text-white shadow-md scale-102'
                       : 'bg-slate-100 text-slate-700 hover:bg-slate-200'

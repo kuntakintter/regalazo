@@ -253,7 +253,7 @@ export default function FilterBar({
           </label>
         </div>
 
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-thin">
+        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-thin flex-wrap">
           <button
             onClick={() => {
               onSelectAge('all');
