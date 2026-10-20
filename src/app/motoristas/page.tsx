@@ -29,8 +29,10 @@ import {
   ShoppingBag,
   ExternalLink,
   ChevronRight,
-  Gauge
+  Gauge,
+  ArrowUpDown
 } from 'lucide-react';
+import { parsePrice } from '@/lib/amazon';
 import Link from 'next/link';
 
 export default function MotoristasPage() {
@@ -38,6 +40,7 @@ export default function MotoristasPage() {
   const [selectedBrand, setSelectedBrand] = useState<string>('Todas las marcas');
   const [selectedPrice, setSelectedPrice] = useState<string>('all');
   const [selectedStyle, setSelectedStyle] = useState<string>('all');
+  const [sortBy, setSortBy] = useState<'featured' | 'price-asc' | 'price-desc' | 'rating'>('featured');
   const [liveAmazonProducts, setLiveAmazonProducts] = useState<LiveSearchResult[]>([]);
   const [isLoadingLive, setIsLoadingLive] = useState(false);
 
@@ -104,6 +107,31 @@ export default function MotoristasPage() {
       };
     });
   }, [filteredProducts]);
+
+  // Sorted products based on sortBy selector
+  const sortedDisplayProducts = useMemo(() => {
+    const list = [...displayProducts];
+    if (sortBy === 'price-asc') {
+      list.sort((a, b) => parsePrice(a.priceText) - parsePrice(b.priceText));
+    } else if (sortBy === 'price-desc') {
+      list.sort((a, b) => parsePrice(b.priceText) - parsePrice(a.priceText));
+    } else if (sortBy === 'rating') {
+      list.sort((a, b) => b.rating - a.rating);
+    }
+    return list;
+  }, [displayProducts, sortBy]);
+
+  const sortedLiveAmazonProducts = useMemo(() => {
+    const list = [...liveAmazonProducts];
+    if (sortBy === 'price-asc') {
+      list.sort((a, b) => parsePrice(a.priceText) - parsePrice(b.priceText));
+    } else if (sortBy === 'price-desc') {
+      list.sort((a, b) => parsePrice(b.priceText) - parsePrice(a.priceText));
+    } else if (sortBy === 'rating') {
+      list.sort((a, b) => b.rating - a.rating);
+    }
+    return list;
+  }, [liveAmazonProducts, sortBy]);
 
   // Build live Amazon query based on active filters
   const liveSearchQuery = useMemo(() => {
@@ -192,6 +220,7 @@ export default function MotoristasPage() {
     setSelectedBrand('Todas las marcas');
     setSelectedPrice('all');
     setSelectedStyle('all');
+    setSortBy('featured');
     setLiveAmazonProducts([]);
   };
 
@@ -284,8 +313,8 @@ export default function MotoristasPage() {
             </div>
           </div>
 
-          {/* 2. Subfiltros por marca y presupuesto */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-slate-100">
+          {/* 2. Subfiltros por marca, presupuesto, estilo y ordenación */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4 border-t border-slate-100">
             
             {/* Filtro Marca */}
             <div>
@@ -360,13 +389,31 @@ export default function MotoristasPage() {
               </select>
             </div>
 
+            {/* Ordenar productos */}
+            <div>
+              <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                <ArrowUpDown className="w-3.5 h-3.5 text-amber-600" />
+                <span>Ordenar productos</span>
+              </label>
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value as any)}
+                className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 text-xs font-semibold focus:border-amber-500 focus:bg-white outline-none cursor-pointer"
+              >
+                <option value="featured">⭐ Recomendados</option>
+                <option value="price-asc">📉 Más baratos a más caros</option>
+                <option value="price-desc">📈 Más caros a más baratos</option>
+                <option value="rating">🏆 Mejor valorados</option>
+              </select>
+            </div>
+
           </div>
 
           {/* Reset button if any filter is active */}
-          {(selectedCategory !== 'all' || selectedBrand !== 'Todas las marcas' || selectedPrice !== 'all' || selectedStyle !== 'all') && (
+          {(selectedCategory !== 'all' || selectedBrand !== 'Todas las marcas' || selectedPrice !== 'all' || selectedStyle !== 'all' || sortBy !== 'featured') && (
             <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
               <span className="text-xs text-slate-500">
-                Filtros activos aplicados a motoristas
+                Filtros activos aplicados a motoristas {sortBy !== 'featured' && `• Orden: ${sortBy === 'price-asc' ? 'Menor a mayor precio' : sortBy === 'price-desc' ? 'Mayor a menor precio' : 'Mejor valorados'}`}
               </span>
               <button
                 onClick={handleResetFilters}
@@ -380,10 +427,10 @@ export default function MotoristasPage() {
         </div>
 
         {/* PRODUCTS GRID */}
-        {displayProducts.length > 0 ? (
+        {sortedDisplayProducts.length > 0 ? (
           <>
             <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12">
-              {displayProducts.map((product) => (
+              {sortedDisplayProducts.map((product) => (
                 <ProductCard
                   key={product.id}
                   product={product}
@@ -392,7 +439,7 @@ export default function MotoristasPage() {
               ))}
 
               {/* LIVE AMAZON PRODUCTS */}
-              {liveAmazonProducts.map((liveProd) => (
+              {sortedLiveAmazonProducts.map((liveProd) => (
                 <LiveAmazonProductCard
                   key={liveProd.asin}
                   product={liveProd}
@@ -457,7 +504,7 @@ export default function MotoristasPage() {
             </div>
 
             <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12">
-              {liveAmazonProducts.map((liveProd) => (
+              {sortedLiveAmazonProducts.map((liveProd) => (
                 <LiveAmazonProductCard
                   key={liveProd.asin}
                   product={liveProd}

@@ -1,5 +1,7 @@
 'use client';
 
+import { parsePrice } from '@/lib/amazon';
+
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -52,6 +54,7 @@ export default function HomePage() {
   const [selectedGender, setSelectedGender] = useState<'all' | 'boy' | 'girl' | 'reveal'>('all');
   const [selectedPrice, setSelectedPrice] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [sortBy, setSortBy] = useState<'featured' | 'price-asc' | 'price-desc' | 'rating'>('featured');
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
 
   // Live Amazon products state to render in the grid
@@ -166,6 +169,31 @@ export default function HomePage() {
       return true;
     });
   }, [selectedAge, selectedCategory, selectedGender, selectedPrice, searchQuery]);
+
+  // Sorted products based on sortBy
+  const sortedFilteredProducts = useMemo(() => {
+    const list = [...filteredProducts];
+    if (sortBy === 'price-asc') {
+      list.sort((a, b) => parsePrice(a.priceText) - parsePrice(b.priceText));
+    } else if (sortBy === 'price-desc') {
+      list.sort((a, b) => parsePrice(b.priceText) - parsePrice(a.priceText));
+    } else if (sortBy === 'rating') {
+      list.sort((a, b) => b.rating - a.rating);
+    }
+    return list;
+  }, [filteredProducts, sortBy]);
+
+  const sortedLiveAmazonProducts = useMemo(() => {
+    const list = [...liveAmazonProducts];
+    if (sortBy === 'price-asc') {
+      list.sort((a, b) => parsePrice(a.priceText) - parsePrice(b.priceText));
+    } else if (sortBy === 'price-desc') {
+      list.sort((a, b) => parsePrice(b.priceText) - parsePrice(a.priceText));
+    } else if (sortBy === 'rating') {
+      list.sort((a, b) => b.rating - a.rating);
+    }
+    return list;
+  }, [liveAmazonProducts, sortBy]);
 
   // Current active age category metadata
   const currentAgeMeta = useMemo(() => {
@@ -362,6 +390,8 @@ export default function HomePage() {
             onSelectGender={handleSelectGender}
             selectedPrice={selectedPrice}
             onSelectPrice={setSelectedPrice}
+            sortBy={sortBy}
+            onSelectSort={setSortBy}
             totalResults={filteredProducts.length + liveAmazonProducts.length}
           />
         </div>
@@ -424,7 +454,7 @@ export default function HomePage() {
         {filteredProducts.length > 0 ? (
           <>
             <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12">
-              {filteredProducts.map((product) => (
+              {sortedFilteredProducts.map((product) => (
                 <ProductCard
                   key={product.id}
                   product={product}
@@ -433,7 +463,7 @@ export default function HomePage() {
               ))}
 
               {/* LIVE AMAZON PRODUCTS LOADED INTO GRID */}
-              {liveAmazonProducts.map((liveProd) => (
+              {sortedLiveAmazonProducts.map((liveProd) => (
                 <LiveAmazonProductCard
                   key={liveProd.asin}
                   product={liveProd}
@@ -522,7 +552,7 @@ export default function HomePage() {
 
                 {/* Grid populated with live products in the user's preferred card format */}
                 <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12">
-                  {liveAmazonProducts.map((liveProd) => (
+                  {sortedLiveAmazonProducts.map((liveProd) => (
                     <LiveAmazonProductCard
                       key={liveProd.asin}
                       product={liveProd}

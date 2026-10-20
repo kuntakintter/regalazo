@@ -24,14 +24,17 @@ import {
   Loader2,
   Filter,
   ChevronRight,
-  PawPrint
+  PawPrint,
+  ArrowUpDown
 } from 'lucide-react';
+import { parsePrice } from '@/lib/amazon';
 import Link from 'next/link';
 
 export default function MascotasPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedBrand, setSelectedBrand] = useState<string>('Todas las marcas');
   const [selectedPrice, setSelectedPrice] = useState<string>('all');
+  const [sortBy, setSortBy] = useState<'featured' | 'price-asc' | 'price-desc' | 'rating'>('featured');
   const [liveAmazonProducts, setLiveAmazonProducts] = useState<LiveSearchResult[]>([]);
   const [isLoadingLive, setIsLoadingLive] = useState(false);
 
@@ -83,6 +86,31 @@ export default function MascotasPage() {
       };
     });
   }, [filteredProducts]);
+
+  // Sorted products based on sortBy selector
+  const sortedDisplayProducts = useMemo(() => {
+    const list = [...displayProducts];
+    if (sortBy === 'price-asc') {
+      list.sort((a, b) => parsePrice(a.priceText) - parsePrice(b.priceText));
+    } else if (sortBy === 'price-desc') {
+      list.sort((a, b) => parsePrice(b.priceText) - parsePrice(a.priceText));
+    } else if (sortBy === 'rating') {
+      list.sort((a, b) => b.rating - a.rating);
+    }
+    return list;
+  }, [displayProducts, sortBy]);
+
+  const sortedLiveAmazonProducts = useMemo(() => {
+    const list = [...liveAmazonProducts];
+    if (sortBy === 'price-asc') {
+      list.sort((a, b) => parsePrice(a.priceText) - parsePrice(b.priceText));
+    } else if (sortBy === 'price-desc') {
+      list.sort((a, b) => parsePrice(b.priceText) - parsePrice(a.priceText));
+    } else if (sortBy === 'rating') {
+      list.sort((a, b) => b.rating - a.rating);
+    }
+    return list;
+  }, [liveAmazonProducts, sortBy]);
 
   // Build live Amazon query
   const liveSearchQuery = useMemo(() => {
@@ -157,6 +185,7 @@ export default function MascotasPage() {
     setSelectedCategory('all');
     setSelectedBrand('Todas las marcas');
     setSelectedPrice('all');
+    setSortBy('featured');
     setLiveAmazonProducts([]);
   };
 
@@ -243,7 +272,7 @@ export default function MascotasPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-slate-100">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-slate-100">
             <div>
               <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">
                 Marca de confianza
@@ -279,11 +308,30 @@ export default function MascotasPage() {
                 ))}
               </select>
             </div>
+
+            <div>
+              <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                <ArrowUpDown className="w-3.5 h-3.5 text-rose-600" />
+                <span>Ordenar productos</span>
+              </label>
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value as any)}
+                className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 text-xs font-semibold focus:border-rose-500 focus:bg-white outline-none cursor-pointer"
+              >
+                <option value="featured">⭐ Recomendados</option>
+                <option value="price-asc">📉 Más baratos a más caros</option>
+                <option value="price-desc">📈 Más caros a más baratos</option>
+                <option value="rating">🏆 Mejor valorados</option>
+              </select>
+            </div>
           </div>
 
-          {(selectedCategory !== 'all' || selectedBrand !== 'Todas las marcas' || selectedPrice !== 'all') && (
+          {(selectedCategory !== 'all' || selectedBrand !== 'Todas las marcas' || selectedPrice !== 'all' || sortBy !== 'featured') && (
             <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
-              <span className="text-xs text-slate-500">Filtros activos en mascotas</span>
+              <span className="text-xs text-slate-500">
+                Filtros activos en mascotas {sortBy !== 'featured' && `• Orden: ${sortBy === 'price-asc' ? 'Menor a mayor precio' : sortBy === 'price-desc' ? 'Mayor a menor precio' : 'Mejor valorados'}`}
+              </span>
               <button
                 onClick={handleResetFilters}
                 className="text-xs font-bold text-rose-700 hover:text-rose-900 underline cursor-pointer"
@@ -295,10 +343,10 @@ export default function MascotasPage() {
         </div>
 
         {/* PRODUCTS GRID */}
-        {displayProducts.length > 0 ? (
+        {sortedDisplayProducts.length > 0 ? (
           <>
             <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12">
-              {displayProducts.map((product) => (
+              {sortedDisplayProducts.map((product) => (
                 <ProductCard
                   key={product.id}
                   product={product}
@@ -306,7 +354,7 @@ export default function MascotasPage() {
                 />
               ))}
 
-              {liveAmazonProducts.map((liveProd) => (
+              {sortedLiveAmazonProducts.map((liveProd) => (
                 <LiveAmazonProductCard
                   key={liveProd.asin}
                   product={liveProd}
@@ -344,7 +392,7 @@ export default function MascotasPage() {
               </button>
             </div>
           </>
-        ) : liveAmazonProducts.length > 0 ? (
+        ) : sortedLiveAmazonProducts.length > 0 ? (
           <div className="mb-16">
             <div className="mb-6 p-4 sm:p-5 bg-gradient-to-r from-amber-50 via-rose-50 to-orange-50 border border-amber-200 rounded-3xl flex flex-wrap items-center justify-between gap-3 shadow-xs">
               <div className="flex items-center gap-3 text-amber-950 font-bold text-sm">
@@ -369,7 +417,7 @@ export default function MascotasPage() {
             </div>
 
             <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12">
-              {liveAmazonProducts.map((liveProd) => (
+              {sortedLiveAmazonProducts.map((liveProd) => (
                 <LiveAmazonProductCard
                   key={liveProd.asin}
                   product={liveProd}

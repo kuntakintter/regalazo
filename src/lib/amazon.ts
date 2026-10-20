@@ -28,6 +28,16 @@ export function getAmazonAffiliateUrl(searchQueryOrAsin: string, isAsin: boolean
 }
 
 /**
+ * Parsea el precio numérico a partir de strings como "49,99 €", "55.73 €" o "<20 €".
+ */
+export function parsePrice(priceText?: string): number {
+  if (!priceText) return 0;
+  const cleaned = priceText.replace(/[^0-9,.]/g, '').replace(',', '.');
+  const val = parseFloat(cleaned);
+  return isNaN(val) ? 0 : val;
+}
+
+/**
  * Aviso legal obligatorio por la directiva de Amazon Associates
  */
 export const AMAZON_DISCLOSURE = 

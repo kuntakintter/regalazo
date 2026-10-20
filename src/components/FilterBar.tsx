@@ -27,7 +27,8 @@ import {
   Coins,
   Calendar,
   Target,
-  Smartphone
+  Smartphone,
+  ArrowUpDown
 } from 'lucide-react';
 
 const AGE_ICONS: Record<string, { icon: React.ComponentType<{ className?: string }>; color: string }> = {
@@ -50,6 +51,8 @@ interface FilterBarProps {
   onSelectGender: (gender: 'all' | 'boy' | 'girl' | 'reveal') => void;
   selectedPrice: string;
   onSelectPrice: (price: string) => void;
+  sortBy?: 'featured' | 'price-asc' | 'price-desc' | 'rating';
+  onSelectSort?: (sort: 'featured' | 'price-asc' | 'price-desc' | 'rating') => void;
   totalResults: number;
 }
 
@@ -62,13 +65,16 @@ export default function FilterBar({
   onSelectGender,
   selectedPrice,
   onSelectPrice,
+  sortBy = 'featured',
+  onSelectSort,
   totalResults
 }: FilterBarProps) {
   const hasActiveFilters =
     selectedAge !== 'all' ||
     selectedCategory !== 'all' ||
     selectedPrice !== 'all' ||
-    selectedGender !== 'all';
+    selectedGender !== 'all' ||
+    sortBy !== 'featured';
 
   // Subcategorías específicas para la edad seleccionada
   const availableSubcategories =
@@ -79,6 +85,7 @@ export default function FilterBar({
     onSelectCategory('all');
     onSelectGender('all');
     onSelectPrice('all');
+    if (onSelectSort) onSelectSort('featured');
   };
 
   // Convert current selectedPrice to numeric slider value (15 to 150)
@@ -136,17 +143,32 @@ export default function FilterBar({
             </div>
           </div>
 
-          <div className="flex items-center gap-2 self-start sm:self-auto">
-            <span className="text-xs font-bold px-3 py-1 rounded-full bg-white text-indigo-700 border border-indigo-200 shadow-xs">
+          <div className="flex flex-wrap items-center gap-2 self-start sm:self-auto">
+            <span className="text-xs font-bold px-3 py-1.5 rounded-xl bg-white text-indigo-700 border border-indigo-200 shadow-xs">
               {totalResults} ideas recomendadas
             </span>
+            {onSelectSort && (
+              <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-white text-slate-700 border border-indigo-200 shadow-xs">
+                <ArrowUpDown className="w-3.5 h-3.5 text-indigo-600 shrink-0" />
+                <select
+                  value={sortBy}
+                  onChange={(e) => onSelectSort(e.target.value as any)}
+                  className="bg-transparent text-slate-800 font-bold text-xs outline-none cursor-pointer"
+                >
+                  <option value="featured">⭐ Recomendados</option>
+                  <option value="price-asc">📉 Más baratos a más caros</option>
+                  <option value="price-desc">📈 Más caros a más baratos</option>
+                  <option value="rating">🏆 Mejor valorados</option>
+                </select>
+              </div>
+            )}
             {hasActiveFilters && (
               <button
                 onClick={resetFilters}
-                className="text-xs font-bold px-2.5 py-1 rounded-full text-rose-600 hover:bg-rose-50 border border-transparent hover:border-rose-200 transition-colors flex items-center gap-1 cursor-pointer"
+                className="text-xs font-bold px-2.5 py-1.5 rounded-xl text-rose-600 hover:bg-rose-50 border border-transparent hover:border-rose-200 transition-colors flex items-center gap-1 cursor-pointer"
                 title="Restablecer filtros"
               >
-                <RotateCcw className="w-3 h-3" />
+                <RotateCcw className="w-3.5 h-3.5" />
                 <span>Limpiar</span>
               </button>
             )}
