@@ -412,46 +412,114 @@ export default function MotoristasPage() {
             </section>
 
             {/* Quick button to load more live motorista deals */}
-            {liveAmazonProducts.length === 0 && (
-              <div className="mb-12 flex justify-center">
-                <button
-                  onClick={handleLoadLiveToGrid}
-                  disabled={isLoadingLive}
-                  className="px-6 py-3.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border border-amber-300 text-amber-950 font-bold text-sm shadow-xs hover:shadow-md transition-all flex items-center gap-2 cursor-pointer disabled:opacity-70"
-                >
-                  {isLoadingLive ? (
-                    <>
-                      <Loader2 className="w-4 h-4 animate-spin text-amber-700" />
-                      <span>Buscando ofertas de motoristas en Amazon...</span>
-                    </>
-                  ) : (
-                    <>
-                      <Sparkles className="w-4 h-4 text-amber-600" />
-                      <span>Cargar más ofertas en directo de Amazon para motoristas</span>
-                    </>
-                  )}
-                </button>
-              </div>
-            )}
+            <div className="mb-12 flex justify-center">
+              <button
+                onClick={handleLoadLiveToGrid}
+                disabled={isLoadingLive}
+                className="px-6 py-3.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border border-amber-300 text-amber-950 font-bold text-sm shadow-xs hover:shadow-md transition-all flex items-center gap-2 cursor-pointer disabled:opacity-70"
+              >
+                {isLoadingLive ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin text-amber-700" />
+                    <span>Buscando ofertas de motoristas en Amazon...</span>
+                  </>
+                ) : (
+                  <>
+                    <Sparkles className="w-4 h-4 text-amber-600" />
+                    <span>Cargar más ofertas en directo de Amazon para motoristas</span>
+                  </>
+                )}
+              </button>
+            </div>
           </>
+        ) : liveAmazonProducts.length > 0 ? (
+          <div className="mb-16">
+            <div className="mb-6 p-4 sm:p-5 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-3xl flex flex-wrap items-center justify-between gap-3 shadow-xs">
+              <div className="flex items-center gap-3 text-amber-950 font-bold text-sm">
+                <span className="p-2 bg-amber-400/20 text-amber-700 rounded-xl">
+                  <Sparkles className="w-5 h-5" />
+                </span>
+                <div>
+                  <p className="font-extrabold text-slate-900">
+                    Mostrando productos en directo de Amazon España para motoristas:
+                  </p>
+                  <p className="text-xs text-slate-600 font-normal">
+                    Precios, fotos y disponibilidad al día obtenidos en tiempo real de Amazon.es
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={handleResetFilters}
+                className="text-xs bg-white text-slate-800 px-4 py-2 rounded-xl border border-amber-200 font-bold hover:bg-amber-100 transition-all shadow-xs cursor-pointer"
+              >
+                Restablecer filtros
+              </button>
+            </div>
+
+            <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12">
+              {liveAmazonProducts.map((liveProd) => (
+                <LiveAmazonProductCard
+                  key={liveProd.asin}
+                  product={liveProd}
+                  categoryLabel="Motoristas Amazon"
+                  badgeLabel="Oferta Motorista"
+                />
+              ))}
+
+              <AmazonGridDiscoveryCard
+                searchQuery={liveSearchQuery}
+                selectedCategory="Mundo Motorista"
+                onLoadLiveToGrid={handleLoadLiveToGrid}
+                isLoadingLive={isLoadingLive}
+                hasLoadedLive={true}
+              />
+            </section>
+
+            <div className="mb-12 flex justify-center">
+              <button
+                onClick={handleLoadLiveToGrid}
+                disabled={isLoadingLive}
+                className="px-6 py-3.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border border-amber-300 text-amber-950 font-bold text-sm shadow-xs hover:shadow-md transition-all flex items-center gap-2 cursor-pointer disabled:opacity-70"
+              >
+                {isLoadingLive ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin text-amber-700" />
+                    <span>Cargando más ofertas de Amazon...</span>
+                  </>
+                ) : (
+                  <>
+                    <Sparkles className="w-4 h-4 text-amber-600" />
+                    <span>Cargar más ofertas en directo (+8 opciones)</span>
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+        ) : isLoadingLive ? (
+          <div className="py-20 mb-16 text-center flex flex-col items-center justify-center gap-3 bg-white/80 rounded-3xl border border-amber-200 shadow-xs">
+            <Loader2 className="w-10 h-10 animate-spin text-amber-600" />
+            <h3 className="text-lg font-bold text-slate-900">Buscando productos de motoristas en Amazon España...</h3>
+            <p className="text-xs text-slate-500 max-w-md">
+              Estamos consultando el catálogo en tiempo real con stock oficial y precios actualizados.
+            </p>
+          </div>
         ) : (
-          <div className="py-12 mb-16 text-center">
+          <div className="py-12 mb-16 text-center bg-white/70 rounded-3xl border border-dashed border-slate-300 p-8">
             <h3 className="text-xl font-bold mb-2 text-slate-900">No encontramos productos locales para este filtro exacto</h3>
-            <p className="text-sm text-slate-600 mb-6">
-              Puedes cargar las ofertas disponibles en tiempo real en Amazon España para esta combinación.
+            <p className="text-sm text-slate-600 mb-6 max-w-md mx-auto">
+              Puedes cargar las ofertas disponibles en Amazon España o restablecer los filtros para explorar otras opciones.
             </p>
             <div className="flex justify-center gap-3">
               <button
                 onClick={handleLoadLiveToGrid}
-                disabled={isLoadingLive}
-                className="px-6 py-3 rounded-2xl bg-[#FF9900] hover:bg-[#ffad33] text-slate-950 font-black text-sm flex items-center gap-2 shadow-md cursor-pointer"
+                className="px-6 py-3 rounded-2xl bg-[#FF9900] hover:bg-[#ffad33] text-slate-950 font-black text-sm flex items-center gap-2 shadow-md cursor-pointer transition-transform hover:scale-102"
               >
-                {isLoadingLive ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
+                <Sparkles className="w-4 h-4" />
                 <span>Buscar en Amazon en directo</span>
               </button>
               <button
                 onClick={handleResetFilters}
-                className="px-5 py-3 rounded-2xl bg-slate-200 text-slate-800 font-bold text-sm hover:bg-slate-300 cursor-pointer"
+                className="px-5 py-3 rounded-2xl bg-slate-200 text-slate-800 font-bold text-sm hover:bg-slate-300 cursor-pointer transition-colors"
               >
                 Restablecer filtros
               </button>

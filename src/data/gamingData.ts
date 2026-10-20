@@ -116,5 +116,71 @@ export const GAMING_PRODUCTS: HubProduct[] = [
     ],
     idealFor: 'El teclado todoterreno ideal para iniciarse en el gaming con marca de confianza.',
     searchQuery: 'logitech g213 prodigy teclado gaming rgb'
+  },
+  {
+    id: 'game-teclado-steelseries-apex-3',
+    asin: 'B082YRCL4T',
+    title: 'SteelSeries Apex 3 Teclado Gaming RGB con Reposamuñecas Magnético y Resistencia al Agua',
+    category: 'teclados',
+    categoryLabel: 'Teclados Mecánicos',
+    brand: 'SteelSeries',
+    priceText: '49,99 €',
+    priceNumeric: 49.99,
+    rating: 4.6,
+    reviewsCount: 16800,
+    imageUrl: 'https://m.media-amazon.com/images/I/61nBW1Uwq6L._AC_UL320_.jpg',
+    badge: 'Silencioso y Resistente',
+    description: 'Interruptores para juegos ultrasilenciosos con durabilidad garantizada para más de 20 millones de pulsaciones, certificación IP32 contra salpicaduras y reposamuñecas premium.',
+    pros: [
+      'Resistencia al agua IP32 para evitar daños por derrames accidentales',
+      'Iluminación RGB de 10 zonas personalizable que reacciona a juegos',
+      'Reposamuñecas magnético suave al tacto con sujeción ergonómica total'
+    ],
+    idealFor: 'Gamers que buscan la máxima calidad SteelSeries con tacto silencioso y reposamuñecas.',
+    searchQuery: 'steelseries apex 3 teclado gaming rgb espanol'
+  },
+  {
+    id: 'game-auriculares-razer-blackshark-v2x',
+    asin: 'B089SSF5L8',
+    title: 'Razer BlackShark V2 X Auriculares Gaming Multiplataforma con Drivers TriForce 50mm',
+    category: 'auriculares',
+    categoryLabel: 'Auriculares & Audio',
+    brand: 'Razer',
+    priceText: '49,99 €',
+    priceNumeric: 49.99,
+    rating: 4.5,
+    reviewsCount: 38000,
+    imageUrl: 'https://m.media-amazon.com/images/I/61vmsbQ9m4L._AC_UL320_.jpg',
+    badge: 'Top eSports Razer',
+    description: 'Diseño ultraligero de solo 240g con diafragmas de titanio de 50mm, micrófono cardioide HyperClear y cancelación pasiva avanzada de ruido exterior.',
+    pros: [
+      'Peso pluma de 240 gramos: casi no notas que los llevas puestos',
+      'Drivers TriForce de 50 mm con calibración individual de agudos, medios y graves',
+      'Compatibilidad universal con PC, PS5, PS4, Xbox y Nintendo Switch vía jack 3.5mm'
+    ],
+    idealFor: 'Competición en shooters online y sesiones maratonianas donde cada gramo de peso cuenta.',
+    searchQuery: 'razer blackshark v2 x auriculares gaming'
+  },
+  {
+    id: 'game-teclado-corsair-k55-rgb',
+    asin: 'B08XYQ5ZDM',
+    title: 'Corsair K55 RGB PRO Teclado Gaming con 6 Teclas Macro Dedicadas y Software iCUE',
+    category: 'teclados',
+    categoryLabel: 'Teclados Mecánicos',
+    brand: 'Corsair',
+    priceText: '59,99 €',
+    priceNumeric: 59.99,
+    rating: 4.5,
+    reviewsCount: 12500,
+    imageUrl: 'https://m.media-amazon.com/images/I/71R20Kq10LL._AC_UL320_.jpg',
+    badge: 'Teclas Macro Elgato',
+    description: 'Iluminación dinámica RGB de 5 zonas, 6 teclas macro dedicadas integradas con el software Elgato Stream Deck y protección IP42 contra polvo y derrames.',
+    pros: [
+      '6 teclas macro programables compatibles directamente con Elgato Stream Deck',
+      'Teclas silenciosas y muy reactivas con pulsación táctil muy agradable',
+      'Software iCUE para sincronizar colores con el resto de componentes Corsair'
+    ],
+    idealFor: 'Streamers y creadores de contenido que quieren macros al vuelo para sus directos.',
+    searchQuery: 'corsair k55 rgb pro teclado gaming macro'
   }
 ];

@@ -58,23 +58,31 @@ export default function AmazonLiveSearchCard({
             <span>Buscador Oficial de Amazon España</span>
           </div>
 
-          <h3 className="text-lg sm:text-2xl font-black tracking-tight leading-snug mb-1.5 text-slate-900">
+          <h3 className={`text-lg sm:text-2xl font-black tracking-tight leading-snug mb-1.5 ${
+            isDark ? 'text-white' : 'text-slate-900'
+          }`}>
             {customTerm ? (
               <span>
-                ¿Buscas <span className="text-amber-600">&quot;{customTerm}&quot;</span> en Amazon?
+                ¿Buscas <span className="text-amber-400">&quot;{customTerm}&quot;</span> en Amazon?
               </span>
             ) : (
               <span>¿Buscas un producto específico en Amazon?</span>
             )}
           </h3>
 
-          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-xl">
+          <p className={`text-xs sm:text-sm leading-relaxed max-w-xl ${
+            isDark ? 'text-slate-300' : 'text-slate-600'
+          }`}>
             Encuentra cualquier marca o artículo (ej. <em>One Million, Scalextric, LEGO, PS5, zapatillas</em>) con los mejores precios, opiniones verificadas y envío rápido Prime.
           </p>
 
           {/* Quick budget pills */}
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-1.5 mt-3">
-            <span className="text-[11px] font-bold text-slate-500">Filtrar por:</span>
+            <span className={`text-[11px] font-bold ${
+              isDark ? 'text-slate-400' : 'text-slate-500'
+            }`}>
+              Filtrar por:
+            </span>
             {[
               { id: 'all', label: 'Cualquier precio' },
               { id: '<20', label: '< 20 €' },
@@ -88,6 +96,8 @@ export default function AmazonLiveSearchCard({
                 className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all border cursor-pointer ${
                   activeBudget === b.id
                     ? 'bg-amber-400 text-slate-950 border-amber-500 shadow-xs'
+                    : isDark
+                    ? 'bg-slate-800/80 border-slate-700 text-slate-200 hover:bg-slate-700'
                     : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-100'
                 }`}
               >
@@ -124,7 +134,9 @@ export default function AmazonLiveSearchCard({
             <ExternalLink className="w-4 h-4" />
           </a>
 
-          <div className="text-[10px] text-center opacity-60">
+          <div className={`text-[10px] text-center font-medium ${
+            isDark ? 'text-slate-300' : 'text-slate-500'
+          }`}>
             ✓ Compra segura con garantía oficial Amazon.es
           </div>
         </div>
