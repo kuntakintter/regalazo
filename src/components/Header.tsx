@@ -328,6 +328,41 @@ export default function Header({
             )}
           </div>
 
+          {/* Quick Hub Navigation Links */}
+          <nav className="hidden md:flex items-center gap-2">
+            <Link
+              href="/#catalogo-productos"
+              className="px-3.5 py-1.5 rounded-full text-xs font-bold text-slate-700 hover:text-indigo-600 hover:bg-slate-100 transition-colors"
+            >
+              🎁 Por Edades
+            </Link>
+            <Link
+              href="/motoristas"
+              className="px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 transition-all shadow-xs hover:shadow-md flex items-center gap-1.5 hover:scale-102 cursor-pointer"
+            >
+              <span>🏍️</span>
+              <span>Especial Motoristas</span>
+              <span className="bg-black/20 text-slate-950 text-[10px] px-1.5 py-0.2 rounded-full font-black">Nuevo</span>
+            </Link>
+          </nav>
+
+        </div>
+
+        {/* Mobile secondary quick-links bar */}
+        <div className="flex md:hidden items-center gap-2 pb-2.5 pt-1 overflow-x-auto scrollbar-none">
+          <Link
+            href="/#catalogo-productos"
+            className="px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-700 whitespace-nowrap shrink-0"
+          >
+            🎁 Por Edades
+          </Link>
+          <Link
+            href="/motoristas"
+            className="px-3 py-1 rounded-full text-xs font-black bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 whitespace-nowrap shadow-xs flex items-center gap-1 shrink-0"
+          >
+            <span>🏍️ Especial Motoristas</span>
+            <span className="bg-black/20 text-[9px] px-1 rounded-full">Top</span>
+          </Link>
         </div>
       </div>
     </header>
