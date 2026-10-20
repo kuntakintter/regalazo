@@ -24,7 +24,7 @@ function cleanHtmlEntities(str: string): string {
     .trim();
 }
 
-function fetchAmazonLive(query: string, affiliateTag: string, limit: number = 6): Promise<LiveSearchResult[]> {
+function fetchAmazonLive(query: string, affiliateTag: string, limit: number = 8): Promise<LiveSearchResult[]> {
   return new Promise((resolve) => {
     const searchUrl = 'https://www.amazon.es/s?k=' + encodeURIComponent(query);
     const req = https.get(
@@ -117,7 +117,7 @@ export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
     const query = searchParams.get('q');
-    const limit = Math.min(12, Math.max(1, parseInt(searchParams.get('limit') || '6', 10)));
+    const limit = Math.min(16, Math.max(1, parseInt(searchParams.get('limit') || '8', 10)));
 
     if (!query || query.trim().length < 2) {
       return NextResponse.json({ success: true, count: 0, results: [] });

@@ -152,6 +152,40 @@ export default function MotoristasPage() {
     }
   }, [isLoadingLive, liveSearchQuery]);
 
+  // Auto-fetch live products when filters are active to keep the grid abundant and full
+  React.useEffect(() => {
+    const hasFilter =
+      selectedCategory !== 'all' ||
+      selectedBrand !== 'Todas las marcas' ||
+      selectedPrice !== 'all' ||
+      selectedStyle !== 'all';
+
+    if (hasFilter && liveSearchQuery) {
+      let isMounted = true;
+      setIsLoadingLive(true);
+      const timer = setTimeout(() => {
+        fetch(`/api/live-search?q=${encodeURIComponent(liveSearchQuery)}&limit=8`)
+          .then((res) => res.json())
+          .then((data) => {
+            if (isMounted && data.success && Array.isArray(data.results)) {
+              setLiveAmazonProducts(data.results);
+            }
+          })
+          .catch((err) => console.error(err))
+          .finally(() => {
+            if (isMounted) setIsLoadingLive(false);
+          });
+      }, 120);
+
+      return () => {
+        isMounted = false;
+        clearTimeout(timer);
+      };
+    } else {
+      setLiveAmazonProducts([]);
+    }
+  }, [selectedCategory, selectedBrand, selectedPrice, selectedStyle, liveSearchQuery]);
+
   // Reset filters
   const handleResetFilters = () => {
     setSelectedCategory('all');

@@ -172,37 +172,45 @@ export default function HomePage() {
     return AGE_CATEGORIES.find((c) => c.id === selectedAge);
   }, [selectedAge]);
 
-  // Contextual live search phrase for Amazon API
+  // Contextual live search phrase for Amazon API with high-converting buyer intent
   const liveSearchQuery = useMemo(() => {
     if (searchQuery.trim().length > 0) return searchQuery.trim();
+
+    const parts: string[] = [];
     if (selectedCategory && selectedCategory !== 'all') {
-      if (selectedAge && selectedAge !== 'all') {
-        return `${selectedCategory} ${selectedAge} anos`;
-      }
-      return selectedCategory;
+      parts.push(selectedCategory);
     }
+
+    if (selectedGender === 'boy') parts.push('nino');
+    else if (selectedGender === 'girl') parts.push('nina');
+
     if (selectedAge && selectedAge !== 'all') {
       const ageMap: Record<string, string> = {
-        '0-12m': 'regalos bebes 0 a 12 meses',
-        '1-3': 'juguetes regalos ninos 1 a 3 anos',
-        '4-6': 'juegos y regalos ninos 4 a 6 anos',
-        '7-9': 'juegos y regalos ninos 7 a 9 anos',
-        '10-12': 'regalos y tecnologia ninos 10 a 12 anos',
-        '13-15': 'regalos adolescentes 13 a 15 anos',
-        '16-18': 'regalos jovenes 16 a 18 anos',
-        '+18': 'regalos adultos originales',
+        '0-12m': 'bebes',
+        '1-3': '1 a 3 anos',
+        '4-6': '4 a 6 anos',
+        '7-9': '7 a 9 anos',
+        '10-12': '10 a 12 anos',
+        '13-15': '13 a 15 anos',
+        '16-18': '16 a 18 anos',
+        '+18': 'adultos',
       };
-      return ageMap[selectedAge] || `regalos ${selectedAge} anos`;
+      parts.push(ageMap[selectedAge] || `${selectedAge} anos`);
     }
-    return 'ideas regalos originales amazon';
-  }, [searchQuery, selectedCategory, selectedAge]);
 
-  // Load live products into the grid
+    if (parts.length === 0) {
+      return 'ideas regalos originales amazon';
+    }
+
+    return parts.join(' ');
+  }, [searchQuery, selectedCategory, selectedGender, selectedAge]);
+
+  // Load more live products into the grid (accumulates)
   const handleLoadLiveToGrid = useCallback(async () => {
     if (isLoadingLive) return;
     setIsLoadingLive(true);
     try {
-      const res = await fetch(`/api/live-search?q=${encodeURIComponent(liveSearchQuery)}&limit=6`);
+      const res = await fetch(`/api/live-search?q=${encodeURIComponent(liveSearchQuery)}&limit=12`);
       const data = await res.json();
       if (data.success && Array.isArray(data.results)) {
         setLiveAmazonProducts((prev) => {
@@ -218,28 +226,40 @@ export default function HomePage() {
     }
   }, [isLoadingLive, liveSearchQuery]);
 
-  // Auto-fetch live products when 0 local results match active filter
+  // Auto-fetch live products whenever a filter is active so the grid ALWAYS displays an abundant, rich selection (8+ items)
   useEffect(() => {
-    if (filteredProducts.length === 0 && liveSearchQuery) {
+    const hasFilter =
+      selectedCategory !== 'all' ||
+      selectedAge !== 'all' ||
+      selectedGender !== 'all' ||
+      searchQuery.trim().length > 0;
+
+    if (hasFilter && liveSearchQuery) {
       let isMounted = true;
       setIsLoadingLive(true);
-      fetch(`/api/live-search?q=${encodeURIComponent(liveSearchQuery)}&limit=6`)
-        .then((res) => res.json())
-        .then((data) => {
-          if (isMounted && data.success && Array.isArray(data.results)) {
-            setLiveAmazonProducts(data.results);
-          }
-        })
-        .catch((err) => console.error(err))
-        .finally(() => {
-          if (isMounted) setIsLoadingLive(false);
-        });
+
+      const timer = setTimeout(() => {
+        fetch(`/api/live-search?q=${encodeURIComponent(liveSearchQuery)}&limit=8`)
+          .then((res) => res.json())
+          .then((data) => {
+            if (isMounted && data.success && Array.isArray(data.results)) {
+              setLiveAmazonProducts(data.results);
+            }
+          })
+          .catch((err) => console.error(err))
+          .finally(() => {
+            if (isMounted) setIsLoadingLive(false);
+          });
+      }, 120);
 
       return () => {
         isMounted = false;
+        clearTimeout(timer);
       };
+    } else {
+      setLiveAmazonProducts([]);
     }
-  }, [filteredProducts.length, liveSearchQuery]);
+  }, [selectedCategory, selectedAge, selectedGender, searchQuery, liveSearchQuery]);
 
   // Handle recommendation from AI wizard
   const handleApplyRecommendation = (filters: { age: string; category: string; gender: 'all' | 'boy' | 'girl' | 'reveal'; price: string }) => {
@@ -434,25 +454,28 @@ export default function HomePage() {
             </section>
 
             {/* Quick action bar to load more live products directly */}
-            {liveAmazonProducts.length === 0 && (
-              <div className="mb-12 flex justify-center">
+            {(selectedCategory !== 'all' || selectedAge !== 'all' || searchQuery.trim() !== '' || liveAmazonProducts.length > 0) && (
+              <div className="mb-12 flex flex-col items-center justify-center gap-2">
                 <button
                   onClick={handleLoadLiveToGrid}
                   disabled={isLoadingLive}
-                  className="px-6 py-3.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border border-amber-300 text-amber-950 font-bold text-sm shadow-xs hover:shadow-md transition-all flex items-center gap-2 cursor-pointer disabled:opacity-70"
+                  className="px-7 py-4 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-sm shadow-md hover:shadow-lg hover:shadow-amber-500/25 transition-all flex items-center gap-2.5 cursor-pointer disabled:opacity-75 hover:scale-102 active:scale-98"
                 >
                   {isLoadingLive ? (
                     <>
-                      <Loader2 className="w-4 h-4 animate-spin text-amber-700" />
+                      <Loader2 className="w-4 h-4 animate-spin text-slate-950" />
                       <span>Conectando con Amazon en directo...</span>
                     </>
                   ) : (
                     <>
-                      <Sparkles className="w-4 h-4 text-amber-600" />
-                      <span>Cargar más ofertas en directo de Amazon para esta selección</span>
+                      <Sparkles className="w-4 h-4 text-slate-950" />
+                      <span>Ver más productos recomendados en directo (+8 opciones)</span>
                     </>
                   )}
                 </button>
+                <span className="text-[11px] text-slate-400 font-medium">
+                  Precios, stock y valoraciones actualizadas en tiempo real desde Amazon.es
+                </span>
               </div>
             )}
 
