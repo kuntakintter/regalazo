@@ -10,14 +10,27 @@ interface SocialShareBarProps {
 }
 
 export default function SocialShareBar({
-  title = 'Un Buen Regalo | Ideas de Regalos Originales para Todas las Edades',
-  url = 'https://unbuenregalo.vercel.app',
+  title: initialTitle,
+  url: initialUrl,
   currentTheme = 'classic',
 }: SocialShareBarProps) {
   const [copied, setCopied] = useState(false);
+  const [activeUrl, setActiveUrl] = useState(initialUrl || 'https://unbuenregalo.vercel.app');
+  const [activeTitle, setActiveTitle] = useState(initialTitle || 'Un Buen Regalo | Ideas de Regalos Originales');
 
-  const encodedUrl = encodeURIComponent(url);
-  const encodedText = encodeURIComponent(`${title} - Encuentra el regalo perfecto:`);
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (!initialUrl) {
+        setActiveUrl(window.location.href);
+      }
+      if (!initialTitle && document.title) {
+        setActiveTitle(document.title);
+      }
+    }
+  }, [initialUrl, initialTitle]);
+
+  const encodedUrl = encodeURIComponent(activeUrl);
+  const encodedText = encodeURIComponent(`${activeTitle} - Ideas recomendadas:`);
 
   const shareLinks = [
     {
@@ -60,7 +73,7 @@ export default function SocialShareBar({
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(url);
+      await navigator.clipboard.writeText(activeUrl);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {

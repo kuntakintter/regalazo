@@ -1,30 +1,25 @@
 import { Metadata } from 'next';
+import { HUB_OG_SNIPPETS, buildSocialMetadata } from '@/lib/ogMetadata';
 
-export const metadata: Metadata = {
-  title: 'Mejores Regalos para Gamers (2026) | Auriculares, Teclados, Ratones y Setup',
-  description:
-    'Las mejores ideas de regalo para jugadores de PC, PS5 y Xbox: auriculares HyperX Cloud II, ratones Logitech G502 HERO, barras de luz para monitor y teclados mecánicos. Calidad contrastada en Amazon España.',
+const snippet = HUB_OG_SNIPPETS.gaming;
+
+export const metadata: Metadata = buildSocialMetadata({
+  title: snippet.title,
+  socialTitle: snippet.socialTitle,
+  description: snippet.description,
+  canonicalUrl: 'https://unbuenregalo.vercel.app/gaming',
+  imageUrl: snippet.imageUrl,
+  imageAlt: snippet.imageAlt,
   keywords: [
     'regalos para gamers',
     'regalos para setup gamer',
     'auriculares hyperx cloud ii',
     'raton logitech g502 hero',
     'teclado gaming mecanico',
-    'barra de luz monitor quntis'
+    'barra de luz monitor quntis',
+    'mandos ps5 dualsense edge',
   ],
-  alternates: {
-    canonical: 'https://unbuenregalo.vercel.app/gaming',
-  },
-  openGraph: {
-    title: 'Mejores Regalos para Gamers (2026) | Un Buen Regalo',
-    description:
-      'Periféricos eSports, audio envolvente y gadgets de iluminación con garantía directa de Amazon España.',
-    url: 'https://unbuenregalo.vercel.app/gaming',
-    type: 'website',
-    siteName: 'Un Buen Regalo',
-    locale: 'es_ES',
-  },
-};
+});
 
 export default function GamingLayout({
   children,

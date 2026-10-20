@@ -9,8 +9,10 @@ import SeoFaq from '@/components/SeoFaq';
 import AmazonLiveSearchCard from '@/components/AmazonLiveSearchCard';
 import AmazonGridDiscoveryCard from '@/components/AmazonGridDiscoveryCard';
 import ThemeAtmosphere from '@/components/ThemeAtmosphere';
+import SocialShareBar from '@/components/SocialShareBar';
 import { PRODUCTS, Product } from '@/data/products';
 import { SEO_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
+import { HUB_OG_SNIPPETS, buildSocialMetadata } from '@/lib/ogMetadata';
 import { Sparkles, ShieldCheck, TrendingUp, Gift, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 
@@ -31,29 +33,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const meta = SEO_AGE_ROUTES[ageSlug];
   if (!meta) return {};
 
+  const snippet = HUB_OG_SNIPPETS[ageSlug];
   const canonicalUrl = `https://unbuenregalo.vercel.app/${ageSlug}`;
 
-  return {
+  return buildSocialMetadata({
     title: meta.title,
-    description: meta.description,
+    socialTitle: snippet?.socialTitle || meta.title,
+    description: snippet?.description || meta.description,
+    canonicalUrl,
+    imageUrl: snippet?.imageUrl || 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=1200&h=630&q=85',
+    imageAlt: snippet?.imageAlt || meta.h1,
     keywords: meta.keywords,
-    alternates: {
-      canonical: canonicalUrl,
-    },
-    openGraph: {
-      title: meta.title,
-      description: meta.description,
-      url: canonicalUrl,
-      type: 'website',
-      siteName: 'Un Buen Regalo',
-      locale: 'es_ES',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: meta.title,
-      description: meta.description,
-    },
-  };
+  });
 }
 
 export default async function AgeLandingPage({ params }: PageProps) {
@@ -186,6 +177,9 @@ export default async function AgeLandingPage({ params }: PageProps) {
             </span>
           </div>
         </section>
+
+        {/* SOCIAL SHARE WIDGET */}
+        <SocialShareBar />
 
         {/* PRODUCTS GRID */}
         <section className="mb-14">

@@ -10,6 +10,7 @@ import AmazonGridDiscoveryCard from '@/components/AmazonGridDiscoveryCard';
 import ThemeAtmosphere from '@/components/ThemeAtmosphere';
 import { PRODUCTS } from '@/data/products';
 import { SEO_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
+import { buildSocialMetadata, getCategoryOgImage } from '@/lib/ogMetadata';
 import { Gift, ChevronRight, ShieldCheck, Sparkles, TrendingUp } from 'lucide-react';
 import Link from 'next/link';
 
@@ -46,24 +47,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!currentSub) return {};
 
   const pageTitle = `Mejores ${currentSub.label} (${ageMeta.h1}) | Un Buen Regalo 2026`;
+  const socialTitle = `🎁 Ideas de Regalo: ${currentSub.label} (${ageMeta.h1})`;
   const pageDesc = `Descubre los mejores productos y ofertas en ${currentSub.label} para ${ageMeta.h1}. Opiniones reales, marcas oficiales y garantía directa de Amazon España.`;
   const canonicalUrl = `https://unbuenregalo.vercel.app/${ageSlug}/${categorySlug}`;
+  const ogImage = getCategoryOgImage(currentSub.label);
 
-  return {
+  return buildSocialMetadata({
     title: pageTitle,
+    socialTitle,
     description: pageDesc,
-    alternates: {
-      canonical: canonicalUrl,
-    },
-    openGraph: {
-      title: pageTitle,
-      description: pageDesc,
-      url: canonicalUrl,
-      type: 'website',
-      siteName: 'Un Buen Regalo',
-      locale: 'es_ES',
-    },
-  };
+    canonicalUrl,
+    imageUrl: ogImage.url,
+    imageAlt: ogImage.alt,
+    keywords: [currentSub.label.toLowerCase(), `regalos ${currentSub.label.toLowerCase()}`, ageMeta.h1.toLowerCase()],
+  });
 }
 
 export default async function SubcategoryLandingPage({ params }: PageProps) {

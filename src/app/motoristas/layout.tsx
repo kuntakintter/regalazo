@@ -1,9 +1,15 @@
 import { Metadata } from 'next';
+import { HUB_OG_SNIPPETS, buildSocialMetadata } from '@/lib/ogMetadata';
 
-export const metadata: Metadata = {
-  title: 'Mejores Regalos para Motoristas (2026) | Cascos, Chaquetas, Guantes y Accesorios',
-  description:
-    'Guía experta de regalos para moteros: cascos modulares e integrales ECE 22.06, chaquetas Alpinestars y Dainese, guantes térmicos, intercomunicadores Cardo y candados antirrobo con alarma. Catálogo verificado en Amazon España.',
+const snippet = HUB_OG_SNIPPETS.motoristas;
+
+export const metadata: Metadata = buildSocialMetadata({
+  title: snippet.title,
+  socialTitle: snippet.socialTitle,
+  description: snippet.description,
+  canonicalUrl: 'https://unbuenregalo.vercel.app/motoristas',
+  imageUrl: snippet.imageUrl,
+  imageAlt: snippet.imageAlt,
   keywords: [
     'regalos para motoristas',
     'regalos moteros',
@@ -14,19 +20,7 @@ export const metadata: Metadata = {
     'intercomunicador moto bluetooth cardo',
     'candado disco moto alarma',
   ],
-  alternates: {
-    canonical: 'https://unbuenregalo.vercel.app/motoristas',
-  },
-  openGraph: {
-    title: 'Mejores Regalos para Motoristas (2026) | Un Buen Regalo',
-    description:
-      'Cascos, chaquetas, guantes homologados, intercomunicadores y candados antirrobo con las mejores opiniones de Amazon España.',
-    url: 'https://unbuenregalo.vercel.app/motoristas',
-    type: 'website',
-    siteName: 'Un Buen Regalo',
-    locale: 'es_ES',
-  },
-};
+});
 
 export default function MotoristasLayout({
   children,

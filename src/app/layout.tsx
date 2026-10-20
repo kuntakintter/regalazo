@@ -63,6 +63,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Un Buen Regalo | Ideas de Regalo de 0 a más de 18 Años',
     description: 'Guía definitiva con recomendaciones verificadas de Amazon España.',
+    images: ['https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=1200&h=630&q=80'],
   },
   alternates: {
     canonical: 'https://unbuenregalo.vercel.app',

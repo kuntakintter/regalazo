@@ -8,6 +8,7 @@ import LiveAmazonProductCard from '@/components/LiveAmazonProductCard';
 import AmazonLiveSearchCard from '@/components/AmazonLiveSearchCard';
 import AmazonGridDiscoveryCard from '@/components/AmazonGridDiscoveryCard';
 import ThemeAtmosphere from '@/components/ThemeAtmosphere';
+import SocialShareBar from '@/components/SocialShareBar';
 import {
   GAMING_PRODUCTS,
   GAMING_CATEGORIES,
@@ -237,6 +238,9 @@ export default function GamingPage() {
             </span>
           </div>
         </section>
+
+        {/* SOCIAL SHARE WIDGET */}
+        <SocialShareBar />
 
         {/* FILTER BAR */}
         <div className="bg-white rounded-3xl border border-slate-200 p-5 sm:p-6 mb-8 shadow-xs">
