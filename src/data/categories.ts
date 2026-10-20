@@ -296,3 +296,78 @@ export const GENERAL_CATEGORY_MAPPING: Record<string, string[]> = {
     'Fiestas y Revelación de Género'
   ]
 };
+
+export interface ClothingSubfilter {
+  id: string;
+  label: string;
+  shortLabel: string;
+  icon: string;
+  keywords: string[];
+  searchPhrase: string;
+}
+
+export const CLOTHING_SUBFILTERS: ClothingSubfilter[] = [
+  {
+    id: 'all',
+    label: 'Toda la Ropa & Moda',
+    shortLabel: 'Toda la Ropa',
+    icon: '🌟',
+    keywords: [],
+    searchPhrase: 'moda ropa accesorios tendencias amazon'
+  },
+  {
+    id: 'pijamas',
+    label: 'Pijamas y Batas',
+    shortLabel: 'Pijamas',
+    icon: '🛌',
+    keywords: ['pijama', 'batas', 'bata', 'pelele', 'dormir', 'camison', 'kigurumi'],
+    searchPhrase: 'pijamas divertidos batas estar por casa algodon comodo'
+  },
+  {
+    id: 'chandal',
+    label: 'Chándals y Deporte',
+    shortLabel: 'Chándals',
+    icon: '🏃',
+    keywords: ['chandal', 'chándal', 'deportiv', 'sudadera', 'pantalon deporte', 'jogger', 'running', 'fitness', 'hoodie', 'chubasquero'],
+    searchPhrase: 'chandal conjunto deportivo sudadera con capucha pantalon jogger'
+  },
+  {
+    id: 'calzado',
+    label: 'Zapatillas y Calzado',
+    shortLabel: 'Calzado',
+    icon: '👟',
+    keywords: ['zapatill', 'calzado', 'botas', 'bota', 'sneaker', 'patucos', 'primeros pasos', 'chanclas', 'zapatos', 'attipas', 'calcetines'],
+    searchPhrase: 'zapatillas deportivas calzado comodo sneakers'
+  },
+  {
+    id: 'disfraces',
+    label: 'Disfraces y Fiestas',
+    shortLabel: 'Disfraces',
+    icon: '🎭',
+    keywords: ['disfraz', 'disfraces', 'capa', 'mascara', 'superheroe', 'princesa', 'carnaval', 'fiesta tematica', 'halloween', 'tiara', 'varita'],
+    searchPhrase: 'disfraces infantiles superheroes princesas fiesta carnaval'
+  },
+  {
+    id: 'diario',
+    label: 'Ropa de Diario y Básicos',
+    shortLabel: 'Diario & Cole',
+    icon: '👕',
+    keywords: ['camiseta', 'polo', 'body', 'bodies', 'conjunto', 'vestido', 'vaquero', 'camisa', 'pantalon', 'jersey', 'gorra', 'gorro', 'beanie', 'uniforme', 'babero', 'mochila', 'bandolera', 'rinonera'],
+    searchPhrase: 'ropa diario algodon camisetas polos conjuntos basicos'
+  }
+];
+
+export function isClothingCategory(category: string): boolean {
+  if (!category || category === 'all') return false;
+  const lower = category.toLowerCase();
+  return (
+    lower.includes('ropa') ||
+    lower.includes('moda') ||
+    lower.includes('disfraces') ||
+    lower.includes('zapatillas') ||
+    lower.includes('sudaderas') ||
+    lower.includes('patucos') ||
+    lower.includes('bodies')
+  );
+}
+

@@ -14,7 +14,7 @@ import ThemeAtmosphere from '@/components/ThemeAtmosphere';
 import AmazonLiveSearchCard from '@/components/AmazonLiveSearchCard';
 import AmazonGridDiscoveryCard from '@/components/AmazonGridDiscoveryCard';
 import SocialShareBar from '@/components/SocialShareBar';
-import { PRODUCTS, AGE_CATEGORIES, GENERAL_CATEGORY_MAPPING, Product } from '@/data/products';
+import { PRODUCTS, AGE_CATEGORIES, GENERAL_CATEGORY_MAPPING, Product, CLOTHING_SUBFILTERS, isClothingCategory } from '@/data/products';
 import { matchesSearchQuery } from '@/utils/search';
 import { LiveSearchResult } from '@/app/api/live-search/route';
 import {
@@ -52,6 +52,7 @@ const AGE_BANNER_ICONS: Record<string, { icon: React.ComponentType<{ className?:
 export default function HomePage() {
   const [selectedAge, setSelectedAge] = useState<string>('all');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [selectedClothingSub, setSelectedClothingSub] = useState<string>('all');
   const [selectedGender, setSelectedGender] = useState<'all' | 'boy' | 'girl' | 'reveal'>('all');
   const [selectedPrice, setSelectedPrice] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -67,6 +68,7 @@ export default function HomePage() {
   const handleSelectAge = (age: string) => {
     setSelectedAge(age);
     setSelectedCategory('all');
+    setSelectedClothingSub('all');
     setVisibleCount(18);
     if (selectedPrice !== 'all') setSelectedPrice('all');
     if (searchQuery) setSearchQuery('');
@@ -76,8 +78,16 @@ export default function HomePage() {
   // Handle category selection
   const handleSelectCategory = (cat: string) => {
     setSelectedCategory(cat);
+    setSelectedClothingSub('all');
     if (selectedPrice !== 'all') setSelectedPrice('all');
     if (searchQuery) setSearchQuery('');
+    setLiveAmazonProducts([]);
+  };
+
+  // Handle clothing subfilter selection (pijamas, chandal, calzado, disfraces, diario)
+  const handleSelectClothingSub = (sub: string) => {
+    setSelectedClothingSub(sub);
+    setVisibleCount(18);
     setLiveAmazonProducts([]);
   };
 
@@ -96,6 +106,7 @@ export default function HomePage() {
     if (query.trim().length > 0) {
       if (selectedAge !== 'all') setSelectedAge('all');
       if (selectedCategory !== 'all') setSelectedCategory('all');
+      setSelectedClothingSub('all');
     }
   };
 
@@ -149,6 +160,18 @@ export default function HomePage() {
         }
       }
 
+      // 4.5. Clothing subfilter (pijamas, chandal, calzado, disfraces, diario)
+      if (!isSearching && isClothingCategory(selectedCategory) && selectedClothingSub !== 'all') {
+        const currentSub = CLOTHING_SUBFILTERS.find((s) => s.id === selectedClothingSub);
+        if (currentSub && currentSub.keywords.length > 0) {
+          const textToMatch = `${product.title} ${product.description} ${product.subcategory} ${product.searchQuery}`.toLowerCase();
+          const matchesKeyword = currentSub.keywords.some((kw) => textToMatch.includes(kw.toLowerCase()));
+          if (!matchesKeyword) {
+            return false;
+          }
+        }
+      }
+
       // 5. Price filter
       if (selectedPrice !== 'all') {
         const prodPrice =
@@ -172,7 +195,7 @@ export default function HomePage() {
 
       return true;
     });
-  }, [selectedAge, selectedCategory, selectedGender, selectedPrice, searchQuery]);
+  }, [selectedAge, selectedCategory, selectedClothingSub, selectedGender, selectedPrice, searchQuery]);
 
   // Sorted products based on sortBy
   const sortedFilteredProducts = useMemo(() => {
@@ -209,7 +232,14 @@ export default function HomePage() {
     if (searchQuery.trim().length > 0) return searchQuery.trim();
 
     const parts: string[] = [];
-    if (selectedCategory && selectedCategory !== 'all') {
+
+    // Prioridad a subfiltro de ropa específico si está activo
+    if (isClothingCategory(selectedCategory) && selectedClothingSub !== 'all') {
+      const subObj = CLOTHING_SUBFILTERS.find((s) => s.id === selectedClothingSub);
+      if (subObj) {
+        parts.push(subObj.searchPhrase);
+      }
+    } else if (selectedCategory && selectedCategory !== 'all') {
       parts.push(selectedCategory);
     }
 
@@ -235,7 +265,7 @@ export default function HomePage() {
     }
 
     return parts.join(' ');
-  }, [searchQuery, selectedCategory, selectedGender, selectedAge]);
+  }, [searchQuery, selectedCategory, selectedClothingSub, selectedGender, selectedAge]);
 
   // Load more live products into the grid (accumulates)
   const handleLoadLiveToGrid = useCallback(async () => {
@@ -393,6 +423,8 @@ export default function HomePage() {
             onSelectAge={handleSelectAge}
             selectedCategory={selectedCategory}
             onSelectCategory={handleSelectCategory}
+            selectedClothingSub={selectedClothingSub}
+            onSelectClothingSub={handleSelectClothingSub}
             selectedGender={selectedGender}
             onSelectGender={handleSelectGender}
             selectedPrice={selectedPrice}

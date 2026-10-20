@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { AGE_CATEGORIES, AGE_SUBCATEGORIES_MAP } from '@/data/products';
+import { AGE_CATEGORIES, AGE_SUBCATEGORIES_MAP, CLOTHING_SUBFILTERS, isClothingCategory } from '@/data/products';
 import {
   LayoutGrid,
   X,
@@ -28,7 +28,8 @@ import {
   Calendar,
   Target,
   Smartphone,
-  ArrowUpDown
+  ArrowUpDown,
+  Sparkles
 } from 'lucide-react';
 
 const AGE_ICONS: Record<string, { icon: React.ComponentType<{ className?: string }>; color: string }> = {
@@ -47,6 +48,8 @@ interface FilterBarProps {
   onSelectAge: (age: string) => void;
   selectedCategory: string;
   onSelectCategory: (cat: string) => void;
+  selectedClothingSub?: string;
+  onSelectClothingSub?: (sub: string) => void;
   selectedGender: 'all' | 'boy' | 'girl' | 'reveal';
   onSelectGender: (gender: 'all' | 'boy' | 'girl' | 'reveal') => void;
   selectedPrice: string;
@@ -61,6 +64,8 @@ export default function FilterBar({
   onSelectAge,
   selectedCategory,
   onSelectCategory,
+  selectedClothingSub = 'all',
+  onSelectClothingSub,
   selectedGender,
   onSelectGender,
   selectedPrice,
@@ -72,6 +77,7 @@ export default function FilterBar({
   const hasActiveFilters =
     selectedAge !== 'all' ||
     selectedCategory !== 'all' ||
+    selectedClothingSub !== 'all' ||
     selectedPrice !== 'all' ||
     selectedGender !== 'all' ||
     sortBy !== 'featured';
@@ -83,6 +89,7 @@ export default function FilterBar({
   const resetFilters = () => {
     onSelectAge('all');
     onSelectCategory('all');
+    if (onSelectClothingSub) onSelectClothingSub('all');
     onSelectGender('all');
     onSelectPrice('all');
     if (onSelectSort) onSelectSort('featured');
@@ -353,7 +360,10 @@ export default function FilterBar({
         </label>
         <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-thin flex-wrap">
           <button
-            onClick={() => onSelectCategory('all')}
+            onClick={() => {
+              onSelectCategory('all');
+              if (onSelectClothingSub) onSelectClothingSub('all');
+            }}
             className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
               selectedCategory === 'all'
                 ? 'bg-slate-900 text-white shadow-xs'
@@ -364,25 +374,85 @@ export default function FilterBar({
           </button>
           {availableSubcategories.map((subcat) => {
             const isSmartphone = subcat === 'Smartphones y Telefonía';
+            const isClothing = isClothingCategory(subcat);
             const isSelected = selectedCategory === subcat;
             return (
               <button
                 key={subcat}
-                onClick={() => onSelectCategory(subcat)}
+                onClick={() => {
+                  onSelectCategory(subcat);
+                  if (!isClothing && onSelectClothingSub) {
+                    onSelectClothingSub('all');
+                  }
+                }}
                 className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
                   isSelected
                     ? 'bg-indigo-600 text-white font-bold shadow-xs'
                     : isSmartphone
                     ? 'bg-indigo-50 text-indigo-700 border border-indigo-200/80 hover:bg-indigo-100 font-bold'
+                    : isClothing
+                    ? 'bg-purple-50 text-purple-700 border border-purple-200/80 hover:bg-purple-100 font-semibold'
                     : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                 }`}
               >
                 {isSmartphone && <Smartphone className={`w-3.5 h-3.5 ${isSelected ? 'text-white' : 'text-indigo-600'}`} />}
+                {isClothing && <Sparkles className={`w-3.5 h-3.5 ${isSelected ? 'text-white' : 'text-purple-600'}`} />}
                 <span>{subcat}</span>
               </button>
             );
           })}
         </div>
+
+        {/* SUBFILTRO DE ROPA Y PRENDAS (Pijamas, Chándal, Calzado, Disfraces, Ropa de Diario) */}
+        {isClothingCategory(selectedCategory) && (
+          <div className="mt-3.5 p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-purple-50/80 via-indigo-50/70 to-pink-50/70 border border-purple-200/80 shadow-xs animate-fadeIn">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2.5">
+              <div className="flex items-center gap-2">
+                <span className="w-6 h-6 rounded-lg bg-purple-600 text-white flex items-center justify-center text-xs font-bold shadow-xs">
+                  👕
+                </span>
+                <div>
+                  <span className="text-[11px] font-black uppercase tracking-wider text-purple-950 block leading-tight">
+                    Subfiltro de Ropa, Calzado & Disfraces
+                  </span>
+                  <span className="text-[11px] text-slate-600 font-medium">
+                    ¿Qué prenda específica buscas? Filtra al instante:
+                  </span>
+                </div>
+              </div>
+              {selectedClothingSub !== 'all' && onSelectClothingSub && (
+                <button
+                  type="button"
+                  onClick={() => onSelectClothingSub('all')}
+                  className="text-xs font-bold text-purple-700 hover:text-purple-900 underline self-start sm:self-auto cursor-pointer"
+                >
+                  Ver toda la ropa
+                </button>
+              )}
+            </div>
+
+            <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-thin flex-wrap">
+              {CLOTHING_SUBFILTERS.map((sub) => {
+                const isActive = selectedClothingSub === sub.id;
+                return (
+                  <button
+                    key={sub.id}
+                    type="button"
+                    onClick={() => onSelectClothingSub && onSelectClothingSub(sub.id)}
+                    className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                      isActive
+                        ? 'bg-purple-600 text-white shadow-xs ring-2 ring-purple-300'
+                        : 'bg-white text-slate-700 border border-purple-200/60 hover:bg-purple-50 hover:border-purple-300'
+                    }`}
+                  >
+                    <span>{sub.icon}</span>
+                    <span>{sub.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </div>
 
     </div>
