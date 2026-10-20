@@ -210,16 +210,9 @@ export default function ProductCard({ product, currentTheme }: ProductCardProps)
         </div>
 
         {/* H3 Title for perfect SEO structure */}
-        <h4 className="font-bold text-base line-clamp-2 leading-snug mb-2 group-hover:text-indigo-600 transition-colors">
-          <a
-            href={directProductUrl}
-            target="_blank"
-            rel="nofollow sponsored noopener noreferrer"
-            className="hover:underline"
-          >
-            {product.title}
-          </a>
-        </h4>
+        <div className="font-bold text-base line-clamp-2 leading-snug mb-2 group-hover:text-indigo-600 transition-colors">
+          {product.title}
+        </div>
 
         {/* Persuasive Description */}
         <p className="text-xs opacity-80 leading-relaxed mb-4 line-clamp-3">

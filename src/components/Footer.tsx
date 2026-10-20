@@ -54,42 +54,41 @@ export default function Footer({ currentTheme }: FooterProps) {
 
           {/* Col 2: Edades */}
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider mb-3 opacity-90 text-indigo-600">
+            <span className="text-xs font-bold uppercase tracking-wider mb-3 block opacity-90 text-indigo-600">
               Regalos por Edad
-            </h3>
+            </span>
             <ul className="space-y-2 text-xs opacity-80">
-              <li><a href="#catalogo-productos" className="hover:underline">Bebés y Recién Nacidos (0-12m)</a></li>
-              <li><a href="#catalogo-productos" className="hover:underline">Primeros Pasos (1 a 3 Años)</a></li>
-              <li><a href="#catalogo-productos" className="hover:underline">Infantil y Juego (4 a 6 Años)</a></li>
-              <li><a href="#catalogo-productos" className="hover:underline">Primaria y Estrategia (7 a 9 Años)</a></li>
-              <li><a href="#catalogo-productos" className="hover:underline">Preadolescentes (10 a 12 Años)</a></li>
-              <li><a href="#catalogo-productos" className="hover:underline">Adolescentes (13 a 15 Años)</a></li>
-              <li><a href="#catalogo-productos" className="hover:underline">Jóvenes (16 a 18 Años - Gaming & Estilo)</a></li>
-              <li><a href="#catalogo-productos" className="hover:underline">A partir de 18 Años (Adultos)</a></li>
+              <li><Link href="/bebes-0-a-12-meses" className="hover:underline">Bebés y Recién Nacidos (0-12m)</Link></li>
+              <li><Link href="/ninos-1-a-3-anos" className="hover:underline">Primeros Pasos (1 a 3 Años)</Link></li>
+              <li><Link href="/ninos-4-a-6-anos" className="hover:underline">Infantil y Creatividad (4 a 6 Años)</Link></li>
+              <li><Link href="/ninos-7-a-9-anos" className="hover:underline">Primaria y Estrategia (7 a 9 Años)</Link></li>
+              <li><Link href="/ninos-10-a-12-anos" className="hover:underline">Preadolescentes (10 a 12 Años)</Link></li>
+              <li><Link href="/adolescentes-13-a-15-anos" className="hover:underline">Adolescentes (13 a 15 Años)</Link></li>
+              <li><Link href="/jovenes-16-a-18-anos" className="hover:underline">Jóvenes (16 a 18 Años)</Link></li>
+              <li><Link href="/adultos-mas-de-18-anos" className="hover:underline">Adultos (+18 Años)</Link></li>
             </ul>
           </div>
 
-          {/* Col 3: Categorías Top SEO */}
+          {/* Col 3: Hubs Especializados */}
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider mb-3 opacity-90 text-indigo-600">
-              Top Búsquedas
-            </h3>
+            <span className="text-xs font-bold uppercase tracking-wider mb-3 block opacity-90 text-indigo-600">
+              Hubs Especializados
+            </span>
             <ul className="space-y-2 text-xs opacity-80">
-              <li><a href="#catalogo-productos" className="hover:underline">Tartas de Pañales Personalizadas</a></li>
-              <li><a href="#catalogo-productos" className="hover:underline">Perfumería y Colonias Juveniles</a></li>
-              <li><a href="#catalogo-productos" className="hover:underline">Maquillaje Infantil y Skincare Teen</a></li>
-              <li><a href="#catalogo-productos" className="hover:underline">Kits de Viaje y Maletas Infantiles</a></li>
-              <li><a href="#catalogo-productos" className="hover:underline">Droguería y Cuidado del Bebé</a></li>
-              <li><a href="#catalogo-productos" className="hover:underline">Juegos PS5 para Chicos y Chicas</a></li>
-              <li><a href="#catalogo-productos" className="hover:underline">Cuadernos Vintage de Piel y Fragancias</a></li>
+              <li><Link href="/motoristas" className="hover:underline">🏍️ Accesorios para Motoristas</Link></li>
+              <li><Link href="/automovil" className="hover:underline">🚗 Gadgets para Automóvil</Link></li>
+              <li><Link href="/gaming" className="hover:underline">🎮 Periféricos Gaming & Setup</Link></li>
+              <li><Link href="/ciclismo" className="hover:underline">🚴 Equipamiento Ciclismo & MTB</Link></li>
+              <li><Link href="/amantes-del-cafe" className="hover:underline">☕ Especial Amantes del Café</Link></li>
+              <li><Link href="/mascotas" className="hover:underline">🐾 Lo Mejor para Mascotas</Link></li>
             </ul>
           </div>
 
           {/* Col 4: Confianza y Garantía */}
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider mb-3 opacity-90 text-indigo-600">
+            <span className="text-xs font-bold uppercase tracking-wider mb-3 block opacity-90 text-indigo-600">
               Garantía de Compra
-            </h3>
+            </span>
             <ul className="space-y-2 text-xs opacity-80">
               <li className="flex items-center gap-1.5">
                 <ShoppingBag className="w-3.5 h-3.5 text-amber-500" />
