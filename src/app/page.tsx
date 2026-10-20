@@ -163,6 +163,7 @@ export default function HomePage() {
 
   // Handle recommendation from AI wizard
   const handleApplyRecommendation = (filters: { age: string; category: string; gender: 'all' | 'boy' | 'girl' | 'reveal'; price: string }) => {
+    setSearchQuery(''); // Always reset search bar so wizard recommendations show immediately
     setSelectedAge(filters.age);
     setSelectedCategory(filters.category);
     setSelectedGender(filters.gender);
