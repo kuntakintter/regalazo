@@ -4,7 +4,7 @@ import { SEO_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://unbuenregalo.vercel.app';
 
-  // 1. Root Homepage
+  // 1. Root Homepage & Specialized Niche Hubs
   const routes: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
@@ -14,6 +14,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/motoristas`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.95,
+    },
+    {
+      url: `${baseUrl}/automovil`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.95,
+    },
+    {
+      url: `${baseUrl}/ciclismo`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.95,
+    },
+    {
+      url: `${baseUrl}/gaming`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.95,
+    },
+    {
+      url: `${baseUrl}/amantes-del-cafe`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.95,
+    },
+    {
+      url: `${baseUrl}/mascotas`,
       lastModified: new Date(),
       changeFrequency: 'daily',
       priority: 0.95,

@@ -328,40 +328,72 @@ export default function Header({
             )}
           </div>
 
-          {/* Quick Hub Navigation Links */}
-          <nav className="hidden md:flex items-center gap-2">
-            <Link
-              href="/#catalogo-productos"
-              className="px-3.5 py-1.5 rounded-full text-xs font-bold text-slate-700 hover:text-indigo-600 hover:bg-slate-100 transition-colors"
-            >
-              🎁 Por Edades
-            </Link>
+          {/* Desktop Right Quick Actions */}
+          <div className="hidden lg:flex items-center gap-2">
             <Link
               href="/motoristas"
-              className="px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 transition-all shadow-xs hover:shadow-md flex items-center gap-1.5 hover:scale-102 cursor-pointer"
+              className="px-3 py-1.5 rounded-full text-xs font-black bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 shadow-xs hover:shadow-md transition-all hover:scale-102 flex items-center gap-1"
             >
-              <span>🏍️</span>
-              <span>Especial Motoristas</span>
-              <span className="bg-black/20 text-slate-950 text-[10px] px-1.5 py-0.2 rounded-full font-black">Nuevo</span>
+              <span>🏍️ Motoristas</span>
+              <span className="bg-black/20 text-[9px] px-1 rounded-full">Top</span>
             </Link>
-          </nav>
+            <Link
+              href="/gaming"
+              className="px-3 py-1.5 rounded-full text-xs font-bold bg-purple-100 hover:bg-purple-200 text-purple-900 transition-colors flex items-center gap-1"
+            >
+              <span>🎮 Gaming</span>
+            </Link>
+          </div>
 
         </div>
 
-        {/* Mobile secondary quick-links bar */}
-        <div className="flex md:hidden items-center gap-2 pb-2.5 pt-1 overflow-x-auto scrollbar-none">
+        {/* Niche Hubs Navigation Bar (Desktop & Mobile) */}
+        <div className="flex items-center gap-2 pb-2.5 pt-1 overflow-x-auto scrollbar-none border-t border-slate-100/80">
+          <span className="text-[11px] font-black uppercase tracking-wider text-slate-400 mr-1 shrink-0 flex items-center gap-1">
+            <Sparkles className="w-3 h-3 text-amber-500" />
+            <span>Especiales:</span>
+          </span>
           <Link
             href="/#catalogo-productos"
-            className="px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-700 whitespace-nowrap shrink-0"
+            className="px-3 py-1 rounded-full text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 whitespace-nowrap transition-colors shrink-0"
           >
-            🎁 Por Edades
+            🎁 Por Edades (0 a +18)
           </Link>
           <Link
             href="/motoristas"
-            className="px-3 py-1 rounded-full text-xs font-black bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 whitespace-nowrap shadow-xs flex items-center gap-1 shrink-0"
+            className="px-3 py-1 rounded-full text-xs font-bold bg-amber-50 hover:bg-amber-100 text-amber-950 border border-amber-200/80 whitespace-nowrap transition-colors shrink-0 flex items-center gap-1"
           >
-            <span>🏍️ Especial Motoristas</span>
-            <span className="bg-black/20 text-[9px] px-1 rounded-full">Top</span>
+            <span>🏍️ Motoristas</span>
+          </Link>
+          <Link
+            href="/automovil"
+            className="px-3 py-1 rounded-full text-xs font-bold bg-blue-50 hover:bg-blue-100 text-blue-950 border border-blue-200/80 whitespace-nowrap transition-colors shrink-0 flex items-center gap-1"
+          >
+            <span>🚗 Automóvil</span>
+          </Link>
+          <Link
+            href="/ciclismo"
+            className="px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 hover:bg-emerald-100 text-emerald-950 border border-emerald-200/80 whitespace-nowrap transition-colors shrink-0 flex items-center gap-1"
+          >
+            <span>🚴 Ciclismo</span>
+          </Link>
+          <Link
+            href="/gaming"
+            className="px-3 py-1 rounded-full text-xs font-bold bg-purple-50 hover:bg-purple-100 text-purple-950 border border-purple-200/80 whitespace-nowrap transition-colors shrink-0 flex items-center gap-1"
+          >
+            <span>🎮 Gaming</span>
+          </Link>
+          <Link
+            href="/amantes-del-cafe"
+            className="px-3 py-1 rounded-full text-xs font-bold bg-orange-50 hover:bg-orange-100 text-orange-950 border border-orange-200/80 whitespace-nowrap transition-colors shrink-0 flex items-center gap-1"
+          >
+            <span>☕ Café Barista</span>
+          </Link>
+          <Link
+            href="/mascotas"
+            className="px-3 py-1 rounded-full text-xs font-bold bg-rose-50 hover:bg-rose-100 text-rose-950 border border-rose-200/80 whitespace-nowrap transition-colors shrink-0 flex items-center gap-1"
+          >
+            <span>🐾 Mascotas</span>
           </Link>
         </div>
       </div>
