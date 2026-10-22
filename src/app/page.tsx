@@ -398,8 +398,23 @@ export default function HomePage() {
   }, []);
 
   // Handle recommendation from AI wizard
-  const handleApplyRecommendation = (filters: { age: string; category: string; gender: 'all' | 'boy' | 'girl' | 'reveal'; price: string }) => {
-    setSearchQuery('');
+  const handleApplyRecommendation = (filters: {
+    age: string;
+    category: string;
+    gender: 'all' | 'boy' | 'girl' | 'reveal';
+    price: string;
+    searchQuery?: string;
+    hubUrl?: string;
+  }) => {
+    if (filters.hubUrl) {
+      window.location.href = filters.hubUrl;
+      return;
+    }
+    if (filters.searchQuery) {
+      setSearchQuery(filters.searchQuery);
+    } else {
+      setSearchQuery('');
+    }
     setSelectedAge(filters.age);
     setSelectedCategory(filters.category);
     setSelectedGender(filters.gender);
