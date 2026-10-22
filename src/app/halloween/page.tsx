@@ -209,12 +209,11 @@ export default function HalloweenPage() {
 
         {/* TOP PODIUM (BEST-SELLERS HALLOWEEN) */}
         {sortedDisplayProducts.length >= 3 && (
-          <div className="bg-slate-900/80 rounded-3xl p-4 sm:p-6 mb-8 border border-orange-500/20 backdrop-blur-md">
-            <TopPodium
-              products={sortedDisplayProducts}
-              filterLabel="Especial Halloween"
-            />
-          </div>
+          <TopPodium
+            products={sortedDisplayProducts}
+            filterLabel="Especial Halloween"
+            isDark={true}
+          />
         )}
 
         {/* FILTER BAR */}
