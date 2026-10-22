@@ -29,6 +29,7 @@ import {
   Calendar,
   Target,
   Smartphone,
+  Clapperboard,
   ArrowUpDown,
   Sparkles
 } from 'lucide-react';
@@ -377,6 +378,7 @@ export default function FilterBar({
           </button>
           {availableSubcategories.map((subcat) => {
             const isSmartphone = subcat === 'Smartphones y Telefonía';
+            const isFigures = subcat === 'Figuras de Colección y Cine';
             const isClothing = isClothingCategory(subcat);
             const isSelected = selectedCategory === subcat;
             return (
@@ -391,6 +393,8 @@ export default function FilterBar({
                 className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
                   isSelected
                     ? 'bg-indigo-600 text-white font-bold shadow-xs'
+                    : isFigures
+                    ? 'bg-amber-50 text-amber-800 border border-amber-300 hover:bg-amber-100 font-bold'
                     : isSmartphone
                     ? 'bg-indigo-50 text-indigo-700 border border-indigo-200/80 hover:bg-indigo-100 font-bold'
                     : isClothing
@@ -398,6 +402,7 @@ export default function FilterBar({
                     : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                 }`}
               >
+                {isFigures && <Clapperboard className={`w-3.5 h-3.5 ${isSelected ? 'text-white' : 'text-amber-600'}`} />}
                 {isSmartphone && <Smartphone className={`w-3.5 h-3.5 ${isSelected ? 'text-white' : 'text-indigo-600'}`} />}
                 {isClothing && <Sparkles className={`w-3.5 h-3.5 ${isSelected ? 'text-white' : 'text-purple-600'}`} />}
                 <span>{subcat}</span>

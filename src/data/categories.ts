@@ -103,6 +103,7 @@ export const PRICE_FILTERS = [
 export const AGE_SUBCATEGORIES_MAP: Record<string, string[]> = {
   'all': [
     'Smartphones y Telefonía',
+    'Figuras de Colección y Cine',
     'Juegos de Mesa y Cartas',
     'LEGO y Construcción',
     'Scalextric y Circuitos de Coches',
@@ -159,6 +160,7 @@ export const AGE_SUBCATEGORIES_MAP: Record<string, string[]> = {
     'Moda y Ropa Deportiva Infantil'
   ],
   '10-12': [
+    'Figuras de Colección y Cine',
     'Juegos de Cartas Competitivos (Virus!)',
     'Drones RC y Robótica STEM',
     'Juegos de Mesa y Escape Room',
@@ -169,6 +171,7 @@ export const AGE_SUBCATEGORIES_MAP: Record<string, string[]> = {
     'Moda Urbana, Sudaderas y Mochilas'
   ],
   '13-15': [
+    'Figuras de Colección y Cine',
     'Smartphones y Telefonía',
     'Auriculares Inalámbricos y Audio',
     'Cámaras Instantáneas y Fotografía',
@@ -180,6 +183,7 @@ export const AGE_SUBCATEGORIES_MAP: Record<string, string[]> = {
     'Mochilas Urbanas y Viaje'
   ],
   '16-18': [
+    'Figuras de Colección y Cine',
     'Smartphones y Telefonía',
     'Videojuegos y Accesorios PS5',
     'Setup Gamer y Periféricos PC',
@@ -190,6 +194,7 @@ export const AGE_SUBCATEGORIES_MAP: Record<string, string[]> = {
     'Moda Urbana, Ropa y Accesorios'
   ],
   '+18': [
+    'Figuras de Colección y Cine',
     'Smartphones y Telefonía',
     'Escapadas y Experiencias (Smartbox)',
     'LEGO Icons y Maquetas para Adultos',
@@ -205,6 +210,9 @@ export const AGE_SUBCATEGORIES_MAP: Record<string, string[]> = {
 };
 
 export const GENERAL_CATEGORY_MAPPING: Record<string, string[]> = {
+  'Figuras de Colección y Cine': [
+    'Figuras de Colección y Cine'
+  ],
   'Smartphones y Telefonía': [
     'Smartphones y Telefonía'
   ],

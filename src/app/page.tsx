@@ -240,6 +240,8 @@ export default function HomePage() {
       if (subObj) {
         parts.push(subObj.searchPhrase);
       }
+    } else if (selectedCategory === 'Figuras de Colección y Cine') {
+      parts.push('figuras coleccion anime peliculas delorean regreso al futuro');
     } else if (selectedCategory && selectedCategory !== 'all') {
       parts.push(selectedCategory);
     }
