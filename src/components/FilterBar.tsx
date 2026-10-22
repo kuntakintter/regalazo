@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { AGE_CATEGORIES, AGE_SUBCATEGORIES_MAP, CLOTHING_SUBFILTERS, isClothingCategory } from '@/data/products';
+import { AGE_CATEGORIES, AGE_SUBCATEGORIES_MAP, CLOTHING_SUBFILTERS, isClothingCategory, ANIME_SERIES_SUBFILTERS, isFiguresCategory } from '@/data/products';
 import { useCurrency } from '@/context/CurrencyContext';
 import {
   LayoutGrid,
@@ -52,6 +52,8 @@ interface FilterBarProps {
   onSelectCategory: (cat: string) => void;
   selectedClothingSub?: string;
   onSelectClothingSub?: (sub: string) => void;
+  selectedAnimeSub?: string;
+  onSelectAnimeSub?: (sub: string) => void;
   selectedGender: 'all' | 'boy' | 'girl' | 'reveal';
   onSelectGender: (gender: 'all' | 'boy' | 'girl' | 'reveal') => void;
   selectedPrice: string;
@@ -68,6 +70,8 @@ export default function FilterBar({
   onSelectCategory,
   selectedClothingSub = 'all',
   onSelectClothingSub,
+  selectedAnimeSub = 'all',
+  onSelectAnimeSub,
   selectedGender,
   onSelectGender,
   selectedPrice,
@@ -81,6 +85,7 @@ export default function FilterBar({
     selectedAge !== 'all' ||
     selectedCategory !== 'all' ||
     selectedClothingSub !== 'all' ||
+    selectedAnimeSub !== 'all' ||
     selectedPrice !== 'all' ||
     selectedGender !== 'all' ||
     sortBy !== 'featured';
@@ -93,6 +98,7 @@ export default function FilterBar({
     onSelectAge('all');
     onSelectCategory('all');
     if (onSelectClothingSub) onSelectClothingSub('all');
+    if (onSelectAnimeSub) onSelectAnimeSub('all');
     onSelectGender('all');
     onSelectPrice('all');
     if (onSelectSort) onSelectSort('featured');
@@ -451,6 +457,57 @@ export default function FilterBar({
                       isActive
                         ? 'bg-purple-600 text-white shadow-xs ring-2 ring-purple-300'
                         : 'bg-white text-slate-700 border border-purple-200/60 hover:bg-purple-50 hover:border-purple-300'
+                    }`}
+                  >
+                    <span>{sub.icon}</span>
+                    <span>{sub.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* SUBFILTRO DE ANIME, CINE & SERIES (Dragon Ball, Pokémon, One Piece, One Punch Man, etc.) */}
+        {isFiguresCategory(selectedCategory) && (
+          <div className="mt-3.5 p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-rose-500/10 border border-amber-300/80 shadow-xs animate-fadeIn">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2.5">
+              <div className="flex items-center gap-2">
+                <span className="w-6 h-6 rounded-lg bg-amber-500 text-slate-950 flex items-center justify-center text-xs font-bold shadow-xs">
+                  🎌
+                </span>
+                <div>
+                  <span className="text-[11px] font-black uppercase tracking-wider text-amber-950 block leading-tight">
+                    Filtrar por Anime o Saga Favorita
+                  </span>
+                  <span className="text-[11px] text-slate-600 font-medium">
+                    ¿Qué anime, cine o cartas colecciona? Elige su universo:
+                  </span>
+                </div>
+              </div>
+              {selectedAnimeSub !== 'all' && onSelectAnimeSub && (
+                <button
+                  type="button"
+                  onClick={() => onSelectAnimeSub('all')}
+                  className="text-xs font-bold text-amber-700 hover:text-amber-900 underline self-start sm:self-auto cursor-pointer"
+                >
+                  Ver todas las series
+                </button>
+              )}
+            </div>
+
+            <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-thin flex-wrap">
+              {ANIME_SERIES_SUBFILTERS.map((sub) => {
+                const isActive = selectedAnimeSub === sub.id;
+                return (
+                  <button
+                    key={sub.id}
+                    type="button"
+                    onClick={() => onSelectAnimeSub && onSelectAnimeSub(sub.id)}
+                    className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                      isActive
+                        ? 'bg-amber-500 text-slate-950 shadow-xs ring-2 ring-amber-300'
+                        : 'bg-white text-slate-700 border border-amber-200/80 hover:bg-amber-50 hover:border-amber-300'
                     }`}
                   >
                     <span>{sub.icon}</span>

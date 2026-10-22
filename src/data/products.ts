@@ -3,12 +3,12 @@
 // Afiliación oficial con Amazon España (tag: vapegadgets22-21)
 // ============================================================================
 
-import { AGE_CATEGORIES, AGE_SUBCATEGORIES_MAP, PRICE_FILTERS, GENERAL_CATEGORY_MAPPING, AgeCategoryMeta, CLOTHING_SUBFILTERS, ClothingSubfilter, isClothingCategory } from './categories';
+import { AGE_CATEGORIES, AGE_SUBCATEGORIES_MAP, PRICE_FILTERS, GENERAL_CATEGORY_MAPPING, AgeCategoryMeta, CLOTHING_SUBFILTERS, ClothingSubfilter, isClothingCategory, ANIME_SERIES_SUBFILTERS, AnimeSeriesSubfilter, isFiguresCategory } from './categories';
 
 export const AMAZON_AFFILIATE_TAG = 'vapegadgets22-21';
 
-export { AGE_CATEGORIES, AGE_SUBCATEGORIES_MAP, PRICE_FILTERS, GENERAL_CATEGORY_MAPPING, CLOTHING_SUBFILTERS, isClothingCategory };
-export type { AgeCategoryMeta, ClothingSubfilter };
+export { AGE_CATEGORIES, AGE_SUBCATEGORIES_MAP, PRICE_FILTERS, GENERAL_CATEGORY_MAPPING, CLOTHING_SUBFILTERS, isClothingCategory, ANIME_SERIES_SUBFILTERS, isFiguresCategory };
+export type { AgeCategoryMeta, ClothingSubfilter, AnimeSeriesSubfilter };
 
 export interface Product {
   id: string;
@@ -35,6 +35,136 @@ export interface Product {
 }
 
 export const PRODUCTS: Product[] = [
+  {
+    id: "fig-pokemon-caja-sobres-tcg",
+    asin: "B0C5J8X7LQ",
+    title: "Pokémon TCG - Caja de Colección con Sobres Booster de Cartas, Carta Holográfica Especial y Moneda",
+    slug: "pokemon-tcg-caja-coleccion-sobres-booster-cartas-holografica",
+    searchQuery: "pokemon tcg cartas coleccionables caja sobres booster pikachu charizard",
+    category: "Figuras y Cine",
+    subcategory: "Figuras de Colección y Cine",
+    ageRange: "+18",
+    gender: "unisex",
+    priceRange: "20-50",
+    priceText: "24,99 €",
+    rating: 4.8,
+    reviewsCount: 15200,
+    badge: "Superventas Cartas Pokémon TCG",
+    description: "Caja precintada original con sobres de ampliación oficiales de Pokémon TCG para coleccionar o competir, con cartas holográficas raras garantizadas.",
+    pros: [
+      "Producto oficial Pokémon Company 100% original en castellano",
+      "Incluye carta promo foil brillante de coleccionista",
+      "Ideal tanto para coleccionistas de carpetas como para jugadores de cartas"
+    ],
+    idealFor: "Fanáticos del coleccionismo Pokémon, cartas raras y nostálgicos de la franquicia.",
+    style: "gamer",
+    imageUrl: "https://m.media-amazon.com/images/I/81k3T0u4E6L._AC_UL600_.jpg",
+    images: ["https://m.media-amazon.com/images/I/81k3T0u4E6L._AC_UL600_.jpg"]
+  },
+  {
+    id: "fig-pikachu-lampara-led-3d",
+    asin: "B08H9R4N3P",
+    title: "Lámpara LED 3D Nocturna Pikachu Pokémon Oficial Escultura Luminosa de Colección",
+    slug: "lampara-led-3d-pikachu-pokemon-oficial-decoracion",
+    searchQuery: "lampara led pikachu pokemon oficial decoracion luz noche",
+    category: "Figuras y Cine",
+    subcategory: "Figuras de Colección y Cine",
+    ageRange: "+18",
+    gender: "unisex",
+    priceRange: "<20",
+    priceText: "19,99 €",
+    rating: 4.7,
+    reviewsCount: 7400,
+    badge: "Iluminación & Decoración Pokémon",
+    description: "Escultura decorativa de Pikachu que emite una cálida luz ambiental. Funciona con batería o cable USB para colocar en mesitas de noche, escritorios o estanterías gaming.",
+    pros: [
+      "Licencia oficial Pokémon con diseño adorable y gran detalle",
+      "Iluminación LED suave que no calienta ni deslumbra",
+      "Perfecto para dar un toque acogedor a cualquier habitación"
+    ],
+    idealFor: "Regalo perfecto y económico para cualquier amante de Pikachu y Pokémon.",
+    style: "gamer",
+    imageUrl: "https://m.media-amazon.com/images/I/61k4T3qU+PL._AC_UL600_.jpg",
+    images: ["https://m.media-amazon.com/images/I/61k4T3qU+PL._AC_UL600_.jpg"]
+  },
+  {
+    id: "fig-one-punch-man-saitama-popup",
+    asin: "B07T84PFSB",
+    title: "Good Smile Company Pop Up Parade - Figura Saitama One Punch Man Traje de Héroe 18cm Oficial",
+    slug: "figura-saitama-one-punch-man-pop-up-parade-good-smile",
+    searchQuery: "figura saitama one punch man pop up parade good smile company oficial",
+    category: "Figuras y Cine",
+    subcategory: "Figuras de Colección y Cine",
+    ageRange: "+18",
+    gender: "unisex",
+    priceRange: "20-50",
+    priceText: "39,90 €",
+    rating: 4.8,
+    reviewsCount: 3100,
+    badge: "Oficial Good Smile Company",
+    description: "La línea premium Pop Up Parade de Good Smile Company nos trae al héroe más poderoso del anime con su icónico traje amarillo, capa blanca y expresión impasible.",
+    pros: [
+      "Esculpido fiel de Good Smile Company con acabados de alta gama",
+      "Pintura mate perfecta sin rebabas de plástico",
+      "Incluye peana hexagonal exclusiva Pop Up Parade"
+    ],
+    idealFor: "Seguidores incondicionales de One Punch Man y amantes del anime de acción y comedia.",
+    style: "gamer",
+    imageUrl: "https://m.media-amazon.com/images/I/61w7hQ0xZLL._AC_UL600_.jpg",
+    images: ["https://m.media-amazon.com/images/I/61w7hQ0xZLL._AC_UL600_.jpg"]
+  },
+  {
+    id: "fig-demon-slayer-tanjiro-banpresto",
+    asin: "B0993JSSZZ",
+    title: "Bandai Spirits Banpresto Demon Slayer - Tanjiro Kamado Danza del Dios del Fuego 16cm Oficial",
+    slug: "figura-tanjiro-kamado-danza-dios-fuego-demon-slayer-banpresto",
+    searchQuery: "figura tanjiro kamado hinokami kagura banpresto demon slayer oficial",
+    category: "Figuras y Cine",
+    subcategory: "Figuras de Colección y Cine",
+    ageRange: "+18",
+    gender: "unisex",
+    priceRange: "20-50",
+    priceText: "27,99 €",
+    rating: 4.8,
+    reviewsCount: 4900,
+    badge: "Oficial Kimetsu no Yaiba",
+    description: "Espectacular figura de acción de Tanjiro ejecutando la respiración del sol con su katana negra Nichirin y el haori de cuadros verdes y negros al viento.",
+    pros: [
+      "Licencia oficial de Bandai Spirits con sello de autenticidad",
+      "Modelado ultra dinámico de la tela y la pose de ataque",
+      "Imprescindible en la vitrina de cualquier fan de Demon Slayer"
+    ],
+    idealFor: "Fans de Kimetsu no Yaiba y coleccionistas de estatuas de anime.",
+    style: "gamer",
+    imageUrl: "https://m.media-amazon.com/images/I/61uV+qDqN+L._AC_UL600_.jpg",
+    images: ["https://m.media-amazon.com/images/I/61uV+qDqN+L._AC_UL600_.jpg"]
+  },
+  {
+    id: "fig-naruto-kakashi-chidori-banpresto",
+    asin: "B08L7VMSZX",
+    title: "Bandai Spirits Banpresto Naruto Shippuden - Kakashi Hatake Ataque Chidori Oficial 17cm",
+    slug: "figura-kakashi-hatake-chidori-naruto-shippuden-banpresto",
+    searchQuery: "figura kakashi hatake chidori banpresto naruto shippuden oficial",
+    category: "Figuras y Cine",
+    subcategory: "Figuras de Colección y Cine",
+    ageRange: "+18",
+    gender: "unisex",
+    priceRange: "20-50",
+    priceText: "26,95 €",
+    rating: 4.8,
+    reviewsCount: 6200,
+    badge: "Oficial Naruto Shippuden",
+    description: "El sexto Hokage ejecutando su técnica secreta Chidori (Cuchilla Relámpago) con efecto de rayo translúcido y banda de la Hoja con el Sharingan al descubierto.",
+    pros: [
+      "Efecto de chakra eléctrico translúcido en la mano derecha",
+      "Detalle minucioso en el chaleco táctico ninja y la máscara",
+      "Base sólida de exposición incluida"
+    ],
+    idealFor: "Nostálgicos y apasionados de Naruto y los ninjas de Konoha.",
+    style: "gamer",
+    imageUrl: "https://m.media-amazon.com/images/I/61u9Z4t3+sL._AC_UL600_.jpg",
+    images: ["https://m.media-amazon.com/images/I/61u9Z4t3+sL._AC_UL600_.jpg"]
+  },
   {
     id: "fig-delorean-regreso-al-futuro",
     asin: "B0814BCB1Z",

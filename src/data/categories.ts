@@ -379,3 +379,92 @@ export function isClothingCategory(category: string): boolean {
   );
 }
 
+export interface AnimeSeriesSubfilter {
+  id: string;
+  label: string;
+  shortLabel: string;
+  icon: string;
+  keywords: string[];
+  searchPhrase: string;
+}
+
+export const ANIME_SERIES_SUBFILTERS: AnimeSeriesSubfilter[] = [
+  {
+    id: 'all',
+    label: 'Todo Anime, Cine & Series',
+    shortLabel: 'Todas las Series',
+    icon: '🌟',
+    keywords: [],
+    searchPhrase: 'figuras coleccion anime peliculas delorean regreso al futuro funko banpresto'
+  },
+  {
+    id: 'dragon-ball',
+    label: 'Dragon Ball (Z / Super)',
+    shortLabel: 'Dragon Ball',
+    icon: '🐉',
+    keywords: ['dragon ball', 'goku', 'vegeta', 'saiyan', 'gohan', 'piccolo', 'shenron', 'bolas de dragon', 'kamehameha', 'broly', 'trunks'],
+    searchPhrase: 'dragon ball z figuras banpresto goku vegeta coleccion oficial'
+  },
+  {
+    id: 'pokemon',
+    label: 'Pokémon (Cartas TCG & Figuras)',
+    shortLabel: 'Pokémon',
+    icon: '⚡',
+    keywords: ['pokemon', 'pokémon', 'pikachu', 'charizard', 'cartas pokemon', 'caja de sobres', 'booster box', 'tcg', 'elite trainer box', 'ultra premium', 'mew'],
+    searchPhrase: 'pokemon cartas coleccionables caja sobres booster tcg figuras pikachu'
+  },
+  {
+    id: 'one-piece',
+    label: 'One Piece',
+    shortLabel: 'One Piece',
+    icon: '👒',
+    keywords: ['one piece', 'luffy', 'gear 5', 'zoro', 'sanji', 'nami', 'chopper', 'thousand sunny', 'mugiwara', 'shanks', 'ace'],
+    searchPhrase: 'one piece luffy gear 5 figuras banpresto zoro estatua oficial'
+  },
+  {
+    id: 'one-punch-man',
+    label: 'One Punch Man',
+    shortLabel: 'One Punch Man',
+    icon: '👊',
+    keywords: ['one punch man', 'saitama', 'genos', 'tatsumaki', 'garou', 'boros', 'one punch'],
+    searchPhrase: 'one punch man saitama figuras estatua coleccion'
+  },
+  {
+    id: 'demon-slayer',
+    label: 'Demon Slayer (Kimetsu)',
+    shortLabel: 'Demon Slayer',
+    icon: '⚔️',
+    keywords: ['demon slayer', 'kimetsu', 'tanjiro', 'nezuko', 'zenitsu', 'inosuke', 'rengoku', 'katana'],
+    searchPhrase: 'demon slayer kimetsu no yaiba figuras tanjiro nezuko banpresto'
+  },
+  {
+    id: 'naruto',
+    label: 'Naruto & Boruto',
+    shortLabel: 'Naruto',
+    icon: '🍥',
+    keywords: ['naruto', 'shippuden', 'sasuke', 'kakashi', 'itachi', 'konoha', 'akatsuki', 'hokage', 'boruto'],
+    searchPhrase: 'naruto shippuden figuras kakashi sasuke banpresto oficial'
+  },
+  {
+    id: 'cine-retro',
+    label: 'Cine & Retro (DeLorean, Star Wars, Batman...)',
+    shortLabel: 'Cine & Retro',
+    icon: '🏎️',
+    keywords: ['delorean', 'regreso al futuro', 'star wars', 'batman', 'batmovil', 'harry potter', 'dumbledore', 'darth vader', 'mandalorian', 'tumbler', 'diecast', 'varita'],
+    searchPhrase: 'delorean regreso al futuro jada toys star wars black series batman tumbler diecast'
+  }
+];
+
+export function isFiguresCategory(category: string): boolean {
+  if (!category || category === 'all') return false;
+  const lower = category.toLowerCase();
+  return (
+    lower.includes('figura') ||
+    lower.includes('anime') ||
+    lower.includes('cine') ||
+    lower.includes('colección') ||
+    lower.includes('coleccion')
+  );
+}
+
+

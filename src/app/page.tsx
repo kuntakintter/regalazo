@@ -15,7 +15,7 @@ import AmazonLiveSearchCard from '@/components/AmazonLiveSearchCard';
 import AmazonGridDiscoveryCard from '@/components/AmazonGridDiscoveryCard';
 import SocialShareBar from '@/components/SocialShareBar';
 import TopPodium from '@/components/TopPodium';
-import { PRODUCTS, AGE_CATEGORIES, GENERAL_CATEGORY_MAPPING, Product, CLOTHING_SUBFILTERS, isClothingCategory } from '@/data/products';
+import { PRODUCTS, AGE_CATEGORIES, GENERAL_CATEGORY_MAPPING, Product, CLOTHING_SUBFILTERS, isClothingCategory, ANIME_SERIES_SUBFILTERS, isFiguresCategory } from '@/data/products';
 import { matchesSearchQuery } from '@/utils/search';
 import { LiveSearchResult } from '@/app/api/live-search/route';
 import {
@@ -54,6 +54,7 @@ export default function HomePage() {
   const [selectedAge, setSelectedAge] = useState<string>('all');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedClothingSub, setSelectedClothingSub] = useState<string>('all');
+  const [selectedAnimeSub, setSelectedAnimeSub] = useState<string>('all');
   const [selectedGender, setSelectedGender] = useState<'all' | 'boy' | 'girl' | 'reveal'>('all');
   const [selectedPrice, setSelectedPrice] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -70,6 +71,7 @@ export default function HomePage() {
     setSelectedAge(age);
     setSelectedCategory('all');
     setSelectedClothingSub('all');
+    setSelectedAnimeSub('all');
     setVisibleCount(18);
     if (selectedPrice !== 'all') setSelectedPrice('all');
     if (searchQuery) setSearchQuery('');
@@ -80,6 +82,7 @@ export default function HomePage() {
   const handleSelectCategory = (cat: string) => {
     setSelectedCategory(cat);
     setSelectedClothingSub('all');
+    setSelectedAnimeSub('all');
     if (selectedPrice !== 'all') setSelectedPrice('all');
     if (searchQuery) setSearchQuery('');
     setLiveAmazonProducts([]);
@@ -88,6 +91,13 @@ export default function HomePage() {
   // Handle clothing subfilter selection (pijamas, chandal, calzado, disfraces, diario)
   const handleSelectClothingSub = (sub: string) => {
     setSelectedClothingSub(sub);
+    setVisibleCount(18);
+    setLiveAmazonProducts([]);
+  };
+
+  // Handle anime / series subfilter selection (dragon ball, pokemon, one piece, etc.)
+  const handleSelectAnimeSub = (sub: string) => {
+    setSelectedAnimeSub(sub);
     setVisibleCount(18);
     setLiveAmazonProducts([]);
   };
@@ -173,6 +183,18 @@ export default function HomePage() {
         }
       }
 
+      // 4.6. Anime & Series subfilter (Dragon Ball, Pokémon, One Piece, One Punch Man, etc.)
+      if (!isSearching && isFiguresCategory(selectedCategory) && selectedAnimeSub !== 'all') {
+        const currentAnime = ANIME_SERIES_SUBFILTERS.find((s) => s.id === selectedAnimeSub);
+        if (currentAnime && currentAnime.keywords.length > 0) {
+          const textToMatch = `${product.title} ${product.description} ${product.subcategory} ${product.searchQuery} ${product.badge}`.toLowerCase();
+          const matchesKeyword = currentAnime.keywords.some((kw) => textToMatch.includes(kw.toLowerCase()));
+          if (!matchesKeyword) {
+            return false;
+          }
+        }
+      }
+
       // 5. Price filter
       if (selectedPrice !== 'all') {
         const prodPrice =
@@ -196,7 +218,7 @@ export default function HomePage() {
 
       return true;
     });
-  }, [selectedAge, selectedCategory, selectedClothingSub, selectedGender, selectedPrice, searchQuery]);
+  }, [selectedAge, selectedCategory, selectedClothingSub, selectedAnimeSub, selectedGender, selectedPrice, searchQuery]);
 
   // Sorted products based on sortBy
   const sortedFilteredProducts = useMemo(() => {
@@ -240,6 +262,11 @@ export default function HomePage() {
       if (subObj) {
         parts.push(subObj.searchPhrase);
       }
+    } else if (isFiguresCategory(selectedCategory) && selectedAnimeSub !== 'all') {
+      const animeObj = ANIME_SERIES_SUBFILTERS.find((s) => s.id === selectedAnimeSub);
+      if (animeObj) {
+        parts.push(animeObj.searchPhrase);
+      }
     } else if (selectedCategory === 'Figuras de Colección y Cine') {
       parts.push('figuras coleccion anime peliculas delorean regreso al futuro');
     } else if (selectedCategory && selectedCategory !== 'all') {
@@ -268,7 +295,7 @@ export default function HomePage() {
     }
 
     return parts.join(' ');
-  }, [searchQuery, selectedCategory, selectedClothingSub, selectedGender, selectedAge]);
+  }, [searchQuery, selectedCategory, selectedClothingSub, selectedAnimeSub, selectedGender, selectedAge]);
 
   // Load more live products into the grid (accumulates)
   const handleLoadLiveToGrid = useCallback(async () => {
@@ -428,6 +455,8 @@ export default function HomePage() {
             onSelectCategory={handleSelectCategory}
             selectedClothingSub={selectedClothingSub}
             onSelectClothingSub={handleSelectClothingSub}
+            selectedAnimeSub={selectedAnimeSub}
+            onSelectAnimeSub={handleSelectAnimeSub}
             selectedGender={selectedGender}
             onSelectGender={handleSelectGender}
             selectedPrice={selectedPrice}
