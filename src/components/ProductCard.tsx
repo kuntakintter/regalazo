@@ -87,9 +87,10 @@ export default function ProductCard({ product, currentTheme }: ProductCardProps)
               src={currentImgSrc}
               alt={`${product.title} - Foto ${activeImgIndex + 1}`}
               fill
+              unoptimized={currentImgSrc.startsWith('http')}
               onError={() => setHasImgError(true)}
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              className="object-cover transition-all duration-500 group-hover:scale-105"
+              className="object-contain p-3 transition-all duration-300 group-hover:scale-105"
             />
           ) : (
             <div className="w-full h-full bg-gradient-to-br from-slate-100 to-slate-200 flex flex-col items-center justify-center text-slate-400 p-4 text-center">
