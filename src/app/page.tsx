@@ -355,6 +355,48 @@ export default function HomePage() {
     }
   }, [selectedCategory, selectedAge, selectedGender, searchQuery, liveSearchQuery]);
 
+  // Handle URL params and custom navigation event for direct category shortcuts (e.g. Especiales: Cartas Pokémon / Figuras & Anime)
+  useEffect(() => {
+    const applyCategoryFromUrl = () => {
+      if (typeof window === 'undefined') return;
+      const params = new URLSearchParams(window.location.search);
+      const cat = params.get('categoria') || params.get('cat');
+      if (cat === 'cartas-pokemon' || cat === 'pokemon') {
+        setSelectedCategory('Cartas y Sobres Pokémon');
+        setSelectedAge('all');
+      } else if (cat === 'figuras-anime' || cat === 'anime' || cat === 'figuras') {
+        setSelectedCategory('Figuras de Colección y Cine');
+        setSelectedAge('all');
+        const serie = params.get('serie');
+        if (serie) setSelectedAnimeSub(serie);
+      }
+    };
+
+    applyCategoryFromUrl();
+
+    const handleCategoryEvent = (e: Event) => {
+      const customEvent = e as CustomEvent<string>;
+      if (customEvent.detail) {
+        setSelectedCategory(customEvent.detail);
+        setSelectedAge('all');
+        setSelectedClothingSub('all');
+        setSelectedAnimeSub('all');
+        setTimeout(() => {
+          const el = document.getElementById('catalogo-productos');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 50);
+      }
+    };
+
+    window.addEventListener('select-category', handleCategoryEvent);
+    window.addEventListener('popstate', applyCategoryFromUrl);
+
+    return () => {
+      window.removeEventListener('select-category', handleCategoryEvent);
+      window.removeEventListener('popstate', applyCategoryFromUrl);
+    };
+  }, []);
+
   // Handle recommendation from AI wizard
   const handleApplyRecommendation = (filters: { age: string; category: string; gender: 'all' | 'boy' | 'girl' | 'reveal'; price: string }) => {
     setSearchQuery('');

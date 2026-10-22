@@ -401,6 +401,28 @@ export default function Header({
           >
             <span>🐾 Mascotas</span>
           </Link>
+          <Link
+            href="/?categoria=cartas-pokemon#catalogo-productos"
+            onClick={() => {
+              if (typeof window !== 'undefined') {
+                window.dispatchEvent(new CustomEvent('select-category', { detail: 'Cartas y Sobres Pokémon' }));
+              }
+            }}
+            className="px-3 py-1 rounded-full text-xs font-bold bg-amber-50 hover:bg-amber-100 text-amber-950 border border-amber-300 whitespace-nowrap transition-colors shrink-0 flex items-center gap-1 shadow-xs"
+          >
+            <span>⚡ Cartas Pokémon</span>
+          </Link>
+          <Link
+            href="/?categoria=figuras-anime#catalogo-productos"
+            onClick={() => {
+              if (typeof window !== 'undefined') {
+                window.dispatchEvent(new CustomEvent('select-category', { detail: 'Figuras de Colección y Cine' }));
+              }
+            }}
+            className="px-3 py-1 rounded-full text-xs font-bold bg-indigo-50 hover:bg-indigo-100 text-indigo-950 border border-indigo-200 whitespace-nowrap transition-colors shrink-0 flex items-center gap-1 shadow-xs"
+          >
+            <span>🎎 Figuras & Anime</span>
+          </Link>
         </div>
       </div>
     </header>
