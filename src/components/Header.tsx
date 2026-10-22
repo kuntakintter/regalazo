@@ -366,6 +366,19 @@ export default function Header({
             🎁 Por Edades (0 a +18)
           </Link>
           <Link
+            href="/halloween"
+            className="px-3 py-1 rounded-full text-xs font-black bg-gradient-to-r from-orange-500 to-amber-500 text-slate-950 border border-orange-400 whitespace-nowrap transition-transform hover:scale-105 shrink-0 flex items-center gap-1 shadow-xs"
+          >
+            <span>🎃 Halloween</span>
+            <span className="text-[9px] bg-black/25 text-white px-1.5 py-0.2 rounded-full font-black">2026</span>
+          </Link>
+          <Link
+            href="/navidad"
+            className="px-3 py-1 rounded-full text-xs font-black bg-gradient-to-r from-rose-600 to-emerald-600 text-white border border-rose-400 whitespace-nowrap transition-transform hover:scale-105 shrink-0 flex items-center gap-1 shadow-xs"
+          >
+            <span>🎄 Navidad & Reyes</span>
+          </Link>
+          <Link
             href="/motoristas"
             className="px-3 py-1 rounded-full text-xs font-bold bg-amber-50 hover:bg-amber-100 text-amber-950 border border-amber-200/80 whitespace-nowrap transition-colors shrink-0 flex items-center gap-1"
           >

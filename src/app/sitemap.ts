@@ -48,6 +48,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'daily',
       priority: 0.95,
     },
+    {
+      url: `${baseUrl}/halloween`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.95,
+    },
+    {
+      url: `${baseUrl}/navidad`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.95,
+    },
   ];
 
   // 2. Age Landing Pages (e.g. /bebes-0-a-12-meses, /ninos-1-a-3-anos...)
