@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Product } from '@/data/products';
 import { getAmazonProductUrl } from '@/lib/amazon';
 import { useCurrency } from '@/context/CurrencyContext';
-import { Trophy, Award, Sparkles, Star, ExternalLink, ShieldCheck, Flame, Check, Clock } from 'lucide-react';
+import { Trophy, Award, Sparkles, Star, ExternalLink, ShieldCheck, Flame, Check, Clock, ShoppingBag } from 'lucide-react';
 
 interface TopPodiumProps {
   products: Product[];
@@ -14,6 +14,7 @@ interface TopPodiumProps {
 
 export default function TopPodium({ products, filterLabel }: TopPodiumProps) {
   const { formatPrice } = useCurrency();
+  const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
 
   // Dynamic real-time Amazon Prime next-day shipping cutoff timer
   const [timeLeft, setTimeLeft] = useState<{ hours: number; minutes: number; seconds: number; isTomorrow: boolean }>({
@@ -188,15 +189,28 @@ export default function TopPodium({ products, filterLabel }: TopPodiumProps) {
                 rel="nofollow sponsored noopener noreferrer"
                 className="relative w-full aspect-square bg-white rounded-2xl p-4 flex items-center justify-center overflow-hidden mb-4 border border-slate-200/80 group cursor-pointer"
               >
-                <Image
-                  src={pick.product.imageUrl}
-                  alt={pick.product.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-contain p-2 group-hover:scale-108 transition-transform duration-300"
-                  unoptimized={pick.product.imageUrl.startsWith('http')}
-                />
-                <span className="absolute bottom-2 right-2 text-[10px] font-bold bg-slate-900/85 text-white px-2 py-0.5 rounded-md backdrop-blur-xs flex items-center gap-1">
+                {!failedImages[pick.product.id] ? (
+                  <Image
+                    src={pick.product.imageUrl}
+                    alt={pick.product.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-contain p-2 group-hover:scale-108 transition-transform duration-300"
+                    unoptimized={pick.product.imageUrl.startsWith('http')}
+                    onError={() => setFailedImages((prev) => ({ ...prev, [pick.product.id]: true }))}
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-br from-amber-50 to-slate-100 flex flex-col items-center justify-center text-slate-400 p-4 text-center">
+                    <ShoppingBag className="w-10 h-10 mb-2 text-amber-500/70" />
+                    <span className="text-xs font-bold text-slate-700 line-clamp-2 px-2">
+                      {pick.product.title}
+                    </span>
+                    <span className="text-[11px] text-amber-600 font-extrabold mt-1">
+                      Ver foto en Amazon.es →
+                    </span>
+                  </div>
+                )}
+                <span className="absolute bottom-2 right-2 text-[10px] font-bold bg-slate-900/85 text-white px-2 py-0.5 rounded-md backdrop-blur-xs flex items-center gap-1 z-10">
                   <ShieldCheck className="w-3 h-3 text-emerald-400" />
                   Amazon Prime
                 </span>

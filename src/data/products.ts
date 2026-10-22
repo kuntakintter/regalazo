@@ -37,7 +37,7 @@ export interface Product {
 export const PRODUCTS: Product[] = [
   {
     id: "pokemon-etb-elite-trainer-box",
-    asin: "B0CFW5V8X7",
+    asin: "B0H8SV3WJ8",
     title: "Pokémon TCG - Caja de Entrenador Élite (Elite Trainer Box) con 9 Sobres Booster, 65 Fundas y Dados",
     slug: "pokemon-tcg-elite-trainer-box-sobres-fundas-coleccion",
     searchQuery: "pokemon elite trainer box etb sobres cartas fundas dados",
@@ -58,13 +58,13 @@ export const PRODUCTS: Product[] = [
     ],
     idealFor: "El mejor regalo posible para cualquier fan o coleccionista serio de Pokémon.",
     style: "gamer",
-    imageUrl: "https://m.media-amazon.com/images/I/81dG7f-xK-L._AC_UL600_.jpg",
-    images: ["https://m.media-amazon.com/images/I/81dG7f-xK-L._AC_UL600_.jpg"]
+    imageUrl: "https://m.media-amazon.com/images/I/61piIn+zJlL._AC_UL320_.jpg",
+    images: ["https://m.media-amazon.com/images/I/61piIn+zJlL._AC_UL320_.jpg"]
   },
   {
     id: "pokemon-lata-coleccion-sobres-tin",
-    asin: "B0B8TK8S4K",
-    title: "Pokémon TCG - Lata de Colección Metálica con 4 Sobres de Mejora y Carta Holográfica Exclusiva",
+    asin: "B0G4NT35J8",
+    title: "Pokémon TCG - Lata de Colección Metálica con Sobres de Mejora y Carta Holográfica Exclusiva",
     slug: "pokemon-tcg-lata-coleccion-metalica-4-sobres-carta-holografica",
     searchQuery: "pokemon lata coleccion tin sobres cartas metalica oficial",
     category: "Cartas y Coleccionismo",
@@ -76,21 +76,21 @@ export const PRODUCTS: Product[] = [
     rating: 4.7,
     reviewsCount: 11400,
     badge: "Lata Colección Oficial Pokémon",
-    description: "Lata metálica de coleccionista ilustrada que incluye 4 sobres de cartas Pokémon TCG variados y una carta especial holográfica exclusiva lista para exponer o jugar.",
+    description: "Lata metálica de coleccionista ilustrada que incluye sobres de cartas Pokémon TCG variados y una carta especial holográfica exclusiva lista para exponer o jugar.",
     pros: [
-      "4 sobres booster con 10 cartas cada uno (40 cartas en total)",
+      "Sobres booster oficiales con cartas coleccionables de alta calidad",
       "Lata metálica resistente que sirve como estuche para llevar cartas",
       "Excelente relación calidad-precio para regalo de cumpleaños"
     ],
     idealFor: "Regalo perfecto para niños y coleccionistas que buscan cartas sorpresa.",
     style: "gamer",
-    imageUrl: "https://m.media-amazon.com/images/I/81xG-B5Z1wL._AC_UL600_.jpg",
-    images: ["https://m.media-amazon.com/images/I/81xG-B5Z1wL._AC_UL600_.jpg"]
+    imageUrl: "https://m.media-amazon.com/images/I/71G7uT1xPHL._AC_UL320_.jpg",
+    images: ["https://m.media-amazon.com/images/I/71G7uT1xPHL._AC_UL320_.jpg"]
   },
   {
     id: "pokemon-album-archivador-400-cartas",
-    asin: "B099K8V7Z2",
-    title: "Álbum Archivador de Cartas Pokémon con 400 Bolsillos - Carpeta Impermeable con Cremallera y 50 Hojas",
+    asin: "B0FF42SHGN",
+    title: "Álbum Archivador de Cartas Pokémon con 432 Bolsillos - Carpeta Impermeable con Cremallera y 24 Hojas",
     slug: "album-archivador-cartas-pokemon-400-bolsillos-cremallera",
     searchQuery: "album archivador cartas pokemon carpeta fundas 400 bolsillos cremallera",
     category: "Cartas y Coleccionismo",
@@ -101,8 +101,8 @@ export const PRODUCTS: Product[] = [
     priceText: "14,99 €",
     rating: 4.8,
     reviewsCount: 18600,
-    badge: "Archivador Impermeable 400 Cartas",
-    description: "Carpeta álbum de alta protección con 50 hojas extraíbles de 4 bolsillos por cara (400 cartas en total). Cubierta acolchada de cuero PU impermeable con cremallera cerrada y correa de transporte.",
+    badge: "Archivador Impermeable 432 Cartas",
+    description: "Carpeta álbum de alta protección con 24 hojas de 9 bolsillos por cara (432 cartas en total). Cubierta acolchada impermeable con cremallera cerrada y máxima protección contra el polvo.",
     pros: [
       "Protege las cartas del polvo, dobleces, humedad y arañazos",
       "Cierre con cremallera completa para que nunca se caiga ninguna carta",
@@ -110,13 +110,13 @@ export const PRODUCTS: Product[] = [
     ],
     idealFor: "Imprescindible para cualquier niño o adulto que tenga cartas sueltas y quiera cuidarlas.",
     style: "gamer",
-    imageUrl: "https://m.media-amazon.com/images/I/71u9s8xZ4uL._AC_UL600_.jpg",
-    images: ["https://m.media-amazon.com/images/I/71u9s8xZ4uL._AC_UL600_.jpg"]
+    imageUrl: "https://m.media-amazon.com/images/I/81uMWsK1MYL._AC_UL320_.jpg",
+    images: ["https://m.media-amazon.com/images/I/81uMWsK1MYL._AC_UL320_.jpg"]
   },
   {
     id: "pokemon-mazo-combate-deluxe-ex",
-    asin: "B0C5J9XX11",
-    title: "Pokémon TCG - Mazo de Combate Listo para Jugar con 60 Cartas, Tapete de Juego y Moneda",
+    asin: "B0GVKFS7KT",
+    title: "Pokémon TCG - Baraja Mazo de Combate Listo para Jugar con 60 Cartas, Tapete y Moneda",
     slug: "pokemon-tcg-mazo-combate-listo-para-jugar-60-cartas",
     searchQuery: "pokemon mazo combate baraja 60 cartas listo para jugar oficial",
     category: "Cartas y Coleccionismo",
@@ -136,13 +136,13 @@ export const PRODUCTS: Product[] = [
     ],
     idealFor: "Aprender a jugar a las cartas Pokémon en familia o con amigos.",
     style: "gamer",
-    imageUrl: "https://m.media-amazon.com/images/I/71X8k+mK7iL._AC_UL600_.jpg",
-    images: ["https://m.media-amazon.com/images/I/71X8k+mK7iL._AC_UL600_.jpg"]
+    imageUrl: "https://m.media-amazon.com/images/I/91FkiInwP8L._AC_UL320_.jpg",
+    images: ["https://m.media-amazon.com/images/I/91FkiInwP8L._AC_UL320_.jpg"]
   },
   {
     id: "fig-pokemon-caja-sobres-tcg",
-    asin: "B0C5J8X7LQ",
-    title: "Pokémon TCG - Caja de Colección con Sobres Booster de Cartas, Carta Holográfica Especial y Moneda",
+    asin: "B0F2BDXW4J",
+    title: "Pokémon TCG - Scarlet & Violet Destined Rivals Caja con Sobres Booster de Cartas Oficiales",
     slug: "pokemon-tcg-caja-coleccion-sobres-booster-cartas-holografica",
     searchQuery: "pokemon tcg cartas coleccionables caja sobres booster pikachu charizard",
     category: "Cartas y Coleccionismo",
@@ -157,18 +157,18 @@ export const PRODUCTS: Product[] = [
     description: "Caja precintada original con sobres de ampliación oficiales de Pokémon TCG para coleccionar o competir, con cartas holográficas raras garantizadas.",
     pros: [
       "Producto oficial Pokémon Company 100% original en castellano",
-      "Incluye carta promo foil brillante de coleccionista",
+      "Incluye sobres booster con cartas raras y holográficas",
       "Ideal tanto para coleccionistas de carpetas como para jugadores de cartas"
     ],
     idealFor: "Fanáticos del coleccionismo Pokémon, cartas raras y nostálgicos de la franquicia.",
     style: "gamer",
-    imageUrl: "https://m.media-amazon.com/images/I/81k3T0u4E6L._AC_UL600_.jpg",
-    images: ["https://m.media-amazon.com/images/I/81k3T0u4E6L._AC_UL600_.jpg"]
+    imageUrl: "https://m.media-amazon.com/images/I/814hNCBQClL._AC_UL320_.jpg",
+    images: ["https://m.media-amazon.com/images/I/814hNCBQClL._AC_UL320_.jpg"]
   },
   {
     id: "fig-pikachu-lampara-led-3d",
-    asin: "B08H9R4N3P",
-    title: "Lámpara LED 3D Nocturna Pikachu Pokémon Oficial Escultura Luminosa de Colección",
+    asin: "B07KY57MB1",
+    title: "Lámpara LED 3D Nocturna Pikachu Pokémon Oficial Escultura Luminosa de Colección 25cm",
     slug: "lampara-led-3d-pikachu-pokemon-oficial-decoracion",
     searchQuery: "lampara led pikachu pokemon oficial decoracion luz noche",
     category: "Figuras y Cine",
@@ -188,13 +188,13 @@ export const PRODUCTS: Product[] = [
     ],
     idealFor: "Regalo perfecto y económico para cualquier amante de Pikachu y Pokémon.",
     style: "gamer",
-    imageUrl: "https://m.media-amazon.com/images/I/61k4T3qU+PL._AC_UL600_.jpg",
-    images: ["https://m.media-amazon.com/images/I/61k4T3qU+PL._AC_UL600_.jpg"]
+    imageUrl: "https://m.media-amazon.com/images/I/51vNpD0XITL._AC_UL320_.jpg",
+    images: ["https://m.media-amazon.com/images/I/51vNpD0XITL._AC_UL320_.jpg"]
   },
   {
     id: "fig-one-punch-man-saitama-popup",
-    asin: "B07T84PFSB",
-    title: "Good Smile Company Pop Up Parade - Figura Saitama One Punch Man Traje de Héroe 18cm Oficial",
+    asin: "B0FJV7TJ52",
+    title: "Bandai Spirits Banpresto One-Punch Man - Figura de Acción Saitama Traje de Héroe Oficial",
     slug: "figura-saitama-one-punch-man-pop-up-parade-good-smile",
     searchQuery: "figura saitama one punch man pop up parade good smile company oficial",
     category: "Figuras y Cine",
@@ -205,22 +205,22 @@ export const PRODUCTS: Product[] = [
     priceText: "39,90 €",
     rating: 4.8,
     reviewsCount: 3100,
-    badge: "Oficial Good Smile Company",
-    description: "La línea premium Pop Up Parade de Good Smile Company nos trae al héroe más poderoso del anime con su icónico traje amarillo, capa blanca y expresión impasible.",
+    badge: "Oficial Banpresto Bandai",
+    description: "Figura de colección oficial de Banpresto con el héroe más poderoso del anime luciendo su icónico traje amarillo, capa blanca y pose de combate.",
     pros: [
-      "Esculpido fiel de Good Smile Company con acabados de alta gama",
-      "Pintura mate perfecta sin rebabas de plástico",
-      "Incluye peana hexagonal exclusiva Pop Up Parade"
+      "Esculpido fiel de Banpresto con acabados de alta gama",
+      "Pintura mate perfecta y gran detalle en la expresión",
+      "Incluye peana de apoyo sólida para vitrina"
     ],
     idealFor: "Seguidores incondicionales de One Punch Man y amantes del anime de acción y comedia.",
     style: "gamer",
-    imageUrl: "https://m.media-amazon.com/images/I/61w7hQ0xZLL._AC_UL600_.jpg",
-    images: ["https://m.media-amazon.com/images/I/61w7hQ0xZLL._AC_UL600_.jpg"]
+    imageUrl: "https://m.media-amazon.com/images/I/61FQ6AOcD1L._AC_UL320_.jpg",
+    images: ["https://m.media-amazon.com/images/I/61FQ6AOcD1L._AC_UL320_.jpg"]
   },
   {
     id: "fig-demon-slayer-tanjiro-banpresto",
-    asin: "B0993JSSZZ",
-    title: "Bandai Spirits Banpresto Demon Slayer - Tanjiro Kamado Danza del Dios del Fuego 16cm Oficial",
+    asin: "B09K6DWH4N",
+    title: "Bandai Spirits Banpresto Demon Slayer: Kimetsu no Yaiba - Tanjiro Kamado Danza del Dios del Fuego Oficial",
     slug: "figura-tanjiro-kamado-danza-dios-fuego-demon-slayer-banpresto",
     searchQuery: "figura tanjiro kamado hinokami kagura banpresto demon slayer oficial",
     category: "Figuras y Cine",
@@ -240,15 +240,15 @@ export const PRODUCTS: Product[] = [
     ],
     idealFor: "Fans de Kimetsu no Yaiba y coleccionistas de estatuas de anime.",
     style: "gamer",
-    imageUrl: "https://m.media-amazon.com/images/I/61uV+qDqN+L._AC_UL600_.jpg",
-    images: ["https://m.media-amazon.com/images/I/61uV+qDqN+L._AC_UL600_.jpg"]
+    imageUrl: "https://m.media-amazon.com/images/I/51mqk79t3qL._AC_UL320_.jpg",
+    images: ["https://m.media-amazon.com/images/I/51mqk79t3qL._AC_UL320_.jpg"]
   },
   {
     id: "fig-naruto-kakashi-chidori-banpresto",
-    asin: "B08L7VMSZX",
-    title: "Bandai Spirits Banpresto Naruto Shippuden - Kakashi Hatake Ataque Chidori Oficial 17cm",
+    asin: "B0GQZFFVCS",
+    title: "Bandai Spirits Banpresto Naruto Shippuden - Figura Kakashi Hatake Grandista 20cm Oficial",
     slug: "figura-kakashi-hatake-chidori-naruto-shippuden-banpresto",
-    searchQuery: "figura kakashi hatake chidori banpresto naruto shippuden oficial",
+    searchQuery: "figura kakashi hatake grandista banpresto naruto shippuden oficial",
     category: "Figuras y Cine",
     subcategory: "Figuras de Colección y Cine",
     ageRange: "+18",
@@ -258,21 +258,21 @@ export const PRODUCTS: Product[] = [
     rating: 4.8,
     reviewsCount: 6200,
     badge: "Oficial Naruto Shippuden",
-    description: "El sexto Hokage ejecutando su técnica secreta Chidori (Cuchilla Relámpago) con efecto de rayo translúcido y banda de la Hoja con el Sharingan al descubierto.",
+    description: "El sexto Hokage Kakashi Hatake en la prestigiosa línea Grandista de Banpresto (20cm de altura) con chaleco táctico ninja, bandana de Konoha y detalles de pintura sobresalientes.",
     pros: [
-      "Efecto de chakra eléctrico translúcido en la mano derecha",
+      "Gran escala Grandista de 20cm con presencia imponente",
       "Detalle minucioso en el chaleco táctico ninja y la máscara",
       "Base sólida de exposición incluida"
     ],
     idealFor: "Nostálgicos y apasionados de Naruto y los ninjas de Konoha.",
     style: "gamer",
-    imageUrl: "https://m.media-amazon.com/images/I/61u9Z4t3+sL._AC_UL600_.jpg",
-    images: ["https://m.media-amazon.com/images/I/61u9Z4t3+sL._AC_UL600_.jpg"]
+    imageUrl: "https://m.media-amazon.com/images/I/51BC359lKqL._AC_UL320_.jpg",
+    images: ["https://m.media-amazon.com/images/I/51BC359lKqL._AC_UL320_.jpg"]
   },
   {
     id: "fig-delorean-regreso-al-futuro",
-    asin: "B0814BCB1Z",
-    title: "Regreso al Futuro II - DeLorean Máquina del Tiempo Escala 1:24 Die-Cast con Luces LED",
+    asin: "B0CKPSPV66",
+    title: "Jada Toys Regreso al Futuro - DeLorean Máquina del Tiempo Escala 1:24 Die-Cast Oficial",
     slug: "delorean-regreso-al-futuro-escala-1-24-diecast-luces",
     searchQuery: "delorean regreso al futuro jada toys coche coleccionista luces",
     category: "Figuras y Cine",
@@ -284,21 +284,21 @@ export const PRODUCTS: Product[] = [
     rating: 4.7,
     reviewsCount: 12800,
     badge: "Top Ventas Cine • DeLorean Oficial",
-    description: "Réplica metálica die-cast exacta del DeLorean de Regreso al Futuro Parte II a escala 1:24. Incluye puertas de ala de gaviota abatibles, ruedas plegables en modo vuelo y luces LED activables para vitrina o escritorio.",
+    description: "Réplica metálica die-cast exacta del DeLorean de Regreso al Futuro a escala 1:24. Incluye puertas de ala de gaviota abatibles, carrocería de metal cepillado y acabados premium para vitrina o escritorio.",
     pros: [
       "Carrocería de metal fundido con gran nivel de detalle interior y exterior",
-      "Luces de condensador de fluzo y parachoques activables con botón",
-      "Ruedas que se pliegan 90 grados para simular el vuelo como en la película"
+      "Puertas abatibles de ala de gaviota funcionales",
+      "Modelo icónico de coleccionista con licencia oficial de Universal Studios"
     ],
     idealFor: "Amantes del cine de los 80, ciencia ficción y decoración de estanterías y escritorios.",
     style: "classic",
-    imageUrl: "https://m.media-amazon.com/images/I/71eY5hQO4NL._AC_UL600_.jpg",
-    images: ["https://m.media-amazon.com/images/I/71eY5hQO4NL._AC_UL600_.jpg"]
+    imageUrl: "https://m.media-amazon.com/images/I/61l+h5qfFUL._AC_UL320_.jpg",
+    images: ["https://m.media-amazon.com/images/I/61l+h5qfFUL._AC_UL320_.jpg"]
   },
   {
     id: "fig-goku-super-saiyan-banpresto",
-    asin: "B08YXZ7PZ6",
-    title: "Bandai Spirits Banpresto Dragon Ball Z - Figura Son Goku Super Saiyan Oficial 20cm",
+    asin: "B0FY7V2HNL",
+    title: "Ichibansho Bandai Spirits Dragon Ball Z - Figura Son Goku Super Saiyan Oficial",
     slug: "figura-goku-super-saiyan-bandai-banpresto-oficial",
     searchQuery: "figura goku super saiyan banpresto oficial dragon ball z",
     category: "Figuras y Cine",
@@ -309,7 +309,7 @@ export const PRODUCTS: Product[] = [
     priceText: "28,50 €",
     rating: 4.8,
     reviewsCount: 5400,
-    badge: "Oficial Bandai Banpresto",
+    badge: "Oficial Bandai Ichibansho",
     description: "Estatua original de coleccionismo con modelado de alta fidelidad, pintura de sombreado profesional y peana de sujeción para estantería o setup otaku.",
     pros: [
       "Licencia oficial Toei Animation y Bandai Spirits",
@@ -318,13 +318,13 @@ export const PRODUCTS: Product[] = [
     ],
     idealFor: "Cualquier fan de Dragon Ball que quiera una figura de impacto en su vitrina.",
     style: "gamer",
-    imageUrl: "https://m.media-amazon.com/images/I/61i3F2rC+pL._AC_UL600_.jpg",
-    images: ["https://m.media-amazon.com/images/I/61i3F2rC+pL._AC_UL600_.jpg"]
+    imageUrl: "https://m.media-amazon.com/images/I/61IVTyMdnEL._AC_UL320_.jpg",
+    images: ["https://m.media-amazon.com/images/I/61IVTyMdnEL._AC_UL320_.jpg"]
   },
   {
     id: "fig-luffy-gear-5-one-piece",
-    asin: "B0BSNSSZZW",
-    title: "Bandai Spirits Banpresto One Piece - Monkey D. Luffy Gear 5 Forma Despertar Dios del Sol 16cm",
+    asin: "B0FY819DQG",
+    title: "Ichibansho Bandai Spirits One Piece - Monkey D. Luffy Gear 5 Dios del Sol Oficial",
     slug: "figura-luffy-gear-5-dios-del-sol-one-piece-banpresto",
     searchQuery: "figura luffy gear 5 banpresto one piece oficial",
     category: "Figuras y Cine",
@@ -344,13 +344,13 @@ export const PRODUCTS: Product[] = [
     ],
     idealFor: "Seguidores de One Piece y amantes del manga japonés.",
     style: "gamer",
-    imageUrl: "https://m.media-amazon.com/images/I/61R-8u3oVBL._AC_UL600_.jpg",
-    images: ["https://m.media-amazon.com/images/I/61R-8u3oVBL._AC_UL600_.jpg"]
+    imageUrl: "https://m.media-amazon.com/images/I/61uuq6JOw3L._AC_UL320_.jpg",
+    images: ["https://m.media-amazon.com/images/I/61uuq6JOw3L._AC_UL320_.jpg"]
   },
   {
     id: "fig-mandalorian-grogu-starwars",
-    asin: "B084TM4B7V",
-    title: "Star Wars The Black Series - Figura Articulada El Mandaloriano (Din Djarin) y Grogu con Accesorios",
+    asin: "B0CJXJBVQH",
+    title: "Star Wars The Black Series - Figura Coleccionable El Mandaloriano (Din Djarin) Mines of Mandalore",
     slug: "star-wars-black-series-mandalorian-din-djarin-grogu",
     searchQuery: "star wars black series mandalorian din djarin grogu hasbro",
     category: "Figuras y Cine",
@@ -362,21 +362,21 @@ export const PRODUCTS: Product[] = [
     rating: 4.8,
     reviewsCount: 8600,
     badge: "Colección Oficial Star Wars",
-    description: "Figura de 15 cm con armadura de beskar con acabado metalizado, capa de tela y accesorios de combate junto al adorable Grogu.",
+    description: "Figura de 15 cm con armadura de beskar con acabado metalizado, capa de tela y accesorios de combate de The Black Series.",
     pros: [
       "Múltiples puntos de articulación para colocar en cualquier pose",
       "Acabado beskar brillante y rifle desintegrador desmontable",
-      "Incluye la figura de Baby Yoda a escala"
+      "Edición coleccionista oficial Hasbro Star Wars"
     ],
     idealFor: "Fans incondicionales del universo Star Wars y coleccionistas de The Black Series.",
     style: "classic",
-    imageUrl: "https://m.media-amazon.com/images/I/71u9sW4Q4dL._AC_UL600_.jpg",
-    images: ["https://m.media-amazon.com/images/I/71u9sW4Q4dL._AC_UL600_.jpg"]
+    imageUrl: "https://m.media-amazon.com/images/I/710WNBL-biL._AC_UL320_.jpg",
+    images: ["https://m.media-amazon.com/images/I/710WNBL-biL._AC_UL320_.jpg"]
   },
   {
     id: "fig-batman-tumbler-dark-knight",
-    asin: "B07897CV7M",
-    title: "Batmóvil Tumbler The Dark Knight Escala 1:24 Die-Cast con Figura de Batman 7cm",
+    asin: "B07WLW7X95",
+    title: "Jada Toys Batman El Caballero Oscuro - Batmóvil Tumbler Metal Die-Cast Escala 1:24 Oficial",
     slug: "batmovil-tumbler-dark-knight-escala-1-24-diecast-batman",
     searchQuery: "batmovil tumbler dark knight jada toys batman diecast",
     category: "Figuras y Cine",
@@ -396,13 +396,13 @@ export const PRODUCTS: Product[] = [
     ],
     idealFor: "Aficionados al Caballero Oscuro y amantes del diseño automovilístico cinematográfico.",
     style: "classic",
-    imageUrl: "https://m.media-amazon.com/images/I/71v2y3eZgQL._AC_UL600_.jpg",
-    images: ["https://m.media-amazon.com/images/I/71v2y3eZgQL._AC_UL600_.jpg"]
+    imageUrl: "https://m.media-amazon.com/images/I/61OF4XWCS3L._AC_UL320_.jpg",
+    images: ["https://m.media-amazon.com/images/I/61OF4XWCS3L._AC_UL320_.jpg"]
   },
   {
     id: "fig-varita-sauco-dumbledore-noble",
-    asin: "B000BVYQ9O",
-    title: "The Noble Collection - Réplica Oficial Varita de Saúco Harry Potter en Caja de Coleccionista Ollivanders",
+    asin: "B000CC3OMC",
+    title: "The Noble Collection - Réplica Oficial Varita de Saúco Albus Dumbledore Harry Potter en Caja Ollivanders",
     slug: "varita-sauco-dumbledore-noble-collection-caja-ollivanders",
     searchQuery: "noble collection varita sauco dumbledore caja ollivanders harry potter",
     category: "Figuras y Cine",
@@ -422,8 +422,8 @@ export const PRODUCTS: Product[] = [
     ],
     idealFor: "Potterheads y entusiastas del coleccionismo cinematográfico de fantasía.",
     style: "classic",
-    imageUrl: "https://m.media-amazon.com/images/I/61N+pM-vGHL._AC_UL600_.jpg",
-    images: ["https://m.media-amazon.com/images/I/61N+pM-vGHL._AC_UL600_.jpg"]
+    imageUrl: "https://m.media-amazon.com/images/I/81YNDJoYGQL._AC_UL320_.jpg",
+    images: ["https://m.media-amazon.com/images/I/81YNDJoYGQL._AC_UL320_.jpg"]
   },
   {
     "id": "012-cochecito-chicco-london",
