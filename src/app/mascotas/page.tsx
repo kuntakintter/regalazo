@@ -117,7 +117,8 @@ export default function MascotasPage() {
     const parts: string[] = [];
     if (selectedBrand !== 'Todas las marcas') parts.push(selectedBrand);
 
-    if (selectedCategory === 'comederos') parts.push('fuente agua gatos inteligente comedero automatico');
+    if (selectedCategory === 'kong-ansiedad') parts.push('kong perro juguete rellenable comedero antivoracidad plato lento alfombrilla lamido lick mat');
+    else if (selectedCategory === 'comederos') parts.push('fuente agua gatos inteligente comedero automatico');
     else if (selectedCategory === 'gps') parts.push('localizador gps perros sumergible collar tractive');
     else if (selectedCategory === 'camas') parts.push('cama ortopedica perros viscoelastica lavable');
     else if (selectedCategory === 'juguetes') parts.push('juguetes interactivos perros puzzle olfato');

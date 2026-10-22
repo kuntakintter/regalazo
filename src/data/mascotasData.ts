@@ -2,6 +2,7 @@ import { HubProduct } from './automovilData';
 
 export const MASCOTAS_CATEGORIES = [
   { id: 'all', label: 'Todo para Amantes de Mascotas', icon: '🐾' },
+  { id: 'kong-ansiedad', label: 'Juguetes KONG & Ansiedad al Comer', icon: '🦴' },
   { id: 'comederos', label: 'Comederos & Fuentes Inteligentes', icon: '🥣' },
   { id: 'gps', label: 'Localizadores GPS & Seguridad', icon: '📍' },
   { id: 'camas', label: 'Camas Ortopédicas & Relax', icon: '🛏️' },
@@ -12,6 +13,7 @@ export const MASCOTAS_CATEGORIES = [
 
 export const MASCOTAS_BRANDS = [
   'Todas las marcas',
+  'KONG',
   'Petkit',
   'Trixie',
   'Julius-K9',
@@ -29,6 +31,72 @@ export const MASCOTAS_PRICE_RANGES = [
 ];
 
 export const MASCOTAS_PRODUCTS: HubProduct[] = [
+  {
+    id: 'pet-kong-classic-rellenable',
+    asin: 'B0002AR0I8',
+    title: 'KONG Classic - Juguete de Caucho Natural Rellenable Antiansiedad para Perros',
+    category: 'kong-ansiedad',
+    categoryLabel: 'Juguetes KONG & Ansiedad al Comer',
+    brand: 'KONG',
+    priceText: '13,99 €',
+    priceNumeric: 13.99,
+    rating: 4.7,
+    reviewsCount: 88000,
+    imageUrl: 'https://m.media-amazon.com/images/I/61CT7VZTqQL._AC_UL320_.jpg',
+    badge: 'Nº 1 Mundial Antiansiedad',
+    description: 'El estándar de oro de los juguetes caninos desde hace más de 40 años. Su caucho natural ultra resistente satisface el instinto natural de masticar. Rellénalo con comida húmeda, pienso o premios congelados para mantener a tu perro concentrado, relajado y comiendo despacio durante horas.',
+    pros: [
+      'Reduce drásticamente la ansiedad por separación, aburrimiento y voracidad',
+      'Caucho natural 100% no tóxico y con rebote impredecible para jugar',
+      'Apto para congelador y lavavajillas (fácil de limpiar)'
+    ],
+    idealFor: 'Perros que comen con ansia, cachorros en cambio de dentición o perros con ansiedad cuando se quedan solos.',
+    searchQuery: 'kong classic perro juguete caucho natural rellenable antiansiedad'
+  },
+  {
+    id: 'pet-lick-mat-alfombrilla-lamido',
+    asin: 'B0BBGM79PG',
+    title: 'Lick Mat - Alfombrilla de Lamido Antiansiedad con Ventosas y Comedero Lento',
+    category: 'kong-ansiedad',
+    categoryLabel: 'Juguetes KONG & Ansiedad al Comer',
+    brand: 'Trixie',
+    priceText: '11,99 €',
+    priceNumeric: 11.99,
+    rating: 4.6,
+    reviewsCount: 12400,
+    imageUrl: 'https://m.media-amazon.com/images/I/71+kSCJ-uYL._AC_UL320_.jpg',
+    badge: 'Calma Comprobada por Veterinarios',
+    description: 'El acto repetitivo de lamer libera endorfinas que calman el sistema nervioso de perros y gatos. Con potentes ventosas traseras para fijar en suelo o azulejos durante el baño, el cepillado o momentos de estrés mientras comen paté, yogur o kéfir lentamente.',
+    pros: [
+      'Ralentiza la ingesta de comida húmeda multiplicando el tiempo por 10',
+      'Ventosas de gran agarre en baldosas, cristales y suelos',
+      'Silicona libre de BPA de máxima seguridad alimentaria'
+    ],
+    idealFor: 'Perros y gatos que se estresan fácilmente, momentos de tormentas, petardos o visitas al veterinario.',
+    searchQuery: 'lick mat alfombrilla lamido perros comedero lento antiansiedad'
+  },
+  {
+    id: 'pet-comedero-antivoracidad-lento',
+    asin: 'B0CNXMMKHY',
+    title: 'Comedero Antivoracidad para Perros y Gatos - Plato de Alimentación Lenta Antiasfixia',
+    category: 'kong-ansiedad',
+    categoryLabel: 'Juguetes KONG & Ansiedad al Comer',
+    brand: 'Petkit',
+    priceText: '9,99 €',
+    priceNumeric: 9.99,
+    rating: 4.7,
+    reviewsCount: 15600,
+    imageUrl: 'https://m.media-amazon.com/images/I/61ixCPcNf7L._AC_UL320_.jpg',
+    badge: 'Previene la Torsión de Estómago',
+    description: 'Diseño en forma de laberinto que obliga a la mascota a comer entre 5 y 10 veces más despacio. Evita atracones, gases, vómitos poscomida y el peligroso riesgo de torsión gástrica canina.',
+    pros: [
+      'Alarga el tiempo de comida convirtiendo el almuerzo en un juego estimulante',
+      'Base de goma antideslizante para que el plato no se mueva por la cocina',
+      'Fácil de lavar a mano o en la bandeja superior del lavavajillas'
+    ],
+    idealFor: 'Perros y cachorros glotones que aspiran la comida sin masticar en cuestión de segundos.',
+    searchQuery: 'comedero antivoracidad perros plato laberinto alimentacion lenta'
+  },
   {
     id: 'pet-gps-tractive-perro',
     asin: 'B0D6Z4L6BW',
