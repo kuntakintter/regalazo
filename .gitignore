@@ -35,3 +35,7 @@ next-env.d.ts
 
 # scratch
 scratch/
+temp_*
+*.mp3
+*.ogg
+scripts/

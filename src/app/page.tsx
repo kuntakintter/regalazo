@@ -14,6 +14,7 @@ import ThemeAtmosphere from '@/components/ThemeAtmosphere';
 import AmazonLiveSearchCard from '@/components/AmazonLiveSearchCard';
 import AmazonGridDiscoveryCard from '@/components/AmazonGridDiscoveryCard';
 import SocialShareBar from '@/components/SocialShareBar';
+import TopPodium from '@/components/TopPodium';
 import { PRODUCTS, AGE_CATEGORIES, GENERAL_CATEGORY_MAPPING, Product, CLOTHING_SUBFILTERS, isClothingCategory } from '@/data/products';
 import { matchesSearchQuery } from '@/utils/search';
 import { LiveSearchResult } from '@/app/api/live-search/route';
@@ -492,6 +493,18 @@ export default function HomePage() {
         {/* PRODUCTS GRID */}
         {filteredProducts.length > 0 ? (
           <>
+            {/* TOP 3 PODIUM RANKING */}
+            <TopPodium
+              products={sortedFilteredProducts}
+              filterLabel={
+                selectedCategory !== 'all'
+                  ? selectedCategory
+                  : selectedAge !== 'all'
+                  ? (currentAgeMeta?.label || selectedAge)
+                  : 'Catálogo General'
+              }
+            />
+
             <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12">
               {sortedFilteredProducts.slice(0, visibleCount).map((product) => (
                 <ProductCard

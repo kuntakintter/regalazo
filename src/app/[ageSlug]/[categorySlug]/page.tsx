@@ -8,6 +8,7 @@ import SeoFaq from '@/components/SeoFaq';
 import AmazonLiveSearchCard from '@/components/AmazonLiveSearchCard';
 import AmazonGridDiscoveryCard from '@/components/AmazonGridDiscoveryCard';
 import ThemeAtmosphere from '@/components/ThemeAtmosphere';
+import TopPodium from '@/components/TopPodium';
 import { PRODUCTS } from '@/data/products';
 import { SEO_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
 import { buildSocialMetadata, getCategoryOgImage } from '@/lib/ogMetadata';
@@ -189,6 +190,11 @@ export default async function SubcategoryLandingPage({ params }: PageProps) {
 
         {/* PRODUCTS GRID */}
         <section className="mb-14">
+          {/* TOP 3 PODIUM */}
+          {matchedProducts.length >= 3 && (
+            <TopPodium products={matchedProducts} filterLabel={currentSub.label} />
+          )}
+
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl font-black text-slate-900 flex items-center gap-2">
               <Gift className="w-5 h-5 text-indigo-600" />

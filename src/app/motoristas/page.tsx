@@ -9,6 +9,7 @@ import AmazonLiveSearchCard from '@/components/AmazonLiveSearchCard';
 import AmazonGridDiscoveryCard from '@/components/AmazonGridDiscoveryCard';
 import ThemeAtmosphere from '@/components/ThemeAtmosphere';
 import SocialShareBar from '@/components/SocialShareBar';
+import TopPodium from '@/components/TopPodium';
 import {
   MOTORISTA_PRODUCTS,
   MOTORISTA_CATEGORIES,
@@ -433,6 +434,16 @@ export default function MotoristasPage() {
         {/* PRODUCTS GRID */}
         {sortedDisplayProducts.length > 0 ? (
           <>
+            {/* TOP 3 PODIUM */}
+            <TopPodium
+              products={sortedDisplayProducts}
+              filterLabel={
+                selectedCategory !== 'all'
+                  ? (MOTORISTA_CATEGORIES.find(c => c.id === selectedCategory)?.label || selectedCategory)
+                  : 'Motoristas'
+              }
+            />
+
             <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12">
               {sortedDisplayProducts.map((product) => (
                 <ProductCard
