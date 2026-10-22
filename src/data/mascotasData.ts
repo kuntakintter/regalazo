@@ -1,5 +1,18 @@
 import { HubProduct } from './automovilData';
 
+export type PetType = 'all' | 'perro' | 'gato' | 'roedor';
+
+export interface MascotaProduct extends HubProduct {
+  petType?: PetType;
+}
+
+export const PET_TYPE_FILTERS: { id: PetType; label: string; shortLabel: string; icon: string }[] = [
+  { id: 'all', label: 'Todos los Peludos', shortLabel: 'Todos', icon: '🐾' },
+  { id: 'perro', label: 'Perros', shortLabel: 'Perros', icon: '🐶' },
+  { id: 'gato', label: 'Gatos', shortLabel: 'Gatos', icon: '🐱' },
+  { id: 'roedor', label: 'Conejos y Roedores', shortLabel: 'Conejos & Roedores', icon: '🐰' },
+];
+
 export const MASCOTAS_CATEGORIES = [
   { id: 'all', label: 'Todo para Amantes de Mascotas', icon: '🐾' },
   { id: 'kong-ansiedad', label: 'Juguetes KONG & Ansiedad al Comer', icon: '🦴' },
@@ -30,7 +43,7 @@ export const MASCOTAS_PRICE_RANGES = [
   { id: '>120', label: 'Gama Alta (+120 €)' },
 ];
 
-export const MASCOTAS_PRODUCTS: HubProduct[] = [
+export const MASCOTAS_PRODUCTS: MascotaProduct[] = [
   {
     id: 'pet-kong-classic-rellenable',
     asin: 'B0002AR0I8',
@@ -38,6 +51,7 @@ export const MASCOTAS_PRODUCTS: HubProduct[] = [
     category: 'kong-ansiedad',
     categoryLabel: 'Juguetes KONG & Ansiedad al Comer',
     brand: 'KONG',
+    petType: 'perro',
     priceText: '13,99 €',
     priceNumeric: 13.99,
     rating: 4.7,
@@ -60,6 +74,7 @@ export const MASCOTAS_PRODUCTS: HubProduct[] = [
     category: 'kong-ansiedad',
     categoryLabel: 'Juguetes KONG & Ansiedad al Comer',
     brand: 'Trixie',
+    petType: 'all',
     priceText: '11,99 €',
     priceNumeric: 11.99,
     rating: 4.6,
@@ -76,12 +91,36 @@ export const MASCOTAS_PRODUCTS: HubProduct[] = [
     searchQuery: 'lick mat alfombrilla lamido perros comedero lento antiansiedad'
   },
   {
+    id: 'pet-trixie-bola-heno-dispensador',
+    asin: 'B000V9H9R2',
+    title: 'TRIXIE Bola Dispensadora de Heno y Golosinas Metálica para Conejos y Pequeños Roedores',
+    category: 'kong-ansiedad',
+    categoryLabel: 'Juguetes KONG & Ansiedad al Comer',
+    brand: 'Trixie',
+    petType: 'roedor',
+    priceText: '6,49 €',
+    priceNumeric: 6.49,
+    rating: 4.6,
+    reviewsCount: 14600,
+    imageUrl: 'https://m.media-amazon.com/images/I/51BCYmEzL8L._AC_UL320_.jpg',
+    badge: 'Estimulación & Alimentación Lenta',
+    description: 'Dispensador colgante oscilante que mantiene el heno limpio y alejado del suelo mientras convierte la comida en una actividad divertida que frena la voracidad y la ansiedad en conejos y roedores.',
+    pros: [
+      'Mantiene el heno fresco y libre de orina y suciedad',
+      'Frena el estrés obligando al conejo a estirarse y alimentarse jugando',
+      'Cadena con gancho de seguridad adaptable a cualquier jaula o parque'
+    ],
+    idealFor: 'Alimentación activa y enriquecimiento ambiental para conejos, cobayas y chinchillas.',
+    searchQuery: 'trixie bola dispensadora heno conejo roedor comedero'
+  },
+  {
     id: 'pet-comedero-antivoracidad-lento',
     asin: 'B0CNXMMKHY',
     title: 'Comedero Antivoracidad para Perros y Gatos - Plato de Alimentación Lenta Antiasfixia',
     category: 'kong-ansiedad',
     categoryLabel: 'Juguetes KONG & Ansiedad al Comer',
     brand: 'Petkit',
+    petType: 'all',
     priceText: '9,99 €',
     priceNumeric: 9.99,
     rating: 4.7,
@@ -98,12 +137,36 @@ export const MASCOTAS_PRODUCTS: HubProduct[] = [
     searchQuery: 'comedero antivoracidad perros plato laberinto alimentacion lenta'
   },
   {
+    id: 'pet-trixie-tunel-mimbre-conejos',
+    asin: 'B002TDV7AS',
+    title: 'TRIXIE Túnel de Mimbre Natural para Conejos y Cobayas - Nido y Juguete Masticable',
+    category: 'juguetes',
+    categoryLabel: 'Juguetes Interactivos & Puzzles',
+    brand: 'Trixie',
+    petType: 'roedor',
+    priceText: '9,99 €',
+    priceNumeric: 9.99,
+    rating: 4.6,
+    reviewsCount: 8400,
+    imageUrl: 'https://m.media-amazon.com/images/I/61+a4Z9gzEL._AC_UL320_.jpg',
+    badge: '100% Mimbre Natural Masticable',
+    description: 'Túnel de mimbre trenzado 100% ecológico y digestible. Proporciona a conejos enanos y cobayas un túnel seguro para correr, esconderse y desgastar sus dientes de forma natural sin riesgos.',
+    pros: [
+      'Fibra de mimbre natural sin pegamentos ni alambres',
+      'Favorece el desgaste dental continuo esencial en conejos',
+      'Sirve como zona de siesta y juego estimulante'
+    ],
+    idealFor: 'Conejos, cobayas y chinchillas para evitar el aburrimiento dentro de su recinto.',
+    searchQuery: 'trixie tunel mimbre conejos cobayas roedores'
+  },
+  {
     id: 'pet-gps-tractive-perro',
     asin: 'B0D6Z4L6BW',
     title: 'Tractive Localizador GPS para Perros 100% Resistente al Agua con Seguimiento en Vivo',
     category: 'gps',
     categoryLabel: 'Localizadores GPS & Seguridad',
     brand: 'Tractive',
+    petType: 'perro',
     priceText: '49,99 €',
     priceNumeric: 49.99,
     rating: 4.6,
@@ -126,6 +189,7 @@ export const MASCOTAS_PRODUCTS: HubProduct[] = [
     category: 'comederos',
     categoryLabel: 'Comederos & Fuentes Inteligentes',
     brand: 'Catit',
+    petType: 'gato',
     priceText: '34,99 €',
     priceNumeric: 34.99,
     rating: 4.7,
@@ -148,6 +212,7 @@ export const MASCOTAS_PRODUCTS: HubProduct[] = [
     category: 'viaje',
     categoryLabel: 'Transportines & Fundas de Coche',
     brand: 'Julius-K9',
+    petType: 'perro',
     priceText: '32,90 €',
     priceNumeric: 32.9,
     rating: 4.8,
@@ -170,6 +235,7 @@ export const MASCOTAS_PRODUCTS: HubProduct[] = [
     category: 'gadgets',
     categoryLabel: 'Cámaras con Dispensador & Cepillos',
     brand: 'Furminator',
+    petType: 'all',
     priceText: '29,95 €',
     priceNumeric: 29.95,
     rating: 4.8,

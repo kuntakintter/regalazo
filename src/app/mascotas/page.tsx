@@ -13,6 +13,8 @@ import {
   MASCOTAS_CATEGORIES,
   MASCOTAS_BRANDS,
   MASCOTAS_PRICE_RANGES,
+  PetType,
+  PET_TYPE_FILTERS,
 } from '@/data/mascotasData';
 import { Product } from '@/data/products';
 import { LiveSearchResult } from '@/app/api/live-search/route';
@@ -31,6 +33,7 @@ import { parsePrice } from '@/lib/amazon';
 import Link from 'next/link';
 
 export default function MascotasPage() {
+  const [selectedPetType, setSelectedPetType] = useState<PetType>('all');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedBrand, setSelectedBrand] = useState<string>('Todas las marcas');
   const [selectedPrice, setSelectedPrice] = useState<string>('all');
@@ -41,6 +44,7 @@ export default function MascotasPage() {
   // Filter local curated products
   const filteredProducts = useMemo(() => {
     return MASCOTAS_PRODUCTS.filter((prod) => {
+      if (selectedPetType !== 'all' && prod.petType !== selectedPetType && prod.petType !== 'all') return false;
       if (selectedCategory !== 'all' && prod.category !== selectedCategory) return false;
       if (selectedBrand !== 'Todas las marcas' && prod.brand !== selectedBrand) return false;
       if (selectedPrice !== 'all') {
@@ -51,7 +55,7 @@ export default function MascotasPage() {
       }
       return true;
     });
-  }, [selectedCategory, selectedBrand, selectedPrice]);
+  }, [selectedPetType, selectedCategory, selectedBrand, selectedPrice]);
 
   // Convert to generic Product interface
   const displayProducts: Product[] = useMemo(() => {
@@ -117,21 +121,51 @@ export default function MascotasPage() {
     const parts: string[] = [];
     if (selectedBrand !== 'Todas las marcas') parts.push(selectedBrand);
 
-    if (selectedCategory === 'kong-ansiedad') parts.push('kong perro juguete rellenable comedero antivoracidad plato lento alfombrilla lamido lick mat');
-    else if (selectedCategory === 'comederos') parts.push('fuente agua gatos inteligente comedero automatico');
-    else if (selectedCategory === 'gps') parts.push('localizador gps perros sumergible collar tractive');
-    else if (selectedCategory === 'camas') parts.push('cama ortopedica perros viscoelastica lavable');
-    else if (selectedCategory === 'juguetes') parts.push('juguetes interactivos perros puzzle olfato');
-    else if (selectedCategory === 'viaje') parts.push('arnes perro antitirones julius k9 transportin');
-    else if (selectedCategory === 'gadgets') parts.push('camara mascotas dispensador golosinas furminator');
-    else parts.push('regalos originales amantes de los perros y gatos');
+    if (selectedPetType === 'perro') {
+      if (selectedCategory === 'kong-ansiedad') parts.push('kong classic perro juguete caucho rellenable comedero antivoracidad lick mat');
+      else if (selectedCategory === 'comederos') parts.push('comedero automatico perros bebedero tolva');
+      else if (selectedCategory === 'gps') parts.push('tractive localizador gps perros collar sumergible');
+      else if (selectedCategory === 'camas') parts.push('cama ortopedica perros viscoelastica lavable');
+      else if (selectedCategory === 'juguetes') parts.push('juguetes interactivos perros mordedor puzzle inteligencia');
+      else if (selectedCategory === 'viaje') parts.push('arnes perro antitirones julius k9 funda coche maletero');
+      else if (selectedCategory === 'gadgets') parts.push('camara perros dispensador golosinas furminator deslanador');
+      else parts.push('regalos originales perros accesorios caninos');
+    } else if (selectedPetType === 'gato') {
+      if (selectedCategory === 'kong-ansiedad') parts.push('juguete interactivo gatos comedero lento lick mat alfombrilla lamido catit');
+      else if (selectedCategory === 'comederos') parts.push('catit pixi fuente agua gatos inteligente comedero automatico');
+      else if (selectedCategory === 'gps') parts.push('localizador gps gatos ligero collar tractive');
+      else if (selectedCategory === 'camas') parts.push('cama cueva gatos hamaca ventana rascador suave');
+      else if (selectedCategory === 'juguetes') parts.push('juguetes interactivos gatos circuito pelota puntero laser hierba gatera catnip');
+      else if (selectedCategory === 'viaje') parts.push('transportin gatos homologado avion mochila burbuja');
+      else if (selectedCategory === 'gadgets') parts.push('camara gatos fuente inteligente cepillo vaporizador');
+      else parts.push('regalos originales gatos rascadores accesorios felinos');
+    } else if (selectedPetType === 'roedor') {
+      if (selectedCategory === 'kong-ansiedad') parts.push('dispensador heno interactivo conejos roedores bola premios juguetes madera masticable');
+      else if (selectedCategory === 'comederos') parts.push('comedero tolva conejos cuenco ceramica pesada bebedero biberon roedores');
+      else if (selectedCategory === 'gps') parts.push('valla parque conejos roedores recinto plegable seguridad');
+      else if (selectedCategory === 'camas') parts.push('cama nido conejos hamaca cobayas tunel suave polar');
+      else if (selectedCategory === 'juguetes') parts.push('trixie tunel mimbre conejos juguetes mordedores madera heno cobayas');
+      else if (selectedCategory === 'viaje') parts.push('transportin conejos cobayas pequenos mamiferos');
+      else if (selectedCategory === 'gadgets') parts.push('cepillo suave conejos esquinero bandeja higienica roedores');
+      else parts.push('accesorios y juguetes conejos cobayas hamsters roedores');
+    } else {
+      if (selectedCategory === 'kong-ansiedad') parts.push('kong perro juguete rellenable comedero antivoracidad plato lento alfombrilla lamido lick mat');
+      else if (selectedCategory === 'comederos') parts.push('fuente agua gatos inteligente comedero automatico perros');
+      else if (selectedCategory === 'gps') parts.push('localizador gps perros sumergible collar tractive');
+      else if (selectedCategory === 'camas') parts.push('cama ortopedica perros gatos viscoelastica lavable');
+      else if (selectedCategory === 'juguetes') parts.push('juguetes interactivos mascotas perros gatos conejos puzzles');
+      else if (selectedCategory === 'viaje') parts.push('arnes perro antitirones transportin mascotas');
+      else if (selectedCategory === 'gadgets') parts.push('camara mascotas dispensador golosinas furminator');
+      else parts.push('regalos originales amantes de los perros gatos conejos');
+    }
 
     return parts.join(' ');
-  }, [selectedCategory, selectedBrand]);
+  }, [selectedCategory, selectedBrand, selectedPetType]);
 
   // Auto-fetch live products
   React.useEffect(() => {
     const hasFilter =
+      selectedPetType !== 'all' ||
       selectedCategory !== 'all' ||
       selectedBrand !== 'Todas las marcas' ||
       selectedPrice !== 'all';
@@ -241,6 +275,43 @@ export default function MascotasPage() {
 
         {/* FILTER BAR */}
         <div className="bg-white rounded-3xl border border-slate-200 p-5 sm:p-6 mb-8 shadow-xs">
+          
+          {/* ANIMAL TYPE SELECTOR (PERROS, GATOS, CONEJOS Y ROEDORES) */}
+          <div className="mb-6 pb-6 border-b border-slate-100">
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-xs font-bold uppercase tracking-wider text-rose-600 flex items-center gap-1.5">
+                <PawPrint className="w-4 h-4 text-rose-600" />
+                <span>¿Para qué tipo de animal es el regalo?</span>
+              </span>
+              <span className="text-xs font-semibold text-slate-400">
+                {selectedPetType === 'all' ? 'Todos los animales' : selectedPetType === 'perro' ? 'Perros 🐶' : selectedPetType === 'gato' ? 'Gatos 🐱' : 'Conejos & Roedores 🐰'}
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
+              {PET_TYPE_FILTERS.map((pet) => {
+                const isSelected = selectedPetType === pet.id;
+                return (
+                  <button
+                    key={pet.id}
+                    onClick={() => {
+                      setSelectedPetType(pet.id);
+                      setLiveAmazonProducts([]);
+                    }}
+                    className={`py-3 px-3.5 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 cursor-pointer border ${
+                      isSelected
+                        ? 'bg-gradient-to-r from-rose-600 to-pink-600 text-white border-rose-600 shadow-md shadow-rose-500/25 scale-[1.02]'
+                        : 'bg-slate-50 hover:bg-rose-50/50 text-slate-700 border-slate-200/90 hover:border-rose-300'
+                    }`}
+                  >
+                    <span className="text-lg">{pet.icon}</span>
+                    <span>{pet.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
           <div className="mb-5">
             <div className="flex items-center justify-between mb-3">
               <span className="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
