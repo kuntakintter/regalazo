@@ -1176,7 +1176,7 @@ export default function GiftWizard({
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+              <div className={`grid grid-cols-1 ${isRevealMode ? 'sm:grid-cols-2' : 'sm:grid-cols-3'} gap-3 pt-2`}>
                 {isRevealMode ? (
                   <>
                     <button
@@ -1213,7 +1213,7 @@ export default function GiftWizard({
                   <>
                     <button
                       onClick={() => setSelectedGender('boy')}
-                      className={`p-4 rounded-2xl text-left border transition-all flex flex-col gap-1.5 cursor-pointer ${
+                      className={`p-3.5 sm:p-4 rounded-2xl text-left border transition-all flex flex-col gap-1.5 cursor-pointer ${
                         selectedGender === 'boy'
                           ? 'border-blue-600 bg-blue-50 text-blue-950 ring-2 ring-blue-500 shadow-sm'
                           : 'border-slate-200 bg-slate-50 hover:bg-slate-100'
@@ -1222,13 +1222,13 @@ export default function GiftWizard({
                       <User className="w-6 h-6 text-blue-600 mb-1" />
                       <span className="font-bold text-sm text-slate-900">Para Él (Hombre / Chico)</span>
                       <span className="text-xs text-slate-500 leading-relaxed">
-                        Fragancias como Dior Sauvage, réplicas de cine DeLorean, motos y tecnología.
+                        Fragancias como Dior Sauvage, réplicas retro de cine, motos y tecnología.
                       </span>
                     </button>
 
                     <button
                       onClick={() => setSelectedGender('girl')}
-                      className={`p-4 rounded-2xl text-left border transition-all flex flex-col gap-1.5 cursor-pointer ${
+                      className={`p-3.5 sm:p-4 rounded-2xl text-left border transition-all flex flex-col gap-1.5 cursor-pointer ${
                         selectedGender === 'girl'
                           ? 'border-pink-600 bg-pink-50 text-pink-950 ring-2 ring-pink-500 shadow-sm'
                           : 'border-slate-200 bg-slate-50 hover:bg-slate-100'
@@ -1237,45 +1237,30 @@ export default function GiftWizard({
                       <Heart className="w-6 h-6 text-pink-600 mb-1" />
                       <span className="font-bold text-sm text-slate-900">Para Ella (Mujer / Chica)</span>
                       <span className="text-xs text-slate-500 leading-relaxed">
-                        Armani Sì, sets botánicos LEGO Icons, escapadas relax con spa y coctelería gourmet.
+                        Armani Sì, sets botánicos LEGO Icons, spas y coctelería gourmet.
                       </span>
                     </button>
 
                     <button
                       onClick={() => setSelectedGender('all')}
-                      className={`p-4 rounded-2xl text-left border transition-all flex flex-col gap-1.5 sm:col-span-2 cursor-pointer ${
+                      className={`p-3.5 sm:p-4 rounded-2xl text-left border transition-all flex flex-col gap-1.5 cursor-pointer ${
                         selectedGender === 'all'
                           ? 'border-indigo-600 bg-indigo-50 text-indigo-950 ring-2 ring-indigo-500 shadow-sm'
                           : 'border-slate-200 bg-slate-50 hover:bg-slate-100'
                       }`}
                     >
                       <Users className="w-6 h-6 text-indigo-600 mb-1" />
-                      <span className="font-bold text-sm text-slate-900">Para Pareja / Amigo / Unisex / Cualquier Destinatario</span>
+                      <span className="font-bold text-sm text-slate-900">Todos / Unisex / Pareja</span>
                       <span className="text-xs text-slate-500 leading-relaxed">
-                        Smartphones buque insignia, juegos de mesa expertos (Wingspan), cafeteras Cecotec y escapadas.
+                        Smartphones buque insignia, juegos de mesa expertos y escapadas.
                       </span>
                     </button>
                   </>
                 ) : (
                   <>
                     <button
-                      onClick={() => setSelectedGender('all')}
-                      className={`p-4 rounded-2xl text-left border transition-all flex flex-col gap-1.5 cursor-pointer ${
-                        selectedGender === 'all'
-                          ? 'border-indigo-600 bg-indigo-50 text-indigo-950 ring-2 ring-indigo-500 shadow-sm'
-                          : 'border-slate-200 bg-slate-50 hover:bg-slate-100'
-                      }`}
-                    >
-                      <Users className="w-6 h-6 text-indigo-600 mb-1" />
-                      <span className="font-bold text-sm text-slate-900">Todos / Unisex / Indiferente</span>
-                      <span className="text-xs text-slate-500 leading-relaxed">
-                        Recomendaciones neutrales, cómic, manga, cartas Pokémon y superventas.
-                      </span>
-                    </button>
-
-                    <button
                       onClick={() => setSelectedGender('boy')}
-                      className={`p-4 rounded-2xl text-left border transition-all flex flex-col gap-1.5 cursor-pointer ${
+                      className={`p-3.5 sm:p-4 rounded-2xl text-left border transition-all flex flex-col gap-1.5 cursor-pointer ${
                         selectedGender === 'boy'
                           ? 'border-blue-600 bg-blue-50 text-blue-950 ring-2 ring-blue-500 shadow-sm'
                           : 'border-slate-200 bg-slate-50 hover:bg-slate-100'
@@ -1284,13 +1269,13 @@ export default function GiftWizard({
                       <User className="w-6 h-6 text-blue-600 mb-1" />
                       <span className="font-bold text-sm text-slate-900">Para Chico / Amigo</span>
                       <span className="text-xs text-slate-500 leading-relaxed">
-                        Cultura friki, gaming, cartas coleccionables, coches teledirigidos o ropa urbana.
+                        Cultura friki, gaming, cartas coleccionables, coches o ropa urbana.
                       </span>
                     </button>
 
                     <button
                       onClick={() => setSelectedGender('girl')}
-                      className={`p-4 rounded-2xl text-left border transition-all flex flex-col gap-1.5 cursor-pointer ${
+                      className={`p-3.5 sm:p-4 rounded-2xl text-left border transition-all flex flex-col gap-1.5 cursor-pointer ${
                         selectedGender === 'girl'
                           ? 'border-pink-600 bg-pink-50 text-pink-950 ring-2 ring-pink-500 shadow-sm'
                           : 'border-slate-200 bg-slate-50 hover:bg-slate-100'
@@ -1299,26 +1284,24 @@ export default function GiftWizard({
                       <Heart className="w-6 h-6 text-pink-600 mb-1" />
                       <span className="font-bold text-sm text-slate-900">Para Chica / Amiga</span>
                       <span className="text-xs text-slate-500 leading-relaxed">
-                        Creatividad, manga, fotografía instantánea Instax, skincare y estilo propio.
+                        Creatividad, manga, fotografía instantánea Instax, skincare y estilo.
                       </span>
                     </button>
 
-                    {selectedAge === '0-12m' && (
-                      <button
-                        onClick={() => setSelectedGender('reveal')}
-                        className={`p-4 rounded-2xl text-left border transition-all flex flex-col gap-1.5 cursor-pointer ${
-                          selectedGender === 'reveal'
-                            ? 'border-amber-500 bg-amber-50 text-amber-950 ring-2 ring-amber-500 shadow-sm'
-                            : 'border-slate-200 bg-slate-50 hover:bg-slate-100'
-                        }`}
-                      >
-                        <PartyPopper className="w-6 h-6 text-amber-500 mb-1" />
-                        <span className="font-bold text-sm text-slate-900">Fiesta Revelación de Género</span>
-                        <span className="text-xs text-slate-500 leading-relaxed">
-                          Kits de fiesta para revelar si el recién nacido será niño o niña.
-                        </span>
-                      </button>
-                    )}
+                    <button
+                      onClick={() => setSelectedGender('all')}
+                      className={`p-3.5 sm:p-4 rounded-2xl text-left border transition-all flex flex-col gap-1.5 cursor-pointer ${
+                        selectedGender === 'all'
+                          ? 'border-indigo-600 bg-indigo-50 text-indigo-950 ring-2 ring-indigo-500 shadow-sm'
+                          : 'border-slate-200 bg-slate-50 hover:bg-slate-100'
+                      }`}
+                    >
+                      <Users className="w-6 h-6 text-indigo-600 mb-1" />
+                      <span className="font-bold text-sm text-slate-900">Todos / Unisex</span>
+                      <span className="text-xs text-slate-500 leading-relaxed">
+                        Recomendaciones neutrales, cómic, manga, cartas Pokémon y superventas.
+                      </span>
+                    </button>
                   </>
                 )}
               </div>
