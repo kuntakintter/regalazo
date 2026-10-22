@@ -217,8 +217,7 @@ export const AGE_SUBCATEGORIES_MAP: Record<string, string[]> = {
 
 export const GENERAL_CATEGORY_MAPPING: Record<string, string[]> = {
   'Cartas y Sobres Pokémon': [
-    'Cartas y Sobres Pokémon',
-    'Figuras de Colección y Cine'
+    'Cartas y Sobres Pokémon'
   ],
   'Figuras de Colección y Cine': [
     'Figuras de Colección y Cine'
@@ -457,11 +456,11 @@ export const ANIME_SERIES_SUBFILTERS: AnimeSeriesSubfilter[] = [
   },
   {
     id: 'cine-retro',
-    label: 'Cine & Retro (DeLorean, Star Wars, Batman...)',
+    label: 'Cine & Retro (Jurassic Park, Fast & Furious, Jumanji, DeLorean...)',
     shortLabel: 'Cine & Retro',
     icon: '🏎️',
-    keywords: ['delorean', 'regreso al futuro', 'star wars', 'batman', 'batmovil', 'harry potter', 'dumbledore', 'darth vader', 'mandalorian', 'tumbler', 'diecast', 'varita'],
-    searchPhrase: 'delorean regreso al futuro jada toys star wars black series batman tumbler diecast'
+    keywords: ['delorean', 'regreso al futuro', 'star wars', 'batman', 'batmovil', 'harry potter', 'dumbledore', 'darth vader', 'mandalorian', 'tumbler', 'diecast', 'varita', 'jurassic park', 'jumanji', 'blade', 'fast & furious', 'a todo gas', 'dodge charger', 'toretto'],
+    searchPhrase: 'coches cine coleccion jurassic park jeep fast and furious charger delorean batman jada toys'
   }
 ];
 
