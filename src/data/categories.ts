@@ -103,6 +103,7 @@ export const PRICE_FILTERS = [
 export const AGE_SUBCATEGORIES_MAP: Record<string, string[]> = {
   'all': [
     'Smartphones y Telefonía',
+    'Cartas y Sobres Pokémon',
     'Figuras de Colección y Cine',
     'Juegos de Mesa y Cartas',
     'LEGO y Construcción',
@@ -149,6 +150,7 @@ export const AGE_SUBCATEGORIES_MAP: Record<string, string[]> = {
     'Colonias Infantiles Frescas'
   ],
   '7-9': [
+    'Cartas y Sobres Pokémon',
     'Scalextric y Pistas de Carreras',
     'Coches RC y Teledirigidos',
     'LEGO Creator y Construcción',
@@ -160,6 +162,7 @@ export const AGE_SUBCATEGORIES_MAP: Record<string, string[]> = {
     'Moda y Ropa Deportiva Infantil'
   ],
   '10-12': [
+    'Cartas y Sobres Pokémon',
     'Figuras de Colección y Cine',
     'Juegos de Cartas Competitivos (Virus!)',
     'Drones RC y Robótica STEM',
@@ -171,6 +174,7 @@ export const AGE_SUBCATEGORIES_MAP: Record<string, string[]> = {
     'Moda Urbana, Sudaderas y Mochilas'
   ],
   '13-15': [
+    'Cartas y Sobres Pokémon',
     'Figuras de Colección y Cine',
     'Smartphones y Telefonía',
     'Auriculares Inalámbricos y Audio',
@@ -183,6 +187,7 @@ export const AGE_SUBCATEGORIES_MAP: Record<string, string[]> = {
     'Mochilas Urbanas y Viaje'
   ],
   '16-18': [
+    'Cartas y Sobres Pokémon',
     'Figuras de Colección y Cine',
     'Smartphones y Telefonía',
     'Videojuegos y Accesorios PS5',
@@ -194,6 +199,7 @@ export const AGE_SUBCATEGORIES_MAP: Record<string, string[]> = {
     'Moda Urbana, Ropa y Accesorios'
   ],
   '+18': [
+    'Cartas y Sobres Pokémon',
     'Figuras de Colección y Cine',
     'Smartphones y Telefonía',
     'Escapadas y Experiencias (Smartbox)',
@@ -210,6 +216,10 @@ export const AGE_SUBCATEGORIES_MAP: Record<string, string[]> = {
 };
 
 export const GENERAL_CATEGORY_MAPPING: Record<string, string[]> = {
+  'Cartas y Sobres Pokémon': [
+    'Cartas y Sobres Pokémon',
+    'Figuras de Colección y Cine'
+  ],
   'Figuras de Colección y Cine': [
     'Figuras de Colección y Cine'
   ],

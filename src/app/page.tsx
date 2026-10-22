@@ -267,6 +267,8 @@ export default function HomePage() {
       if (animeObj) {
         parts.push(animeObj.searchPhrase);
       }
+    } else if (selectedCategory === 'Cartas y Sobres Pokémon') {
+      parts.push('cartas pokemon sobres booster box elite trainer album tcg oficial');
     } else if (selectedCategory === 'Figuras de Colección y Cine') {
       parts.push('figuras coleccion anime peliculas delorean regreso al futuro');
     } else if (selectedCategory && selectedCategory !== 'all') {

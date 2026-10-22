@@ -30,6 +30,7 @@ import {
   Target,
   Smartphone,
   Clapperboard,
+  Zap,
   ArrowUpDown,
   Sparkles
 } from 'lucide-react';
@@ -384,6 +385,7 @@ export default function FilterBar({
           </button>
           {availableSubcategories.map((subcat) => {
             const isSmartphone = subcat === 'Smartphones y Telefonía';
+            const isPokemon = subcat === 'Cartas y Sobres Pokémon';
             const isFigures = subcat === 'Figuras de Colección y Cine';
             const isClothing = isClothingCategory(subcat);
             const isSelected = selectedCategory === subcat;
@@ -399,6 +401,8 @@ export default function FilterBar({
                 className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
                   isSelected
                     ? 'bg-indigo-600 text-white font-bold shadow-xs'
+                    : isPokemon
+                    ? 'bg-yellow-50 text-yellow-950 border border-yellow-300 hover:bg-yellow-100 font-bold'
                     : isFigures
                     ? 'bg-amber-50 text-amber-800 border border-amber-300 hover:bg-amber-100 font-bold'
                     : isSmartphone
@@ -408,6 +412,7 @@ export default function FilterBar({
                     : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                 }`}
               >
+                {isPokemon && <Zap className={`w-3.5 h-3.5 ${isSelected ? 'text-white' : 'text-amber-500 fill-amber-400'}`} />}
                 {isFigures && <Clapperboard className={`w-3.5 h-3.5 ${isSelected ? 'text-white' : 'text-amber-600'}`} />}
                 {isSmartphone && <Smartphone className={`w-3.5 h-3.5 ${isSelected ? 'text-white' : 'text-indigo-600'}`} />}
                 {isClothing && <Sparkles className={`w-3.5 h-3.5 ${isSelected ? 'text-white' : 'text-purple-600'}`} />}
