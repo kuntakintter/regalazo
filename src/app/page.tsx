@@ -568,7 +568,7 @@ export default function HomePage() {
         {searchQuery.trim() !== '' && (
           <div className="mb-6 flex flex-wrap items-center justify-between gap-3 p-4 bg-indigo-50/80 border border-indigo-200 rounded-2xl shadow-xs">
             <div className="flex items-center gap-2.5 text-indigo-950 font-bold text-sm">
-              <span className="flex h-2.5 w-2.5 rounded-full bg-indigo-600 animate-pulse"></span>
+              <span className="flex h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
               <span>Resultados para la búsqueda: <mark className="bg-indigo-100 text-indigo-900 px-2 py-0.5 rounded font-black">&ldquo;{searchQuery}&rdquo;</mark></span>
             </div>
             <button

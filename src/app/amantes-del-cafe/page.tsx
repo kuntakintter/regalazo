@@ -207,7 +207,7 @@ export default function CafePage() {
         {/* HERO SECTION */}
         <section className="text-center py-6 sm:py-10 max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-4 shadow-xs border border-amber-200 bg-amber-50 text-amber-900">
-            <span className="flex h-2 w-2 rounded-full bg-amber-600 animate-pulse"></span>
+            <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
             <span>Edición Barista & Café de Especialidad {new Date().getFullYear()} • Sabor y Extracción Perfecta</span>
           </div>
 
