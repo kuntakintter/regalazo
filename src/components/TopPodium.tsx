@@ -197,9 +197,9 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
       cardClass: isDark
         ? 'border-2 border-amber-400 bg-gradient-to-b from-amber-500/20 via-slate-900 to-slate-950 shadow-xl shadow-amber-500/15 ring-2 ring-amber-400/30 text-white'
         : 'border-2 border-amber-400 bg-gradient-to-b from-amber-500/10 via-white to-amber-50/40 shadow-xl shadow-amber-500/15 ring-2 ring-amber-400/25 text-slate-900',
-      orderClass: 'order-1 md:order-2',
-      podiumHeight: 'h-32 sm:h-38 md:h-44',
-      numberSize: 'text-5xl sm:text-6xl md:text-7xl',
+      orderClass: 'order-2',
+      podiumHeight: 'h-16 sm:h-32 md:h-44',
+      numberSize: 'text-3xl sm:text-5xl md:text-7xl',
       podiumNumber: '1',
       podiumSubtitle: 'ORO · GANADOR',
       podiumBg: 'bg-gradient-to-b from-[#fde68a] via-[#f59e0b] to-[#b45309]',
@@ -216,9 +216,9 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
       cardClass: isDark
         ? 'border-2 border-slate-500 bg-gradient-to-b from-slate-800 via-slate-900 to-slate-950 shadow-lg text-white'
         : 'border-2 border-slate-300 bg-gradient-to-b from-slate-100/60 via-white to-slate-50 shadow-md text-slate-900',
-      orderClass: 'order-2 md:order-1',
-      podiumHeight: 'h-24 sm:h-28 md:h-32',
-      numberSize: 'text-4xl sm:text-5xl md:text-6xl',
+      orderClass: 'order-1',
+      podiumHeight: 'h-12 sm:h-24 md:h-32',
+      numberSize: 'text-2xl sm:text-4xl md:text-6xl',
       podiumNumber: '2',
       podiumSubtitle: 'PLATA · 2º PUESTO',
       podiumBg: 'bg-gradient-to-b from-[#f8fafc] via-[#cbd5e1] to-[#64748b]',
@@ -235,9 +235,9 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
       cardClass: isDark
         ? 'border-2 border-orange-500/70 bg-gradient-to-b from-orange-500/15 via-slate-900 to-slate-950 shadow-lg text-white'
         : 'border-2 border-orange-200 bg-gradient-to-b from-orange-50/40 via-white to-orange-50/20 shadow-md text-slate-900',
-      orderClass: 'order-3 md:order-3',
-      podiumHeight: 'h-20 sm:h-22 md:h-26',
-      numberSize: 'text-3xl sm:text-4xl md:text-5xl',
+      orderClass: 'order-3',
+      podiumHeight: 'h-9 sm:h-20 md:h-26',
+      numberSize: 'text-xl sm:text-3xl md:text-5xl',
       podiumNumber: '3',
       podiumSubtitle: 'BRONCE · 3º PUESTO',
       podiumBg: 'bg-gradient-to-b from-[#d97706] via-[#92400e] to-[#451a03]',
@@ -346,7 +346,7 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
       </div>
 
       {/* Podium Stage Container with Lateral Arrow Navigation */}
-      <div className="max-w-4xl mx-auto relative px-2 sm:px-4 md:px-0">
+      <div className="max-w-4xl mx-auto relative px-1 sm:px-4 md:px-0">
         {/* Left Arrow Navigation Button (Desktop only, hidden on mobile) */}
         {podiumSets.length > 1 && (
           <button
@@ -373,7 +373,7 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
 
         {/* 3D Olympic Podium Grid (2nd Silver on left, 1st Gold elevated in center, 3rd Bronze on right) */}
         <div
-          className={`grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 items-end pt-5 transition-opacity duration-200 ${
+          className={`grid grid-cols-3 gap-1.5 sm:gap-4 md:gap-5 items-end pt-3 sm:pt-5 transition-opacity duration-200 ${
             isAnimating ? 'opacity-40' : 'opacity-100'
           }`}
         >
@@ -391,27 +391,29 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
               >
                 {/* 1. Compact Product Card perched atop the Podium */}
                 <div
-                  className={`rounded-t-2xl rounded-b-none p-3.5 sm:p-4 flex flex-col justify-between transition-all duration-300 relative ${
-                    isGold ? 'pt-5 sm:pt-6 z-10' : 'z-0'
+                  className={`rounded-t-xl sm:rounded-t-2xl rounded-b-none p-1.5 sm:p-3.5 md:p-4 flex flex-col justify-between transition-all duration-300 relative ${
+                    isGold ? 'pt-4 sm:pt-6 z-10' : 'z-0'
                   } ${pick.cardClass}`}
                 >
                   {/* Floating Winner Crown for #1 */}
                   {isGold && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 text-slate-950 font-black text-[10px] sm:text-[11px] px-3 py-0.5 rounded-full shadow-md border-2 border-white flex items-center gap-1 uppercase tracking-wider whitespace-nowrap z-20">
+                    <div className="absolute -top-2.5 sm:-top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 text-slate-950 font-black text-[7.5px] xs:text-[9px] sm:text-[10px] md:text-[11px] px-1.5 sm:px-3 py-0.5 rounded-full shadow-md border border-white sm:border-2 flex items-center gap-0.5 sm:gap-1 uppercase tracking-wider whitespace-nowrap z-20">
                       <span>👑</span>
-                      <span>GANADOR DEL RANKING</span>
+                      <span className="hidden sm:inline">GANADOR DEL RANKING</span>
+                      <span className="sm:hidden">GANADOR</span>
                     </div>
                   )}
 
                   {/* Top Ribbon & Rating */}
-                  <div className="flex items-center justify-between gap-1.5 mb-2">
-                    <span className={`px-2 py-0.5 rounded-lg text-[11px] font-bold flex items-center gap-1 ${pick.badgeClass}`}>
-                      {pick.badgeText}
+                  <div className="flex items-center justify-between gap-1 mb-1 sm:mb-2">
+                    <span className={`px-1 sm:px-2 py-0.5 rounded text-[8px] sm:text-[11px] font-bold flex items-center gap-0.5 sm:gap-1 truncate ${pick.badgeClass}`}>
+                      <span className="hidden sm:inline">{pick.badgeText}</span>
+                      <span className="sm:hidden">{pick.rank === 1 ? '🥇 Nº1' : pick.rank === 2 ? '🥈 Nº2' : '🥉 Nº3'}</span>
                     </span>
-                    <div className="flex items-center gap-1 text-amber-500 text-xs font-bold">
-                      <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                    <div className="flex items-center gap-0.5 sm:gap-1 text-amber-500 text-[10px] sm:text-xs font-bold shrink-0">
+                      <Star className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 fill-amber-400 text-amber-400" />
                       <span className={isDark ? 'text-white' : 'text-slate-900'}>{pick.product.rating}</span>
-                      <span className={`text-[10px] ${isDark ? 'text-slate-400' : 'text-slate-400'}`}>
+                      <span className={`text-[9px] sm:text-[10px] hidden md:inline ${isDark ? 'text-slate-400' : 'text-slate-400'}`}>
                         ({pick.product.reviewsCount?.toLocaleString()})
                       </span>
                     </div>
@@ -422,28 +424,28 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
                     href={directUrl}
                     target="_blank"
                     rel="nofollow sponsored noopener noreferrer"
-                    className="relative w-full h-32 sm:h-36 md:h-40 bg-white rounded-xl p-2 flex items-center justify-center overflow-hidden mb-2.5 border border-slate-200/80 group-hover:border-slate-300 transition-colors cursor-pointer"
+                    className="relative w-full h-20 xs:h-24 sm:h-36 md:h-40 bg-white rounded-lg sm:rounded-xl p-1 sm:p-2 flex items-center justify-center overflow-hidden mb-1.5 sm:mb-2.5 border border-slate-200/80 group-hover:border-slate-300 transition-colors cursor-pointer"
                   >
                     {!failedImages[pick.product.id] ? (
                       <Image
                         src={pick.product.imageUrl}
                         alt={pick.product.title}
                         fill
-                        sizes="(max-width: 768px) 100vw, 300px"
-                        className="object-contain p-1.5 group-hover:scale-105 transition-transform duration-300"
+                        sizes="(max-width: 640px) 33vw, 300px"
+                        className="object-contain p-1 group-hover:scale-105 transition-transform duration-300"
                         unoptimized={pick.product.imageUrl.startsWith('http')}
                         onError={() => setFailedImages((prev) => ({ ...prev, [pick.product.id]: true }))}
                       />
                     ) : (
-                      <div className="w-full h-full bg-slate-50 flex flex-col items-center justify-center text-slate-400 p-2 text-center">
-                        <ShoppingBag className="w-8 h-8 mb-1 text-amber-500/70" />
-                        <span className="text-[11px] font-bold text-slate-700 line-clamp-2">
+                      <div className="w-full h-full bg-slate-50 flex flex-col items-center justify-center text-slate-400 p-1 text-center">
+                        <ShoppingBag className="w-5 h-5 sm:w-8 sm:h-8 mb-0.5 text-amber-500/70" />
+                        <span className="text-[9px] sm:text-[11px] font-bold text-slate-700 line-clamp-2">
                           {pick.product.title}
                         </span>
                       </div>
                     )}
-                    <span className="absolute bottom-1.5 right-1.5 text-[9px] font-bold bg-slate-900/85 text-white px-1.5 py-0.5 rounded backdrop-blur-xs flex items-center gap-1 z-10">
-                      <ShieldCheck className="w-2.5 h-2.5 text-emerald-400" />
+                    <span className="absolute bottom-1 right-1 text-[7.5px] sm:text-[9px] font-bold bg-slate-900/85 text-white px-1 sm:px-1.5 py-0.5 rounded backdrop-blur-xs flex items-center gap-0.5 z-10">
+                      <ShieldCheck className="w-2 h-2 sm:w-2.5 sm:h-2.5 text-emerald-400" />
                       Prime
                     </span>
                     <button
@@ -455,13 +457,13 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
                       }}
                       title="Añadir a votación en grupo"
                       aria-label="Añadir o quitar de la votación"
-                      className={`absolute top-1.5 right-1.5 w-6 h-6 rounded-full backdrop-blur-xs flex items-center justify-center transition-transform shadow-2xs z-10 cursor-pointer border ${
+                      className={`absolute top-1 right-1 w-5 h-5 sm:w-6 sm:h-6 rounded-full backdrop-blur-xs flex items-center justify-center transition-transform shadow-2xs z-10 cursor-pointer border ${
                         isItemInList(pick.product.id)
                           ? 'bg-rose-50 border-rose-200 text-rose-500 scale-110'
                           : 'bg-white/90 border-slate-100 text-slate-400 hover:text-rose-500 hover:scale-110'
                       }`}
                     >
-                      <Heart className={`w-3 h-3 ${isItemInList(pick.product.id) ? 'fill-rose-500 text-rose-500' : ''}`} />
+                      <Heart className={`w-2.5 h-2.5 sm:w-3 sm:h-3 ${isItemInList(pick.product.id) ? 'fill-rose-500 text-rose-500' : ''}`} />
                     </button>
                   </a>
 
@@ -470,7 +472,7 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
                     href={directUrl}
                     target="_blank"
                     rel="nofollow sponsored noopener noreferrer"
-                    className={`font-bold text-xs sm:text-sm line-clamp-2 transition-colors mb-2 leading-snug min-h-[2.6rem] cursor-pointer ${
+                    className={`font-bold text-[9.5px] xs:text-[10px] sm:text-xs md:text-sm line-clamp-2 transition-colors mb-1 sm:mb-2 leading-tight sm:leading-snug min-h-[1.7rem] sm:min-h-[2.6rem] cursor-pointer ${
                       isDark ? 'text-white hover:text-amber-400' : 'text-slate-900 hover:text-amber-600'
                     }`}
                     title={pick.product.title}
@@ -478,9 +480,9 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
                     {pick.product.title}
                   </a>
 
-                  {/* Why it's on podium */}
+                  {/* Why it's on podium (desktop/tablet only to keep mobile ultra-compact) */}
                   <div
-                    className={`p-1.5 rounded-lg border mb-2.5 flex items-start gap-1.5 text-[11px] leading-tight ${
+                    className={`p-1.5 rounded-lg border mb-2.5 hidden sm:flex items-start gap-1.5 text-[11px] leading-tight ${
                       isDark ? 'bg-slate-800/80 border-slate-700 text-slate-300' : 'bg-slate-50 border-slate-200 text-slate-600'
                     }`}
                   >
@@ -490,14 +492,14 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
 
                   {/* Price & Amazon Button */}
                   <div
-                    className={`pt-2.5 border-t flex items-center justify-between gap-2 ${
+                    className={`pt-1.5 sm:pt-2.5 border-t flex flex-col sm:flex-row items-center justify-between gap-1 sm:gap-2 ${
                       isDark ? 'border-slate-800' : 'border-slate-200/70'
                     }`}
                   >
-                    <div>
-                      <span className="text-[9px] uppercase font-bold text-slate-400 block leading-none">Oferta</span>
+                    <div className="w-full sm:w-auto text-center sm:text-left">
+                      <span className="text-[7.5px] sm:text-[9px] uppercase font-bold text-slate-400 block leading-none hidden sm:block">Oferta</span>
                       <span
-                        className={`text-base sm:text-lg font-black tracking-tight ${
+                        className={`text-xs sm:text-base md:text-lg font-black tracking-tight leading-none ${
                           isDark ? 'text-white' : 'text-slate-950'
                         }`}
                       >
@@ -509,31 +511,32 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
                       href={directUrl}
                       target="_blank"
                       rel="nofollow sponsored noopener noreferrer"
-                      className={`px-3 py-1.5 rounded-full font-bold text-xs flex items-center gap-1 transition-all shadow-2xs hover:scale-102 active:scale-98 shrink-0 cursor-pointer ${pick.btnClass}`}
+                      className={`w-full sm:w-auto px-1.5 sm:px-3 py-1 sm:py-1.5 rounded-full font-bold text-[9px] sm:text-xs flex items-center justify-center gap-1 transition-all shadow-2xs hover:scale-102 active:scale-98 shrink-0 cursor-pointer ${pick.btnClass}`}
                     >
-                      <span>Ir al producto</span>
-                      <ExternalLink className="w-3 h-3" />
+                      <span className="hidden sm:inline">Ir al producto</span>
+                      <span className="sm:hidden">Ver</span>
+                      <ExternalLink className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                     </a>
                   </div>
                 </div>
 
                 {/* 2. Podium Pedestal Base (Matches 3D Olympic Podium: 2 on Left, 1 Center, 3 on Right) */}
                 <div
-                  className={`w-full flex flex-col items-center justify-center py-2 sm:py-2.5 rounded-b-2xl border-x-2 border-b-2 relative overflow-hidden transition-all select-none ${pick.podiumHeight} ${pick.podiumBg} ${pick.podiumBorder} ${pick.podiumHighlight}`}
+                  className={`w-full flex flex-col items-center justify-center py-1 sm:py-2.5 rounded-b-xl sm:rounded-b-2xl border-x-2 border-b-2 relative overflow-hidden transition-all select-none ${pick.podiumHeight} ${pick.podiumBg} ${pick.podiumBorder} ${pick.podiumHighlight}`}
                 >
                   {/* Subtle 3D Top Bevel Light Line */}
-                  <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-white/80 to-transparent" />
+                  <div className="absolute top-0 inset-x-0 h-0.5 sm:h-1 bg-gradient-to-r from-transparent via-white/80 to-transparent" />
 
                   {/* Giant 3D Podium Number */}
                   <span
-                    className={`font-black text-white tracking-tighter drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)] leading-none ${pick.numberSize}`}
+                    className={`font-black text-white tracking-tighter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] sm:drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)] leading-none ${pick.numberSize}`}
                   >
                     {pick.podiumNumber}
                   </span>
 
                   {/* Podium Subtitle Ribbon */}
                   <span
-                    className={`text-[9px] sm:text-[10px] font-black tracking-wider uppercase px-2 py-0.5 rounded-full mt-1.5 backdrop-blur-xs whitespace-nowrap shrink-0 ${
+                    className={`text-[7.5px] sm:text-[10px] font-black tracking-wider uppercase px-1.5 sm:px-2 py-0.5 rounded-full mt-1 sm:mt-1.5 backdrop-blur-xs whitespace-nowrap shrink-0 ${
                       pick.rank === 1
                         ? 'bg-amber-950/20 text-amber-950 border border-amber-900/20'
                         : pick.rank === 2
@@ -541,7 +544,8 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
                         : 'bg-black/35 text-amber-100 border border-white/20'
                     }`}
                   >
-                    {pick.podiumSubtitle}
+                    <span className="hidden sm:inline">{pick.podiumSubtitle}</span>
+                    <span className="sm:hidden">{pick.rank === 1 ? 'ORO' : pick.rank === 2 ? 'PLATA' : 'BRONCE'}</span>
                   </span>
                 </div>
               </div>
