@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Product } from '@/data/products';
 import { getAmazonProductUrl } from '@/lib/amazon';
 import { useCurrency } from '@/context/CurrencyContext';
-import { ExternalLink, Star, Heart, Share2, ShoppingBag, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Star, Heart, Share2, ShoppingBag, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
@@ -65,9 +65,9 @@ export default function ProductCard({ product }: ProductCardProps) {
   };
 
   return (
-    <article className="group flex flex-col rounded-xl overflow-hidden border border-slate-200/90 hover:border-amber-400 bg-white shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
-      {/* Product Image Viewport (Amazon / Banggood Compact Style) */}
-      <div className="relative aspect-square overflow-hidden bg-white p-1.5 sm:p-2">
+    <article className="group flex flex-col justify-between p-2.5 sm:p-3 rounded-2xl bg-white border border-slate-200/70 hover:border-slate-300 hover:shadow-lg transition-all duration-200 relative">
+      {/* Product Image Viewport - Clean Amazon White Box */}
+      <div className="relative aspect-square w-full mb-2 bg-slate-50/60 rounded-xl overflow-hidden p-2 flex items-center justify-center">
         <a 
           href={directProductUrl}
           target="_blank"
@@ -83,7 +83,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               unoptimized={currentImgSrc.startsWith('http')}
               onError={() => setHasImgError(true)}
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 16vw"
-              className="object-contain p-1.5 transition-all duration-200 group-hover:scale-105"
+              className="object-contain p-1 transition-transform duration-200 group-hover:scale-105"
             />
           ) : (
             <div className="w-full h-full bg-slate-50 flex flex-col items-center justify-center text-slate-400 p-2 text-center">
@@ -114,15 +114,6 @@ export default function ProductCard({ product }: ProductCardProps) {
             </button>
           </>
         )}
-        
-        {/* Top Badge */}
-        {product.badge && (
-          <div className="absolute top-1.5 left-1.5 z-10 pointer-events-none">
-            <span className="px-1.5 py-0.5 rounded text-[9px] font-extrabold uppercase tracking-wider bg-amber-500 text-slate-950 shadow-2xs">
-              {product.badge}
-            </span>
-          </div>
-        )}
 
         {/* Action icons (Wishlist & Share) */}
         <div className="absolute top-1.5 right-1.5 flex items-center gap-1 z-10">
@@ -133,34 +124,37 @@ export default function ProductCard({ product }: ProductCardProps) {
               setIsLiked(!isLiked);
             }}
             aria-label="Guardar en favoritos"
-            className="w-6 h-6 rounded-full bg-white/90 backdrop-blur-xs flex items-center justify-center text-slate-500 hover:text-rose-500 hover:scale-110 transition-transform shadow-2xs cursor-pointer border border-slate-100"
+            className="w-6 h-6 rounded-full bg-white/90 backdrop-blur-xs flex items-center justify-center text-slate-400 hover:text-rose-500 hover:scale-110 transition-transform shadow-2xs cursor-pointer border border-slate-100"
           >
             <Heart className={`w-3 h-3 ${isLiked ? 'fill-rose-500 text-rose-500' : ''}`} />
           </button>
           <button
             onClick={handleShare}
             aria-label="Compartir idea"
-            className="w-6 h-6 rounded-full bg-white/90 backdrop-blur-xs flex items-center justify-center text-slate-500 hover:text-slate-950 hover:scale-110 transition-transform shadow-2xs cursor-pointer border border-slate-100"
+            className="w-6 h-6 rounded-full bg-white/90 backdrop-blur-xs flex items-center justify-center text-slate-400 hover:text-slate-950 hover:scale-110 transition-transform shadow-2xs cursor-pointer border border-slate-100"
           >
             <Share2 className="w-3 h-3" />
           </button>
         </div>
       </div>
 
-      {/* Product Content */}
-      <div className="p-2 sm:p-2.5 flex flex-col flex-1 justify-between bg-white border-t border-slate-100">
+      {/* Product Content (Amazon Exact Clean Layout) */}
+      <div className="flex flex-col flex-1 justify-between">
         <div>
-          {/* Rating and Reviews */}
-          <div className="flex items-center gap-1 mb-1 text-[11px]">
-            <Star className="w-3 h-3 fill-amber-400 text-amber-400 shrink-0" />
-            <span className="font-black text-slate-900">{product.rating}</span>
+          {/* Badge: Amazon Red Flash Deal or Orange Bestseller */}
+          <div className="mb-1 flex items-center gap-1.5">
+            {product.badge && (
+              <span className="text-[10px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-xs bg-[#cc0c39] text-white">
+                {product.badge}
+              </span>
+            )}
             <span className="text-[10px] text-slate-400 font-medium truncate">
-              ({product.reviewsCount ? product.reviewsCount.toLocaleString() : '100+'})
+              {product.subcategory}
             </span>
           </div>
 
-          {/* H3 Title (2 lines) */}
-          <h3 className="font-semibold text-xs leading-snug text-slate-800 line-clamp-2 group-hover:text-amber-800 transition-colors mb-1.5 min-h-[2rem]">
+          {/* Title (Amazon clean style: text-slate-900, 2 lines, no heavy cards) */}
+          <h3 className="font-medium text-xs sm:text-[13px] leading-snug text-slate-900 line-clamp-2 group-hover:text-[#c45500] transition-colors mb-1 min-h-[2rem]">
             <a
               href={directProductUrl}
               target="_blank"
@@ -170,34 +164,56 @@ export default function ProductCard({ product }: ProductCardProps) {
               {product.title}
             </a>
           </h3>
+
+          {/* Rating and Reviews (Amazon star rating with blue review count) */}
+          <div className="flex items-center gap-1 text-[11px] mb-1.5">
+            <div className="flex items-center text-amber-500">
+              {[...Array(5)].map((_, i) => (
+                <Star
+                  key={i}
+                  className={`w-3 h-3 ${
+                    i < Math.floor(product.rating)
+                      ? 'fill-amber-400 text-amber-400'
+                      : 'fill-slate-200 text-slate-200'
+                  }`}
+                />
+              ))}
+            </div>
+            <span className="font-bold text-slate-900 text-xs ml-0.5">{product.rating}</span>
+            <span className="text-[#007185] hover:underline font-medium text-[11px]">
+              ({product.reviewsCount ? product.reviewsCount.toLocaleString() : '120'})
+            </span>
+          </div>
         </div>
 
-        {/* Pricing & CTA Button */}
-        <div className="pt-1.5 border-t border-slate-100">
-          <div className="flex items-center justify-between gap-1 mb-1.5">
-            <span className="text-sm sm:text-base font-black text-slate-950 tracking-tight">
+        {/* Pricing, Prime & Amazon Official Yellow Pill Button */}
+        <div className="pt-1 mt-auto">
+          {/* Price & Prime Badge */}
+          <div className="flex items-baseline gap-1 mb-0.5">
+            <span className="text-base sm:text-lg font-black text-slate-950 tracking-tight">
               {formatPrice(product.priceText)}
-            </span>
-            <span className="text-[9px] font-bold text-amber-900 bg-amber-50 border border-amber-200 px-1 py-0.2 rounded">
-              Prime
             </span>
           </div>
 
-          {/* CTA Button */}
+          {/* Prime delivery line */}
+          <div className="flex items-center gap-1 text-[10px] sm:text-[11px] text-slate-600 font-normal mb-2">
+            <span className="text-[#007185] font-black text-xs">✓prime</span>
+            <span>Entrega <strong className="text-slate-800 font-bold">Mañana</strong></span>
+          </div>
+
+          {/* Amazon Yellow Button */}
           <a
             href={directProductUrl}
             target="_blank"
             rel="nofollow sponsored noopener noreferrer"
-            className="w-full py-1.5 px-2 rounded-lg text-[11px] font-bold flex items-center justify-center gap-1 bg-[#FF9900] hover:bg-[#ffad33] text-slate-950 shadow-2xs transition-all hover:scale-101 active:scale-99 cursor-pointer"
+            className="w-full py-1.5 px-3 rounded-full text-xs font-semibold text-slate-950 bg-[#ffd814] hover:bg-[#f7ca00] active:bg-[#f0b800] border border-[#fcd200] shadow-2xs text-center flex items-center justify-center gap-1.5 transition-all cursor-pointer"
           >
-            <ShoppingBag className="w-3 h-3" />
             <span>Ver en Amazon</span>
-            <ExternalLink className="w-2.5 h-2.5 opacity-70" />
           </a>
 
           {/* Toast feedback when copied */}
           {copied && (
-            <div className="text-center text-[9px] text-emerald-600 font-bold mt-0.5">
+            <div className="text-center text-[9px] text-emerald-600 font-bold mt-1">
               ✓ ¡Enlace copiado!
             </div>
           )}
