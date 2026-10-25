@@ -568,17 +568,17 @@ export default function HomePage() {
             <aside
               onMouseEnter={() => setIsLeftPaused(true)}
               onMouseLeave={() => setIsLeftPaused(false)}
-              className="hidden lg:flex flex-col w-64 xl:w-72 2xl:w-80 shrink-0 bg-white rounded-3xl p-5 shadow-xs border border-slate-200/90 justify-between relative group overflow-hidden"
+              className="hidden lg:flex flex-col w-64 xl:w-72 2xl:w-80 shrink-0 bg-gradient-to-b from-amber-50/80 via-white to-amber-50/40 rounded-3xl p-5 shadow-lg shadow-amber-900/5 border-2 border-amber-400/90 justify-between relative group overflow-hidden"
             >
               <div>
                 {/* Header Banner - Amazon Navy Theme with Amber Highlight */}
-                <div className="bg-[#131921] -mx-5 -mt-5 px-4 py-3 border-b border-slate-800 flex items-center justify-between mb-3 text-white">
+                <div className="bg-[#131921] -mx-5 -mt-5 px-4 py-3.5 border-b-2 border-amber-400/60 flex items-center justify-between mb-3 text-white">
                   <div>
                     <h2 className="text-sm font-black text-[#febd69] flex items-center gap-1.5 uppercase tracking-wide">
                       <span>🔥</span>
                       <span>Más Regalados</span>
                     </h2>
-                    <p className="text-[11px] text-slate-300 font-medium">Top ventas verificados</p>
+                    <p className="text-[11px] text-amber-200/90 font-medium">Top ventas verificados</p>
                   </div>
                 </div>
 
@@ -598,9 +598,9 @@ export default function HomePage() {
                               href={amazonUrl}
                               target="_blank"
                               rel="noopener noreferrer sponsored"
-                              className="group/item flex flex-col p-2 rounded-2xl bg-slate-50 hover:bg-amber-50/50 border border-slate-100 hover:border-amber-200 transition-all cursor-pointer"
+                              className="group/item flex flex-col p-2 rounded-2xl bg-white hover:bg-amber-100/60 border border-amber-200/80 hover:border-amber-400 transition-all cursor-pointer shadow-xs hover:shadow-md"
                             >
-                              <div className="relative w-full aspect-square bg-white rounded-xl overflow-hidden mb-1.5 p-1 border border-slate-100">
+                              <div className="relative w-full aspect-square bg-white rounded-xl overflow-hidden mb-1.5 p-1 border border-amber-100">
                                 <Image
                                   src={item.imageUrl}
                                   alt={item.title}
@@ -647,7 +647,7 @@ export default function HomePage() {
               <a
                 href="#catalogo-productos"
                 onClick={() => handleQuickPrompt({ label: 'Top Ventas', query: '', sort: 'rating' })}
-                className="pt-3 mt-3 border-t border-slate-100 text-xs font-bold text-amber-700 hover:text-amber-900 flex items-center justify-between group/link cursor-pointer"
+                className="pt-2.5 mt-3 border-t border-amber-200 text-xs font-bold text-amber-900 hover:text-amber-700 flex items-center justify-between group/link cursor-pointer bg-amber-100/70 -mx-5 -mb-5 px-5 py-3"
               >
                 <span>Ver catálogo superventas</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
@@ -655,7 +655,7 @@ export default function HomePage() {
             </aside>
 
             {/* CENTER SEARCH ENGINE */}
-            <div className="flex-1 max-w-3xl 2xl:max-w-4xl text-center py-8 sm:py-10 px-4 sm:px-8 bg-white rounded-3xl shadow-xs border border-slate-200/90 flex flex-col justify-between">
+            <div className="flex-1 max-w-3xl 2xl:max-w-4xl text-center py-8 sm:py-10 px-4 sm:px-8 bg-white rounded-3xl shadow-md border-2 border-slate-300 flex flex-col justify-between">
               <div>
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-5 shadow-2xs border border-amber-200 bg-amber-50/80 text-amber-950">
                   <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -765,17 +765,17 @@ export default function HomePage() {
             <aside
               onMouseEnter={() => setIsRightPaused(true)}
               onMouseLeave={() => setIsRightPaused(false)}
-              className="hidden lg:flex flex-col w-64 xl:w-72 2xl:w-80 shrink-0 bg-white rounded-3xl p-5 shadow-xs border border-slate-200/90 justify-between relative group overflow-hidden"
+              className="hidden lg:flex flex-col w-64 xl:w-72 2xl:w-80 shrink-0 bg-gradient-to-b from-emerald-50/80 via-white to-emerald-50/40 rounded-3xl p-5 shadow-lg shadow-emerald-900/5 border-2 border-emerald-400/90 justify-between relative group overflow-hidden"
             >
               <div>
                 {/* Header Banner - Amazon Navy Theme with Emerald Highlight */}
-                <div className="bg-[#131921] -mx-5 -mt-5 px-4 py-3 border-b border-slate-800 flex items-center justify-between mb-3 text-white">
+                <div className="bg-[#131921] -mx-5 -mt-5 px-4 py-3.5 border-b-2 border-emerald-400/60 flex items-center justify-between mb-3 text-white">
                   <div>
-                    <h2 className="text-sm font-black text-emerald-400 flex items-center gap-1.5 uppercase tracking-wide">
+                    <h2 className="text-sm font-black text-emerald-300 flex items-center gap-1.5 uppercase tracking-wide">
                       <span>⚡</span>
                       <span>Chollos &lt; 20 €</span>
                     </h2>
-                    <p className="text-[11px] text-slate-300 font-medium">Ideas para acertar sin gastar</p>
+                    <p className="text-[11px] text-emerald-200/90 font-medium">Ideas para acertar sin gastar</p>
                   </div>
                 </div>
 
@@ -795,9 +795,9 @@ export default function HomePage() {
                               href={amazonUrl}
                               target="_blank"
                               rel="noopener noreferrer sponsored"
-                              className="group/item flex flex-col p-2 rounded-2xl bg-slate-50 hover:bg-emerald-50/50 border border-slate-100 hover:border-emerald-200 transition-all cursor-pointer"
+                              className="group/item flex flex-col p-2 rounded-2xl bg-white hover:bg-emerald-100/60 border border-emerald-200/80 hover:border-emerald-400 transition-all cursor-pointer shadow-xs hover:shadow-md"
                             >
-                              <div className="relative w-full aspect-square bg-white rounded-xl overflow-hidden mb-1.5 p-1 border border-slate-100">
+                              <div className="relative w-full aspect-square bg-white rounded-xl overflow-hidden mb-1.5 p-1 border border-emerald-100">
                                 <Image
                                   src={item.imageUrl}
                                   alt={item.title}
@@ -843,7 +843,7 @@ export default function HomePage() {
               <a
                 href="#catalogo-productos"
                 onClick={() => handleQuickPrompt({ label: 'Menos de 20 €', query: '', price: '<20', sort: 'price-asc' })}
-                className="pt-3 mt-3 border-t border-slate-100 text-xs font-bold text-emerald-700 hover:text-emerald-900 flex items-center justify-between group/link cursor-pointer"
+                className="pt-2.5 mt-3 border-t border-emerald-200 text-xs font-bold text-emerald-900 hover:text-emerald-700 flex items-center justify-between group/link cursor-pointer bg-emerald-100/70 -mx-5 -mb-5 px-5 py-3"
               >
                 <span>Ver todos por &lt; 20 €</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
