@@ -1,8 +1,9 @@
 'use client';
 
-import { parsePrice } from '@/lib/amazon';
+import { parsePrice, getAmazonProductUrl } from '@/lib/amazon';
 
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
+import Image from 'next/image';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FilterBar from '@/components/FilterBar';
@@ -15,6 +16,7 @@ import AmazonLiveSearchCard from '@/components/AmazonLiveSearchCard';
 import AmazonGridDiscoveryCard from '@/components/AmazonGridDiscoveryCard';
 import SocialShareBar from '@/components/SocialShareBar';
 import TopPodium from '@/components/TopPodium';
+import { useCurrency } from '@/context/CurrencyContext';
 import { PRODUCTS, AGE_CATEGORIES, GENERAL_CATEGORY_MAPPING, Product, CLOTHING_SUBFILTERS, isClothingCategory, ANIME_SERIES_SUBFILTERS, isFiguresCategory } from '@/data/products';
 import { matchesSearchQuery } from '@/utils/search';
 import { LiveSearchResult } from '@/app/api/live-search/route';
@@ -33,6 +35,7 @@ import {
   ShieldCheck,
   TrendingUp,
   Search,
+  Star,
   Bot,
   Loader2,
   RefreshCw,
@@ -64,6 +67,7 @@ const AGE_BANNER_ICONS: Record<string, { icon: React.ComponentType<{ className?:
 };
 
 export default function HomePage() {
+  const { formatPrice } = useCurrency();
   const [selectedAge, setSelectedAge] = useState<string>('all');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedClothingSub, setSelectedClothingSub] = useState<string>('all');
@@ -75,6 +79,19 @@ export default function HomePage() {
   const [visibleCount, setVisibleCount] = useState<number>(18);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [showAdvancedFilters, setShowAdvancedFilters] = useState<boolean>(false);
+
+  // Curated Top 4 Superventas for Left Showcase Wing
+  const topShowcaseProducts = useMemo(() => {
+    return PRODUCTS.filter((p) => p.rating >= 4.7 && p.imageUrl).slice(0, 4);
+  }, []);
+
+  // Curated Top 4 Chollos (< 20 €) for Right Showcase Wing
+  const budgetShowcaseProducts = useMemo(() => {
+    return PRODUCTS.filter((p) => {
+      const price = parsePrice(p.priceText);
+      return price > 0 && price <= 20 && p.imageUrl;
+    }).slice(0, 4);
+  }, []);
 
   // Live Amazon products state to render in the grid
   const [liveAmazonProducts, setLiveAmazonProducts] = useState<LiveSearchResult[]>([]);
@@ -480,111 +497,244 @@ export default function HomePage() {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full z-10">
+      <main className="flex-1 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 w-full z-10">
         
-        {/* HERO SECTION - FEATURED MODULE */}
-        <section className="text-center py-8 sm:py-10 px-4 sm:px-8 mb-8 max-w-4xl mx-auto bg-white rounded-3xl shadow-xs border border-slate-200/90">
-          
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-5 shadow-2xs border border-amber-200 bg-amber-50/80 text-amber-950">
-            <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span>Búsqueda Inteligente Amazon España · Edición {new Date().getFullYear()}</span>
-          </div>
+        {/* HERO SECTION CONTAINER: 3 COLUMNS ON WIDESCREEN (LEFT SHOWCASE + CENTER SEARCH + RIGHT SHOWCASE) */}
+        <section className="mb-8">
+          <div className="flex flex-col xl:flex-row items-stretch justify-center gap-5">
+            
+            {/* LEFT SHOWCASE WING (AMAZON 2x2 CARD) */}
+            <aside className="hidden xl:flex flex-col w-72 2xl:w-80 shrink-0 bg-white rounded-3xl p-5 shadow-xs border border-slate-200/90 justify-between">
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <div>
+                    <h2 className="text-sm font-black text-slate-900 flex items-center gap-1.5">
+                      <span>🔥</span>
+                      <span>Más Regalados</span>
+                    </h2>
+                    <p className="text-[11px] text-slate-500 font-medium">Top ventas verificados</p>
+                  </div>
+                  <span className="text-[10px] bg-amber-100 text-amber-900 font-bold px-2 py-0.5 rounded-full">
+                    Amazon.es
+                  </span>
+                </div>
 
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] mb-4 text-slate-900">
-            {currentAgeMeta ? (
-              <span>{currentAgeMeta.h1}</span>
-            ) : (
-              <span>
-                ¿A quién quieres{' '}
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-600 via-orange-600 to-indigo-600">
-                  sorprender hoy?
-                </span>
-              </span>
-            )}
-          </h1>
-
-          <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed mb-8 max-w-2xl mx-auto">
-            {currentAgeMeta
-              ? currentAgeMeta.description
-              : 'Escribe a quién quieres regalar o qué le apasiona. Nuestro motor inteligente encontrará las mejores ideas verificadas en Amazon al instante.'}
-          </p>
-
-          {/* MAIN PROMPT / SEARCH BAR ESTILO AMAZON */}
-          <form onSubmit={handleHeroSearchSubmit} className="relative max-w-2xl mx-auto mb-5">
-            <div className="relative flex items-center shadow-md rounded-2xl bg-white border-2 border-slate-300 hover:border-slate-400 focus-within:border-[#febd69] focus-within:ring-4 focus-within:ring-amber-100 transition-all p-1.5 sm:p-2">
-              <div className="pl-3 pr-2 text-slate-400">
-                <Search className="w-5 h-5 text-slate-400" />
+                <div className="grid grid-cols-2 gap-2.5">
+                  {topShowcaseProducts.map((item) => {
+                    const amazonUrl = getAmazonProductUrl(item.asin || 'B0DLWK3LKH');
+                    return (
+                      <a
+                        key={item.id}
+                        href={amazonUrl}
+                        target="_blank"
+                        rel="noopener noreferrer sponsored"
+                        className="group flex flex-col p-2 rounded-2xl bg-slate-50 hover:bg-amber-50/50 border border-slate-100 hover:border-amber-200 transition-all cursor-pointer"
+                      >
+                        <div className="relative w-full aspect-square bg-white rounded-xl overflow-hidden mb-1.5 p-1 border border-slate-100">
+                          <Image
+                            src={item.imageUrl}
+                            alt={item.title}
+                            fill
+                            className="object-contain p-1 group-hover:scale-105 transition-transform"
+                          />
+                        </div>
+                        <span className="text-[11px] font-bold text-slate-800 line-clamp-1 group-hover:text-amber-800 transition-colors">
+                          {item.title}
+                        </span>
+                        <div className="flex items-center justify-between mt-0.5">
+                          <span className="text-xs font-black text-slate-950">
+                            {formatPrice(item.priceText)}
+                          </span>
+                          <span className="text-[10px] text-amber-600 font-bold flex items-center gap-0.5">
+                            <Star className="w-2.5 h-2.5 fill-amber-500 text-amber-500" />
+                            {item.rating}
+                          </span>
+                        </div>
+                      </a>
+                    );
+                  })}
+                </div>
               </div>
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => handleSearchChange(e.target.value)}
-                placeholder="Ej: Para mi novio friki de Star Wars, gamer, cafetera, niña 6 años..."
-                className="w-full bg-transparent px-2 py-2 text-sm sm:text-base text-slate-800 placeholder-slate-400 focus:outline-none"
-              />
-              {searchQuery && (
-                <button
-                  type="button"
-                  onClick={() => handleSearchChange('')}
-                  className="p-1.5 text-slate-400 hover:text-slate-600 rounded-lg mr-1 cursor-pointer transition-colors"
-                  title="Borrar búsqueda"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              )}
-              <button
-                type="submit"
-                className="px-5 sm:px-6 py-2.5 bg-[#febd69] hover:bg-[#f3a847] active:bg-[#e47911] text-slate-950 font-black text-sm rounded-xl transition-colors shadow-xs shrink-0 flex items-center gap-1.5 cursor-pointer border border-[#febd69]"
+
+              <a
+                href="#catalogo-productos"
+                onClick={() => handleQuickPrompt({ label: 'Top Ventas', query: 'regalos mas vendidos' })}
+                className="pt-3 mt-3 border-t border-slate-100 text-xs font-bold text-amber-700 hover:text-amber-900 flex items-center justify-between group cursor-pointer"
               >
-                <Search className="w-4 h-4 stroke-[2.5]" />
-                <span className="hidden sm:inline">Buscar</span>
-              </button>
+                <span>Ver catálogo superventas</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </aside>
+
+            {/* CENTER SEARCH ENGINE */}
+            <div className="flex-1 max-w-3xl 2xl:max-w-4xl text-center py-8 sm:py-10 px-4 sm:px-8 bg-white rounded-3xl shadow-xs border border-slate-200/90 flex flex-col justify-between">
+              <div>
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-5 shadow-2xs border border-amber-200 bg-amber-50/80 text-amber-950">
+                  <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <span>Búsqueda Inteligente Amazon España · Edición {new Date().getFullYear()}</span>
+                </div>
+
+                <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] mb-4 text-slate-900">
+                  {currentAgeMeta ? (
+                    <span>{currentAgeMeta.h1}</span>
+                  ) : (
+                    <span>
+                      ¿A quién quieres{' '}
+                      <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-600 via-orange-600 to-indigo-600">
+                        sorprender hoy?
+                      </span>
+                    </span>
+                  )}
+                </h1>
+
+                <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed mb-8 max-w-2xl mx-auto">
+                  {currentAgeMeta
+                    ? currentAgeMeta.description
+                    : 'Escribe a quién quieres regalar o qué le apasiona. Nuestro motor inteligente encontrará las mejores ideas verificadas en Amazon al instante.'}
+                </p>
+
+                {/* MAIN PROMPT / SEARCH BAR ESTILO AMAZON */}
+                <form onSubmit={handleHeroSearchSubmit} className="relative max-w-2xl mx-auto mb-5">
+                  <div className="relative flex items-center shadow-md rounded-2xl bg-white border-2 border-slate-300 hover:border-slate-400 focus-within:border-[#febd69] focus-within:ring-4 focus-within:ring-amber-100 transition-all p-1.5 sm:p-2">
+                    <div className="pl-3 pr-2 text-slate-400">
+                      <Search className="w-5 h-5 text-slate-400" />
+                    </div>
+                    <input
+                      type="text"
+                      value={searchQuery}
+                      onChange={(e) => handleSearchChange(e.target.value)}
+                      placeholder="Ej: Para mi novio friki de Star Wars, gamer, cafetera, niña 6 años..."
+                      className="w-full bg-transparent px-2 py-2 text-sm sm:text-base text-slate-800 placeholder-slate-400 focus:outline-none"
+                    />
+                    {searchQuery && (
+                      <button
+                        type="button"
+                        onClick={() => handleSearchChange('')}
+                        className="p-1.5 text-slate-400 hover:text-slate-600 rounded-lg mr-1 cursor-pointer transition-colors"
+                        title="Borrar búsqueda"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    )}
+                    <button
+                      type="submit"
+                      className="px-5 sm:px-6 py-2.5 bg-[#febd69] hover:bg-[#f3a847] active:bg-[#e47911] text-slate-950 font-black text-sm rounded-xl transition-colors shadow-xs shrink-0 flex items-center gap-1.5 cursor-pointer border border-[#febd69]"
+                    >
+                      <Search className="w-4 h-4 stroke-[2.5]" />
+                      <span className="hidden sm:inline">Buscar</span>
+                    </button>
+                  </div>
+                </form>
+
+                {/* QUICK INSPIRATION PROMPT CHIPS */}
+                <div className="flex flex-wrap items-center justify-center gap-2 mb-6 max-w-3xl mx-auto">
+                  <span className="text-xs font-semibold text-slate-500 mr-1 flex items-center gap-1">
+                    Inspiración rápida:
+                  </span>
+                  {QUICK_PROMPTS.map((prompt) => (
+                    <button
+                      key={prompt.label}
+                      type="button"
+                      onClick={() => handleQuickPrompt(prompt)}
+                      className="text-xs px-3 py-1.5 rounded-full font-semibold bg-slate-50 hover:bg-amber-50 border border-slate-200 hover:border-amber-300 text-slate-700 hover:text-slate-900 transition-all shadow-2xs hover:scale-105 active:scale-95 cursor-pointer"
+                    >
+                      {prompt.label}
+                    </button>
+                  ))}
+                </div>
+
+                {/* AI COPILOT POPUP TRIGGER BUTTON (ESTILO AMAZON RUFUS) */}
+                <div className="flex items-center justify-center gap-3 mb-6">
+                  <button
+                    onClick={() => setIsAiModalOpen(true)}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-[#232f3e] hover:bg-[#131921] text-amber-300 hover:text-white border border-slate-700 font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-102 active:scale-98 cursor-pointer"
+                  >
+                    <Bot className="w-4 h-4 text-amber-400 animate-pulse" />
+                    <span>¿No sabes qué elegir? Pregúntale a nuestro Asistente IA</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-amber-300" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Quick Badges of Trust */}
+              <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs font-medium text-slate-500 pt-3 border-t border-slate-100">
+                <span className="flex items-center gap-1.5">
+                  <ShieldCheck className="w-4 h-4 text-emerald-500" />
+                  Garantía de Devolución Amazon.es
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <TrendingUp className="w-4 h-4 text-amber-500" />
+                  Basado en Valoraciones Reales 4.5+ ★
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <BadgePercent className="w-4 h-4 text-orange-500" />
+                  Precios y Ofertas al Día
+                </span>
+              </div>
             </div>
-          </form>
 
-          {/* QUICK INSPIRATION PROMPT CHIPS */}
-          <div className="flex flex-wrap items-center justify-center gap-2 mb-6 max-w-3xl mx-auto">
-            <span className="text-xs font-semibold text-slate-500 mr-1 flex items-center gap-1">
-              Inspiración rápida:
-            </span>
-            {QUICK_PROMPTS.map((prompt) => (
-              <button
-                key={prompt.label}
-                type="button"
-                onClick={() => handleQuickPrompt(prompt)}
-                className="text-xs px-3 py-1.5 rounded-full font-semibold bg-slate-50 hover:bg-amber-50 border border-slate-200 hover:border-amber-300 text-slate-700 hover:text-slate-900 transition-all shadow-2xs hover:scale-105 active:scale-95 cursor-pointer"
+            {/* RIGHT SHOWCASE WING (AMAZON 2x2 CARD) */}
+            <aside className="hidden xl:flex flex-col w-72 2xl:w-80 shrink-0 bg-white rounded-3xl p-5 shadow-xs border border-slate-200/90 justify-between">
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <div>
+                    <h2 className="text-sm font-black text-slate-900 flex items-center gap-1.5">
+                      <span>⚡</span>
+                      <span>Chollos &lt; 20 €</span>
+                    </h2>
+                    <p className="text-[11px] text-slate-500 font-medium">Ideas para acertar sin gastar</p>
+                  </div>
+                  <span className="text-[10px] bg-emerald-100 text-emerald-900 font-bold px-2 py-0.5 rounded-full">
+                    Económicos
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-2 gap-2.5">
+                  {budgetShowcaseProducts.map((item) => {
+                    const amazonUrl = getAmazonProductUrl(item.asin || 'B0DLWK3LKH');
+                    return (
+                      <a
+                        key={item.id}
+                        href={amazonUrl}
+                        target="_blank"
+                        rel="noopener noreferrer sponsored"
+                        className="group flex flex-col p-2 rounded-2xl bg-slate-50 hover:bg-emerald-50/50 border border-slate-100 hover:border-emerald-200 transition-all cursor-pointer"
+                      >
+                        <div className="relative w-full aspect-square bg-white rounded-xl overflow-hidden mb-1.5 p-1 border border-slate-100">
+                          <Image
+                            src={item.imageUrl}
+                            alt={item.title}
+                            fill
+                            className="object-contain p-1 group-hover:scale-105 transition-transform"
+                          />
+                        </div>
+                        <span className="text-[11px] font-bold text-slate-800 line-clamp-1 group-hover:text-emerald-800 transition-colors">
+                          {item.title}
+                        </span>
+                        <div className="flex items-center justify-between mt-0.5">
+                          <span className="text-xs font-black text-emerald-700">
+                            {formatPrice(item.priceText)}
+                          </span>
+                          <span className="text-[10px] text-slate-400 font-bold">
+                            Chollo
+                          </span>
+                        </div>
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <a
+                href="#catalogo-productos"
+                onClick={() => handleQuickPrompt({ label: 'Menos de 20 €', query: 'regalos baratos', price: '<20' })}
+                className="pt-3 mt-3 border-t border-slate-100 text-xs font-bold text-emerald-700 hover:text-emerald-900 flex items-center justify-between group cursor-pointer"
               >
-                {prompt.label}
-              </button>
-            ))}
-          </div>
+                <span>Ver todos por &lt; 20 €</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </aside>
 
-          {/* AI COPILOT POPUP TRIGGER BUTTON (ESTILO AMAZON RUFUS) */}
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <button
-              onClick={() => setIsAiModalOpen(true)}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-[#232f3e] hover:bg-[#131921] text-amber-300 hover:text-white border border-slate-700 font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-102 active:scale-98 cursor-pointer"
-            >
-              <Bot className="w-4 h-4 text-amber-400 animate-pulse" />
-              <span>¿No sabes qué elegir? Pregúntale a nuestro Asistente IA</span>
-              <ArrowRight className="w-3.5 h-3.5 text-amber-300" />
-            </button>
-          </div>
-
-          {/* Quick Badges of Trust */}
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs font-medium text-slate-500 pt-2 border-t border-slate-100">
-            <span className="flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-emerald-500" />
-              Garantía de Devolución Amazon.es
-            </span>
-            <span className="flex items-center gap-1.5">
-              <TrendingUp className="w-4 h-4 text-amber-500" />
-              Basado en Valoraciones Reales 4.5+ ★
-            </span>
-            <span className="flex items-center gap-1.5">
-              <BadgePercent className="w-4 h-4 text-orange-500" />
-              Precios y Ofertas al Día
-            </span>
           </div>
         </section>
 
