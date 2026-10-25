@@ -104,41 +104,45 @@ export default function HomePage() {
   const [isLeftPaused, setIsLeftPaused] = useState(false);
   const [isRightPaused, setIsRightPaused] = useState(false);
 
-  // Auto-advance Left Carousel every 10 seconds
+  // Group topShowcasePool into slides of 4 products (2x2)
+  const leftSlides = useMemo(() => {
+    const slides: Product[][] = [];
+    for (let i = 0; i < topShowcasePool.length; i += 4) {
+      slides.push(topShowcasePool.slice(i, i + 4));
+    }
+    return slides;
+  }, [topShowcasePool]);
+
+  // Group budgetShowcasePool into slides of 4 products (2x2)
+  const rightSlides = useMemo(() => {
+    const slides: Product[][] = [];
+    for (let i = 0; i < budgetShowcasePool.length; i += 4) {
+      slides.push(budgetShowcasePool.slice(i, i + 4));
+    }
+    return slides;
+  }, [budgetShowcasePool]);
+
+  // Auto-advance Left Carousel every 10 seconds with smooth slide
   useEffect(() => {
-    if (isLeftPaused) return;
-    const totalPages = Math.ceil(topShowcasePool.length / 4);
-    if (totalPages <= 1) return;
+    if (isLeftPaused || leftSlides.length <= 1) return;
 
     const timer = setInterval(() => {
-      setLeftCarouselIndex((prev) => (prev + 1) % totalPages);
+      setLeftCarouselIndex((prev) => (prev + 1) % leftSlides.length);
     }, 10000);
 
     return () => clearInterval(timer);
-  }, [isLeftPaused, topShowcasePool.length]);
+  }, [isLeftPaused, leftSlides.length]);
 
-  // Auto-advance Right Carousel every 10 seconds
+  // Auto-advance Right Carousel every 10 seconds with smooth slide
   useEffect(() => {
-    if (isRightPaused) return;
-    const totalPages = Math.ceil(budgetShowcasePool.length / 4);
-    if (totalPages <= 1) return;
+    if (isRightPaused || rightSlides.length <= 1) return;
 
     const timer = setInterval(() => {
-      setRightCarouselIndex((prev) => (prev + 1) % totalPages);
+      setRightCarouselIndex((prev) => (prev + 1) % rightSlides.length);
     }, 10000);
 
     return () => clearInterval(timer);
-  }, [isRightPaused, budgetShowcasePool.length]);
-
-  const currentLeftProducts = useMemo(() => {
-    const start = leftCarouselIndex * 4;
-    return topShowcasePool.slice(start, start + 4);
-  }, [leftCarouselIndex, topShowcasePool]);
-
-  const currentRightProducts = useMemo(() => {
-    const start = rightCarouselIndex * 4;
-    return budgetShowcasePool.slice(start, start + 4);
-  }, [rightCarouselIndex, budgetShowcasePool]);
+  }, [isRightPaused, rightSlides.length]);
 
   // Live Amazon products state to render in the grid
   const [liveAmazonProducts, setLiveAmazonProducts] = useState<LiveSearchResult[]>([]);
@@ -580,45 +584,55 @@ export default function HomePage() {
                   </span>
                 </div>
 
-                <div key={leftCarouselIndex} className="grid grid-cols-2 gap-2.5 animate-in fade-in duration-300">
-                  {currentLeftProducts.map((item) => {
-                    const amazonUrl = getAmazonProductUrl(item.asin || 'B0DLWK3LKH');
-                    return (
-                      <a
-                        key={item.id}
-                        href={amazonUrl}
-                        target="_blank"
-                        rel="noopener noreferrer sponsored"
-                        className="group/item flex flex-col p-2 rounded-2xl bg-slate-50 hover:bg-amber-50/50 border border-slate-100 hover:border-amber-200 transition-all cursor-pointer"
-                      >
-                        <div className="relative w-full aspect-square bg-white rounded-xl overflow-hidden mb-1.5 p-1 border border-slate-100">
-                          <Image
-                            src={item.imageUrl}
-                            alt={item.title}
-                            fill
-                            className="object-contain p-1 group-hover/item:scale-105 transition-transform"
-                          />
-                        </div>
-                        <span className="text-[11px] font-bold text-slate-800 line-clamp-1 group-hover/item:text-amber-800 transition-colors">
-                          {item.title}
-                        </span>
-                        <div className="flex items-center justify-between mt-0.5">
-                          <span className="text-xs font-black text-slate-950">
-                            {formatPrice(item.priceText)}
-                          </span>
-                          <span className="text-[10px] text-amber-600 font-bold flex items-center gap-0.5">
-                            <Star className="w-2.5 h-2.5 fill-amber-500 text-amber-500" />
-                            {item.rating}
-                          </span>
-                        </div>
-                      </a>
-                    );
-                  })}
+                {/* Sliding Carousel Viewport */}
+                <div className="overflow-hidden w-full rounded-2xl">
+                  <div
+                    className="flex transition-transform duration-700 ease-out"
+                    style={{ transform: `translateX(-${leftCarouselIndex * 100}%)` }}
+                  >
+                    {leftSlides.map((slideProducts, sIdx) => (
+                      <div key={sIdx} className="w-full shrink-0 grid grid-cols-2 gap-2.5">
+                        {slideProducts.map((item) => {
+                          const amazonUrl = getAmazonProductUrl(item.asin || 'B0DLWK3LKH');
+                          return (
+                            <a
+                              key={item.id}
+                              href={amazonUrl}
+                              target="_blank"
+                              rel="noopener noreferrer sponsored"
+                              className="group/item flex flex-col p-2 rounded-2xl bg-slate-50 hover:bg-amber-50/50 border border-slate-100 hover:border-amber-200 transition-all cursor-pointer"
+                            >
+                              <div className="relative w-full aspect-square bg-white rounded-xl overflow-hidden mb-1.5 p-1 border border-slate-100">
+                                <Image
+                                  src={item.imageUrl}
+                                  alt={item.title}
+                                  fill
+                                  className="object-contain p-1 group-hover/item:scale-105 transition-transform"
+                                />
+                              </div>
+                              <span className="text-[11px] font-bold text-slate-800 line-clamp-1 group-hover/item:text-amber-800 transition-colors">
+                                {item.title}
+                              </span>
+                              <div className="flex items-center justify-between mt-0.5">
+                                <span className="text-xs font-black text-slate-950">
+                                  {formatPrice(item.priceText)}
+                                </span>
+                                <span className="text-[10px] text-amber-600 font-bold flex items-center gap-0.5">
+                                  <Star className="w-2.5 h-2.5 fill-amber-500 text-amber-500" />
+                                  {item.rating}
+                                </span>
+                              </div>
+                            </a>
+                          );
+                        })}
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
                 {/* Dots indicator */}
                 <div className="flex items-center justify-center gap-1.5 mt-3">
-                  {Array.from({ length: Math.ceil(topShowcasePool.length / 4) }).map((_, idx) => (
+                  {leftSlides.map((_, idx) => (
                     <button
                       key={idx}
                       type="button"
@@ -769,44 +783,54 @@ export default function HomePage() {
                   </span>
                 </div>
 
-                <div key={rightCarouselIndex} className="grid grid-cols-2 gap-2.5 animate-in fade-in duration-300">
-                  {currentRightProducts.map((item) => {
-                    const amazonUrl = getAmazonProductUrl(item.asin || 'B0DLWK3LKH');
-                    return (
-                      <a
-                        key={item.id}
-                        href={amazonUrl}
-                        target="_blank"
-                        rel="noopener noreferrer sponsored"
-                        className="group/item flex flex-col p-2 rounded-2xl bg-slate-50 hover:bg-emerald-50/50 border border-slate-100 hover:border-emerald-200 transition-all cursor-pointer"
-                      >
-                        <div className="relative w-full aspect-square bg-white rounded-xl overflow-hidden mb-1.5 p-1 border border-slate-100">
-                          <Image
-                            src={item.imageUrl}
-                            alt={item.title}
-                            fill
-                            className="object-contain p-1 group-hover/item:scale-105 transition-transform"
-                          />
-                        </div>
-                        <span className="text-[11px] font-bold text-slate-800 line-clamp-1 group-hover/item:text-emerald-800 transition-colors">
-                          {item.title}
-                        </span>
-                        <div className="flex items-center justify-between mt-0.5">
-                          <span className="text-xs font-black text-emerald-700">
-                            {formatPrice(item.priceText)}
-                          </span>
-                          <span className="text-[10px] text-slate-400 font-bold">
-                            Chollo
-                          </span>
-                        </div>
-                      </a>
-                    );
-                  })}
+                {/* Sliding Carousel Viewport */}
+                <div className="overflow-hidden w-full rounded-2xl">
+                  <div
+                    className="flex transition-transform duration-700 ease-out"
+                    style={{ transform: `translateX(-${rightCarouselIndex * 100}%)` }}
+                  >
+                    {rightSlides.map((slideProducts, sIdx) => (
+                      <div key={sIdx} className="w-full shrink-0 grid grid-cols-2 gap-2.5">
+                        {slideProducts.map((item) => {
+                          const amazonUrl = getAmazonProductUrl(item.asin || 'B0DLWK3LKH');
+                          return (
+                            <a
+                              key={item.id}
+                              href={amazonUrl}
+                              target="_blank"
+                              rel="noopener noreferrer sponsored"
+                              className="group/item flex flex-col p-2 rounded-2xl bg-slate-50 hover:bg-emerald-50/50 border border-slate-100 hover:border-emerald-200 transition-all cursor-pointer"
+                            >
+                              <div className="relative w-full aspect-square bg-white rounded-xl overflow-hidden mb-1.5 p-1 border border-slate-100">
+                                <Image
+                                  src={item.imageUrl}
+                                  alt={item.title}
+                                  fill
+                                  className="object-contain p-1 group-hover/item:scale-105 transition-transform"
+                                />
+                              </div>
+                              <span className="text-[11px] font-bold text-slate-800 line-clamp-1 group-hover/item:text-emerald-800 transition-colors">
+                                {item.title}
+                              </span>
+                              <div className="flex items-center justify-between mt-0.5">
+                                <span className="text-xs font-black text-emerald-700">
+                                  {formatPrice(item.priceText)}
+                                </span>
+                                <span className="text-[10px] text-slate-400 font-bold">
+                                  Chollo
+                                </span>
+                              </div>
+                            </a>
+                          );
+                        })}
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
                 {/* Dots indicator */}
                 <div className="flex items-center justify-center gap-1.5 mt-3">
-                  {Array.from({ length: Math.ceil(budgetShowcasePool.length / 4) }).map((_, idx) => (
+                  {rightSlides.map((_, idx) => (
                     <button
                       key={idx}
                       type="button"
