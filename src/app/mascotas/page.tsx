@@ -417,7 +417,7 @@ export default function MascotasPage() {
         {/* PRODUCTS GRID */}
         {sortedDisplayProducts.length > 0 ? (
           <>
-            <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12">
+            <section className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5 mb-12">
               {sortedDisplayProducts.map((product) => (
                 <ProductCard
                   key={product.id}
@@ -488,7 +488,7 @@ export default function MascotasPage() {
               </button>
             </div>
 
-            <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12">
+            <section className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5 mb-12">
               {sortedLiveAmazonProducts.map((liveProd) => (
                 <LiveAmazonProductCard
                   key={liveProd.asin}
