@@ -233,8 +233,7 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
         aria-label="Cambiar idioma y moneda del sitio"
         title="Cambiar idioma y moneda (Español €, Americano $, Alemán, Ruso y más)"
       >
-        <span className="text-base leading-none">{activeLangObj.flag}</span>
-        <span className={`uppercase tracking-wider font-extrabold text-[11px] ${dark ? 'text-slate-200' : 'text-slate-700'}`}>
+        <span className={`uppercase tracking-wider font-extrabold text-xs ${dark ? 'text-slate-200' : 'text-slate-700'}`}>
           {activeLangObj.code.split('-')[0]}
         </span>
         <span className={`text-[11px] font-black px-1.5 py-0.5 rounded-md border shadow-2xs ${
