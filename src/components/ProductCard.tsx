@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Product } from '@/data/products';
 import { getAmazonProductUrl } from '@/lib/amazon';
 import { useCurrency } from '@/context/CurrencyContext';
+import { useVoting } from '@/context/VotingContext';
 import { Star, Heart, Share2, ShoppingBag, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface ProductCardProps {
@@ -14,8 +15,9 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const { formatPrice } = useCurrency();
+  const { toggleItem, isItemInList } = useVoting();
+  const isInVote = isItemInList(product.id);
   const [copied, setCopied] = useState(false);
-  const [isLiked, setIsLiked] = useState(false);
   const [activeImgIndex, setActiveImgIndex] = useState(0);
 
   // Multi-image navigation
@@ -121,12 +123,17 @@ export default function ProductCard({ product }: ProductCardProps) {
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              setIsLiked(!isLiked);
+              toggleItem(product);
             }}
-            aria-label="Guardar en favoritos"
-            className="w-6 h-6 rounded-full bg-white/90 backdrop-blur-xs flex items-center justify-center text-slate-400 hover:text-rose-500 hover:scale-110 transition-transform shadow-2xs cursor-pointer border border-slate-100"
+            aria-label={isInVote ? 'Quitar de la lista de votación' : 'Añadir a la lista de votación'}
+            title={isInVote ? 'En tu lista de votación en grupo' : 'Añadir a votación en grupo'}
+            className={`w-6 h-6 rounded-full backdrop-blur-xs flex items-center justify-center transition-transform shadow-2xs cursor-pointer border ${
+              isInVote
+                ? 'bg-rose-50 border-rose-200 text-rose-500 scale-110'
+                : 'bg-white/90 border-slate-100 text-slate-400 hover:text-rose-500 hover:scale-110'
+            }`}
           >
-            <Heart className={`w-3 h-3 ${isLiked ? 'fill-rose-500 text-rose-500' : ''}`} />
+            <Heart className={`w-3 h-3 ${isInVote ? 'fill-rose-500 text-rose-500' : ''}`} />
           </button>
           <button
             onClick={handleShare}

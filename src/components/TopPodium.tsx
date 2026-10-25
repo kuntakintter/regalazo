@@ -5,7 +5,8 @@ import Image from 'next/image';
 import { Product } from '@/data/products';
 import { getAmazonProductUrl } from '@/lib/amazon';
 import { useCurrency } from '@/context/CurrencyContext';
-import { Trophy, Award, Star, ExternalLink, ShieldCheck, Flame, Clock, ShoppingBag } from 'lucide-react';
+import { useVoting } from '@/context/VotingContext';
+import { Trophy, Award, Star, ExternalLink, ShieldCheck, Flame, Clock, ShoppingBag, Heart } from 'lucide-react';
 
 interface TopPodiumProps {
   products: Product[];
@@ -15,6 +16,7 @@ interface TopPodiumProps {
 
 export default function TopPodium({ products, filterLabel, isDark = false }: TopPodiumProps) {
   const { formatPrice } = useCurrency();
+  const { toggleItem, isItemInList } = useVoting();
   const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
 
   // Dynamic real-time Amazon Prime next-day shipping cutoff timer
@@ -263,6 +265,23 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
                       <ShieldCheck className="w-2.5 h-2.5 text-emerald-400" />
                       Prime
                     </span>
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        toggleItem(pick.product);
+                      }}
+                      title="Añadir a votación en grupo"
+                      aria-label="Añadir o quitar de la votación"
+                      className={`absolute top-1.5 right-1.5 w-6 h-6 rounded-full backdrop-blur-xs flex items-center justify-center transition-transform shadow-2xs z-10 cursor-pointer border ${
+                        isItemInList(pick.product.id)
+                          ? 'bg-rose-50 border-rose-200 text-rose-500 scale-110'
+                          : 'bg-white/90 border-slate-100 text-slate-400 hover:text-rose-500 hover:scale-110'
+                      }`}
+                    >
+                      <Heart className={`w-3 h-3 ${isItemInList(pick.product.id) ? 'fill-rose-500 text-rose-500' : ''}`} />
+                    </button>
                   </a>
 
                   {/* Title - Compact 2 lines */}

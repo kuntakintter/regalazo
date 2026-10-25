@@ -3,6 +3,8 @@ import Script from 'next/script';
 import './globals.css';
 import CookieBanner from '@/components/CookieBanner';
 import { CurrencyProvider } from '@/context/CurrencyContext';
+import { VotingProvider } from '@/context/VotingContext';
+import VotingDrawer from '@/components/VotingDrawer';
 
 export const metadata: Metadata = {
   title: 'Un Buen Regalo | Ideas de Regalos para Todas las Edades',
@@ -141,8 +143,11 @@ export default function RootLayout({
       <body className="antialiased font-sans selection:bg-indigo-500 selection:text-white">
         <div id="google_translate_element" style={{ display: 'none' }} />
         <CurrencyProvider>
-          {children}
-          <CookieBanner />
+          <VotingProvider>
+            {children}
+            <VotingDrawer />
+            <CookieBanner />
+          </VotingProvider>
         </CurrencyProvider>
       </body>
     </html>

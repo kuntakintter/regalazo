@@ -7,6 +7,7 @@ import { Gift, Search, X, ExternalLink, ArrowRight, Star, Loader2, ShoppingBag, 
 import BrandLogo from '@/components/BrandLogo';
 import LanguageSelector from '@/components/LanguageSelector';
 import { useCurrency } from '@/context/CurrencyContext';
+import { useVoting } from '@/context/VotingContext';
 import { PRODUCTS, AMAZON_AFFILIATE_TAG } from '@/data/products';
 import { matchesSearchQuery } from '@/utils/search';
 
@@ -99,6 +100,7 @@ export default function Header({
   searchQuery = '',
 }: HeaderProps) {
   const { formatPrice } = useCurrency();
+  const { voteItems, setIsDrawerOpen } = useVoting();
   const [isFocused, setIsFocused] = useState(false);
   const [isAgesOpen, setIsAgesOpen] = useState(false);
   const [amazonResults, setAmazonResults] = useState<AmazonLiveItem[]>([]);
@@ -413,9 +415,30 @@ export default function Header({
             )}
           </div>
 
-          {/* Right Actions: Language Selector */}
-          <div className="flex items-center gap-2 shrink-0">
+          {/* Right Actions: Language Selector & Group Voting Button */}
+          <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
             <LanguageSelector dark={true} />
+
+            {/* Votación en Grupo Button (matching user's red box location) */}
+            <button
+              type="button"
+              onClick={() => setIsDrawerOpen(true)}
+              className="flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-500/15 via-amber-400/20 to-orange-500/15 hover:from-amber-500/25 hover:to-orange-500/25 border border-amber-400/40 hover:border-amber-400/70 text-amber-200 hover:text-white font-bold text-xs transition-all shadow-xs cursor-pointer group hover:scale-102 active:scale-98"
+              title="Votación de Regalos en Grupo para WhatsApp"
+              aria-label="Abrir lista de votación de regalos"
+            >
+              <span className="text-sm group-hover:scale-110 transition-transform">🗳️</span>
+              <span className="hidden sm:inline font-semibold">Votar en grupo</span>
+              <span
+                className={`px-1.5 py-0.2 rounded-full text-[10px] font-black transition-colors ${
+                  voteItems.length > 0
+                    ? 'bg-amber-400 text-slate-950 shadow-xs'
+                    : 'bg-white/10 text-slate-300'
+                }`}
+              >
+                {voteItems.length}
+              </span>
+            </button>
           </div>
 
         </div>

@@ -6,6 +6,8 @@ import { Star, Heart, Share2, ShoppingBag } from 'lucide-react';
 import { LiveSearchResult } from '@/app/api/live-search/route';
 import { getAmazonProductUrl } from '@/lib/amazon';
 import { useCurrency } from '@/context/CurrencyContext';
+import { useVoting } from '@/context/VotingContext';
+import { Product } from '@/data/products';
 
 interface LiveAmazonProductCardProps {
   product: LiveSearchResult;
@@ -19,9 +21,35 @@ export default function LiveAmazonProductCard({
   badgeLabel = 'Oferta flash',
 }: LiveAmazonProductCardProps) {
   const { formatPrice } = useCurrency();
+  const { toggleItem, isItemInList } = useVoting();
+  const isInVote = isItemInList(product.asin);
   const [copied, setCopied] = useState(false);
-  const [isLiked, setIsLiked] = useState(false);
   const [hasImgError, setHasImgError] = useState(false);
+
+  const handleToggleVote = () => {
+    const adapted: Product = {
+      id: product.asin,
+      slug: product.asin.toLowerCase(),
+      title: product.title,
+      priceText: product.priceText,
+      priceRange: '20-50',
+      rating: product.rating || 4.5,
+      reviewsCount: product.reviewsCount || 100,
+      badge: badgeLabel,
+      category: categoryLabel,
+      subcategory: categoryLabel,
+      imageUrl: product.imageUrl || '',
+      description: product.title,
+      pros: [],
+      idealFor: '',
+      searchQuery: product.title,
+      gender: 'unisex',
+      ageRange: '+18',
+      style: 'classic',
+      asin: product.asin,
+    };
+    toggleItem(adapted);
+  };
 
   React.useEffect(() => {
     setHasImgError(false);
@@ -91,12 +119,17 @@ export default function LiveAmazonProductCard({
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              setIsLiked(!isLiked);
+              handleToggleVote();
             }}
-            aria-label="Guardar en favoritos"
-            className="w-6 h-6 rounded-full bg-white/90 backdrop-blur-xs flex items-center justify-center text-slate-400 hover:text-rose-500 hover:scale-110 transition-transform shadow-2xs cursor-pointer border border-slate-100"
+            aria-label={isInVote ? 'Quitar de la lista de votación' : 'Añadir a la lista de votación'}
+            title={isInVote ? 'En tu lista de votación en grupo' : 'Añadir a votación en grupo'}
+            className={`w-6 h-6 rounded-full backdrop-blur-xs flex items-center justify-center transition-transform shadow-2xs cursor-pointer border ${
+              isInVote
+                ? 'bg-rose-50 border-rose-200 text-rose-500 scale-110'
+                : 'bg-white/90 border-slate-100 text-slate-400 hover:text-rose-500 hover:scale-110'
+            }`}
           >
-            <Heart className={`w-3.5 h-3.5 ${isLiked ? 'fill-rose-500 text-rose-500' : ''}`} />
+            <Heart className={`w-3.5 h-3.5 ${isInVote ? 'fill-rose-500 text-rose-500' : ''}`} />
           </button>
           <button
             onClick={handleShare}
