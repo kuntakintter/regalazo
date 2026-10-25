@@ -415,15 +415,13 @@ export default function Header({
             )}
           </div>
 
-          {/* Right Actions: Language Selector & Group Voting Button */}
+          {/* Right Actions: Group Voting Button & Language Selector */}
           <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
-            <LanguageSelector dark={true} />
-
-            {/* Votación en Grupo Button (matching user's red box location) */}
+            {/* Votación en Grupo Button (positioned to the left of LanguageSelector) */}
             <button
               type="button"
               onClick={() => setIsDrawerOpen(true)}
-              className="flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-500/15 via-amber-400/20 to-orange-500/15 hover:from-amber-500/25 hover:to-orange-500/25 border border-amber-400/40 hover:border-amber-400/70 text-amber-200 hover:text-white font-bold text-xs transition-all shadow-xs cursor-pointer group hover:scale-102 active:scale-98"
+              className="flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-500/20 via-amber-400/25 to-orange-500/20 hover:from-amber-500/30 hover:to-orange-500/30 border border-amber-400/50 hover:border-amber-400/80 text-amber-200 hover:text-white font-bold text-xs transition-all shadow-xs cursor-pointer group hover:scale-102 active:scale-98"
               title="Votación de Regalos en Grupo para WhatsApp"
               aria-label="Abrir lista de votación de regalos"
             >
@@ -432,13 +430,15 @@ export default function Header({
               <span
                 className={`px-1.5 py-0.2 rounded-full text-[10px] font-black transition-colors ${
                   voteItems.length > 0
-                    ? 'bg-amber-400 text-slate-950 shadow-xs'
+                    ? 'bg-amber-400 text-slate-950 shadow-xs ring-1 ring-amber-300'
                     : 'bg-white/10 text-slate-300'
                 }`}
               >
                 {voteItems.length}
               </span>
             </button>
+
+            <LanguageSelector dark={true} />
           </div>
 
         </div>

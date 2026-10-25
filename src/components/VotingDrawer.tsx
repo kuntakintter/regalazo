@@ -75,11 +75,40 @@ export default function VotingDrawer() {
 
         {/* Content Body */}
         <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4">
-          {/* Helper Callout */}
-          <div className="p-3 bg-amber-500/10 border border-amber-300/80 rounded-2xl text-xs text-amber-950 flex items-start gap-2.5">
-            <ThumbsUp className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
-            <div>
-              <strong>¿Cómo funciona?</strong> Guarda entre 2 y 4 regalos finalistas con el icono del corazón ❤️. Luego comparte el enlace en WhatsApp para que tus amigos voten su favorito.
+          {/* Visual Step-by-Step Guide */}
+          <div className="p-3.5 bg-gradient-to-br from-amber-500/10 via-white to-orange-500/10 border border-amber-300/80 rounded-2xl shadow-2xs">
+            <div className="flex items-center gap-1.5 text-xs font-black text-amber-950 uppercase tracking-wider mb-2.5">
+              <span>⚡</span>
+              <span>¿Cómo funciona? En 3 pasos:</span>
+            </div>
+            
+            <div className="grid grid-cols-3 gap-2 text-center">
+              {/* Step 1 */}
+              <div className="p-2 bg-white rounded-xl border border-amber-100/90 shadow-2xs flex flex-col items-center">
+                <span className="w-7 h-7 rounded-full bg-rose-100 text-rose-600 font-black text-xs flex items-center justify-center mb-1 shadow-2xs">
+                  ❤️
+                </span>
+                <strong className="text-[11px] font-bold text-slate-900 leading-tight">1. Elige</strong>
+                <span className="text-[10px] text-slate-500 leading-tight mt-0.5">2 a 4 regalos con el corazón</span>
+              </div>
+
+              {/* Step 2 */}
+              <div className="p-2 bg-white rounded-xl border border-amber-100/90 shadow-2xs flex flex-col items-center">
+                <span className="w-7 h-7 rounded-full bg-emerald-100 text-emerald-700 font-black text-xs flex items-center justify-center mb-1 shadow-2xs">
+                  📲
+                </span>
+                <strong className="text-[11px] font-bold text-slate-900 leading-tight">2. Comparte</strong>
+                <span className="text-[10px] text-slate-500 leading-tight mt-0.5">Envía el link al grupo de WhatsApp</span>
+              </div>
+
+              {/* Step 3 */}
+              <div className="p-2 bg-white rounded-xl border border-amber-100/90 shadow-2xs flex flex-col items-center">
+                <span className="w-7 h-7 rounded-full bg-indigo-100 text-indigo-700 font-black text-xs flex items-center justify-center mb-1 shadow-2xs">
+                  🗳️
+                </span>
+                <strong className="text-[11px] font-bold text-slate-900 leading-tight">3. ¡Votan!</strong>
+                <span className="text-[10px] text-slate-500 leading-tight mt-0.5">Deciden el ganador en 1 clic</span>
+              </div>
             </div>
           </div>
 
