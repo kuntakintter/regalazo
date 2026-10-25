@@ -65,9 +65,9 @@ export default function ProductCard({ product }: ProductCardProps) {
   };
 
   return (
-    <article className="group flex flex-col justify-between p-2.5 sm:p-3 rounded-2xl bg-white border border-slate-200/70 hover:border-slate-300 hover:shadow-lg transition-all duration-200 relative">
+    <article className="group flex flex-col justify-between p-2.5 sm:p-3 rounded-2xl bg-white border border-slate-300 hover:border-slate-400 shadow-xs hover:shadow-md transition-all duration-200 relative">
       {/* Product Image Viewport - Clean Amazon White Box */}
-      <div className="relative aspect-square w-full mb-2 bg-slate-50/60 rounded-xl overflow-hidden p-2 flex items-center justify-center">
+      <div className="relative aspect-square w-full mb-2 bg-slate-50/80 rounded-xl overflow-hidden p-2 flex items-center justify-center border border-slate-100">
         <a 
           href={directProductUrl}
           target="_blank"
