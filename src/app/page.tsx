@@ -647,7 +647,7 @@ export default function HomePage() {
                     {leftSlides.map((slideProducts, sIdx) => (
                       <div key={sIdx} className="w-full shrink-0 grid grid-cols-2 gap-2.5">
                         {slideProducts.map((item) => {
-                          const amazonUrl = getAmazonProductUrl(item.asin || 'B0DLWK3LKH');
+                          const amazonUrl = getAmazonProductUrl(item.asin, item.searchQuery || item.title);
                           return (
                             <a
                               key={item.id}
@@ -844,7 +844,7 @@ export default function HomePage() {
                     {rightSlides.map((slideProducts, sIdx) => (
                       <div key={sIdx} className="w-full shrink-0 grid grid-cols-2 gap-2.5">
                         {slideProducts.map((item) => {
-                          const amazonUrl = getAmazonProductUrl(item.asin || 'B0DLWK3LKH');
+                          const amazonUrl = getAmazonProductUrl(item.asin, item.searchQuery || item.title);
                           return (
                             <a
                               key={item.id}

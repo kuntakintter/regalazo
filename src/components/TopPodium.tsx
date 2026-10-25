@@ -239,7 +239,7 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
       <div className="max-w-4xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 items-end pt-5">
           {podiumPicks.map((pick) => {
-            const directUrl = getAmazonProductUrl(pick.product.asin || 'B0DLWK3LKH');
+            const directUrl = getAmazonProductUrl(pick.product.asin, pick.product.searchQuery || pick.product.title);
             const isGold = pick.rank === 1;
 
             return (

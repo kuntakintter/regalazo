@@ -29,8 +29,8 @@ export default function ProductCard({ product }: ProductCardProps) {
     setHasImgError(false);
   }, [currentImgSrc]);
 
-  // Enlace directo al producto específico en Amazon España
-  const directProductUrl = getAmazonProductUrl(product.asin || 'B0DLWK3LKH');
+  // Enlace directo al producto específico en Amazon España (con fallback seguro antierror 404)
+  const directProductUrl = getAmazonProductUrl(product.asin, product.searchQuery || product.title);
 
   const handleShare = async (e: React.MouseEvent) => {
     e.preventDefault();

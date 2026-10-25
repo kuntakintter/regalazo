@@ -142,7 +142,7 @@ function VotingContent() {
       {/* Voting Cards Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 mb-12 items-stretch">
         {matchedProducts.map((product) => {
-          const directUrl = getAmazonProductUrl(product.asin || 'B0DLWK3LKH');
+          const directUrl = getAmazonProductUrl(product.asin, product.searchQuery || product.title);
           const productVotes = votes[product.id] || 0;
           const percentage = totalVotes > 0 ? Math.round((productVotes / totalVotes) * 100) : 0;
           const isVoted = userVotedId === product.id;
