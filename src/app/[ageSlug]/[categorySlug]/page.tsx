@@ -12,7 +12,7 @@ import TopPodium from '@/components/TopPodium';
 import { PRODUCTS } from '@/data/products';
 import { SEO_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
 import { buildSocialMetadata, getCategoryOgImage } from '@/lib/ogMetadata';
-import { Gift, ChevronRight, ShieldCheck, ShoppingBag, TrendingUp } from 'lucide-react';
+import { Gift, ChevronRight, ShieldCheck, ShoppingBag, TrendingUp, Compass, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
 interface PageProps {
@@ -150,26 +150,56 @@ export default async function SubcategoryLandingPage({ params }: PageProps) {
             Selección exclusiva verificada de {currentSub.label.toLowerCase()} recomendados para {ageMeta.h1.toLowerCase()}. Consulta valoraciones reales, stock y precios actualizados directamente con la garantía oficial de Amazon España.
           </p>
 
-          {/* Quick links to sibling subcategories */}
-          <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
-            <Link
-              href={`/${ageSlug}`}
-              className="px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-900 text-white shadow-xs"
-            >
-              ← Ver todas las opciones
-            </Link>
-            {subcategories
-              .filter((s) => s.slug !== categorySlug)
-              .map((sub) => (
+          {/* THEMATIC EXPLORATION BOX (SIBLING CATEGORIES) */}
+          {subcategories.filter((s) => s.slug !== categorySlug).length > 0 && (
+            <div className="max-w-4xl mx-auto mb-10 text-left rounded-3xl overflow-hidden border-2 border-slate-300 bg-white shadow-lg">
+              {/* Header Bar */}
+              <div className="bg-[#131921] px-5 py-3.5 border-b-2 border-amber-400/60 flex items-center justify-between text-white">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-xl bg-[#febd69] text-slate-950 flex items-center justify-center font-black shadow-xs shrink-0">
+                    <Compass className="w-4 h-4 stroke-[2.5]" />
+                  </div>
+                  <div>
+                    <h2 className="text-xs sm:text-sm font-black text-[#febd69] uppercase tracking-wider">
+                      Otras Temáticas en {ageMeta.h1}
+                    </h2>
+                    <p className="text-[11px] text-slate-300 hidden sm:block">
+                      Explora más alternativas dentro de esta misma etapa
+                    </p>
+                  </div>
+                </div>
                 <Link
-                  key={sub.slug}
-                  href={`/${ageSlug}/${sub.slug}`}
-                  className="px-3 py-1.5 rounded-xl text-xs font-semibold bg-white hover:bg-indigo-50 border border-slate-200 hover:border-indigo-300 text-slate-700 hover:text-indigo-600 transition-all shadow-xs"
+                  href={`/${ageSlug}`}
+                  className="text-xs font-bold text-amber-300 hover:text-white flex items-center gap-1 transition-colors px-3 py-1 rounded-full bg-white/10 border border-white/20 shrink-0"
                 >
-                  {sub.label}
+                  <span>← Ver todas</span>
                 </Link>
-              ))}
-          </div>
+              </div>
+
+              {/* Grid of Other Subcategories */}
+              <div className="p-4 sm:p-5 bg-gradient-to-b from-slate-50/80 via-white to-amber-50/30">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5">
+                  {subcategories
+                    .filter((s) => s.slug !== categorySlug)
+                    .map((sub) => (
+                      <Link
+                        key={sub.slug}
+                        href={`/${ageSlug}/${sub.slug}`}
+                        className="group relative flex items-center justify-between p-3 rounded-2xl bg-white hover:bg-[#131921] border-2 border-slate-200 hover:border-[#131921] text-slate-800 hover:text-white transition-all shadow-xs hover:shadow-md hover:-translate-y-0.5 cursor-pointer"
+                      >
+                        <div className="flex items-center gap-2.5 min-w-0 pr-2">
+                          <span className="w-2 h-2 rounded-full bg-amber-500 group-hover:scale-125 transition-transform shrink-0" />
+                          <span className="text-xs font-bold truncate group-hover:text-amber-200 transition-colors">
+                            {sub.label}
+                          </span>
+                        </div>
+                        <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#febd69] group-hover:translate-x-1 transition-all shrink-0" />
+                      </Link>
+                    ))}
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Trust badges */}
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs font-medium text-slate-500">

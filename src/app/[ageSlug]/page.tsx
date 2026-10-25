@@ -14,7 +14,7 @@ import TopPodium from '@/components/TopPodium';
 import { PRODUCTS, Product } from '@/data/products';
 import { SEO_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
 import { HUB_OG_SNIPPETS, buildSocialMetadata } from '@/lib/ogMetadata';
-import { ShieldCheck, TrendingUp, Gift, ChevronRight, ShoppingBag } from 'lucide-react';
+import { ShieldCheck, TrendingUp, Gift, ChevronRight, ShoppingBag, Compass, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
 interface PageProps {
@@ -144,21 +144,60 @@ export default async function AgeLandingPage({ params }: PageProps) {
             {routeMeta.description}
           </p>
 
-          {/* Subcategory Pill Links for Crawlers and Users */}
+          {/* THEMATIC EXPLORATION BOX (PREMIUM AMAZON-STYLE CATEGORY NAV) */}
           {subcategoryList.length > 0 && (
-            <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
-              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider mr-1">
-                Explorar por temática:
-              </span>
-              {subcategoryList.map((sub) => (
-                <Link
-                  key={sub.slug}
-                  href={`/${ageSlug}/${sub.slug}`}
-                  className="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white hover:bg-indigo-50 border border-slate-200 hover:border-indigo-300 text-slate-700 hover:text-indigo-600 transition-all shadow-xs"
-                >
-                  {sub.label}
-                </Link>
-              ))}
+            <div className="max-w-4xl mx-auto mb-10 text-left rounded-3xl overflow-hidden border-2 border-slate-300 bg-white shadow-lg">
+              {/* Header Bar - Amazon Deep Navy with Amber Accent */}
+              <div className="bg-[#131921] px-5 py-3.5 border-b-2 border-amber-400/60 flex items-center justify-between text-white">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-xl bg-[#febd69] text-slate-950 flex items-center justify-center font-black shadow-xs shrink-0">
+                    <Compass className="w-4 h-4 stroke-[2.5]" />
+                  </div>
+                  <div>
+                    <h2 className="text-xs sm:text-sm font-black text-[#febd69] uppercase tracking-wider flex items-center gap-2">
+                      <span>Explorar por Temática y Categoría</span>
+                    </h2>
+                    <p className="text-[11px] text-slate-300 hidden sm:block">
+                      Selecciona una temática especializada para ver los mejores regalos verificados
+                    </p>
+                  </div>
+                </div>
+                <span className="text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full bg-white/10 text-amber-300 border border-white/20 shrink-0">
+                  {subcategoryList.length} Temáticas
+                </span>
+              </div>
+
+              {/* Grid of Subcategories */}
+              <div className="p-4 sm:p-5 bg-gradient-to-b from-slate-50/80 via-white to-amber-50/30">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5">
+                  {subcategoryList.map((sub) => (
+                    <Link
+                      key={sub.slug}
+                      href={`/${ageSlug}/${sub.slug}`}
+                      className="group relative flex items-center justify-between p-3 rounded-2xl bg-white hover:bg-[#131921] border-2 border-slate-200 hover:border-[#131921] text-slate-800 hover:text-white transition-all shadow-xs hover:shadow-md hover:-translate-y-0.5 cursor-pointer"
+                    >
+                      <div className="flex items-center gap-2.5 min-w-0 pr-2">
+                        <span className="w-2 h-2 rounded-full bg-amber-500 group-hover:scale-125 transition-transform shrink-0" />
+                        <span className="text-xs font-bold truncate group-hover:text-amber-200 transition-colors">
+                          {sub.label}
+                        </span>
+                      </div>
+                      <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#febd69] group-hover:translate-x-1 transition-all shrink-0" />
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Informative Footer Bar */}
+              <div className="px-5 py-2.5 bg-slate-50 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-1 text-[11px] text-slate-500">
+                <span className="flex items-center gap-1.5 font-medium">
+                  <span className="text-amber-500 font-black">✓</span>
+                  <span>Catálogo oficial con opiniones verificadas 4.5+ ★ y envío Prime</span>
+                </span>
+                <span className="font-bold text-slate-700">
+                  {ageProducts.length} productos analizados
+                </span>
+              </div>
             </div>
           )}
 
