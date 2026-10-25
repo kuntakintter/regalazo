@@ -28,6 +28,13 @@ export function normalizeSearchText(str: string): string {
     .trim();
 }
 
+const STOP_WORDS = new Set([
+  'regalo', 'regalos', 'idea', 'ideas', 'para', 'el', 'la', 'los', 'las',
+  'un', 'una', 'unos', 'unas', 'de', 'del', 'al', 'con', 'en', 'y', 'o',
+  'mas', 'muy', 'original', 'originales', 'buen', 'bueno', 'buenos',
+  'mejores', 'mejor', 'vendido', 'vendidos', 'top', 'ventas', 'cosa', 'cosas'
+]);
+
 /**
  * Checks if a product matches a search query using tokenized fuzzy matching.
  */
@@ -48,10 +55,22 @@ export function matchesSearchQuery(
   const normalizedQuery = normalizeSearchText(rawQuery);
   const queryTokens = normalizedQuery.split(/\s+/).filter((t) => t.length > 0);
 
+  // If query consists only of generic intent words like "regalos mas vendidos", match all products!
+  const meaningfulTokens = queryTokens.filter((t) => !STOP_WORDS.has(t));
+  if (meaningfulTokens.length === 0) {
+    return true;
+  }
+
   const searchableText = normalizeSearchText(
     `${product.title} ${product.description} ${product.category || ''} ${product.subcategory || ''} ${product.searchQuery || ''} ${product.badge || ''} ${product.idealFor || ''}`
   );
 
-  // Every word typed must match somewhere in the product text
-  return queryTokens.every((token) => searchableText.includes(token));
+  // For 1 or 2 meaningful terms, check if all match
+  if (meaningfulTokens.length <= 2) {
+    return meaningfulTokens.every((token) => searchableText.includes(token));
+  }
+
+  // For 3+ terms, match if at least 2 tokens match
+  const matchCount = meaningfulTokens.filter((token) => searchableText.includes(token)).length;
+  return matchCount >= Math.min(2, Math.ceil(meaningfulTokens.length * 0.5));
 }

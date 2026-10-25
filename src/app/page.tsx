@@ -45,14 +45,19 @@ import {
   X
 } from 'lucide-react';
 
-const QUICK_PROMPTS = [
-  { label: '🎁 Para mi novio', query: 'regalo para novio original' },
-  { label: '🎮 Gamer / Friki', query: 'gaming anime friki' },
-  { label: '💸 Menos de 20 €', query: 'regalo barato menos de 20 euros', price: '<20' },
-  { label: '🏍️ Moteros', query: 'regalos moteros moto' },
-  { label: '☕ Amante del café', query: 'café barista espresso' },
-  { label: '👶 Bebés y Niños', query: 'juguetes bebes ninos' },
-  { label: '🐾 Mascotas', query: 'mascotas perros gatos' },
+const QUICK_PROMPTS: Array<{
+  label: string;
+  query: string;
+  price?: string;
+  sort?: 'featured' | 'price-asc' | 'price-desc' | 'rating';
+}> = [
+  { label: '🎁 Para mi novio', query: 'novio' },
+  { label: '🎮 Gamer / Friki', query: 'gaming' },
+  { label: '💸 Menos de 20 €', query: '', price: '<20', sort: 'price-asc' },
+  { label: '🏍️ Moteros', query: 'moto' },
+  { label: '☕ Amante del café', query: 'cafe' },
+  { label: '👶 Bebés y Niños', query: 'bebe' },
+  { label: '🐾 Mascotas', query: 'mascotas' },
 ];
 
 const AGE_BANNER_ICONS: Record<string, { icon: React.ComponentType<{ className?: string }>; bg: string; color: string }> = {
@@ -98,12 +103,22 @@ export default function HomePage() {
   const [isLoadingLive, setIsLoadingLive] = useState(false);
 
   // Quick prompt handler from hero chips
-  const handleQuickPrompt = (promptItem: { label: string; query: string; price?: string }) => {
+  const handleQuickPrompt = (promptItem: {
+    label: string;
+    query: string;
+    price?: string;
+    sort?: 'featured' | 'price-asc' | 'price-desc' | 'rating';
+  }) => {
     setSearchQuery(promptItem.query);
     if (promptItem.price) {
       setSelectedPrice(promptItem.price);
     } else {
       setSelectedPrice('all');
+    }
+    if (promptItem.sort) {
+      setSortBy(promptItem.sort);
+    } else {
+      setSortBy('featured');
     }
     setSelectedAge('all');
     setSelectedCategory('all');
@@ -504,7 +519,7 @@ export default function HomePage() {
           <div className="flex flex-col xl:flex-row items-stretch justify-center gap-5">
             
             {/* LEFT SHOWCASE WING (AMAZON 2x2 CARD) */}
-            <aside className="hidden xl:flex flex-col w-72 2xl:w-80 shrink-0 bg-white rounded-3xl p-5 shadow-xs border border-slate-200/90 justify-between">
+            <aside className="hidden lg:flex flex-col w-64 xl:w-72 2xl:w-80 shrink-0 bg-white rounded-3xl p-5 shadow-xs border border-slate-200/90 justify-between">
               <div>
                 <div className="flex items-center justify-between mb-3">
                   <div>
@@ -558,7 +573,7 @@ export default function HomePage() {
 
               <a
                 href="#catalogo-productos"
-                onClick={() => handleQuickPrompt({ label: 'Top Ventas', query: 'regalos mas vendidos' })}
+                onClick={() => handleQuickPrompt({ label: 'Top Ventas', query: '', sort: 'rating' })}
                 className="pt-3 mt-3 border-t border-slate-100 text-xs font-bold text-amber-700 hover:text-amber-900 flex items-center justify-between group cursor-pointer"
               >
                 <span>Ver catálogo superventas</span>
@@ -674,7 +689,7 @@ export default function HomePage() {
             </div>
 
             {/* RIGHT SHOWCASE WING (AMAZON 2x2 CARD) */}
-            <aside className="hidden xl:flex flex-col w-72 2xl:w-80 shrink-0 bg-white rounded-3xl p-5 shadow-xs border border-slate-200/90 justify-between">
+            <aside className="hidden lg:flex flex-col w-64 xl:w-72 2xl:w-80 shrink-0 bg-white rounded-3xl p-5 shadow-xs border border-slate-200/90 justify-between">
               <div>
                 <div className="flex items-center justify-between mb-3">
                   <div>
@@ -727,7 +742,7 @@ export default function HomePage() {
 
               <a
                 href="#catalogo-productos"
-                onClick={() => handleQuickPrompt({ label: 'Menos de 20 €', query: 'regalos baratos', price: '<20' })}
+                onClick={() => handleQuickPrompt({ label: 'Menos de 20 €', query: '', price: '<20', sort: 'price-asc' })}
                 className="pt-3 mt-3 border-t border-slate-100 text-xs font-bold text-emerald-700 hover:text-emerald-900 flex items-center justify-between group cursor-pointer"
               >
                 <span>Ver todos por &lt; 20 €</span>
