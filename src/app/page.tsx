@@ -935,16 +935,6 @@ export default function HomePage() {
 
       </main>
 
-      {/* Floating AI Copilot Launcher Button in Bottom Right */}
-      <button
-        onClick={() => setIsAiModalOpen(true)}
-        aria-label="Abrir Asistente IA de Regalos"
-        className="fixed bottom-6 right-6 z-40 px-5 py-3.5 rounded-full bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 hover:from-indigo-700 hover:to-pink-600 text-white shadow-2xl flex items-center gap-2.5 transition-all hover:scale-105 active:scale-95 cursor-pointer font-extrabold text-sm border-2 border-white/20"
-      >
-        <Bot className="w-5 h-5 text-amber-300 animate-pulse" />
-        <span>¿Te ayudamos a buscar? Asistente IA</span>
-      </button>
-
       {/* Footer with Amazon Affiliate Compliance */}
       <Footer currentTheme="classic" />
     </div>

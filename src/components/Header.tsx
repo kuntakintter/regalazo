@@ -342,23 +342,9 @@ export default function Header({
             )}
           </div>
 
-          {/* Right Actions: Language Selector & Rufus AI Assistant Trigger */}
+          {/* Right Actions: Language Selector */}
           <div className="flex items-center gap-2 shrink-0">
             <LanguageSelector dark={true} />
-            
-            <button
-              type="button"
-              onClick={() => {
-                if (typeof window !== 'undefined') {
-                  window.dispatchEvent(new CustomEvent('open-ai-wizard'));
-                }
-              }}
-              className="hidden md:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md text-xs font-black bg-gradient-to-r from-[#febd69] to-[#f3a847] hover:from-[#f3a847] hover:to-[#e47911] text-slate-950 transition-all hover:scale-102 shadow-xs cursor-pointer select-none"
-              title="Abrir Asistente IA para regalos"
-            >
-              <Bot className="w-3.5 h-3.5 text-slate-950" />
-              <span>Asistente IA</span>
-            </button>
           </div>
 
         </div>
@@ -378,20 +364,6 @@ export default function Header({
             <span className="text-sm font-black">☰</span>
             <span>Todo</span>
           </Link>
-
-          {/* Rufus / Asistente IA destacado en el submenú */}
-          <button
-            type="button"
-            onClick={() => {
-              if (typeof window !== 'undefined') {
-                window.dispatchEvent(new CustomEvent('open-ai-wizard'));
-              }
-            }}
-            className="flex items-center gap-1 px-2.5 py-1 rounded text-amber-300 font-bold hover:outline hover:outline-1 hover:outline-amber-400/70 whitespace-nowrap transition-all shrink-0 cursor-pointer"
-          >
-            <Bot className="w-3.5 h-3.5 text-amber-400" />
-            <span>Rufus / Asistente IA</span>
-          </button>
 
           <span className="w-px h-4 bg-slate-700 mx-1 shrink-0"></span>
 
