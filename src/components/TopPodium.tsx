@@ -71,7 +71,8 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
         : 'border-2 border-amber-400 bg-gradient-to-b from-amber-500/10 via-white to-amber-50/40 shadow-xl shadow-amber-500/15 ring-2 ring-amber-400/25 text-slate-900',
       orderClass: 'order-1 md:order-2',
       // Center Pedestal: Tallest block (like "1" in reference photo)
-      podiumHeight: 'h-24 sm:h-32 md:h-36',
+      podiumHeight: 'h-32 sm:h-38 md:h-44',
+      numberSize: 'text-5xl sm:text-6xl md:text-7xl',
       podiumNumber: '1',
       podiumSubtitle: 'ORO · GANADOR',
       podiumBg: 'bg-gradient-to-b from-[#fde68a] via-[#f59e0b] to-[#b45309]',
@@ -90,7 +91,8 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
         : 'border-2 border-slate-300 bg-gradient-to-b from-slate-100/60 via-white to-slate-50 shadow-md text-slate-900',
       orderClass: 'order-2 md:order-1',
       // Left Pedestal: Medium height block (like "2" in reference photo)
-      podiumHeight: 'h-18 sm:h-22 md:h-26',
+      podiumHeight: 'h-24 sm:h-28 md:h-32',
+      numberSize: 'text-4xl sm:text-5xl md:text-6xl',
       podiumNumber: '2',
       podiumSubtitle: 'PLATA · 2º PUESTO',
       podiumBg: 'bg-gradient-to-b from-[#f8fafc] via-[#cbd5e1] to-[#64748b]',
@@ -109,7 +111,8 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
         : 'border-2 border-orange-200 bg-gradient-to-b from-orange-50/40 via-white to-orange-50/20 shadow-md text-slate-900',
       orderClass: 'order-3 md:order-3',
       // Right Pedestal: Lower height block (like "3" in reference photo)
-      podiumHeight: 'h-14 sm:h-16 md:h-18',
+      podiumHeight: 'h-20 sm:h-22 md:h-26',
+      numberSize: 'text-3xl sm:text-4xl md:text-5xl',
       podiumNumber: '3',
       podiumSubtitle: 'BRONCE · 3º PUESTO',
       podiumBg: 'bg-gradient-to-b from-[#d97706] via-[#92400e] to-[#451a03]',
@@ -267,7 +270,7 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
                     href={directUrl}
                     target="_blank"
                     rel="nofollow sponsored noopener noreferrer"
-                    className={`font-bold text-xs sm:text-sm line-clamp-2 transition-colors mb-2 leading-snug min-h-[2.2rem] cursor-pointer ${
+                    className={`font-bold text-xs sm:text-sm line-clamp-2 transition-colors mb-2 leading-snug min-h-[2.6rem] cursor-pointer ${
                       isDark ? 'text-white hover:text-amber-400' : 'text-slate-900 hover:text-amber-600'
                     }`}
                     title={pick.product.title}
@@ -310,23 +313,23 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
 
                 {/* 2. Podium Pedestal Base (Matches User's 3D Olympic Podium Photo: 2 on Left, 1 Center, 3 on Right) */}
                 <div
-                  className={`w-full flex flex-col items-center justify-center rounded-b-2xl border-x-2 border-b-2 relative overflow-hidden transition-all select-none ${pick.podiumHeight} ${pick.podiumBg} ${pick.podiumBorder} ${pick.podiumHighlight}`}
+                  className={`w-full flex flex-col items-center justify-center py-2 sm:py-2.5 rounded-b-2xl border-x-2 border-b-2 relative overflow-hidden transition-all select-none ${pick.podiumHeight} ${pick.podiumBg} ${pick.podiumBorder} ${pick.podiumHighlight}`}
                 >
                   {/* Subtle 3D Top Bevel Light Line */}
                   <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-white/80 to-transparent" />
 
                   {/* Giant 3D Podium Number (matching user's reference photo) */}
-                  <span className="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tighter drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)] leading-none">
+                  <span className={`font-black text-white tracking-tighter drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)] leading-none ${pick.numberSize}`}>
                     {pick.podiumNumber}
                   </span>
 
                   {/* Podium Subtitle Ribbon */}
-                  <span className={`text-[9px] sm:text-[10px] font-black tracking-widest uppercase px-2 py-0.5 rounded-full mt-1 backdrop-blur-xs ${
+                  <span className={`text-[9px] sm:text-[10px] font-black tracking-wider uppercase px-2 py-0.5 rounded-full mt-1.5 backdrop-blur-xs whitespace-nowrap shrink-0 ${
                     pick.rank === 1
                       ? 'bg-amber-950/20 text-amber-950 border border-amber-900/20'
                       : pick.rank === 2
                       ? 'bg-slate-900/20 text-slate-900 border border-slate-700/20'
-                      : 'bg-black/30 text-amber-100 border border-white/20'
+                      : 'bg-black/35 text-amber-100 border border-white/20'
                   }`}>
                     {pick.podiumSubtitle}
                   </span>
