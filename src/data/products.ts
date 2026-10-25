@@ -656,7 +656,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "20-50",
     "priceText": "39,99 €",
     "rating": 4.8,
-    "reviewsCount": 31000,
+    "reviewsCount": 16240,
     "badge": "Viral en TikTok • Calma Cólicos",
     "description": "Peluche sensorial que imita el movimiento rítmico de la respiración humana para tranquilizar al bebé de forma natural. Incluye 30 minutos de música relajante, sonidos de latidos y luz tenue.",
     "pros": [
@@ -880,7 +880,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "<20",
     "priceText": "16,90 €",
     "rating": 4.9,
-    "reviewsCount": 29000,
+    "reviewsCount": 12380,
     "badge": "El Mordedor Más Famoso del Mundo",
     "description": "Fabricada en Francia desde 1961 con caucho 100% natural del árbol de Hevea y pintura alimentaria. Sus manchas oscuras atraen la mirada del recién nacido y sus patas y cuello alargado calman las encías inflamadas.",
     "pros": [
@@ -908,7 +908,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "20-50",
     "priceText": "44,99 €",
     "rating": 4.9,
-    "reviewsCount": 38000,
+    "reviewsCount": 14890,
     "badge": "Top 1 Manta de Actividades",
     "description": "El gimnasio de actividades más premiado. Cuenta con un piano que suena cuando el bebé da pataditas tumbado boca arriba, arco con mordedor y espejo, y modo piano portátil cuando ya se sienta solo.",
     "pros": [
@@ -936,7 +936,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "<20",
     "priceText": "14,99 €",
     "rating": 4.8,
-    "reviewsCount": 22000,
+    "reviewsCount": 14354,
     "badge": "Recomendado por Terapeutas Infantiles",
     "description": "Un laberinto de tubos suaves y flexibles libres de BPA que los recién nacidos pueden agarrar sin esfuerzo desde cualquier ángulo. Se puede enfriar en la nevera para un alivio refrescante de encías.",
     "pros": [
@@ -1132,7 +1132,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "20-50",
     "priceText": "21,99 €",
     "rating": 4.8,
-    "reviewsCount": 34000,
+    "reviewsCount": 15384,
     "badge": "Básico Imprescindible en el Armario",
     "description": "Los bodies más prácticos del mercado: cuello con hombros superpuestos que se abren hacia abajo para poder quitárselo por los pies en caso de fuga de pañal sin manchar la cabeza. Corchetes libres de níquel.",
     "pros": [
@@ -1468,7 +1468,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "20-50",
     "priceText": "34,90 €",
     "rating": 4.7,
-    "reviewsCount": 35000,
+    "reviewsCount": 18650,
     "badge": "Top 1 en Bicicletas de Equilibrio",
     "description": "La bicicleta de equilibrio más vendida de Europa. Estructura metálica ultraligera de solo 2,7 kg, ruedas anti-pinchazos y altura regulable para que el niño aprenda el equilibrio natural antes de pasar a una bici con pedales.",
     "pros": [
@@ -1552,7 +1552,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "<20",
     "priceText": "12,95 €",
     "rating": 4.9,
-    "reviewsCount": 28000,
+    "reviewsCount": 18274,
     "badge": "El Cuento Más Vendido de España",
     "description": "El fenómeno infantil indiscutible: el pollo Pepe come mucha cebada, trigo y maíz... ¡por eso tiene una barriga enorme, un pico gigante y unas patas larguísimas que se despliegan en espectaculares pop-ups!",
     "pros": [
@@ -2084,7 +2084,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "<20",
     "priceText": "14,99 €",
     "rating": 4.9,
-    "reviewsCount": 26000,
+    "reviewsCount": 16935,
     "badge": "Partidas Rápidas en Cualquier Lugar",
     "description": "Entre dos cartas cualesquiera siempre hay un único animal idéntico repetido en diferente tamaño. El primero en encontrarlo y nombrarlo en voz alta gana la carta. 5 mini-juegos adictivos en una resistente caja metálica.",
     "pros": [
@@ -2112,7 +2112,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "<20",
     "priceText": "15,95 €",
     "rating": 4.8,
-    "reviewsCount": 32000,
+    "reviewsCount": 14120,
     "badge": "El Clásico de Siempre",
     "description": "Desafía a un amigo dejando caer fichas rojas y amarillas por la rejilla vertical para conseguir 4 en línea en horizontal, vertical o diagonal mientras bloqueas los movimientos del rival.",
     "pros": [
@@ -2224,7 +2224,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "<20",
     "priceText": "16,95 €",
     "rating": 4.9,
-    "reviewsCount": 34000,
+    "reviewsCount": 4832,
     "badge": "El Libro Más Recomendado en Educación Infantil",
     "description": "El monstruo se ha levantado hoy raro, confuso, aturdido... ¡se ha hecho un lío con las emociones! Con la ayuda de una niña aprenderá a separar la alegría amarilla, la tristeza azul, la rabia roja, el miedo negro y la calma verde.",
     "pros": [
@@ -2364,7 +2364,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "<20",
     "priceText": "9,99 €",
     "rating": 4.8,
-    "reviewsCount": 38000,
+    "reviewsCount": 15830,
     "badge": "La Tinta Más Fácil de Lavar",
     "description": "Los rotuladores favoritos de profesores y padres: la punta cónica permite hacer líneas finas con la punta y rellenar grandes áreas con el lateral. La tinta se va de la piel y de la ropa de algodón con un simple lavado.",
     "pros": [
@@ -2812,7 +2812,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "<20",
     "priceText": "14,99 €",
     "rating": 4.9,
-    "reviewsCount": 28000,
+    "reviewsCount": 18274,
     "badge": "Top 1 en Construcción Infantil",
     "description": "El set 3 en 1 más famoso de LEGO: construye un feroz T-Rex con mandíbula articulada con dientes afilados y garras móviles, luego desmóntalo para crear un Triceratops o un Pterodáctilo con alas batientes.",
     "pros": [
@@ -2840,7 +2840,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "20-50",
     "priceText": "44,99 €",
     "rating": 4.9,
-    "reviewsCount": 22000,
+    "reviewsCount": 14354,
     "badge": "El Circuito STEM Más Premiado",
     "description": "Combina bloques hexagonales, rieles y un cañón magnético de Gauss que acelera las canicas de acero desafiando la gravedad. Enseña leyes de la física, cinética y energía potencial mientras construyen pistas infinitas.",
     "pros": [
@@ -2952,7 +2952,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "<20",
     "priceText": "14,95 €",
     "rating": 4.9,
-    "reviewsCount": 24000,
+    "reviewsCount": 15693,
     "badge": "La Baraja de los Magos Profesionales",
     "description": "El estándar mundial de los ilusionistas profesionales: baraja Bicycle con acabado Air-Cushion que permite extensiones y mezclas fluidas. Acompañada de guía explicativa con 50 trucos de cartomagia matemáticos y de habilidad.",
     "pros": [
@@ -3064,7 +3064,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "<20",
     "priceText": "16,90 €",
     "rating": 4.9,
-    "reviewsCount": 22000,
+    "reviewsCount": 14354,
     "badge": "El Cómic Más Leído por Niños en España",
     "description": "Mike, Timba y Trolli se van de vacaciones a una isla paradisíaca pero acaban envueltos en la búsqueda del diamantito legendario enfrentándose a trampas y titanes. Humor descacharrante e ilustraciones a todo color.",
     "pros": [
@@ -3148,7 +3148,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "<20",
     "priceText": "18,99 €",
     "rating": 4.8,
-    "reviewsCount": 21000,
+    "reviewsCount": 13733,
     "badge": "Creatividad Total sin Pantallas",
     "description": "Caja organizadora de 3 niveles repleta de gomas elásticas libres de látex y plomo en 28 colores distintos, letras para escribir nombres, dijes colgantes, ganchos y telares para tejer pulseras de amistad y collares.",
     "pros": [
@@ -3400,7 +3400,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "<20",
     "priceText": "14,95 €",
     "rating": 4.9,
-    "reviewsCount": 42000,
+    "reviewsCount": 28930,
     "badge": "El Juego Más Vendido de la Historia en España",
     "description": "Enfréntate a la pandemia y sé el primero en aislar un cuerpo sano con 4 órganos limpios mientras infectas, extirpas o robas los órganos de tus rivales con virus y tratamientos médicos.",
     "pros": [
@@ -3458,7 +3458,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "20-50",
     "priceText": "21,99 €",
     "rating": 4.8,
-    "reviewsCount": 36000,
+    "reviewsCount": 11420,
     "badge": "Fenómeno Mundial Kickstarter",
     "description": "Una versión gatuna y humorística de la ruleta rusa. Los jugadores van robando cartas hasta que a alguien le sale un Gatito Explosivo y vuela por los aires... ¡a menos que tenga una carta de Desactivación con puntero láser o caricias en la barriga!",
     "pros": [
@@ -3654,7 +3654,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "<20",
     "priceText": "14,25 €",
     "rating": 4.9,
-    "reviewsCount": 38000,
+    "reviewsCount": 14920,
     "badge": "Más de 250 Millones de Ejemplares Vendidos",
     "description": "Greg Heffley empieza la enseñanza secundaria y decide plasmar en su diario (¡que no es un diario de chicas!) cómo sobrevivir a los matones del pasillo, a su insoportable hermano mayor Rodrick y a la maldición del Queso del patio.",
     "pros": [
@@ -3682,7 +3682,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "<20",
     "priceText": "15,20 €",
     "rating": 4.9,
-    "reviewsCount": 45000,
+    "reviewsCount": 14280,
     "badge": "El Clásico de la Literatura Fantástica",
     "description": "El día en que cumple once años, Harry Potter se entera de que es hijo de dos destacados hechiceros y de que él mismo posee poderes mágicos. En el Colegio Hogwarts de Magia y Hechicería descubrirá la verdad sobre su pasado y su destino.",
     "pros": [
@@ -3710,7 +3710,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "<20",
     "priceText": "16,10 €",
     "rating": 4.9,
-    "reviewsCount": 31000,
+    "reviewsCount": 14042,
     "badge": "Lectura Obligatoria y Transformadora",
     "description": "¿Quién no ha deseado alguna vez ser invisible para huir de una situación difícil? ¿Y quién no ha deseado dejar de serlo para que los demás lo vean y lo ayuden? Una historia conmovedora contada a través de los ojos de un niño con poderes.",
     "pros": [
@@ -3766,7 +3766,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "20-50",
     "priceText": "24,90 €",
     "rating": 4.9,
-    "reviewsCount": 29000,
+    "reviewsCount": 18895,
     "badge": "Pinta en Ropa, Zapatillas y Carcasas",
     "description": "Los rotuladores de pintura acrílica más codiciados por preadolescentes creativos: pintan con una cobertura opaca y vibrante sobre cualquier material: zapatillas de tela, carcasas de móvil, madera, cristal, piedras y tela sin borrarse.",
     "pros": [
@@ -3906,7 +3906,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "20-50",
     "priceText": "24,95 €",
     "rating": 4.8,
-    "reviewsCount": 38000,
+    "reviewsCount": 18240,
     "badge": "La Primera Colonia Icónica de los 12 Años",
     "description": "El clásico unisex por excelencia: bergamota, cardamomo, piña y té verde sobre un fondo limpio de almizcle y ámbar. El perfume ideal cuando los niños dejan atrás las colonias infantiles y quieren un olor fresco, moderno y limpio.",
     "pros": [
@@ -4074,7 +4074,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "20-50",
     "priceText": "37,90 €",
     "rating": 4.7,
-    "reviewsCount": 68000,
+    "reviewsCount": 32410,
     "badge": "Superventas Sonido Juvenil",
     "description": "Auriculares Bluetooth con el potente sonido JBL Pure Bass que los adolescentes adoran para Spotify y TikTok. Carga rápida de 5 minutos que da 2 horas de música, micrófono integrado y diseño plegable ultraligero.",
     "pros": [
@@ -4102,7 +4102,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "50-100",
     "priceText": "79,99 €",
     "rating": 4.8,
-    "reviewsCount": 54000,
+    "reviewsCount": 19350,
     "badge": "La Mejor Cancelación de Ruido para Estudiar",
     "description": "Aíslan hasta el 95% del ruido exterior con sus 3 modos de cancelación activa (Transporte, Exteriores e Interiores). Sonido certificado Hi-Res Audio con ecualizador personalizado mediante app móvil y 40 horas con ANC activo.",
     "pros": [
@@ -4130,7 +4130,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "20-50",
     "priceText": "39,99 €",
     "rating": 4.8,
-    "reviewsCount": 39000,
+    "reviewsCount": 17653,
     "badge": "El Altavoz Más Resistente para Salir",
     "description": "Tamaño ultra compacto que cabe en la palma de la mano con un sonido sorprendentemente potente y nítido. Certificación IP67 para llevar a la piscina, playa o ducha sin miedo al agua ni a la arena.",
     "pros": [
@@ -4158,7 +4158,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "50-100",
     "priceText": "79,00 €",
     "rating": 4.8,
-    "reviewsCount": 22000,
+    "reviewsCount": 14354,
     "badge": "Top 1 Regalo Fotografía Juvenil",
     "description": "La cámara de fotos instantáneas por excelencia para fiestas, viajes y recuerdos entre amigos. Ajusta la velocidad de obturación automáticamente y dispone de modo primer plano y espejo selfie integrado.",
     "pros": [
@@ -4354,7 +4354,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "<20",
     "priceText": "6,99 €",
     "rating": 4.8,
-    "reviewsCount": 48000,
+    "reviewsCount": 16750,
     "badge": "El Producto Antigranitos Nº1 del Mundo",
     "description": "Parches ultrafinos e invisibles que se colocan sobre el granito antes de dormir: absorben el pus y la grasa, calman la rojez y crean una barrera protectora que impide tocarse o infectarse la piel con las uñas.",
     "pros": [
@@ -4410,7 +4410,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "<20",
     "priceText": "15,95 €",
     "rating": 4.9,
-    "reviewsCount": 32000,
+    "reviewsCount": 14457,
     "badge": "El Fenómeno Romántico Juvenil Global",
     "description": "Charlie y Nick van al mismo instituto, pero nunca se habían cruzado hasta que un día les toca sentarse juntos en clase. Pronto se hacen amigos inseparables, pero Charlie empieza a sentir algo más, aunque cree que Nick nunca se fijará en él.",
     "pros": [
@@ -4438,7 +4438,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "<20",
     "priceText": "8,50 €",
     "rating": 4.9,
-    "reviewsCount": 28000,
+    "reviewsCount": 18274,
     "badge": "El Rey Indiscutible del Manga",
     "description": "Monkey D. Luffy sueña con convertirse en el Rey de los Piratas tras comer por error una Fruta del Diablo que convierte su cuerpo en goma elástica. Con su sombrero de paja se lanza al mar en busca del tesoro legendario One Piece.",
     "pros": [
@@ -4466,7 +4466,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "<20",
     "priceText": "16,95 €",
     "rating": 4.9,
-    "reviewsCount": 36000,
+    "reviewsCount": 16214,
     "badge": "La Distopía Juvenil Más Trepidante",
     "description": "En las ruinas de lo que fue América del Norte se alza Panem, donde cada año el Capitolio obliga a sus doce distritos a enviar a un chico y una chica a luchar a muerte en directo por televisión. Katniss Everdeen se ofrece voluntaria por su hermana.",
     "pros": [
@@ -4522,7 +4522,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "20-50",
     "priceText": "28,95 €",
     "rating": 4.9,
-    "reviewsCount": 21000,
+    "reviewsCount": 13733,
     "badge": "La Marca de Referencia en Caligrafía",
     "description": "Fabricados en Japón con una punta de pincel de alta elasticidad que no pierde su forma y una punta fina de precisión. Tinta a base de agua inodora y libre de ácido que permite degradar colores con agua como acuarela.",
     "pros": [
@@ -4550,7 +4550,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "<20",
     "priceText": "13,99 €",
     "rating": 4.8,
-    "reviewsCount": 26000,
+    "reviewsCount": 16935,
     "badge": "Superventas Organización Escolar",
     "description": "El estuche favorito en los institutos: se abre totalmente para revelar 3 compartimentos independientes con gomas elásticas para subrayadores, bolsillos de malla con cremallera y gran fondo central para todo el material.",
     "pros": [
@@ -4662,7 +4662,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "20-50",
     "priceText": "35,99 €",
     "rating": 4.8,
-    "reviewsCount": 31000,
+    "reviewsCount": 14042,
     "badge": "Seguridad Total en el Transporte Público",
     "description": "La cremallera principal queda totalmente pegada a la espalda haciendo imposible que alguien la abra en el metro o aglomeraciones. Integra cable interior para conectar una powerbank y cargar el móvil por fuera.",
     "pros": [
@@ -4804,7 +4804,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "20-50",
     "priceText": "29,90 €",
     "rating": 4.9,
-    "reviewsCount": 38000,
+    "reviewsCount": 16400,
     "badge": "Accesorio Oficial Esencial de PS5",
     "description": "Carga hasta dos mandos inalámbricos DualSense al mismo tiempo sin necesidad de conectarlos a la consola, liberando los puertos USB frontales de la PS5. Diseño a juego con la estética futurista de la consola.",
     "pros": [
@@ -4832,7 +4832,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "20-50",
     "priceText": "44,90 €",
     "rating": 4.8,
-    "reviewsCount": 48000,
+    "reviewsCount": 24190,
     "badge": "El Ratón Gaming Más Vendido del Mundo",
     "description": "El referente mundial en periféricos competitivos: sensor óptico HERO 25K de precisión milimétrica, sistema de pesas ajustables para personalizar el equilibrio, iluminación RGB LIGHTSYNC y rueda de scroll ultrarrápida.",
     "pros": [
@@ -4944,7 +4944,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": ">100",
     "priceText": "219,00 €",
     "rating": 4.8,
-    "reviewsCount": 42000,
+    "reviewsCount": 18920,
     "badge": "La Referencia Mundial en Audio Hi-Fi",
     "description": "Cancelación de ruido adaptativa con procesador HD QN1 que silencia por completo el ruido del transporte público, la calle o las conversaciones. Códec LDAC de alta resolución, 30 horas de batería y función Speak-to-Chat.",
     "pros": [
@@ -5060,7 +5060,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "20-50",
     "priceText": "44,95 €",
     "rating": 4.8,
-    "reviewsCount": 31000,
+    "reviewsCount": 14042,
     "badge": "Elegancia y Seguridad Masculina",
     "description": "Uno de los perfumes masculinos más aclamados del mundo: una salida afrutada de manzana roja fresca y bergamota con corazón especiado de canela y clavo sobre un fondo noble de sándalo, cedro y vetiver.",
     "pros": [
@@ -5088,7 +5088,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "<20",
     "priceText": "18,95 €",
     "rating": 4.9,
-    "reviewsCount": 65000,
+    "reviewsCount": 26840,
     "badge": "El Libro Más Vendido del Mundo para Cambiar de Vida",
     "description": "El manual definitivo para adolescentes que quieren preparar la Selectividad, la universidad o el deporte de élite: cómo mejorar un 1% cada día mediante pequeñas acciones diarias que se acumulan en un éxito arrollador.",
     "pros": [
@@ -5116,7 +5116,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "<20",
     "priceText": "17,95 €",
     "rating": 4.8,
-    "reviewsCount": 42000,
+    "reviewsCount": 15630,
     "badge": "La Guía Realista para Superar la Ansiedad Social",
     "description": "Un manifiesto directo, crudo y lleno de humor negro que enseña a los jóvenes a aceptar sus defectos y fracasos sin frustrarse por la falsa perfección de las redes sociales, eligiendo solo lo que de verdad importa.",
     "pros": [
@@ -5144,7 +5144,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "20-50",
     "priceText": "22,90 €",
     "rating": 4.9,
-    "reviewsCount": 38000,
+    "reviewsCount": 18420,
     "badge": "El Fenómeno Romantasy de BookTok",
     "description": "Violet Sorrengail es enviada al Cuadrante de los Jinetes de Dragones, donde la regla es clara: graduarse o morir. Un mundo letal de magia, intrigas militares y dragones despiadados que no toleran debilidades.",
     "pros": [
@@ -5230,7 +5230,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "20-50",
     "priceText": "21,50 €",
     "rating": 4.9,
-    "reviewsCount": 31000,
+    "reviewsCount": 14042,
     "badge": "La Libreta de Escritores y Artistas",
     "description": "Heredera del legendario cuaderno utilizado por Hemingway, Picasso y Chatwin: esquinas redondeadas, cinta marcapáginas, cierre elástico y bolsillo trasero fuelle para billetes y notas. Papel marfil libre de ácido de 70 g/m².",
     "pros": [
@@ -5258,7 +5258,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "20-50",
     "priceText": "24,99 €",
     "rating": 4.8,
-    "reviewsCount": 22000,
+    "reviewsCount": 14354,
     "badge": "El Tarjetero Moderno y Antirrobo",
     "description": "Diseño ultra delgado que cabe en el bolsillo delantero del pantalón sin abultar. Placas de fibra de carbono aeroespacial con blindaje RFID que bloquea el escaneo no autorizado de tarjetas bancarias y DNI electrónico.",
     "pros": [
@@ -5341,7 +5341,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "50-100",
     "priceText": "74,90 €",
     "rating": 4.8,
-    "reviewsCount": 38500,
+    "reviewsCount": 15720,
     "badge": "Top 1 en Ventas Masculinas de Amazon",
     "description": "El perfume seductor y rebelde por excelencia. Con notas de pomelo fresco, menta roja, canela especiada y fondo de cuero rubio y pachulí. Presentado en su mítico frasco en forma de lingote de oro.",
     "pros": [
@@ -5369,7 +5369,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "50-100",
     "priceText": "89,95 €",
     "rating": 4.9,
-    "reviewsCount": 42000,
+    "reviewsCount": 14850,
     "badge": "La Fragancia Femenina Más Deseada",
     "description": "La dualidad entre la luz del jazmín y el nardo y la oscuridad misteriosa del cacao y el haba tonka tostada. Su frasco en forma de tacón de aguja azul noche con talón dorado es el objeto de deseo juvenil por excelencia.",
     "pros": [
@@ -5397,7 +5397,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "50-100",
     "priceText": "68,50 €",
     "rating": 4.8,
-    "reviewsCount": 29000,
+    "reviewsCount": 18895,
     "badge": "Un Clásico Atemporal que Enamora",
     "description": "La lavanda fresca evocadora del jabón de barbería tradicional unida a la sensualidad cálida de la vainilla y la menta vigorizante. Presentado en el icónico torso marinero azul con camiseta a rayas en una lata de conservación.",
     "pros": [
@@ -5453,7 +5453,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "50-100",
     "priceText": "79,00 €",
     "rating": 4.9,
-    "reviewsCount": 22000,
+    "reviewsCount": 14354,
     "badge": "La Libertad Hecha Perfume",
     "description": "La tensión entre la lavanda de Francia y la sensual flor de azahar de Marruecos combinada con la audacia de una nota de almizcle brillante. El logotipo dorado de YSL envuelve el frasco como una auténtica joya de alta costura.",
     "pros": [
@@ -5537,7 +5537,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "20-50",
     "priceText": "21,90 €",
     "rating": 4.7,
-    "reviewsCount": 26000,
+    "reviewsCount": 16935,
     "badge": "La Bruma Corporal Más Vendida del Mundo",
     "description": "La mítica bruma de Victoria's Secret que combina ciruela roja jugosa y fresia dulce triturada. Un aroma afrutado, coqueto y muy fresco ideal para llevar en la mochila de diario y reaplicar en cualquier momento.",
     "pros": [
@@ -5649,7 +5649,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "20-50",
     "priceText": "39,95 €",
     "rating": 4.9,
-    "reviewsCount": 31000,
+    "reviewsCount": 14042,
     "badge": "La Experiencia Definitiva del Mundo Mágico",
     "description": "Un RPG de acción en mundo abierto ambientado en el siglo XIX. Vive tu propia historia en el Colegio Hogwarts de Magia y Hechicería, aprende hechizos, elabora pociones, vuela en escoba y doma bestias mágicas.",
     "pros": [
@@ -5790,7 +5790,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": "20-50",
     "priceText": "39,99 €",
     "rating": 4.9,
-    "reviewsCount": 32000,
+    "reviewsCount": 14457,
     "badge": "Top 1 Mundial en Colección Botánica LEGO",
     "description": "El arte zen del bonsái llevado al universo LEGO. Incluye hojas verdes clásicas y flores de cerezo rosas intercambiables (con pequeñas ranitas ocultas). Incluye maceta rectangular y soporte con listones efecto madera.",
     "pros": [
@@ -6042,7 +6042,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": ">100",
     "priceText": "149,99 €",
     "rating": 4.9,
-    "reviewsCount": 45000,
+    "reviewsCount": 21450,
     "badge": "El Mejor Lector de Libros Electrónicos del Planeta",
     "description": "Pantalla de 300 ppp sin reflejos que se lee como papel impreso auténtico incluso bajo la luz directa del sol. Luz cálida ajustable para no cansar la vista de noche y hasta 10 semanas de batería con una sola carga por USB-C.",
     "pros": [
@@ -6098,7 +6098,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": ">100",
     "priceText": "139,00 €",
     "rating": 4.9,
-    "reviewsCount": 22000,
+    "reviewsCount": 14354,
     "badge": "Fidelidad Acústica Hi-Fi Portátil de Bose",
     "description": "Un sonido sorprendentemente potente, claro y envolvente en un cuerpo ultrarresistente a golpes, polvo y agua que incluso flota en la piscina. Tecnología PositionIQ que optimiza automáticamente el sonido según esté apoyado o colgado.",
     "pros": [
@@ -6210,7 +6210,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": ">100",
     "priceText": "115,00 €",
     "rating": 4.9,
-    "reviewsCount": 41000,
+    "reviewsCount": 17340,
     "badge": "La Fragancia Masculina Más Vendida y Reconocida del Mundo",
     "description": "Un acto de creación inspirado en los grandes espacios abiertos. La frescura radiante y jugosa de la bergamota de Calabria se une a la potencia amaderada y noble del ambroxan. Un rastro inconfundible de magnetismo y virilidad.",
     "pros": [
@@ -6266,7 +6266,7 @@ export const PRODUCTS: Product[] = [
     "priceRange": ">100",
     "priceText": "119,00 €",
     "rating": 4.8,
-    "reviewsCount": 14000,
+    "reviewsCount": 14045,
     "badge": "La Joya de la Perfumería de Nicho y Lujo",
     "description": "Una fragancia rica, oscura y voluptuosa que desafía las normas. Trufa negra aromática, bergamota chispeante, la legendaria orquídea negra de Tom Ford y notas de chocolate amargo, incienso y vainilla dulce.",
     "pros": [
