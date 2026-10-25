@@ -84,19 +84,75 @@ export default function HomePage() {
   const [visibleCount, setVisibleCount] = useState<number>(18);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [showAdvancedFilters, setShowAdvancedFilters] = useState<boolean>(false);
+  // Session random seed to refresh showcase products on each user visit/reload
+  const [sessionSeed, setSessionSeed] = useState(0);
 
-  // Curated Superventas pool for Left Showcase Wing (16 top products -> 4 slides of 4 products)
-  const topShowcasePool = useMemo(() => {
-    return PRODUCTS.filter((p) => p.rating >= 4.6 && p.imageUrl).slice(0, 16);
+  useEffect(() => {
+    // Generate a fresh seed on client mount
+    setSessionSeed(Math.floor(Math.random() * 50) + 1);
   }, []);
 
-  // Curated Chollos pool (< 20 €) for Right Showcase Wing (16 products -> 4 slides of 4 products)
+  // Helper to sample diverse products across different categories to guarantee variety in every 2x2 slide
+  const sampleDiverseShowcase = (pool: Product[], count: number = 16, seed: number = 0): Product[] => {
+    const categoryMap: Record<string, Product[]> = {};
+    pool.forEach((p) => {
+      const cat = p.category || 'Varios';
+      if (!categoryMap[cat]) categoryMap[cat] = [];
+      categoryMap[cat].push(p);
+    });
+
+    const categories = Object.keys(categoryMap);
+    if (categories.length === 0) return pool.slice(0, count);
+
+    // Sort products inside each category by popularity
+    categories.forEach((cat) => {
+      categoryMap[cat].sort((a, b) => (b.reviewsCount || 0) * (b.rating || 1) - (a.reviewsCount || 0) * (a.rating || 1));
+    });
+
+    // Rotate categories array according to seed
+    const offset = seed % categories.length;
+    const rotatedCategories = [...categories.slice(offset), ...categories.slice(0, offset)];
+
+    const result: Product[] = [];
+    const pointers: Record<string, number> = {};
+    rotatedCategories.forEach((cat) => (pointers[cat] = 0));
+
+    let iteration = 0;
+    while (result.length < count && iteration < 40) {
+      iteration++;
+      let addedInRound = false;
+
+      for (const cat of rotatedCategories) {
+        if (result.length >= count) break;
+        const list = categoryMap[cat];
+        const ptr = pointers[cat];
+        if (ptr < list.length) {
+          result.push(list[ptr]);
+          pointers[cat] = ptr + 1;
+          addedInRound = true;
+        }
+      }
+
+      if (!addedInRound) break;
+    }
+
+    return result.length > 0 ? result : pool.slice(0, count);
+  };
+
+  // Dynamic Superventas pool for Left Showcase Wing (16 top products across diverse categories)
+  const topShowcasePool = useMemo(() => {
+    const highRated = PRODUCTS.filter((p) => p.rating >= 4.6 && p.imageUrl);
+    return sampleDiverseShowcase(highRated, 16, sessionSeed);
+  }, [sessionSeed]);
+
+  // Dynamic Chollos pool (< 20 €) for Right Showcase Wing (16 diverse budget products)
   const budgetShowcasePool = useMemo(() => {
-    return PRODUCTS.filter((p) => {
+    const budgetItems = PRODUCTS.filter((p) => {
       const price = parsePrice(p.priceText);
       return price > 0 && price <= 20 && p.imageUrl;
-    }).slice(0, 16);
-  }, []);
+    });
+    return sampleDiverseShowcase(budgetItems, 16, sessionSeed + 3);
+  }, [sessionSeed]);
 
   // Carousel page state (changes every 10 seconds)
   const [leftCarouselIndex, setLeftCarouselIndex] = useState(0);
