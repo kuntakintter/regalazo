@@ -618,13 +618,13 @@ export default function HomePage() {
         
         {/* HERO SECTION CONTAINER: 3 COLUMNS ON WIDESCREEN (LEFT SHOWCASE + CENTER SEARCH + RIGHT SHOWCASE) */}
         <section className="mb-8">
-          <div className="flex flex-col xl:flex-row items-stretch justify-center gap-5">
+          <div className="flex flex-col xl:flex-row items-start justify-center gap-5">
             
             {/* LEFT SHOWCASE WING (AMAZON 2x2 CARD ROTATING EVERY 10s WITH SMOOTH SLIDE) */}
             <aside
               onMouseEnter={() => setIsLeftPaused(true)}
               onMouseLeave={() => setIsLeftPaused(false)}
-              className="hidden lg:flex flex-col w-64 xl:w-72 2xl:w-80 shrink-0 bg-gradient-to-b from-amber-50/80 via-white to-amber-50/40 rounded-3xl p-5 shadow-lg shadow-amber-900/5 border-2 border-amber-400/90 justify-between relative group overflow-hidden"
+              className="hidden lg:flex flex-col w-64 xl:w-72 2xl:w-80 shrink-0 bg-gradient-to-b from-amber-50/80 via-white to-amber-50/40 rounded-3xl p-5 shadow-lg shadow-amber-900/5 border-2 border-amber-400/90 relative group overflow-hidden"
             >
               <div>
                 {/* Header Banner - Amazon Navy Theme with Amber Highlight */}
@@ -711,14 +711,14 @@ export default function HomePage() {
             </aside>
 
             {/* CENTER SEARCH ENGINE */}
-            <div className="flex-1 max-w-3xl 2xl:max-w-4xl text-center py-8 sm:py-10 px-4 sm:px-8 bg-white rounded-3xl shadow-md border-2 border-slate-300 flex flex-col justify-between">
+            <div className="flex-1 max-w-3xl 2xl:max-w-4xl text-center py-6 sm:py-8 px-4 sm:px-8 bg-white rounded-3xl shadow-md border-2 border-slate-300 flex flex-col justify-between">
               <div>
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-5 shadow-2xs border border-amber-200 bg-amber-50/80 text-amber-950">
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-3 shadow-2xs border border-amber-200 bg-amber-50/80 text-amber-950">
                   <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
                   <span>Búsqueda Inteligente Amazon España · Edición {new Date().getFullYear()}</span>
                 </div>
 
-                <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] mb-4 text-slate-900">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.15] mb-3 text-slate-900">
                   {currentAgeMeta ? (
                     <span>{currentAgeMeta.h1}</span>
                   ) : (
@@ -731,14 +731,14 @@ export default function HomePage() {
                   )}
                 </h1>
 
-                <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed mb-8 max-w-2xl mx-auto">
+                <p className="text-xs sm:text-sm lg:text-base text-slate-600 leading-relaxed mb-4 max-w-2xl mx-auto">
                   {currentAgeMeta
                     ? currentAgeMeta.description
                     : 'Escribe a quién quieres regalar o qué le apasiona. Nuestro motor inteligente encontrará las mejores ideas verificadas en Amazon al instante.'}
                 </p>
 
                 {/* MAIN PROMPT / SEARCH BAR ESTILO AMAZON */}
-                <form onSubmit={handleHeroSearchSubmit} className="relative max-w-2xl mx-auto mb-5">
+                <form onSubmit={handleHeroSearchSubmit} className="relative max-w-2xl mx-auto mb-4">
                   <div className="relative flex items-center shadow-md rounded-2xl bg-white border-2 border-slate-300 hover:border-slate-400 focus-within:border-[#febd69] focus-within:ring-4 focus-within:ring-amber-100 transition-all p-1.5 sm:p-2">
                     <div className="pl-3 pr-2 text-slate-400">
                       <Search className="w-5 h-5 text-slate-400" />
@@ -788,7 +788,7 @@ export default function HomePage() {
                 </div>
 
                 {/* AI COPILOT POPUP TRIGGER BUTTON (ESTILO AMAZON RUFUS) */}
-                <div className="flex items-center justify-center gap-3 mb-6">
+                <div className="flex items-center justify-center gap-3 mb-3.5">
                   <button
                     onClick={() => setIsAiModalOpen(true)}
                     className="inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-[#232f3e] hover:bg-[#131921] text-amber-300 hover:text-white border border-slate-700 font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-102 active:scale-98 cursor-pointer"
@@ -821,7 +821,7 @@ export default function HomePage() {
             <aside
               onMouseEnter={() => setIsRightPaused(true)}
               onMouseLeave={() => setIsRightPaused(false)}
-              className="hidden lg:flex flex-col w-64 xl:w-72 2xl:w-80 shrink-0 bg-gradient-to-b from-emerald-50/80 via-white to-emerald-50/40 rounded-3xl p-5 shadow-lg shadow-emerald-900/5 border-2 border-emerald-400/90 justify-between relative group overflow-hidden"
+              className="hidden lg:flex flex-col w-64 xl:w-72 2xl:w-80 shrink-0 bg-gradient-to-b from-emerald-50/80 via-white to-emerald-50/40 rounded-3xl p-5 shadow-lg shadow-emerald-900/5 border-2 border-emerald-400/90 relative group overflow-hidden"
             >
               <div>
                 {/* Header Banner - Amazon Navy Theme with Emerald Highlight */}
