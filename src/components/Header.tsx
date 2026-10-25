@@ -422,19 +422,20 @@ export default function Header({
       </div>
     </div>
 
-    {/* 2. AMAZON-STYLE SUB-NAV MENU (SLATE NAVY BAR) */}
-    <div className="bg-[#232f3e] text-white border-t border-slate-700/40 relative">
+    {/* 2. MODERN E-COMMERCE SUB-NAV MENU (PILL TABS) */}
+    <div className="bg-[#1f2833] text-white border-t border-slate-700/60 shadow-inner relative">
       <div className="max-w-[1600px] mx-auto px-3 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-1 sm:gap-2 py-1.5 overflow-x-auto sm:overflow-visible scrollbar-none text-xs">
-          {/* Dropdown Por Edades */}
+        <div className="flex items-center gap-1.5 sm:gap-2 py-2 overflow-x-auto sm:overflow-visible scrollbar-none text-xs">
+          
+          {/* Dropdown Por Edades - Primary Nav Button */}
           <div ref={agesDropdownRef} className="relative shrink-0">
             <button
               type="button"
               onClick={() => setIsAgesOpen((prev) => !prev)}
-              className={`flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap shadow-2xs ${
                 isAgesOpen
-                  ? 'bg-[#febd69] text-slate-950 shadow-sm'
-                  : 'text-slate-200 hover:text-white hover:outline hover:outline-1 hover:outline-white/60'
+                  ? 'bg-[#febd69] text-slate-950 shadow-md ring-2 ring-amber-300/40'
+                  : 'bg-amber-400/15 hover:bg-amber-400/25 text-amber-300 hover:text-amber-100 border border-amber-400/30 hover:border-amber-400/50'
               }`}
               aria-expanded={isAgesOpen}
               aria-label="Abrir catálogo por edades"
@@ -443,7 +444,7 @@ export default function Header({
               <span>Por Edades</span>
               <ChevronDown
                 className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                  isAgesOpen ? 'rotate-180 text-slate-950' : 'text-slate-400'
+                  isAgesOpen ? 'rotate-180 text-slate-950' : 'text-amber-300/80'
                 }`}
               />
             </button>
@@ -457,7 +458,7 @@ export default function Header({
                 />
 
                 {/* Dropdown Card */}
-                <div className="fixed inset-x-3 top-24 sm:top-full sm:absolute sm:inset-x-auto sm:left-0 sm:mt-1.5 w-auto sm:w-[480px] md:w-[540px] bg-white text-slate-900 rounded-2xl shadow-2xl border border-slate-200 z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+                <div className="fixed inset-x-3 top-24 sm:top-full sm:absolute sm:inset-x-auto sm:left-0 sm:mt-2 w-auto sm:w-[480px] md:w-[540px] bg-white text-slate-900 rounded-2xl shadow-2xl border border-slate-200 z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-150">
                   {/* Header */}
                   <div className="px-4 py-3 bg-gradient-to-r from-amber-500/10 via-amber-50 to-orange-50/50 border-b border-amber-100 flex items-center justify-between">
                     <div className="flex items-center gap-2">
@@ -531,44 +532,50 @@ export default function Header({
 
           <Link
             href="/motoristas"
-            className="px-2.5 py-1 rounded text-slate-200 hover:text-white hover:outline hover:outline-1 hover:outline-white/60 whitespace-nowrap transition-all shrink-0"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/25 text-slate-100 hover:text-white font-medium text-xs tracking-wide transition-all shadow-2xs whitespace-nowrap shrink-0 hover:scale-102 active:scale-98"
           >
-            🏍️ Motoristas
+            <span>🏍️</span>
+            <span>Motoristas</span>
           </Link>
 
           <Link
             href="/gaming"
-            className="px-2.5 py-1 rounded text-slate-200 hover:text-white hover:outline hover:outline-1 hover:outline-white/60 whitespace-nowrap transition-all shrink-0"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/25 text-slate-100 hover:text-white font-medium text-xs tracking-wide transition-all shadow-2xs whitespace-nowrap shrink-0 hover:scale-102 active:scale-98"
           >
-            🎮 Gaming
+            <span>🎮</span>
+            <span>Gaming</span>
           </Link>
 
           <Link
             href="/amantes-del-cafe"
-            className="px-2.5 py-1 rounded text-slate-200 hover:text-white hover:outline hover:outline-1 hover:outline-white/60 whitespace-nowrap transition-all shrink-0"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/25 text-slate-100 hover:text-white font-medium text-xs tracking-wide transition-all shadow-2xs whitespace-nowrap shrink-0 hover:scale-102 active:scale-98"
           >
-            ☕ Café Barista
+            <span>☕</span>
+            <span>Café Barista</span>
           </Link>
 
           <Link
             href="/mascotas"
-            className="px-2.5 py-1 rounded text-slate-200 hover:text-white hover:outline hover:outline-1 hover:outline-white/60 whitespace-nowrap transition-all shrink-0"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/25 text-slate-100 hover:text-white font-medium text-xs tracking-wide transition-all shadow-2xs whitespace-nowrap shrink-0 hover:scale-102 active:scale-98"
           >
-            🐾 Mascotas
+            <span>🐾</span>
+            <span>Mascotas</span>
           </Link>
 
           <Link
             href="/automovil"
-            className="px-2.5 py-1 rounded text-slate-200 hover:text-white hover:outline hover:outline-1 hover:outline-white/60 whitespace-nowrap transition-all shrink-0"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/25 text-slate-100 hover:text-white font-medium text-xs tracking-wide transition-all shadow-2xs whitespace-nowrap shrink-0 hover:scale-102 active:scale-98"
           >
-            🚗 Automóvil
+            <span>🚗</span>
+            <span>Automóvil</span>
           </Link>
 
           <Link
             href="/ciclismo"
-            className="px-2.5 py-1 rounded text-slate-200 hover:text-white hover:outline hover:outline-1 hover:outline-white/60 whitespace-nowrap transition-all shrink-0"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/25 text-slate-100 hover:text-white font-medium text-xs tracking-wide transition-all shadow-2xs whitespace-nowrap shrink-0 hover:scale-102 active:scale-98"
           >
-            🚴 Ciclismo
+            <span>🚴</span>
+            <span>Ciclismo</span>
           </Link>
 
           <Link
@@ -578,9 +585,10 @@ export default function Header({
                 window.dispatchEvent(new CustomEvent('select-category', { detail: 'Cartas y Sobres Pokémon' }));
               }
             }}
-            className="px-2.5 py-1 rounded text-amber-300 hover:text-amber-200 hover:outline hover:outline-1 hover:outline-amber-400/60 whitespace-nowrap transition-all shrink-0 font-medium"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-400/10 hover:bg-amber-400/20 border border-amber-400/30 hover:border-amber-400/50 text-amber-200 hover:text-amber-100 font-semibold text-xs tracking-wide transition-all shadow-2xs whitespace-nowrap shrink-0 hover:scale-102 active:scale-98"
           >
-            ⚡ Pokémon
+            <span>⚡</span>
+            <span>Pokémon</span>
           </Link>
 
           <Link
@@ -590,23 +598,26 @@ export default function Header({
                 window.dispatchEvent(new CustomEvent('select-category', { detail: 'Figuras de Colección y Cine' }));
               }
             }}
-            className="px-2.5 py-1 rounded text-purple-300 hover:text-purple-200 hover:outline hover:outline-1 hover:outline-purple-400/60 whitespace-nowrap transition-all shrink-0 font-medium"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/25 text-slate-100 hover:text-white font-medium text-xs tracking-wide transition-all shadow-2xs whitespace-nowrap shrink-0 hover:scale-102 active:scale-98"
           >
-            🎎 Figuras & Anime
+            <span>🎎</span>
+            <span>Figuras & Anime</span>
           </Link>
 
           <Link
             href="/halloween"
-            className="px-2.5 py-1 rounded text-orange-400 hover:text-orange-300 hover:outline hover:outline-1 hover:outline-orange-400/60 whitespace-nowrap transition-all shrink-0 font-bold"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-orange-500/15 hover:bg-orange-500/25 border border-orange-400/30 hover:border-orange-400/50 text-orange-200 hover:text-orange-100 font-semibold text-xs tracking-wide transition-all shadow-2xs whitespace-nowrap shrink-0 hover:scale-102 active:scale-98"
           >
-            🎃 Halloween
+            <span>🎃</span>
+            <span>Halloween</span>
           </Link>
 
           <Link
             href="/navidad"
-            className="px-2.5 py-1 rounded text-rose-300 hover:text-rose-200 hover:outline hover:outline-1 hover:outline-rose-400/60 whitespace-nowrap transition-all shrink-0 font-bold"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-400/30 hover:border-emerald-400/50 text-emerald-200 hover:text-emerald-100 font-semibold text-xs tracking-wide transition-all shadow-2xs whitespace-nowrap shrink-0 hover:scale-102 active:scale-98"
           >
-            🎄 Navidad & Reyes
+            <span>🎄</span>
+            <span>Navidad & Reyes</span>
           </Link>
 
         </div>
