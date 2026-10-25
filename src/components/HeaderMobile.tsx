@@ -92,16 +92,17 @@ export default function HeaderMobile({
             <button
               type="button"
               onClick={() => setIsDrawerOpen(true)}
-              className="flex items-center gap-1 px-2.5 h-8 rounded-full bg-gradient-to-r from-amber-500/20 via-amber-400/25 to-orange-500/20 hover:from-amber-500/30 hover:to-orange-500/30 border border-amber-400/50 text-amber-200 hover:text-white font-bold text-xs transition-all shadow-xs cursor-pointer group active:scale-95 shrink-0"
+              className="flex items-center gap-1.5 px-3 h-8.5 rounded-xl bg-gradient-to-r from-amber-400 via-amber-500 to-orange-500 text-slate-950 font-black text-xs transition-all shadow-sm cursor-pointer group active:scale-95 shrink-0 border border-amber-300"
               title="Votación de Regalos en Grupo"
               aria-label="Abrir lista de votación de regalos"
             >
-              <span className="text-sm leading-none">🗳️</span>
+              <span className="text-base leading-none">🗳️</span>
+              <span className="font-black text-xs tracking-tight text-slate-950">Votar</span>
               <span
                 className={`px-1.5 py-0.5 rounded-full text-[10px] font-black leading-none transition-colors ${
                   voteItems.length > 0
-                    ? 'bg-amber-400 text-slate-950 shadow-xs ring-1 ring-amber-300'
-                    : 'bg-white/10 text-slate-300'
+                    ? 'bg-slate-950 text-amber-400 shadow-xs'
+                    : 'bg-black/15 text-slate-900'
                 }`}
               >
                 {voteItems.length}
