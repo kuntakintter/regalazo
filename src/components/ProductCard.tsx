@@ -141,17 +141,14 @@ export default function ProductCard({ product }: ProductCardProps) {
       {/* Product Content (Amazon Exact Clean Layout) */}
       <div className="flex flex-col flex-1 justify-between">
         <div>
-          {/* Badge: Amazon Red Flash Deal or Orange Bestseller */}
-          <div className="mb-1 flex items-center gap-1.5">
-            {product.badge && (
-              <span className="text-[10px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-xs bg-[#cc0c39] text-white">
-                {product.badge}
+          {/* Subcategory Label */}
+          {product.subcategory && (
+            <div className="mb-1">
+              <span className="text-[11px] text-slate-500 font-medium truncate block">
+                {product.subcategory}
               </span>
-            )}
-            <span className="text-[10px] text-slate-400 font-medium truncate">
-              {product.subcategory}
-            </span>
-          </div>
+            </div>
+          )}
 
           {/* Title (Amazon clean style: text-slate-900, 2 lines, no heavy cards) */}
           <h3 className="font-medium text-xs sm:text-[13px] leading-snug text-slate-900 line-clamp-2 group-hover:text-[#c45500] transition-colors mb-1 min-h-[2rem]">
