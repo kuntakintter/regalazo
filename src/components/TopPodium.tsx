@@ -263,7 +263,7 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
 
   return (
     <section
-      className="mb-14 pt-2 relative"
+      className="mb-14 pt-2 relative overflow-x-clip"
       aria-label="Top 3 Ventas"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
@@ -341,9 +341,9 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
             onClick={handlePrev}
             aria-label="Ver ranking anterior"
             title="Ver ranking anterior"
-            className="absolute -left-3 sm:-left-6 lg:-left-10 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 bg-white/95 dark:bg-slate-900/95 hover:bg-[#ffd814] dark:hover:bg-amber-500 text-slate-800 dark:text-white hover:text-slate-950 shadow-xl border-2 border-slate-200 dark:border-slate-700 hover:border-amber-400 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer group/nav"
+            className="absolute left-1 sm:-left-6 lg:-left-10 top-1/2 -translate-y-1/2 z-30 w-9 h-9 sm:w-12 sm:h-12 bg-white/95 dark:bg-slate-900/95 hover:bg-[#ffd814] dark:hover:bg-amber-500 text-slate-800 dark:text-white hover:text-slate-950 shadow-xl border-2 border-slate-200 dark:border-slate-700 hover:border-amber-400 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer group/nav"
           >
-            <ChevronLeft className="w-6 h-6 group-hover/nav:-translate-x-0.5 transition-transform" />
+            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 group-hover/nav:-translate-x-0.5 transition-transform" />
           </button>
         )}
 
@@ -353,9 +353,9 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
             onClick={handleNext}
             aria-label="Ver siguiente ranking"
             title="Ver siguiente ranking"
-            className="absolute -right-3 sm:-right-6 lg:-right-10 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 bg-white/95 dark:bg-slate-900/95 hover:bg-[#ffd814] dark:hover:bg-amber-500 text-slate-800 dark:text-white hover:text-slate-950 shadow-xl border-2 border-slate-200 dark:border-slate-700 hover:border-amber-400 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer group/nav"
+            className="absolute right-1 sm:-right-6 lg:-right-10 top-1/2 -translate-y-1/2 z-30 w-9 h-9 sm:w-12 sm:h-12 bg-white/95 dark:bg-slate-900/95 hover:bg-[#ffd814] dark:hover:bg-amber-500 text-slate-800 dark:text-white hover:text-slate-950 shadow-xl border-2 border-slate-200 dark:border-slate-700 hover:border-amber-400 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer group/nav"
           >
-            <ChevronRight className="w-6 h-6 group-hover/nav:translate-x-0.5 transition-transform" />
+            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover/nav:translate-x-0.5 transition-transform" />
           </button>
         )}
 

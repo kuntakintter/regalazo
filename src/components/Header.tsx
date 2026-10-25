@@ -186,263 +186,277 @@ export default function Header({
 
   const hasAnyResults = liveMatches.length > 0 || amazonResults.length > 0;
 
+  const renderAutocompleteDropdown = () => (
+    <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-150 max-h-[75vh] overflow-y-auto">
+      {/* 1. SECCIÓN: PRODUCTOS EN CATÁLOGO LOCAL */}
+      {liveMatches.length > 0 && (
+        <div>
+          <div className="p-2.5 bg-slate-50 border-b border-slate-100 flex items-center justify-between text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+            <span>Catálogo Recomendado</span>
+            <span className="text-indigo-600">{liveMatches.length} productos</span>
+          </div>
+
+          <div className="divide-y divide-slate-100">
+            {liveMatches.map((product) => (
+              <div
+                key={product.id}
+                onClick={() => {
+                  setIsFocused(false);
+                  const target = document.getElementById('catalogo-productos');
+                  if (target) target.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="p-3 hover:bg-indigo-50/60 transition-colors flex items-center gap-3 cursor-pointer group"
+              >
+                <div className="relative w-12 h-12 rounded-lg bg-slate-50 shrink-0 overflow-hidden border border-slate-200">
+                  <Image
+                    src={product.imageUrl}
+                    alt={product.title}
+                    fill
+                    className="object-contain p-1 group-hover:scale-105 transition-transform"
+                  />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h4 className="text-xs font-bold text-slate-900 truncate group-hover:text-indigo-600">
+                    {product.title}
+                  </h4>
+                  <div className="flex items-center gap-2 mt-0.5">
+                    <span className="text-xs font-black text-indigo-600">{formatPrice(product.priceText)}</span>
+                    <span className="text-[11px] text-slate-400 flex items-center gap-0.5">
+                      <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
+                      {product.rating}
+                    </span>
+                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-medium truncate">
+                      {product.category}
+                    </span>
+                  </div>
+                </div>
+                <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-indigo-600 group-hover:translate-x-0.5 transition-all shrink-0" />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* 2. SECCIÓN: PRODUCTOS DIRECTOS DE AMAZON ESPAÑA EN TIEMPO REAL */}
+      {amazonResults.length > 0 && (
+        <div className={liveMatches.length > 0 ? 'border-t-2 border-slate-100' : ''}>
+          <div className="p-2.5 bg-gradient-to-r from-amber-50/80 to-orange-50/50 border-b border-amber-100 flex items-center justify-between text-[11px] font-bold text-amber-900 uppercase tracking-wider">
+            <div className="flex items-center gap-1.5">
+              <ShoppingBag className="w-3.5 h-3.5 text-amber-600" />
+              <span>Productos en Vivo de Amazon.es</span>
+            </div>
+            <span className="text-[10px] bg-amber-200 text-amber-900 px-2 py-0.5 rounded-full font-black">
+              Precios al minuto
+            </span>
+          </div>
+
+          <div className="divide-y divide-slate-100">
+            {amazonResults.map((item) => (
+              <a
+                key={item.asin}
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                onClick={() => setIsFocused(false)}
+                className="p-3 hover:bg-amber-50/50 transition-colors flex items-center gap-3 cursor-pointer group"
+              >
+                <div className="relative w-12 h-12 rounded-lg bg-white shrink-0 overflow-hidden border border-slate-200 shadow-2xs">
+                  {item.imageUrl ? (
+                    <Image
+                      src={item.imageUrl}
+                      alt={item.title}
+                      fill
+                      unoptimized
+                      className="object-contain p-1 group-hover:scale-105 transition-transform"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-slate-100 text-slate-400">
+                      <ShoppingBag className="w-5 h-5" />
+                    </div>
+                  )}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h4 className="text-xs font-bold text-slate-900 line-clamp-1 group-hover:text-amber-700">
+                    {item.title}
+                  </h4>
+                  <div className="flex items-center gap-2 mt-0.5">
+                    <span className="text-xs font-black text-amber-700">{formatPrice(item.priceText)}</span>
+                    <span className="text-[11px] text-slate-400 flex items-center gap-0.5">
+                      <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
+                      {item.rating}
+                    </span>
+                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 font-bold border border-emerald-200/60">
+                      Prime &bull; Amazon
+                    </span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-1 px-2 py-1 rounded-lg bg-amber-50 text-amber-800 text-[11px] font-bold shrink-0 group-hover:bg-amber-600 group-hover:text-white transition-colors">
+                  <span>Comprar</span>
+                  <ExternalLink className="w-3 h-3" />
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* 3. ESTADO DE CARGA SI ESTÁ CONSULTANDO AMAZON */}
+      {isLoadingAmazon && amazonResults.length === 0 && (
+        <div className="p-4 text-center text-xs text-slate-500 flex items-center justify-center gap-2">
+          <Loader2 className="w-4 h-4 text-indigo-500 animate-spin" />
+          <span>Buscando &quot;{searchQuery}&quot; en Amazon España...</span>
+        </div>
+      )}
+
+      {/* 4. SI NO HAY NINGÚN RESULTADO */}
+      {!hasAnyResults && !isLoadingAmazon && (
+        <div className="p-5 text-center bg-gradient-to-b from-white to-amber-50/40">
+          <p className="text-xs text-slate-600 mb-3">
+            ¿Buscas &quot;<strong>{searchQuery}</strong>&quot;? Encuéntralo con envío rápido y garantía oficial en Amazon España.
+          </p>
+          <a
+            href={amazonSearchUrl}
+            target="_blank"
+            rel="noopener noreferrer sponsored"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-xs transition-transform hover:scale-102 shadow-md cursor-pointer"
+          >
+            <span>Buscar &quot;{searchQuery}&quot; en Amazon España</span>
+            <ExternalLink className="w-4 h-4" />
+          </a>
+        </div>
+      )}
+
+      {/* 5. BARRA DE ACCIÓN INFERIOR */}
+      {hasAnyResults && (
+        <div className="p-2.5 bg-slate-50 border-t border-slate-100 flex flex-col sm:flex-row gap-2">
+          {liveMatches.length > 0 && (
+            <button
+              type="button"
+              onClick={handleSearchSubmit}
+              className="flex-1 text-center py-2 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-colors cursor-pointer"
+            >
+              Filtrar en catálogo ({liveMatches.length})
+            </button>
+          )}
+          <a
+            href={amazonSearchUrl}
+            target="_blank"
+            rel="noopener noreferrer sponsored"
+            className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 text-xs font-black transition-colors shadow-xs"
+          >
+            <span>Ver más en Amazon.es (+50.000)</span>
+            <ExternalLink className="w-3.5 h-3.5" />
+          </a>
+        </div>
+      )}
+    </div>
+  );
+
+  const renderSearchForm = (isMobile: boolean = false) => (
+    <div className="relative w-full">
+      <form
+        onSubmit={handleSearchSubmit}
+        className="relative flex items-center rounded-xl overflow-hidden shadow-inner focus-within:ring-2 focus-within:ring-[#febd69] transition-all bg-white border border-slate-200"
+      >
+        <Search className="w-4 h-4 text-slate-400 ml-3.5 shrink-0" />
+
+        <input
+          type="text"
+          value={searchQuery}
+          onFocus={() => setIsFocused(true)}
+          onChange={(e) => {
+            onSearchChange?.(e.target.value);
+            setIsFocused(true);
+          }}
+          placeholder={isMobile ? "Buscar: Lego, zapatillas, PS5..." : "Buscar regalo: Lego, zapatillas, perfumes, PS5..."}
+          className="w-full px-2.5 sm:px-3 py-2 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none bg-transparent"
+        />
+
+        {/* Action Buttons inside Input */}
+        <div className="flex items-center shrink-0">
+          {isLoadingAmazon && (
+            <Loader2 className="w-4 h-4 text-slate-400 animate-spin mr-1.5" />
+          )}
+          {searchQuery.trim().length > 0 && (
+            <button
+              type="button"
+              onClick={clearSearch}
+              className="p-1 mr-1 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-200 transition-colors cursor-pointer"
+              title="Borrar búsqueda"
+            >
+              <X className="w-3.5 h-3.5" />
+            </button>
+          )}
+          <button
+            type="submit"
+            aria-label="Buscar regalo"
+            className="bg-[#febd69] hover:bg-[#f3a847] active:bg-[#e47911] text-slate-950 px-3.5 sm:px-5 py-2.5 flex items-center justify-center transition-colors cursor-pointer shrink-0"
+          >
+            <Search className="w-4 h-4 stroke-[2.5]" />
+          </button>
+        </div>
+      </form>
+
+      {/* Dropdown under this input */}
+      {isFocused && searchQuery.trim().length >= 2 && renderAutocompleteDropdown()}
+    </div>
+  );
+
   return (
-    <header className="sticky top-0 z-50 transition-colors duration-300 shadow-md">
+    <header className="sticky top-0 z-50 transition-colors duration-300 shadow-md w-full">
       {/* 1. AMAZON-STYLE MAIN HEADER BAR (DEEP NAVY) */}
-      <div className="bg-[#131921] text-white py-2">
+      <div ref={dropdownRef} className="bg-[#131921] text-white py-2 w-full overflow-hidden">
         <div className="max-w-[1600px] mx-auto px-3 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between gap-3 sm:gap-6">
+          
+          {/* Main Top Row (Unified on Desktop, Top Row on Mobile) */}
+          <div className="flex items-center justify-between gap-2 sm:gap-4 md:gap-6">
             
             {/* Logo en versión Clara para fondo oscuro */}
             <BrandLogo variant="light" />
 
-            {/* Quick Search Bar with Live Amazon Integration */}
-            <div ref={dropdownRef} className="flex-1 max-w-2xl relative">
-              <form
-                onSubmit={handleSearchSubmit}
-                className="relative flex items-center rounded-xl overflow-hidden shadow-inner focus-within:ring-2 focus-within:ring-[#febd69] transition-all bg-white border border-slate-200"
+            {/* Desktop Quick Search Bar with Live Amazon Integration (hidden on mobile, visible on md+) */}
+            <div className="hidden md:block flex-1 max-w-2xl relative mx-2 lg:mx-4">
+              {renderSearchForm(false)}
+            </div>
+
+            {/* Right Actions: Group Voting Button & Language Selector */}
+            <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+              {/* Votación en Grupo Button (positioned to the left of LanguageSelector) */}
+              <button
+                type="button"
+                onClick={() => setIsDrawerOpen(true)}
+                className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 h-8 sm:h-9 rounded-full bg-gradient-to-r from-amber-500/20 via-amber-400/25 to-orange-500/20 hover:from-amber-500/30 hover:to-orange-500/30 border border-amber-400/50 hover:border-amber-400/80 text-amber-200 hover:text-white font-bold text-xs transition-all shadow-xs cursor-pointer group hover:scale-102 active:scale-98 shrink-0"
+                title="Votación de Regalos en Grupo para WhatsApp"
+                aria-label="Abrir lista de votación de regalos"
               >
-                <Search className="w-4 h-4 text-slate-400 ml-3.5 shrink-0" />
+                <span className="text-sm group-hover:scale-110 transition-transform leading-none">🗳️</span>
+                <span className="hidden sm:inline font-semibold">Votar en grupo</span>
+                <span
+                  className={`px-1.5 py-0.5 rounded-full text-[10px] font-black leading-none transition-colors ${
+                    voteItems.length > 0
+                      ? 'bg-amber-400 text-slate-950 shadow-xs ring-1 ring-amber-300'
+                      : 'bg-white/10 text-slate-300'
+                  }`}
+                >
+                  {voteItems.length}
+                </span>
+              </button>
 
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onFocus={() => setIsFocused(true)}
-                  onChange={(e) => {
-                    onSearchChange?.(e.target.value);
-                    setIsFocused(true);
-                  }}
-                  placeholder="Buscar regalo: Lego, zapatillas, perfumes, PS5..."
-                  className="w-full px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:outline-none bg-transparent"
-                />
+              <LanguageSelector dark={true} />
+            </div>
 
-                {/* Action Buttons inside Input */}
-                <div className="flex items-center shrink-0">
-                  {isLoadingAmazon && (
-                    <Loader2 className="w-4 h-4 text-slate-400 animate-spin mr-2" />
-                  )}
-                  {searchQuery.trim().length > 0 && (
-                    <button
-                      type="button"
-                      onClick={clearSearch}
-                      className="p-1 mr-1 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-200 transition-colors cursor-pointer"
-                      title="Borrar búsqueda"
-                    >
-                      <X className="w-4 h-4" />
-                    </button>
-                  )}
-                  <button
-                    type="submit"
-                    aria-label="Buscar regalo"
-                    className="bg-[#febd69] hover:bg-[#f3a847] active:bg-[#e47911] text-slate-950 px-4 sm:px-5 py-2.5 flex items-center justify-center transition-colors cursor-pointer"
-                  >
-                    <Search className="w-4 h-4 stroke-[2.5]" />
-                  </button>
-                </div>
-              </form>
-
-            {/* LIVE AUTOCOMPLETE DROPDOWN */}
-            {isFocused && searchQuery.trim().length >= 2 && (
-              <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-150 max-h-[80vh] overflow-y-auto">
-                
-                {/* 1. SECCIÓN: PRODUCTOS EN CATÁLOGO LOCAL */}
-                {liveMatches.length > 0 && (
-                  <div>
-                    <div className="p-2.5 bg-slate-50 border-b border-slate-100 flex items-center justify-between text-[11px] font-bold text-slate-500 uppercase tracking-wider">
-                      <span>Catálogo Recomendado</span>
-                      <span className="text-indigo-600">{liveMatches.length} productos</span>
-                    </div>
-
-                    <div className="divide-y divide-slate-100">
-                      {liveMatches.map((product) => (
-                        <div
-                          key={product.id}
-                          onClick={() => {
-                            setIsFocused(false);
-                            const target = document.getElementById('catalogo-productos');
-                            if (target) target.scrollIntoView({ behavior: 'smooth' });
-                          }}
-                          className="p-3 hover:bg-indigo-50/60 transition-colors flex items-center gap-3 cursor-pointer group"
-                        >
-                          <div className="relative w-12 h-12 rounded-lg bg-slate-50 shrink-0 overflow-hidden border border-slate-200">
-                            <Image
-                              src={product.imageUrl}
-                              alt={product.title}
-                              fill
-                              className="object-contain p-1 group-hover:scale-105 transition-transform"
-                            />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <h4 className="text-xs font-bold text-slate-900 truncate group-hover:text-indigo-600">
-                              {product.title}
-                            </h4>
-                            <div className="flex items-center gap-2 mt-0.5">
-                              <span className="text-xs font-black text-indigo-600">{formatPrice(product.priceText)}</span>
-                              <span className="text-[11px] text-slate-400 flex items-center gap-0.5">
-                                <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
-                                {product.rating}
-                              </span>
-                              <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-medium truncate">
-                                {product.category}
-                              </span>
-                            </div>
-                          </div>
-                          <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-indigo-600 group-hover:translate-x-0.5 transition-all shrink-0" />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* 2. SECCIÓN: PRODUCTOS DIRECTOS DE AMAZON ESPAÑA EN TIEMPO REAL */}
-                {amazonResults.length > 0 && (
-                  <div className={liveMatches.length > 0 ? 'border-t-2 border-slate-100' : ''}>
-                    <div className="p-2.5 bg-gradient-to-r from-amber-50/80 to-orange-50/50 border-b border-amber-100 flex items-center justify-between text-[11px] font-bold text-amber-900 uppercase tracking-wider">
-                      <div className="flex items-center gap-1.5">
-                        <ShoppingBag className="w-3.5 h-3.5 text-amber-600" />
-                        <span>Productos en Vivo de Amazon.es</span>
-                      </div>
-                      <span className="text-[10px] bg-amber-200 text-amber-900 px-2 py-0.5 rounded-full font-black">
-                        Precios al minuto
-                      </span>
-                    </div>
-
-                    <div className="divide-y divide-slate-100">
-                      {amazonResults.map((item) => (
-                        <a
-                          key={item.asin}
-                          href={item.url}
-                          target="_blank"
-                          rel="noopener noreferrer sponsored"
-                          onClick={() => setIsFocused(false)}
-                          className="p-3 hover:bg-amber-50/50 transition-colors flex items-center gap-3 cursor-pointer group"
-                        >
-                          <div className="relative w-12 h-12 rounded-lg bg-white shrink-0 overflow-hidden border border-slate-200 shadow-2xs">
-                            {item.imageUrl ? (
-                              <Image
-                                src={item.imageUrl}
-                                alt={item.title}
-                                fill
-                                unoptimized
-                                className="object-contain p-1 group-hover:scale-105 transition-transform"
-                              />
-                            ) : (
-                              <div className="w-full h-full flex items-center justify-center bg-slate-100 text-slate-400">
-                                <ShoppingBag className="w-5 h-5" />
-                              </div>
-                            )}
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <h4 className="text-xs font-bold text-slate-900 line-clamp-1 group-hover:text-amber-700">
-                              {item.title}
-                            </h4>
-                            <div className="flex items-center gap-2 mt-0.5">
-                              <span className="text-xs font-black text-amber-700">{formatPrice(item.priceText)}</span>
-                              <span className="text-[11px] text-slate-400 flex items-center gap-0.5">
-                                <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
-                                {item.rating}
-                              </span>
-                              <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 font-bold border border-emerald-200/60">
-                                Prime &bull; Amazon
-                              </span>
-                            </div>
-                          </div>
-                          <div className="flex items-center gap-1 px-2 py-1 rounded-lg bg-amber-50 text-amber-800 text-[11px] font-bold shrink-0 group-hover:bg-amber-600 group-hover:text-white transition-colors">
-                            <span>Comprar</span>
-                            <ExternalLink className="w-3 h-3" />
-                          </div>
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* 3. ESTADO DE CARGA SI ESTÁ CONSULTANDO AMAZON */}
-                {isLoadingAmazon && amazonResults.length === 0 && (
-                  <div className="p-4 text-center text-xs text-slate-500 flex items-center justify-center gap-2">
-                    <Loader2 className="w-4 h-4 text-indigo-500 animate-spin" />
-                    <span>Buscando &quot;{searchQuery}&quot; en Amazon España...</span>
-                  </div>
-                )}
-
-                {/* 4. SI NO HAY NINGÚN RESULTADO */}
-                {!hasAnyResults && !isLoadingAmazon && (
-                  <div className="p-5 text-center bg-gradient-to-b from-white to-amber-50/40">
-                    <p className="text-xs text-slate-600 mb-3">
-                      ¿Buscas &quot;<strong>{searchQuery}</strong>&quot;? Encuéntralo con envío rápido y garantía oficial en Amazon España.
-                    </p>
-                    <a
-                      href={amazonSearchUrl}
-                      target="_blank"
-                      rel="noopener noreferrer sponsored"
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-xs transition-transform hover:scale-102 shadow-md cursor-pointer"
-                    >
-                      <span>Buscar &quot;{searchQuery}&quot; en Amazon España</span>
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
-                  </div>
-                )}
-
-                {/* 5. BARRA DE ACCIÓN INFERIOR */}
-                {hasAnyResults && (
-                  <div className="p-2.5 bg-slate-50 border-t border-slate-100 flex flex-col sm:flex-row gap-2">
-                    {liveMatches.length > 0 && (
-                      <button
-                        type="button"
-                        onClick={handleSearchSubmit}
-                        className="flex-1 text-center py-2 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-colors cursor-pointer"
-                      >
-                        Filtrar en catálogo ({liveMatches.length})
-                      </button>
-                    )}
-                    <a
-                      href={amazonSearchUrl}
-                      target="_blank"
-                      rel="noopener noreferrer sponsored"
-                      className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 text-xs font-black transition-colors shadow-xs"
-                    >
-                      <span>Ver más en Amazon.es (+50.000)</span>
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
-                  </div>
-                )}
-
-              </div>
-            )}
           </div>
 
-          {/* Right Actions: Group Voting Button & Language Selector */}
-          <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
-            {/* Votación en Grupo Button (positioned to the left of LanguageSelector) */}
-            <button
-              type="button"
-              onClick={() => setIsDrawerOpen(true)}
-              className="flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-500/20 via-amber-400/25 to-orange-500/20 hover:from-amber-500/30 hover:to-orange-500/30 border border-amber-400/50 hover:border-amber-400/80 text-amber-200 hover:text-white font-bold text-xs transition-all shadow-xs cursor-pointer group hover:scale-102 active:scale-98"
-              title="Votación de Regalos en Grupo para WhatsApp"
-              aria-label="Abrir lista de votación de regalos"
-            >
-              <span className="text-sm group-hover:scale-110 transition-transform">🗳️</span>
-              <span className="hidden sm:inline font-semibold">Votar en grupo</span>
-              <span
-                className={`px-1.5 py-0.2 rounded-full text-[10px] font-black transition-colors ${
-                  voteItems.length > 0
-                    ? 'bg-amber-400 text-slate-950 shadow-xs ring-1 ring-amber-300'
-                    : 'bg-white/10 text-slate-300'
-                }`}
-              >
-                {voteItems.length}
-              </span>
-            </button>
-
-            <LanguageSelector dark={true} />
+          {/* Mobile Search Bar (visible on mobile only < md) */}
+          <div className="block md:hidden mt-2 relative">
+            {renderSearchForm(true)}
           </div>
 
         </div>
       </div>
-    </div>
 
-    {/* 2. MODERN E-COMMERCE SUB-NAV MENU (PILL TABS) */}
-    <div className="bg-[#1f2833] text-white border-t border-slate-700/60 shadow-inner relative">
+      {/* 2. MODERN E-COMMERCE SUB-NAV MENU (PILL TABS) */}
+      <div className="bg-[#1f2833] text-white border-t border-slate-700/60 shadow-inner relative w-full overflow-hidden">
       <div className="max-w-[1600px] mx-auto px-3 sm:px-6 lg:px-8">
         <div className="flex items-center gap-1.5 sm:gap-2 py-2 overflow-x-auto sm:overflow-visible scrollbar-none text-xs">
           

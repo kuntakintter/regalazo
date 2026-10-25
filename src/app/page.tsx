@@ -601,7 +601,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen relative flex flex-col bg-[#eaeded] text-slate-900 selection:bg-amber-500 selection:text-slate-950">
+    <div className="min-h-screen relative flex flex-col bg-[#eaeded] text-slate-900 selection:bg-amber-500 selection:text-slate-950 overflow-x-hidden w-full max-w-full">
       {/* Background Subtle Atmosphere */}
       <ThemeAtmosphere />
 

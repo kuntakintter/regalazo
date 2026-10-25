@@ -54,11 +54,11 @@ export default function BrandLogo({ size = 'normal', showSubtitle = true, varian
           </span>
           <span className={`text-[9px] font-bold ${isLight ? 'text-slate-500' : 'text-slate-300'}`}>•</span>
           <span
-            className={`text-[9.5px] uppercase tracking-[0.12em] font-extrabold ${
+            className={`text-[9px] sm:text-[9.5px] uppercase tracking-[0.12em] font-extrabold ${
               isLight ? 'text-amber-400' : 'text-indigo-600'
             }`}
           >
-            De 0 a más de 18 Años
+            De 0 a +18 Años
           </span>
         </div>
       )}
