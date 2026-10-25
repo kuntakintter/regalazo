@@ -12,42 +12,42 @@ export interface SocialHubSnippet {
 export const HUB_OG_SNIPPETS: Record<string, SocialHubSnippet> = {
   // Hubs Especiales por Pasión
   motoristas: {
-    title: 'Mejores Regalos para Motoristas (2026) | Cascos, Chaquetas y Gadgets',
+    title: 'Top Regalos para Motoristas 【Guía 2026】 Cascos, Gadgets y Protección',
     socialTitle: '🏍️ Top Regalos para Motoristas: Cascos, Chaquetas y Gadgets Moteros',
     description: 'Guía definitiva para acertar con un motero: cascos modulares homologados, guantes térmicos, intercomunicadores Cardo y candados antirrobo con alarma en Amazon España.',
     imageUrl: 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1200&h=630&q=85',
     imageAlt: 'Motorista equipado en ruta panorámica con casco y chaqueta de protección',
   },
   gaming: {
-    title: 'Mejores Regalos para Gamers (2026) | Setup, Periféricos y PS5',
+    title: 'Top Regalos para Gamers y Setup 【2026】 Ideas TOP para PC y PS5',
     socialTitle: '🎮 El Regalo Gamer Perfecto: Mandos PS5, Auriculares y Setup Pro',
     description: 'Las mejores ideas para jugadores de PC, PS5 y Xbox: auriculares HyperX Cloud II, ratones Logitech G502 HERO, barras de luz y accesorios eSports en Amazon.',
     imageUrl: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&h=630&q=85',
     imageAlt: 'Setup gaming profesional con teclado mecánico, ratón RGB e iluminación envolvente',
   },
   ciclismo: {
-    title: 'Mejores Regalos para Ciclistas (2026) | GPS, Luces y MTB',
+    title: 'Top Regalos para Ciclistas 【2026】 Accesorios MTB y Carretera Indispensables',
     socialTitle: '🚴 Top Regalos para Ciclistas de Carretera y Montaña MTB',
     description: 'Accesorios indispensables para amantes de la bicicleta: radar Garmin Varia RTL515, ciclocomputadores GPS, multiherramientas Topeak y luces de alta visibilidad.',
     imageUrl: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1200&h=630&q=85',
     imageAlt: 'Ciclista en carretera de montaña con equipamiento deportivo y bicicleta moderna',
   },
   automovil: {
-    title: 'Mejores Regalos para Amantes del Coche (2026) | Dashcams y Detailing',
+    title: 'Top Regalos para Amantes de los Coches 【2026】 Gadgets y Detailing Pro',
     socialTitle: '🚗 Ideas de Regalo para Fanáticos del Coche y Detailing',
     description: 'Gadgets y cuidado del automóvil: arrancadores de batería NOCO, cámaras dashcam 70mai 4K, compresores Xiaomi y kits de limpieza profesional Meguiar\'s.',
     imageUrl: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&h=630&q=85',
     imageAlt: 'Coche deportivo iluminado con detalles de alta gama en carretera',
   },
   mascotas: {
-    title: 'Mejores Regalos para Amantes de Mascotas (2026) | Perros y Gatos',
+    title: 'Top Regalos para Dueños de Perros y Gatos 【2026】 Gadgets y Cuidados',
     socialTitle: '🐾 Regalos Estrella para Dueños de Perros y Gatos',
     description: 'Localizadores GPS Tractive sumergibles, fuentes Catit inteligentes, arneses ergonómicos Julius-K9 y juguetes interactivos con envío Prime.',
     imageUrl: 'https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=1200&h=630&q=85',
     imageAlt: 'Perro y gato felices con accesorios de cuidado y bienestar animal',
   },
   'amantes-del-cafe': {
-    title: 'Mejores Regalos para Amantes del Café (2026) | Barista y Especialidad',
+    title: 'Top Regalos para Amantes del Café 【2026】 Guía Barista y Gourmet',
     socialTitle: '☕ Regalos Gourmet para Baristas y Apasionados del Café',
     description: 'Cafeteras italianas Bialetti, molinillos cónicos Timemore C3, espumadores de leche y tazas térmicas Stanley para disfrutar del mejor café.',
     imageUrl: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&h=630&q=85',

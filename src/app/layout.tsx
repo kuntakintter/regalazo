@@ -7,8 +7,8 @@ import { VotingProvider } from '@/context/VotingContext';
 import VotingDrawer from '@/components/VotingDrawer';
 
 export const metadata: Metadata = {
-  title: 'Un Buen Regalo | Ideas de Regalos para Todas las Edades',
-  description: 'Encuentra las mejores ideas de regalo para bebés, niños, jóvenes y adultos. Recomendaciones contrastadas y ofertas actualizadas con envío rápido Prime.',
+  title: 'Un Buen Regalo 【Guía 2026】 Ideas de Regalo para Todas las Edades',
+  description: '¿No sabes qué regalar? Descubre las mejores ideas de regalo para bebés, niños, jóvenes y adultos con opiniones reales y ofertas de Amazon España. ¡Acierta seguro!',
   icons: {
     icon: [
       { url: '/favicon.svg', type: 'image/svg+xml' },

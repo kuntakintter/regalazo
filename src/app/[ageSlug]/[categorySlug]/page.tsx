@@ -9,6 +9,8 @@ import AmazonLiveSearchCard from '@/components/AmazonLiveSearchCard';
 import AmazonGridDiscoveryCard from '@/components/AmazonGridDiscoveryCard';
 import ThemeAtmosphere from '@/components/ThemeAtmosphere';
 import TopPodium from '@/components/TopPodium';
+import AgeStageInterlinking from '@/components/AgeStageInterlinking';
+import ExpertBuyerTips from '@/components/ExpertBuyerTips';
 import { PRODUCTS } from '@/data/products';
 import { SEO_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
 import { buildSocialMetadata, getCategoryOgImage } from '@/lib/ogMetadata';
@@ -47,9 +49,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const currentSub = subcategories.find((s) => s.slug === categorySlug);
   if (!currentSub) return {};
 
-  const pageTitle = `Mejores ${currentSub.label} (${ageMeta.h1}) | Un Buen Regalo 2026`;
-  const socialTitle = `🎁 Ideas de Regalo: ${currentSub.label} (${ageMeta.h1})`;
-  const pageDesc = `Descubre los mejores productos y ofertas en ${currentSub.label} para ${ageMeta.h1}. Opiniones reales, marcas oficiales y garantía directa de Amazon España.`;
+  const pageTitle = `Top ${currentSub.label} (${ageMeta.h1}) 【Guía 2026】`;
+  const socialTitle = `🎁 ${currentSub.label} (${ageMeta.h1}) 【Guía 2026】`;
+  const pageDesc = `¿Buscas ${currentSub.label.toLowerCase()} para ${ageMeta.h1.toLowerCase()}? Descubre los más recomendados y vendidos en Amazon España con opiniones reales y envío Prime.`;
   const canonicalUrl = `https://unbuenregalo.vercel.app/${ageSlug}/${categorySlug}`;
   const ogImage = getCategoryOgImage(currentSub.label);
 
@@ -265,6 +267,12 @@ export default async function SubcategoryLandingPage({ params }: PageProps) {
             initialQuery={currentSub.label}
           />
         </section>
+
+        {/* EXPERT EDITORIAL BUYER'S GUIDE */}
+        <ExpertBuyerTips ageTitle={`${currentSub.label} (${ageMeta.h1})`} />
+
+        {/* INTERLINKING ETAPAS ADYACENTES (SEO LINK JUICE) */}
+        <AgeStageInterlinking currentAgeSlug={ageSlug} />
 
         <SeoFaq currentTheme="classic" />
 

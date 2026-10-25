@@ -11,6 +11,8 @@ import AmazonGridDiscoveryCard from '@/components/AmazonGridDiscoveryCard';
 import ThemeAtmosphere from '@/components/ThemeAtmosphere';
 import SocialShareBar from '@/components/SocialShareBar';
 import TopPodium from '@/components/TopPodium';
+import AgeStageInterlinking from '@/components/AgeStageInterlinking';
+import ExpertBuyerTips from '@/components/ExpertBuyerTips';
 import { PRODUCTS, Product } from '@/data/products';
 import { SEO_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
 import { HUB_OG_SNIPPETS, buildSocialMetadata } from '@/lib/ogMetadata';
@@ -258,6 +260,12 @@ export default async function AgeLandingPage({ params }: PageProps) {
             initialQuery={routeMeta.keywords[0] || 'regalos infantiles'}
           />
         </section>
+
+        {/* EXPERT EDITORIAL BUYER'S GUIDE */}
+        <ExpertBuyerTips ageTitle={routeMeta.h1} />
+
+        {/* INTERLINKING ETAPAS ADYACENTES (SEO LINK JUICE) */}
+        <AgeStageInterlinking currentAgeSlug={ageSlug} />
 
         {/* SEO FAQ SECTION */}
         <SeoFaq currentTheme="classic" />
