@@ -212,7 +212,7 @@ export default function Header({
                     onSearchChange?.(e.target.value);
                     setIsFocused(true);
                   }}
-                  placeholder="Buscar en Amazon: Lego, zapatillas, perfumes, PS5..."
+                  placeholder="Buscar regalo: Lego, zapatillas, perfumes, PS5..."
                   className="w-full px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:outline-none bg-transparent"
                 />
 
@@ -233,7 +233,7 @@ export default function Header({
                   )}
                   <button
                     type="submit"
-                    aria-label="Buscar en Amazon"
+                    aria-label="Buscar regalo"
                     className="bg-[#febd69] hover:bg-[#f3a847] active:bg-[#e47911] text-slate-950 px-4 sm:px-5 py-2.5 flex items-center justify-center transition-colors cursor-pointer"
                   >
                     <Search className="w-4 h-4 stroke-[2.5]" />
