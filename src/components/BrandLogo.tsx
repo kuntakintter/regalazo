@@ -6,18 +6,22 @@ import Link from 'next/link';
 interface BrandLogoProps {
   size?: 'normal' | 'large' | 'compact';
   showSubtitle?: boolean;
+  variant?: 'light' | 'dark';
 }
 
-export default function BrandLogo({ size = 'normal', showSubtitle = true }: BrandLogoProps) {
+export default function BrandLogo({ size = 'normal', showSubtitle = true, variant = 'dark' }: BrandLogoProps) {
   const isCompact = size === 'compact';
   const isLarge = size === 'large';
+  const isLight = variant === 'light';
 
   return (
     <Link href="/" className="inline-flex flex-col shrink-0 group select-none transition-opacity hover:opacity-95">
       {/* Premium Typographic Wordmark */}
       <div className="flex items-center tracking-tight leading-none">
         <span
-          className={`font-black tracking-tight text-slate-900 ${
+          className={`font-black tracking-tight ${
+            isLight ? 'text-white' : 'text-slate-900'
+          } ${
             isCompact
               ? 'text-lg tracking-[-0.03em]'
               : isLarge
@@ -26,7 +30,13 @@ export default function BrandLogo({ size = 'normal', showSubtitle = true }: Bran
           }`}
         >
           UN BUEN{' '}
-          <span className="bg-gradient-to-r from-indigo-600 via-indigo-600 to-violet-600 bg-clip-text text-transparent">
+          <span
+            className={
+              isLight
+                ? 'bg-gradient-to-r from-amber-400 via-amber-300 to-orange-400 bg-clip-text text-transparent'
+                : 'bg-gradient-to-r from-indigo-600 via-indigo-600 to-violet-600 bg-clip-text text-transparent'
+            }
+          >
             REGALO
           </span>
         </span>
@@ -35,11 +45,19 @@ export default function BrandLogo({ size = 'normal', showSubtitle = true }: Bran
       {/* Elegant Editorial Subtitle */}
       {showSubtitle && (
         <div className="flex items-center gap-1.5 mt-1">
-          <span className="text-[9.5px] uppercase tracking-[0.18em] font-extrabold text-slate-400 group-hover:text-indigo-600 transition-colors">
+          <span
+            className={`text-[9.5px] uppercase tracking-[0.18em] font-extrabold ${
+              isLight ? 'text-slate-300 group-hover:text-amber-300' : 'text-slate-400 group-hover:text-indigo-600'
+            } transition-colors`}
+          >
             Guía de Regalos
           </span>
-          <span className="text-[9px] text-slate-300 font-bold">•</span>
-          <span className="text-[9.5px] uppercase tracking-[0.12em] font-extrabold text-indigo-600">
+          <span className={`text-[9px] font-bold ${isLight ? 'text-slate-500' : 'text-slate-300'}`}>•</span>
+          <span
+            className={`text-[9.5px] uppercase tracking-[0.12em] font-extrabold ${
+              isLight ? 'text-amber-400' : 'text-indigo-600'
+            }`}
+          >
             De 0 a más de 18 Años
           </span>
         </div>

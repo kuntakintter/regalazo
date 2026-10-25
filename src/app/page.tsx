@@ -36,8 +36,21 @@ import {
   Bot,
   Sparkles,
   Loader2,
-  RefreshCw
+  RefreshCw,
+  SlidersHorizontal,
+  ArrowRight,
+  X
 } from 'lucide-react';
+
+const QUICK_PROMPTS = [
+  { label: '🎁 Para mi novio', query: 'regalo para novio original' },
+  { label: '🎮 Gamer / Friki', query: 'gaming anime friki' },
+  { label: '💸 Menos de 20 €', query: 'regalo barato menos de 20 euros', price: '<20' },
+  { label: '🏍️ Moteros', query: 'regalos moteros moto' },
+  { label: '☕ Amante del café', query: 'café barista espresso' },
+  { label: '👶 Bebés y Niños', query: 'juguetes bebes ninos' },
+  { label: '🐾 Mascotas', query: 'mascotas perros gatos' },
+];
 
 const AGE_BANNER_ICONS: Record<string, { icon: React.ComponentType<{ className?: string }>; bg: string; color: string }> = {
   '0-12m': { icon: Baby, bg: 'bg-rose-50 border-rose-200', color: 'text-rose-600' },
@@ -61,10 +74,37 @@ export default function HomePage() {
   const [sortBy, setSortBy] = useState<'featured' | 'price-asc' | 'price-desc' | 'rating'>('featured');
   const [visibleCount, setVisibleCount] = useState<number>(18);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
+  const [showAdvancedFilters, setShowAdvancedFilters] = useState<boolean>(false);
 
   // Live Amazon products state to render in the grid
   const [liveAmazonProducts, setLiveAmazonProducts] = useState<LiveSearchResult[]>([]);
   const [isLoadingLive, setIsLoadingLive] = useState(false);
+
+  // Quick prompt handler from hero chips
+  const handleQuickPrompt = (promptItem: { label: string; query: string; price?: string }) => {
+    setSearchQuery(promptItem.query);
+    if (promptItem.price) {
+      setSelectedPrice(promptItem.price);
+    } else {
+      setSelectedPrice('all');
+    }
+    setSelectedAge('all');
+    setSelectedCategory('all');
+    setSelectedClothingSub('all');
+    setSelectedAnimeSub('all');
+    setLiveAmazonProducts([]);
+    setTimeout(() => {
+      const el = document.getElementById('catalogo-productos');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 50);
+  };
+
+  // Submit search from Hero input
+  const handleHeroSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const el = document.getElementById('catalogo-productos');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
 
   // Handle age selection
   const handleSelectAge = (age: string) => {
@@ -388,12 +428,16 @@ export default function HomePage() {
       }
     };
 
+    const handleOpenWizard = () => setIsAiModalOpen(true);
+
     window.addEventListener('select-category', handleCategoryEvent);
     window.addEventListener('popstate', applyCategoryFromUrl);
+    window.addEventListener('open-ai-wizard', handleOpenWizard);
 
     return () => {
       window.removeEventListener('select-category', handleCategoryEvent);
       window.removeEventListener('popstate', applyCategoryFromUrl);
+      window.removeEventListener('open-ai-wizard', handleOpenWizard);
     };
   }, []);
 
@@ -423,11 +467,11 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen relative flex flex-col bg-slate-50 text-slate-900 selection:bg-indigo-600 selection:text-white">
+    <div className="min-h-screen relative flex flex-col bg-[#eaeded] text-slate-900 selection:bg-amber-500 selection:text-slate-950">
       {/* Background Subtle Atmosphere */}
       <ThemeAtmosphere />
 
-      {/* Navigation Header */}
+      {/* Navigation Header (Amazon Theme: Deep Navy #131921 & #232f3e with Amber accents) */}
       <Header
         currentTheme="classic"
         onThemeChange={() => {}}
@@ -438,56 +482,108 @@ export default function HomePage() {
       {/* Main Content Area */}
       <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full z-10">
         
-        {/* HERO SECTION */}
-        <section className="text-center py-6 sm:py-10 max-w-4xl mx-auto">
+        {/* HERO SECTION - FEATURED MODULE */}
+        <section className="text-center py-8 sm:py-10 px-4 sm:px-8 mb-8 max-w-4xl mx-auto bg-white rounded-3xl shadow-xs border border-slate-200/90">
           
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-4 shadow-xs border border-slate-200 bg-white/90 backdrop-blur-md text-slate-800">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-5 shadow-2xs border border-amber-200 bg-amber-50/80 text-amber-950">
             <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span>Edición Actualizada {new Date().getFullYear()} • Catálogo Verificado en Amazon</span>
+            <span>Búsqueda Inteligente Amazon España · Edición {new Date().getFullYear()}</span>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] mb-5 text-slate-900">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] mb-4 text-slate-900">
             {currentAgeMeta ? (
               <span>{currentAgeMeta.h1}</span>
             ) : (
               <span>
-                Ideas de Regalo para Todas las Edades:{' '}
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500">
-                  De 0 a más de 18 Años
+                ¿A quién quieres{' '}
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-600 via-orange-600 to-indigo-600">
+                  sorprender hoy?
                 </span>
               </span>
             )}
           </h1>
 
-          <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed mb-6 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed mb-8 max-w-2xl mx-auto">
             {currentAgeMeta
               ? currentAgeMeta.description
-              : 'Descubre recomendaciones contrastadas para acertar siempre: desde recién nacidos y niños, hasta tecnología, smartphones, gaming, Smartbox, maquetas y perfumería para adultos y mayores de 18 años. Compra con la garantía oficial de Amazon España.'}
+              : 'Escribe a quién quieres regalar o qué le apasiona. Nuestro motor inteligente encontrará las mejores ideas verificadas en Amazon al instante.'}
           </p>
 
-          {/* AI COPILOT POPUP TRIGGER BUTTON IN HERO */}
-          <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
+          {/* MAIN PROMPT / SEARCH BAR ESTILO AMAZON */}
+          <form onSubmit={handleHeroSearchSubmit} className="relative max-w-2xl mx-auto mb-5">
+            <div className="relative flex items-center shadow-md rounded-2xl bg-white border-2 border-slate-300 hover:border-slate-400 focus-within:border-[#febd69] focus-within:ring-4 focus-within:ring-amber-100 transition-all p-1.5 sm:p-2">
+              <div className="pl-3 pr-2 text-amber-500">
+                <Sparkles className="w-5 h-5 animate-pulse" />
+              </div>
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => handleSearchChange(e.target.value)}
+                placeholder="Ej: Para mi novio friki de Star Wars, gamer, cafetera, niña 6 años..."
+                className="w-full bg-transparent px-2 py-2 text-sm sm:text-base text-slate-800 placeholder-slate-400 focus:outline-none"
+              />
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={() => handleSearchChange('')}
+                  className="p-1.5 text-slate-400 hover:text-slate-600 rounded-lg mr-1 cursor-pointer transition-colors"
+                  title="Borrar búsqueda"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              )}
+              <button
+                type="submit"
+                className="px-5 sm:px-6 py-2.5 bg-[#febd69] hover:bg-[#f3a847] active:bg-[#e47911] text-slate-950 font-black text-sm rounded-xl transition-colors shadow-xs shrink-0 flex items-center gap-1.5 cursor-pointer border border-[#febd69]"
+              >
+                <Search className="w-4 h-4 stroke-[2.5]" />
+                <span className="hidden sm:inline">Buscar</span>
+              </button>
+            </div>
+          </form>
+
+          {/* QUICK INSPIRATION PROMPT CHIPS */}
+          <div className="flex flex-wrap items-center justify-center gap-2 mb-6 max-w-3xl mx-auto">
+            <span className="text-xs font-semibold text-slate-500 mr-1 flex items-center gap-1">
+              <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+              Inspiración rápida:
+            </span>
+            {QUICK_PROMPTS.map((prompt) => (
+              <button
+                key={prompt.label}
+                type="button"
+                onClick={() => handleQuickPrompt(prompt)}
+                className="text-xs px-3 py-1.5 rounded-full font-semibold bg-slate-50 hover:bg-amber-50 border border-slate-200 hover:border-amber-300 text-slate-700 hover:text-slate-900 transition-all shadow-2xs hover:scale-105 active:scale-95 cursor-pointer"
+              >
+                {prompt.label}
+              </button>
+            ))}
+          </div>
+
+          {/* AI COPILOT POPUP TRIGGER BUTTON (ESTILO AMAZON RUFUS) */}
+          <div className="flex items-center justify-center gap-3 mb-6">
             <button
               onClick={() => setIsAiModalOpen(true)}
-              className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 hover:from-indigo-700 hover:to-pink-600 text-white font-black text-sm sm:text-base shadow-lg hover:shadow-indigo-500/25 transition-all hover:scale-102 active:scale-98 flex items-center gap-2.5 cursor-pointer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-[#232f3e] hover:bg-[#131921] text-amber-300 hover:text-white border border-slate-700 font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-102 active:scale-98 cursor-pointer"
             >
-              <Bot className="w-5 h-5 text-amber-300 animate-pulse" />
-              <span>¿Te ayudamos a buscar? Probar Asistente IA</span>
+              <Bot className="w-4 h-4 text-amber-400 animate-pulse" />
+              <span>¿No sabes qué elegir? Pregúntale a nuestro Asistente IA</span>
+              <ArrowRight className="w-3.5 h-3.5 text-amber-300" />
             </button>
           </div>
 
           {/* Quick Badges of Trust */}
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs font-medium text-slate-500">
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs font-medium text-slate-500 pt-2 border-t border-slate-100">
             <span className="flex items-center gap-1.5">
               <ShieldCheck className="w-4 h-4 text-emerald-500" />
               Garantía de Devolución Amazon.es
             </span>
             <span className="flex items-center gap-1.5">
-              <TrendingUp className="w-4 h-4 text-indigo-500" />
+              <TrendingUp className="w-4 h-4 text-amber-500" />
               Basado en Valoraciones Reales 4.5+ ★
             </span>
             <span className="flex items-center gap-1.5">
-              <BadgePercent className="w-4 h-4 text-amber-500" />
+              <BadgePercent className="w-4 h-4 text-orange-500" />
               Precios y Ofertas al Día
             </span>
           </div>
@@ -505,25 +601,59 @@ export default function HomePage() {
         {/* SOCIAL SHARE WIDGET */}
         <SocialShareBar />
 
-        {/* FILTER BAR & SEARCH */}
-        <div id="catalogo-productos">
-          <FilterBar
-            selectedAge={selectedAge}
-            onSelectAge={handleSelectAge}
-            selectedCategory={selectedCategory}
-            onSelectCategory={handleSelectCategory}
-            selectedClothingSub={selectedClothingSub}
-            onSelectClothingSub={handleSelectClothingSub}
-            selectedAnimeSub={selectedAnimeSub}
-            onSelectAnimeSub={handleSelectAnimeSub}
-            selectedGender={selectedGender}
-            onSelectGender={handleSelectGender}
-            selectedPrice={selectedPrice}
-            onSelectPrice={setSelectedPrice}
-            sortBy={sortBy}
-            onSelectSort={setSortBy}
-            totalResults={filteredProducts.length + liveAmazonProducts.length}
-          />
+        {/* CATALOG SECTION WITH COLLAPSIBLE MANUAL FILTERS */}
+        <div id="catalogo-productos" className="pt-2">
+          {/* Header Row: Result count & Toggle Manual Filters */}
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <div className="text-sm font-semibold text-slate-600">
+              {filteredProducts.length + liveAmazonProducts.length > 0 ? (
+                <span>
+                  Mostrando <strong className="text-slate-900">{filteredProducts.length + liveAmazonProducts.length}</strong> regalos seleccionados
+                </span>
+              ) : (
+                <span>Catálogo de regalos</span>
+              )}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setShowAdvancedFilters((prev) => !prev)}
+              className={`inline-flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-xl border transition-all cursor-pointer shadow-xs ${
+                showAdvancedFilters || (selectedAge !== 'all' || selectedCategory !== 'all' || selectedGender !== 'all' || selectedPrice !== 'all')
+                  ? 'bg-indigo-50 border-indigo-200 text-indigo-700 hover:bg-indigo-100'
+                  : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50'
+              }`}
+            >
+              <SlidersHorizontal className="w-3.5 h-3.5 text-indigo-600" />
+              <span>{showAdvancedFilters ? 'Ocultar filtros manuales' : 'Filtros manuales (edad, categoría...)'}</span>
+              {(selectedAge !== 'all' || selectedCategory !== 'all' || selectedGender !== 'all' || selectedPrice !== 'all') && (
+                <span className="w-2 h-2 rounded-full bg-indigo-600 animate-pulse"></span>
+              )}
+            </button>
+          </div>
+
+          {/* COLLAPSIBLE FILTER BAR */}
+          {showAdvancedFilters && (
+            <div className="animate-in fade-in duration-200 mb-6">
+              <FilterBar
+                selectedAge={selectedAge}
+                onSelectAge={handleSelectAge}
+                selectedCategory={selectedCategory}
+                onSelectCategory={handleSelectCategory}
+                selectedClothingSub={selectedClothingSub}
+                onSelectClothingSub={handleSelectClothingSub}
+                selectedAnimeSub={selectedAnimeSub}
+                onSelectAnimeSub={handleSelectAnimeSub}
+                selectedGender={selectedGender}
+                onSelectGender={handleSelectGender}
+                selectedPrice={selectedPrice}
+                onSelectPrice={setSelectedPrice}
+                sortBy={sortBy}
+                onSelectSort={setSortBy}
+                totalResults={filteredProducts.length + liveAmazonProducts.length}
+              />
+            </div>
+          )}
         </div>
 
         {/* DYNAMIC AGE BANNER WHEN FILTERED */}

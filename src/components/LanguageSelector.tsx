@@ -119,7 +119,7 @@ export const LANGUAGES: LanguageOption[] = [
   { code: 'hi', googleCode: 'hi', name: 'Hindi', nativeName: 'हिन्दी', flag: '🇮🇳' },
 ];
 
-export default function LanguageSelector() {
+export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
   const [isOpen, setIsOpen] = useState(false);
   const [currentLang, setCurrentLang] = useState('es');
   const [searchFilter, setSearchFilter] = useState('');
@@ -225,18 +225,26 @@ export default function LanguageSelector() {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200/90 shadow-2xs transition-all cursor-pointer hover:border-slate-300"
+        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer shadow-2xs ${
+          dark
+            ? 'bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 hover:border-slate-600'
+            : 'bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200/90 hover:border-slate-300'
+        }`}
         aria-label="Cambiar idioma y moneda del sitio"
         title="Cambiar idioma y moneda (Español €, Americano $, Alemán, Ruso y más)"
       >
         <span className="text-base leading-none">{activeLangObj.flag}</span>
-        <span className="uppercase tracking-wider font-extrabold text-[11px] text-slate-700">
+        <span className={`uppercase tracking-wider font-extrabold text-[11px] ${dark ? 'text-slate-200' : 'text-slate-700'}`}>
           {activeLangObj.code.split('-')[0]}
         </span>
-        <span className="text-[11px] font-black px-1.5 py-0.5 rounded-md bg-white border border-slate-200 text-indigo-700 shadow-2xs">
+        <span className={`text-[11px] font-black px-1.5 py-0.5 rounded-md border shadow-2xs ${
+          dark
+            ? 'bg-slate-900 border-slate-700 text-amber-400'
+            : 'bg-white border-slate-200 text-indigo-700'
+        }`}>
           {currencySymbol}
         </span>
-        <ChevronDown className={`w-3.5 h-3.5 text-slate-500 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+        <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${dark ? 'text-slate-400' : 'text-slate-500'} ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
       {/* Menú Desplegable con Búsqueda, Selector de Moneda e Idiomas */}
