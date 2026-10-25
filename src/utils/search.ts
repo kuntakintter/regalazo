@@ -1,5 +1,5 @@
 /**
- * Utility for intelligent search, accent removal, phonetic aliases and typo tolerance.
+ * Utility for intelligent search, accent removal, phonetic aliases, persona intent and typo tolerance.
  */
 
 export function normalizeSearchText(str: string): string {
@@ -32,11 +32,54 @@ const STOP_WORDS = new Set([
   'regalo', 'regalos', 'idea', 'ideas', 'para', 'el', 'la', 'los', 'las',
   'un', 'una', 'unos', 'unas', 'de', 'del', 'al', 'con', 'en', 'y', 'o',
   'mas', 'muy', 'original', 'originales', 'buen', 'bueno', 'buenos',
-  'mejores', 'mejor', 'vendido', 'vendidos', 'top', 'ventas', 'cosa', 'cosas'
+  'mejores', 'mejor', 'vendido', 'vendidos', 'top', 'ventas', 'cosa', 'cosas',
+  'mi', 'mis', 'su', 'sus', 'tu', 'tus', 'nuestro', 'nuestra', 'quiero', 'busca', 'buscar'
 ]);
 
+// Semantic keyword mappings for recipient personas and gift themes
+const PERSONA_KEYWORDS: Record<string, string[]> = {
+  novio: [
+    'gaming', 'gamer', 'star wars', 'batman', 'auricular', 'ps5', 'coche', 'delorean',
+    'motos', 'moto', 'cafe', 'cafetera', 'smartbox', 'reloj', 'figura', 'dragon ball',
+    'one piece', 'marvel', 'lego', 'blade', 'fast & furious', 'jurassic', 'ciclismo', 'habitos', 'gadget'
+  ],
+  novia: [
+    'skincare', 'perfume', 'joyero', 'instax', 'lampara', 'smartbox', 'cafe', 'cafetera',
+    'libro', 'vela', 'deco', 'peluche', 'joya', 'hogar', 'auricular', 'escapada'
+  ],
+  hombre: [
+    'gaming', 'motos', 'automovil', 'coche', 'delorean', 'batman', 'auricular', 'cafe',
+    'barista', 'figura', 'reloj', 'afeitadora', 'herramientas', 'smartbox', 'star wars'
+  ],
+  mujer: [
+    'skincare', 'perfume', 'joyero', 'instax', 'lampara', 'smartbox', 'cafe', 'vela',
+    'deco', 'peluche', 'libro', 'joya', 'auricular'
+  ],
+  papa: [
+    'automovil', 'coche', 'delorean', 'cafe', 'cafetera', 'herramientas', 'reloj',
+    'smartbox', 'vino', 'gourmet', 'moto', 'escapada'
+  ],
+  padre: [
+    'automovil', 'coche', 'delorean', 'cafe', 'cafetera', 'herramientas', 'reloj',
+    'smartbox', 'vino', 'gourmet', 'moto', 'escapada'
+  ],
+  mama: [
+    'smartbox', 'cafetera', 'cafe', 'perfume', 'crema', 'masajeador', 'joyero',
+    'libro', 'vela', 'manta', 'hogar', 'escapada'
+  ],
+  madre: [
+    'smartbox', 'cafetera', 'cafe', 'perfume', 'crema', 'masajeador', 'joyero',
+    'libro', 'vela', 'manta', 'hogar', 'escapada'
+  ],
+  abuelo: ['reloj', 'libro', 'radio', 'manta', 'zapatillas', 'smartbox', 'gourmet', 'cafe'],
+  abuela: ['manta', 'joyero', 'colgante', 'libro', 'reloj', 'vela', 'gourmet', 'cafe'],
+  pareja: ['smartbox', 'escapada', 'juego', 'mesa', 'lampara', 'taza', 'cafe', 'auricular'],
+  frikis: ['gaming', 'star wars', 'batman', 'marvel', 'pokemon', 'anime', 'dragon ball', 'one piece', 'manga', 'figura', 'delorean'],
+  friki: ['gaming', 'star wars', 'batman', 'marvel', 'pokemon', 'anime', 'dragon ball', 'one piece', 'manga', 'figura', 'delorean'],
+};
+
 /**
- * Checks if a product matches a search query using tokenized fuzzy matching.
+ * Checks if a product matches a search query using tokenized fuzzy matching + persona intent matching.
  */
 export function matchesSearchQuery(
   product: {
@@ -47,6 +90,8 @@ export function matchesSearchQuery(
     searchQuery?: string;
     badge?: string;
     idealFor?: string;
+    gender?: string;
+    ageRange?: string;
   },
   rawQuery: string
 ): boolean {
@@ -55,7 +100,7 @@ export function matchesSearchQuery(
   const normalizedQuery = normalizeSearchText(rawQuery);
   const queryTokens = normalizedQuery.split(/\s+/).filter((t) => t.length > 0);
 
-  // If query consists only of generic intent words like "regalos mas vendidos", match all products!
+  // If query consists only of generic stop words like "regalos para...", match all products!
   const meaningfulTokens = queryTokens.filter((t) => !STOP_WORDS.has(t));
   if (meaningfulTokens.length === 0) {
     return true;
@@ -65,12 +110,33 @@ export function matchesSearchQuery(
     `${product.title} ${product.description} ${product.category || ''} ${product.subcategory || ''} ${product.searchQuery || ''} ${product.badge || ''} ${product.idealFor || ''}`
   );
 
-  // For 1 or 2 meaningful terms, check if all match
-  if (meaningfulTokens.length <= 2) {
-    return meaningfulTokens.every((token) => searchableText.includes(token));
-  }
+  // Check matching for tokens
+  return meaningfulTokens.every((token) => {
+    // 1. Direct substring match
+    if (searchableText.includes(token)) return true;
 
-  // For 3+ terms, match if at least 2 tokens match
-  const matchCount = meaningfulTokens.filter((token) => searchableText.includes(token)).length;
-  return matchCount >= Math.min(2, Math.ceil(meaningfulTokens.length * 0.5));
+    // 2. Persona / Recipient intent expansion (e.g. novio, novia, papa, mama, friki...)
+    const personaWords = PERSONA_KEYWORDS[token];
+    if (personaWords) {
+      const isTargetGender =
+        token === 'novio' || token === 'hombre' || token === 'papa' || token === 'padre' || token === 'chico'
+          ? product.gender !== 'girl'
+          : token === 'novia' || token === 'mujer' || token === 'mama' || token === 'madre' || token === 'chica'
+          ? product.gender !== 'boy'
+          : true;
+
+      const isTargetAge =
+        token === 'novio' || token === 'novia' || token === 'pareja' || token === 'hombre' || token === 'mujer' || token === 'papa' || token === 'mama'
+          ? !product.ageRange || product.ageRange === '+18' || product.ageRange === '16-18' || product.ageRange === '13-15'
+          : true;
+
+      const matchesPersonaWord = personaWords.some((word) => searchableText.includes(word));
+
+      if (isTargetGender && isTargetAge && matchesPersonaWord) {
+        return true;
+      }
+    }
+
+    return false;
+  });
 }
