@@ -26,6 +26,72 @@ interface AmazonLiveItem {
   url: string;
 }
 
+const AGE_DROPDOWN_ITEMS = [
+  {
+    label: 'Recién Nacidos',
+    range: '0-12 meses',
+    slug: 'bebes-0-a-12-meses',
+    icon: '🧸',
+    desc: 'Cunas, cochecitos, tartas de pañales',
+  },
+  {
+    label: 'Primeros Pasos',
+    range: '1 a 3 años',
+    slug: 'ninos-1-a-3-anos',
+    icon: '🧩',
+    desc: 'Montessori, triciclos, torres de madera',
+  },
+  {
+    label: 'Infantil y Creatividad',
+    range: '4 a 6 años',
+    slug: 'ninos-4-a-6-anos',
+    icon: '🎨',
+    desc: 'Mario Kart, patinetes LED, disfraces',
+  },
+  {
+    label: 'Primaria y Acción',
+    range: '7 a 9 años',
+    slug: 'ninos-7-a-9-anos',
+    icon: '🎩',
+    desc: 'Scalextric, LEGO Creator, Magia Borrás',
+  },
+  {
+    label: 'Preadolescentes',
+    range: '10 a 12 años',
+    slug: 'ninos-10-a-12-anos',
+    icon: '🚀',
+    desc: 'Juego Virus!, minidrones, robótica',
+  },
+  {
+    label: 'Adolescentes',
+    range: '13 a 15 años',
+    slug: 'jovenes-13-a-15-anos',
+    icon: '🎧',
+    desc: 'Auriculares ANC, Instax, Catan, skincare',
+  },
+  {
+    label: 'Jóvenes y Gaming',
+    range: '16 a 18 años',
+    slug: 'jovenes-16-a-18-anos',
+    icon: '⚡',
+    desc: 'PlayStation 5, setup gamer, perfumes',
+  },
+  {
+    label: 'Adultos (+18)',
+    range: '+18 años',
+    slug: 'adultos-mas-de-18-anos',
+    icon: '🎯',
+    desc: 'Smartbox, LEGO Icons, smartphones, gourmet',
+  },
+  {
+    label: 'Revelación de Género',
+    range: 'Baby Shower',
+    slug: 'fiesta-revelacion-genero',
+    icon: '🎈',
+    desc: 'Cañones confeti, globos enigma, humo holi',
+  },
+];
+
 export default function Header({
   currentTheme = 'classic',
   onThemeChange,
@@ -34,15 +100,20 @@ export default function Header({
 }: HeaderProps) {
   const { formatPrice } = useCurrency();
   const [isFocused, setIsFocused] = useState(false);
+  const [isAgesOpen, setIsAgesOpen] = useState(false);
   const [amazonResults, setAmazonResults] = useState<AmazonLiveItem[]>([]);
   const [isLoadingAmazon, setIsLoadingAmazon] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const agesDropdownRef = useRef<HTMLDivElement>(null);
 
-  // Close dropdown when clicking outside
+  // Close dropdowns when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsFocused(false);
+      }
+      if (agesDropdownRef.current && !agesDropdownRef.current.contains(event.target as Node)) {
+        setIsAgesOpen(false);
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
@@ -352,9 +423,9 @@ export default function Header({
     </div>
 
     {/* 2. AMAZON-STYLE SUB-NAV MENU (SLATE NAVY BAR) */}
-    <div className="bg-[#232f3e] text-white border-t border-slate-700/40">
+    <div className="bg-[#232f3e] text-white border-t border-slate-700/40 relative">
       <div className="max-w-[1600px] mx-auto px-3 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-1 sm:gap-2 py-1.5 overflow-x-auto scrollbar-none text-xs">
+        <div className="flex items-center gap-1 sm:gap-2 py-1.5 overflow-x-auto sm:overflow-visible scrollbar-none text-xs">
           
           {/* Botón Todo el catálogo (estilo Amazon ≡ Todo) */}
           <Link
@@ -367,13 +438,108 @@ export default function Header({
 
           <span className="w-px h-4 bg-slate-700 mx-1 shrink-0"></span>
 
-          {/* Hubs y categorías con estilo Amazon Tab */}
-          <Link
-            href="/#catalogo-productos"
-            className="px-2.5 py-1 rounded text-slate-200 hover:text-white hover:outline hover:outline-1 hover:outline-white/60 whitespace-nowrap transition-all shrink-0"
-          >
-            🎁 Por Edades
-          </Link>
+          {/* Dropdown Por Edades */}
+          <div ref={agesDropdownRef} className="relative shrink-0">
+            <button
+              type="button"
+              onClick={() => setIsAgesOpen((prev) => !prev)}
+              className={`flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+                isAgesOpen
+                  ? 'bg-[#febd69] text-slate-950 shadow-sm'
+                  : 'text-slate-200 hover:text-white hover:outline hover:outline-1 hover:outline-white/60'
+              }`}
+              aria-expanded={isAgesOpen}
+              aria-label="Abrir catálogo por edades"
+            >
+              <span>🎁</span>
+              <span>Por Edades</span>
+              <ChevronDown
+                className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                  isAgesOpen ? 'rotate-180 text-slate-950' : 'text-slate-400'
+                }`}
+              />
+            </button>
+
+            {isAgesOpen && (
+              <>
+                {/* Backdrop for mobile closing */}
+                <div
+                  className="fixed inset-0 z-40 bg-black/40 sm:bg-transparent"
+                  onClick={() => setIsAgesOpen(false)}
+                />
+
+                {/* Dropdown Card */}
+                <div className="fixed inset-x-3 top-24 sm:top-full sm:absolute sm:inset-x-auto sm:left-0 sm:mt-1.5 w-auto sm:w-[480px] md:w-[540px] bg-white text-slate-900 rounded-2xl shadow-2xl border border-slate-200 z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+                  {/* Header */}
+                  <div className="px-4 py-3 bg-gradient-to-r from-amber-500/10 via-amber-50 to-orange-50/50 border-b border-amber-100 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="text-base">🎁</span>
+                      <div>
+                        <h3 className="text-xs font-black text-slate-900 leading-tight">
+                          Regalos por Rango de Edad
+                        </h3>
+                        <p className="text-[11px] text-slate-500">
+                          Selecciona una etapa para ver ideas verificadas
+                        </p>
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setIsAgesOpen(false)}
+                      className="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 transition-colors"
+                      aria-label="Cerrar menú de edades"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
+
+                  {/* Grid of Ages */}
+                  <div className="p-3 grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-[65vh] sm:max-h-[70vh] overflow-y-auto">
+                    {AGE_DROPDOWN_ITEMS.map((item) => (
+                      <Link
+                        key={item.slug}
+                        href={`/${item.slug}`}
+                        onClick={() => setIsAgesOpen(false)}
+                        className="flex items-start gap-2.5 p-2.5 rounded-xl hover:bg-amber-50/70 border border-slate-100 hover:border-amber-200 transition-all group cursor-pointer"
+                      >
+                        <span className="text-xl p-1.5 rounded-lg bg-slate-50 group-hover:bg-white group-hover:scale-110 transition-transform shrink-0 shadow-2xs">
+                          {item.icon}
+                        </span>
+                        <div className="min-w-0 flex-1">
+                          <div className="flex items-center justify-between gap-1">
+                            <span className="text-xs font-bold text-slate-900 group-hover:text-amber-900 truncate">
+                              {item.label}
+                            </span>
+                            <span className="text-[10px] font-black text-amber-700 bg-amber-100/80 px-1.5 py-0.5 rounded shrink-0">
+                              {item.range}
+                            </span>
+                          </div>
+                          <p className="text-[11px] text-slate-500 group-hover:text-slate-600 line-clamp-1 mt-0.5">
+                            {item.desc}
+                          </p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+
+                  {/* Footer bar */}
+                  <div className="p-2.5 bg-slate-50 border-t border-slate-100 flex items-center justify-between text-xs">
+                    <span className="text-[11px] text-slate-500 font-medium hidden sm:inline">
+                      Recomendados por valoraciones reales en Amazon.es
+                    </span>
+                    <Link
+                      href="/#catalogo-productos"
+                      onClick={() => setIsAgesOpen(false)}
+                      className="text-xs font-bold text-amber-700 hover:text-amber-900 hover:underline flex items-center gap-1 ml-auto"
+                    >
+                      <span>Ver catálogo completo</span>
+                      <span>→</span>
+                    </Link>
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
 
           <Link
             href="/motoristas"
