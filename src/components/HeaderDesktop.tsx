@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Search, X, ExternalLink, ArrowRight, Star, Loader2, ShoppingBag, ChevronDown } from 'lucide-react';
 import BrandLogo from '@/components/BrandLogo';
 import LanguageSelector from '@/components/LanguageSelector';
+import VotingOnboardingTooltip from '@/components/VotingOnboardingTooltip';
 import { useCurrency } from '@/context/CurrencyContext';
 import { useVoting } from '@/context/VotingContext';
 import { Product, AMAZON_AFFILIATE_TAG } from '@/data/products';
@@ -286,28 +287,33 @@ export default function HeaderDesktop({
 
             {/* Right Actions: Group Voting Button & Language Selector */}
             <div className="flex items-center gap-3 shrink-0">
-              {/* Votación en Grupo Button (Hero Feature) */}
-              <button
-                type="button"
-                onClick={() => setIsDrawerOpen(true)}
-                className="flex items-center gap-2.5 px-5 h-11 rounded-xl bg-[#febd69] hover:bg-[#f3a847] active:bg-[#e47911] text-slate-950 font-black transition-all duration-150 shadow-sm hover:scale-102 active:scale-98 cursor-pointer shrink-0 border border-amber-400 group"
-                title="Votación de Regalos en Grupo para WhatsApp"
-                aria-label="Abrir lista de votación de regalos"
-              >
-                <span className="text-xl group-hover:scale-110 transition-transform leading-none">🗳️</span>
-                <span className="text-sm font-extrabold text-slate-950 tracking-normal whitespace-nowrap">
-                  Votar en grupo
-                </span>
-                <span
-                  className={`ml-1 px-2.5 py-0.5 rounded-full text-xs font-black leading-none transition-colors ${
-                    voteItems.length > 0
-                      ? 'bg-slate-950 text-white'
-                      : 'bg-black/15 text-slate-900'
-                  }`}
+              {/* Votación en Grupo Button (Hero Feature) with Onboarding Callout */}
+              <div className="relative">
+                <button
+                  type="button"
+                  onClick={() => setIsDrawerOpen(true)}
+                  className="flex items-center gap-2.5 px-5 h-11 rounded-xl bg-[#febd69] hover:bg-[#f3a847] active:bg-[#e47911] text-slate-950 font-black transition-all duration-150 shadow-sm hover:scale-102 active:scale-98 cursor-pointer shrink-0 border border-amber-400 group"
+                  title="Votación de Regalos en Grupo para WhatsApp"
+                  aria-label="Abrir lista de votación de regalos"
                 >
-                  {voteItems.length}
-                </span>
-              </button>
+                  <span className="text-xl group-hover:scale-110 transition-transform leading-none">🗳️</span>
+                  <span className="text-sm font-extrabold text-slate-950 tracking-normal whitespace-nowrap">
+                    Votar en grupo
+                  </span>
+                  <span
+                    className={`ml-1 px-2.5 py-0.5 rounded-full text-xs font-black leading-none transition-colors ${
+                      voteItems.length > 0
+                        ? 'bg-slate-950 text-white'
+                        : 'bg-black/15 text-slate-900'
+                    }`}
+                  >
+                    {voteItems.length}
+                  </span>
+                </button>
+
+                {/* Smart Onboarding Tooltip with Cookie Persistence */}
+                <VotingOnboardingTooltip variant="desktop" />
+              </div>
 
               <LanguageSelector dark={true} />
             </div>

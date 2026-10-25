@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Search, X, ExternalLink, ArrowRight, Star, Loader2, ShoppingBag, ChevronDown } from 'lucide-react';
 import BrandLogo from '@/components/BrandLogo';
 import LanguageSelector from '@/components/LanguageSelector';
+import VotingOnboardingTooltip from '@/components/VotingOnboardingTooltip';
 import { useCurrency } from '@/context/CurrencyContext';
 import { useVoting } from '@/context/VotingContext';
 import { Product, AMAZON_AFFILIATE_TAG } from '@/data/products';
@@ -111,6 +112,9 @@ export default function HeaderMobile({
 
             {/* Selector de Idioma y Moneda */}
             <LanguageSelector dark={true} />
+
+            {/* Smart Mobile Onboarding Callout */}
+            <VotingOnboardingTooltip variant="mobile" />
           </div>
         </div>
 
