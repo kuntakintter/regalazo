@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { ExternalLink, ShoppingBag, ShieldCheck, Star, Loader2, ArrowDown } from 'lucide-react';
+import { ExternalLink, ShoppingBag, Star, Loader2, ArrowDown, ShieldCheck } from 'lucide-react';
 import { AMAZON_AFFILIATE_TAG } from '@/data/products';
 
 interface AmazonGridDiscoveryCardProps {
@@ -22,110 +22,115 @@ export default function AmazonGridDiscoveryCard({
   hasLoadedLive = false,
 }: AmazonGridDiscoveryCardProps) {
   // Determine contextual search term
-  let displayTitle = '¿Buscas más opciones y ofertas?';
+  let displayTitle = '¿Buscas más opciones y regalos?';
   let searchTerm = 'regalos recomendados';
 
   if (searchQuery.trim().length > 0) {
-    displayTitle = `¿Buscas más resultados de "${searchQuery.trim()}"?`;
+    displayTitle = `¿Más opciones de "${searchQuery.trim()}"?`;
     searchTerm = searchQuery.trim();
   } else if (selectedCategory && selectedCategory !== 'all') {
-    displayTitle = `¿Quieres ver más regalos de "${selectedCategory}"?`;
+    displayTitle = `¿Más regalos de "${selectedCategory}"?`;
     searchTerm = selectedCategory;
   } else if (selectedAge && selectedAge !== 'all') {
-    displayTitle = `¿Buscas más opciones para esta edad?`;
+    displayTitle = `¿Más regalos para esta edad?`;
     searchTerm = `regalos para ${selectedAge} anos`;
   }
 
   const amazonSearchUrl = `https://www.amazon.es/s?k=${encodeURIComponent(searchTerm)}&tag=${AMAZON_AFFILIATE_TAG}`;
 
   return (
-    <article className="flex flex-col rounded-3xl overflow-hidden border border-amber-300/80 bg-gradient-to-br from-amber-500/10 via-white to-amber-500/5 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative group">
-      {/* Top Banner Tag */}
-      <div className="bg-gradient-to-r from-amber-500 to-amber-600 px-4 py-2 flex items-center justify-between text-slate-950 font-black text-[11px] uppercase tracking-wider shadow-xs">
-        <div className="flex items-center gap-1.5">
-          <ShoppingBag className="w-3.5 h-3.5" />
-          <span>Catálogo Abierto Amazon.es</span>
+    <article className="group flex flex-col justify-between p-2.5 sm:p-3 rounded-2xl bg-gradient-to-b from-amber-50/70 via-white to-amber-50/30 border border-amber-300 hover:border-amber-400 shadow-xs hover:shadow-md transition-all duration-200 relative">
+      {/* Visual Box - Exactly matches product photo aspect ratio */}
+      <div 
+        onClick={onLoadLiveToGrid || (() => window.open(amazonSearchUrl, '_blank'))}
+        className="relative aspect-square w-full mb-2 bg-gradient-to-br from-amber-100/90 via-amber-50 to-orange-100/80 rounded-xl overflow-hidden p-2.5 flex flex-col items-center justify-center text-center border border-amber-200/90 group-hover:border-amber-300 transition-colors cursor-pointer select-none"
+      >
+        <div className="w-10 h-10 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center shadow-xs mb-1.5 group-hover:scale-110 transition-transform">
+          <ShoppingBag className="w-5 h-5" />
         </div>
-        <span className="bg-black/15 text-slate-950 px-2 py-0.5 rounded-full text-[10px] font-extrabold">
-          En directo
+        <span className="text-[10px] font-black uppercase tracking-wider text-amber-900 bg-amber-200/80 px-2 py-0.5 rounded-full mb-1">
+          Catálogo Abierto
+        </span>
+        <span className="text-[11px] font-extrabold text-slate-800 line-clamp-1 px-1">
+          +50.000 Novedades
+        </span>
+        <span className="text-[9px] text-amber-800/80 font-medium mt-0.5">
+          Amazon España
         </span>
       </div>
 
-      <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between">
+      {/* Content Viewport */}
+      <div className="flex flex-col flex-1 justify-between">
         <div>
-          {/* Amazon Badge */}
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-200 mb-4">
-            <ShoppingBag className="w-3.5 h-3.5 text-amber-600" />
-            <span>Conexión en directo con Amazon</span>
+          {/* Subcategory Label */}
+          <div className="mb-1">
+            <span className="text-[11px] text-amber-700 font-semibold truncate block">
+              Catálogo en directo
+            </span>
           </div>
 
-          <h3 className="text-xl font-black text-slate-900 leading-tight mb-3 group-hover:text-amber-700 transition-colors">
+          {/* Title */}
+          <h3 className="font-bold text-xs sm:text-[13px] leading-snug text-slate-900 line-clamp-2 group-hover:text-amber-700 transition-colors mb-1 min-h-[2rem]">
             {displayTitle}
           </h3>
 
-          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
-            Carga productos actualizados al momento directamente en esta cuadrícula con precios, valoraciones y disponibilidad oficial de <strong>Amazon España</strong>.
-          </p>
-
-          <div className="space-y-2 mb-6">
-            <div className="flex items-center gap-2 text-xs text-slate-700 font-medium">
-              <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
-              <span>Garantía de devolución oficial de 30 días</span>
+          {/* Rating Line */}
+          <div className="flex items-center gap-1 text-[11px] mb-1.5">
+            <div className="flex items-center text-amber-500">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />
+              ))}
             </div>
-            <div className="flex items-center gap-2 text-xs text-slate-700 font-medium">
-              <Star className="w-4 h-4 text-amber-500 fill-amber-500 shrink-0" />
-              <span>Millones de opiniones y valoraciones verificadas</span>
-            </div>
+            <span className="font-bold text-slate-800 text-xs">4.9</span>
+            <span className="text-[#007185] font-semibold text-[10px]">(Verificado)</span>
           </div>
         </div>
 
-        {/* CTA Buttons */}
         <div>
-          {onLoadLiveToGrid ? (
-            <div className="space-y-2">
-              <button
-                type="button"
-                onClick={onLoadLiveToGrid}
-                disabled={isLoadingLive}
-                className="w-full py-3.5 px-5 rounded-2xl bg-gradient-to-r from-amber-500 via-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-sm flex items-center justify-center gap-2 shadow-md hover:shadow-lg hover:shadow-amber-500/25 transition-all group-hover:scale-102 cursor-pointer disabled:opacity-75"
-              >
-                {isLoadingLive ? (
-                  <>
-                    <Loader2 className="w-4 h-4 animate-spin text-slate-950" />
-                    <span>Buscando en Amazon...</span>
-                  </>
-                ) : (
-                  <>
-                    <ShoppingBag className="w-4 h-4 text-slate-950" />
-                    <span>{hasLoadedLive ? 'Cargar más en esta cuadrícula' : 'Ver productos en directo aquí'}</span>
-                    <ArrowDown className="w-4 h-4 text-slate-950" />
-                  </>
-                )}
-              </button>
+          {/* Price / Stock Note */}
+          <div className="flex items-baseline gap-1.5 mb-0.5">
+            <span className="text-sm sm:text-base font-black text-slate-950 tracking-tight">
+              Todos los precios
+            </span>
+          </div>
 
-              <a
-                href={amazonSearchUrl}
-                target="_blank"
-                rel="noopener noreferrer sponsored"
-                className="w-full py-2 px-3 rounded-xl text-xs font-semibold text-center block text-slate-600 hover:text-slate-900 hover:underline transition-all"
-              >
-                O abrir búsqueda en Amazon.es →
-              </a>
-            </div>
+          {/* Prime delivery line */}
+          <div className="flex items-center gap-1 text-[10px] sm:text-[11px] text-slate-600 font-normal mb-2">
+            <span className="text-[#007185] font-black text-xs">✓prime</span>
+            <span>Entrega <strong className="text-slate-800 font-bold">Oficial</strong></span>
+          </div>
+
+          {/* CTA Action Button */}
+          {onLoadLiveToGrid ? (
+            <button
+              type="button"
+              onClick={onLoadLiveToGrid}
+              disabled={isLoadingLive}
+              className="w-full py-1.5 px-3 rounded-full text-xs font-semibold text-slate-950 bg-[#ffd814] hover:bg-[#f7ca00] active:bg-[#f0b800] border border-[#fcd200] shadow-2xs text-center flex items-center justify-center gap-1.5 transition-all cursor-pointer disabled:opacity-75"
+            >
+              {isLoadingLive ? (
+                <>
+                  <Loader2 className="w-3 h-3 animate-spin text-slate-950" />
+                  <span>Cargando...</span>
+                </>
+              ) : (
+                <>
+                  <span>{hasLoadedLive ? 'Cargar más' : 'Ir al producto'}</span>
+                  <ArrowDown className="w-3 h-3 text-slate-950" />
+                </>
+              )}
+            </button>
           ) : (
             <a
               href={amazonSearchUrl}
               target="_blank"
               rel="noopener noreferrer sponsored"
-              className="w-full py-3.5 px-5 rounded-2xl bg-gradient-to-r from-amber-500 via-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-sm flex items-center justify-center gap-2 shadow-md hover:shadow-lg hover:shadow-amber-500/25 transition-all group-hover:scale-102 cursor-pointer"
+              className="w-full py-1.5 px-3 rounded-full text-xs font-semibold text-slate-950 bg-[#ffd814] hover:bg-[#f7ca00] active:bg-[#f0b800] border border-[#fcd200] shadow-2xs text-center flex items-center justify-center gap-1.5 transition-all cursor-pointer"
             >
-              <span>Ver todo en Amazon España</span>
-              <ExternalLink className="w-4 h-4 text-slate-900" />
+              <span>Ir al producto</span>
+              <ExternalLink className="w-3 h-3 text-slate-950" />
             </a>
           )}
-          <span className="block text-center text-[10px] text-slate-400 mt-2 font-medium">
-            Precios y stock actualizados en tiempo real
-          </span>
         </div>
       </div>
     </article>
