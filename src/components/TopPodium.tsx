@@ -171,12 +171,16 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
     switchSet(next);
   }, [activeSetIndex, podiumSets.length, switchSet]);
 
-  // Auto-advance every 8 seconds if user is not hovering
+  // Auto-advance smoothly every 7 seconds
   useEffect(() => {
     if (isPaused || podiumSets.length <= 1) return;
     const timer = setInterval(() => {
-      setActiveSetIndex((curr) => (curr + 1) % podiumSets.length);
-    }, 8000);
+      setIsAnimating(true);
+      setTimeout(() => {
+        setActiveSetIndex((curr) => (curr + 1) % podiumSets.length);
+        setIsAnimating(false);
+      }, 150);
+    }, 7000);
     return () => clearInterval(timer);
   }, [isPaused, podiumSets.length]);
 
@@ -265,8 +269,16 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
     <section
       className="mb-14 pt-2 relative overflow-x-clip"
       aria-label="Top 3 Ventas"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
+      onMouseEnter={() => {
+        if (typeof window !== 'undefined' && window.matchMedia('(hover: hover)').matches) {
+          setIsPaused(true);
+        }
+      }}
+      onMouseLeave={() => {
+        if (typeof window !== 'undefined' && window.matchMedia('(hover: hover)').matches) {
+          setIsPaused(false);
+        }
+      }}
     >
       {/* Schema.org for SEO */}
       <script
@@ -335,27 +347,27 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
 
       {/* Podium Stage Container with Lateral Arrow Navigation */}
       <div className="max-w-4xl mx-auto relative px-2 sm:px-4 md:px-0">
-        {/* Left Arrow Navigation Button */}
+        {/* Left Arrow Navigation Button (Desktop only, hidden on mobile) */}
         {podiumSets.length > 1 && (
           <button
             onClick={handlePrev}
             aria-label="Ver ranking anterior"
             title="Ver ranking anterior"
-            className="absolute left-1 sm:-left-6 lg:-left-10 top-1/2 -translate-y-1/2 z-30 w-9 h-9 sm:w-12 sm:h-12 bg-white/95 dark:bg-slate-900/95 hover:bg-[#ffd814] dark:hover:bg-amber-500 text-slate-800 dark:text-white hover:text-slate-950 shadow-xl border-2 border-slate-200 dark:border-slate-700 hover:border-amber-400 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer group/nav"
+            className="hidden sm:flex absolute sm:-left-6 lg:-left-10 top-1/2 -translate-y-1/2 z-30 sm:w-12 sm:h-12 bg-white/95 dark:bg-slate-900/95 hover:bg-[#ffd814] dark:hover:bg-amber-500 text-slate-800 dark:text-white hover:text-slate-950 shadow-xl border-2 border-slate-200 dark:border-slate-700 hover:border-amber-400 rounded-full items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer group/nav"
           >
-            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 group-hover/nav:-translate-x-0.5 transition-transform" />
+            <ChevronLeft className="w-6 h-6 group-hover/nav:-translate-x-0.5 transition-transform" />
           </button>
         )}
 
-        {/* Right Arrow Navigation Button */}
+        {/* Right Arrow Navigation Button (Desktop only, hidden on mobile) */}
         {podiumSets.length > 1 && (
           <button
             onClick={handleNext}
             aria-label="Ver siguiente ranking"
             title="Ver siguiente ranking"
-            className="absolute right-1 sm:-right-6 lg:-right-10 top-1/2 -translate-y-1/2 z-30 w-9 h-9 sm:w-12 sm:h-12 bg-white/95 dark:bg-slate-900/95 hover:bg-[#ffd814] dark:hover:bg-amber-500 text-slate-800 dark:text-white hover:text-slate-950 shadow-xl border-2 border-slate-200 dark:border-slate-700 hover:border-amber-400 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer group/nav"
+            className="hidden sm:flex absolute sm:-right-6 lg:-right-10 top-1/2 -translate-y-1/2 z-30 sm:w-12 sm:h-12 bg-white/95 dark:bg-slate-900/95 hover:bg-[#ffd814] dark:hover:bg-amber-500 text-slate-800 dark:text-white hover:text-slate-950 shadow-xl border-2 border-slate-200 dark:border-slate-700 hover:border-amber-400 rounded-full items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer group/nav"
           >
-            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover/nav:translate-x-0.5 transition-transform" />
+            <ChevronRight className="w-6 h-6 group-hover/nav:translate-x-0.5 transition-transform" />
           </button>
         )}
 
