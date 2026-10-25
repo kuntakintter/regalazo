@@ -85,7 +85,7 @@ export default function SocialShareBar({
     <div className="py-4 my-6 p-4 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
       <div className="flex items-center gap-2 text-slate-700 font-bold">
         <Share2 className="w-4 h-4 text-indigo-600 shrink-0" />
-        <span>¿Te ha servido la guía? Comparte estas ideas con tus amigos o familia:</span>
+        <span>Comparte estas ideas con tus amigos o familia:</span>
       </div>
 
       <div className="flex items-center gap-2 flex-wrap justify-center">
