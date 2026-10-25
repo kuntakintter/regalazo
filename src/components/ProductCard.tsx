@@ -205,7 +205,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             rel="nofollow sponsored noopener noreferrer"
             className="w-full py-1.5 px-3 rounded-full text-xs font-semibold text-slate-950 bg-[#ffd814] hover:bg-[#f7ca00] active:bg-[#f0b800] border border-[#fcd200] shadow-2xs text-center flex items-center justify-center gap-1.5 transition-all cursor-pointer"
           >
-            <span>Ver en Amazon</span>
+            <span>Ir al producto</span>
           </a>
 
           {/* Toast feedback when copied */}

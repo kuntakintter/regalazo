@@ -305,7 +305,7 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
                       rel="nofollow sponsored noopener noreferrer"
                       className={`px-3 py-1.5 rounded-full font-bold text-xs flex items-center gap-1 transition-all shadow-2xs hover:scale-102 active:scale-98 shrink-0 cursor-pointer ${pick.btnClass}`}
                     >
-                      <span>Ver en Amazon</span>
+                      <span>Ir al producto</span>
                       <ExternalLink className="w-3 h-3" />
                     </a>
                   </div>
