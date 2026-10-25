@@ -564,22 +564,23 @@ export default function HomePage() {
         <section className="mb-8">
           <div className="flex flex-col xl:flex-row items-stretch justify-center gap-5">
             
-            {/* LEFT SHOWCASE WING (AMAZON 2x2 CARD ROTATING EVERY 10s) */}
+            {/* LEFT SHOWCASE WING (AMAZON 2x2 CARD ROTATING EVERY 10s WITH SMOOTH SLIDE) */}
             <aside
               onMouseEnter={() => setIsLeftPaused(true)}
               onMouseLeave={() => setIsLeftPaused(false)}
-              className="hidden lg:flex flex-col w-64 xl:w-72 2xl:w-80 shrink-0 bg-white rounded-3xl p-5 shadow-xs border border-slate-200/90 justify-between relative group"
+              className="hidden lg:flex flex-col w-64 xl:w-72 2xl:w-80 shrink-0 bg-white rounded-3xl p-5 shadow-xs border border-slate-200/90 justify-between relative group overflow-hidden"
             >
               <div>
-                <div className="flex items-center justify-between mb-3">
+                {/* Header Banner - Amazon Navy Theme with Amber Highlight */}
+                <div className="bg-[#131921] -mx-5 -mt-5 px-4 py-3 border-b border-slate-800 flex items-center justify-between mb-3 text-white">
                   <div>
-                    <h2 className="text-sm font-black text-slate-900 flex items-center gap-1.5">
+                    <h2 className="text-sm font-black text-[#febd69] flex items-center gap-1.5 uppercase tracking-wide">
                       <span>🔥</span>
                       <span>Más Regalados</span>
                     </h2>
-                    <p className="text-[11px] text-slate-500 font-medium">Top ventas verificados</p>
+                    <p className="text-[11px] text-slate-300 font-medium">Top ventas verificados</p>
                   </div>
-                  <span className="text-[10px] bg-amber-100 text-amber-900 font-bold px-2 py-0.5 rounded-full">
+                  <span className="text-[10px] bg-amber-400/20 text-[#febd69] border border-amber-400/40 font-bold px-2 py-0.5 rounded-full">
                     Amazon.es
                   </span>
                 </div>
@@ -763,22 +764,23 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* RIGHT SHOWCASE WING (AMAZON 2x2 CARD ROTATING EVERY 10s) */}
+            {/* RIGHT SHOWCASE WING (AMAZON 2x2 CARD ROTATING EVERY 10s WITH SMOOTH SLIDE) */}
             <aside
               onMouseEnter={() => setIsRightPaused(true)}
               onMouseLeave={() => setIsRightPaused(false)}
-              className="hidden lg:flex flex-col w-64 xl:w-72 2xl:w-80 shrink-0 bg-white rounded-3xl p-5 shadow-xs border border-slate-200/90 justify-between relative group"
+              className="hidden lg:flex flex-col w-64 xl:w-72 2xl:w-80 shrink-0 bg-white rounded-3xl p-5 shadow-xs border border-slate-200/90 justify-between relative group overflow-hidden"
             >
               <div>
-                <div className="flex items-center justify-between mb-3">
+                {/* Header Banner - Amazon Navy Theme with Emerald Highlight */}
+                <div className="bg-[#131921] -mx-5 -mt-5 px-4 py-3 border-b border-slate-800 flex items-center justify-between mb-3 text-white">
                   <div>
-                    <h2 className="text-sm font-black text-slate-900 flex items-center gap-1.5">
+                    <h2 className="text-sm font-black text-emerald-400 flex items-center gap-1.5 uppercase tracking-wide">
                       <span>⚡</span>
                       <span>Chollos &lt; 20 €</span>
                     </h2>
-                    <p className="text-[11px] text-slate-500 font-medium">Ideas para acertar sin gastar</p>
+                    <p className="text-[11px] text-slate-300 font-medium">Ideas para acertar sin gastar</p>
                   </div>
-                  <span className="text-[10px] bg-emerald-100 text-emerald-900 font-bold px-2 py-0.5 rounded-full">
+                  <span className="text-[10px] bg-emerald-400/20 text-emerald-300 border border-emerald-400/40 font-bold px-2 py-0.5 rounded-full">
                     Económicos
                   </span>
                 </div>
@@ -872,15 +874,22 @@ export default function HomePage() {
         {/* CATALOG SECTION WITH COLLAPSIBLE MANUAL FILTERS */}
         <div id="catalogo-productos" className="pt-2">
           {/* Header Row: Result count & Toggle Manual Filters */}
-          <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-            <div className="text-sm font-semibold text-slate-600">
-              {filteredProducts.length + liveAmazonProducts.length > 0 ? (
-                <span>
-                  Mostrando <strong className="text-slate-900">{filteredProducts.length + liveAmazonProducts.length}</strong> regalos seleccionados
-                </span>
-              ) : (
-                <span>Catálogo de regalos</span>
-              )}
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-4 pb-3 border-b border-slate-200/80">
+            <div className="flex items-center gap-3">
+              <span className="w-2 h-7 rounded-full bg-amber-500 shrink-0"></span>
+              <div>
+                <h2 className="text-lg sm:text-xl font-black text-slate-900 tracking-tight flex items-center gap-2">
+                  <span>Catálogo de Regalos</span>
+                  {searchQuery.trim() && (
+                    <span className="text-xs font-bold text-amber-900 bg-amber-100 border border-amber-200 px-2 py-0.5 rounded-full">
+                      Buscando: &quot;{searchQuery}&quot;
+                    </span>
+                  )}
+                </h2>
+                <p className="text-xs text-slate-500 font-medium">
+                  Mostrando <strong className="text-slate-900 font-bold">{filteredProducts.length + liveAmazonProducts.length}</strong> regalos verificados con opiniones reales
+                </p>
+              </div>
             </div>
 
             <button
@@ -888,14 +897,14 @@ export default function HomePage() {
               onClick={() => setShowAdvancedFilters((prev) => !prev)}
               className={`inline-flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-xl border transition-all cursor-pointer shadow-xs ${
                 showAdvancedFilters || (selectedAge !== 'all' || selectedCategory !== 'all' || selectedGender !== 'all' || selectedPrice !== 'all')
-                  ? 'bg-indigo-50 border-indigo-200 text-indigo-700 hover:bg-indigo-100'
+                  ? 'bg-amber-50 border-amber-300 text-amber-950 hover:bg-amber-100'
                   : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50'
               }`}
             >
-              <SlidersHorizontal className="w-3.5 h-3.5 text-indigo-600" />
+              <SlidersHorizontal className="w-3.5 h-3.5 text-amber-600" />
               <span>{showAdvancedFilters ? 'Ocultar filtros manuales' : 'Filtros manuales (edad, categoría...)'}</span>
               {(selectedAge !== 'all' || selectedCategory !== 'all' || selectedGender !== 'all' || selectedPrice !== 'all') && (
-                <span className="w-2 h-2 rounded-full bg-indigo-600 animate-pulse"></span>
+                <span className="w-2 h-2 rounded-full bg-amber-600 animate-pulse"></span>
               )}
             </button>
           </div>
