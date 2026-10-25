@@ -290,19 +290,19 @@ export default function HeaderDesktop({
               <button
                 type="button"
                 onClick={() => setIsDrawerOpen(true)}
-                className="flex items-center gap-2.5 px-4 sm:px-5 h-11 rounded-xl bg-gradient-to-r from-amber-400 via-amber-500 to-orange-500 hover:from-amber-300 hover:via-amber-400 hover:to-orange-400 text-slate-950 font-black transition-all duration-200 shadow-md shadow-amber-500/20 hover:shadow-lg hover:shadow-amber-500/30 hover:scale-105 active:scale-95 cursor-pointer shrink-0 border border-amber-300 group"
+                className="flex items-center gap-2.5 px-4 sm:px-5 h-11 rounded-xl bg-[#febd69] hover:bg-[#f3a847] active:bg-[#e47911] text-slate-950 font-black transition-all duration-150 shadow-sm hover:scale-102 active:scale-98 cursor-pointer shrink-0 border border-amber-400 group"
                 title="Votación de Regalos en Grupo para WhatsApp"
                 aria-label="Abrir lista de votación de regalos"
               >
-                <span className="text-xl group-hover:scale-115 transition-transform leading-none">🗳️</span>
+                <span className="text-xl group-hover:scale-110 transition-transform leading-none">🗳️</span>
                 <div className="flex flex-col text-left leading-tight">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-amber-950/75">Amigos & Familia</span>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-amber-950/80">Amigos & Familia</span>
                   <span className="text-sm font-black text-slate-950 tracking-tight">Votar en grupo</span>
                 </div>
                 <span
-                  className={`ml-1 px-2.5 py-0.5 rounded-full text-xs font-black leading-none transition-transform ${
+                  className={`ml-1 px-2.5 py-0.5 rounded-full text-xs font-black leading-none transition-colors ${
                     voteItems.length > 0
-                      ? 'bg-slate-950 text-amber-400 shadow-sm ring-2 ring-amber-300/60 scale-105 animate-pulse'
+                      ? 'bg-slate-950 text-[#febd69]'
                       : 'bg-black/15 text-slate-900'
                   }`}
                 >
