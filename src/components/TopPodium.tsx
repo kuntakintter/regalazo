@@ -56,12 +56,51 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
 
   if (!products || products.length < 3) return null;
 
-  // Select 3 top distinct products
-  const sortedByPopularity = [...products].sort((a, b) => (b.reviewsCount || 0) - (a.reviewsCount || 0));
-  
+  // Helper to extract product keyword/family to prevent duplicates (e.g. NEVER 2 headphones, 2 books, etc.)
+  const getProductFamily = (p: Product): string => {
+    const text = `${p.category} ${p.subcategory || ''} ${p.title}`.toLowerCase();
+    if (text.includes('auricular') || text.includes('headphone') || text.includes('soundcore') || text.includes('tune 510') || text.includes('airpods')) return 'audio';
+    if (text.includes('libro') || text.includes('habitos') || text.includes('hábitos') || text.includes('lectura')) return 'book';
+    if (text.includes('figura') || text.includes('funko') || text.includes('banpresto') || text.includes('ichibansho') || text.includes('estatua')) return 'figure';
+    if (text.includes('juego') || text.includes('mesa') || text.includes('cartas') || text.includes('catan') || text.includes('pokemon tcg') || text.includes('puzzle')) return 'games';
+    if (text.includes('cafeter') || text.includes('cafe') || text.includes('café') || text.includes('espresso')) return 'coffee';
+    if (text.includes('lámpara') || text.includes('lampara') || text.includes('led') || text.includes('iluminac')) return 'lighting';
+    if (text.includes('consola') || text.includes('ps5') || text.includes('switch') || text.includes('mando') || text.includes('gaming')) return 'gaming';
+    if (text.includes('smartbox') || text.includes('escapada') || text.includes('experiencia')) return 'experience';
+    if (text.includes('coche') || text.includes('delorean') || text.includes('die-cast') || text.includes('vehiculo') || text.includes('batmóvil') || text.includes('batmovil')) return 'diecast';
+    if (text.includes('mochila') || text.includes('bolsa') || text.includes('maleta') || text.includes('cartera')) return 'bags';
+    if (text.includes('casco') || text.includes('moto') || text.includes('chaqueta')) return 'moto';
+    return (p.subcategory || p.category).toLowerCase();
+  };
+
+  // Sort candidates by popularity (reviewsCount * rating)
+  const sortedByPopularity = [...products].sort((a, b) => {
+    const scoreA = (a.reviewsCount || 0) * (a.rating || 1);
+    const scoreB = (b.reviewsCount || 0) * (b.rating || 1);
+    return scoreB - scoreA;
+  });
+
+  // 1. Gold: Top popular product
   const gold = sortedByPopularity[0];
-  const silver = sortedByPopularity.slice(1).find(p => p.priceRange === '<20' || p.priceRange === '20-50') || sortedByPopularity[1];
-  const bronze = sortedByPopularity.slice(1).find(p => p.id !== silver.id && p.rating >= 4.5) || sortedByPopularity.find(p => p.id !== gold.id && p.id !== silver.id) || sortedByPopularity[2];
+  const goldFamily = getProductFamily(gold);
+
+  // 2. Silver: Must be from a COMPLETELY DIFFERENT product family (no duplicate category/item)
+  const silver = sortedByPopularity.find(
+    (p) => p.id !== gold.id && getProductFamily(p) !== goldFamily && (p.priceRange === '<20' || p.priceRange === '20-50' || p.rating >= 4.6)
+  ) || sortedByPopularity.find(
+    (p) => p.id !== gold.id && getProductFamily(p) !== goldFamily
+  ) || sortedByPopularity[1];
+
+  const silverFamily = getProductFamily(silver);
+
+  // 3. Bronze: Must be from a THIRD DIFFERENT product family (e.g. original/surprise gift, NEVER second headphones)
+  const bronze = sortedByPopularity.find(
+    (p) => p.id !== gold.id && p.id !== silver.id && getProductFamily(p) !== goldFamily && getProductFamily(p) !== silverFamily && p.rating >= 4.5
+  ) || sortedByPopularity.find(
+    (p) => p.id !== gold.id && p.id !== silver.id && getProductFamily(p) !== goldFamily && getProductFamily(p) !== silverFamily
+  ) || sortedByPopularity.find(
+    (p) => p.id !== gold.id && p.id !== silver.id
+  ) || sortedByPopularity[2];
 
   const podiumPicks = [
     {
