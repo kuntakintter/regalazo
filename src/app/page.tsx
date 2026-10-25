@@ -580,9 +580,6 @@ export default function HomePage() {
                     </h2>
                     <p className="text-[11px] text-slate-300 font-medium">Top ventas verificados</p>
                   </div>
-                  <span className="text-[10px] bg-amber-400/20 text-[#febd69] border border-amber-400/40 font-bold px-2 py-0.5 rounded-full">
-                    Amazon.es
-                  </span>
                 </div>
 
                 {/* Sliding Carousel Viewport */}
@@ -780,9 +777,6 @@ export default function HomePage() {
                     </h2>
                     <p className="text-[11px] text-slate-300 font-medium">Ideas para acertar sin gastar</p>
                   </div>
-                  <span className="text-[10px] bg-emerald-400/20 text-emerald-300 border border-emerald-400/40 font-bold px-2 py-0.5 rounded-full">
-                    Económicos
-                  </span>
                 </div>
 
                 {/* Sliding Carousel Viewport */}

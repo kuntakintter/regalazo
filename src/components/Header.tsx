@@ -426,18 +426,6 @@ export default function Header({
     <div className="bg-[#232f3e] text-white border-t border-slate-700/40 relative">
       <div className="max-w-[1600px] mx-auto px-3 sm:px-6 lg:px-8">
         <div className="flex items-center gap-1 sm:gap-2 py-1.5 overflow-x-auto sm:overflow-visible scrollbar-none text-xs">
-          
-          {/* Botón Todo el catálogo (estilo Amazon ≡ Todo) */}
-          <Link
-            href="/#catalogo-productos"
-            className="flex items-center gap-1.5 px-2.5 py-1 rounded text-white font-bold hover:outline hover:outline-1 hover:outline-white/60 whitespace-nowrap transition-all shrink-0"
-          >
-            <span className="text-sm font-black">☰</span>
-            <span>Todo</span>
-          </Link>
-
-          <span className="w-px h-4 bg-slate-700 mx-1 shrink-0"></span>
-
           {/* Dropdown Por Edades */}
           <div ref={agesDropdownRef} className="relative shrink-0">
             <button
