@@ -97,11 +97,11 @@ export default function HeaderMobile({
               aria-label="Abrir lista de votación de regalos"
             >
               <span className="text-base leading-none">🗳️</span>
-              <span className="font-black text-xs tracking-tight text-slate-950">Votar</span>
+              <span className="font-extrabold text-xs tracking-normal text-slate-950">Votar</span>
               <span
                 className={`px-1.5 py-0.5 rounded-full text-[10px] font-black leading-none transition-colors ${
                   voteItems.length > 0
-                    ? 'bg-slate-950 text-[#febd69]'
+                    ? 'bg-slate-950 text-white'
                     : 'bg-black/15 text-slate-900'
                 }`}
               >
