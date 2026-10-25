@@ -668,7 +668,7 @@ export default function HomePage() {
                   ) : (
                     <span>
                       ¿A quién quieres{' '}
-                      <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-600 via-orange-600 to-indigo-600">
+                      <span className="inline-block pr-2.5 pb-1 bg-clip-text text-transparent bg-gradient-to-r from-amber-600 via-orange-600 to-indigo-600">
                         sorprender hoy?
                       </span>
                     </span>
