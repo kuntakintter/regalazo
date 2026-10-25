@@ -200,13 +200,9 @@ export default function Header({
             <div ref={dropdownRef} className="flex-1 max-w-2xl relative">
               <form
                 onSubmit={handleSearchSubmit}
-                className="relative flex items-center rounded-md overflow-hidden shadow-inner focus-within:ring-2 focus-within:ring-[#febd69] transition-all bg-white"
+                className="relative flex items-center rounded-xl overflow-hidden shadow-inner focus-within:ring-2 focus-within:ring-[#febd69] transition-all bg-white border border-slate-200"
               >
-                {/* Departamento / Prefijo estilo Amazon */}
-                <div className="hidden sm:flex items-center gap-1 bg-[#e6e6e6] hover:bg-[#d8d8d8] text-slate-800 text-xs font-semibold px-3 py-2.5 border-r border-slate-300 select-none cursor-pointer shrink-0">
-                  <span>Regalos</span>
-                  <ChevronDown className="w-3 h-3 text-slate-500" />
-                </div>
+                <Search className="w-4 h-4 text-slate-400 ml-3.5 shrink-0" />
 
                 <input
                   type="text"
@@ -217,7 +213,7 @@ export default function Header({
                     setIsFocused(true);
                   }}
                   placeholder="Buscar en Amazon: Lego, zapatillas, perfumes, PS5..."
-                  className="w-full px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:outline-none bg-white"
+                  className="w-full px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:outline-none bg-transparent"
                 />
 
                 {/* Action Buttons inside Input */}
