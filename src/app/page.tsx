@@ -85,18 +85,60 @@ export default function HomePage() {
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [showAdvancedFilters, setShowAdvancedFilters] = useState<boolean>(false);
 
-  // Curated Top 4 Superventas for Left Showcase Wing
-  const topShowcaseProducts = useMemo(() => {
-    return PRODUCTS.filter((p) => p.rating >= 4.7 && p.imageUrl).slice(0, 4);
+  // Curated Superventas pool for Left Showcase Wing (16 top products -> 4 slides of 4 products)
+  const topShowcasePool = useMemo(() => {
+    return PRODUCTS.filter((p) => p.rating >= 4.6 && p.imageUrl).slice(0, 16);
   }, []);
 
-  // Curated Top 4 Chollos (< 20 €) for Right Showcase Wing
-  const budgetShowcaseProducts = useMemo(() => {
+  // Curated Chollos pool (< 20 €) for Right Showcase Wing (16 products -> 4 slides of 4 products)
+  const budgetShowcasePool = useMemo(() => {
     return PRODUCTS.filter((p) => {
       const price = parsePrice(p.priceText);
       return price > 0 && price <= 20 && p.imageUrl;
-    }).slice(0, 4);
+    }).slice(0, 16);
   }, []);
+
+  // Carousel page state (changes every 10 seconds)
+  const [leftCarouselIndex, setLeftCarouselIndex] = useState(0);
+  const [rightCarouselIndex, setRightCarouselIndex] = useState(0);
+  const [isLeftPaused, setIsLeftPaused] = useState(false);
+  const [isRightPaused, setIsRightPaused] = useState(false);
+
+  // Auto-advance Left Carousel every 10 seconds
+  useEffect(() => {
+    if (isLeftPaused) return;
+    const totalPages = Math.ceil(topShowcasePool.length / 4);
+    if (totalPages <= 1) return;
+
+    const timer = setInterval(() => {
+      setLeftCarouselIndex((prev) => (prev + 1) % totalPages);
+    }, 10000);
+
+    return () => clearInterval(timer);
+  }, [isLeftPaused, topShowcasePool.length]);
+
+  // Auto-advance Right Carousel every 10 seconds
+  useEffect(() => {
+    if (isRightPaused) return;
+    const totalPages = Math.ceil(budgetShowcasePool.length / 4);
+    if (totalPages <= 1) return;
+
+    const timer = setInterval(() => {
+      setRightCarouselIndex((prev) => (prev + 1) % totalPages);
+    }, 10000);
+
+    return () => clearInterval(timer);
+  }, [isRightPaused, budgetShowcasePool.length]);
+
+  const currentLeftProducts = useMemo(() => {
+    const start = leftCarouselIndex * 4;
+    return topShowcasePool.slice(start, start + 4);
+  }, [leftCarouselIndex, topShowcasePool]);
+
+  const currentRightProducts = useMemo(() => {
+    const start = rightCarouselIndex * 4;
+    return budgetShowcasePool.slice(start, start + 4);
+  }, [rightCarouselIndex, budgetShowcasePool]);
 
   // Live Amazon products state to render in the grid
   const [liveAmazonProducts, setLiveAmazonProducts] = useState<LiveSearchResult[]>([]);
@@ -518,8 +560,12 @@ export default function HomePage() {
         <section className="mb-8">
           <div className="flex flex-col xl:flex-row items-stretch justify-center gap-5">
             
-            {/* LEFT SHOWCASE WING (AMAZON 2x2 CARD) */}
-            <aside className="hidden lg:flex flex-col w-64 xl:w-72 2xl:w-80 shrink-0 bg-white rounded-3xl p-5 shadow-xs border border-slate-200/90 justify-between">
+            {/* LEFT SHOWCASE WING (AMAZON 2x2 CARD ROTATING EVERY 10s) */}
+            <aside
+              onMouseEnter={() => setIsLeftPaused(true)}
+              onMouseLeave={() => setIsLeftPaused(false)}
+              className="hidden lg:flex flex-col w-64 xl:w-72 2xl:w-80 shrink-0 bg-white rounded-3xl p-5 shadow-xs border border-slate-200/90 justify-between relative group"
+            >
               <div>
                 <div className="flex items-center justify-between mb-3">
                   <div>
@@ -529,13 +575,14 @@ export default function HomePage() {
                     </h2>
                     <p className="text-[11px] text-slate-500 font-medium">Top ventas verificados</p>
                   </div>
-                  <span className="text-[10px] bg-amber-100 text-amber-900 font-bold px-2 py-0.5 rounded-full">
-                    Amazon.es
+                  <span className="text-[10px] bg-amber-100 text-amber-900 font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+                    <span>10s</span>
                   </span>
                 </div>
 
-                <div className="grid grid-cols-2 gap-2.5">
-                  {topShowcaseProducts.map((item) => {
+                <div key={leftCarouselIndex} className="grid grid-cols-2 gap-2.5 animate-in fade-in duration-300">
+                  {currentLeftProducts.map((item) => {
                     const amazonUrl = getAmazonProductUrl(item.asin || 'B0DLWK3LKH');
                     return (
                       <a
@@ -543,17 +590,17 @@ export default function HomePage() {
                         href={amazonUrl}
                         target="_blank"
                         rel="noopener noreferrer sponsored"
-                        className="group flex flex-col p-2 rounded-2xl bg-slate-50 hover:bg-amber-50/50 border border-slate-100 hover:border-amber-200 transition-all cursor-pointer"
+                        className="group/item flex flex-col p-2 rounded-2xl bg-slate-50 hover:bg-amber-50/50 border border-slate-100 hover:border-amber-200 transition-all cursor-pointer"
                       >
                         <div className="relative w-full aspect-square bg-white rounded-xl overflow-hidden mb-1.5 p-1 border border-slate-100">
                           <Image
                             src={item.imageUrl}
                             alt={item.title}
                             fill
-                            className="object-contain p-1 group-hover:scale-105 transition-transform"
+                            className="object-contain p-1 group-hover/item:scale-105 transition-transform"
                           />
                         </div>
-                        <span className="text-[11px] font-bold text-slate-800 line-clamp-1 group-hover:text-amber-800 transition-colors">
+                        <span className="text-[11px] font-bold text-slate-800 line-clamp-1 group-hover/item:text-amber-800 transition-colors">
                           {item.title}
                         </span>
                         <div className="flex items-center justify-between mt-0.5">
@@ -569,15 +616,30 @@ export default function HomePage() {
                     );
                   })}
                 </div>
+
+                {/* Dots indicator */}
+                <div className="flex items-center justify-center gap-1.5 mt-3">
+                  {Array.from({ length: Math.ceil(topShowcasePool.length / 4) }).map((_, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setLeftCarouselIndex(idx)}
+                      className={`h-1.5 rounded-full transition-all cursor-pointer ${
+                        leftCarouselIndex === idx ? 'w-5 bg-amber-500' : 'w-1.5 bg-slate-200 hover:bg-slate-300'
+                      }`}
+                      aria-label={`Ver página ${idx + 1}`}
+                    />
+                  ))}
+                </div>
               </div>
 
               <a
                 href="#catalogo-productos"
                 onClick={() => handleQuickPrompt({ label: 'Top Ventas', query: '', sort: 'rating' })}
-                className="pt-3 mt-3 border-t border-slate-100 text-xs font-bold text-amber-700 hover:text-amber-900 flex items-center justify-between group cursor-pointer"
+                className="pt-3 mt-3 border-t border-slate-100 text-xs font-bold text-amber-700 hover:text-amber-900 flex items-center justify-between group/link cursor-pointer"
               >
                 <span>Ver catálogo superventas</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
               </a>
             </aside>
 
@@ -688,8 +750,12 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* RIGHT SHOWCASE WING (AMAZON 2x2 CARD) */}
-            <aside className="hidden lg:flex flex-col w-64 xl:w-72 2xl:w-80 shrink-0 bg-white rounded-3xl p-5 shadow-xs border border-slate-200/90 justify-between">
+            {/* RIGHT SHOWCASE WING (AMAZON 2x2 CARD ROTATING EVERY 10s) */}
+            <aside
+              onMouseEnter={() => setIsRightPaused(true)}
+              onMouseLeave={() => setIsRightPaused(false)}
+              className="hidden lg:flex flex-col w-64 xl:w-72 2xl:w-80 shrink-0 bg-white rounded-3xl p-5 shadow-xs border border-slate-200/90 justify-between relative group"
+            >
               <div>
                 <div className="flex items-center justify-between mb-3">
                   <div>
@@ -699,13 +765,14 @@ export default function HomePage() {
                     </h2>
                     <p className="text-[11px] text-slate-500 font-medium">Ideas para acertar sin gastar</p>
                   </div>
-                  <span className="text-[10px] bg-emerald-100 text-emerald-900 font-bold px-2 py-0.5 rounded-full">
-                    Económicos
+                  <span className="text-[10px] bg-emerald-100 text-emerald-900 font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span>10s</span>
                   </span>
                 </div>
 
-                <div className="grid grid-cols-2 gap-2.5">
-                  {budgetShowcaseProducts.map((item) => {
+                <div key={rightCarouselIndex} className="grid grid-cols-2 gap-2.5 animate-in fade-in duration-300">
+                  {currentRightProducts.map((item) => {
                     const amazonUrl = getAmazonProductUrl(item.asin || 'B0DLWK3LKH');
                     return (
                       <a
@@ -713,17 +780,17 @@ export default function HomePage() {
                         href={amazonUrl}
                         target="_blank"
                         rel="noopener noreferrer sponsored"
-                        className="group flex flex-col p-2 rounded-2xl bg-slate-50 hover:bg-emerald-50/50 border border-slate-100 hover:border-emerald-200 transition-all cursor-pointer"
+                        className="group/item flex flex-col p-2 rounded-2xl bg-slate-50 hover:bg-emerald-50/50 border border-slate-100 hover:border-emerald-200 transition-all cursor-pointer"
                       >
                         <div className="relative w-full aspect-square bg-white rounded-xl overflow-hidden mb-1.5 p-1 border border-slate-100">
                           <Image
                             src={item.imageUrl}
                             alt={item.title}
                             fill
-                            className="object-contain p-1 group-hover:scale-105 transition-transform"
+                            className="object-contain p-1 group-hover/item:scale-105 transition-transform"
                           />
                         </div>
-                        <span className="text-[11px] font-bold text-slate-800 line-clamp-1 group-hover:text-emerald-800 transition-colors">
+                        <span className="text-[11px] font-bold text-slate-800 line-clamp-1 group-hover/item:text-emerald-800 transition-colors">
                           {item.title}
                         </span>
                         <div className="flex items-center justify-between mt-0.5">
@@ -738,15 +805,30 @@ export default function HomePage() {
                     );
                   })}
                 </div>
+
+                {/* Dots indicator */}
+                <div className="flex items-center justify-center gap-1.5 mt-3">
+                  {Array.from({ length: Math.ceil(budgetShowcasePool.length / 4) }).map((_, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setRightCarouselIndex(idx)}
+                      className={`h-1.5 rounded-full transition-all cursor-pointer ${
+                        rightCarouselIndex === idx ? 'w-5 bg-emerald-500' : 'w-1.5 bg-slate-200 hover:bg-slate-300'
+                      }`}
+                      aria-label={`Ver página ${idx + 1}`}
+                    />
+                  ))}
+                </div>
               </div>
 
               <a
                 href="#catalogo-productos"
                 onClick={() => handleQuickPrompt({ label: 'Menos de 20 €', query: '', price: '<20', sort: 'price-asc' })}
-                className="pt-3 mt-3 border-t border-slate-100 text-xs font-bold text-emerald-700 hover:text-emerald-900 flex items-center justify-between group cursor-pointer"
+                className="pt-3 mt-3 border-t border-slate-100 text-xs font-bold text-emerald-700 hover:text-emerald-900 flex items-center justify-between group/link cursor-pointer"
               >
                 <span>Ver todos por &lt; 20 €</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
               </a>
             </aside>
 
