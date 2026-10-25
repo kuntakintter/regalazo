@@ -575,9 +575,8 @@ export default function HomePage() {
                     </h2>
                     <p className="text-[11px] text-slate-500 font-medium">Top ventas verificados</p>
                   </div>
-                  <span className="text-[10px] bg-amber-100 text-amber-900 font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
-                    <span>10s</span>
+                  <span className="text-[10px] bg-amber-100 text-amber-900 font-bold px-2 py-0.5 rounded-full">
+                    Amazon.es
                   </span>
                 </div>
 
@@ -765,9 +764,8 @@ export default function HomePage() {
                     </h2>
                     <p className="text-[11px] text-slate-500 font-medium">Ideas para acertar sin gastar</p>
                   </div>
-                  <span className="text-[10px] bg-emerald-100 text-emerald-900 font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span>10s</span>
+                  <span className="text-[10px] bg-emerald-100 text-emerald-900 font-bold px-2 py-0.5 rounded-full">
+                    Económicos
                   </span>
                 </div>
 
