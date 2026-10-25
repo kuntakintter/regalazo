@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import {
-  Sparkles,
+  Lightbulb,
   ArrowRight,
   RotateCcw,
   Check,
@@ -1104,7 +1104,7 @@ export default function GiftWizard({
               <div className="mt-3 p-3.5 rounded-2xl bg-indigo-50/50 border border-indigo-100">
                 <label className="text-xs font-bold text-indigo-950 flex items-center justify-between mb-1.5">
                   <span className="flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
+                    <Lightbulb className="w-3.5 h-3.5 text-indigo-600" />
                     <span>¿Le gusta algún personaje, saga o detalle concreto? (Opcional)</span>
                   </span>
                   {customInterest && (
@@ -1363,7 +1363,7 @@ export default function GiftWizard({
               <div className="mt-4 p-4 rounded-2xl bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 border border-indigo-200/80">
                 <div className="flex items-start gap-3">
                   <div className="w-8 h-8 rounded-xl bg-indigo-600 text-white flex items-center justify-center shrink-0 shadow-xs">
-                    <Sparkles className="w-4 h-4 text-amber-300" />
+                    <Bot className="w-4 h-4 text-amber-300" />
                   </div>
                   <div className="text-xs">
                     <span className="font-black text-indigo-950 block mb-0.5">
@@ -1423,7 +1423,7 @@ export default function GiftWizard({
               onClick={handleFinish}
               className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 hover:opacity-95 text-white text-xs sm:text-sm font-black flex items-center gap-2 shadow-md transition-all scale-102 cursor-pointer"
             >
-              <Sparkles className="w-4 h-4 text-amber-300" />
+              <Bot className="w-4 h-4 text-amber-300" />
               <span>Ver Recomendaciones IA</span>
             </button>
           )}

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { ExternalLink, Sparkles, ShoppingBag, ShieldCheck, Star, Loader2, ArrowDown } from 'lucide-react';
+import { ExternalLink, ShoppingBag, ShieldCheck, Star, Loader2, ArrowDown } from 'lucide-react';
 import { AMAZON_AFFILIATE_TAG } from '@/data/products';
 
 interface AmazonGridDiscoveryCardProps {
@@ -55,7 +55,7 @@ export default function AmazonGridDiscoveryCard({
         <div>
           {/* Amazon Badge */}
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-200 mb-4">
-            <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+            <ShoppingBag className="w-3.5 h-3.5 text-amber-600" />
             <span>Conexión en directo con Amazon</span>
           </div>
 
@@ -96,7 +96,7 @@ export default function AmazonGridDiscoveryCard({
                   </>
                 ) : (
                   <>
-                    <Sparkles className="w-4 h-4 text-slate-950" />
+                    <ShoppingBag className="w-4 h-4 text-slate-950" />
                     <span>{hasLoadedLive ? 'Cargar más en esta cuadrícula' : 'Ver productos en directo aquí'}</span>
                     <ArrowDown className="w-4 h-4 text-slate-950" />
                   </>

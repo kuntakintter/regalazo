@@ -23,7 +23,6 @@ import {
   ShieldCheck,
   TrendingUp,
   BadgePercent,
-  Sparkles,
   Loader2,
   Filter,
   CheckCircle2,
@@ -487,7 +486,7 @@ export default function MotoristasPage() {
                   </>
                 ) : (
                   <>
-                    <Sparkles className="w-4 h-4 text-amber-600" />
+                    <ShoppingBag className="w-4 h-4 text-amber-600" />
                     <span>Cargar más ofertas en directo de Amazon para motoristas</span>
                   </>
                 )}
@@ -499,7 +498,7 @@ export default function MotoristasPage() {
             <div className="mb-6 p-4 sm:p-5 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-3xl flex flex-wrap items-center justify-between gap-3 shadow-xs">
               <div className="flex items-center gap-3 text-amber-950 font-bold text-sm">
                 <span className="p-2 bg-amber-400/20 text-amber-700 rounded-xl">
-                  <Sparkles className="w-5 h-5" />
+                  <ShoppingBag className="w-5 h-5" />
                 </span>
                 <div>
                   <p className="font-extrabold text-slate-900">
@@ -550,7 +549,7 @@ export default function MotoristasPage() {
                   </>
                 ) : (
                   <>
-                    <Sparkles className="w-4 h-4 text-amber-600" />
+                    <ShoppingBag className="w-4 h-4 text-amber-600" />
                     <span>Cargar más ofertas en directo (+8 opciones)</span>
                   </>
                 )}
@@ -576,7 +575,7 @@ export default function MotoristasPage() {
                 onClick={handleLoadLiveToGrid}
                 className="px-6 py-3 rounded-2xl bg-[#FF9900] hover:bg-[#ffad33] text-slate-950 font-black text-sm flex items-center gap-2 shadow-md cursor-pointer transition-transform hover:scale-102"
               >
-                <Sparkles className="w-4 h-4" />
+                <ShoppingBag className="w-4 h-4" />
                 <span>Buscar en Amazon en directo</span>
               </button>
               <button

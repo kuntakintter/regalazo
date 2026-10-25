@@ -20,7 +20,6 @@ import {
   ShieldCheck,
   TrendingUp,
   BadgePercent,
-  Sparkles,
   Loader2,
   Filter,
   ChevronRight,

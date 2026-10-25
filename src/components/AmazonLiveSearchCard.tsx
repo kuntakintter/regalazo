@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { getAmazonSearchUrl } from '@/lib/amazon';
-import { Search, ExternalLink, Sparkles, ShoppingCart, ArrowRight } from 'lucide-react';
+import { Search, ExternalLink, ShoppingCart, ArrowRight } from 'lucide-react';
 
 interface AmazonLiveSearchCardProps {
   currentTheme: string;

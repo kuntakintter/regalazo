@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Product } from '@/data/products';
 import { getAmazonProductUrl } from '@/lib/amazon';
 import { useCurrency } from '@/context/CurrencyContext';
-import { Trophy, Award, Sparkles, Star, ExternalLink, ShieldCheck, Flame, Check, Clock, ShoppingBag } from 'lucide-react';
+import { Trophy, Award, Star, ExternalLink, ShieldCheck, Flame, Check, Clock, ShoppingBag } from 'lucide-react';
 
 interface TopPodiumProps {
   products: Product[];
@@ -267,7 +267,7 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
                 <div className={`p-2.5 rounded-xl border mb-3 flex items-start gap-2 text-xs ${
                   isDark ? 'bg-slate-800/90 border-slate-700 text-slate-200' : 'bg-white/80 border-slate-200/80 text-slate-600'
                 }`}>
-                  <Sparkles className="w-3.5 h-3.5 text-amber-500 shrink-0 mt-0.5" />
+                  <Award className="w-3.5 h-3.5 text-amber-500 shrink-0 mt-0.5" />
                   <span className="font-medium">{pick.whyText}</span>
                 </div>
 

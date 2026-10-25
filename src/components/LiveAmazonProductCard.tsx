@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { ExternalLink, Star, CheckCircle2, Heart, Share2, Sparkles, ShoppingBag } from 'lucide-react';
+import { ExternalLink, Star, CheckCircle2, Heart, Share2, ShoppingBag } from 'lucide-react';
 import { LiveSearchResult } from '@/app/api/live-search/route';
 import { getAmazonProductUrl } from '@/lib/amazon';
 import { useCurrency } from '@/context/CurrencyContext';
@@ -90,7 +90,7 @@ export default function LiveAmazonProductCard({
         {/* Top Badges */}
         <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-10 pointer-events-none">
           <span className="px-3 py-1 rounded-full text-xs font-bold tracking-wide shadow-md backdrop-blur-md flex items-center gap-1.5 bg-amber-500 text-white">
-            <Sparkles className="w-3 h-3" />
+            <Star className="w-3 h-3 fill-white text-white" />
             <span>{badgeLabel}</span>
           </span>
           <span className="self-start px-2 py-0.5 rounded-md text-[10px] font-semibold bg-black/60 text-white backdrop-blur-xs">

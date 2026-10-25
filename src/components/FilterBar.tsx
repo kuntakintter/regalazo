@@ -32,7 +32,7 @@ import {
   Clapperboard,
   Zap,
   ArrowUpDown,
-  Sparkles
+  Shirt
 } from 'lucide-react';
 
 const AGE_ICONS: Record<string, { icon: React.ComponentType<{ className?: string }>; color: string }> = {
@@ -415,7 +415,7 @@ export default function FilterBar({
                 {isPokemon && <Zap className={`w-3.5 h-3.5 ${isSelected ? 'text-white' : 'text-amber-500 fill-amber-400'}`} />}
                 {isFigures && <Clapperboard className={`w-3.5 h-3.5 ${isSelected ? 'text-white' : 'text-amber-600'}`} />}
                 {isSmartphone && <Smartphone className={`w-3.5 h-3.5 ${isSelected ? 'text-white' : 'text-indigo-600'}`} />}
-                {isClothing && <Sparkles className={`w-3.5 h-3.5 ${isSelected ? 'text-white' : 'text-purple-600'}`} />}
+                {isClothing && <Shirt className={`w-3.5 h-3.5 ${isSelected ? 'text-white' : 'text-purple-600'}`} />}
                 <span>{subcat}</span>
               </button>
             );

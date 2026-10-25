@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Product } from '@/data/products';
 import { getAmazonProductUrl } from '@/lib/amazon';
 import { useCurrency } from '@/context/CurrencyContext';
-import { ExternalLink, Star, CheckCircle2, Heart, Share2, Sparkles, ShoppingBag, ChevronLeft, ChevronRight, Camera } from 'lucide-react';
+import { ExternalLink, Star, CheckCircle2, Heart, Share2, ShoppingBag, ChevronLeft, ChevronRight, Camera } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
@@ -136,7 +136,7 @@ export default function ProductCard({ product, currentTheme }: ProductCardProps)
               ? 'bg-purple-900/90 text-purple-200 border border-purple-500/40'
               : 'bg-amber-500 text-white'
           }`}>
-            <Sparkles className="w-3 h-3" />
+            <Star className="w-3 h-3 fill-white text-white" />
             {product.badge}
           </span>
           <span className="self-start px-2 py-0.5 rounded-md text-[10px] font-semibold bg-black/60 text-white backdrop-blur-xs">

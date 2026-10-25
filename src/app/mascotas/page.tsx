@@ -22,7 +22,7 @@ import {
   ShieldCheck,
   TrendingUp,
   BadgePercent,
-  Sparkles,
+  ShoppingBag,
   Loader2,
   Filter,
   ChevronRight,
@@ -457,7 +457,7 @@ export default function MascotasPage() {
                   </>
                 ) : (
                   <>
-                    <Sparkles className="w-4 h-4 text-slate-950" />
+                    <ShoppingBag className="w-4 h-4 text-slate-950" />
                     <span>Ver más productos de mascotas en directo (+8 opciones)</span>
                   </>
                 )}
@@ -469,7 +469,7 @@ export default function MascotasPage() {
             <div className="mb-6 p-4 sm:p-5 bg-gradient-to-r from-amber-50 via-rose-50 to-orange-50 border border-amber-200 rounded-3xl flex flex-wrap items-center justify-between gap-3 shadow-xs">
               <div className="flex items-center gap-3 text-amber-950 font-bold text-sm">
                 <span className="p-2 bg-amber-500/20 text-amber-700 rounded-xl">
-                  <Sparkles className="w-5 h-5" />
+                  <ShoppingBag className="w-5 h-5" />
                 </span>
                 <div>
                   <p className="font-extrabold text-slate-900">
@@ -520,7 +520,7 @@ export default function MascotasPage() {
                   </>
                 ) : (
                   <>
-                    <Sparkles className="w-4 h-4 text-slate-950" />
+                    <ShoppingBag className="w-4 h-4 text-slate-950" />
                     <span>Cargar más productos en directo (+8 opciones)</span>
                   </>
                 )}
@@ -546,7 +546,7 @@ export default function MascotasPage() {
                 onClick={handleLoadLiveToGrid}
                 className="px-6 py-3 rounded-2xl bg-[#FF9900] hover:bg-[#ffad33] text-slate-950 font-black text-sm flex items-center gap-2 shadow-md cursor-pointer transition-transform hover:scale-102"
               >
-                <Sparkles className="w-4 h-4" />
+                <ShoppingBag className="w-4 h-4" />
                 <span>Buscar en Amazon en directo</span>
               </button>
               <button

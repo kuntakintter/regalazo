@@ -12,7 +12,7 @@ import TopPodium from '@/components/TopPodium';
 import { PRODUCTS } from '@/data/products';
 import { SEO_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
 import { buildSocialMetadata, getCategoryOgImage } from '@/lib/ogMetadata';
-import { Gift, ChevronRight, ShieldCheck, Sparkles, TrendingUp } from 'lucide-react';
+import { Gift, ChevronRight, ShieldCheck, ShoppingBag, TrendingUp } from 'lucide-react';
 import Link from 'next/link';
 
 interface PageProps {
@@ -182,7 +182,7 @@ export default async function SubcategoryLandingPage({ params }: PageProps) {
               Top Valorados
             </span>
             <span className="flex items-center gap-1.5">
-              <Sparkles className="w-4 h-4 text-amber-500" />
+              <ShoppingBag className="w-4 h-4 text-amber-500" />
               Envío Rápido Prime
             </span>
           </div>

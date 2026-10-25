@@ -14,7 +14,7 @@ import TopPodium from '@/components/TopPodium';
 import { PRODUCTS, Product } from '@/data/products';
 import { SEO_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
 import { HUB_OG_SNIPPETS, buildSocialMetadata } from '@/lib/ogMetadata';
-import { Sparkles, ShieldCheck, TrendingUp, Gift, ChevronRight } from 'lucide-react';
+import { ShieldCheck, TrendingUp, Gift, ChevronRight, ShoppingBag } from 'lucide-react';
 import Link from 'next/link';
 
 interface PageProps {
@@ -173,7 +173,7 @@ export default async function AgeLandingPage({ params }: PageProps) {
               Valoraciones 4.5+ Estrellas
             </span>
             <span className="flex items-center gap-1.5">
-              <Sparkles className="w-4 h-4 text-amber-500" />
+              <ShoppingBag className="w-4 h-4 text-amber-500" />
               Precios y Stock Actualizados
             </span>
           </div>

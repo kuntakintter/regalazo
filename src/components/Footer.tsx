@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Gift, ShieldCheck, Heart, Sparkles, ShoppingBag } from 'lucide-react';
+import { Gift, ShieldCheck, Heart, TrendingUp, ShoppingBag } from 'lucide-react';
 import BrandLogo from '@/components/BrandLogo';
 import LanguageSelector from '@/components/LanguageSelector';
 import { AMAZON_DISCLOSURE, AMAZON_AFFILIATE_TAG } from '@/lib/amazon';
@@ -100,7 +100,7 @@ export default function Footer({ currentTheme }: FooterProps) {
                 <span>Devoluciones 30 días garantizadas</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-indigo-500" />
+                <TrendingUp className="w-3.5 h-3.5 text-indigo-500" />
                 <span>Precios actualizados en tiempo real</span>
               </li>
             </ul>

@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Gift, Search, X, ExternalLink, ArrowRight, Star, Loader2, Sparkles, ShoppingBag, ChevronDown } from 'lucide-react';
+import { Gift, Search, X, ExternalLink, ArrowRight, Star, Loader2, ShoppingBag, ChevronDown, Bot } from 'lucide-react';
 import BrandLogo from '@/components/BrandLogo';
 import LanguageSelector from '@/components/LanguageSelector';
 import { useCurrency } from '@/context/CurrencyContext';
@@ -356,7 +356,7 @@ export default function Header({
               className="hidden md:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md text-xs font-black bg-gradient-to-r from-[#febd69] to-[#f3a847] hover:from-[#f3a847] hover:to-[#e47911] text-slate-950 transition-all hover:scale-102 shadow-xs cursor-pointer select-none"
               title="Abrir Asistente IA para regalos"
             >
-              <Sparkles className="w-3.5 h-3.5 text-slate-950" />
+              <Bot className="w-3.5 h-3.5 text-slate-950" />
               <span>Asistente IA</span>
             </button>
           </div>
@@ -389,8 +389,8 @@ export default function Header({
             }}
             className="flex items-center gap-1 px-2.5 py-1 rounded text-amber-300 font-bold hover:outline hover:outline-1 hover:outline-amber-400/70 whitespace-nowrap transition-all shrink-0 cursor-pointer"
           >
-            <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
-            <span>✨ Rufus / Asistente IA</span>
+            <Bot className="w-3.5 h-3.5 text-amber-400" />
+            <span>Rufus / Asistente IA</span>
           </button>
 
           <span className="w-px h-4 bg-slate-700 mx-1 shrink-0"></span>

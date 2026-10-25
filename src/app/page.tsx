@@ -34,9 +34,9 @@ import {
   TrendingUp,
   Search,
   Bot,
-  Sparkles,
   Loader2,
   RefreshCw,
+  ShoppingBag,
   SlidersHorizontal,
   ArrowRight,
   X
@@ -512,8 +512,8 @@ export default function HomePage() {
           {/* MAIN PROMPT / SEARCH BAR ESTILO AMAZON */}
           <form onSubmit={handleHeroSearchSubmit} className="relative max-w-2xl mx-auto mb-5">
             <div className="relative flex items-center shadow-md rounded-2xl bg-white border-2 border-slate-300 hover:border-slate-400 focus-within:border-[#febd69] focus-within:ring-4 focus-within:ring-amber-100 transition-all p-1.5 sm:p-2">
-              <div className="pl-3 pr-2 text-amber-500">
-                <Sparkles className="w-5 h-5 animate-pulse" />
+              <div className="pl-3 pr-2 text-slate-400">
+                <Search className="w-5 h-5 text-slate-400" />
               </div>
               <input
                 type="text"
@@ -545,7 +545,6 @@ export default function HomePage() {
           {/* QUICK INSPIRATION PROMPT CHIPS */}
           <div className="flex flex-wrap items-center justify-center gap-2 mb-6 max-w-3xl mx-auto">
             <span className="text-xs font-semibold text-slate-500 mr-1 flex items-center gap-1">
-              <Sparkles className="w-3.5 h-3.5 text-amber-500" />
               Inspiración rápida:
             </span>
             {QUICK_PROMPTS.map((prompt) => (
@@ -762,7 +761,7 @@ export default function HomePage() {
                   onClick={() => setVisibleCount((prev) => prev + 18)}
                   className="px-8 py-4 rounded-2xl bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white font-black text-sm shadow-md hover:shadow-lg hover:shadow-indigo-500/20 transition-all flex items-center gap-2.5 cursor-pointer hover:scale-102 active:scale-98"
                 >
-                  <Sparkles className="w-4 h-4 text-amber-300" />
+                  <RefreshCw className="w-4 h-4 text-amber-300" />
                   <span>Cargar más ideas de regalo (+18 productos)</span>
                 </button>
                 <span className="text-xs text-slate-500 font-medium">
@@ -786,7 +785,7 @@ export default function HomePage() {
                     </>
                   ) : (
                     <>
-                      <Sparkles className="w-4 h-4 text-slate-950" />
+                      <ShoppingBag className="w-4 h-4 text-slate-950" />
                       <span>Ver más productos recomendados en directo (+8 opciones)</span>
                     </>
                   )}
@@ -812,7 +811,7 @@ export default function HomePage() {
                 <div className="mb-6 p-4 sm:p-5 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-3xl flex flex-wrap items-center justify-between gap-3 shadow-xs">
                   <div className="flex items-center gap-3 text-amber-950 font-bold text-sm">
                     <span className="p-2 bg-amber-400/20 text-amber-700 rounded-xl">
-                      <Sparkles className="w-5 h-5" />
+                      <ShoppingBag className="w-5 h-5" />
                     </span>
                     <div>
                       <p className="font-extrabold text-slate-900">
