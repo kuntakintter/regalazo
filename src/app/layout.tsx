@@ -7,7 +7,7 @@ import { VotingProvider } from '@/context/VotingContext';
 import VotingDrawer from '@/components/VotingDrawer';
 
 export const metadata: Metadata = {
-  title: 'Un Buen Regalo 【Guía 2026】 Ideas de Regalo para Todas las Edades',
+  title: '🎁 Un Buen Regalo 【Guía 2026】 Ideas de Regalo para Todas las Edades',
   description: '¿No sabes qué regalar? Descubre las mejores ideas de regalo para bebés, niños, jóvenes y adultos con opiniones reales y ofertas de Amazon España. ¡Acierta seguro!',
   icons: {
     icon: [
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     locale: 'es_ES',
     url: 'https://www.unbuenregalo.es',
     siteName: 'Un Buen Regalo',
-    title: 'Un Buen Regalo | Guía de Regalos de 0 a más de 18 Años',
+    title: '🎁 Un Buen Regalo | Guía de Regalos de 0 a más de 18 Años',
     description: 'Encuentra el regalo perfecto en segundos con recomendaciones contrastadas de Amazon España.',
     images: [
       {
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Un Buen Regalo | Ideas de Regalo de 0 a más de 18 Años',
+    title: '🎁 Un Buen Regalo | Ideas de Regalo de 0 a más de 18 Años',
     description: 'Guía definitiva con recomendaciones verificadas de Amazon España.',
     images: ['https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=1200&h=630&q=80'],
   },
