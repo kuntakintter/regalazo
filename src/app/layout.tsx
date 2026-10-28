@@ -11,10 +11,12 @@ export const metadata: Metadata = {
   description: '¿No sabes qué regalar? Descubre las mejores ideas de regalo para bebés, niños, jóvenes y adultos con opiniones reales y ofertas de Amazon España. ¡Acierta seguro!',
   icons: {
     icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon-192.png', type: 'image/png', sizes: '192x192' },
+      { url: '/icon.png', type: 'image/png', sizes: '512x512' },
     ],
     apple: [
-      { url: '/favicon.svg' },
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],
   },
   keywords: [
@@ -116,8 +118,10 @@ export default function RootLayout({
         />
         <meta name="theme-color" content="#4f46e5" />
         <meta name="msvalidate.01" content="4AF0EBAFECCF6A3AA51203D44DE90AD6" />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/favicon.svg" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
+        <link rel="icon" href="/icon.png" type="image/png" sizes="512x512" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         {/* Google Translate Integration */}
         <Script
           id="google-translate-init"
