@@ -52,7 +52,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const pageTitle = `Top ${currentSub.label} (${ageMeta.h1}) 【Guía 2026】`;
   const socialTitle = `🎁 ${currentSub.label} (${ageMeta.h1}) 【Guía 2026】`;
   const pageDesc = `¿Buscas ${currentSub.label.toLowerCase()} para ${ageMeta.h1.toLowerCase()}? Descubre los más recomendados y vendidos en Amazon España con opiniones reales y envío Prime.`;
-  const canonicalUrl = `https://unbuenregalo.vercel.app/${ageSlug}/${categorySlug}`;
+  const canonicalUrl = `https://www.unbuenregalo.es/${ageSlug}/${categorySlug}`;
   const ogImage = getCategoryOgImage(currentSub.label);
 
   return buildSocialMetadata({
@@ -98,19 +98,19 @@ export default async function SubcategoryLandingPage({ params }: PageProps) {
         '@type': 'ListItem',
         position: 1,
         name: 'Inicio',
-        item: 'https://unbuenregalo.vercel.app',
+        item: 'https://www.unbuenregalo.es',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: ageMeta.h1,
-        item: `https://unbuenregalo.vercel.app/${ageSlug}`,
+        item: `https://www.unbuenregalo.es/${ageSlug}`,
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: currentSub.label,
-        item: `https://unbuenregalo.vercel.app/${ageSlug}/${categorySlug}`,
+        item: `https://www.unbuenregalo.es/${ageSlug}/${categorySlug}`,
       },
     ],
   };

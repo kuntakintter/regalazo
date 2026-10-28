@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: 'Política de Cookies | Un Buen Regalo',
   description: 'Información clara y transparente sobre el uso de cookies propias, técnicas y de afiliados de Amazon en Un Buen Regalo conforme a la AEPD.',
   alternates: {
-    canonical: 'https://unbuenregalo.vercel.app/politica-de-cookies',
+    canonical: 'https://www.unbuenregalo.es/politica-de-cookies',
   },
 };
 

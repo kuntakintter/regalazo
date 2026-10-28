@@ -7,7 +7,7 @@ export const metadata: Metadata = buildSocialMetadata({
   title: snippet.title,
   socialTitle: snippet.socialTitle,
   description: snippet.description,
-  canonicalUrl: 'https://unbuenregalo.vercel.app/mascotas',
+  canonicalUrl: 'https://www.unbuenregalo.es/mascotas',
   imageUrl: snippet.imageUrl,
   imageAlt: snippet.imageAlt,
   keywords: [

@@ -261,7 +261,7 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
       description: pick.whyText,
       image: pick.product.imageUrl.startsWith('http')
         ? pick.product.imageUrl
-        : `https://unbuenregalo.vercel.app${pick.product.imageUrl}`,
+        : `https://www.unbuenregalo.es${pick.product.imageUrl}`,
     })),
   };
 

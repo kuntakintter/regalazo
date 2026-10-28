@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'es_ES',
-    url: 'https://unbuenregalo.vercel.app',
+    url: 'https://www.unbuenregalo.es',
     siteName: 'Un Buen Regalo',
     title: 'Un Buen Regalo | Guía de Regalos de 0 a más de 18 Años',
     description: 'Encuentra el regalo perfecto en segundos con recomendaciones contrastadas de Amazon España.',
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     images: ['https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=1200&h=630&q=80'],
   },
   alternates: {
-    canonical: 'https://unbuenregalo.vercel.app',
+    canonical: 'https://www.unbuenregalo.es',
   },
 };
 
@@ -83,10 +83,10 @@ export default function RootLayout({
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'Un Buen Regalo',
-    url: 'https://unbuenregalo.vercel.app',
+    url: 'https://www.unbuenregalo.es',
     potentialAction: {
       '@type': 'SearchAction',
-      target: 'https://unbuenregalo.vercel.app/?q={search_term_string}',
+      target: 'https://www.unbuenregalo.es/?q={search_term_string}',
       'query-input': 'required name=search_term_string',
     },
   };

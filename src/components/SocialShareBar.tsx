@@ -15,7 +15,7 @@ export default function SocialShareBar({
   currentTheme = 'classic',
 }: SocialShareBarProps) {
   const [copied, setCopied] = useState(false);
-  const [activeUrl, setActiveUrl] = useState(initialUrl || 'https://unbuenregalo.vercel.app');
+  const [activeUrl, setActiveUrl] = useState(initialUrl || 'https://www.unbuenregalo.es');
   const [activeTitle, setActiveTitle] = useState(initialTitle || 'Un Buen Regalo | Ideas de Regalos Originales');
 
   React.useEffect(() => {

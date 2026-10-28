@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: 'Política de Privacidad (RGPD) | Un Buen Regalo',
   description: 'Política de Privacidad y Protección de Datos personales conforme al Reglamento General de Protección de Datos (RGPD) y la LOPDGDD.',
   alternates: {
-    canonical: 'https://unbuenregalo.vercel.app/politica-de-privacidad',
+    canonical: 'https://www.unbuenregalo.es/politica-de-privacidad',
   },
 };
 
@@ -79,7 +79,7 @@ export default function PoliticaPrivacidadPage() {
               1. Responsable del Tratamiento de tus Datos
             </h2>
             <p>
-              El responsable del tratamiento de los datos recabados en este sitio web es el equipo gestor de <strong>Un Buen Regalo</strong> (accesible desde https://unbuenregalo.vercel.app). Nos comprometemos a tratar todos los datos de conformidad con el Reglamento (UE) 2016/679 del Parlamento Europeo (RGPD) y la Ley Orgánica 3/2018 (LOPDGDD).
+              El responsable del tratamiento de los datos recabados en este sitio web es el equipo gestor de <strong>Un Buen Regalo</strong> (accesible desde https://www.unbuenregalo.es). Nos comprometemos a tratar todos los datos de conformidad con el Reglamento (UE) 2016/679 del Parlamento Europeo (RGPD) y la Ley Orgánica 3/2018 (LOPDGDD).
             </p>
           </section>
 

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: 'Aviso Legal | Un Buen Regalo',
   description: 'Información legal, condiciones de uso y divulgación obligatoria del programa de Afiliados de Amazon España para Un Buen Regalo.',
   alternates: {
-    canonical: 'https://unbuenregalo.vercel.app/aviso-legal',
+    canonical: 'https://www.unbuenregalo.es/aviso-legal',
   },
 };
 
@@ -55,7 +55,7 @@ export default function AvisoLegalPage() {
               <span>Divulgación Obligatoria del Programa de Afiliados de Amazon</span>
             </div>
             <p>
-              En calidad de Afiliado de Amazon, <strong>Un Buen Regalo</strong> (unbuenregalo.vercel.app) obtiene ingresos por las compras adscritas que cumplen los requisitos aplicables. El identificador oficial de asociado asignado es <strong>{AMAZON_AFFILIATE_TAG}</strong>.
+              En calidad de Afiliado de Amazon, <strong>Un Buen Regalo</strong> (unbuenregalo.es) obtiene ingresos por las compras adscritas que cumplen los requisitos aplicables. El identificador oficial de asociado asignado es <strong>{AMAZON_AFFILIATE_TAG}</strong>.
             </p>
             <p className="text-xs opacity-90">
               Esto significa que al hacer clic en los enlaces de compra de nuestra web y completar un pedido en Amazon.es, podemos recibir una pequeña comisión de recomendación. <strong>Esto no supone jamás un coste adicional para ti</strong>: el precio que pagas en Amazon es exactamente el mismo (o menor si hay ofertas activas).
@@ -73,7 +73,7 @@ export default function AvisoLegalPage() {
             </p>
             <ul className="list-disc pl-5 space-y-1 text-xs sm:text-sm text-slate-600">
               <li><strong>Denominación comercial:</strong> Un Buen Regalo</li>
-              <li><strong>Sitio Web:</strong> https://unbuenregalo.vercel.app</li>
+              <li><strong>Sitio Web:</strong> https://www.unbuenregalo.es</li>
               <li><strong>Actividad:</strong> Portal informativo, agregador editorial y recomendador de ideas de regalo para bebés, niños y adolescentes con monetización mediante enlaces de afiliación.</li>
               <li><strong>Contacto legal:</strong> A través de los canales de atención y reporte habilitados en el sitio web.</li>
             </ul>

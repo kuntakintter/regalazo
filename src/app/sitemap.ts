@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { SEO_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://unbuenregalo.vercel.app';
+  const baseUrl = 'https://www.unbuenregalo.es';
 
   // 1. Root Homepage & Specialized Niche Hubs
   const routes: MetadataRoute.Sitemap = [
