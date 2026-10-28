@@ -1,5 +1,35 @@
 export const AMAZON_AFFILIATE_TAG = 'vapegadgets22-21';
+export const AMAZON_AFFILIATE_TAG_ES = 'vapegadgets22-21';
+export const AMAZON_AFFILIATE_TAG_INTL = 'vapegadgets22-20';
+
 export const AMAZON_BASE_URL = 'https://www.amazon.es';
+export const AMAZON_INTL_URL = 'https://www.amazon.com';
+
+/**
+ * Detecta inteligentemente si el visitante está en el continente americano
+ * (Sudamérica, Centroamérica o EE.UU.) para enrutarlo automáticamente a Amazon.com
+ * con su StoreID internacional vapegadgets22-20 en dólares / moneda local.
+ * En España y Europa mantiene Amazon.es con vapegadgets22-21.
+ */
+export function getRegionalAmazonConfig(): { baseUrl: string; tag: string } {
+  if (typeof window !== 'undefined') {
+    try {
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+      if (tz.startsWith('America/')) {
+        return {
+          baseUrl: AMAZON_INTL_URL,
+          tag: AMAZON_AFFILIATE_TAG_INTL,
+        };
+      }
+    } catch {
+      // fallback silencioso
+    }
+  }
+  return {
+    baseUrl: AMAZON_BASE_URL,
+    tag: AMAZON_AFFILIATE_TAG_ES,
+  };
+}
 
 /**
  * List of deprecated / discontinued / 404 ASINs detected from live Amazon.es verification.
@@ -46,7 +76,7 @@ export const DEAD_OR_INVALID_ASINS = new Set<string>([
  * GUARANTEES 0% 404 ERRORS on Amazon.es.
  */
 export function getAmazonProductUrl(asin?: string, searchQueryOrTitle?: string): string {
-  const cleanTag = AMAZON_AFFILIATE_TAG;
+  const { baseUrl, tag } = getRegionalAmazonConfig();
   const cleanAsin = asin?.trim() || '';
 
   // Valid, active, 10-character Amazon ASIN
@@ -55,20 +85,20 @@ export function getAmazonProductUrl(asin?: string, searchQueryOrTitle?: string):
     !DEAD_OR_INVALID_ASINS.has(cleanAsin) &&
     cleanAsin !== 'B0DLWK3LKH'
   ) {
-    return `${AMAZON_BASE_URL}/dp/${encodeURIComponent(cleanAsin)}/?tag=${cleanTag}&linkCode=ll1`;
+    return `${baseUrl}/dp/${encodeURIComponent(cleanAsin)}/?tag=${tag}&linkCode=ll1`;
   }
 
-  // Safe fallback to Amazon.es search: NEVER returns 404 and sets 24h affiliate cookie!
+  // Safe fallback to Amazon search: NEVER returns 404 and sets 24h affiliate cookie!
   const query = (searchQueryOrTitle || cleanAsin || 'regalos recomendados').trim();
-  return `${AMAZON_BASE_URL}/s?k=${encodeURIComponent(query)}&tag=${cleanTag}&linkCode=ll2`;
+  return `${baseUrl}/s?k=${encodeURIComponent(query)}&tag=${tag}&linkCode=ll2`;
 }
 
 /**
- * Genera el enlace de búsqueda en Amazon España con el tag de afiliado.
+ * Genera el enlace de búsqueda en Amazon con el tag de afiliado regional.
  */
 export function getAmazonSearchUrl(searchQuery: string): string {
-  const cleanTag = AMAZON_AFFILIATE_TAG;
-  return `${AMAZON_BASE_URL}/s?k=${encodeURIComponent(searchQuery)}&tag=${cleanTag}&linkCode=ll2`;
+  const { baseUrl, tag } = getRegionalAmazonConfig();
+  return `${baseUrl}/s?k=${encodeURIComponent(searchQuery)}&tag=${tag}&linkCode=ll2`;
 }
 
 /**

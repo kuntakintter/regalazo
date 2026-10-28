@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { ExternalLink, ShoppingBag, Star, Loader2, ArrowDown, ShieldCheck } from 'lucide-react';
-import { AMAZON_AFFILIATE_TAG } from '@/data/products';
+import { getAmazonSearchUrl } from '@/lib/amazon';
 
 interface AmazonGridDiscoveryCardProps {
   searchQuery?: string;
@@ -36,7 +36,7 @@ export default function AmazonGridDiscoveryCard({
     searchTerm = `regalos para ${selectedAge} anos`;
   }
 
-  const amazonSearchUrl = `https://www.amazon.es/s?k=${encodeURIComponent(searchTerm)}&tag=${AMAZON_AFFILIATE_TAG}`;
+  const amazonSearchUrl = getAmazonSearchUrl(searchTerm);
 
   return (
     <article className="group flex flex-col justify-between p-2.5 sm:p-3 rounded-2xl bg-gradient-to-b from-amber-50/70 via-white to-amber-50/30 border border-amber-300 hover:border-amber-400 shadow-xs hover:shadow-md transition-all duration-200 relative">

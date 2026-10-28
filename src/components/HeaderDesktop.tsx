@@ -9,7 +9,8 @@ import LanguageSelector from '@/components/LanguageSelector';
 import VotingOnboardingTooltip from '@/components/VotingOnboardingTooltip';
 import { useCurrency } from '@/context/CurrencyContext';
 import { useVoting } from '@/context/VotingContext';
-import { Product, AMAZON_AFFILIATE_TAG } from '@/data/products';
+import { Product } from '@/data/products';
+import { getAmazonSearchUrl } from '@/lib/amazon';
 import { AmazonLiveItem, AGE_DROPDOWN_ITEMS } from '@/components/HeaderMobile';
 
 interface HeaderDesktopProps {
@@ -54,9 +55,7 @@ export default function HeaderDesktop({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [setIsFocused]);
 
-  const amazonSearchUrl = `https://www.amazon.es/s?k=${encodeURIComponent(
-    searchQuery.trim() || 'regalos'
-  )}&tag=${AMAZON_AFFILIATE_TAG}&linkCode=ll2`;
+  const amazonSearchUrl = getAmazonSearchUrl(searchQuery.trim() || 'regalos');
 
   const hasAnyResults = liveMatches.length > 0 || amazonResults.length > 0;
 
