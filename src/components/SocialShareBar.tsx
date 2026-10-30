@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Share2, Check, Copy, MessageCircle, Send } from 'lucide-react';
+import { trackShareEvent } from '@/lib/analytics';
 
 interface SocialShareBarProps {
   title?: string;
@@ -75,6 +76,10 @@ export default function SocialShareBar({
     try {
       await navigator.clipboard.writeText(activeUrl);
       setCopied(true);
+      trackShareEvent('Copy Link', 'social_bar', {
+        page_url: activeUrl,
+        page_title: activeTitle,
+      });
       setTimeout(() => setCopied(false), 2000);
     } catch {
       // Fallback
@@ -96,6 +101,12 @@ export default function SocialShareBar({
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`Compartir en ${item.name}`}
+            onClick={() => {
+              trackShareEvent(item.name as any, 'social_bar', {
+                page_url: activeUrl,
+                page_title: activeTitle,
+              });
+            }}
             className={`px-3 py-1.5 rounded-xl font-bold transition-all shadow-xs flex items-center gap-1.5 cursor-pointer text-[11px] ${item.bg}`}
           >
             {item.icon}

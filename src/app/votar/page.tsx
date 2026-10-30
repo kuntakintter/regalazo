@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { PRODUCTS, Product } from '@/data/products';
 import { getAmazonProductUrl } from '@/lib/amazon';
 import { useCurrency } from '@/context/CurrencyContext';
+import { trackShareEvent } from '@/lib/analytics';
 import { ThumbsUp, Check, ExternalLink, Share2, ShieldCheck, Trophy, ArrowRight, Heart } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -86,6 +87,10 @@ function VotingContent() {
     if (typeof window === 'undefined') return;
     const url = window.location.href;
     const text = `🗳️ ¡Vota el regalo para ${recipientDisplay}! Entra aquí y elige tu opción favorita: ${url}`;
+    trackShareEvent('WhatsApp', 'voting_group', {
+      recipient: recipientDisplay,
+      source_page: 'voting_results',
+    });
     window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
   };
 
@@ -93,6 +98,10 @@ function VotingContent() {
     if (typeof window === 'undefined') return;
     navigator.clipboard.writeText(window.location.href);
     setCopied(true);
+    trackShareEvent('Copy Link', 'voting_group', {
+      recipient: recipientDisplay,
+      source_page: 'voting_results',
+    });
     setTimeout(() => setCopied(false), 2000);
   };
 

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { useVoting } from '@/context/VotingContext';
 import { useCurrency } from '@/context/CurrencyContext';
+import { trackShareEvent } from '@/lib/analytics';
 import { X, Trash2, Share2, Copy, Check, ExternalLink, ArrowRight, ThumbsUp } from 'lucide-react';
 
 export default function VotingDrawer() {
@@ -29,6 +30,10 @@ export default function VotingDrawer() {
     if (!shareUrl) return;
     navigator.clipboard.writeText(shareUrl);
     setCopied(true);
+    trackShareEvent('Copy Link', 'voting_group', {
+      recipient: displayName,
+      product_count: voteItems.length,
+    });
     setTimeout(() => setCopied(false), 2500);
   };
 
@@ -36,6 +41,10 @@ export default function VotingDrawer() {
     if (!shareUrl) return;
     const text = `🗳️ ¡Ayúdame a elegir el regalo para ${displayName}!\nHe preseleccionado estos ${voteItems.length} regalos finalistas.\nVota tu favorito aquí 👇\n${shareUrl}`;
     const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+    trackShareEvent('WhatsApp', 'voting_group', {
+      recipient: displayName,
+      product_count: voteItems.length,
+    });
     window.open(whatsappUrl, '_blank');
   };
 

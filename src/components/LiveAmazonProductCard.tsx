@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { Star, Heart, Share2, ShoppingBag } from 'lucide-react';
+import { trackShareEvent } from '@/lib/analytics';
 import { LiveSearchResult } from '@/app/api/live-search/route';
 import { getAmazonProductUrl } from '@/lib/amazon';
 import { useCurrency } from '@/context/CurrencyContext';
@@ -70,14 +71,26 @@ export default function LiveAmazonProductCard({
           text: `Mira este regalo en Amazon España: ${product.title}`,
           url: directProductUrl,
         });
+        trackShareEvent('Native Share', 'product_card', {
+          asin: product.asin,
+          product_title: product.title,
+        });
       } catch {
         navigator.clipboard.writeText(directProductUrl);
         setCopied(true);
+        trackShareEvent('Copy Link', 'product_card', {
+          asin: product.asin,
+          product_title: product.title,
+        });
         setTimeout(() => setCopied(false), 2000);
       }
     } else {
       navigator.clipboard.writeText(directProductUrl);
       setCopied(true);
+      trackShareEvent('Copy Link', 'product_card', {
+        asin: product.asin,
+        product_title: product.title,
+      });
       setTimeout(() => setCopied(false), 2000);
     }
   };
