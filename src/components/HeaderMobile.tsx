@@ -146,6 +146,7 @@ export default function HeaderMobile({
                 <button
                   type="button"
                   onClick={clearSearch}
+                  aria-label="Borrar búsqueda"
                   className="p-1 mr-1 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-200 transition-colors cursor-pointer"
                   title="Borrar búsqueda"
                 >
