@@ -762,6 +762,7 @@ export default function HomePage() {
                     )}
                     <button
                       type="submit"
+                      aria-label="Buscar regalo"
                       className="px-5 sm:px-6 py-2.5 bg-[#febd69] hover:bg-[#f3a847] active:bg-[#e47911] text-slate-950 font-black text-sm rounded-xl transition-colors shadow-xs shrink-0 flex items-center gap-1.5 cursor-pointer border border-[#febd69]"
                     >
                       <Search className="w-4 h-4 stroke-[2.5]" />
@@ -772,7 +773,7 @@ export default function HomePage() {
 
                 {/* QUICK INSPIRATION PROMPT CHIPS */}
                 <div className="flex flex-wrap items-center justify-center gap-2 mb-6 max-w-3xl mx-auto">
-                  <span className="text-xs font-semibold text-slate-500 mr-1 flex items-center gap-1">
+                  <span className="text-xs font-semibold text-slate-600 mr-1 flex items-center gap-1">
                     Inspiración rápida:
                   </span>
                   {QUICK_PROMPTS.map((prompt) => (
@@ -780,7 +781,7 @@ export default function HomePage() {
                       key={prompt.label}
                       type="button"
                       onClick={() => handleQuickPrompt(prompt)}
-                      className="text-xs px-3 py-1.5 rounded-full font-semibold bg-slate-50 hover:bg-amber-50 border border-slate-200 hover:border-amber-300 text-slate-700 hover:text-slate-900 transition-all shadow-2xs hover:scale-105 active:scale-95 cursor-pointer"
+                      className="text-xs px-3.5 py-2 sm:py-1.5 min-h-[40px] inline-flex items-center rounded-full font-semibold bg-slate-50 hover:bg-amber-50 border border-slate-300 hover:border-amber-400 text-slate-800 hover:text-slate-950 transition-all shadow-2xs hover:scale-105 active:scale-95 cursor-pointer"
                     >
                       {prompt.label}
                     </button>
@@ -936,7 +937,7 @@ export default function HomePage() {
                     </span>
                   )}
                 </h2>
-                <p className="text-xs text-slate-500 font-medium">
+                <p className="text-xs text-slate-700 font-medium">
                   Mostrando <strong className="text-slate-900 font-bold">{filteredProducts.length + liveAmazonProducts.length}</strong> regalos verificados con opiniones reales
                 </p>
               </div>
@@ -1092,7 +1093,7 @@ export default function HomePage() {
                   <RefreshCw className="w-4 h-4 text-amber-300" />
                   <span>Cargar más ideas de regalo (+18 productos)</span>
                 </button>
-                <span className="text-xs text-slate-500 font-medium">
+                <span className="text-xs text-slate-700 font-medium">
                   Mostrando {Math.min(visibleCount, sortedFilteredProducts.length)} de {sortedFilteredProducts.length} ideas disponibles
                 </span>
               </div>
