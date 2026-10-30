@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, Sparkles as SparklesIcon, Compass } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Compass } from 'lucide-react';
 
 interface StageInfo {
   slug: string;

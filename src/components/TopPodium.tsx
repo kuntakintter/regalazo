@@ -431,6 +431,8 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
                         src={pick.product.imageUrl}
                         alt={pick.product.title}
                         fill
+                        priority={pick.rank === 1}
+                        loading={pick.rank === 1 ? 'eager' : 'lazy'}
                         sizes="(max-width: 640px) 33vw, 300px"
                         className="object-contain p-1 group-hover:scale-105 transition-transform duration-300"
                         unoptimized={pick.product.imageUrl.startsWith('http')}
