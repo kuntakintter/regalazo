@@ -7,6 +7,7 @@ import { useSearchParams } from 'next/navigation';
 import { 
   CHRISTMAS_TOYS, 
   CHRISTMAS_CATEGORIES, 
+  CHRISTMAS_AGE_RANGES,
   ChristmasToy, 
   buildAmazonRemoteCartUrl 
 } from '@/data/cartaNavidadToys';
@@ -24,7 +25,8 @@ import {
   Star,
   ExternalLink,
   ShieldCheck,
-  Award
+  Award,
+  Search
 } from 'lucide-react';
 
 function CartaPapaNoelContent() {
@@ -35,6 +37,8 @@ function CartaPapaNoelContent() {
   const [behavior, setBehavior] = useState('🌟 Me he portado súper bien');
   const [selectedToys, setSelectedToys] = useState<ChristmasToy[]>([]);
   const [activeCategory, setActiveCategory] = useState('all');
+  const [activeAge, setActiveAge] = useState('all');
+  const [searchToyQuery, setSearchToyQuery] = useState('');
   const [isSending, setIsSending] = useState(false);
   const [sendStep, setSendStep] = useState(0); // 0 = idle, 1 = folding, 2 = flying, 3 = delivered
   const [isDelivered, setIsDelivered] = useState(false);
@@ -157,10 +161,17 @@ function CartaPapaNoelContent() {
     window.open(cartUrl, '_blank');
   };
 
-  // Filter toys
-  const filteredToys = activeCategory === 'all' 
-    ? CHRISTMAS_TOYS 
-    : CHRISTMAS_TOYS.filter(t => t.category === activeCategory);
+  // Filter toys by category, age and text search
+  const filteredToys = CHRISTMAS_TOYS.filter(t => {
+    const matchCat = activeCategory === 'all' || t.category === activeCategory;
+    const matchAge = activeAge === 'all' || t.ageRange === activeAge || t.ageRange === 'all';
+    const query = searchToyQuery.trim().toLowerCase();
+    const matchQuery = !query || 
+      t.title.toLowerCase().includes(query) ||
+      t.shortTitle.toLowerCase().includes(query) ||
+      t.categoryLabel.toLowerCase().includes(query);
+    return matchCat && matchAge && matchQuery;
+  });
 
   return (
     <div className="min-h-screen bg-linear-to-b from-red-950 via-slate-900 to-emerald-950 text-slate-100 font-sans pb-24 relative overflow-hidden">
@@ -480,25 +491,107 @@ function CartaPapaNoelContent() {
                 </p>
               </div>
 
-              {/* Categorías filtro */}
-              <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
-                {CHRISTMAS_CATEGORIES.map(cat => {
-                  const isCatActive = activeCategory === cat.id;
-                  return (
-                    <button
-                      key={cat.id}
-                      onClick={() => setActiveCategory(cat.id)}
-                      className={`whitespace-nowrap px-3.5 py-2 rounded-xl text-xs font-black transition-all cursor-pointer shrink-0 flex items-center gap-1.5 ${
-                        isCatActive
-                          ? 'bg-amber-400 text-slate-950 shadow-lg shadow-amber-400/20 scale-105'
-                          : 'bg-white/10 hover:bg-white/15 text-slate-200 border border-white/10'
-                      }`}
-                    >
-                      <span>{cat.label}</span>
-                    </button>
-                  );
-                })}
+              {/* Panel de Filtros y Búsqueda */}
+              <div className="bg-white/5 backdrop-blur-md rounded-2xl p-4 border border-white/10 space-y-3.5">
+                
+                {/* 1. Categorías principales (100% visibles con flex-wrap) */}
+                <div>
+                  <span className="text-[11px] font-black uppercase text-amber-300 block mb-2 tracking-wider">
+                    Categorías de Juguetes:
+                  </span>
+                  <div className="flex flex-wrap items-center gap-2">
+                    {CHRISTMAS_CATEGORIES.map(cat => {
+                      const isCatActive = activeCategory === cat.id;
+                      const count = CHRISTMAS_TOYS.filter(t => cat.id === 'all' || t.category === cat.id).length;
+                      return (
+                        <button
+                          key={cat.id}
+                          onClick={() => setActiveCategory(cat.id)}
+                          className={`px-3.5 py-2 rounded-xl text-xs font-black transition-all cursor-pointer flex items-center gap-1.5 shadow-xs ${
+                            isCatActive
+                              ? 'bg-amber-400 text-slate-950 shadow-md shadow-amber-400/20 scale-105 ring-2 ring-amber-300'
+                              : 'bg-white/10 hover:bg-white/20 text-slate-200 border border-white/15'
+                          }`}
+                        >
+                          <span>{cat.label}</span>
+                          <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
+                            isCatActive ? 'bg-black/15 text-slate-950' : 'bg-white/15 text-slate-300'
+                          }`}>
+                            {count}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* 2. Filtro por Edad y Buscador rápido */}
+                <div className="pt-2 border-t border-white/10 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                  
+                  {/* Edades */}
+                  <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
+                    <span className="text-[11px] font-bold text-slate-400 mr-1 shrink-0">Edad:</span>
+                    {CHRISTMAS_AGE_RANGES.map(age => {
+                      const isAgeActive = activeAge === age.id;
+                      return (
+                        <button
+                          key={age.id}
+                          onClick={() => setActiveAge(age.id)}
+                          className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
+                            isAgeActive
+                              ? 'bg-emerald-500 text-white shadow-xs'
+                              : 'bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10'
+                          }`}
+                        >
+                          {age.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {/* Buscador de juguetes */}
+                  <div className="relative w-full sm:w-64 shrink-0">
+                    <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                    <input
+                      type="text"
+                      value={searchToyQuery}
+                      onChange={(e) => setSearchToyQuery(e.target.value)}
+                      placeholder="Buscar juguete (ej. Lego, Mario...)"
+                      className="w-full pl-8 pr-7 py-1.5 rounded-xl bg-white/10 border border-white/15 focus:border-amber-400 focus:outline-hidden text-xs text-white placeholder:text-slate-400"
+                    />
+                    {searchToyQuery && (
+                      <button
+                        onClick={() => setSearchToyQuery('')}
+                        className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
+                      >
+                        <X className="w-3 h-3" />
+                      </button>
+                    )}
+                  </div>
+
+                </div>
+
               </div>
+
+              {/* Mensaje de resultados vacíos */}
+              {filteredToys.length === 0 && (
+                <div className="py-12 text-center bg-white/5 rounded-2xl border border-white/10 p-6 space-y-3">
+                  <span className="text-4xl block">🔍🧸</span>
+                  <p className="text-sm font-bold text-white">
+                    No encontramos ningún juguete con esos filtros.
+                  </p>
+                  <button
+                    onClick={() => {
+                      setActiveCategory('all');
+                      setActiveAge('all');
+                      setSearchToyQuery('');
+                    }}
+                    className="px-4 py-2 rounded-xl bg-amber-400 text-slate-950 font-black text-xs hover:bg-amber-300 transition-colors cursor-pointer"
+                  >
+                    Restablecer todos los filtros (Ver 24 juguetes)
+                  </button>
+                </div>
+              )}
 
               {/* Grid de Juguetes */}
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">

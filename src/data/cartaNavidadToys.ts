@@ -4,6 +4,7 @@ export interface ChristmasToy {
   shortTitle: string;
   category: 'lego' | 'coches' | 'peluches' | 'gaming' | 'juegos' | 'creatividad';
   categoryLabel: string;
+  ageRange: '4-6' | '7-9' | '10-12' | 'all';
   imageUrl: string;
   asin: string;
   badge?: string;
@@ -19,6 +20,13 @@ export const CHRISTMAS_CATEGORIES = [
   { id: 'creatividad', label: '🎨 Arte & Dibujo', icon: '🎨' },
 ];
 
+export const CHRISTMAS_AGE_RANGES = [
+  { id: 'all', label: 'Cualquier edad' },
+  { id: '4-6', label: '👦 4 a 6 Años (Infantil)' },
+  { id: '7-9', label: '👧 7 a 9 Años (Primaria)' },
+  { id: '10-12', label: '🚀 10 a 12 Años (Juvenil)' },
+];
+
 export const CHRISTMAS_TOYS: ChristmasToy[] = [
   // LEGO & CONSTRUCCIÓN
   {
@@ -27,6 +35,7 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     shortTitle: 'LEGO Marvel Calendario de Adviento',
     category: 'lego',
     categoryLabel: 'LEGO & Bloques',
+    ageRange: '7-9',
     imageUrl: 'https://m.media-amazon.com/images/I/81lDif6INrL._AC_UL320_.jpg',
     asin: 'B0GGSM14GC',
     badge: 'Top Deseo 2026'
@@ -37,6 +46,7 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     shortTitle: 'LEGO Castillo Medieval 3 en 1',
     category: 'lego',
     categoryLabel: 'LEGO & Bloques',
+    ageRange: '7-9',
     imageUrl: '/images/products/79-lego-creator-castillo-medieval-1.jpg',
     asin: 'B08G8K7TY3',
     badge: 'Aventura Medieval'
@@ -47,6 +57,7 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     shortTitle: 'LEGO Dinosaurio T-Rex 3 en 1',
     category: 'lego',
     categoryLabel: 'LEGO & Bloques',
+    ageRange: '7-9',
     imageUrl: '/images/products/79-lego-creator-dinosaurio-trex-1.jpg',
     asin: 'B01LZF2U33',
     badge: 'Top Dinosaurios'
@@ -57,6 +68,7 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     shortTitle: 'GraviTrax Circuito de Canicas',
     category: 'lego',
     categoryLabel: 'LEGO & Bloques',
+    ageRange: '7-9',
     imageUrl: '/images/products/79-gravitrax-1.jpg',
     asin: 'B079Z5J2R5',
     badge: 'Física y Gravedad'
@@ -69,6 +81,7 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     shortTitle: 'Circuito Carrera Mario Kart',
     category: 'coches',
     categoryLabel: 'Coches & Pistas',
+    ageRange: '4-6',
     imageUrl: '/images/products/46-carrera-mario-1.jpg',
     asin: 'B079Z5J2R4',
     badge: 'Circuito Nº1 en Ventas'
@@ -79,6 +92,7 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     shortTitle: 'Pista Hot Wheels Choques Aéreos',
     category: 'coches',
     categoryLabel: 'Coches & Pistas',
+    ageRange: '4-6',
     imageUrl: '/images/products/46-hot-wheels-choques-aereos-1.jpg',
     asin: 'B07B4M27B3',
     badge: 'Acción Extrema'
@@ -89,6 +103,7 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     shortTitle: 'Megagaraje Hot Wheels City',
     category: 'coches',
     categoryLabel: 'Coches & Pistas',
+    ageRange: '4-6',
     imageUrl: '/images/products/46-hot-wheels-garaje-gigante-1.jpg',
     asin: 'B08F2CVZ99',
     badge: 'Garaje Gigante'
@@ -99,6 +114,7 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     shortTitle: 'Monster Truck 4x4 Teledirigido',
     category: 'coches',
     categoryLabel: 'Coches & Pistas',
+    ageRange: '7-9',
     imageUrl: '/images/products/79-monster-truck-rc-gigante-1.jpg',
     asin: 'B08F2CVZ01',
     badge: 'Potencia Todo Terreno'
@@ -109,6 +125,7 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     shortTitle: 'Scalextric Rally Champions',
     category: 'coches',
     categoryLabel: 'Coches & Pistas',
+    ageRange: '7-9',
     imageUrl: '/images/products/79-scalextric-rally-champions-1.jpg',
     asin: 'B08F2CVZ02',
     badge: 'El Clásico Español'
@@ -119,6 +136,7 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     shortTitle: 'Patinete con Ruedas LED',
     category: 'coches',
     categoryLabel: 'Coches & Pistas',
+    ageRange: '4-6',
     imageUrl: '/images/products/46-bopster-patinete-1.jpg',
     asin: 'B08F9VXYZ3',
     badge: 'Deporte al Aire Libre'
@@ -131,6 +149,7 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     shortTitle: 'Peluche Oficial Pikachu 30cm',
     category: 'peluches',
     categoryLabel: 'Muñecas & Peluches',
+    ageRange: '7-9',
     imageUrl: '/images/products/46-pikachu-peluche-1.jpg',
     asin: 'B07CJW1T1X',
     badge: 'Súper Achuchable'
@@ -141,6 +160,7 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     shortTitle: 'Furby Interactivo con Voz',
     category: 'peluches',
     categoryLabel: 'Muñecas & Peluches',
+    ageRange: '4-6',
     imageUrl: '/images/products/46-furby-interactivo-morado-1.jpg',
     asin: 'B07MVD9W04',
     badge: 'Mascota Mágica'
@@ -151,6 +171,7 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     shortTitle: 'Bitzee Mascota Digital Interactiva',
     category: 'peluches',
     categoryLabel: 'Muñecas & Peluches',
+    ageRange: '4-6',
     imageUrl: '/images/products/46-bitzee-mascota-digital-1.jpg',
     asin: 'B07MVD9W05',
     badge: 'Sensación Mundial'
@@ -161,6 +182,7 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     shortTitle: 'Perrito Interactivo Dulces Sueños',
     category: 'peluches',
     categoryLabel: 'Muñecas & Peluches',
+    ageRange: '4-6',
     imageUrl: '/images/products/46-perrito-interactivo-respira-1.jpg',
     asin: 'B07MVD9W06',
     badge: 'Tierno y Relajante'
@@ -173,6 +195,7 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     shortTitle: 'VIRUS! Juego de Cartas',
     category: 'juegos',
     categoryLabel: 'Juegos de Mesa',
+    ageRange: '10-12',
     imageUrl: '/images/products/1012-virus-1.jpg',
     asin: '8467571343',
     badge: 'Nº1 Más Vendido'
@@ -183,6 +206,7 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     shortTitle: 'Dobble Kids Juego de Reflejos',
     category: 'juegos',
     categoryLabel: 'Juegos de Mesa',
+    ageRange: '4-6',
     imageUrl: '/images/products/46-dobble-kids-1.jpg',
     asin: 'B007X6J8M1',
     badge: 'Para Llevar a Cualquier Parte'
@@ -193,6 +217,7 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     shortTitle: 'Catan Junior Juego de Estrategia',
     category: 'juegos',
     categoryLabel: 'Juegos de Mesa',
+    ageRange: '7-9',
     imageUrl: '/images/products/79-catan-junior-1.jpg',
     asin: 'B00004UBI1',
     badge: 'Estrategia Pirata'
@@ -203,6 +228,7 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     shortTitle: 'Fantasma Blitz Juego de Mesa',
     category: 'juegos',
     categoryLabel: 'Juegos de Mesa',
+    ageRange: '7-9',
     imageUrl: '/images/products/79-fantasma-blitz-1.jpg',
     asin: 'B007X6J8N2',
     badge: 'Risas Aseguradas'
@@ -213,6 +239,7 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     shortTitle: 'Conecta 4 Clásico',
     category: 'juegos',
     categoryLabel: 'Juegos de Mesa',
+    ageRange: '4-6',
     imageUrl: '/images/products/46-conecta-4-clasico-1.jpg',
     asin: 'B00000IWH8',
     badge: 'El Clásico de Siempre'
@@ -225,6 +252,7 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     shortTitle: 'Mini Dron con Cámara HD',
     category: 'gaming',
     categoryLabel: 'Gaming & Robótica',
+    ageRange: '10-12',
     imageUrl: '/images/products/1012-dron-potensic-1.jpg',
     asin: 'B08G8K7TY4',
     badge: 'Fácil de Volar'
@@ -235,6 +263,7 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     shortTitle: 'mBot Robot Programable',
     category: 'gaming',
     categoryLabel: 'Gaming & Robótica',
+    ageRange: '10-12',
     imageUrl: '/images/products/1012-makeblock-mbot-robot-1.jpg',
     asin: 'B0BWNWN925',
     badge: 'Robótica Educativa'
@@ -245,6 +274,7 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     shortTitle: 'Magia Borras 150 Trucos',
     category: 'gaming',
     categoryLabel: 'Gaming & Robótica',
+    ageRange: '10-12',
     imageUrl: '/images/products/1012-magia-borras-150-1.jpg',
     asin: 'B07MVD9W26',
     badge: 'Magia e Ilusión'
@@ -257,6 +287,7 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     shortTitle: 'Maletín de Dibujo 150 Piezas',
     category: 'creatividad',
     categoryLabel: 'Arte & Dibujo',
+    ageRange: '4-6',
     imageUrl: '/images/products/46-maletin-dibujo-madera-150-1.jpg',
     asin: 'B07MVD9W03',
     badge: 'Pintura y Creatividad'
@@ -267,6 +298,7 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     shortTitle: 'Fábrica de Slime con Purpurina',
     category: 'creatividad',
     categoryLabel: 'Arte & Dibujo',
+    ageRange: '7-9',
     imageUrl: '/images/products/79-fabrica-slime-diy-sin-borax-1.jpg',
     asin: 'B075VQ8V9B',
     badge: 'Creación Divertida'
