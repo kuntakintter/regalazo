@@ -368,20 +368,11 @@ function CartaPapaNoelContent() {
             <section className="ruled-paper text-slate-900 rounded-3xl p-6 sm:p-12 border-4 border-[#d4af37] shadow-2xl relative overflow-hidden">
               
               {/* SELLO POSTAL OFICIAL DEL POLO NORTE (ESQUINA SUPERIOR DERECHA) */}
-              <div className="absolute top-4 right-4 sm:top-6 sm:right-6 flex flex-col items-center">
+              <div className="absolute top-4 right-4 sm:top-6 sm:right-6">
                 {/* Sello con bordes dentados */}
-                <div className="w-20 sm:w-24 h-24 sm:h-28 bg-[#c82333] border-2 border-dashed border-white rounded-md p-1.5 shadow-md flex flex-col items-center justify-between text-white text-center rotate-3 transform hover:rotate-0 transition-transform">
-                  <span className="text-[9px] font-black uppercase tracking-wider block">POLO NORTE</span>
-                  <span className="text-2xl sm:text-3xl select-none">🎅</span>
-                  <div className="w-full bg-white/20 rounded py-0.5">
-                    <span className="text-[8px] font-bold block">1 NAVIDAD</span>
-                  </div>
-                </div>
-                {/* Matasellos circular negro */}
-                <div className="w-16 h-16 rounded-full border-2 border-slate-700/60 flex items-center justify-center -mt-6 -ml-8 -rotate-12 pointer-events-none select-none">
-                  <span className="text-[7px] font-black uppercase text-slate-700/80 text-center leading-tight tracking-tighter">
-                    LAPONIA AIR MAIL<br />24 DIC • 2026<br />★ ★ ★
-                  </span>
+                <div className="w-20 sm:w-24 h-24 sm:h-28 bg-[#c82333] border-2 border-dashed border-white rounded-md p-2 shadow-md flex flex-col items-center justify-center gap-2 text-white text-center rotate-3 transform hover:rotate-0 transition-transform select-none">
+                  <span className="text-[10px] font-black uppercase tracking-wider block">POLO NORTE</span>
+                  <span className="text-3xl sm:text-4xl">🎅</span>
                 </div>
               </div>
 
