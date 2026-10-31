@@ -11,21 +11,16 @@ import {
   ChristmasToy, 
   buildAmazonRemoteCartUrl 
 } from '@/data/cartaNavidadToys';
-import { getAmazonProductUrl } from '@/lib/amazon';
 import { 
   Send, 
-  Heart, 
   Check, 
   Copy, 
   Printer, 
   ShoppingBag, 
   Share2, 
-  ChevronRight, 
   X,
   Star,
-  ExternalLink,
   ShieldCheck,
-  Award,
   Search
 } from 'lucide-react';
 
@@ -34,25 +29,27 @@ function CartaPapaNoelContent() {
 
   // State
   const [childName, setChildName] = useState('');
-  const [behavior, setBehavior] = useState('🌟 Me he portado súper bien');
+  const [childAge, setChildAge] = useState('7');
+  const [behavior, setBehavior] = useState('🌟 súper bien');
   const [selectedToys, setSelectedToys] = useState<ChristmasToy[]>([]);
   const [activeCategory, setActiveCategory] = useState('all');
   const [activeAge, setActiveAge] = useState('all');
   const [searchToyQuery, setSearchToyQuery] = useState('');
   const [visibleCount, setVisibleCount] = useState(24);
   const [isSending, setIsSending] = useState(false);
-
-  // Reset pagination when filter changes
-  useEffect(() => {
-    setVisibleCount(24);
-  }, [activeCategory, activeAge, searchToyQuery]);
   const [sendStep, setSendStep] = useState(0); // 0 = idle, 1 = folding, 2 = flying, 3 = delivered
   const [isDelivered, setIsDelivered] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
 
+  // Reset pagination when filters change
+  useEffect(() => {
+    setVisibleCount(24);
+  }, [activeCategory, activeAge, searchToyQuery]);
+
   // Load from URL or localStorage on mount
   useEffect(() => {
     const urlName = searchParams.get('n') || searchParams.get('nombre');
+    const urlAge = searchParams.get('edad');
     const urlWishes = searchParams.get('w') || searchParams.get('deseos');
 
     if (urlName) {
@@ -60,6 +57,10 @@ function CartaPapaNoelContent() {
     } else {
       const savedName = localStorage.getItem('ubr_carta_nombre');
       if (savedName) setChildName(savedName);
+    }
+
+    if (urlAge) {
+      setChildAge(urlAge);
     }
 
     if (urlWishes) {
@@ -97,7 +98,7 @@ function CartaPapaNoelContent() {
       setSelectedToys(prev => prev.filter(t => t.id !== toy.id));
     } else {
       if (selectedToys.length >= 6) {
-        alert('¡Has alcanzado el límite de 6 deseos mágicos! Puedes quitar uno para poner este.');
+        alert('¡Has alcanzado el límite de 6 deseos mágicos! Puedes quitar uno de tu carta para añadir este.');
         return;
       }
       setSelectedToys(prev => [...prev, toy]);
@@ -111,23 +112,23 @@ function CartaPapaNoelContent() {
   // Handle Send to North Pole Animation
   const handleSendLetter = () => {
     if (!childName.trim()) {
-      alert('¡Por favor, escribe tu nombre en la carta para que Papá Noel sepa de quién es!');
+      alert('¡Por favor, escribe tu nombre en la firma de la carta para que Papá Noel sepa de quién es!');
       return;
     }
     if (selectedToys.length === 0) {
-      alert('¡Elige al menos 1 juguete o deseo para añadir a tu carta!');
+      alert('¡Elige al menos 1 juguete o deseo de la revista de abajo para añadirlo a tu carta!');
       return;
     }
 
     setIsSending(true);
-    setSendStep(1); // Folding
+    setSendStep(1); // Folding & wax stamp
 
     setTimeout(() => {
-      setSendStep(2); // Flying through stars
+      setSendStep(2); // Flying through stars with reindeer
     }, 1800);
 
     setTimeout(() => {
-      setSendStep(3); // Delivered to North Pole
+      setSendStep(3); // Delivered to Santa's workshop
       setIsDelivered(true);
       setIsSending(false);
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -139,7 +140,7 @@ function CartaPapaNoelContent() {
     if (typeof window === 'undefined') return '';
     const base = window.location.origin + window.location.pathname;
     const ids = selectedToys.map(t => t.id).join(',');
-    return `${base}?n=${encodeURIComponent(childName.trim())}&w=${ids}`;
+    return `${base}?n=${encodeURIComponent(childName.trim())}&edad=${childAge}&w=${ids}`;
   };
 
   // Copy link
@@ -155,7 +156,7 @@ function CartaPapaNoelContent() {
     const name = childName.trim() || 'Nuestro peque';
     const lines = selectedToys.map((t, idx) => `${idx + 1}. ${t.shortTitle}`).join('\n');
     const url = getShareableUrl();
-    const text = `🎅 ¡Carta a Papá Noel y Reyes Magos de ${name}! 🎄✨\n\nHa pedido estos deseos:\n${lines}\n\n👉 Puedes ver la carta completa aquí: ${url}`;
+    const text = `🎅 ¡Carta a Papá Noel de ${name}! 🎄✨\n\nHa pedido estos deseos:\n${lines}\n\n👉 Puedes ver la carta completa aquí: ${url}`;
     const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
     window.open(waUrl, '_blank');
   };
@@ -180,15 +181,15 @@ function CartaPapaNoelContent() {
   });
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-red-950 via-slate-900 to-emerald-950 text-slate-100 font-sans pb-24 relative overflow-hidden">
+    <div className="min-h-screen bg-linear-to-b from-[#2d0a0a] via-[#0f172a] to-[#062419] text-slate-100 font-sans pb-24 relative overflow-hidden">
       
       {/* Falling Snow Effect in CSS */}
-      <div className="pointer-events-none fixed inset-0 z-0 opacity-40 overflow-hidden" aria-hidden="true">
-        <div className="absolute -top-10 left-[10%] w-2 h-2 bg-white rounded-full blur-[0.5px] animate-[snowfall_8s_linear_infinite]" />
-        <div className="absolute -top-10 left-[25%] w-3 h-3 bg-white rounded-full blur-[1px] animate-[snowfall_11s_linear_infinite_1s]" />
-        <div className="absolute -top-10 left-[45%] w-1.5 h-1.5 bg-white rounded-full animate-[snowfall_7s_linear_infinite_2.5s]" />
-        <div className="absolute -top-10 left-[60%] w-2.5 h-2.5 bg-white rounded-full blur-[0.5px] animate-[snowfall_9s_linear_infinite_0.5s]" />
-        <div className="absolute -top-10 left-[75%] w-2 h-2 bg-white rounded-full animate-[snowfall_10s_linear_infinite_3s]" />
+      <div className="pointer-events-none fixed inset-0 z-0 opacity-50 overflow-hidden" aria-hidden="true">
+        <div className="absolute -top-10 left-[8%] w-2 h-2 bg-white rounded-full blur-[0.5px] animate-[snowfall_9s_linear_infinite]" />
+        <div className="absolute -top-10 left-[22%] w-3 h-3 bg-white rounded-full blur-[1px] animate-[snowfall_11s_linear_infinite_1s]" />
+        <div className="absolute -top-10 left-[40%] w-1.5 h-1.5 bg-white rounded-full animate-[snowfall_7s_linear_infinite_2.5s]" />
+        <div className="absolute -top-10 left-[58%] w-2.5 h-2.5 bg-white rounded-full blur-[0.5px] animate-[snowfall_10s_linear_infinite_0.5s]" />
+        <div className="absolute -top-10 left-[75%] w-2 h-2 bg-white rounded-full animate-[snowfall_8s_linear_infinite_3s]" />
         <div className="absolute -top-10 left-[90%] w-3 h-3 bg-white rounded-full blur-[1px] animate-[snowfall_12s_linear_infinite_1.5s]" />
       </div>
 
@@ -199,90 +200,97 @@ function CartaPapaNoelContent() {
           80% { opacity: 0.8; }
           100% { transform: translateY(105vh) translateX(30px); opacity: 0; }
         }
+        .ruled-paper {
+          background-color: #fcf9f2;
+          background-image: repeating-linear-gradient(
+            transparent,
+            transparent 37px,
+            rgba(180, 83, 9, 0.14) 37px,
+            rgba(180, 83, 9, 0.14) 38px
+          );
+        }
       `}</style>
 
-      {/* Breadcrumb & Navigation */}
+      {/* Breadcrumb Navigation */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 pt-6 pb-2">
         <Link
           href="/"
-          className="inline-flex items-center gap-1.5 text-xs text-amber-200/80 hover:text-amber-100 transition-colors bg-white/5 backdrop-blur-sm px-3 py-1.5 rounded-full border border-amber-400/20"
+          className="inline-flex items-center gap-1.5 text-xs text-amber-200/90 hover:text-white transition-colors bg-black/30 backdrop-blur-sm px-3.5 py-1.5 rounded-full border border-amber-400/30"
         >
           <span>← Volver a UnBuenRegalo.es</span>
         </Link>
       </div>
 
       {/* Main Container */}
-      <main className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 pt-4 space-y-8">
+      <main className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 pt-2 space-y-8">
 
         {/* ============================================================ */}
-        {/* HEADER: Carta Mágica a Papá Noel y Reyes Magos               */}
+        {/* TITULAR DE LA PÁGINA                                         */}
         {/* ============================================================ */}
-        <header className="text-center space-y-3">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-linear-to-r from-red-600/40 via-amber-500/30 to-emerald-600/40 border border-amber-400/40 text-amber-200 text-xs sm:text-sm font-bold shadow-lg">
-            <span>✨ Edición Mágica Navidad & Reyes 2026 ✨</span>
+        <header className="text-center space-y-2">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-600/30 border border-amber-400/40 text-amber-200 text-xs sm:text-sm font-bold shadow-lg">
+            <span>✨ Correo Oficial del Polo Norte • Navidad 2026 ✨</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-white drop-shadow-md">
-            🎅 Carta a Papá Noel <br className="sm:hidden" />
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-amber-200 via-yellow-300 to-amber-100">
-              y los Reyes Magos
-            </span> 👑
+            🎅 Carta Oficial a Papá Noel ❄️
           </h1>
-          <p className="text-sm sm:text-base text-slate-300 max-w-xl mx-auto leading-relaxed">
-            Escribe tu nombre, pide tus deseos favoritos y envíala directamente volando al Polo Norte en un clic.
+          <p className="text-xs sm:text-sm text-slate-300 max-w-lg mx-auto">
+            Escribe tu carta personalizada, añade tus deseos favoritos de la revista y envíala volando directa a Laponia.
           </p>
         </header>
 
         {/* ============================================================ */}
-        {/* STATE: SI YA HA SIDO ENVIADA / CERTIFICADO DE ENTREGA        */}
+        {/* ESTADO: SI YA HA SIDO ENTREGADA EN EL POLO NORTE              */}
         {/* ============================================================ */}
         {isDelivered && (
-          <section className="bg-linear-to-b from-amber-50 to-orange-50 text-slate-900 rounded-3xl p-6 sm:p-10 border-4 border-amber-400/80 shadow-2xl relative overflow-hidden animate-in fade-in duration-500">
+          <section className="bg-linear-to-b from-amber-50 to-orange-50 text-slate-900 rounded-3xl p-6 sm:p-10 border-4 border-amber-400 shadow-2xl relative overflow-hidden animate-in fade-in duration-500">
             {/* North Pole Official Stamp Watermark */}
-            <div className="absolute -top-6 -right-6 w-32 h-32 rounded-full border-4 border-dashed border-red-700/30 flex items-center justify-center rotate-12 pointer-events-none">
+            <div className="absolute -top-6 -right-6 w-36 h-36 rounded-full border-4 border-dashed border-red-700/30 flex items-center justify-center rotate-12 pointer-events-none select-none">
               <span className="text-[11px] font-black uppercase text-red-800/40 text-center tracking-widest">
-                OFICIAL POLO NORTE<br />ENTREGADO 2026
+                POLO NORTE EXPEDICIÓN<br />ENTREGADO • 2026
               </span>
             </div>
 
             <div className="max-w-2xl mx-auto text-center space-y-5">
-              <div className="w-20 h-20 mx-auto rounded-full bg-linear-to-tr from-red-600 to-emerald-600 text-white flex items-center justify-center text-4xl shadow-xl ring-4 ring-amber-300">
+              <div className="w-20 h-20 mx-auto rounded-full bg-linear-to-tr from-red-600 to-amber-600 text-white flex items-center justify-center text-4xl shadow-xl ring-4 ring-amber-300">
                 🎅
               </div>
 
               <div>
                 <span className="inline-block px-3 py-1 bg-red-600 text-white text-xs font-black rounded-full uppercase tracking-wider mb-2">
-                  ¡Carta recibida con éxito en Laponia!
+                  ¡Carta recibida en el Taller de Laponia!
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-black text-slate-900">
-                  ¡Ho, ho, ho, {childName || 'pequeño/a'}! ✨
+                <h2 className="text-2xl sm:text-3xl font-black text-slate-900 font-serif">
+                  ¡Ho, ho, ho, {childName || 'pequeño/a'}! 🎄
                 </h2>
               </div>
 
-              <div className="bg-white/90 backdrop-blur-xs rounded-2xl p-5 border border-amber-300 shadow-inner text-left text-sm sm:text-base text-slate-800 leading-relaxed space-y-3 font-serif">
+              {/* Mensaje oficial de Papá Noel */}
+              <div className="bg-white/95 rounded-2xl p-6 border border-amber-300 shadow-inner text-left text-sm sm:text-base text-slate-800 leading-relaxed space-y-3 font-serif">
                 <p>
-                  &ldquo;Hemos recibido tu carta en el taller del Polo Norte. Los elfos ya tienen apuntados tus {selectedToys.length} deseos y los renos Rodolfo y comitiva están preparando el trineo.&rdquo;
+                  &ldquo;¡Qué alegría leer tu carta! He recibido tu mensaje aquí en el Polo Norte. Mis elfos ya tienen apuntados en el libro mágico tus {selectedToys.length} deseos para Nochebuena.&rdquo;
                 </p>
-                <p className="font-semibold text-red-800">
-                  &ldquo;Sigue portándote así de bien en casa y en el cole, comparte tus juguetes y acuéstate prontito en Nochebuena y la noche de Reyes. ¡Feliz Navidad!&rdquo;
+                <p className="font-semibold text-red-900">
+                  &ldquo;Sigue portándote así de bien en casa y en el cole, comparte tus cosas y acuéstate prontito la noche de Navidad. ¡Rodolfo y yo ya estamos preparando el trineo!&rdquo;
                 </p>
-                <p className="text-right font-black text-slate-900 pt-2">
-                  — Con cariño, Papá Noel, Melchor, Gaspar y Baltasar 🎁
+                <p className="text-right font-black text-slate-900 pt-3">
+                  — Con todo mi cariño, Papá Noel 🎅❄️
                 </p>
               </div>
 
               {/* Lista de deseos pedidos */}
               <div className="pt-2 text-left">
                 <h3 className="text-xs font-black uppercase tracking-wider text-slate-600 mb-2">
-                  📜 Tus deseos incluidos en la carta:
+                  📜 Tus deseos sellados en la carta:
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {selectedToys.map((t, idx) => (
-                    <div key={t.id} className="flex items-center gap-3 bg-white p-2.5 rounded-xl border border-amber-200">
-                      <div className="relative w-12 h-12 rounded-lg overflow-hidden shrink-0 bg-slate-100">
+                    <div key={t.id} className="flex items-center gap-3 bg-white p-2.5 rounded-xl border border-amber-200 shadow-xs">
+                      <div className="relative w-12 h-12 rounded-lg overflow-hidden shrink-0 bg-slate-50">
                         <Image src={t.imageUrl} alt={t.shortTitle} fill unoptimized className="object-contain p-1" sizes="48px" />
                       </div>
                       <div className="min-w-0 flex-1">
-                        <span className="text-[11px] font-bold text-red-700 block">Deseo #{idx + 1}</span>
+                        <span className="text-[10px] font-bold text-red-700 block">Deseo #{idx + 1}</span>
                         <p className="text-xs font-bold text-slate-900 truncate">{t.shortTitle}</p>
                       </div>
                     </div>
@@ -290,7 +298,7 @@ function CartaPapaNoelContent() {
                 </div>
               </div>
 
-              {/* Botón para volver a editar si el niño quiere añadir más */}
+              {/* Botón para volver a editar */}
               <button
                 onClick={() => setIsDelivered(false)}
                 className="text-xs font-bold text-slate-600 hover:text-slate-900 underline transition-colors pt-2 cursor-pointer"
@@ -299,17 +307,17 @@ function CartaPapaNoelContent() {
               </button>
 
               {/* ============================================================ */}
-              {/* ZONA DISCRETA PARA PAPÁS Y MAMÁS (GUARDAR COPIA / REMOTECART) */}
+              {/* ZONA DISCRETA PARA PAPÁS Y MAMÁS                             */}
               {/* ============================================================ */}
-              <div className="mt-8 pt-6 border-t-2 border-dashed border-amber-300 text-left bg-linear-to-r from-amber-100/60 to-orange-100/60 p-4 sm:p-6 rounded-2xl">
+              <div className="mt-8 pt-6 border-t-2 border-dashed border-amber-300 text-left bg-linear-to-r from-amber-100/70 to-orange-100/70 p-4 sm:p-6 rounded-2xl">
                 <div className="flex items-center gap-2 mb-2">
                   <ShieldCheck className="w-4 h-4 text-emerald-700 shrink-0" />
                   <span className="text-xs font-black uppercase tracking-wider text-slate-800">
-                    Copia de recuerdo de la carta (Para guardar o compartir)
+                    Copia de recuerdo de la carta de {childName || 'tu peque'}
                   </span>
                 </div>
                 <p className="text-xs text-slate-600 mb-4">
-                  Guarda el enlace de la carta de {childName || 'tu peque'} para no perder la lista de deseos o prepara la compra cómodamente:
+                  Guarda el enlace de la carta de Papá Noel para no perder sus deseos o prepara la compra cómodamente:
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -343,7 +351,7 @@ function CartaPapaNoelContent() {
                     className="py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-900 text-white font-bold text-xs shadow-xs flex items-center justify-center gap-2 transition-all cursor-pointer"
                   >
                     <Printer className="w-4 h-4" />
-                    <span>Imprimir para dejar bajo el árbol</span>
+                    <span>Imprimir para dejar junto a las galletas</span>
                   </button>
                 </div>
               </div>
@@ -353,103 +361,143 @@ function CartaPapaNoelContent() {
         )}
 
         {/* ============================================================ */}
-        {/* MODO EDICIÓN: EL PERGAMINO Y EL CATÁLOGO DE DESEOS           */}
+        {/* AUTÉNTICO PAPEL DE CARTA ESCOLAR NAVIDEÑA (MODO EDICIÓN)     */}
         {/* ============================================================ */}
         {!isDelivered && (
           <>
-            {/* EL PERGAMINO DE LA CARTA */}
-            <section className="bg-[#FFFDF6] text-slate-900 rounded-3xl p-6 sm:p-10 border-4 border-amber-300 shadow-2xl relative overflow-hidden">
+            <section className="ruled-paper text-slate-900 rounded-3xl p-6 sm:p-12 border-4 border-[#d4af37] shadow-2xl relative overflow-hidden">
               
-              {/* Decoración navideña de esquinas */}
-              <div className="absolute top-2 left-2 text-2xl select-none">🎄</div>
-              <div className="absolute top-2 right-2 text-2xl select-none">🔔</div>
-
-              <div className="max-w-2xl mx-auto space-y-6">
-                
-                {/* Cabecera del pergamino */}
-                <div className="border-b-2 border-dashed border-amber-300 pb-4 text-center">
-                  <span className="text-xs font-black uppercase tracking-widest text-red-700 block mb-1">
-                    Polo Norte Express • Taller Oficial
+              {/* SELLO POSTAL OFICIAL DEL POLO NORTE (ESQUINA SUPERIOR DERECHA) */}
+              <div className="absolute top-4 right-4 sm:top-6 sm:right-6 flex flex-col items-center">
+                {/* Sello con bordes dentados */}
+                <div className="w-20 sm:w-24 h-24 sm:h-28 bg-[#c82333] border-2 border-dashed border-white rounded-md p-1.5 shadow-md flex flex-col items-center justify-between text-white text-center rotate-3 transform hover:rotate-0 transition-transform">
+                  <span className="text-[9px] font-black uppercase tracking-wider block">POLO NORTE</span>
+                  <span className="text-2xl sm:text-3xl select-none">🎅</span>
+                  <div className="w-full bg-white/20 rounded py-0.5">
+                    <span className="text-[8px] font-bold block">1 NAVIDAD</span>
+                  </div>
+                </div>
+                {/* Matasellos circular negro */}
+                <div className="w-16 h-16 rounded-full border-2 border-slate-700/60 flex items-center justify-center -mt-6 -ml-8 -rotate-12 pointer-events-none select-none">
+                  <span className="text-[7px] font-black uppercase text-slate-700/80 text-center leading-tight tracking-tighter">
+                    LAPONIA AIR MAIL<br />24 DIC • 2026<br />★ ★ ★
                   </span>
-                  <h2 className="text-xl sm:text-2xl font-black text-slate-900 font-serif">
-                    Querido Papá Noel y Reyes Magos 📜
+                </div>
+              </div>
+
+              {/* Decoración navideña en esquina izquierda */}
+              <div className="text-3xl select-none mb-4">🎄❄️</div>
+
+              {/* CUERPO MANUSCRITO DE LA CARTA */}
+              <div className="border-l-2 border-red-300/80 pl-4 sm:pl-8 ml-1 sm:ml-4 space-y-6 max-w-2xl">
+                
+                {/* Encabezado */}
+                <div className="space-y-1">
+                  <span className="text-[11px] font-bold uppercase tracking-widest text-red-800/80 block font-sans">
+                    Para: Papá Noel (Polo Norte, Laponia)
+                  </span>
+                  <h2 className="text-3xl sm:text-4xl font-black text-slate-900 font-serif tracking-tight">
+                    Querido Papá Noel:
                   </h2>
                 </div>
 
-                {/* Formulario de Nombre y Comportamiento del niño */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-black uppercase text-slate-700 block">
-                      Me llamo: <span className="text-red-600">*</span>
-                    </label>
+                {/* Texto redactado manuscrito con líneas interactivas */}
+                <div className="text-base sm:text-lg text-slate-800 font-serif leading-[38px] space-y-2">
+                  <p>
+                    ¡Hola! Te escribo esta carta con mucha ilusión. Me llamo{' '}
                     <input
                       type="text"
                       value={childName}
                       onChange={(e) => setChildName(e.target.value)}
-                      placeholder="Escribe tu nombre aquí..."
-                      className="w-full px-4 py-2.5 rounded-xl border-2 border-amber-300 focus:border-red-600 focus:outline-hidden font-bold text-slate-900 bg-white placeholder:font-normal placeholder:text-slate-400 text-sm shadow-inner"
+                      placeholder="Escribe tu nombre..."
+                      className="border-b-2 border-dashed border-red-700 bg-transparent text-lg sm:text-xl font-bold font-serif text-red-950 focus:outline-hidden focus:border-red-900 px-2 py-0 inline-block w-48 sm:w-60 placeholder:text-slate-400 placeholder:font-normal placeholder:text-sm text-center"
                       maxLength={30}
                     />
-                  </div>
+                    {' '}y tengo{' '}
+                    <input
+                      type="number"
+                      value={childAge}
+                      onChange={(e) => setChildAge(e.target.value)}
+                      min="1"
+                      max="14"
+                      className="border-b-2 border-dashed border-red-700 bg-transparent text-lg sm:text-xl font-bold font-serif text-red-950 focus:outline-hidden px-1 py-0 inline-block w-14 text-center"
+                    />
+                    {' '}años.
+                  </p>
 
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-black uppercase text-slate-700 block">
-                      Este año...
-                    </label>
+                  <p>
+                    Este año en casa y en el colegio me he portado{' '}
                     <select
                       value={behavior}
                       onChange={(e) => setBehavior(e.target.value)}
-                      className="w-full px-4 py-2.5 rounded-xl border-2 border-amber-300 focus:border-red-600 focus:outline-hidden font-bold text-slate-900 bg-white text-sm cursor-pointer"
+                      className="border-b-2 border-dashed border-red-700 bg-transparent text-base sm:text-lg font-bold font-serif text-red-950 focus:outline-hidden cursor-pointer px-1 py-0 inline-block"
                     >
-                      <option value="🌟 Me he portado súper bien">🌟 Me he portado súper bien</option>
-                      <option value="🚀 He ayudado mucho en casa">🚀 He ayudado mucho en casa</option>
-                      <option value="📚 He sacado muy buenas notas">📚 He sacado muy buenas notas</option>
-                      <option value="💖 He compartido mis juguetes">💖 He compartido mis juguetes</option>
+                      <option value="🌟 súper bien">🌟 súper bien</option>
+                      <option value="🚀 genial ayudando en casa">🚀 genial ayudando en casa</option>
+                      <option value="📚 genial con las notas">📚 genial con las notas</option>
+                      <option value="💖 compartiendo mis cosas">💖 compartiendo mis cosas</option>
                     </select>
-                  </div>
+                    . He ayudado mucho a mi familia y he hecho mis deberes con ganas.
+                  </p>
+
+                  <p>
+                    Para esta Nochebuena me haría muchísima ilusión si en tu trineo pudieras traerme estos deseos:
+                  </p>
                 </div>
 
-                {/* Buzón de Deseos Añadidos (Visual en tiempo real) */}
-                <div className="bg-amber-50/80 rounded-2xl p-4 border border-amber-200 space-y-3">
+                {/* ============================================================ */}
+                {/* ZONA DE DESEOS PEGADOS EN LA CARTA (RECORTES CON CELO)      */}
+                {/* ============================================================ */}
+                <div className="bg-amber-100/40 rounded-2xl p-4 sm:p-5 border-2 border-dashed border-amber-400/80 space-y-3 font-sans">
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <span className="text-base">🎁</span>
-                      <h3 className="text-xs sm:text-sm font-black uppercase tracking-wider text-slate-800">
-                        Mis Deseos para Navidad ({selectedToys.length}/6)
-                      </h3>
-                    </div>
+                    <span className="text-xs font-black uppercase tracking-wider text-red-900 flex items-center gap-1.5">
+                      <span>🎁</span>
+                      <span>Deseos pegados en mi carta ({selectedToys.length}/6)</span>
+                    </span>
                     {selectedToys.length > 0 && (
                       <button
                         onClick={() => setSelectedToys([])}
                         className="text-[11px] text-red-700 hover:text-red-900 font-bold underline cursor-pointer"
                       >
-                        Vaciar carta
+                        Despegar todos
                       </button>
                     )}
                   </div>
 
                   {selectedToys.length === 0 ? (
-                    <div className="py-6 text-center text-slate-500 text-xs sm:text-sm italic">
-                      Tu carta todavía está vacía. <br />
-                      👇 <strong>Elige abajo tus juguetes favoritos</strong> y se añadirán automáticamente aquí.
+                    <div className="py-6 px-4 text-center rounded-xl bg-white/60 border border-amber-300/60 text-slate-600 text-xs sm:text-sm font-serif italic">
+                      ✨ Aún no has pegado ningún deseo en tu carta. <br />
+                      👇 <strong>Elige abajo tus juguetes favoritos de la revista</strong> y se pegarán automáticamente aquí con su sello mágico.
                     </div>
                   ) : (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                       {selectedToys.map((t, idx) => (
-                        <div key={t.id} className="flex items-center justify-between gap-2 bg-white p-2 rounded-xl border border-amber-300 shadow-xs">
+                        <div 
+                          key={t.id} 
+                          className="bg-white p-2.5 rounded-xl border border-amber-300 shadow-md flex items-center justify-between gap-2.5 relative group transform hover:-translate-y-0.5 transition-transform"
+                        >
+                          {/* Trozo de celo decorativo en la esquina */}
+                          <div className="absolute -top-1.5 left-4 w-8 h-3 bg-amber-200/70 border border-amber-300/80 -rotate-3 rounded-xs pointer-events-none" />
+
                           <div className="flex items-center gap-2.5 min-w-0">
-                            <div className="relative w-10 h-10 rounded-lg overflow-hidden shrink-0 bg-slate-50">
-                              <Image src={t.imageUrl} alt={t.shortTitle} fill unoptimized className="object-contain p-1" sizes="40px" />
+                            <div className="relative w-12 h-12 rounded-lg overflow-hidden shrink-0 bg-slate-50 border border-slate-100">
+                              <Image src={t.imageUrl} alt={t.shortTitle} fill unoptimized className="object-contain p-1" sizes="48px" />
                             </div>
-                            <div className="truncate">
-                              <span className="text-[10px] font-bold text-red-700 block">Deseo #{idx + 1}</span>
-                              <span className="text-xs font-bold text-slate-900 block truncate">{t.shortTitle}</span>
+                            <div className="min-w-0 flex-1">
+                              <span className="text-[10px] font-black text-red-700 uppercase tracking-wider block">
+                                Deseo #{idx + 1}
+                              </span>
+                              <span className="text-xs font-bold text-slate-900 truncate block">
+                                {t.shortTitle}
+                              </span>
                             </div>
                           </div>
+
                           <button
                             onClick={() => removeToy(t.id)}
-                            className="p-1 text-slate-400 hover:text-red-600 rounded-lg transition-colors cursor-pointer shrink-0"
-                            title="Quitar de mi carta"
+                            className="p-1.5 text-slate-400 hover:text-red-600 rounded-lg transition-colors cursor-pointer shrink-0"
+                            title="Quitar deseo de la carta"
+                            aria-label="Quitar deseo"
                           >
                             <X className="w-4 h-4" />
                           </button>
@@ -459,48 +507,75 @@ function CartaPapaNoelContent() {
                   )}
                 </div>
 
-                {/* BOTÓN GIGANTE DE ENVIAR AL POLO NORTE */}
-                <div className="text-center pt-2">
-                  <button
-                    onClick={handleSendLetter}
-                    disabled={selectedToys.length === 0}
-                    className={`w-full py-4 px-6 rounded-2xl font-black text-base sm:text-lg shadow-xl transition-all flex items-center justify-center gap-3 cursor-pointer ${
-                      selectedToys.length > 0
-                        ? 'bg-linear-to-r from-red-600 via-rose-600 to-emerald-600 hover:from-red-700 hover:to-emerald-700 text-white transform hover:scale-[1.02] shadow-red-500/25 ring-4 ring-amber-300/60'
-                        : 'bg-slate-300 text-slate-500 cursor-not-allowed'
-                    }`}
-                  >
-                    <Send className="w-5 h-5 animate-bounce" />
-                    <span>✉️ ¡Enviar mi carta al Polo Norte! 🚀🎅</span>
-                  </button>
-                  <span className="text-[11px] text-slate-500 block mt-2">
-                    {selectedToys.length === 0 
-                      ? '⚠️ Añade al menos 1 juguete para poder enviarla'
-                      : '¡El sobre volará directo a Laponia en cuanto pulses el botón!'}
-                  </span>
+                {/* Despedida manuscrita y promesa de galletas */}
+                <div className="text-base sm:text-lg text-slate-800 font-serif leading-[38px] space-y-3 pt-2">
+                  <p>
+                    Prometo dejarte en el salón un vaso de leche calentita con galletas, y unas zanahorias para Rodolfo y los renos.
+                  </p>
+                  <p className="font-semibold text-slate-900">
+                    ¡Buen viaje volando por el cielo en tu trineo!
+                  </p>
+                  
+                  {/* Firma del niño */}
+                  <div className="pt-2 flex items-center gap-2">
+                    <span className="text-base sm:text-lg font-serif">Con mucho cariño,</span>
+                    <span className="text-xl sm:text-2xl font-black font-serif text-red-900 underline decoration-wavy decoration-red-400">
+                      {childName.trim() || '________________'}
+                    </span>
+                    <span>✍️</span>
+                  </div>
+                </div>
+
+                {/* ============================================================ */}
+                {/* RANURA DE BUZÓN MÁGICO DEL POLO NORTE (BOTÓN DE ENVIAR)      */}
+                {/* ============================================================ */}
+                <div className="pt-6 text-center font-sans">
+                  <div className="p-3 bg-gradient-to-b from-[#b31b2c] to-[#7f111e] rounded-2xl shadow-xl border-2 border-amber-300">
+                    <button
+                      onClick={handleSendLetter}
+                      disabled={selectedToys.length === 0}
+                      className={`w-full py-4 px-6 rounded-xl font-black text-base sm:text-lg shadow-lg transition-all flex items-center justify-center gap-3 cursor-pointer ${
+                        selectedToys.length > 0
+                          ? 'bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 transform hover:scale-[1.01] active:scale-[0.99] ring-2 ring-white/50'
+                          : 'bg-slate-300 text-slate-500 cursor-not-allowed opacity-60'
+                      }`}
+                    >
+                      <span className="text-2xl animate-bounce">📮</span>
+                      <span>¡Echar mi carta al Buzón Mágico del Polo Norte!</span>
+                      <Send className="w-5 h-5 ml-1" />
+                    </button>
+                    <span className="text-xs text-amber-200/90 block mt-2 font-medium">
+                      {selectedToys.length === 0
+                        ? '⚠️ Elige al menos 1 juguete de abajo para poder echar tu carta'
+                        : '❄️ ¡Tu carta volará directa a Laponia en cuanto pulses el buzón!'}
+                    </span>
+                  </div>
                 </div>
 
               </div>
             </section>
 
             {/* ============================================================ */}
-            {/* EL CATÁLOGO MÁGICO DE JUGUETES                                */}
+            {/* LA GRAN REVISTA DE JUGUETES DE PAPÁ NOEL                     */}
             {/* ============================================================ */}
-            <section className="space-y-4 pt-4">
+            <section className="space-y-4 pt-6">
               <div className="text-center sm:text-left space-y-1">
-                <h2 className="text-xl sm:text-2xl font-black text-white flex items-center justify-center sm:justify-start gap-2">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-amber-300 text-xs font-bold">
+                  <span>📖 Revista Navideña de Juguetes</span>
+                </div>
+                <h2 className="text-2xl sm:text-3xl font-black text-white flex items-center justify-center sm:justify-start gap-2">
                   <span>🧸</span>
-                  <span>Elige tus Juguetes Favoritos</span>
+                  <span>Elige los Juguetes para tu Carta</span>
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-300">
-                  Haz clic en <strong>&ldquo;⭐ ¡Pedir este deseo!&rdquo;</strong> en los juguetes que más te gusten para ponerlos en tu carta:
+                  Explora el catálogo y pulsa en <strong>&ldquo;⭐ ¡Pedir este deseo!&rdquo;</strong> para pegar los juguetes que más te gusten en tu carta:
                 </p>
               </div>
 
               {/* Panel de Filtros y Búsqueda */}
               <div className="bg-white/5 backdrop-blur-md rounded-2xl p-4 border border-white/10 space-y-3.5">
                 
-                {/* 1. Categorías principales (100% visibles con flex-wrap) */}
+                {/* 1. Categorías principales con flex-wrap */}
                 <div>
                   <span className="text-[11px] font-black uppercase text-amber-300 block mb-2 tracking-wider">
                     Categorías de Juguetes:
@@ -513,7 +588,7 @@ function CartaPapaNoelContent() {
                         <button
                           key={cat.id}
                           onClick={() => setActiveCategory(cat.id)}
-                          className={`px-3.5 py-2 rounded-xl text-xs font-black transition-all cursor-pointer flex items-center gap-1.5 shadow-xs ${
+                          className={`px-3 py-1.5 rounded-xl text-xs font-black transition-all cursor-pointer flex items-center gap-1.5 shadow-xs ${
                             isCatActive
                               ? 'bg-amber-400 text-slate-950 shadow-md shadow-amber-400/20 scale-105 ring-2 ring-amber-300'
                               : 'bg-white/10 hover:bg-white/20 text-slate-200 border border-white/15'
@@ -562,7 +637,7 @@ function CartaPapaNoelContent() {
                       type="text"
                       value={searchToyQuery}
                       onChange={(e) => setSearchToyQuery(e.target.value)}
-                      placeholder="Buscar juguete (ej. Lego, Mario...)"
+                      placeholder="Buscar juguete (Lego, Mario...)"
                       className="w-full pl-8 pr-7 py-1.5 rounded-xl bg-white/10 border border-white/15 focus:border-amber-400 focus:outline-hidden text-xs text-white placeholder:text-slate-400"
                     />
                     {searchToyQuery && (
@@ -594,12 +669,12 @@ function CartaPapaNoelContent() {
                     }}
                     className="px-4 py-2 rounded-xl bg-amber-400 text-slate-950 font-black text-xs hover:bg-amber-300 transition-colors cursor-pointer"
                   >
-                    Restablecer todos los filtros (Ver 24 juguetes)
+                    Restablecer todos los filtros (Ver 120+ juguetes)
                   </button>
                 </div>
               )}
 
-              {/* Grid de Juguetes (Catálogo de Revista de Navidad) */}
+              {/* Grid de Juguetes (Revista de Juguetes) */}
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
                 {filteredToys.slice(0, visibleCount).map(toy => {
                   const isSelected = selectedToys.some(t => t.id === toy.id);
@@ -654,7 +729,7 @@ function CartaPapaNoelContent() {
                         {isSelected ? (
                           <>
                             <Check className="w-3.5 h-3.5" />
-                            <span>¡En tu carta!</span>
+                            <span>¡Pegado en tu carta!</span>
                           </>
                         ) : (
                           <>
@@ -668,7 +743,7 @@ function CartaPapaNoelContent() {
                 })}
               </div>
 
-              {/* Botón Cargar Más Juguetes de la Revista */}
+              {/* Botón Cargar Más Juguetes */}
               {visibleCount < filteredToys.length && (
                 <div className="text-center pt-6 space-y-2">
                   <button
@@ -682,6 +757,7 @@ function CartaPapaNoelContent() {
                   </span>
                 </div>
               )}
+
             </section>
           </>
         )}
@@ -693,7 +769,7 @@ function CartaPapaNoelContent() {
       {/* ============================================================ */}
       {isSending && (
         <div className="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="max-w-md w-full bg-linear-to-b from-red-900 to-slate-900 text-white rounded-3xl p-8 border-4 border-amber-400 text-center shadow-2xl space-y-6 animate-in zoom-in-95 duration-300">
+          <div className="max-w-md w-full bg-gradient-to-b from-red-900 via-rose-950 to-slate-950 text-white rounded-3xl p-8 border-4 border-amber-400 text-center shadow-2xl space-y-6 animate-in zoom-in-95 duration-300">
             
             {/* Animación de sobre volando */}
             <div className="relative w-32 h-32 mx-auto flex items-center justify-center">
@@ -704,14 +780,14 @@ function CartaPapaNoelContent() {
             </div>
 
             <div className="space-y-2">
-              <h3 className="text-xl sm:text-2xl font-black text-amber-300">
-                {sendStep === 1 && 'Sellando tu carta mágica... 🔴'}
-                {sendStep === 2 && '¡Volando hacia el Polo Norte! ❄️✨'}
+              <h3 className="text-xl sm:text-2xl font-black text-amber-300 font-serif">
+                {sendStep === 1 && 'Plegando tu carta y sellando con cera roja... 🔴'}
+                {sendStep === 2 && '¡Volando hacia el Polo Norte con Rodolfo! 🦌✨'}
                 {sendStep === 3 && '¡Entregada en el taller de Papá Noel! 🎁'}
               </h3>
               <p className="text-xs sm:text-sm text-slate-300">
-                {sendStep === 1 && 'Estampando el sello de cera roja oficial de Laponia...'}
-                {sendStep === 2 && 'Cruzando el cielo estrellado y las nubes con los renos...'}
+                {sendStep === 1 && 'Estampando el sello oficial de cera de Laponia...'}
+                {sendStep === 2 && 'Cruzando el cielo estrellado con los renos...'}
                 {sendStep === 3 && 'Papá Noel y los elfos acaban de abrir tu carta.'}
               </p>
             </div>
@@ -719,7 +795,7 @@ function CartaPapaNoelContent() {
             {/* Barra de progreso navideña */}
             <div className="w-full h-3 bg-white/20 rounded-full overflow-hidden p-0.5">
               <div
-                className="h-full bg-linear-to-r from-amber-400 to-emerald-400 rounded-full transition-all duration-700"
+                className="h-full bg-gradient-to-r from-amber-400 to-emerald-400 rounded-full transition-all duration-700"
                 style={{
                   width: sendStep === 1 ? '35%' : sendStep === 2 ? '75%' : '100%'
                 }}
