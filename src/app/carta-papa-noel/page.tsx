@@ -209,6 +209,19 @@ function CartaPapaNoelContent() {
             rgba(180, 83, 9, 0.14) 38px
           );
         }
+        .air-mail-envelope {
+          background: repeating-linear-gradient(
+            135deg,
+            #ed0001 0px,
+            #ed0001 16px,
+            #fcf9f2 16px,
+            #fcf9f2 26px,
+            #018bb2 26px,
+            #018bb2 42px,
+            #fcf9f2 42px,
+            #fcf9f2 52px
+          );
+        }
       `}</style>
 
       {/* Breadcrumb Navigation */}
@@ -243,8 +256,9 @@ function CartaPapaNoelContent() {
         {/* ESTADO: SI YA HA SIDO ENTREGADA EN EL POLO NORTE              */}
         {/* ============================================================ */}
         {isDelivered && (
-          <section className="bg-linear-to-b from-amber-50 to-orange-50 text-slate-900 rounded-3xl p-6 sm:p-10 border-4 border-amber-400 shadow-2xl relative overflow-hidden animate-in fade-in duration-500">
-            {/* North Pole Official Stamp Watermark */}
+          <div className="air-mail-envelope p-2.5 sm:p-3.5 rounded-3xl sm:rounded-4xl shadow-2xl animate-in fade-in duration-500">
+            <section className="bg-linear-to-b from-amber-50 to-orange-50 text-slate-900 rounded-2xl sm:rounded-3xl p-6 sm:p-10 relative overflow-hidden">
+              {/* North Pole Official Stamp Watermark */}
             <div className="absolute -top-6 -right-6 w-36 h-36 rounded-full border-4 border-dashed border-red-700/30 flex items-center justify-center rotate-12 pointer-events-none select-none">
               <span className="text-[11px] font-black uppercase text-red-800/40 text-center tracking-widest">
                 POLO NORTE EXPEDICIÓN<br />ENTREGADO • 2026
@@ -358,6 +372,7 @@ function CartaPapaNoelContent() {
 
             </div>
           </section>
+        </div>
         )}
 
         {/* ============================================================ */}
@@ -365,7 +380,9 @@ function CartaPapaNoelContent() {
         {/* ============================================================ */}
         {!isDelivered && (
           <>
-            <section className="ruled-paper text-slate-900 rounded-3xl p-6 sm:p-12 border-4 border-[#d4af37] shadow-2xl relative overflow-hidden">
+            {/* ENVOLTORIO CON BORDE CORREO AÉREO / AIR MAIL (ROJO, CREMA, AZUL) */}
+            <div className="air-mail-envelope p-2.5 sm:p-3.5 rounded-3xl sm:rounded-4xl shadow-2xl">
+              <section className="ruled-paper text-slate-900 rounded-2xl sm:rounded-3xl p-5 sm:p-12 relative overflow-hidden">
               
               {/* SELLO POSTAL OFICIAL DEL POLO NORTE (ESQUINA SUPERIOR DERECHA) */}
               <div className="absolute top-4 right-4 sm:top-6 sm:right-6">
@@ -545,6 +562,7 @@ function CartaPapaNoelContent() {
 
               </div>
             </section>
+          </div>
 
             {/* ============================================================ */}
             {/* LA GRAN REVISTA DE JUGUETES DE PAPÁ NOEL                     */}
