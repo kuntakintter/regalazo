@@ -380,9 +380,21 @@ function CartaPapaNoelContent() {
         {/* ============================================================ */}
         {!isDelivered && (
           <>
-            {/* ENVOLTORIO CON BORDE CORREO AÉREO / AIR MAIL (ROJO, CREMA, AZUL) */}
-            <div className="air-mail-envelope p-2.5 sm:p-3.5 rounded-3xl sm:rounded-4xl shadow-2xl">
-              <section className="ruled-paper text-slate-900 rounded-2xl sm:rounded-3xl p-5 sm:p-12 relative overflow-hidden">
+            <div className="relative">
+              {/* Trineo animado de Papá Noel flotando en el cielo a la derecha */}
+              <div className="hidden lg:block absolute left-[calc(100%+1.5rem)] xl:left-[calc(100%+2.5rem)] top-2 select-none pointer-events-none z-20">
+                <img
+                  src="/images/trineo-navidad-animado.gif"
+                  alt="Trineo de Navidad animado"
+                  width={200}
+                  height={250}
+                  className="w-48 xl:w-56 h-auto drop-shadow-[0_20px_35px_rgba(0,0,0,0.85)] filter brightness-105"
+                />
+              </div>
+
+              {/* ENVOLTORIO CON BORDE CORREO AÉREO / AIR MAIL (ROJO, CREMA, AZUL) */}
+              <div className="air-mail-envelope p-2.5 sm:p-3.5 rounded-3xl sm:rounded-4xl shadow-2xl">
+                <section className="ruled-paper text-slate-900 rounded-2xl sm:rounded-3xl p-5 sm:p-12 relative overflow-hidden">
               
               {/* SELLO POSTAL OFICIAL DEL POLO NORTE (ESQUINA SUPERIOR DERECHA) */}
               <div className="absolute top-4 right-4 sm:top-6 sm:right-6">
@@ -563,6 +575,7 @@ function CartaPapaNoelContent() {
               </div>
             </section>
           </div>
+        </div>
 
             {/* ============================================================ */}
             {/* LA GRAN REVISTA DE JUGUETES DE PAPÁ NOEL                     */}
