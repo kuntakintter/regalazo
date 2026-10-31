@@ -24,12 +24,12 @@ export const CHRISTMAS_CATEGORIES = [
 ];
 
 export const CHRISTMAS_AGE_RANGES = [
-  { id: 'all', label: 'Cualquier edad' },
-  { id: '0-3', label: '👶 0 a 3 Años (Bebés)' },
-  { id: '4-6', label: '👦 4 a 6 Años (Infantil)' },
-  { id: '7-9', label: '👧 7 a 9 Años (Primaria)' },
-  { id: '10-12', label: '🚀 10 a 12 Años (Juvenil)' },
-  { id: '13+', label: '🎮 +13 Años (Teens & Gaming)' },
+  { id: 'all', label: '🌟 Todas las edades' },
+  { id: '0-3', label: '🍼 0 a 3 añitos' },
+  { id: '4-6', label: '🧸 4 a 6 años' },
+  { id: '7-9', label: '🚀 7 a 9 años' },
+  { id: '10-12', label: '🎯 10 a 12 años' },
+  { id: '13+', label: '🎮 Más de 13 años' },
 ];
 
 export const CHRISTMAS_TOYS: ChristmasToy[] = [

@@ -563,15 +563,51 @@ function CartaPapaNoelContent() {
                 </p>
               </div>
 
-              {/* Panel de Filtros y Búsqueda */}
-              <div className="bg-white/5 backdrop-blur-md rounded-2xl p-4 border border-white/10 space-y-3.5">
+              {/* Panel de Filtros y Búsqueda con diseño infantil navideño */}
+              <div className="bg-gradient-to-b from-slate-900/95 via-red-950/30 to-slate-900/95 rounded-3xl p-5 sm:p-7 border-2 border-amber-400/40 shadow-2xl space-y-5">
                 
-                {/* 1. Categorías principales con flex-wrap */}
-                <div>
-                  <span className="text-[11px] font-black uppercase text-amber-300 block mb-2 tracking-wider">
-                    Categorías de Juguetes:
-                  </span>
-                  <div className="flex flex-wrap items-center gap-2">
+                {/* 1. Filtro por Edad (Infantil, visual y sin cortes) */}
+                <div className="space-y-2.5">
+                  <div className="flex items-center gap-2">
+                    <span className="text-lg">🎈</span>
+                    <span className="text-xs sm:text-sm font-black uppercase text-amber-300 tracking-wider">
+                      ¿Cuántos años tienes?
+                    </span>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
+                    {CHRISTMAS_AGE_RANGES.map(age => {
+                      const isAgeActive = activeAge === age.id;
+                      return (
+                        <button
+                          key={age.id}
+                          onClick={() => setActiveAge(age.id)}
+                          className={`px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-bold transition-all duration-150 cursor-pointer flex items-center gap-1.5 ${
+                            isAgeActive
+                              ? 'bg-gradient-to-r from-emerald-500 to-teal-400 text-white shadow-lg shadow-emerald-500/25 border-2 border-white scale-105 ring-2 ring-emerald-300 font-black'
+                              : 'bg-white/10 hover:bg-white/20 text-slate-100 border-2 border-white/15 hover:border-amber-300/60 hover:scale-102'
+                          }`}
+                        >
+                          {age.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* 2. Categorías de Juguetes estilo pegatinas divertidas */}
+                <div className="pt-3 border-t border-white/10 space-y-2.5">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="text-lg">🎁</span>
+                      <span className="text-xs sm:text-sm font-black uppercase text-amber-300 tracking-wider">
+                        ¿Qué juguetes te gustan más?
+                      </span>
+                    </div>
+                    <span className="text-[11px] font-bold text-slate-300 hidden sm:inline-block">
+                      {filteredToys.length} juguetes encontrados
+                    </span>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
                     {CHRISTMAS_CATEGORIES.map(cat => {
                       const isCatActive = activeCategory === cat.id;
                       const count = CHRISTMAS_TOYS.filter(t => cat.id === 'all' || t.category === cat.id).length;
@@ -579,15 +615,15 @@ function CartaPapaNoelContent() {
                         <button
                           key={cat.id}
                           onClick={() => setActiveCategory(cat.id)}
-                          className={`px-3 py-1.5 rounded-xl text-xs font-black transition-all cursor-pointer flex items-center gap-1.5 shadow-xs ${
+                          className={`px-3.5 py-2 rounded-2xl text-xs sm:text-sm transition-all duration-150 cursor-pointer flex items-center gap-2 ${
                             isCatActive
-                              ? 'bg-amber-400 text-slate-950 shadow-md shadow-amber-400/20 scale-105 ring-2 ring-amber-300'
-                              : 'bg-white/10 hover:bg-white/20 text-slate-200 border border-white/15'
+                              ? 'bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-400 text-slate-950 font-black shadow-lg shadow-amber-400/25 border-2 border-white scale-105 ring-2 ring-amber-300'
+                              : 'bg-white/10 hover:bg-white/20 text-slate-100 border-2 border-white/15 hover:border-amber-300/60 font-bold hover:scale-102'
                           }`}
                         >
                           <span>{cat.label}</span>
-                          <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
-                            isCatActive ? 'bg-black/15 text-slate-950' : 'bg-white/15 text-slate-300'
+                          <span className={`text-[10px] px-2 py-0.5 rounded-full font-black ${
+                            isCatActive ? 'bg-slate-950/20 text-slate-950' : 'bg-white/20 text-white'
                           }`}>
                             {count}
                           </span>
@@ -597,50 +633,39 @@ function CartaPapaNoelContent() {
                   </div>
                 </div>
 
-                {/* 2. Filtro por Edad y Buscador rápido */}
-                <div className="pt-2 border-t border-white/10 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-                  
-                  {/* Edades */}
-                  <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
-                    <span className="text-[11px] font-bold text-slate-400 mr-1 shrink-0">Edad:</span>
-                    {CHRISTMAS_AGE_RANGES.map(age => {
-                      const isAgeActive = activeAge === age.id;
-                      return (
-                        <button
-                          key={age.id}
-                          onClick={() => setActiveAge(age.id)}
-                          className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
-                            isAgeActive
-                              ? 'bg-emerald-500 text-white shadow-xs'
-                              : 'bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10'
-                          }`}
-                        >
-                          {age.label}
-                        </button>
-                      );
-                    })}
-                  </div>
-
-                  {/* Buscador de juguetes */}
-                  <div className="relative w-full sm:w-64 shrink-0">
-                    <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                {/* 3. Buscador amigable y rápido */}
+                <div className="pt-3 border-t border-white/10 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                  <div className="relative flex-1 max-w-md">
+                    <Search className="w-4 h-4 text-amber-300 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                     <input
                       type="text"
                       value={searchToyQuery}
                       onChange={(e) => setSearchToyQuery(e.target.value)}
-                      placeholder="Buscar juguete (Lego, Mario...)"
-                      className="w-full pl-8 pr-7 py-1.5 rounded-xl bg-white/10 border border-white/15 focus:border-amber-400 focus:outline-hidden text-xs text-white placeholder:text-slate-400"
+                      placeholder="🔍 Buscar juguete específico (Lego, Pokémon, Mario, Barbie...)"
+                      className="w-full pl-10 pr-9 py-2.5 rounded-2xl bg-white/10 border-2 border-white/15 focus:border-amber-400 focus:bg-white/15 focus:outline-hidden text-xs sm:text-sm text-white placeholder:text-slate-300 shadow-inner"
                     />
                     {searchToyQuery && (
                       <button
                         onClick={() => setSearchToyQuery('')}
-                        className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-300 hover:text-white p-1"
+                        title="Borrar búsqueda"
                       >
-                        <X className="w-3 h-3" />
+                        <X className="w-3.5 h-3.5" />
                       </button>
                     )}
                   </div>
-
+                  {(activeCategory !== 'all' || activeAge !== 'all' || searchToyQuery) && (
+                    <button
+                      onClick={() => {
+                        setActiveCategory('all');
+                        setActiveAge('all');
+                        setSearchToyQuery('');
+                      }}
+                      className="px-3.5 py-2 text-xs font-bold text-amber-300 hover:text-amber-200 underline cursor-pointer text-center sm:text-right"
+                    >
+                      🔄 Ver todos los juguetes
+                    </button>
+                  )}
                 </div>
 
               </div>
