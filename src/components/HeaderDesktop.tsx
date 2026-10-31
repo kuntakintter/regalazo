@@ -501,6 +501,14 @@ export default function HeaderDesktop({
               <span>Navidad & Reyes</span>
             </Link>
 
+            <Link
+              href="/carta-papa-noel"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-linear-to-r from-red-600/30 to-amber-500/30 hover:from-red-600/40 hover:to-amber-500/40 border border-amber-400/50 text-amber-200 hover:text-white font-black text-xs tracking-wide transition-all shadow-md whitespace-nowrap shrink-0 hover:scale-105 active:scale-98 ring-1 ring-amber-400/30"
+            >
+              <span>🎅</span>
+              <span>Carta a Papá Noel</span>
+            </Link>
+
           </div>
         </div>
       </div>

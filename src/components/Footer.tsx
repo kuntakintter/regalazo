@@ -76,6 +76,8 @@ export default function Footer({ currentTheme }: FooterProps) {
               Hubs Especializados
             </span>
             <ul className="space-y-2 text-xs opacity-80">
+              <li><Link href="/carta-papa-noel" className="hover:underline text-amber-700 font-bold">🎅 Carta a Papá Noel & Reyes</Link></li>
+              <li><Link href="/navidad" className="hover:underline">🎄 Especial Navidad & Reyes</Link></li>
               <li><Link href="/motoristas" className="hover:underline">🏍️ Accesorios para Motoristas</Link></li>
               <li><Link href="/automovil" className="hover:underline">🚗 Gadgets para Automóvil</Link></li>
               <li><Link href="/gaming" className="hover:underline">🎮 Periféricos Gaming & Setup</Link></li>

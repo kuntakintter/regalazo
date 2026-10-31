@@ -427,6 +427,14 @@ export default function HeaderMobile({
             <span>🎄</span>
             <span>Navidad</span>
           </Link>
+
+          <Link
+            href="/carta-papa-noel"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-linear-to-r from-red-600/30 to-amber-500/30 border border-amber-400/50 text-amber-200 font-black text-xs whitespace-nowrap shrink-0 shadow-xs"
+          >
+            <span>🎅</span>
+            <span>Carta Papá Noel</span>
+          </Link>
         </div>
       </div>
     </div>
