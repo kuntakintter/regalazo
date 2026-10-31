@@ -39,7 +39,13 @@ function CartaPapaNoelContent() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [activeAge, setActiveAge] = useState('all');
   const [searchToyQuery, setSearchToyQuery] = useState('');
+  const [visibleCount, setVisibleCount] = useState(24);
   const [isSending, setIsSending] = useState(false);
+
+  // Reset pagination when filter changes
+  useEffect(() => {
+    setVisibleCount(24);
+  }, [activeCategory, activeAge, searchToyQuery]);
   const [sendStep, setSendStep] = useState(0); // 0 = idle, 1 = folding, 2 = flying, 3 = delivered
   const [isDelivered, setIsDelivered] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
@@ -593,9 +599,9 @@ function CartaPapaNoelContent() {
                 </div>
               )}
 
-              {/* Grid de Juguetes */}
+              {/* Grid de Juguetes (Catálogo de Revista de Navidad) */}
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-                {filteredToys.map(toy => {
+                {filteredToys.slice(0, visibleCount).map(toy => {
                   const isSelected = selectedToys.some(t => t.id === toy.id);
                   return (
                     <div
@@ -661,6 +667,21 @@ function CartaPapaNoelContent() {
                   );
                 })}
               </div>
+
+              {/* Botón Cargar Más Juguetes de la Revista */}
+              {visibleCount < filteredToys.length && (
+                <div className="text-center pt-6 space-y-2">
+                  <button
+                    onClick={() => setVisibleCount(prev => prev + 24)}
+                    className="py-3.5 px-8 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-sm shadow-xl hover:scale-105 transition-all cursor-pointer ring-4 ring-amber-300/30"
+                  >
+                    🎁 Ver más juguetes del catálogo (+{Math.min(24, filteredToys.length - visibleCount)} más)
+                  </button>
+                  <span className="text-xs text-slate-400 block">
+                    Mostrando {Math.min(visibleCount, filteredToys.length)} de {filteredToys.length} juguetes disponibles
+                  </span>
+                </div>
+              )}
             </section>
           </>
         )}
