@@ -171,7 +171,10 @@ function CartaPapaNoelContent() {
   // Filter toys by category, age and text search
   const filteredToys = CHRISTMAS_TOYS.filter(t => {
     const matchCat = activeCategory === 'all' || t.category === activeCategory;
-    const matchAge = activeAge === 'all' || t.ageRange === activeAge || t.ageRange === 'all';
+    const matchAge = activeAge === 'all' || 
+      (Array.isArray(t.ages) && t.ages.includes(activeAge as any)) ||
+      t.ageRange === activeAge || 
+      t.ageRange === 'all';
     const query = searchToyQuery.trim().toLowerCase();
     const matchQuery = !query || 
       t.title.toLowerCase().includes(query) ||
@@ -627,15 +630,10 @@ function CartaPapaNoelContent() {
 
                 {/* 2. Categorías de Juguetes estilo pegatinas divertidas */}
                 <div className="pt-3 border-t border-white/10 space-y-2.5">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <span className="text-lg">🎁</span>
-                      <span className="text-xs sm:text-sm font-black uppercase text-amber-300 tracking-wider">
-                        ¿Qué juguetes te gustan más?
-                      </span>
-                    </div>
-                    <span className="text-[11px] font-bold text-slate-300 hidden sm:inline-block">
-                      {filteredToys.length} juguetes encontrados
+                  <div className="flex items-center gap-2">
+                    <span className="text-lg">🎁</span>
+                    <span className="text-xs sm:text-sm font-black uppercase text-amber-300 tracking-wider">
+                      ¿Qué juguetes te gustan más?
                     </span>
                   </div>
                   <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
@@ -716,7 +714,7 @@ function CartaPapaNoelContent() {
                     }}
                     className="px-4 py-2 rounded-xl bg-amber-400 text-slate-950 font-black text-xs hover:bg-amber-300 transition-colors cursor-pointer"
                   >
-                    Restablecer todos los filtros (Ver 120+ juguetes)
+                    Restablecer todos los filtros (Ver 300+ juguetes)
                   </button>
                 </div>
               )}
