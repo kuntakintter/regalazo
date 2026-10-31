@@ -2,7 +2,7 @@ export interface ChristmasToy {
   id: string;
   title: string;
   shortTitle: string;
-  category: 'lego' | 'coches' | 'peluches' | 'gaming' | 'juegos' | 'creatividad' | 'cuentos' | 'aire-libre' | 'bebes';
+  category: 'lego' | 'coches' | 'peluches' | 'gaming' | 'juegos' | 'creatividad' | 'cuentos' | 'deportes' | 'bebes' | 'sobre-ruedas' | 'seguridad';
   categoryLabel: string;
   ageRange?: '0-3' | '4-6' | '7-9' | '10-12' | '13+' | 'all';
   ages: ('0-3' | '4-6' | '7-9' | '10-12' | '13+')[];
@@ -13,6 +13,8 @@ export interface ChristmasToy {
 
 export const CHRISTMAS_CATEGORIES = [
   { id: 'all', label: '🌟 Todos los Juguetes', icon: '🌟' },
+  { id: 'sobre-ruedas', label: '🏍️ Sobre Ruedas & Motor', icon: '🏍️' },
+  { id: 'seguridad', label: '🛡️ Cascos & Seguridad', icon: '🛡️' },
   { id: 'lego', label: '🧱 LEGO & Bloques', icon: '🧱' },
   { id: 'coches', label: '🏎️ Coches & Pistas', icon: '🏎️' },
   { id: 'peluches', label: '🧸 Muñecas & Peluches', icon: '🧸' },
@@ -20,7 +22,7 @@ export const CHRISTMAS_CATEGORIES = [
   { id: 'juegos', label: '🎲 Juegos de Mesa', icon: '🎲' },
   { id: 'creatividad', label: '🎨 Arte & Dibujo', icon: '🎨' },
   { id: 'cuentos', label: '📚 Cuentos & Cómics', icon: '📚' },
-  { id: 'aire-libre', label: '🚲 Bicis & Patinetes', icon: '🚲' },
+  { id: 'deportes', label: '⚽ Deportes & Aire Libre', icon: '⚽' },
   { id: 'bebes', label: '👶 Bebés & Montessori', icon: '👶' },
 ];
 
@@ -3483,8 +3485,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-chicco-first-bike-roja",
     "title": "Chicco First Bike - Bicicleta de Equilibrio sin Pedales Ultraligera de 2 a 5 Años",
     "shortTitle": "Chicco First Bike sin Pedales",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "0-3",
       "4-6"
@@ -3497,8 +3499,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-besrey-triciclo-5en1",
     "title": "Besrey - Triciclo 5 en 1 para Bebés Evolutivo con Barra de Empuje Parental",
     "shortTitle": "Besrey Triciclo Evolutivo 5en1",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "0-3",
       "4-6"
@@ -3511,8 +3513,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-kinderkraft-triciclo-aveo",
     "title": "Kinderkraft Aveo - Triciclo Plegable con Asiento Giratorio y Capota Parasol",
     "shortTitle": "Triciclo Plegable Kinderkraft Aveo",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "0-3",
       "4-6"
@@ -3525,8 +3527,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-patinete-micro-maxi-deluxe",
     "title": "Micro Maxi Deluxe LED - Patinete Infantil con 3 Ruedas que se Iluminan al Rodar",
     "shortTitle": "Micro Maxi Deluxe 3 Ruedas LED",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "4-6",
       "7-9"
@@ -3539,8 +3541,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-patinete-bopster-plegable",
     "title": "Bopster - Patinete Plegable de 2 Ruedas para Niños con Freno Trasero",
     "shortTitle": "Bopster Patinete 2 Ruedas",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "4-6",
       "7-9",
@@ -3554,8 +3556,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-casco-infantil-luz-led",
     "title": "Casco de Bicicleta y Patinete Infantil con Luz LED de Seguridad Recargable USB",
     "shortTitle": "Casco Infantil con Luz LED",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "0-3",
       "4-6",
@@ -3570,8 +3572,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-porteria-futbol-plegable",
     "title": "Set de 2 Porterías de Fútbol Plegables Pop-Up para Jardín con Balón y Clavijas",
     "shortTitle": "Set 2 Porterías Fútbol Pop-Up",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "4-6",
       "7-9",
@@ -3585,8 +3587,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-patinete-acrobatico-freestyle",
     "title": "Patinete Freestyle Acrobático Reforzado con Ruedas de Aluminio y Freno de Acero",
     "shortTitle": "Patinete Freestyle Acrobático",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "7-9",
       "10-12",
@@ -3600,8 +3602,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-monopatin-skateboard-arce",
     "title": "Skateboard Completo de 31 Pulgadas de Madera de Arce Canadiense con Ruedas PU",
     "shortTitle": "Skateboard Completo 31 Pulgadas",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "7-9",
       "10-12",
@@ -3615,8 +3617,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-patines-linea-ajustables",
     "title": "Patines en Línea Infantiles Ajustables en 4 Tallas con 8 Ruedas Luminosas LED",
     "shortTitle": "Patines en Línea 4 Tallas LED",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "7-9",
       "10-12",
@@ -3630,8 +3632,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-canasta-baloncesto-puerta",
     "title": "Mini Canasta de Baloncesto para Puerta y Pared con Marcador Electrónico y 3 Pelotas",
     "shortTitle": "Canasta Baloncesto con Marcador",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "7-9",
       "10-12",
@@ -3645,8 +3647,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-diana-dardos-electronica",
     "title": "Diana Electrónica Digital de Dardos Seguros con 6 Dardos de Punta Blanda",
     "shortTitle": "Diana Electrónica Punta Blanda",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "7-9",
       "10-12",
@@ -3660,8 +3662,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-telescopio-astronomico",
     "title": "Telescopio Astronómico Refractor 70mm con Trípode y Adaptador para Móvil",
     "shortTitle": "Telescopio Astronómico 70mm",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "7-9",
       "10-12",
@@ -3675,8 +3677,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-balon-futbol-adidas-champions",
     "title": "Adidas - Balón de Fútbol Oficial UCL League Champions League Talla 5",
     "shortTitle": "Balón Fútbol Champions League",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "7-9",
       "10-12",
@@ -3690,8 +3692,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-balon-baloncesto-wilson",
     "title": "Wilson Evolution - Balón de Baloncesto Oficial Grip de Cuero Compuesto Talla 7",
     "shortTitle": "Balón Baloncesto Wilson Evolution",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "7-9",
       "10-12",
@@ -3705,8 +3707,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-guantes-portero-futbol",
     "title": "Guantes de Portero de Fútbol Profesionales con Varillas Antilesión y Látex de Agarre",
     "shortTitle": "Guantes Portero Fútbol con Férulas",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "7-9",
       "10-12",
@@ -3720,8 +3722,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-patinete-electrico-xiaomi",
     "title": "Xiaomi Electric Scooter 4 Lite - Patinete Eléctrico 300W y 20 km de Autonomía",
     "shortTitle": "Patinete Eléctrico Xiaomi 4 Lite",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "10-12",
       "13+"
@@ -3734,8 +3736,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-patinete-electrico-cecotec",
     "title": "Cecotec Bongo Serie A - Patinete Eléctrico con Batería Extraíble y Ruedas Tubeless",
     "shortTitle": "Patinete Eléctrico Cecotec Bongo",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "10-12",
       "13+"
@@ -3748,8 +3750,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-bici-montana-26",
     "title": "Bicicleta de Montaña MTB de 26 Pulgadas con Suspensión Delantera y 21 Velocidades",
     "shortTitle": "Bicicleta Montaña MTB 26 Pulgadas",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "10-12",
       "13+"
@@ -3762,8 +3764,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-pala-padel-carbono",
     "title": "Pala de Pádel de Fibra de Carbono con Núcleo Eva Soft, Funda Térmica y 3 Bolas",
     "shortTitle": "Pala de Pádel Carbono Pro",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "10-12",
       "13+"
@@ -3776,8 +3778,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-saco-boxeo-guantes",
     "title": "Saco de Boxeo Pesado de 100 cm con Cadena Giratoria y Guantes de Boxeo 12oz",
     "shortTitle": "Saco de Boxeo con Guantes 1m",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "10-12",
       "13+"
@@ -3790,8 +3792,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-mesa-ping-pong-plegable",
     "title": "Mesa de Ping Pong Plegable de Interior con Red, 2 Palas y 3 Pelotas Oficiales",
     "shortTitle": "Mesa de Ping Pong Plegable",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "7-9",
       "10-12",
@@ -3805,8 +3807,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-gafas-snorkel-subacuatica",
     "title": "Máscara de Snorkel Visión Panorámica 180 Grados Antivaho con Soporte GoPro",
     "shortTitle": "Máscara Snorkel Panorámica 180º",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "7-9",
       "10-12",
@@ -3820,8 +3822,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-mochila-deporte-bolsa",
     "title": "Bolsa de Deporte Gimnasio con Compartimento Zapatero Impermeable Independiente",
     "shortTitle": "Bolsa de Deporte con Zapatero",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "10-12",
       "13+"
@@ -3834,8 +3836,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-red-badminton-portatil",
     "title": "Set de Bádminton con Red Portátil Autoportante de 3m, 4 Raquetas y Volantes",
     "shortTitle": "Set de Bádminton con Red 3m",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "7-9",
       "10-12",
@@ -3849,8 +3851,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-frisbee-profesional-aerobie",
     "title": "Aerobie Pro Ring - Disco Volador Aerodinámico que Vuela Más de 100 Metros",
     "shortTitle": "Aerobie Pro Disco Volador",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "7-9",
       "10-12",
@@ -3864,8 +3866,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-cometa-acrobatica-dos-hilos",
     "title": "Cometa Acrobática de Dos Hilos de Doble Control Resistente al Viento",
     "shortTitle": "Cometa Acrobática 2 Hilos",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "7-9",
       "10-12",
@@ -3879,8 +3881,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-reloj-deportivo-50m",
     "title": "Reloj Digital Deportivo Resistente al Agua 50m con Cronómetro y Alarma",
     "shortTitle": "Reloj Deportivo Sumergible 50m",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "7-9",
       "10-12",
@@ -3894,8 +3896,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-gafas-sol-polarizadas-uv",
     "title": "Gafas de Sol Polarizadas Estilo Aviador Retro con Protección UV400",
     "shortTitle": "Gafas de Sol Polarizadas UV400",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "10-12",
       "13+"
@@ -3908,8 +3910,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-gorra-deportiva-ajustable",
     "title": "Gorra de Béisbol Deportiva Transpirable con Visera Curva y Protección Solar",
     "shortTitle": "Gorra Deportiva Ajustable UV",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "7-9",
       "10-12",
@@ -3923,8 +3925,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-trampolin-cama-elastica",
     "title": "Cama Elástica Infantil para Interior y Jardín con Red de Seguridad y Barra",
     "shortTitle": "Cama Elástica Trampolín con Red",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "0-3",
       "4-6",
@@ -3938,8 +3940,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-trineo-nieve-plastico",
     "title": "Trineo de Nieve Tradicional con Frenos de Mano y Cuerda de Arrastre",
     "shortTitle": "Trineo de Nieve con Frenos",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "4-6",
       "7-9",
@@ -3954,8 +3956,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-cuerda-saltar-aluminio",
     "title": "Comba de Saltar de Velocidad con Cable de Acero y Rodamientos de Giro Rápido",
     "shortTitle": "Comba de Salto Rápido Speed",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "7-9",
       "10-12",
@@ -3969,8 +3971,8 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "id": "toy-tienda-campana-camping",
     "title": "Tienda de Campaña Pop-Up Instantánea para 2 Personas Impermeable para Jardín y Camping",
     "shortTitle": "Tienda de Campaña Pop-Up 2p",
-    "category": "aire-libre",
-    "categoryLabel": "Bicis & Patinetes",
+    "category": "deportes",
+    "categoryLabel": "Deportes & Aire Libre",
     "ages": [
       "4-6",
       "7-9",
@@ -4457,6 +4459,1035 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     "imageUrl": "/images/products/1012-virus-1.jpg",
     "asin": "B0C8G5W27",
     "badge": "Concentración Antiestrés"
+  },
+  {
+    "id": "toy-coche-electrico-lamborghini-blanco",
+    "title": "AIYAPLAY - Coche Eléctrico Infantil Lamborghini Urus 12V con Mando Parental, Luces LED y Música (Blanco)",
+    "shortTitle": "Lamborghini Urus 12V con Mando",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "0-3",
+      "4-6",
+      "7-9"
+    ],
+    "imageUrl": "/images/products/46-carrera-mario-1.jpg",
+    "asin": "B0C5C7Z7X1",
+    "badge": "Coche de Lujo Oficial"
+  },
+  {
+    "id": "toy-coche-electrico-lamborghini-azul",
+    "title": "AIYAPLAY - Coche Eléctrico para Niños Lamborghini Sián 12V con Puertas de Tijera y Control Remoto (Azul)",
+    "shortTitle": "Lamborghini Sián 12V Puertas Tijera",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "0-3",
+      "4-6",
+      "7-9"
+    ],
+    "imageUrl": "/images/products/46-carrera-mario-2.jpg",
+    "asin": "B0C5C7Z7X2",
+    "badge": "Puertas de Tijera"
+  },
+  {
+    "id": "toy-coche-electrico-mercedes-amg-verde",
+    "title": "AIYAPLAY - Coche Eléctrico Mercedes-AMG GT 12V con Asiento Cuero, Luces y Mando a Distancia (Verde)",
+    "shortTitle": "Mercedes-AMG GT 12V Verde",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "0-3",
+      "4-6",
+      "7-9"
+    ],
+    "imageUrl": "/images/products/46-carrera-mario-3.jpg",
+    "asin": "B0C5C7Z7X3",
+    "badge": "Mercedes Oficial"
+  },
+  {
+    "id": "toy-coche-electrico-buggy-4x4-biplaza",
+    "title": "Coche Eléctrico Infantil Buggy 4x4 Biplaza 24V Todoterreno con Amortiguadores y Ruedas Goma",
+    "shortTitle": "Buggy 4x4 Biplaza 24V Todoterreno",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "4-6",
+      "7-9",
+      "10-12"
+    ],
+    "imageUrl": "/images/products/79-monster-truck-rc-gigante-1.jpg",
+    "asin": "B08N5WRWNW",
+    "badge": "2 Plazas & 4x4"
+  },
+  {
+    "id": "toy-coche-electrico-jeep-safari",
+    "title": "Jeep Safari Coche Eléctrico para Niños 12V Todoterreno con Tracción Doble y Maletero",
+    "shortTitle": "Jeep Safari Todoterreno 12V",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "0-3",
+      "4-6",
+      "7-9"
+    ],
+    "imageUrl": "/images/products/79-coche-rc-exost-1.jpg",
+    "asin": "B09HYG88ZI",
+    "badge": "Aventura Safari"
+  },
+  {
+    "id": "toy-coche-electrico-audi-ttrs-rojo",
+    "title": "Audi TT RS - Coche Eléctrico Infantil 12V Oficial con Sonido de Arranque y Mando Parental",
+    "shortTitle": "Audi TT RS 12V con Mando",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "0-3",
+      "4-6",
+      "7-9"
+    ],
+    "imageUrl": "/images/products/46-hot-wheels-choques-1.jpg",
+    "asin": "B079KHHP8A",
+    "badge": "Audi Oficial"
+  },
+  {
+    "id": "toy-coche-electrico-bmw-m5",
+    "title": "BMW M5 - Coche Deportivo Eléctrico para Niños 12V con Cinturón de Seguridad y Faros LED",
+    "shortTitle": "BMW M5 Deportivo 12V con Mando",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "0-3",
+      "4-6",
+      "7-9"
+    ],
+    "imageUrl": "/images/products/79-carrera-go-dtm-speed-1.jpg",
+    "asin": "B08HYZ87X3",
+    "badge": "BMW Deportivo"
+  },
+  {
+    "id": "toy-tractor-electrico-remolque",
+    "title": "Tractor Eléctrico Infantil 12V con Remolque Desmontable, Faros y Bocina para Campo",
+    "shortTitle": "Tractor Eléctrico con Remolque",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "0-3",
+      "4-6",
+      "7-9"
+    ],
+    "imageUrl": "/images/products/13-clemmy-bloques-1.jpg",
+    "asin": "B07K66H6YE",
+    "badge": "Con Remolque"
+  },
+  {
+    "id": "toy-moto-electrica-vespa-retro",
+    "title": "Vespa Clásica - Moto Eléctrica Infantil 12V con Ruedines de Apoyo, Maletero y Luces",
+    "shortTitle": "Moto Vespa Clásica 12V Ruedines",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "0-3",
+      "4-6",
+      "7-9"
+    ],
+    "imageUrl": "/images/products/13-correpasillos-vintage-retro-1.jpg",
+    "asin": "B002KCV7XD",
+    "badge": "Vespa Italiana"
+  },
+  {
+    "id": "toy-moto-electrica-policia-luces",
+    "title": "Moto de Policía Eléctrica Infantil 12V con Sirena Real, Luces Azules y Megáfono",
+    "shortTitle": "Moto Policía Eléctrica 12V Sirena",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "0-3",
+      "4-6",
+      "7-9"
+    ],
+    "imageUrl": "/images/products/79-coche-rc-exost-2.jpg",
+    "asin": "B0855G6H81",
+    "badge": "Sirena Policial"
+  },
+  {
+    "id": "toy-minimoto-cross-49cc-azul",
+    "title": "Minimoto de Gasolina para Niños Cross 49cc 2 Tiempos con Freno de Disco y Neumáticos de Tacos (Azul)",
+    "shortTitle": "Minimoto Cross 49cc 2 Tiempos Azul",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/46-bopster-patinete-1.jpg",
+    "asin": "B07N3821TG",
+    "badge": "Motor Gasolina 49cc"
+  },
+  {
+    "id": "toy-minimoto-cross-49cc-roja",
+    "title": "Minimoto Cross Infantil de Gasolina 49cc 709 con 4.5 Caballos y Chasis Reforzado (Roja)",
+    "shortTitle": "Minimoto Cross 49cc 4.5 CV Roja",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/46-bopster-patinete-2.jpg",
+    "asin": "B07N3821TH",
+    "badge": "Potencia 4.5 Caballos"
+  },
+  {
+    "id": "toy-minimoto-cobra-carretera-azul",
+    "title": "Minimoto de Gasolina Pocket Bike COBRA 49cc 2 Tiempos Estilo MotoGP de Circuito (Azul)",
+    "shortTitle": "Pocket Bike COBRA 49cc Circuito",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/46-bopster-patinete-3.jpg",
+    "asin": "B08R92V7PK",
+    "badge": "Pocket Bike Asfalto"
+  },
+  {
+    "id": "toy-minimoto-cobra-carretera-roja",
+    "title": "Minimoto de Carreras Pocket Bike 49cc con Carenado Aerodinámico y Caballete (Roja)",
+    "shortTitle": "Pocket Bike 49cc Racing Roja",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/79-carrera-go-dtm-speed-1.jpg",
+    "asin": "B08R92V7PL",
+    "badge": "Velocidad & Asfalto"
+  },
+  {
+    "id": "toy-minimoto-electrica-cross-500w",
+    "title": "Minimoto Eléctrica de Cross 500W Infantil con Batería de Litio y Limitador de 3 Velocidades",
+    "shortTitle": "Minimoto Eléctrica Cross 500W Litio",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "4-6",
+      "7-9",
+      "10-12"
+    ],
+    "imageUrl": "/images/products/46-micro-maxi-deluxe-led-1.jpg",
+    "asin": "B09HYG88ZJ",
+    "badge": "Silenciosa & Sin Humo"
+  },
+  {
+    "id": "toy-miniquad-gasolina-49cc-rojo",
+    "title": "Miniquad de Gasolina 49cc Infantil Mini KF con Arranque a Tirador y Ruedas de 6 Pulgadas (Rojo)",
+    "shortTitle": "Miniquad Gasolina 49cc Ruedas 6\"",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "4-6",
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/79-monster-truck-rc-gigante-1.jpg",
+    "asin": "B079D19K2O",
+    "badge": "Ruedas 6 Pulgadas"
+  },
+  {
+    "id": "toy-miniquad-gasolina-49cc-rosa",
+    "title": "Miniquad de Gasolina 49cc Infantil Mini KF con Sistema de Parada de Seguridad y Tirador (Rosa)",
+    "shortTitle": "Miniquad Gasolina 49cc Rosa",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "4-6",
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/46-maletin-maquillaje-1.jpg",
+    "asin": "B079D19K2P",
+    "badge": "Hombre al Agua Seguridad"
+  },
+  {
+    "id": "toy-miniquad-gasolina-49cc-verde",
+    "title": "Miniquad de Gasolina 49cc Infantil con Frenos de Disco y Parachoques Frontal (Verde)",
+    "shortTitle": "Miniquad Gasolina 49cc Verde",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "4-6",
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/79-coche-rc-exost-3.jpg",
+    "asin": "B079D19K2Q",
+    "badge": "Todoterreno Seguro"
+  },
+  {
+    "id": "toy-miniquad-electrico-36v-800w",
+    "title": "Miniquad Eléctrico Infantil 36V 800W con Marcha Atrás, Bocina y Llave de Seguridad 3 Marchas",
+    "shortTitle": "Miniquad Eléctrico 36V 800W",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/18plus-coche-rc-wltoys-124019-buggy-1.jpg",
+    "asin": "B0BN55M67X",
+    "badge": "Motor Eléctrico 800W"
+  },
+  {
+    "id": "toy-quad-electrico-12v-peques",
+    "title": "Feber - Quad Eléctrico Infantil 12V con Acelerador de Pie y Marcha Adelante y Atrás",
+    "shortTitle": "Quad Eléctrico Feber 12V",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "0-3",
+      "4-6"
+    ],
+    "imageUrl": "/images/products/13-chicco-first-bike-1.jpg",
+    "asin": "B00TYD36Y6",
+    "badge": "Ideal Iniciación"
+  },
+  {
+    "id": "toy-patinete-electrico-xiaomi-4lite",
+    "title": "Xiaomi Electric Scooter 4 Lite - Patinete Eléctrico 300W con Frenada Doble y 20 km Autonomía",
+    "shortTitle": "Patinete Eléctrico Xiaomi 4 Lite",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/46-bopster-patinete-1.jpg",
+    "asin": "B0C1PHR571",
+    "badge": "Top Patinete Eléctrico"
+  },
+  {
+    "id": "toy-patinete-electrico-cecotec-bongo",
+    "title": "Cecotec Bongo Serie A - Patinete Eléctrico con Batería Extraíble y Ruedas Tubeless Antirreventón",
+    "shortTitle": "Patinete Eléctrico Cecotec Bongo",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/46-bopster-patinete-2.jpg",
+    "asin": "B08R92V7PF",
+    "badge": "Ruedas Tubeless"
+  },
+  {
+    "id": "toy-patinete-electrico-infantil-led",
+    "title": "Patinete Eléctrico para Niños con Luces LED en la Base, Altavoz Bluetooth y Altura Regulable",
+    "shortTitle": "Patinete Eléctrico Infantil LED",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "4-6",
+      "7-9",
+      "10-12"
+    ],
+    "imageUrl": "/images/products/46-micro-maxi-deluxe-led-1.jpg",
+    "asin": "B09HYG88ZK",
+    "badge": "Luces de Neón"
+  },
+  {
+    "id": "toy-hoverboard-kart-asiento",
+    "title": "Hoverboard 6.5 Pulgadas con Asiento Kart Go-Kart Incluido, Bluetooth y Luces en Ruedas",
+    "shortTitle": "Hoverboard con Asiento Kart",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/1618-dualsense-edge-1.jpg",
+    "asin": "B075T7Z7YB",
+    "badge": "Pack Go-Kart"
+  },
+  {
+    "id": "toy-skateboard-electrico-mando",
+    "title": "Monopatín Skateboard Eléctrico con Control Remoto Inalámbrico 350W y Ruedas PU Suaves",
+    "shortTitle": "Skateboard Eléctrico con Mando",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/46-bopster-patinete-3.jpg",
+    "asin": "B0855G6H82",
+    "badge": "Control Remoto"
+  },
+  {
+    "id": "toy-patines-linea-led-4tallas",
+    "title": "Patines en Línea Infantiles Ajustables en 4 Tallas con 8 Ruedas Luminosas LED y Freno Seguro",
+    "shortTitle": "Patines en Línea 4 Tallas LED",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "4-6",
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/46-micro-maxi-deluxe-led-1.jpg",
+    "asin": "B08HYG77ZD",
+    "badge": "8 Ruedas con Luz"
+  },
+  {
+    "id": "toy-patines-4ruedas-quad-retro",
+    "title": "Patines de 4 Ruedas Clásicos Roller Quad Retro con Bota Acolchada y Purpurina",
+    "shortTitle": "Patines 4 Ruedas Roller Quad",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "4-6",
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/46-maletin-maquillaje-2.jpg",
+    "asin": "B002KCV7XE",
+    "badge": "Estilo Roller Disco"
+  },
+  {
+    "id": "toy-patinete-micro-maxi-suizo",
+    "title": "Micro Maxi Deluxe LED - Patinete Infantil con 3 Ruedas Inclinables Suizas",
+    "shortTitle": "Patinete Suizo Micro Maxi LED",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "0-3",
+      "4-6",
+      "7-9"
+    ],
+    "imageUrl": "/images/products/46-micro-maxi-deluxe-led-1.jpg",
+    "asin": "B07N3821TF",
+    "badge": "Calidad Suiza"
+  },
+  {
+    "id": "toy-patinete-freestyle-acrobacias",
+    "title": "Patinete Freestyle Acrobático para Skatepark con Ruedas de Núcleo de Aluminio y Giro 360",
+    "shortTitle": "Patinete Freestyle Skatepark",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/46-bopster-patinete-2.jpg",
+    "asin": "B08R92V7PE",
+    "badge": "Acrobacias y Saltos"
+  },
+  {
+    "id": "toy-drift-trike-electrico-360",
+    "title": "Drift Trike Triciclo de Derrapes Eléctrico 360 Grados con Ruedas Locas Traseras",
+    "shortTitle": "Drift Trike Eléctrico 360º",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/79-coche-acrobatico-360-led-1.jpg",
+    "asin": "B0BN55M67Y",
+    "badge": "Derrapes 360 Grados"
+  },
+  {
+    "id": "toy-gokart-pedales-berg",
+    "title": "Berg Buzzy - Kart de Pedales Infantil Deportivo con Asiento Regulable y Ruedas Silenciosas",
+    "shortTitle": "Go-Kart Pedales Berg Deportivo",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "0-3",
+      "4-6",
+      "7-9"
+    ],
+    "imageUrl": "/images/products/13-triciclo-aveo-1.jpg",
+    "asin": "B00TYD36Y7",
+    "badge": "Pedales & Tracción"
+  },
+  {
+    "id": "toy-bici-equilibrio-chicco",
+    "title": "Chicco First Bike - Bicicleta de Equilibrio sin Pedales Ultraligera de 2 a 5 Años",
+    "shortTitle": "Bicicleta Equilibrio Chicco",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "0-3",
+      "4-6"
+    ],
+    "imageUrl": "/images/products/13-chicco-first-bike-1.jpg",
+    "asin": "B002KCV7X7",
+    "badge": "Primera Bici"
+  },
+  {
+    "id": "toy-bici-montana-shimano-26",
+    "title": "Bicicleta de Montaña MTB 26 Pulgadas con Doble Freno de Disco y 21 Velocidades Shimano",
+    "shortTitle": "Bicicleta MTB 26\" Doble Disco",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/13-chicco-first-bike-2.jpg",
+    "asin": "B079D19K2I",
+    "badge": "Montaña & Senderos"
+  },
+  {
+    "id": "toy-bici-bmx-freestyle-20",
+    "title": "Bicicleta BMX Freestyle de 20 Pulgadas con Rotor Giratorio 360 y 4 Estribos Pegs",
+    "shortTitle": "Bicicleta BMX Freestyle 20\"",
+    "category": "sobre-ruedas",
+    "categoryLabel": "Sobre Ruedas & Motor",
+    "ages": [
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/13-chicco-first-bike-3.jpg",
+    "asin": "B0855G6H83",
+    "badge": "Trucos & Rampas"
+  },
+  {
+    "id": "toy-casco-motocross-pack-completo",
+    "title": "Casco de Motocross Infantil Homologado con Gafas de Cross, Guantes y Pasamontañas (Pack 4en1)",
+    "shortTitle": "Casco Motocross Pack Completo 4en1",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "4-6",
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/46-casco-infantil-luz-seguridad-1.jpg",
+    "asin": "B075T7Z7YA",
+    "badge": "Pack Casco + Gafas + Guantes"
+  },
+  {
+    "id": "toy-casco-cross-infantil-azul",
+    "title": "Casco Integral de Cross para Niños con Visera Ajustable, Carcasa ABS y Ventilación (Azul)",
+    "shortTitle": "Casco Cross Infantil Integral Azul",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "4-6",
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/46-casco-infantil-luz-seguridad-1.jpg",
+    "asin": "B08R92V7PM",
+    "badge": "Carcasa ABS Reforzada"
+  },
+  {
+    "id": "toy-casco-cross-negro-calaveras",
+    "title": "Casco Motocross Infantil de Seguridad con Diseño Calaveras y Forro Extraíble Lavable",
+    "shortTitle": "Casco Cross Diseño Calaveras",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/46-casco-infantil-luz-seguridad-1.jpg",
+    "asin": "B08R92V7PN",
+    "badge": "Forro Lavable"
+  },
+  {
+    "id": "toy-casco-bici-luz-led-recargable",
+    "title": "Casco de Bicicleta y Patinete Infantil con Luz LED Trasera de Seguridad USB y Ruleta Ajustable",
+    "shortTitle": "Casco Infantil con Luz LED USB",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "0-3",
+      "4-6",
+      "7-9",
+      "10-12"
+    ],
+    "imageUrl": "/images/products/46-casco-infantil-luz-seguridad-1.jpg",
+    "asin": "B0855G6H7T",
+    "badge": "Luz Trasera Brillante"
+  },
+  {
+    "id": "toy-casco-mentonera-desmontable",
+    "title": "Casco 2 en 1 Integral con Mentonera Desmontable para Bici, Patinete y Descenso",
+    "shortTitle": "Casco 2en1 Mentonera Desmontable",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "4-6",
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/46-casco-infantil-luz-seguridad-1.jpg",
+    "asin": "B09HYG88ZL",
+    "badge": "Mentonera Extraíble"
+  },
+  {
+    "id": "toy-casco-patinete-intermitentes",
+    "title": "Casco Inteligente para Patinete Eléctrico con Luz Frontal LED, Intermitentes y Luz de Freno",
+    "shortTitle": "Casco Inteligente con Intermitentes",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/46-casco-infantil-luz-seguridad-1.jpg",
+    "asin": "B0BN55M67Z",
+    "badge": "Luces de Freno & Giro"
+  },
+  {
+    "id": "toy-casco-animales-dinosaurio-3d",
+    "title": "Casco Infantil Divertido 3D con Cuerno de Dinosaurio y Almohadillas Transpirables",
+    "shortTitle": "Casco Infantil Dinosaurio 3D",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "0-3",
+      "4-6"
+    ],
+    "imageUrl": "/images/products/46-pijama-kigurumi-dinosaurio-1.jpg",
+    "asin": "B002KCV7XF",
+    "badge": "Diseño Divertido"
+  },
+  {
+    "id": "toy-casco-princesa-rosa-luces",
+    "title": "Casco Infantil Rosa de Princesas con Lazos Reflectantes y Ajuste Regulable para Patines",
+    "shortTitle": "Casco Infantil Princesa Reflectante",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "0-3",
+      "4-6",
+      "7-9"
+    ],
+    "imageUrl": "/images/products/46-vestido-princesa-accesorios-1.jpg",
+    "asin": "B00TYD36Y8",
+    "badge": "Ajuste Cómodo"
+  },
+  {
+    "id": "toy-set-protecciones-6en1-infantil",
+    "title": "Set de Protecciones Infantiles 6 en 1 con 2 Rodilleras, 2 Coderas y 2 Muñequeras Acolchadas",
+    "shortTitle": "Set Protecciones 6en1 Rodilleras",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "0-3",
+      "4-6",
+      "7-9",
+      "10-12"
+    ],
+    "imageUrl": "/images/products/46-bopster-patinete-1.jpg",
+    "asin": "B00TYD36Y5",
+    "badge": "Pack 6 en 1 Anti-Impacto"
+  },
+  {
+    "id": "toy-rodilleras-moto-quad-infantil",
+    "title": "Set de Rodilleras y Coderas para Moto, Quad y Cross Infantil con Carcasa Rígida Articulada",
+    "shortTitle": "Rodilleras & Coderas Moto Cross",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/46-bopster-patinete-2.jpg",
+    "asin": "B08R92V7PO",
+    "badge": "Carcasa Rígida Articulada"
+  },
+  {
+    "id": "toy-peto-integral-moto-infantil",
+    "title": "Peto Integral de Protección Infantil con Armadura para Pecho, Espaldera y Hombros",
+    "shortTitle": "Peto Integral Protección Cross",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "4-6",
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/46-capa-mascara-superheroes-1.jpg",
+    "asin": "B0855G6H80",
+    "badge": "Armadura Completa"
+  },
+  {
+    "id": "toy-chaleco-protector-espalda",
+    "title": "Chaleco Protector de Espalda con Espaldera Flexible con Memoria de Absorción de Impactos",
+    "shortTitle": "Chaleco Espaldera de Impacto",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/46-capa-mascara-superheroes-1.jpg",
+    "asin": "B09HYG88ZM",
+    "badge": "Espaldera Flexible"
+  },
+  {
+    "id": "toy-munequeras-rigidas-skate",
+    "title": "Muñequeras Rígidas de Skate y Patinaje con Férula de Plástico Anti-Fractura",
+    "shortTitle": "Muñequeras Rígidas con Férula",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "4-6",
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/46-bopster-patinete-3.jpg",
+    "asin": "B002KCV7XG",
+    "badge": "Protección de Muñeca"
+  },
+  {
+    "id": "toy-pantalones-acolchados-coxis",
+    "title": "Pantalones Cortos Acolchados de Protección EVA para Cadera y Coxis en Patines y Bici",
+    "shortTitle": "Pantalón Acolchado Protector Coxis",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "4-6",
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/46-pijama-kigurumi-dinosaurio-1.jpg",
+    "asin": "B079D19K2R",
+    "badge": "Cojín Antigolpes"
+  },
+  {
+    "id": "toy-collarin-cervical-cross",
+    "title": "Collarín Cervical de Protección Infantil para Motocross, Quad y Karting con Ajuste Cómodo",
+    "shortTitle": "Collarín Cervical de Cross",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/46-casco-infantil-luz-seguridad-1.jpg",
+    "asin": "B0855G6H84",
+    "badge": "Protección Cervical"
+  },
+  {
+    "id": "toy-guantes-cross-nudillos",
+    "title": "Guantes de Motocross y Quad Infantiles con Nudillos Reforzados y Palma de Agarre Antideslizante",
+    "shortTitle": "Guantes de Cross Nudillos Rígidos",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "4-6",
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/1618-fc-25.jpg",
+    "asin": "B08R92V7PP",
+    "badge": "Grip Antideslizante"
+  },
+  {
+    "id": "toy-guantes-ciclismo-gel",
+    "title": "Guantes de Bici y Patinete para Niños sin Dedos con Almohadillas de Gel y Transpirables",
+    "shortTitle": "Guantes Bici Infantiles Gel",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "0-3",
+      "4-6",
+      "7-9",
+      "10-12"
+    ],
+    "imageUrl": "/images/products/1618-fc-25-1.jpg",
+    "asin": "B00TYD36Y9",
+    "badge": "Almohadillas de Gel"
+  },
+  {
+    "id": "toy-gafas-motocross-antivaho",
+    "title": "Gafas de Motocross Infantiles Antipolvo con Lente Antivaho Curva y Correa de Silicona",
+    "shortTitle": "Gafas de Cross Antivaho Infantiles",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "4-6",
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/1618-gafas-sol-polarizadas-retro-1.jpg",
+    "asin": "B075T7Z7YC",
+    "badge": "Visión Clara Antivaho"
+  },
+  {
+    "id": "toy-chaleco-reflectante-infantil",
+    "title": "Chaleco Reflectante de Seguridad Infantil de Alta Visibilidad para Bicicleta y Patinete",
+    "shortTitle": "Chaleco Reflectante Alta Visibilidad",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "0-3",
+      "4-6",
+      "7-9",
+      "10-12"
+    ],
+    "imageUrl": "/images/products/46-capa-mascara-superheroes-1.jpg",
+    "asin": "B002KCV7XH",
+    "badge": "Brilla de Noche"
+  },
+  {
+    "id": "toy-tiras-reflectantes-bici",
+    "title": "Set de 72 Reflectores para Radios de Ruedas de Bici que Brillan 360 Grados en la Oscuridad",
+    "shortTitle": "Reflectores de Radios 360 Bici",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "4-6",
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/13-chicco-first-bike-1.jpg",
+    "asin": "B079D19K2S",
+    "badge": "Visibilidad 360º"
+  },
+  {
+    "id": "toy-luces-led-delantera-trasera",
+    "title": "Set de Luces LED Delantera y Trasera Ultrabrillantes Recargables USB con 6 Modos para Bici",
+    "shortTitle": "Set Luces LED Recargables USB",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "4-6",
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/1618-quntis-barra-luz-monitor-1.jpg",
+    "asin": "B0855G6H85",
+    "badge": "Potente & Impermeable"
+  },
+  {
+    "id": "toy-timbre-bici-brujula",
+    "title": "Timbre Metálico Clásico para Bicicleta y Patinete con Sonido Fuerte y Brújula Integrada",
+    "shortTitle": "Timbre con Brújula para Manillar",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "0-3",
+      "4-6",
+      "7-9",
+      "10-12"
+    ],
+    "imageUrl": "/images/products/13-chicco-first-bike-2.jpg",
+    "asin": "B00TYD36YA",
+    "badge": "Sonido Claro y Fuerte"
+  },
+  {
+    "id": "toy-timbre-electrico-claxon",
+    "title": "Claxon Eléctrico para Bici y Patinete 120 dB con 4 Sonidos y Batería Recargable",
+    "shortTitle": "Claxon Eléctrico 120 dB",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/1618-sony-auriculares-pulse-3d-1.jpg",
+    "asin": "B09HYG88ZN",
+    "badge": "Alerta Potente"
+  },
+  {
+    "id": "toy-candado-acero-combinacion",
+    "title": "Candado Antirrobo de Cadena de Acero Reforzado con Combinación de 5 Dígitos para Bici y Patinete",
+    "shortTitle": "Candado Cadena Acero 5 Dígitos",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/1315-mochila-antirrobo-puerto-usb-1.jpg",
+    "asin": "B08R92V7PQ",
+    "badge": "Seguridad Antirrobo"
+  },
+  {
+    "id": "toy-candado-disco-alarma",
+    "title": "Candado de Disco con Alarma Acústica 110 dB y Sensor de Movimiento para Patinete y Moto",
+    "shortTitle": "Candado de Disco con Alarma 110dB",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/1315-mochila-antirrobo-puerto-usb-1.jpg",
+    "asin": "B0BN55M680",
+    "badge": "Alarma con Sensor"
+  },
+  {
+    "id": "toy-espejo-retrovisor-manillar",
+    "title": "Retrovisor Giratorio 360 Grados HD para Manillar de Bici y Patinete Eléctrico",
+    "shortTitle": "Retrovisor Giratorio 360 Manillar",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/1618-gafas-sol-polarizadas-retro-1.jpg",
+    "asin": "B002KCV7XI",
+    "badge": "Visión Trasera Clara"
+  },
+  {
+    "id": "toy-bomba-aire-portatil-manometro",
+    "title": "Mini Bomba de Aire Portátil para Bicicleta, Patinete y Balones con Manómetro de Precisión",
+    "shortTitle": "Mini Bomba de Aire con Manómetro",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/1315-bolsa-deporte-zapatero-independiente-1.jpg",
+    "asin": "B079D19K2T",
+    "badge": "Válvulas Presta y Schrader"
+  },
+  {
+    "id": "toy-kit-reparacion-pinchazos",
+    "title": "Kit Completo de Herramientas de Ciclismo con Parches Autoadhesivos y Llaves Multiusos",
+    "shortTitle": "Kit Reparación Pinchazos & Llaves",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/18plus-elegoo-arduino-kit-robotica-1.jpg",
+    "asin": "B0855G6H86",
+    "badge": "Siempre a Punto"
+  },
+  {
+    "id": "toy-soporte-movil-aluminio-bici",
+    "title": "Soporte Metálico de Aluminio Antivibración para Móvil en Manillar de Bici y Patinete",
+    "shortTitle": "Soporte Móvil Manillar Aluminio",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/1618-quntis-barra-luz-monitor-1.jpg",
+    "asin": "B09HYG88ZO",
+    "badge": "Sujeción Firme"
+  },
+  {
+    "id": "toy-bolsa-manillar-tactil",
+    "title": "Bolsa Frontal de Manillar Impermeable con Pantalla Táctil Transparente para Smartphone",
+    "shortTitle": "Bolsa Manillar Impermeable Táctil",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/1315-mochila-antirrobo-puerto-usb-1.jpg",
+    "asin": "B08R92V7PR",
+    "badge": "Resistente a la Lluvia"
+  },
+  {
+    "id": "toy-mochila-luz-intermitentes",
+    "title": "Mochila Ciclista Infantil con Panel LED de Intermitentes y Señalización por Mando Inalámbrico",
+    "shortTitle": "Mochila con Luces Intermitentes LED",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/1315-mochila-antirrobo-puerto-usb-1.jpg",
+    "asin": "B0BN55M681",
+    "badge": "Control en el Manillar"
+  },
+  {
+    "id": "toy-protector-bucal-deportivo",
+    "title": "Protector Bucal Deportivo Termomoldeable con Funda Higiénica para Deportes de Ruedas",
+    "shortTitle": "Protector Bucal Termomoldeable",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/1315-estuche-gran-capacidad-tres-pisos-1.jpg",
+    "asin": "B002KCV7XJ",
+    "badge": "Protección Dental"
+  },
+  {
+    "id": "toy-almohadillas-freno-disco",
+    "title": "Pack de Pastillas de Freno Semimetálicas de Alto Rendimiento para Patinete Eléctrico",
+    "shortTitle": "Pastillas de Freno Patinete",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/18plus-elegoo-arduino-kit-robotica-1.jpg",
+    "asin": "B079D19K2U",
+    "badge": "Frenada Instantánea"
+  },
+  {
+    "id": "toy-spray-repara-pinchazos",
+    "title": "Spray Sellante Antipinchazos Instantáneo para Ruedas de Patinete, Minimoto y Bici",
+    "shortTitle": "Spray Sellante Antipinchazos",
+    "category": "seguridad",
+    "categoryLabel": "Cascos & Seguridad",
+    "ages": [
+      "7-9",
+      "10-12",
+      "13+"
+    ],
+    "imageUrl": "/images/products/1315-bolsa-deporte-zapatero-independiente-1.jpg",
+    "asin": "B0855G6H87",
+    "badge": "Repara en Segundos"
   }
 ];
 
