@@ -807,6 +807,65 @@ function CartaPapaNoelContent() {
           </>
         )}
 
+        {/* ============================================================ */}
+        {/* GUÍA INFORMATIVA & PREGUNTAS FRECUENTES (SEO & PADRES)       */}
+        {/* ============================================================ */}
+        <section aria-labelledby="faq-navidad-title" className="pt-8 border-t border-white/10 space-y-6 text-slate-300">
+          <div className="text-center space-y-1">
+            <span className="text-xs font-bold text-amber-300 uppercase tracking-widest block">
+              🎄 Todo sobre el Correo Mágico de Laponia
+            </span>
+            <h2 id="faq-navidad-title" className="text-xl sm:text-2xl font-black text-white font-serif">
+              Preguntas Frecuentes sobre la Carta a Papá Noel 2026
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-400 max-w-2xl mx-auto">
+              Descubre cómo funciona el buzón mágico del Polo Norte, las novedades del catálogo de juguetes y cómo guardar la lista de deseos para Nochebuena.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
+            <div className="bg-white/5 rounded-2xl p-4 sm:p-5 border border-white/10 space-y-2">
+              <h3 className="font-bold text-amber-300 flex items-center gap-2 text-sm sm:text-base">
+                <span>✉️</span>
+                <span>¿Cómo escribir y enviar la carta a Papá Noel online?</span>
+              </h3>
+              <p className="text-slate-300 leading-relaxed">
+                El niño puede rellenar su nombre, edad y cómo se ha portado este año directamente sobre la hoja manuscrita con pauta escolar y sobre de correo aéreo. Luego, basta con explorar la revista interactiva con más de 370 juguetes y pulsar en <em>⭐ ¡Pedir deseo!</em> para pegarlos en su carta. Al pulsar el botón del buzón mágico, la carta volará por el cielo estrellado con Rodolfo el reno directa al taller de Laponia.
+              </p>
+            </div>
+
+            <div className="bg-white/5 rounded-2xl p-4 sm:p-5 border border-white/10 space-y-2">
+              <h3 className="font-bold text-amber-300 flex items-center gap-2 text-sm sm:text-base">
+                <span>🏎️</span>
+                <span>¿Qué novedades incluye la sección Sobre Ruedas & Motor?</span>
+              </h3>
+              <p className="text-slate-300 leading-relaxed">
+                Hemos incorporado los regalos con ruedas más deseados de esta Navidad: <strong>coches eléctricos para niños a batería (12V y 24V)</strong> con mando parental (Lamborghini Urus, Mercedes-AMG GT verde, buggies todoterreno 4x4), <strong>minimotos infantiles de cross 49cc</strong>, <strong>pocket bikes COBRA de circuito</strong>, <strong>miniquads de gasolina y eléctricos</strong>, además de patinetes eléctricos (Xiaomi y Cecotec) y patines con luces LED.
+              </p>
+            </div>
+
+            <div className="bg-white/5 rounded-2xl p-4 sm:p-5 border border-white/10 space-y-2">
+              <h3 className="font-bold text-amber-300 flex items-center gap-2 text-sm sm:text-base">
+                <span>🛡️</span>
+                <span>¿Por qué es fundamental el apartado de Cascos & Seguridad?</span>
+              </h3>
+              <p className="text-slate-300 leading-relaxed">
+                La seguridad de los peques es lo primero. En el catálogo encontrarás <strong>cascos de motocross homologados</strong> (muchos en packs con gafas y guantes a juego), <strong>cascos de bicicleta con luz LED trasera</strong>, <strong>sets de protecciones 6 en 1</strong> (rodilleras, coderas y muñequeras) y <strong>petos integrales con espaldera</strong> para que disfruten de sus vehículos con total tranquilidad.
+              </p>
+            </div>
+
+            <div className="bg-white/5 rounded-2xl p-4 sm:p-5 border border-white/10 space-y-2">
+              <h3 className="font-bold text-amber-300 flex items-center gap-2 text-sm sm:text-base">
+                <span>🛒</span>
+                <span>¿Cómo pueden los padres guardar la lista o pedir los regalos?</span>
+              </h3>
+              <p className="text-slate-300 leading-relaxed">
+                Al enviar la carta, los peques ven la carta de respuesta firmada por Papá Noel y, justo debajo, aparece un panel privado para los padres. Permite <strong>añadir todos los juguetes elegidos a la cesta de Amazon en un solo clic</strong> (mediante Amazon Remote Cart), <strong>compartir la lista por WhatsApp</strong> con la familia o <strong>imprimir la carta en papel</strong> para dejarla junto a las galletas y la leche la noche del 24 de diciembre.
+              </p>
+            </div>
+          </div>
+        </section>
+
       </main>
 
       {/* ============================================================ */}
