@@ -513,10 +513,10 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
                       href={directUrl}
                       target="_blank"
                       rel="nofollow sponsored noopener noreferrer"
-                      className={`w-full sm:w-auto px-1.5 sm:px-3 py-1 sm:py-1.5 rounded-full font-bold text-[9px] sm:text-xs flex items-center justify-center gap-1 transition-all shadow-2xs hover:scale-102 active:scale-98 shrink-0 cursor-pointer ${pick.btnClass}`}
+                      className={`w-full sm:w-auto px-2 sm:px-3.5 py-1.5 sm:py-2 rounded-full font-black text-[10px] sm:text-xs flex items-center justify-center gap-1.5 transition-all shadow-xs hover:scale-103 active:scale-97 shrink-0 cursor-pointer ${pick.btnClass}`}
                     >
-                      <span className="hidden sm:inline">Ir al producto</span>
-                      <span className="sm:hidden">Ver</span>
+                      <span className="hidden sm:inline">Ver oferta en Amazon</span>
+                      <span className="sm:hidden">Ver oferta</span>
                       <ExternalLink className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                     </a>
                   </div>

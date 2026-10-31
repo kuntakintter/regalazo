@@ -51,12 +51,14 @@ const QUICK_PROMPTS: Array<{
   price?: string;
   sort?: 'featured' | 'price-asc' | 'price-desc' | 'rating';
 }> = [
+  { label: '🔥 Chollos Black Friday', query: 'ofertas', sort: 'rating' },
+  { label: '💸 Menos de 20 € (Amigo Invisible)', query: '', price: '<20', sort: 'price-asc' },
+  { label: '⚡ Menos de 15 € (Detalles Top)', query: '', price: '<15', sort: 'price-asc' },
   { label: '🎁 Para mi novio', query: 'novio' },
   { label: '🎮 Gamer / Friki', query: 'gaming' },
-  { label: '💸 Menos de 20 €', query: '', price: '<20', sort: 'price-asc' },
+  { label: '👶 Bebés y Niños', query: 'bebe' },
   { label: '🏍️ Moteros', query: 'moto' },
   { label: '☕ Amante del café', query: 'cafe' },
-  { label: '👶 Bebés y Niños', query: 'bebe' },
   { label: '🐾 Mascotas', query: 'mascotas' },
 ];
 
@@ -376,6 +378,8 @@ export default function HomePage() {
 
         if (selectedPrice === '<20') {
           if (prodPrice > 20) return false;
+        } else if (selectedPrice === '<15') {
+          if (prodPrice > 15) return false;
         } else if (selectedPrice === '20-50') {
           if (prodPrice < 20 || prodPrice > 50) return false;
         } else if (selectedPrice === '50-100') {
@@ -921,6 +925,58 @@ export default function HomePage() {
 
         {/* SOCIAL SHARE WIDGET */}
         <SocialShareBar />
+
+        {/* BLACK FRIDAY & CHOLLOS 2026 HIGH-CONVERTING ACTION BAR */}
+        <section aria-label="Especial Black Friday y Chollos" className="my-6">
+          <div className="bg-gradient-to-r from-slate-950 via-[#131921] to-slate-950 text-white rounded-3xl p-4 sm:p-5 border-2 border-amber-400 shadow-xl relative overflow-hidden">
+            {/* Ambient gold glow */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 relative z-10">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <span className="px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950 font-black text-[11px] uppercase tracking-wider flex items-center gap-1 shadow-xs">
+                    <span>🔥</span> Black Friday 2026
+                  </span>
+                  <span className="text-xs text-amber-300 font-bold">
+                    Ofertas activas en Amazon España
+                  </span>
+                </div>
+                <h3 className="text-base sm:text-lg font-black text-white leading-tight">
+                  Regalos y Chollos con Descuentos de hasta el 50%
+                </h3>
+                <p className="text-xs text-slate-300 leading-snug">
+                  Filtrados con envío Prime gratis para mañana y garantía de devolución.
+                </p>
+              </div>
+
+              {/* Direct Quick Action Buttons */}
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => handleQuickPrompt({ label: 'Chollos Black Friday', query: 'ofertas', sort: 'rating' })}
+                  className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-black text-xs flex items-center gap-1.5 transition-all shadow-md hover:scale-102 active:scale-98 cursor-pointer"
+                >
+                  <span>🔥 Ver Chollos Top</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleQuickPrompt({ label: 'Menos de 20 €', query: '', price: '<20', sort: 'price-asc' })}
+                  className="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold text-xs flex items-center gap-1.5 transition-all hover:scale-102 active:scale-98 cursor-pointer"
+                >
+                  <span>💸 Menos de 20 €</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleQuickPrompt({ label: 'Amigo Invisible', query: '', price: '<15', sort: 'price-asc' })}
+                  className="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold text-xs flex items-center gap-1.5 transition-all hover:scale-102 active:scale-98 cursor-pointer"
+                >
+                  <span>🎁 Amigo Invisible (&lt;15 €)</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* CATALOG SECTION WITH COLLAPSIBLE MANUAL FILTERS */}
         <div id="catalogo-productos" className="pt-2">

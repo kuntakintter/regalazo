@@ -6,7 +6,7 @@ import { Product } from '@/data/products';
 import { getAmazonProductUrl } from '@/lib/amazon';
 import { useCurrency } from '@/context/CurrencyContext';
 import { useVoting } from '@/context/VotingContext';
-import { Star, Heart, Share2, ShoppingBag, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Star, Heart, Share2, ShoppingBag, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
@@ -210,9 +210,10 @@ export default function ProductCard({ product }: ProductCardProps) {
             href={directProductUrl}
             target="_blank"
             rel="nofollow sponsored noopener noreferrer"
-            className="w-full py-1.5 px-3 rounded-full text-xs font-semibold text-slate-950 bg-[#ffd814] hover:bg-[#f7ca00] active:bg-[#f0b800] border border-[#fcd200] shadow-2xs text-center flex items-center justify-center gap-1.5 transition-all cursor-pointer"
+            className="w-full py-2 px-3 rounded-xl text-xs font-black text-slate-950 bg-[#ffd814] hover:bg-[#f7ca00] active:bg-[#f0b800] border border-[#fcd200] shadow-xs text-center flex items-center justify-center gap-1.5 transition-all cursor-pointer hover:scale-101"
           >
-            <span>Ir al producto</span>
+            <span>Ver oferta en Amazon</span>
+            <ExternalLink className="w-3.5 h-3.5 text-slate-900" />
           </a>
 
           {/* Toast feedback when copied */}

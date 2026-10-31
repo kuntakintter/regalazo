@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Star, Heart, Share2, ShoppingBag } from 'lucide-react';
+import { Star, Heart, Share2, ShoppingBag, ExternalLink } from 'lucide-react';
 import { trackShareEvent } from '@/lib/analytics';
 import { LiveSearchResult } from '@/app/api/live-search/route';
 import { getAmazonProductUrl } from '@/lib/amazon';
@@ -219,9 +219,10 @@ export default function LiveAmazonProductCard({
             href={directProductUrl}
             target="_blank"
             rel="nofollow sponsored noopener noreferrer"
-            className="w-full py-1.5 px-3 rounded-full text-xs font-semibold text-slate-950 bg-[#ffd814] hover:bg-[#f7ca00] active:bg-[#f0b800] border border-[#fcd200] shadow-2xs text-center flex items-center justify-center gap-1.5 transition-all cursor-pointer"
+            className="w-full py-2 px-3 rounded-xl text-xs font-black text-slate-950 bg-[#ffd814] hover:bg-[#f7ca00] active:bg-[#f0b800] border border-[#fcd200] shadow-xs text-center flex items-center justify-center gap-1.5 transition-all cursor-pointer hover:scale-101"
           >
-            <span>Ir al producto</span>
+            <span>Ver oferta en Amazon</span>
+            <ExternalLink className="w-3.5 h-3.5 text-slate-900" />
           </a>
 
           {/* Toast feedback when copied */}
