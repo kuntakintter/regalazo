@@ -184,7 +184,7 @@ function CartaPapaNoelContent() {
   });
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-[#2d0a0a] via-[#0f172a] to-[#062419] text-slate-100 font-sans pb-24 relative overflow-hidden">
+    <div className="min-h-screen bg-linear-to-b from-[#2d0a0a] via-[#0f172a] to-[#062419] text-slate-100 font-sans pb-24 relative overflow-x-clip">
       
       {/* Falling Snow Effect in CSS */}
       <div className="pointer-events-none fixed inset-0 z-0 opacity-50 overflow-hidden" aria-hidden="true">
@@ -383,15 +383,24 @@ function CartaPapaNoelContent() {
         {/* ============================================================ */}
         {!isDelivered && (
           <>
+            {/* TRINEO ANIMADO EN PANTALLAS MÓVILES / TABLETS (VOLANDO SOBRE LA CARTA) */}
+            <div className="xl:hidden flex justify-center -mb-6 relative z-20 pointer-events-none select-none">
+              <img
+                src="/images/trineo-navidad-animado.gif"
+                alt="Trineo de Papá Noel"
+                style={{ width: '170px', height: 'auto', display: 'block' }}
+                className="drop-shadow-2xl"
+              />
+            </div>
+
             <div className="relative">
-              {/* Trineo animado de Papá Noel flotando en el cielo a la derecha */}
-              <div className="hidden lg:block absolute left-[calc(100%+1.5rem)] xl:left-[calc(100%+2.5rem)] top-2 select-none pointer-events-none z-20">
+              {/* TRINEO ANIMADO EN PANTALLAS GRANDES / ESCRITORIO (A LA DERECHA DE LA CARTA) */}
+              <div className="hidden xl:block absolute left-[calc(100%+1rem)] 2xl:left-[calc(100%+2rem)] top-2 w-52 2xl:w-60 z-30 pointer-events-none select-none">
                 <img
                   src="/images/trineo-navidad-animado.gif"
                   alt="Trineo de Navidad animado"
-                  width={200}
-                  height={250}
-                  className="w-48 xl:w-56 h-auto drop-shadow-[0_20px_35px_rgba(0,0,0,0.85)] filter brightness-105"
+                  style={{ width: '100%', height: 'auto', display: 'block' }}
+                  className="drop-shadow-[0_20px_35px_rgba(0,0,0,0.85)] filter brightness-105"
                 />
               </div>
 
