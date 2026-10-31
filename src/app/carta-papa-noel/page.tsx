@@ -262,7 +262,7 @@ function CartaPapaNoelContent() {
                   {selectedToys.map((t, idx) => (
                     <div key={t.id} className="flex items-center gap-3 bg-white p-2.5 rounded-xl border border-amber-200">
                       <div className="relative w-12 h-12 rounded-lg overflow-hidden shrink-0 bg-slate-100">
-                        <Image src={t.imageUrl} alt={t.shortTitle} fill className="object-contain p-1" sizes="48px" />
+                        <Image src={t.imageUrl} alt={t.shortTitle} fill unoptimized className="object-contain p-1" sizes="48px" />
                       </div>
                       <div className="min-w-0 flex-1">
                         <span className="text-[11px] font-bold text-red-700 block">Deseo #{idx + 1}</span>
@@ -422,7 +422,7 @@ function CartaPapaNoelContent() {
                         <div key={t.id} className="flex items-center justify-between gap-2 bg-white p-2 rounded-xl border border-amber-300 shadow-xs">
                           <div className="flex items-center gap-2.5 min-w-0">
                             <div className="relative w-10 h-10 rounded-lg overflow-hidden shrink-0 bg-slate-50">
-                              <Image src={t.imageUrl} alt={t.shortTitle} fill className="object-contain p-1" sizes="40px" />
+                              <Image src={t.imageUrl} alt={t.shortTitle} fill unoptimized className="object-contain p-1" sizes="40px" />
                             </div>
                             <div className="truncate">
                               <span className="text-[10px] font-bold text-red-700 block">Deseo #{idx + 1}</span>
@@ -527,6 +527,7 @@ function CartaPapaNoelContent() {
                           src={toy.imageUrl}
                           alt={toy.shortTitle}
                           fill
+                          unoptimized
                           className="object-contain p-2"
                           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                         />

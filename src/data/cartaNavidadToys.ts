@@ -14,7 +14,7 @@ export const CHRISTMAS_CATEGORIES = [
   { id: 'lego', label: '🧱 LEGO & Bloques', icon: '🧱' },
   { id: 'coches', label: '🏎️ Coches & Pistas', icon: '🏎️' },
   { id: 'peluches', label: '🧸 Muñecas & Peluches', icon: '🧸' },
-  { id: 'gaming', label: '🎮 Gaming & Pokémon', icon: '🎮' },
+  { id: 'gaming', label: '🎮 Gaming & Robótica', icon: '🎮' },
   { id: 'juegos', label: '🎲 Juegos de Mesa', icon: '🎲' },
   { id: 'creatividad', label: '🎨 Arte & Dibujo', icon: '🎨' },
 ];
@@ -22,8 +22,8 @@ export const CHRISTMAS_CATEGORIES = [
 export const CHRISTMAS_TOYS: ChristmasToy[] = [
   // LEGO & CONSTRUCCIÓN
   {
-    id: 'toy-lego-marvel-adviento',
-    title: 'LEGO Marvel - Calendario de Adviento con 24 Minifiguras y Accesorios de Superhéroes',
+    id: 'toy-lego-adviento',
+    title: 'LEGO Marvel - Calendario de Adviento con 24 Minifiguras',
     shortTitle: 'LEGO Marvel Calendario de Adviento',
     category: 'lego',
     categoryLabel: 'LEGO & Bloques',
@@ -32,194 +32,244 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
     badge: 'Top Deseo 2026'
   },
   {
-    id: 'toy-lego-star-wars-xwing',
-    title: 'LEGO Star Wars - Caza Ala-X de Luke Skywalker con R2-D2 y Princesa Leia',
-    shortTitle: 'LEGO Star Wars Caza X-Wing',
+    id: 'toy-lego-castillo-medieval',
+    title: 'LEGO Creator 3 en 1 - Gran Castillo Medieval con Dragón y Caballeros',
+    shortTitle: 'LEGO Castillo Medieval 3 en 1',
     category: 'lego',
     categoryLabel: 'LEGO & Bloques',
-    imageUrl: 'https://m.media-amazon.com/images/I/81x1YJj7y8L._AC_UL320_.jpg',
-    asin: 'B08G4GB1X2',
-    badge: 'Favorito de Star Wars'
+    imageUrl: '/images/products/79-lego-creator-castillo-medieval-1.jpg',
+    asin: 'B08G8K7TY3',
+    badge: 'Aventura Medieval'
   },
   {
-    id: 'toy-lego-harry-potter-hogwarts',
-    title: 'LEGO Harry Potter - Castillo de Hogwarts: Gran Comedor con Figuras Mágicas',
-    shortTitle: 'LEGO Harry Potter Gran Comedor',
+    id: 'toy-lego-dinosaurio-trex',
+    title: 'LEGO Creator 3 en 1 - Dinosaurio T-Rex Temible Articulado',
+    shortTitle: 'LEGO Dinosaurio T-Rex 3 en 1',
     category: 'lego',
     categoryLabel: 'LEGO & Bloques',
-    imageUrl: 'https://m.media-amazon.com/images/I/81+m0f34-IL._AC_UL320_.jpg',
-    asin: 'B0C7J9KL88',
-    badge: 'Mundillo Mágico'
+    imageUrl: '/images/products/79-lego-creator-dinosaurio-trex-1.jpg',
+    asin: 'B01LZF2U33',
+    badge: 'Top Dinosaurios'
   },
   {
-    id: 'toy-lego-classic-caja-grande',
-    title: 'LEGO Classic - Caja Grande de Ladrillos de Construcción Creativa con 790 Piezas',
-    shortTitle: 'LEGO Classic Caja Creativa 790 Piezas',
+    id: 'toy-gravitrax-pista',
+    title: 'Ravensburger - GraviTrax Starter Set Circuito de Canicas Interactivo',
+    shortTitle: 'GraviTrax Circuito de Canicas',
     category: 'lego',
     categoryLabel: 'LEGO & Bloques',
-    imageUrl: 'https://m.media-amazon.com/images/I/71wZl6sTq5L._AC_UL320_.jpg',
-    asin: 'B00NVDP38M',
-    badge: 'Creatividad Ilimitada'
+    imageUrl: '/images/products/79-gravitrax-1.jpg',
+    asin: 'B079Z5J2R5',
+    badge: 'Física y Gravedad'
   },
 
   // COCHES & PISTAS
   {
-    id: 'toy-carrera-first-mario-kart',
-    title: 'Carrera First - Circuito de Carreras Nintendo Mario Kart con Mandos Ergonómicos',
+    id: 'toy-carrera-mario-kart',
+    title: 'Carrera First - Circuito de Carreras Nintendo Mario Kart',
     shortTitle: 'Circuito Carrera Mario Kart',
     category: 'coches',
     categoryLabel: 'Coches & Pistas',
-    imageUrl: 'https://m.media-amazon.com/images/I/718yFwM7+1L._AC_UL320_.jpg',
+    imageUrl: '/images/products/46-carrera-mario-1.jpg',
     asin: 'B079Z5J2R4',
     badge: 'Circuito Nº1 en Ventas'
   },
   {
-    id: 'toy-hot-wheels-choques-aereos',
-    title: 'Hot Wheels - Pista de Carreras de Choques Aéreos Motorizada con Lanzador Giratorio',
-    shortTitle: 'Pista Hot Wheels Choques Giratorios',
+    id: 'toy-hot-wheels-choques',
+    title: 'Hot Wheels - Pista de Carreras de Choques Aéreos Motorizada',
+    shortTitle: 'Pista Hot Wheels Choques Aéreos',
     category: 'coches',
     categoryLabel: 'Coches & Pistas',
-    imageUrl: 'https://m.media-amazon.com/images/I/81kX9i4b4vL._AC_UL320_.jpg',
+    imageUrl: '/images/products/46-hot-wheels-choques-aereos-1.jpg',
     asin: 'B07B4M27B3',
     badge: 'Acción Extrema'
   },
   {
-    id: 'toy-monster-truck-radiocontrol',
-    title: 'Coche Teledirigido 4x4 Todo Terreno Radiocontrol con Batería Recargable',
-    shortTitle: 'Coche 4x4 Radiocontrol Todo Terreno',
+    id: 'toy-hot-wheels-garaje',
+    title: 'Hot Wheels City - Megagaraje con Ascensor y Capacidad 35 Coches',
+    shortTitle: 'Megagaraje Hot Wheels City',
     category: 'coches',
     categoryLabel: 'Coches & Pistas',
-    imageUrl: 'https://m.media-amazon.com/images/I/71R2QZ2eGHL._AC_UL320_.jpg',
-    asin: 'B08F2CVZ88',
-    badge: 'Teledirigido Top'
+    imageUrl: '/images/products/46-hot-wheels-garaje-gigante-1.jpg',
+    asin: 'B08F2CVZ99',
+    badge: 'Garaje Gigante'
+  },
+  {
+    id: 'toy-monster-truck-rc',
+    title: 'Monster Truck Teledirigido 4x4 Todo Terreno Radiocontrol Gigante',
+    shortTitle: 'Monster Truck 4x4 Teledirigido',
+    category: 'coches',
+    categoryLabel: 'Coches & Pistas',
+    imageUrl: '/images/products/79-monster-truck-rc-gigante-1.jpg',
+    asin: 'B08F2CVZ01',
+    badge: 'Potencia Todo Terreno'
+  },
+  {
+    id: 'toy-scalextric-rally',
+    title: 'Scalextric Compact - Circuito de Carreras Rally Champions',
+    shortTitle: 'Scalextric Rally Champions',
+    category: 'coches',
+    categoryLabel: 'Coches & Pistas',
+    imageUrl: '/images/products/79-scalextric-rally-champions-1.jpg',
+    asin: 'B08F2CVZ02',
+    badge: 'El Clásico Español'
+  },
+  {
+    id: 'toy-bopster-patinete',
+    title: 'Patinete Infantil Plegable con Ruedas Luminosas LED sin Pilas',
+    shortTitle: 'Patinete con Ruedas LED',
+    category: 'coches',
+    categoryLabel: 'Coches & Pistas',
+    imageUrl: '/images/products/46-bopster-patinete-1.jpg',
+    asin: 'B08F9VXYZ3',
+    badge: 'Deporte al Aire Libre'
   },
 
-  // PELUCHES & MUÑECAS
+  // PELUCHES & MASCOTAS
   {
-    id: 'toy-pokemon-peluche-pikachu',
-    title: 'Peluche Oficial Pokémon Pikachu Grande 30cm Súper Suave y Achuchable',
+    id: 'toy-pikachu-peluche',
+    title: 'Peluche Oficial Pokémon Pikachu Grande 30cm Súper Suave',
     shortTitle: 'Peluche Oficial Pikachu 30cm',
     category: 'peluches',
     categoryLabel: 'Muñecas & Peluches',
-    imageUrl: 'https://m.media-amazon.com/images/I/61kM5F+vTQL._AC_UL320_.jpg',
-    asin: 'B07V493R3H',
+    imageUrl: '/images/products/46-pikachu-peluche-1.jpg',
+    asin: 'B07CJW1T1X',
     badge: 'Súper Achuchable'
   },
   {
-    id: 'toy-stitch-peluche-disney',
-    title: 'Disney Store - Peluche Oficial de Stitch con Orejas Grandes de Terciopelo',
-    shortTitle: 'Peluche Disney Stitch',
+    id: 'toy-furby-interactivo',
+    title: 'Hasbro - Furby Interactivo con Voz, Luces y 5 Modos de Juego',
+    shortTitle: 'Furby Interactivo con Voz',
     category: 'peluches',
     categoryLabel: 'Muñecas & Peluches',
-    imageUrl: 'https://m.media-amazon.com/images/I/71-k9fG80xL._AC_UL320_.jpg',
-    asin: 'B08G8K7TY2',
-    badge: 'Favorito Disney'
+    imageUrl: '/images/products/46-furby-interactivo-morado-1.jpg',
+    asin: 'B07MVD9W04',
+    badge: 'Mascota Mágica'
   },
   {
-    id: 'toy-barbie-armario-moda',
-    title: 'Barbie - Armario Portátil Fashionista con Vestidos, Perchas y Accesorios de Moda',
-    shortTitle: 'Barbie Armario Portátil con Moda',
+    id: 'toy-bitzee-digital',
+    title: 'Spin Master - Bitzee Mascota Digital Interactiva que Puedes Tocar',
+    shortTitle: 'Bitzee Mascota Digital Interactiva',
     category: 'peluches',
     categoryLabel: 'Muñecas & Peluches',
-    imageUrl: 'https://m.media-amazon.com/images/I/81KjL7Y1N+L._AC_UL320_.jpg',
-    asin: 'B00R80M5TI',
-    badge: 'Clásico Estrella'
-  },
-
-  // GAMING & POKÉMON
-  {
-    id: 'toy-pokemon-elite-trainer-box',
-    title: 'Pokémon TCG - Caja de Entrenador Élite con 9 Sobres, Fundas y Dados Holográficos',
-    shortTitle: 'Caja Élite Pokémon TCG',
-    category: 'gaming',
-    categoryLabel: 'Gaming & Pokémon',
-    imageUrl: 'https://m.media-amazon.com/images/I/81iK9dZ6w1L._AC_UL320_.jpg',
-    asin: 'B0H8SV3WJ8',
-    badge: 'Cartas Coleccionables'
+    imageUrl: '/images/products/46-bitzee-mascota-digital-1.jpg',
+    asin: 'B07MVD9W05',
+    badge: 'Sensación Mundial'
   },
   {
-    id: 'toy-pokemon-album-archivador',
-    title: 'Álbum Archivador de Cartas Pokémon con 432 Bolsillos y Cremallera de Seguridad',
-    shortTitle: 'Álbum Archivador 432 Cartas Pokémon',
-    category: 'gaming',
-    categoryLabel: 'Gaming & Pokémon',
-    imageUrl: 'https://m.media-amazon.com/images/I/71tQe4oX5VL._AC_UL320_.jpg',
-    asin: 'B0FF42SHGN',
-    badge: 'Imprescindible Colección'
-  },
-  {
-    id: 'toy-mando-inalambrico-switch',
-    title: 'Mando Inalámbrico Pro para Nintendo Switch con Giroscopio y Vibración Doble',
-    shortTitle: 'Mando Inalámbrico Nintendo Switch',
-    category: 'gaming',
-    categoryLabel: 'Gaming & Pokémon',
-    imageUrl: 'https://m.media-amazon.com/images/I/61k1qH4w+4L._AC_UL320_.jpg',
-    asin: 'B08F9VXYZ1',
-    badge: 'Para Jugar en Familia'
+    id: 'toy-perrito-respira',
+    title: 'Perrito de Peluche Interactivo con Sonido y Movimiento de Respiración',
+    shortTitle: 'Perrito Interactivo Dulces Sueños',
+    category: 'peluches',
+    categoryLabel: 'Muñecas & Peluches',
+    imageUrl: '/images/products/46-perrito-interactivo-respira-1.jpg',
+    asin: 'B07MVD9W06',
+    badge: 'Tierno y Relajante'
   },
 
   // JUEGOS DE MESA
   {
-    id: 'toy-virus-juego-cartas',
-    title: 'VIRUS! - El Juego de Cartas Más Contagioso y Divertido para Toda la Familia',
-    shortTitle: 'Juego de Cartas VIRUS!',
+    id: 'toy-virus-cartas',
+    title: 'VIRUS! - El Juego de Cartas Más Contagioso y Divertido',
+    shortTitle: 'VIRUS! Juego de Cartas',
     category: 'juegos',
     categoryLabel: 'Juegos de Mesa',
-    imageUrl: 'https://m.media-amazon.com/images/I/71uK5L7z1SL._AC_UL320_.jpg',
+    imageUrl: '/images/products/1012-virus-1.jpg',
     asin: '8467571343',
-    badge: 'El Nº1 de España'
+    badge: 'Nº1 Más Vendido'
   },
   {
-    id: 'toy-dobble-clasico',
-    title: 'Dobble Clásico - Juego de Cartas de Rapidez Visual y Reflejos para Niños y Adultos',
-    shortTitle: 'Dobble Clásico Juego de Reflejos',
+    id: 'toy-dobble-kids',
+    title: 'Asmodee - Dobble Kids: Rapidez Visual y Reflejos en Lata Metálica',
+    shortTitle: 'Dobble Kids Juego de Reflejos',
     category: 'juegos',
     categoryLabel: 'Juegos de Mesa',
-    imageUrl: 'https://m.media-amazon.com/images/I/71g0P9o8L6L._AC_UL320_.jpg',
-    asin: 'B007X6J8L0',
-    badge: 'Súper Divertido'
+    imageUrl: '/images/products/46-dobble-kids-1.jpg',
+    asin: 'B007X6J8M1',
+    badge: 'Para Llevar a Cualquier Parte'
+  },
+  {
+    id: 'toy-catan-junior',
+    title: 'Devir - Catan Junior: El Gran Juego de Estrategia para Niños',
+    shortTitle: 'Catan Junior Juego de Estrategia',
+    category: 'juegos',
+    categoryLabel: 'Juegos de Mesa',
+    imageUrl: '/images/products/79-catan-junior-1.jpg',
+    asin: 'B00004UBI1',
+    badge: 'Estrategia Pirata'
   },
   {
     id: 'toy-fantasma-blitz',
-    title: 'Fantasma Blitz - Juego de Agilidad Mental y Reflejos Rápidos en Familia',
+    title: 'Devir - Fantasma Blitz: Juego de Agilidad Mental y Risas',
     shortTitle: 'Fantasma Blitz Juego de Mesa',
     category: 'juegos',
     categoryLabel: 'Juegos de Mesa',
-    imageUrl: 'https://m.media-amazon.com/images/I/71G1f6+n8+L._AC_UL320_.jpg',
-    asin: 'B004V812X2',
+    imageUrl: '/images/products/79-fantasma-blitz-1.jpg',
+    asin: 'B007X6J8N2',
     badge: 'Risas Aseguradas'
   },
+  {
+    id: 'toy-conecta-4',
+    title: 'Hasbro Gaming - Conecta 4 Clásico: Estrategia de Discos en Rejilla',
+    shortTitle: 'Conecta 4 Clásico',
+    category: 'juegos',
+    categoryLabel: 'Juegos de Mesa',
+    imageUrl: '/images/products/46-conecta-4-clasico-1.jpg',
+    asin: 'B00000IWH8',
+    badge: 'El Clásico de Siempre'
+  },
 
-  // CREATIVIDAD & ARTE
+  // GAMING & TECNOLOGÍA
   {
-    id: 'toy-maletin-dibujo-145-piezas',
-    title: 'Maletín de Pintura y Dibujo de Aluminio con 145 Piezas de Acuarelas, Óleos y Ceras',
-    shortTitle: 'Maletín Artístico 145 Piezas',
-    category: 'creatividad',
-    categoryLabel: 'Arte & Dibujo',
-    imageUrl: 'https://m.media-amazon.com/images/I/81dGz+q4XKL._AC_UL320_.jpg',
-    asin: 'B07MVD9W22',
-    badge: 'Para Pequeños Artistas'
+    id: 'toy-dron-potensic',
+    title: 'Potensic Mini Dron para Niños con Cámara HD y Despegue Automático',
+    shortTitle: 'Mini Dron con Cámara HD',
+    category: 'gaming',
+    categoryLabel: 'Gaming & Robótica',
+    imageUrl: '/images/products/1012-dron-potensic-1.jpg',
+    asin: 'B08G8K7TY4',
+    badge: 'Fácil de Volar'
   },
   {
-    id: 'toy-pizarra-magica-luz-led',
-    title: 'Pizarra Mágica Infantil con Luz LED y Plantillas de Dibujo que Brillan en la Oscuridad',
-    shortTitle: 'Pizarra Mágica con Luz LED Neón',
-    category: 'creatividad',
-    categoryLabel: 'Arte & Dibujo',
-    imageUrl: 'https://m.media-amazon.com/images/I/71k4o7S4JNL._AC_UL320_.jpg',
-    asin: 'B08FCVTY88',
-    badge: 'Brilla en la Oscuridad'
+    id: 'toy-robot-mbot',
+    title: 'Makeblock mBot - Robot Educativo Programable para Montar',
+    shortTitle: 'mBot Robot Programable',
+    category: 'gaming',
+    categoryLabel: 'Gaming & Robótica',
+    imageUrl: '/images/products/1012-makeblock-mbot-robot-1.jpg',
+    asin: 'B0BWNWN925',
+    badge: 'Robótica Educativa'
   },
   {
-    id: 'toy-playdoh-dentista-bromista',
-    title: 'Play-Doh - Dentista Bromista Clásico con Pasta de Moldear y Torno Giratorio',
-    shortTitle: 'Play-Doh Dentista Bromista',
+    id: 'toy-magia-borras',
+    title: 'Magia Borras - Set de 150 Trucos de Ilusionismo Clásico y Varita',
+    shortTitle: 'Magia Borras 150 Trucos',
+    category: 'gaming',
+    categoryLabel: 'Gaming & Robótica',
+    imageUrl: '/images/products/1012-magia-borras-150-1.jpg',
+    asin: 'B07MVD9W26',
+    badge: 'Magia e Ilusión'
+  },
+
+  // ARTE & CREATIVIDAD
+  {
+    id: 'toy-maletin-dibujo',
+    title: 'Maletín de Dibujo Artístico de Madera con 150 Piezas Completas',
+    shortTitle: 'Maletín de Dibujo 150 Piezas',
     category: 'creatividad',
     categoryLabel: 'Arte & Dibujo',
-    imageUrl: 'https://m.media-amazon.com/images/I/81x-M7LqU+L._AC_UL320_.jpg',
-    asin: 'B00004UBHO',
-    badge: 'Clásico Divertido'
+    imageUrl: '/images/products/46-maletin-dibujo-madera-150-1.jpg',
+    asin: 'B07MVD9W03',
+    badge: 'Pintura y Creatividad'
+  },
+  {
+    id: 'toy-fabrica-slime',
+    title: 'Canal Toys - Fábrica de Slime DIY Segura sin Bórax con Purpurina',
+    shortTitle: 'Fábrica de Slime con Purpurina',
+    category: 'creatividad',
+    categoryLabel: 'Arte & Dibujo',
+    imageUrl: '/images/products/79-fabrica-slime-diy-sin-borax-1.jpg',
+    asin: 'B075VQ8V9B',
+    badge: 'Creación Divertida'
   }
 ];
 
