@@ -71,7 +71,7 @@ export default function CookieBanner() {
         </div>
 
         <p className="text-xs text-slate-700 leading-relaxed">
-          Utilizamos cookies técnicas necesarias para el funcionamiento del sitio y cookies de asociados para registrar ventas en Amazon España. No recopilamos datos personales sensibles.{' '}
+          Utilizamos cookies técnicas necesarias y herramientas de análisis para garantizar el correcto funcionamiento del sitio, recordar tus preferencias y optimizar tu experiencia de búsqueda. No recopilamos datos personales sensibles.{' '}
           <Link
             href="/politica-de-cookies"
             className="text-indigo-700 underline font-semibold"
