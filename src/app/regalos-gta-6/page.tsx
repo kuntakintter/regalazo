@@ -366,143 +366,38 @@ export default function RegalosGta6Page() {
               const isInVote = isItemInList(prod.id);
 
               return (
-                <div
+                <GtaProductCard
                   key={prod.id}
-                  className="group rounded-2xl bg-[#111322] border border-slate-800/80 hover:border-pink-500/50 overflow-hidden flex flex-col transition-all duration-300 hover:shadow-[0_0_25px_rgba(255,42,133,0.15)] hover:-translate-y-1"
-                >
-                  {/* Imagen y Badges */}
-                  <div className="relative aspect-square w-full bg-slate-900 overflow-hidden p-4 flex items-center justify-center">
-                    {/* Badge destacado */}
-                    <div className="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-slate-950/90 border border-pink-500/40 text-pink-300 text-[10px] font-black tracking-wide shadow-sm flex items-center gap-1">
-                      <Flame className="w-3 h-3 text-pink-400" />
-                      <span>{prod.badge}</span>
-                    </div>
-
-                    {/* Acciones flotantes */}
-                    <div className="absolute top-3 right-3 z-10 flex flex-col gap-1.5">
-                      {/* Votar / Guardar */}
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          toggleItem({
-                            id: prod.id,
-                            asin: prod.asin,
-                            title: prod.title,
-                            slug: prod.id,
-                            category: 'Gaming',
-                            subcategory: prod.categoryLabel,
-                            ageRange: '+18',
-                            gender: 'unisex',
-                            priceText: prod.priceText,
-                            priceRange: prod.priceNumeric < 20 ? '<20' : prod.priceNumeric <= 50 ? '20-50' : prod.priceNumeric <= 100 ? '50-100' : '>100',
-                            description: prod.description,
-                            imageUrl: prod.imageUrl,
-                            rating: prod.rating,
-                            reviewsCount: prod.reviewsCount,
-                            badge: prod.badge,
-                            searchQuery: prod.searchQuery,
-                            pros: prod.pros,
-                            idealFor: prod.idealFor,
-                            style: 'gamer',
-                          });
-                        }}
-                        className={`p-2 rounded-xl transition-all shadow-md cursor-pointer ${
-                          isInVote
-                            ? 'bg-pink-500 text-white shadow-pink-500/30'
-                            : 'bg-slate-950/80 text-slate-300 hover:text-white hover:bg-slate-900 border border-slate-700/60'
-                        }`}
-                        title={isInVote ? 'Quitar de mi lista' : 'Guardar / Votar'}
-                      >
-                        <Heart className={`w-3.5 h-3.5 ${isInVote ? 'fill-white' : ''}`} />
-                      </button>
-
-                      {/* Compartir */}
-                      <button
-                        type="button"
-                        onClick={(e) => handleShare(e, prod)}
-                        className="p-2 rounded-xl bg-slate-950/80 text-slate-300 hover:text-white hover:bg-slate-900 border border-slate-700/60 transition-all shadow-md cursor-pointer"
-                        title="Compartir enlace de Amazon"
-                      >
-                        <Share2 className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-
-                    {copiedId === prod.id && (
-                      <div className="absolute inset-x-0 bottom-3 mx-auto w-max px-3 py-1 rounded-lg bg-pink-600 text-white text-[11px] font-bold z-20 shadow-lg">
-                        ¡Enlace copiado!
-                      </div>
-                    )}
-
-                    <Image
-                      src={prod.imageUrl}
-                      alt={prod.title}
-                      width={300}
-                      height={300}
-                      unoptimized
-                      className="object-contain w-full h-full p-2 group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-
-                  {/* Cuerpo de la Card */}
-                  <div className="p-5 flex-1 flex flex-col justify-between">
-                    <div>
-                      {/* Categoría y Rating */}
-                      <div className="flex items-center justify-between text-xs mb-2">
-                        <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                          {prod.categoryLabel}
-                        </span>
-                        <div className="flex items-center gap-1 text-amber-400 font-bold text-xs">
-                          <Star className="w-3 h-3 fill-amber-400" />
-                          <span>{prod.rating}</span>
-                          <span className="text-slate-500 text-[10px]">
-                            ({prod.reviewsCount > 1000 ? `${(prod.reviewsCount / 1000).toFixed(1)}k` : prod.reviewsCount})
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Título */}
-                      <h3 className="font-bold text-sm text-slate-100 group-hover:text-pink-300 transition-colors line-clamp-2 mb-2 leading-snug">
-                        {prod.title}
-                      </h3>
-
-                      {/* Descripción breve */}
-                      <p className="text-xs text-slate-400 line-clamp-2 mb-3 leading-relaxed">
-                        {prod.description}
-                      </p>
-
-                      {/* Pros */}
-                      <ul className="space-y-1 mb-4">
-                        {prod.pros.slice(0, 2).map((pro, idx) => (
-                          <li key={idx} className="flex items-start gap-1.5 text-[11px] text-slate-300">
-                            <CheckCircle2 className="w-3 h-3 text-cyan-400 shrink-0 mt-0.5" />
-                            <span className="line-clamp-1">{pro}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Precio y Botón Amazon */}
-                    <div className="pt-3 border-t border-slate-800/80 flex items-center justify-between gap-3">
-                      <div>
-                        <span className="text-[10px] text-slate-400 block">Precio en Amazon</span>
-                        <span className="text-lg font-black text-white">
-                          {formatPrice(prod.priceText)}
-                        </span>
-                      </div>
-
-                      <a
-                        href={amazonUrl}
-                        target="_blank"
-                        rel="noopener noreferrer sponsored"
-                        className="flex-1 py-2.5 px-3 rounded-xl bg-gradient-to-r from-pink-500 via-purple-600 to-cyan-500 hover:from-pink-600 hover:to-cyan-600 text-white font-black text-xs text-center flex items-center justify-center gap-1.5 shadow-md hover:shadow-pink-500/25 transition-all cursor-pointer group/btn"
-                      >
-                        <span>Ver en Amazon</span>
-                        <ExternalLink className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
-                      </a>
-                    </div>
-                  </div>
-                </div>
+                  prod={prod}
+                  amazonUrl={amazonUrl}
+                  isInVote={isInVote}
+                  isCopied={copiedId === prod.id}
+                  onToggleVote={() => {
+                    toggleItem({
+                      id: prod.id,
+                      asin: prod.asin,
+                      title: prod.title,
+                      slug: prod.id,
+                      category: 'Gaming',
+                      subcategory: prod.categoryLabel,
+                      ageRange: '+18',
+                      gender: 'unisex',
+                      priceText: prod.priceText,
+                      priceRange: prod.priceNumeric < 20 ? '<20' : prod.priceNumeric <= 50 ? '20-50' : prod.priceNumeric <= 100 ? '50-100' : '>100',
+                      description: prod.description,
+                      imageUrl: prod.imageUrl,
+                      rating: prod.rating,
+                      reviewsCount: prod.reviewsCount,
+                      badge: prod.badge,
+                      searchQuery: prod.searchQuery,
+                      pros: prod.pros,
+                      idealFor: prod.idealFor,
+                      style: 'gamer',
+                    });
+                  }}
+                  onShare={(e) => handleShare(e, prod)}
+                  formatPrice={formatPrice}
+                />
               );
             })}
           </div>
@@ -578,6 +473,151 @@ export default function RegalosGta6Page() {
       </main>
 
       <Footer currentTheme="gamer" />
+    </div>
+  );
+}
+
+function GtaProductCard({
+  prod,
+  amazonUrl,
+  isInVote,
+  isCopied,
+  onToggleVote,
+  onShare,
+  formatPrice,
+}: {
+  prod: GtaProduct;
+  amazonUrl: string;
+  isInVote: boolean;
+  isCopied: boolean;
+  onToggleVote: () => void;
+  onShare: (e: React.MouseEvent) => void;
+  formatPrice: (p: string) => string;
+}) {
+  const [hasImgError, setHasImgError] = useState(false);
+
+  return (
+    <div className="group rounded-2xl bg-[#111322] border border-slate-800/80 hover:border-pink-500/50 overflow-hidden flex flex-col transition-all duration-300 hover:shadow-[0_0_25px_rgba(255,42,133,0.15)] hover:-translate-y-1">
+      {/* Imagen y Badges */}
+      <div className="relative aspect-square w-full bg-slate-900/90 overflow-hidden p-3 flex items-center justify-center">
+        {/* Badge destacado */}
+        <div className="absolute top-3 left-3 z-20 px-2.5 py-1 rounded-full bg-slate-950/95 border border-pink-500/50 text-pink-300 text-[10px] font-black tracking-wide shadow-md flex items-center gap-1 backdrop-blur-xs select-none">
+          <Flame className="w-3 h-3 text-pink-400" />
+          <span>{prod.badge}</span>
+        </div>
+
+        {/* Acciones flotantes */}
+        <div className="absolute top-3 right-3 z-20 flex flex-col gap-1.5">
+          <button
+            type="button"
+            onClick={onToggleVote}
+            className={`p-2 rounded-xl transition-all shadow-md cursor-pointer ${
+              isInVote
+                ? 'bg-pink-500 text-white shadow-pink-500/30'
+                : 'bg-slate-950/90 text-slate-300 hover:text-white hover:bg-slate-900 border border-slate-700/60'
+            }`}
+            title={isInVote ? 'Quitar de mi lista' : 'Guardar / Votar'}
+          >
+            <Heart className={`w-3.5 h-3.5 ${isInVote ? 'fill-white' : ''}`} />
+          </button>
+
+          <button
+            type="button"
+            onClick={onShare}
+            className="p-2 rounded-xl bg-slate-950/90 text-slate-300 hover:text-white hover:bg-slate-900 border border-slate-700/60 transition-all shadow-md cursor-pointer"
+            title="Compartir enlace de Amazon"
+          >
+            <Share2 className="w-3.5 h-3.5" />
+          </button>
+        </div>
+
+        {isCopied && (
+          <div className="absolute inset-x-0 bottom-3 mx-auto w-max px-3 py-1 rounded-lg bg-pink-600 text-white text-[11px] font-bold z-30 shadow-lg animate-in fade-in">
+            ¡Enlace copiado!
+          </div>
+        )}
+
+        {/* Enlace clickable en imagen */}
+        <a
+          href={amazonUrl}
+          target="_blank"
+          rel="noopener noreferrer sponsored"
+          className="relative w-full h-full block cursor-pointer"
+        >
+          {!hasImgError ? (
+            <Image
+              src={prod.imageUrl}
+              alt={prod.title}
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+              onError={() => setHasImgError(true)}
+              className="object-contain p-2 group-hover:scale-105 transition-transform duration-300"
+            />
+          ) : (
+            <div className="w-full h-full flex flex-col items-center justify-center p-4 text-center bg-gradient-to-br from-pink-950/40 via-purple-950/30 to-slate-950 rounded-xl">
+              <Gamepad2 className="w-10 h-10 text-pink-400 mb-2 opacity-80" />
+              <span className="text-xs font-bold text-slate-200 line-clamp-2">{prod.title}</span>
+              <span className="text-[10px] text-pink-300 mt-1">Ver en Amazon →</span>
+            </div>
+          )}
+        </a>
+      </div>
+
+      {/* Cuerpo de la Card */}
+      <div className="p-5 flex-1 flex flex-col justify-between">
+        <div>
+          <div className="flex items-center justify-between text-xs mb-2">
+            <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+              {prod.categoryLabel}
+            </span>
+            <div className="flex items-center gap-1 text-amber-400 font-bold text-xs">
+              <Star className="w-3 h-3 fill-amber-400" />
+              <span>{prod.rating}</span>
+              <span className="text-slate-500 text-[10px]">
+                ({prod.reviewsCount > 1000 ? `${(prod.reviewsCount / 1000).toFixed(1)}k` : prod.reviewsCount})
+              </span>
+            </div>
+          </div>
+
+          <h3 className="font-bold text-sm text-slate-100 group-hover:text-pink-300 transition-colors line-clamp-2 mb-2 leading-snug">
+            <a href={amazonUrl} target="_blank" rel="noopener noreferrer sponsored">
+              {prod.title}
+            </a>
+          </h3>
+
+          <p className="text-xs text-slate-400 line-clamp-2 mb-3 leading-relaxed">
+            {prod.description}
+          </p>
+
+          <ul className="space-y-1 mb-4">
+            {prod.pros.slice(0, 2).map((pro, idx) => (
+              <li key={idx} className="flex items-start gap-1.5 text-[11px] text-slate-300">
+                <CheckCircle2 className="w-3 h-3 text-cyan-400 shrink-0 mt-0.5" />
+                <span className="line-clamp-1">{pro}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="pt-3 border-t border-slate-800/80 flex items-center justify-between gap-3">
+          <div>
+            <span className="text-[10px] text-slate-400 block">Precio en Amazon</span>
+            <span className="text-lg font-black text-white">
+              {formatPrice(prod.priceText)}
+            </span>
+          </div>
+
+          <a
+            href={amazonUrl}
+            target="_blank"
+            rel="noopener noreferrer sponsored"
+            className="flex-1 py-2.5 px-3 rounded-xl bg-gradient-to-r from-pink-500 via-purple-600 to-cyan-500 hover:from-pink-600 hover:to-cyan-600 text-white font-black text-xs text-center flex items-center justify-center gap-1.5 shadow-md hover:shadow-pink-500/25 transition-all cursor-pointer group/btn"
+          >
+            <span>Ver en Amazon</span>
+            <ExternalLink className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
+          </a>
+        </div>
+      </div>
     </div>
   );
 }
