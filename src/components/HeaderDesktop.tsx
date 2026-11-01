@@ -486,14 +486,6 @@ export default function HeaderDesktop({
             </Link>
 
             <Link
-              href="/halloween"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-orange-500/15 hover:bg-orange-500/25 border border-orange-400/30 hover:border-orange-400/50 text-orange-200 hover:text-orange-100 font-semibold text-xs tracking-wide transition-all shadow-2xs whitespace-nowrap shrink-0 hover:scale-102 active:scale-98"
-            >
-              <span>🎃</span>
-              <span>Halloween</span>
-            </Link>
-
-            <Link
               href="/navidad"
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-400/30 hover:border-emerald-400/50 text-emerald-200 hover:text-emerald-100 font-semibold text-xs tracking-wide transition-all shadow-2xs whitespace-nowrap shrink-0 hover:scale-102 active:scale-98"
             >

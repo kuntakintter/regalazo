@@ -51,8 +51,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: `${baseUrl}/halloween`,
       lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.95,
+      changeFrequency: 'yearly',
+      priority: 0.2,
     },
     {
       url: `${baseUrl}/navidad`,
