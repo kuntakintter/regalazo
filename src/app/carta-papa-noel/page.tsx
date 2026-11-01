@@ -23,6 +23,7 @@ import {
   ShieldCheck,
   Search
 } from 'lucide-react';
+import ChristmasCountdown from '@/components/ChristmasCountdown';
 
 function CartaPapaNoelContent() {
   const searchParams = useSearchParams();
@@ -253,6 +254,9 @@ function CartaPapaNoelContent() {
           <p className="text-xs sm:text-sm text-slate-300 max-w-lg mx-auto">
             Escribe tu carta personalizada, añade tus deseos favoritos de la revista y envíala volando directa a Laponia.
           </p>
+          <div className="pt-2 flex justify-center">
+            <ChristmasCountdown />
+          </div>
         </header>
 
         {/* ============================================================ */}
