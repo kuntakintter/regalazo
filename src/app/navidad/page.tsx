@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ProductCard from '@/components/ProductCard';
@@ -9,6 +10,7 @@ import AmazonLiveSearchCard from '@/components/AmazonLiveSearchCard';
 import AmazonGridDiscoveryCard from '@/components/AmazonGridDiscoveryCard';
 import ThemeAtmosphere from '@/components/ThemeAtmosphere';
 import TopPodium from '@/components/TopPodium';
+import ChristmasCountdown from '@/components/ChristmasCountdown';
 import {
   NAVIDAD_PRODUCTS,
   NAVIDAD_CATEGORIES,
@@ -23,13 +25,11 @@ import {
   Loader2,
   Filter,
   ChevronRight,
-  Flame,
-  ArrowUpDown,
   Gift,
-  TreePine
+  HelpCircle,
+  ShoppingBag,
 } from 'lucide-react';
 import { parsePrice } from '@/lib/amazon';
-import Link from 'next/link';
 
 export default function NavidadPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -115,18 +115,19 @@ export default function NavidadPage() {
   const liveSearchQuery = useMemo(() => {
     const parts: string[] = [];
 
-    if (selectedCategory === 'amigo-invisible') parts.push('regalos amigo invisible divertidos originales menos 15 euros');
+    if (selectedCategory === 'trenes') parts.push('tren de navidad electrico arbol polar express vias humo sonido');
+    else if (selectedCategory === 'decoracion') parts.push('decoracion arbol navidad luces led cortina villa navidena belen adorno');
+    else if (selectedCategory === 'amigo-invisible') parts.push('regalos amigo invisible divertidos originales menos 15 euros');
     else if (selectedCategory === 'adviento') parts.push('calendario de adviento chocolate juguetes lego belleza');
     else if (selectedCategory === 'jerseis-luces') parts.push('jersey navideno luces led divertido ugly sweater familia');
-    else if (selectedCategory === 'decoracion') parts.push('luces navidad cortina led exterior arbol decoracion');
     else if (selectedCategory === 'gourmet') parts.push('cesta navidad bombones lindt chocolate dulces regalos');
-    else parts.push('mejores regalos navidad reyes magos papa noel ideas');
+    else parts.push('mejores regalos navidad reyes magos trenes arbol decoracion ideas');
 
     return parts.join(' ');
   }, [selectedCategory]);
 
   // Auto-fetch live products
-  React.useEffect(() => {
+  useEffect(() => {
     const hasFilter = selectedCategory !== 'all' || selectedPrice !== 'all';
 
     if (hasFilter && liveSearchQuery) {
@@ -155,8 +156,59 @@ export default function NavidadPage() {
     }
   }, [selectedCategory, selectedPrice, liveSearchQuery]);
 
+  // Schema.org Structured Data
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'CollectionPage',
+        '@id': 'https://www.unbuenregalo.es/navidad#webpage',
+        url: 'https://www.unbuenregalo.es/navidad',
+        name: 'Top Regalos de Navidad y Reyes 2026 | Trenes de Árbol, Decoración y Novedades',
+        description:
+          'Catálogo oficial de Navidad y Reyes Magos: trenes eléctricos para rodear el árbol, luces y decoración festiva, calendarios de adviento y regalos de amigo invisible en Amazon España.',
+        inLanguage: 'es-ES',
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: [
+          {
+            '@type': 'Question',
+            name: '¿Por qué poner un tren eléctrico debajo del árbol de Navidad?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'El tren navideño que rodea la base del árbol es una de las tradiciones festivas más entrañables. Los modelos modernos incorporan sonido realista de locomotora, faro luminoso y humo frío de vapor de agua 100% seguro para niños y mascotas, creando una atmósfera mágica en el salón.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: '¿Cuáles son las mejores tendencias en decoración navideña para 2026?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Destacan las villas nevadas con luces LED y patinadores en movimiento, cortinas de micro-LED en cascada de tono blanco cálido, faldas de pie de árbol de felpa blanca nieve y árboles artificiales frondosos de aspecto natural.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: '¿Qué regalar en el Amigo Invisible por menos de 15 euros?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Tazas originales y divertidas de cerámica, packs de calcetines temáticos navideños con caja de regalo, jerséis navideños con luces LED y cajas de bombones gourmet suizos son opciones infalibles con entrega rápida Prime.',
+            },
+          },
+        ],
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen relative flex flex-col bg-slate-50 text-slate-900 selection:bg-rose-600 selection:text-white">
+      {/* Schema.org Injected LD+JSON */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       {/* Background Ambience */}
       <ThemeAtmosphere />
 
@@ -167,7 +219,7 @@ export default function NavidadPage() {
       <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-2 w-full flex items-center gap-2 text-xs text-slate-500">
         <Link href="/" className="hover:text-rose-600 transition-colors">Inicio</Link>
         <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-        <span className="font-bold text-rose-700">Especial Navidad & Reyes 2026</span>
+        <span className="font-bold text-rose-700">Especial Navidad, Reyes & Decoración 2026</span>
       </nav>
 
       {/* Main Content Area */}
@@ -177,19 +229,26 @@ export default function NavidadPage() {
         <section className="text-center py-6 sm:py-10 max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-4 shadow-xs border border-rose-200 bg-rose-50 text-rose-900">
             <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span>Campaña Oficial de Navidad & Reyes Magos 2026 • Regalos para Acertar al 100%</span>
+            <span>Campaña Oficial de Navidad & Reyes Magos 2026 • Trenes, Decoración & Regalos</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] mb-5 text-slate-900">
             Especial Navidad & Reyes:{' '}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-rose-600 via-amber-600 to-emerald-600">
-              Ideas, Amigo Invisible & Adviento
+              Trenes de Árbol, Decoración & Regalos
             </span>
           </h1>
 
           <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed mb-6 max-w-2xl mx-auto">
-            La guía definitiva para no complicarte: desde detalles divertidos para el Amigo Invisible por menos de 15 € hasta calendarios de adviento, jerséis navideños con luces LED y bombones gourmet de lujo.
+            La guía definitiva para llenar tu hogar de ilusión: trenes eléctricos para la base del árbol con humo frío y sonido, pueblos nevados con luz y movimiento, calendarios de adviento, regalos para el Amigo Invisible y cestas gourmet.
           </p>
+
+          {/* CONTADOR EN VIVO HASTA NAVIDAD */}
+          <div className="mb-8 flex justify-center">
+            <div className="bg-gradient-to-r from-[#8a1420] via-[#5c0f18] to-[#0c2217] p-3 sm:p-4 rounded-3xl border-2 border-amber-400/90 shadow-xl">
+              <ChristmasCountdown />
+            </div>
+          </div>
 
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs font-medium text-slate-500 mb-8">
             <span className="flex items-center gap-1.5">
@@ -219,14 +278,16 @@ export default function NavidadPage() {
 
         {/* FILTER BAR */}
         <div className="bg-white rounded-3xl border border-slate-200 p-5 sm:p-6 mb-8 shadow-xs">
+          
+          {/* Categorías */}
           <div className="mb-5">
             <div className="flex items-center justify-between mb-3">
-              <span className="text-xs font-bold uppercase tracking-wider text-rose-700 flex items-center gap-1.5">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
                 <Filter className="w-3.5 h-3.5 text-rose-600" />
-                <span>¿Para qué ocasión navideña buscas el regalo?</span>
+                <span>¿Qué buscas para esta Navidad?</span>
               </span>
               <span className="text-xs font-semibold text-slate-400">
-                {displayProducts.length + liveAmazonProducts.length} ideas
+                {displayProducts.length + liveAmazonProducts.length} ideas disponibles
               </span>
             </div>
 
@@ -234,14 +295,11 @@ export default function NavidadPage() {
               {NAVIDAD_CATEGORIES.map((cat) => (
                 <button
                   key={cat.id}
-                  onClick={() => {
-                    setSelectedCategory(cat.id);
-                    setLiveAmazonProducts([]);
-                  }}
-                  className={`px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 cursor-pointer border ${
+                  onClick={() => setSelectedCategory(cat.id)}
+                  className={`px-3.5 py-2 rounded-2xl text-xs font-bold transition-all flex items-center gap-2 cursor-pointer ${
                     selectedCategory === cat.id
-                      ? 'bg-rose-600 text-white border-rose-600 shadow-md shadow-rose-600/20 scale-[1.02]'
-                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200'
+                      ? 'bg-rose-600 text-white shadow-md shadow-rose-200 scale-102 ring-2 ring-rose-300'
+                      : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
                   }`}
                 >
                   <span>{cat.icon}</span>
@@ -251,102 +309,131 @@ export default function NavidadPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-slate-100">
-            <div>
-              <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">
-                Presupuesto
-              </label>
-              <select
-                value={selectedPrice}
-                onChange={(e) => {
-                  setSelectedPrice(e.target.value);
-                  setLiveAmazonProducts([]);
-                }}
-                className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 text-xs font-semibold focus:border-rose-500 focus:bg-white outline-none cursor-pointer"
-              >
-                {NAVIDAD_PRICE_RANGES.map((pr) => (
-                  <option key={pr.id} value={pr.id}>{pr.label}</option>
-                ))}
-              </select>
+          {/* Rango de Precios */}
+          <div className="pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-xs font-bold text-slate-500 mr-1">Presupuesto:</span>
+              {NAVIDAD_PRICE_RANGES.map((range) => (
+                <button
+                  key={range.id}
+                  onClick={() => setSelectedPrice(range.id)}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
+                    selectedPrice === range.id
+                      ? 'bg-amber-500 text-slate-950 font-bold shadow-xs'
+                      : 'bg-slate-100 hover:bg-slate-200 text-slate-600'
+                  }`}
+                >
+                  {range.label}
+                </button>
+              ))}
             </div>
 
-            <div>
-              <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">
-                Ordenar por
-              </label>
-              <div className="relative">
-                <select
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value as any)}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 text-xs font-semibold focus:border-rose-500 focus:bg-white outline-none cursor-pointer appearance-none"
-                >
-                  <option value="featured">✨ Más recomendados y vendidos</option>
-                  <option value="price-asc">💶 Precio: de menor a mayor</option>
-                  <option value="price-desc">💎 Precio: de mayor a menor</option>
-                  <option value="rating">⭐ Mejor valoración</option>
-                </select>
-                <ArrowUpDown className="w-3.5 h-3.5 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-              </div>
+            {/* Ordenación */}
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-slate-500">Ordenar por:</span>
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value as any)}
+                className="text-xs font-semibold bg-slate-100 border-none rounded-xl px-3 py-1.5 text-slate-700 cursor-pointer focus:ring-2 focus:ring-rose-500"
+              >
+                <option value="featured">Destacados</option>
+                <option value="price-asc">Precio: de menor a mayor</option>
+                <option value="price-desc">Precio: de mayor a menor</option>
+                <option value="rating">Mejor valorados</option>
+              </select>
             </div>
           </div>
         </div>
 
-        {/* PRODUCTS GRID */}
-        {sortedDisplayProducts.length > 0 || sortedLiveAmazonProducts.length > 0 ? (
-          <div>
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl sm:text-2xl font-black text-slate-900 flex items-center gap-2">
-                <span>🎄 Catálogo Oficial Navidad & Reyes 2026</span>
-                <span className="text-xs font-bold text-rose-700 bg-rose-100 px-2.5 py-0.5 rounded-full border border-rose-200">
-                  {sortedDisplayProducts.length + sortedLiveAmazonProducts.length} regalos
-                </span>
-              </h2>
-            </div>
+        {/* PRODUCT GRID */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
+          {sortedDisplayProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 sm:gap-2.5 lg:gap-3">
-              {/* Curated Products */}
-              {sortedDisplayProducts.map((product) => (
-                <ProductCard key={product.id} product={product} currentTheme="classic" />
-              ))}
+          {/* LIVE AMAZON PRODUCTS */}
+          {sortedLiveAmazonProducts.map((liveProd) => (
+            <LiveAmazonProductCard
+              key={liveProd.asin}
+              product={liveProd}
+              categoryLabel="Navidad Amazon"
+              badgeLabel="Top Ventas Navidad"
+            />
+          ))}
 
-              {/* Dynamic Amazon Grid Card */}
-              {selectedCategory !== 'all' && (
-                <AmazonGridDiscoveryCard
-                  searchQuery={liveSearchQuery}
-                  selectedCategory={NAVIDAD_CATEGORIES.find(c => c.id === selectedCategory)?.label || 'Navidad'}
-                />
-              )}
-
-              {/* Live Amazon Search Products */}
-              {sortedLiveAmazonProducts.map((liveProd) => (
-                <LiveAmazonProductCard key={`live-nav-${liveProd.asin}`} product={liveProd} />
-              ))}
-            </div>
-
-            {/* Amazon Live Search Bottom Banner */}
-            <div className="mt-12">
+          {/* LIVE DISCOVERY CARDS */}
+          {selectedCategory !== 'all' && (
+            <>
+              <AmazonGridDiscoveryCard
+                searchQuery={liveSearchQuery}
+                selectedCategory={
+                  NAVIDAD_CATEGORIES.find((c) => c.id === selectedCategory)?.label || 'Navidad'
+                }
+              />
               <AmazonLiveSearchCard
                 currentTheme="classic"
                 initialQuery={liveSearchQuery}
               />
-            </div>
-          </div>
-        ) : (
-          <div className="text-center py-16 bg-white rounded-3xl border border-slate-200 p-8">
-            <TreePine className="w-12 h-12 text-rose-500 mx-auto mb-3" />
-            <h3 className="text-lg font-bold text-slate-900 mb-1">No se encontraron productos con estos filtros</h3>
-            <p className="text-xs text-slate-500 mb-4">Prueba a seleccionar otra categoría o cambiar el presupuesto.</p>
-            <button
-              onClick={() => {
-                setSelectedCategory('all');
-                setSelectedPrice('all');
-              }}
-              className="px-4 py-2 bg-rose-600 text-white rounded-xl text-xs font-bold hover:bg-rose-700 transition-colors"
-            >
-              Restablecer filtros
-            </button>
+            </>
+          )}
+        </div>
+
+        {/* LOADING SPINNER FOR LIVE RESULTS */}
+        {isLoadingLive && (
+          <div className="flex items-center justify-center gap-2 py-8 text-xs text-slate-500">
+            <Loader2 className="w-4 h-4 animate-spin text-rose-600" />
+            <span>Consultando novedades navideñas en Amazon España en tiempo real...</span>
           </div>
         )}
+
+        {/* SEO FAQ SECTION */}
+        <section className="mt-16 pt-12 border-t border-slate-200">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-10">
+              <span className="text-xs font-bold uppercase tracking-wider text-rose-600 block mb-2">
+                Guía de Navidad 2026
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mb-3">
+                Preguntas Frecuentes sobre Trenes de Árbol, Decoración y Regalos
+              </h2>
+              <p className="text-sm text-slate-600">
+                Resolvemos las dudas habituales para decorar tu casa y acertar con los regalos en Nochebuena y Reyes.
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs">
+                <h3 className="text-sm sm:text-base font-bold text-slate-900 flex items-center gap-2 mb-2">
+                  <HelpCircle className="w-4 h-4 text-rose-600 shrink-0" />
+                  <span>¿Por qué poner un tren eléctrico debajo del árbol de Navidad?</span>
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pl-6">
+                  El tren de Navidad es un clásico que llena de vida el salón. Los modelos actuales incluyen vías adaptables (redondas u ovaladas), faros LED luminosos, melodías festivas y <strong>vapor de agua frío seguro</strong> que emula el humo de una locomotora real sin riesgos para niños ni mascotas.
+                </p>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs">
+                <h3 className="text-sm sm:text-base font-bold text-slate-900 flex items-center gap-2 mb-2">
+                  <HelpCircle className="w-4 h-4 text-rose-600 shrink-0" />
+                  <span>¿Cuáles son las mejores opciones de decoración para el árbol en 2026?</span>
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pl-6">
+                  Las faldas cubrepíe de felpa blanca nieve aportan calidez y ocultan la base metálica del abeto. Junto a las cortinas de luces LED en cascada, las villas navideñas con movimiento y las bolas irrompibles doradas y rojas, consigues una decoración digna de revista.
+                </p>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs">
+                <h3 className="text-sm sm:text-base font-bold text-slate-900 flex items-center gap-2 mb-2">
+                  <HelpCircle className="w-4 h-4 text-rose-600 shrink-0" />
+                  <span>¿Qué regalar en el Amigo Invisible por menos de 15 euros?</span>
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pl-6">
+                  En nuestra categoría de Amigo Invisible tienes tazas cómicas de cerámica, calcetines festivos de algodón peinado en estuche de regalo, bombones de chocolate suizo Lindt y jerséis navideños con luces LED para triunfar sin salirte del presupuesto.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
 
       </main>
 

@@ -60,6 +60,13 @@ export const HUB_OG_SNIPPETS: Record<string, SocialHubSnippet> = {
     imageUrl: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1200&h=630&q=85',
     imageAlt: 'Setup gamer con luces de neón rosa y azul estilo retro Vice City de GTA 6',
   },
+  navidad: {
+    title: 'Top Regalos de Navidad y Reyes 2026 | Trenes de Árbol, Decoración y Novedades',
+    socialTitle: '🎄 Especial Navidad y Reyes: Trenes para Árbol, Decoración y Regalos Estrella',
+    description: 'Guía completa de Navidad y Reyes Magos en Amazon España: trenes eléctricos para rodear el árbol, adornos y luces navideñas, calendarios de adviento, regalos para amigo invisible y dulces gourmet.',
+    imageUrl: 'https://images.unsplash.com/photo-1543258103-a62bdc069871?auto=format&fit=crop&w=1200&h=630&q=85',
+    imageAlt: 'Árbol de Navidad decorado con luces cálidas y tren clásico navideño rodeando la base',
+  },
 
   // Hubs por Rango de Edad
   'bebes-0-a-12-meses': {
