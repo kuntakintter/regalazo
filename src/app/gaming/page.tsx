@@ -239,6 +239,37 @@ export default function GamingPage() {
           </div>
         </section>
 
+        {/* BANNER DESTACADO ESPECIAL GTA 6 / GTA VI */}
+        <div className="mb-8 p-5 sm:p-6 rounded-3xl bg-gradient-to-r from-[#180e29] via-[#0f172a] to-[#200924] border border-pink-500/40 text-white shadow-xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="absolute -top-12 -right-12 w-48 h-48 bg-pink-500/20 rounded-full blur-2xl pointer-events-none" />
+          <div className="flex items-center gap-4 relative z-10">
+            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-pink-500 to-cyan-500 flex items-center justify-center shrink-0 shadow-lg text-2xl">
+              🌴
+            </div>
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="px-2.5 py-0.5 rounded-full bg-pink-500/30 text-pink-300 font-black text-[10px] tracking-wide uppercase border border-pink-400/30">
+                  Especial Lanzamiento
+                </span>
+                <span className="text-xs text-cyan-300 font-bold">Grand Theft Auto VI</span>
+              </div>
+              <h3 className="text-base sm:text-lg font-black text-white">
+                ¿Buscando regalos para fans de GTA 6 y GTA VI?
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-300">
+                Descubre mandos PS5 Nova Pink, lámparas neón Vice City, camisetas retro y tarjetas de reserva en Amazon España.
+              </p>
+            </div>
+          </div>
+          <Link
+            href="/regalos-gta-6"
+            className="shrink-0 px-6 py-3 rounded-2xl bg-gradient-to-r from-pink-500 via-purple-600 to-cyan-500 hover:from-pink-600 hover:to-cyan-600 text-white font-black text-xs sm:text-sm shadow-lg hover:scale-105 transition-all flex items-center gap-2 cursor-pointer relative z-10"
+          >
+            <span>Explorar Merch GTA 6</span>
+            <ChevronRight className="w-4 h-4" />
+          </Link>
+        </div>
+
         {/* SOCIAL SHARE WIDGET */}
         <SocialShareBar />
 

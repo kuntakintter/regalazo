@@ -435,6 +435,14 @@ export default function HeaderMobile({
             <span>🎅</span>
             <span>Carta Papá Noel</span>
           </Link>
+
+          <Link
+            href="/regalos-gta-6"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-pink-500/25 to-cyan-500/25 border border-pink-400/50 text-pink-200 font-black text-xs whitespace-nowrap shrink-0 shadow-xs"
+          >
+            <span>🌴</span>
+            <span>GTA 6 / GTA VI</span>
+          </Link>
         </div>
       </div>
     </div>

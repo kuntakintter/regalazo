@@ -42,6 +42,35 @@ const nextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: '/gta-6',
+        destination: '/regalos-gta-6',
+        permanent: true,
+      },
+      {
+        source: '/gta-vi',
+        destination: '/regalos-gta-6',
+        permanent: true,
+      },
+      {
+        source: '/regalos-gta-vi',
+        destination: '/regalos-gta-6',
+        permanent: true,
+      },
+      {
+        source: '/gta6',
+        destination: '/regalos-gta-6',
+        permanent: true,
+      },
+      {
+        source: '/gtavi',
+        destination: '/regalos-gta-6',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

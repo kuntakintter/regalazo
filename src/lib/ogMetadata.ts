@@ -53,6 +53,13 @@ export const HUB_OG_SNIPPETS: Record<string, SocialHubSnippet> = {
     imageUrl: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&h=630&q=85',
     imageAlt: 'Taza de café espresso barista con arte latte y granos de café de especialidad',
   },
+  'regalos-gta-6': {
+    title: 'Regalos GTA 6 y Merchandising GTA VI 【2026】 Ideas Grand Theft Auto',
+    socialTitle: '🌴 Los Mejores Regalos para Fans de GTA 6 y GTA VI en Amazon',
+    description: 'Guía definitiva de regalos y merchandising de Grand Theft Auto VI: mandos de PS5 Nova Pink, luces de neón estilo Vice City, camisetas retro y accesorios setup para fans de GTA 6.',
+    imageUrl: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1200&h=630&q=85',
+    imageAlt: 'Setup gamer con luces de neón rosa y azul estilo retro Vice City de GTA 6',
+  },
 
   // Hubs por Rango de Edad
   'bebes-0-a-12-meses': {

@@ -509,6 +509,14 @@ export default function HeaderDesktop({
               <span>Carta a Papá Noel</span>
             </Link>
 
+            <Link
+              href="/regalos-gta-6"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-pink-500/25 via-purple-500/25 to-cyan-500/25 hover:from-pink-500/40 hover:to-cyan-500/40 border border-pink-400/50 hover:border-pink-300 text-pink-200 hover:text-white font-black text-xs tracking-wide transition-all shadow-md whitespace-nowrap shrink-0 hover:scale-105 active:scale-98 ring-1 ring-pink-400/30"
+            >
+              <span>🌴</span>
+              <span>GTA 6 / GTA VI</span>
+            </Link>
+
           </div>
         </div>
       </div>

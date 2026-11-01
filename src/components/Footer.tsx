@@ -77,6 +77,7 @@ export default function Footer({ currentTheme }: FooterProps) {
             </span>
             <ul className="space-y-2 text-xs opacity-80">
               <li><Link href="/carta-papa-noel" className="hover:underline text-amber-700 font-bold">🎅 Carta a Papá Noel</Link></li>
+              <li><Link href="/regalos-gta-6" className="hover:underline text-pink-600 font-bold">🌴 Regalos GTA 6 / GTA VI</Link></li>
               <li><Link href="/navidad" className="hover:underline">🎄 Especial Navidad & Reyes</Link></li>
               <li><Link href="/motoristas" className="hover:underline">🏍️ Accesorios para Motoristas</Link></li>
               <li><Link href="/automovil" className="hover:underline">🚗 Gadgets para Automóvil</Link></li>
