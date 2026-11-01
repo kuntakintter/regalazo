@@ -37,6 +37,7 @@ interface HeaderMobileProps {
   searchQuery: string;
   onSearchChange?: (query: string) => void;
   onSearchSubmit: (e: React.FormEvent) => void;
+  onSelectProduct?: (product: Product) => void;
   clearSearch: () => void;
   isFocused: boolean;
   setIsFocused: (focused: boolean) => void;
@@ -49,6 +50,7 @@ export default function HeaderMobile({
   searchQuery,
   onSearchChange,
   onSearchSubmit,
+  onSelectProduct,
   clearSearch,
   isFocused,
   setIsFocused,
@@ -180,9 +182,13 @@ export default function HeaderMobile({
                       <div
                         key={product.id}
                         onClick={() => {
-                          setIsFocused(false);
-                          const target = document.getElementById('catalogo-productos');
-                          if (target) target.scrollIntoView({ behavior: 'smooth' });
+                          if (onSelectProduct) {
+                            onSelectProduct(product);
+                          } else {
+                            setIsFocused(false);
+                            const target = document.getElementById('catalogo-productos');
+                            if (target) target.scrollIntoView({ behavior: 'smooth' });
+                          }
                         }}
                         className="p-3 hover:bg-indigo-50/60 transition-colors flex items-center gap-2.5 cursor-pointer"
                       >
@@ -414,6 +420,11 @@ export default function HeaderMobile({
 
           <Link
             href="/?categoria=cartas-pokemon#catalogo-productos"
+            onClick={() => {
+              if (typeof window !== 'undefined') {
+                window.dispatchEvent(new CustomEvent('select-category', { detail: 'Cartas y Sobres Pokémon' }));
+              }
+            }}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-200 font-semibold text-xs whitespace-nowrap shrink-0"
           >
             <span>⚡</span>

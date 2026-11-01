@@ -17,6 +17,7 @@ interface HeaderDesktopProps {
   searchQuery: string;
   onSearchChange?: (query: string) => void;
   onSearchSubmit: (e: React.FormEvent) => void;
+  onSelectProduct?: (product: Product) => void;
   clearSearch: () => void;
   isFocused: boolean;
   setIsFocused: (focused: boolean) => void;
@@ -29,6 +30,7 @@ export default function HeaderDesktop({
   searchQuery,
   onSearchChange,
   onSearchSubmit,
+  onSelectProduct,
   clearSearch,
   isFocused,
   setIsFocused,
@@ -132,9 +134,13 @@ export default function HeaderDesktop({
                           <div
                             key={product.id}
                             onClick={() => {
-                              setIsFocused(false);
-                              const target = document.getElementById('catalogo-productos');
-                              if (target) target.scrollIntoView({ behavior: 'smooth' });
+                              if (onSelectProduct) {
+                                onSelectProduct(product);
+                              } else {
+                                setIsFocused(false);
+                                const target = document.getElementById('catalogo-productos');
+                                if (target) target.scrollIntoView({ behavior: 'smooth' });
+                              }
                             }}
                             className="p-3 hover:bg-indigo-50/60 transition-colors flex items-center gap-3 cursor-pointer group"
                           >
@@ -471,6 +477,11 @@ export default function HeaderDesktop({
 
             <Link
               href="/?categoria=cartas-pokemon#catalogo-productos"
+              onClick={() => {
+                if (typeof window !== 'undefined') {
+                  window.dispatchEvent(new CustomEvent('select-category', { detail: 'Cartas y Sobres Pokémon' }));
+                }
+              }}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-400/10 hover:bg-amber-400/20 border border-amber-400/30 hover:border-amber-400/50 text-amber-200 hover:text-amber-100 font-semibold text-xs tracking-wide transition-all shadow-2xs whitespace-nowrap shrink-0 hover:scale-102 active:scale-98"
             >
               <span>⚡</span>
@@ -479,6 +490,11 @@ export default function HeaderDesktop({
 
             <Link
               href="/?categoria=figuras-anime#catalogo-productos"
+              onClick={() => {
+                if (typeof window !== 'undefined') {
+                  window.dispatchEvent(new CustomEvent('select-category', { detail: 'Figuras de Colección y Cine' }));
+                }
+              }}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/25 text-slate-100 hover:text-white font-medium text-xs tracking-wide transition-all shadow-2xs whitespace-nowrap shrink-0 hover:scale-102 active:scale-98"
             >
               <span>🎎</span>

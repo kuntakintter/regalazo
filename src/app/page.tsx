@@ -295,7 +295,10 @@ export default function HomePage() {
     if (query.trim().length > 0) {
       if (selectedAge !== 'all') setSelectedAge('all');
       if (selectedCategory !== 'all') setSelectedCategory('all');
-      setSelectedClothingSub('all');
+      if (selectedClothingSub !== 'all') setSelectedClothingSub('all');
+      if (selectedAnimeSub !== 'all') setSelectedAnimeSub('all');
+      if (selectedGender !== 'all') setSelectedGender('all');
+      if (selectedPrice !== 'all') setSelectedPrice('all');
     }
   };
 
@@ -312,14 +315,14 @@ export default function HomePage() {
       }
 
       // 2. Gender filter
-      if (selectedGender === 'reveal') {
+      if (!isSearching && selectedGender === 'reveal') {
         const isRevealSub = product.subcategory === 'Fiestas y Revelación de Género';
         const hasRevealKeyword =
           product.title.toLowerCase().includes('revelación') ||
           product.description.toLowerCase().includes('revelación') ||
           product.searchQuery.toLowerCase().includes('revelacion');
         if (!isRevealSub && !hasRevealKeyword) return false;
-      } else if (selectedGender !== 'all') {
+      } else if (!isSearching && selectedGender !== 'all') {
         if (product.gender !== 'unisex' && product.gender !== selectedGender) {
           return false;
         }
@@ -535,18 +538,33 @@ export default function HomePage() {
     }
   }, [selectedCategory, selectedAge, selectedGender, searchQuery, liveSearchQuery]);
 
-  // Handle URL params and custom navigation event for direct category shortcuts (e.g. Especiales: Cartas Pokémon / Figuras & Anime)
+  // Handle URL params and custom navigation event for direct category shortcuts (e.g. Especiales: Cartas Pokémon / Figuras & Anime / Búsqueda Global)
   useEffect(() => {
     const applyCategoryFromUrl = () => {
       if (typeof window === 'undefined') return;
       const params = new URLSearchParams(window.location.search);
+
+      // Support direct search param (e.g. /?q=lego o /?search=perfume desde cualquier página o filtro)
+      const queryParam = params.get('q') || params.get('search') || params.get('query');
+      if (queryParam) {
+        handleSearchChange(queryParam);
+        setTimeout(() => {
+          const el = document.getElementById('catalogo-productos');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 80);
+        return;
+      }
+
       const cat = params.get('categoria') || params.get('cat');
       if (cat === 'cartas-pokemon' || cat === 'pokemon') {
         setSelectedCategory('Cartas y Sobres Pokémon');
         setSelectedAge('all');
+        setSelectedClothingSub('all');
+        setSelectedAnimeSub('all');
       } else if (cat === 'figuras-anime' || cat === 'anime' || cat === 'figuras') {
         setSelectedCategory('Figuras de Colección y Cine');
         setSelectedAge('all');
+        setSelectedClothingSub('all');
         const serie = params.get('serie');
         if (serie) setSelectedAnimeSub(serie);
       }
@@ -568,14 +586,27 @@ export default function HomePage() {
       }
     };
 
+    const handleSearchEvent = (e: Event) => {
+      const customEvent = e as CustomEvent<string>;
+      if (typeof customEvent.detail === 'string') {
+        handleSearchChange(customEvent.detail);
+        setTimeout(() => {
+          const el = document.getElementById('catalogo-productos');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 80);
+      }
+    };
+
     const handleOpenWizard = () => setIsAiModalOpen(true);
 
     window.addEventListener('select-category', handleCategoryEvent);
+    window.addEventListener('site-search', handleSearchEvent);
     window.addEventListener('popstate', applyCategoryFromUrl);
     window.addEventListener('open-ai-wizard', handleOpenWizard);
 
     return () => {
       window.removeEventListener('select-category', handleCategoryEvent);
+      window.removeEventListener('site-search', handleSearchEvent);
       window.removeEventListener('popstate', applyCategoryFromUrl);
       window.removeEventListener('open-ai-wizard', handleOpenWizard);
     };
