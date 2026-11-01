@@ -69,6 +69,16 @@ const nextConfig = {
         destination: '/regalos-gta-6',
         permanent: true,
       },
+      {
+        source: '/adolescentes-13-a-15-anos',
+        destination: '/jovenes-13-a-15-anos',
+        permanent: true,
+      },
+      {
+        source: '/votacion-en-grupo',
+        destination: '/votar',
+        permanent: true,
+      },
     ];
   },
 };

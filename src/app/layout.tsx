@@ -80,17 +80,83 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Website JSON-LD Schema
+  // Website, Organization & SiteNavigationElement JSON-LD Schema for Google Sitelinks
   const webSiteSchema = {
     '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: 'Un Buen Regalo',
-    url: 'https://www.unbuenregalo.es',
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: 'https://www.unbuenregalo.es/?q={search_term_string}',
-      'query-input': 'required name=search_term_string',
-    },
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': 'https://www.unbuenregalo.es/#website',
+        name: 'Un Buen Regalo',
+        url: 'https://www.unbuenregalo.es',
+        inLanguage: 'es-ES',
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: 'https://www.unbuenregalo.es/?q={search_term_string}',
+          'query-input': 'required name=search_term_string',
+        },
+      },
+      {
+        '@type': 'Organization',
+        '@id': 'https://www.unbuenregalo.es/#organization',
+        name: 'Un Buen Regalo',
+        url: 'https://www.unbuenregalo.es',
+        logo: {
+          '@type': 'ImageObject',
+          url: 'https://www.unbuenregalo.es/icon.png',
+          width: 512,
+          height: 512,
+        },
+      },
+      {
+        '@type': 'ItemList',
+        name: 'Secciones Principales Un Buen Regalo',
+        itemListElement: [
+          {
+            '@type': 'SiteNavigationElement',
+            position: 1,
+            name: 'Navidad y Reyes 2026',
+            url: 'https://www.unbuenregalo.es/navidad',
+          },
+          {
+            '@type': 'SiteNavigationElement',
+            position: 2,
+            name: 'Carta Oficial a Papá Noel',
+            url: 'https://www.unbuenregalo.es/carta-papa-noel',
+          },
+          {
+            '@type': 'SiteNavigationElement',
+            position: 3,
+            name: 'Regalos GTA 6 / GTA VI',
+            url: 'https://www.unbuenregalo.es/regalos-gta-6',
+          },
+          {
+            '@type': 'SiteNavigationElement',
+            position: 4,
+            name: 'Votación de Regalos en Grupo',
+            url: 'https://www.unbuenregalo.es/votar',
+          },
+          {
+            '@type': 'SiteNavigationElement',
+            position: 5,
+            name: 'Regalos para Motoristas',
+            url: 'https://www.unbuenregalo.es/motoristas',
+          },
+          {
+            '@type': 'SiteNavigationElement',
+            position: 6,
+            name: 'Regalos Gaming y Streamers',
+            url: 'https://www.unbuenregalo.es/gaming',
+          },
+          {
+            '@type': 'SiteNavigationElement',
+            position: 7,
+            name: 'Amantes del Café Barista',
+            url: 'https://www.unbuenregalo.es/amantes-del-cafe',
+          },
+        ],
+      },
+    ],
   };
 
   return (

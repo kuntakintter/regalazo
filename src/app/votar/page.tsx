@@ -4,29 +4,32 @@ import React, { useState, useEffect, useMemo, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { PRODUCTS, Product } from '@/data/products';
+import { Product } from '@/data/products';
+import { findProductById } from '@/data/allCatalogProducts';
 import { getAmazonProductUrl } from '@/lib/amazon';
 import { useCurrency } from '@/context/CurrencyContext';
+import { useVoting } from '@/context/VotingContext';
 import { trackShareEvent } from '@/lib/analytics';
-import { ThumbsUp, Check, ExternalLink, Share2, ShieldCheck, Trophy, ArrowRight, Heart } from 'lucide-react';
+import { ThumbsUp, Check, ExternalLink, Share2, ShieldCheck, ArrowRight, Heart, Users, MessageCircle } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 function VotingContent() {
   const searchParams = useSearchParams();
   const { formatPrice } = useCurrency();
+  const { voteItems, setIsDrawerOpen } = useVoting();
 
   const idsParam = searchParams.get('ids') || '';
   const paraParam = searchParams.get('para') || '';
 
   const recipientDisplay = paraParam.trim() ? paraParam.trim() : 'nuestro regalo';
 
-  // Find products matching the IDs
+  // Find products matching the IDs across ALL site catalogs (Age guides + Niche Hubs)
   const matchedProducts = useMemo(() => {
     if (!idsParam) return [];
     const idList = idsParam.split(',').map((id) => id.trim()).filter(Boolean);
     return idList
-      .map((id) => PRODUCTS.find((p) => p.id === id))
+      .map((id) => findProductById(id))
       .filter((p): p is Product => Boolean(p));
   }, [idsParam]);
 
@@ -53,8 +56,7 @@ function VotingContent() {
         // Seed initial friendly counts so it looks like a real group poll
         const initial: Record<string, number> = {};
         matchedProducts.forEach((p, idx) => {
-          // slight variation for natural feel
-          initial[p.id] = (idx === 0 ? 3 : idx === 1 ? 2 : 1);
+          initial[p.id] = idx === 0 ? 3 : idx === 1 ? 2 : 1;
         });
         setVotes(initial);
       }
@@ -107,21 +109,71 @@ function VotingContent() {
 
   if (matchedProducts.length === 0) {
     return (
-      <div className="max-w-2xl mx-auto py-20 px-4 text-center">
-        <span className="text-5xl block mb-4">🗳️</span>
-        <h1 className="text-2xl font-black text-slate-900 mb-2">
-          Votación de Regalos en Grupo
-        </h1>
-        <p className="text-sm text-slate-600 mb-6">
-          Esta encuesta no contiene productos válidos o el enlace está incompleto. Puedes explorar nuestro catálogo y crear tu propia votación en 1 minuto.
-        </p>
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-sm shadow-md transition-all cursor-pointer"
-        >
-          <span>Ir a la página principal</span>
-          <ArrowRight className="w-4 h-4" />
-        </Link>
+      <div className="max-w-4xl mx-auto py-12 sm:py-16 px-4 sm:px-6">
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider mb-4 bg-amber-100 text-amber-900 border border-amber-300 shadow-2xs">
+            <span>🗳️ Herramienta Gratuita Sin Registro</span>
+          </div>
+          <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight mb-4">
+            Votación de Regalos en Grupo por WhatsApp
+          </h1>
+          <p className="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto">
+            ¿Cansado de cientos de mensajes en el grupo de WhatsApp sin decidir qué regalar? Selecciona hasta 6 candidatos, envía un único enlace y que cada amigo vote su favorito en 1 clic.
+          </p>
+        </div>
+
+        {/* 3 Steps Explanation */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
+          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm text-center">
+            <div className="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center mx-auto mb-4">
+              <Heart className="w-6 h-6 fill-rose-500" />
+            </div>
+            <h2 className="font-black text-slate-900 text-base mb-2">1. Elige Candidatos</h2>
+            <p className="text-xs text-slate-600 leading-relaxed">
+              Navega por cualquier sección de la web y pulsa el icono del corazón o &ldquo;Añadir a votación&rdquo; en tus ideas favoritas.
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm text-center">
+            <div className="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-4">
+              <MessageCircle className="w-6 h-6" />
+            </div>
+            <h2 className="font-black text-slate-900 text-base mb-2">2. Envía al Grupo</h2>
+            <p className="text-xs text-slate-600 leading-relaxed">
+              Escribe para quién es el regalo (ej. &ldquo;Cumpleaños de Marcos&rdquo;) y compártelo directamente en WhatsApp con un botón.
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm text-center">
+            <div className="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center mx-auto mb-4">
+              <Users className="w-6 h-6" />
+            </div>
+            <h2 className="font-black text-slate-900 text-base mb-2">3. Votad y Acierta</h2>
+            <p className="text-xs text-slate-600 leading-relaxed">
+              Tus amigos ven fotos, precios actualizados de Amazon y votan sin registrarse. El regalo más votado gana.
+            </p>
+          </div>
+        </div>
+
+        {/* Actions */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          {voteItems.length > 0 && (
+            <button
+              type="button"
+              onClick={() => setIsDrawerOpen(true)}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-sm shadow-lg transition-all cursor-pointer"
+            >
+              <span>🗳️ Abrir mi lista actual ({voteItems.length} regalos)</span>
+            </button>
+          )}
+          <Link
+            href="/#catalogo-productos"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-sm shadow-md transition-all cursor-pointer"
+          >
+            <span>Explorar regalos y crear encuesta</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
       </div>
     );
   }
@@ -316,11 +368,13 @@ export default function VotarPage() {
     <div className="min-h-screen bg-[#f8fafc] flex flex-col">
       <Header />
       <main className="flex-1">
-        <Suspense fallback={
-          <div className="py-20 text-center text-slate-400">
-            Cargando votación...
-          </div>
-        }>
+        <Suspense
+          fallback={
+            <div className="py-20 text-center text-slate-400">
+              Cargando votación...
+            </div>
+          }
+        >
           <VotingContent />
         </Suspense>
       </main>

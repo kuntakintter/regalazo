@@ -20,6 +20,7 @@ import TopPodium from '@/components/TopPodium';
 import ChristmasCountdown from '@/components/ChristmasCountdown';
 import { useCurrency } from '@/context/CurrencyContext';
 import { PRODUCTS, AGE_CATEGORIES, GENERAL_CATEGORY_MAPPING, Product, CLOTHING_SUBFILTERS, isClothingCategory, ANIME_SERIES_SUBFILTERS, isFiguresCategory } from '@/data/products';
+import { ALL_SITE_PRODUCTS } from '@/data/allCatalogProducts';
 import { matchesSearchQuery } from '@/utils/search';
 import { LiveSearchResult } from '@/app/api/live-search/route';
 import {
@@ -305,8 +306,9 @@ export default function HomePage() {
   // Filter products based on search, age, category, gender, price
   const filteredProducts = useMemo(() => {
     const isSearching = searchQuery.trim() !== '';
+    const sourceCatalog = isSearching ? ALL_SITE_PRODUCTS : PRODUCTS;
 
-    return PRODUCTS.filter((product) => {
+    return sourceCatalog.filter((product) => {
       // 1. Search query filter
       if (isSearching) {
         if (!matchesSearchQuery(product, searchQuery)) {

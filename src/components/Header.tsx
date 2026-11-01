@@ -4,7 +4,8 @@ import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import HeaderMobile from '@/components/HeaderMobile';
 import HeaderDesktop from '@/components/HeaderDesktop';
-import { PRODUCTS, Product } from '@/data/products';
+import { Product } from '@/data/products';
+import { ALL_SITE_PRODUCTS } from '@/data/allCatalogProducts';
 import { matchesSearchQuery } from '@/utils/search';
 import { AmazonLiveItem } from '@/components/HeaderMobile';
 
@@ -44,11 +45,11 @@ export default function Header({
     [onSearchChange]
   );
 
-  // Filter matching products from local verified catalog
+  // Filter matching products across all site catalogs (Age guides + Niche Hubs)
   const liveMatches = useMemo(() => {
     const q = internalQuery.trim();
     if (q.length < 2) return [];
-    return PRODUCTS.filter((p) => matchesSearchQuery(p, q)).slice(0, 4);
+    return ALL_SITE_PRODUCTS.filter((p) => matchesSearchQuery(p, q)).slice(0, 5);
   }, [internalQuery]);
 
   // Live Amazon search with 300ms debounce

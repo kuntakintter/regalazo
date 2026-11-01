@@ -64,9 +64,10 @@ export default function Footer({ currentTheme }: FooterProps) {
               <li><Link href="/ninos-4-a-6-anos" className="hover:underline">Infantil y Creatividad (4 a 6 Años)</Link></li>
               <li><Link href="/ninos-7-a-9-anos" className="hover:underline">Primaria y Estrategia (7 a 9 Años)</Link></li>
               <li><Link href="/ninos-10-a-12-anos" className="hover:underline">Preadolescentes (10 a 12 Años)</Link></li>
-              <li><Link href="/adolescentes-13-a-15-anos" className="hover:underline">Adolescentes (13 a 15 Años)</Link></li>
+              <li><Link href="/jovenes-13-a-15-anos" className="hover:underline">Adolescentes (13 a 15 Años)</Link></li>
               <li><Link href="/jovenes-16-a-18-anos" className="hover:underline">Jóvenes (16 a 18 Años)</Link></li>
               <li><Link href="/adultos-mas-de-18-anos" className="hover:underline">Adultos (+18 Años)</Link></li>
+              <li><Link href="/fiesta-revelacion-genero" className="hover:underline">Baby Shower & Revelación Género</Link></li>
             </ul>
           </div>
 
@@ -78,6 +79,7 @@ export default function Footer({ currentTheme }: FooterProps) {
             <ul className="space-y-2 text-xs opacity-80">
               <li><Link href="/carta-papa-noel" className="hover:underline text-amber-700 font-bold">🎅 Carta a Papá Noel</Link></li>
               <li><Link href="/regalos-gta-6" className="hover:underline text-pink-600 font-bold">🌴 Regalos GTA 6 / GTA VI</Link></li>
+              <li><Link href="/votar" className="hover:underline text-emerald-700 font-bold">🗳️ Votación de Regalos en Grupo</Link></li>
               <li><Link href="/navidad" className="hover:underline">🎄 Especial Navidad & Reyes</Link></li>
               <li><Link href="/motoristas" className="hover:underline">🏍️ Accesorios para Motoristas</Link></li>
               <li><Link href="/automovil" className="hover:underline">🚗 Gadgets para Automóvil</Link></li>
