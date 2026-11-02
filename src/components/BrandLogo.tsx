@@ -24,10 +24,10 @@ export default function BrandLogo({ size = 'normal', showSubtitle = true, varian
       <div
         className={`relative shrink-0 transition-transform duration-200 group-hover:scale-105 ${
           isCompact
-            ? 'w-9 h-10'
+            ? 'w-10 h-11'
             : isLarge
-            ? 'w-13 h-14 sm:w-15 sm:h-16'
-            : 'w-11 h-12 sm:w-12 sm:h-13'
+            ? 'w-14 h-15 sm:w-16 sm:h-17'
+            : 'w-12 h-13 sm:w-[52px] sm:h-[58px]'
         }`}
       >
         <Image
@@ -35,8 +35,9 @@ export default function BrandLogo({ size = 'normal', showSubtitle = true, varian
           alt="Logo Un Buen Regalo"
           fill
           priority
-          sizes="64px"
-          className="object-contain drop-shadow-[0_1px_2px_rgba(255,255,255,0.25)]"
+          unoptimized
+          sizes="(max-width: 640px) 48px, 64px"
+          className="object-contain"
         />
       </div>
 
