@@ -8,6 +8,7 @@ import {
   CHRISTMAS_TOYS, 
   CHRISTMAS_CATEGORIES, 
   CHRISTMAS_AGE_RANGES,
+  CHRISTMAS_WHEELS_SUBFILTERS,
   ChristmasToy, 
   buildAmazonRemoteCartUrl 
 } from '@/data/cartaNavidadToys';
@@ -34,6 +35,7 @@ function CartaPapaNoelContent() {
   const [behavior, setBehavior] = useState('🌟 súper bien');
   const [selectedToys, setSelectedToys] = useState<ChristmasToy[]>([]);
   const [activeCategory, setActiveCategory] = useState('all');
+  const [activeWheelSub, setActiveWheelSub] = useState('all');
   const [activeAge, setActiveAge] = useState('all');
   const [searchToyQuery, setSearchToyQuery] = useState('');
   const [visibleCount, setVisibleCount] = useState(24);
@@ -45,7 +47,7 @@ function CartaPapaNoelContent() {
   // Reset pagination when filters change
   useEffect(() => {
     setVisibleCount(24);
-  }, [activeCategory, activeAge, searchToyQuery]);
+  }, [activeCategory, activeWheelSub, activeAge, searchToyQuery]);
 
   // Load from URL or localStorage on mount
   useEffect(() => {
@@ -169,9 +171,12 @@ function CartaPapaNoelContent() {
     window.open(cartUrl, '_blank');
   };
 
-  // Filter toys by category, age and text search
+  // Filter toys by category, wheel subcategory, age and text search
   const filteredToys = CHRISTMAS_TOYS.filter(t => {
     const matchCat = activeCategory === 'all' || t.category === activeCategory;
+    const matchWheelSub =
+      activeWheelSub === 'all' ||
+      (t.category === 'sobre-ruedas' && t.wheelSubcategory === activeWheelSub);
     const matchAge = activeAge === 'all' || 
       (Array.isArray(t.ages) && t.ages.includes(activeAge as any)) ||
       t.ageRange === activeAge || 
@@ -181,7 +186,7 @@ function CartaPapaNoelContent() {
       t.title.toLowerCase().includes(query) ||
       t.shortTitle.toLowerCase().includes(query) ||
       t.categoryLabel.toLowerCase().includes(query);
-    return matchCat && matchAge && matchQuery;
+    return matchCat && matchWheelSub && matchAge && matchQuery;
   });
 
   return (
@@ -656,7 +661,12 @@ function CartaPapaNoelContent() {
                       return (
                         <button
                           key={cat.id}
-                          onClick={() => setActiveCategory(cat.id)}
+                          onClick={() => {
+                            setActiveCategory(cat.id);
+                            if (cat.id !== 'sobre-ruedas') {
+                              setActiveWheelSub('all');
+                            }
+                          }}
                           className={`px-3.5 py-2 rounded-2xl text-xs sm:text-sm transition-all duration-150 cursor-pointer flex items-center gap-2 ${
                             isCatActive
                               ? 'bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-400 text-slate-950 font-black shadow-lg shadow-amber-400/25 border-2 border-white scale-105 ring-2 ring-amber-300'
@@ -673,6 +683,61 @@ function CartaPapaNoelContent() {
                       );
                     })}
                   </div>
+
+                  {/* SUBFILTRO DEDICADO DE COCHES ELÉCTRICOS, QUADS, MINIMOTOS Y PATINETES ELÉCTRICOS */}
+                  <div className={`mt-3 p-3.5 sm:p-4 rounded-2xl border-2 transition-all ${
+                    activeCategory === 'sobre-ruedas'
+                      ? 'bg-gradient-to-r from-amber-500/25 via-orange-500/20 to-red-500/20 border-amber-400 shadow-lg shadow-amber-500/10'
+                      : 'bg-white/5 border-amber-400/30 hover:border-amber-400/50'
+                  }`}>
+                    <div className="flex flex-wrap items-center justify-between gap-2 mb-2.5">
+                      <div className="flex items-center gap-2">
+                        <span className="text-base">🏎️</span>
+                        <span className="text-xs font-black uppercase text-amber-300 tracking-wider">
+                          Subfiltro Sobre Ruedas & Motor (Coches 12V/24V, Quads, Minimotos y Patinetes):
+                        </span>
+                      </div>
+                      {activeWheelSub !== 'all' && (
+                        <button
+                          type="button"
+                          onClick={() => setActiveWheelSub('all')}
+                          className="text-[11px] font-bold text-amber-200 hover:text-white underline cursor-pointer"
+                        >
+                          Ver los 34 vehículos
+                        </button>
+                      )}
+                    </div>
+                    <div className="flex flex-wrap items-center gap-2">
+                      {CHRISTMAS_WHEELS_SUBFILTERS.map((sub) => {
+                        const isSubActive = activeCategory === 'sobre-ruedas' && activeWheelSub === sub.id;
+                        const subCount = CHRISTMAS_TOYS.filter(
+                          (t) => t.category === 'sobre-ruedas' && (sub.id === 'all' || t.wheelSubcategory === sub.id)
+                        ).length;
+                        return (
+                          <button
+                            key={sub.id}
+                            type="button"
+                            onClick={() => {
+                              setActiveCategory('sobre-ruedas');
+                              setActiveWheelSub(sub.id);
+                            }}
+                            className={`px-3 py-1.5 rounded-xl text-xs transition-all cursor-pointer flex items-center gap-1.5 ${
+                              isSubActive
+                                ? 'bg-amber-400 text-slate-950 font-black shadow-md border-2 border-white scale-105'
+                                : 'bg-slate-900/80 hover:bg-slate-800 text-amber-100 border border-amber-400/40 hover:border-amber-300 font-bold'
+                            }`}
+                          >
+                            <span>{sub.label}</span>
+                            <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-black ${
+                              isSubActive ? 'bg-slate-950/20 text-slate-950' : 'bg-amber-400/20 text-amber-300'
+                            }`}>
+                              {subCount}
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
                 </div>
 
                 {/* 3. Buscador amigable y rápido */}
@@ -683,7 +748,7 @@ function CartaPapaNoelContent() {
                       type="text"
                       value={searchToyQuery}
                       onChange={(e) => setSearchToyQuery(e.target.value)}
-                      placeholder="🔍 Buscar juguete específico (Lego, Pokémon, Mario, Barbie...)"
+                      placeholder="🔍 Buscar juguete específico (Mercedes, Quad, Minimoto, Patinete, Lego...)"
                       className="w-full pl-10 pr-9 py-2.5 rounded-2xl bg-white/10 border-2 border-white/15 focus:border-amber-400 focus:bg-white/15 focus:outline-hidden text-xs sm:text-sm text-white placeholder:text-slate-300 shadow-inner"
                     />
                     {searchToyQuery && (
@@ -696,10 +761,11 @@ function CartaPapaNoelContent() {
                       </button>
                     )}
                   </div>
-                  {(activeCategory !== 'all' || activeAge !== 'all' || searchToyQuery) && (
+                  {(activeCategory !== 'all' || activeWheelSub !== 'all' || activeAge !== 'all' || searchToyQuery) && (
                     <button
                       onClick={() => {
                         setActiveCategory('all');
+                        setActiveWheelSub('all');
                         setActiveAge('all');
                         setSearchToyQuery('');
                       }}

@@ -102,6 +102,7 @@ export const PRICE_FILTERS = [
 
 export const AGE_SUBCATEGORIES_MAP: Record<string, string[]> = {
   'all': [
+    'Sobre Ruedas: Coches, Quads y Patinetes',
     'Smartphones y Telefonía',
     'Cartas y Sobres Pokémon',
     'Figuras de Colección y Cine',
@@ -305,9 +306,17 @@ export const GENERAL_CATEGORY_MAPPING: Record<string, string[]> = {
     'Tecnología, Audio Hi-Fi y Wearables',
     'Tecnología, Audio Hi-Fi y Smart Home'
   ],
-  'Bicis y Patinetes con Ruedas': [
+  'Sobre Ruedas: Coches, Quads y Patinetes': [
+    'Coches Eléctricos, Quads y Patinetes',
     'Triciclos y Bicis de Equilibrio',
-    'Patinetes con Ruedas LED'
+    'Patinetes con Ruedas LED',
+    'Bicis y Patinetes con Ruedas'
+  ],
+  'Bicis y Patinetes con Ruedas': [
+    'Coches Eléctricos, Quads y Patinetes',
+    'Triciclos y Bicis de Equilibrio',
+    'Patinetes con Ruedas LED',
+    'Bicis y Patinetes con Ruedas'
   ],
   'Fiestas y Revelación de Género': [
     'Fiestas y Revelación de Género'
@@ -475,5 +484,79 @@ export function isFiguresCategory(category: string): boolean {
     lower.includes('coleccion')
   );
 }
+
+export interface WheelsMotorSubfilter {
+  id: string;
+  label: string;
+  shortLabel: string;
+  icon: string;
+  keywords: string[];
+  searchPhrase: string;
+}
+
+export const WHEELS_MOTOR_SUBFILTERS: WheelsMotorSubfilter[] = [
+  {
+    id: 'all',
+    label: 'Todo Sobre Ruedas & Motor',
+    shortLabel: 'Todo Ruedas',
+    icon: '🌟',
+    keywords: [],
+    searchPhrase: 'coche electrico ninos 12v quad minimoto patinete electrico'
+  },
+  {
+    id: 'coches-electricos',
+    label: 'Coches Eléctricos (12V / 24V)',
+    shortLabel: 'Coches Eléctricos',
+    icon: '🚗',
+    keywords: ['coche eléctrico', 'coche electrico', 'mercedes g63', 'audi r8', 'audi tt', 'audi q8', 'audi rs', 'lamborghini', 'porsche cayenne', 'jeep', 'tractor eléctrico', 'tractor electrico', '12v', '24v'],
+    searchPhrase: 'coche electrico para ninos 12v mando mercedes audi jeep lamborghini'
+  },
+  {
+    id: 'quads',
+    label: 'Quads y Buggies 4x4',
+    shortLabel: 'Quads & Buggies',
+    icon: '🛞',
+    keywords: ['quad', 'miniquad', 'atv', 'buggy', 'utv', 'raptor'],
+    searchPhrase: 'quad electrico ninos bateria miniquad gasolina 49cc buggy'
+  },
+  {
+    id: 'minimotos',
+    label: 'Minimotos y Motos Eléctricas',
+    shortLabel: 'Minimotos & Motos',
+    icon: '🏍️',
+    keywords: ['minimoto', 'minicross', 'pocket bike', 'moto eléctrica', 'moto electrica', 'vespa', 'cobra 49cc', 'bmw g310', 'honda cbr'],
+    searchPhrase: 'minimoto cross 49cc moto electrica ninos 12v vespa'
+  },
+  {
+    id: 'patinetes-electricos',
+    label: 'Patinetes Eléctricos y Hoverboards',
+    shortLabel: 'Patinetes Eléctricos',
+    icon: '🛴',
+    keywords: ['patinete eléctrico', 'patinete electrico', 'xiaomi', 'cecotec', 'bongo', 'segway', 'ninebot', 'hoverboard', 'skateboard eléctrico', 'skateboard electrico', 'scooter eléctrico'],
+    searchPhrase: 'patinete electrico xiaomi cecotec ninos hoverboard kart'
+  },
+  {
+    id: 'bicis-patines',
+    label: 'Bicis, Karts y Patines LED',
+    shortLabel: 'Bicis, Karts & Patines',
+    icon: '🚲',
+    keywords: ['bicicleta', 'triciclo', 'kart', 'go-kart', 'patines', 'patinete 3 ruedas', 'equilibrio'],
+    searchPhrase: 'bicicleta infantil kart pedales patines linea luminosos'
+  }
+];
+
+export function isWheelsMotorCategory(category: string): boolean {
+  if (!category || category === 'all') return false;
+  const lower = category.toLowerCase();
+  return (
+    lower.includes('sobre ruedas') ||
+    lower.includes('patinete') ||
+    lower.includes('bicis') ||
+    lower.includes('triciclos') ||
+    lower.includes('coches eléctricos') ||
+    lower.includes('quads')
+  );
+}
+
 
 

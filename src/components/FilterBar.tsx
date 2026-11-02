@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { AGE_CATEGORIES, AGE_SUBCATEGORIES_MAP, CLOTHING_SUBFILTERS, isClothingCategory, ANIME_SERIES_SUBFILTERS, isFiguresCategory } from '@/data/products';
+import { AGE_CATEGORIES, AGE_SUBCATEGORIES_MAP, CLOTHING_SUBFILTERS, isClothingCategory, ANIME_SERIES_SUBFILTERS, isFiguresCategory, WHEELS_MOTOR_SUBFILTERS, isWheelsMotorCategory } from '@/data/products';
 import { useCurrency } from '@/context/CurrencyContext';
 import {
   LayoutGrid,
@@ -55,6 +55,8 @@ interface FilterBarProps {
   onSelectClothingSub?: (sub: string) => void;
   selectedAnimeSub?: string;
   onSelectAnimeSub?: (sub: string) => void;
+  selectedWheelsSub?: string;
+  onSelectWheelsSub?: (sub: string) => void;
   selectedGender: 'all' | 'boy' | 'girl' | 'reveal';
   onSelectGender: (gender: 'all' | 'boy' | 'girl' | 'reveal') => void;
   selectedPrice: string;
@@ -73,6 +75,8 @@ export default function FilterBar({
   onSelectClothingSub,
   selectedAnimeSub = 'all',
   onSelectAnimeSub,
+  selectedWheelsSub = 'all',
+  onSelectWheelsSub,
   selectedGender,
   onSelectGender,
   selectedPrice,
@@ -87,6 +91,7 @@ export default function FilterBar({
     selectedCategory !== 'all' ||
     selectedClothingSub !== 'all' ||
     selectedAnimeSub !== 'all' ||
+    selectedWheelsSub !== 'all' ||
     selectedPrice !== 'all' ||
     selectedGender !== 'all' ||
     sortBy !== 'featured';
@@ -100,6 +105,7 @@ export default function FilterBar({
     onSelectCategory('all');
     if (onSelectClothingSub) onSelectClothingSub('all');
     if (onSelectAnimeSub) onSelectAnimeSub('all');
+    if (onSelectWheelsSub) onSelectWheelsSub('all');
     onSelectGender('all');
     onSelectPrice('all');
     if (onSelectSort) onSelectSort('featured');
@@ -388,6 +394,7 @@ export default function FilterBar({
             const isPokemon = subcat === 'Cartas y Sobres Pokémon';
             const isFigures = subcat === 'Figuras de Colección y Cine';
             const isClothing = isClothingCategory(subcat);
+            const isWheels = isWheelsMotorCategory(subcat);
             const isSelected = selectedCategory === subcat;
             return (
               <button
@@ -397,10 +404,15 @@ export default function FilterBar({
                   if (!isClothing && onSelectClothingSub) {
                     onSelectClothingSub('all');
                   }
+                  if (!isWheels && onSelectWheelsSub) {
+                    onSelectWheelsSub('all');
+                  }
                 }}
                 className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
                   isSelected
                     ? 'bg-indigo-600 text-white font-bold shadow-xs'
+                    : isWheels
+                    ? 'bg-emerald-50 text-emerald-950 border border-emerald-300 hover:bg-emerald-100 font-bold'
                     : isPokemon
                     ? 'bg-yellow-50 text-yellow-950 border border-yellow-300 hover:bg-yellow-100 font-bold'
                     : isFigures
@@ -412,6 +424,7 @@ export default function FilterBar({
                     : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                 }`}
               >
+                {isWheels && <span>🏎️</span>}
                 {isPokemon && <Zap className={`w-3.5 h-3.5 ${isSelected ? 'text-white' : 'text-amber-500 fill-amber-400'}`} />}
                 {isFigures && <Clapperboard className={`w-3.5 h-3.5 ${isSelected ? 'text-white' : 'text-amber-600'}`} />}
                 {isSmartphone && <Smartphone className={`w-3.5 h-3.5 ${isSelected ? 'text-white' : 'text-indigo-600'}`} />}
@@ -421,6 +434,57 @@ export default function FilterBar({
             );
           })}
         </div>
+
+        {/* SUBFILTRO DE SOBRE RUEDAS & MOTOR (Coches Eléctricos 12V/24V, Quads, Minimotos, Patinetes Eléctricos, Bicis) */}
+        {isWheelsMotorCategory(selectedCategory) && (
+          <div className="mt-3.5 p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-emerald-50/90 via-teal-50/80 to-amber-50/70 border border-emerald-300/90 shadow-xs animate-fadeIn">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2.5">
+              <div className="flex items-center gap-2">
+                <span className="w-6 h-6 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-xs font-bold shadow-xs">
+                  🏎️
+                </span>
+                <div>
+                  <span className="text-[11px] font-black uppercase tracking-wider text-emerald-950 block leading-tight">
+                    Subfiltro Sobre Ruedas & Motor (Coches Eléctricos, Quads, Minimotos y Patinetes)
+                  </span>
+                  <span className="text-[11px] text-slate-600 font-medium">
+                    ¿Qué vehículo buscas? Filtra por Coches 12V/24V, Quads, Minimotos o Patinetes Eléctricos:
+                  </span>
+                </div>
+              </div>
+              {selectedWheelsSub !== 'all' && onSelectWheelsSub && (
+                <button
+                  type="button"
+                  onClick={() => onSelectWheelsSub('all')}
+                  className="text-xs font-bold text-emerald-700 hover:text-emerald-900 underline self-start sm:self-auto cursor-pointer"
+                >
+                  Ver todos los vehículos
+                </button>
+              )}
+            </div>
+
+            <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-thin flex-wrap">
+              {WHEELS_MOTOR_SUBFILTERS.map((sub) => {
+                const isActive = selectedWheelsSub === sub.id;
+                return (
+                  <button
+                    key={sub.id}
+                    type="button"
+                    onClick={() => onSelectWheelsSub && onSelectWheelsSub(sub.id)}
+                    className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                      isActive
+                        ? 'bg-emerald-600 text-white shadow-xs ring-2 ring-emerald-300'
+                        : 'bg-white text-slate-700 border border-emerald-200/80 hover:bg-emerald-50 hover:border-emerald-400'
+                    }`}
+                  >
+                    <span>{sub.icon}</span>
+                    <span>{sub.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
 
         {/* SUBFILTRO DE ROPA Y PRENDAS (Pijamas, Chándal, Calzado, Disfraces, Ropa de Diario) */}
         {isClothingCategory(selectedCategory) && (

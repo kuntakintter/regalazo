@@ -19,7 +19,7 @@ import SocialShareBar from '@/components/SocialShareBar';
 import TopPodium from '@/components/TopPodium';
 import ChristmasCountdown from '@/components/ChristmasCountdown';
 import { useCurrency } from '@/context/CurrencyContext';
-import { PRODUCTS, AGE_CATEGORIES, GENERAL_CATEGORY_MAPPING, Product, CLOTHING_SUBFILTERS, isClothingCategory, ANIME_SERIES_SUBFILTERS, isFiguresCategory } from '@/data/products';
+import { PRODUCTS, AGE_CATEGORIES, GENERAL_CATEGORY_MAPPING, Product, CLOTHING_SUBFILTERS, isClothingCategory, ANIME_SERIES_SUBFILTERS, isFiguresCategory, WHEELS_MOTOR_SUBFILTERS, isWheelsMotorCategory } from '@/data/products';
 import { ALL_SITE_PRODUCTS } from '@/data/allCatalogProducts';
 import { matchesSearchQuery } from '@/utils/search';
 import { LiveSearchResult } from '@/app/api/live-search/route';
@@ -53,8 +53,10 @@ const QUICK_PROMPTS: Array<{
   label: string;
   query: string;
   price?: string;
+  category?: string;
   sort?: 'featured' | 'price-asc' | 'price-desc' | 'rating';
 }> = [
+  { label: '🏎️ Coches Eléctricos, Quads y Patinetes', query: '', category: 'Sobre Ruedas: Coches, Quads y Patinetes' },
   { label: '🔥 Chollos Black Friday', query: 'ofertas', sort: 'rating' },
   { label: '💸 Menos de 20 € (Amigo Invisible)', query: '', price: '<20', sort: 'price-asc' },
   { label: '⚡ Menos de 15 € (Detalles Top)', query: '', price: '<15', sort: 'price-asc' },
@@ -87,6 +89,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedClothingSub, setSelectedClothingSub] = useState<string>('all');
   const [selectedAnimeSub, setSelectedAnimeSub] = useState<string>('all');
+  const [selectedWheelsSub, setSelectedWheelsSub] = useState<string>('all');
   const [selectedGender, setSelectedGender] = useState<'all' | 'boy' | 'girl' | 'reveal'>('all');
   const [selectedPrice, setSelectedPrice] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -219,6 +222,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
     label: string;
     query: string;
     price?: string;
+    category?: string;
     sort?: 'featured' | 'price-asc' | 'price-desc' | 'rating';
   }) => {
     setSearchQuery(promptItem.query);
@@ -233,9 +237,15 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
       setSortBy('featured');
     }
     setSelectedAge('all');
-    setSelectedCategory('all');
+    if (promptItem.category) {
+      setSelectedCategory(promptItem.category);
+      setShowAdvancedFilters(true);
+    } else {
+      setSelectedCategory('all');
+    }
     setSelectedClothingSub('all');
     setSelectedAnimeSub('all');
+    setSelectedWheelsSub('all');
     setLiveAmazonProducts([]);
     setTimeout(() => {
       const el = document.getElementById('catalogo-productos');
@@ -256,6 +266,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
     setSelectedCategory('all');
     setSelectedClothingSub('all');
     setSelectedAnimeSub('all');
+    setSelectedWheelsSub('all');
     setVisibleCount(18);
     if (selectedPrice !== 'all') setSelectedPrice('all');
     if (searchQuery) setSearchQuery('');
@@ -267,6 +278,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
     setSelectedCategory(cat);
     setSelectedClothingSub('all');
     setSelectedAnimeSub('all');
+    setSelectedWheelsSub('all');
     if (selectedPrice !== 'all') setSelectedPrice('all');
     if (searchQuery) setSearchQuery('');
     setLiveAmazonProducts([]);
@@ -282,6 +294,13 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
   // Handle anime / series subfilter selection (dragon ball, pokemon, one piece, etc.)
   const handleSelectAnimeSub = (sub: string) => {
     setSelectedAnimeSub(sub);
+    setVisibleCount(18);
+    setLiveAmazonProducts([]);
+  };
+
+  // Handle wheels & motor subfilter selection (coches electricos, quads, minimotos, patinetes)
+  const handleSelectWheelsSub = (sub: string) => {
+    setSelectedWheelsSub(sub);
     setVisibleCount(18);
     setLiveAmazonProducts([]);
   };
@@ -303,6 +322,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
       if (selectedCategory !== 'all') setSelectedCategory('all');
       if (selectedClothingSub !== 'all') setSelectedClothingSub('all');
       if (selectedAnimeSub !== 'all') setSelectedAnimeSub('all');
+      if (selectedWheelsSub !== 'all') setSelectedWheelsSub('all');
       if (selectedGender !== 'all') setSelectedGender('all');
       if (selectedPrice !== 'all') setSelectedPrice('all');
     }
@@ -383,6 +403,18 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
         }
       }
 
+      // 4.7. Wheels & Motor subfilter (Coches Eléctricos, Quads, Minimotos, Patinetes Eléctricos, Bicis)
+      if (!isSearching && isWheelsMotorCategory(selectedCategory) && selectedWheelsSub !== 'all') {
+        const currentWheel = WHEELS_MOTOR_SUBFILTERS.find((s) => s.id === selectedWheelsSub);
+        if (currentWheel && currentWheel.keywords.length > 0) {
+          const textToMatch = `${product.title} ${product.description} ${product.subcategory} ${product.searchQuery} ${product.badge}`.toLowerCase();
+          const matchesKeyword = currentWheel.keywords.some((kw) => textToMatch.includes(kw.toLowerCase()));
+          if (!matchesKeyword) {
+            return false;
+          }
+        }
+      }
+
       // 5. Price filter
       if (selectedPrice !== 'all') {
         const prodPrice =
@@ -408,7 +440,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
 
       return true;
     });
-  }, [selectedAge, selectedCategory, selectedClothingSub, selectedAnimeSub, selectedGender, selectedPrice, searchQuery]);
+  }, [selectedAge, selectedCategory, selectedClothingSub, selectedAnimeSub, selectedWheelsSub, selectedGender, selectedPrice, searchQuery]);
 
   // Sorted products based on sortBy
   const sortedFilteredProducts = useMemo(() => {
@@ -457,6 +489,13 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
       if (animeObj) {
         parts.push(animeObj.searchPhrase);
       }
+    } else if (isWheelsMotorCategory(selectedCategory) && selectedWheelsSub !== 'all') {
+      const wheelObj = WHEELS_MOTOR_SUBFILTERS.find((s) => s.id === selectedWheelsSub);
+      if (wheelObj) {
+        parts.push(wheelObj.searchPhrase);
+      }
+    } else if (isWheelsMotorCategory(selectedCategory)) {
+      parts.push('coche electrico para ninos 12v quad minimoto patinete electrico');
     } else if (selectedCategory === 'Cartas y Sobres Pokémon') {
       parts.push('cartas pokemon sobres booster box elite trainer album tcg oficial');
     } else if (selectedCategory === 'Figuras de Colección y Cine') {
@@ -487,7 +526,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
     }
 
     return parts.join(' ');
-  }, [searchQuery, selectedCategory, selectedClothingSub, selectedAnimeSub, selectedGender, selectedAge]);
+  }, [searchQuery, selectedCategory, selectedClothingSub, selectedAnimeSub, selectedWheelsSub, selectedGender, selectedAge]);
 
   // Load more live products into the grid (accumulates)
   const handleLoadLiveToGrid = useCallback(async () => {
@@ -1138,6 +1177,8 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                 onSelectClothingSub={handleSelectClothingSub}
                 selectedAnimeSub={selectedAnimeSub}
                 onSelectAnimeSub={handleSelectAnimeSub}
+                selectedWheelsSub={selectedWheelsSub}
+                onSelectWheelsSub={handleSelectWheelsSub}
                 selectedGender={selectedGender}
                 onSelectGender={handleSelectGender}
                 selectedPrice={selectedPrice}
