@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Gift, ShieldCheck, Heart, TrendingUp, ShoppingBag } from 'lucide-react';
 import BrandLogo from '@/components/BrandLogo';
 import LanguageSelector from '@/components/LanguageSelector';
+import { I18N_SEO_ROUTES } from '@/lib/i18nRoutes';
 import { AMAZON_DISCLOSURE, AMAZON_AFFILIATE_TAG } from '@/lib/amazon';
 
 interface FooterProps {
@@ -46,7 +47,7 @@ export default function Footer({ currentTheme }: FooterProps) {
           <div className="space-y-3">
             <BrandLogo size="compact" showSubtitle={false} />
             <p className="text-xs text-slate-700 leading-relaxed">
-              La plataforma más completa de recomendaciones de regalos para todas las edades: bebés, niños, jóvenes y adultos a partir de 18 años. Analizamos y seleccionamos los productos con mejores valoraciones y satisfacción garantizada en Amazon España.
+              La plataforma global de recomendaciones de regalos para todas las edades: bebés, niños, jóvenes y adultos (+18 años). Seleccionamos los productos mejor valorados con precios en Euros (€) y Dólares ($) y votación en grupo por WhatsApp.
             </p>
             <div className="text-[11px] text-slate-700 font-medium">
               Hecho con <Heart className="w-3 h-3 text-rose-500 inline fill-rose-500" /> para que encuentres el regalo perfecto en segundos.
@@ -111,6 +112,28 @@ export default function Footer({ currentTheme }: FooterProps) {
             </ul>
           </div>
 
+        </div>
+
+        {/* International SEO Editions & Currencies Bar */}
+        <div className="border-t border-slate-200/80 pt-5 pb-5 mb-2">
+          <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 block mb-2.5">
+            🌍 Ediciones Internacionales · Idiomas y Monedas (€ EUR / $ USD)
+          </span>
+          <div className="flex flex-wrap items-center gap-x-3.5 gap-y-1.5 text-[11px] text-slate-600">
+            <Link href="/" className="hover:text-indigo-600 hover:underline font-semibold">
+              🇪🇸 Español (€ EUR)
+            </Link>
+            {Object.values(I18N_SEO_ROUTES).map((route) => (
+              <Link
+                key={route.slug}
+                href={`/${route.slug}`}
+                className="hover:text-indigo-600 hover:underline transition-colors"
+                title={`${route.brandTranslation} - ${route.title}`}
+              >
+                {route.flag} {route.brandTranslation} ({route.currencySymbol})
+              </Link>
+            ))}
+          </div>
         </div>
 
         {/* Bottom Bar */}

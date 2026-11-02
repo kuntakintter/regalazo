@@ -15,7 +15,10 @@ import AgeStageInterlinking from '@/components/AgeStageInterlinking';
 import ExpertBuyerTips from '@/components/ExpertBuyerTips';
 import { PRODUCTS, Product } from '@/data/products';
 import { SEO_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
+import { I18N_SEO_ROUTES, getHreflangAlternates } from '@/lib/i18nRoutes';
 import { HUB_OG_SNIPPETS, buildSocialMetadata } from '@/lib/ogMetadata';
+import LocaleAutoInitializer from '@/components/LocaleAutoInitializer';
+import { HomeCatalogView } from '@/app/page';
 import { ShieldCheck, TrendingUp, Gift, ChevronRight, ShoppingBag, Compass, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
@@ -26,13 +29,54 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  return Object.keys(SEO_AGE_ROUTES).map((ageSlug) => ({
+  const ageSlugs = Object.keys(SEO_AGE_ROUTES);
+  const i18nSlugs = Object.keys(I18N_SEO_ROUTES);
+  return [...ageSlugs, ...i18nSlugs].map((ageSlug) => ({
     ageSlug,
   }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { ageSlug } = await params;
+
+  const i18nMeta = I18N_SEO_ROUTES[ageSlug];
+  if (i18nMeta) {
+    const canonicalUrl = `https://www.unbuenregalo.es/${ageSlug}`;
+    const imageUrl = 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=1200&h=630&q=85';
+
+    return {
+      title: i18nMeta.title,
+      description: i18nMeta.description,
+      keywords: i18nMeta.keywords,
+      alternates: {
+        canonical: canonicalUrl,
+        languages: getHreflangAlternates(),
+      },
+      openGraph: {
+        type: 'website',
+        locale: i18nMeta.ogLocale,
+        url: canonicalUrl,
+        siteName: `${i18nMeta.brandTranslation} | Un Buen Regalo`,
+        title: `🎁 ${i18nMeta.title}`,
+        description: i18nMeta.description,
+        images: [
+          {
+            url: imageUrl,
+            width: 1200,
+            height: 630,
+            alt: i18nMeta.h1,
+          },
+        ],
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: `🎁 ${i18nMeta.title}`,
+        description: i18nMeta.description,
+        images: [imageUrl],
+      },
+    };
+  }
+
   const meta = SEO_AGE_ROUTES[ageSlug];
   if (!meta) return {};
 
@@ -52,6 +96,58 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function AgeLandingPage({ params }: PageProps) {
   const { ageSlug } = await params;
+
+  // International Language & Currency Landing Route (/en, /de, /fr, /it, /pt, /ru, /es-us, etc.)
+  const i18nMeta = I18N_SEO_ROUTES[ageSlug];
+  if (i18nMeta) {
+    const i18nSchema = {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'WebPage',
+          '@id': `https://www.unbuenregalo.es/${i18nMeta.slug}#webpage`,
+          url: `https://www.unbuenregalo.es/${i18nMeta.slug}`,
+          name: i18nMeta.title,
+          description: i18nMeta.description,
+          inLanguage: i18nMeta.hreflang,
+          isPartOf: {
+            '@id': 'https://www.unbuenregalo.es/#website',
+          },
+        },
+        ...(i18nMeta.faqItems.length > 0
+          ? [
+              {
+                '@type': 'FAQPage',
+                mainEntity: i18nMeta.faqItems.map((item) => ({
+                  '@type': 'Question',
+                  name: item.question,
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: item.answer,
+                  },
+                })),
+              },
+            ]
+          : []),
+      ],
+    };
+
+    return (
+      <>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(i18nSchema) }}
+        />
+        <LocaleAutoInitializer
+          langCode={i18nMeta.langCode}
+          googleCode={i18nMeta.googleCode}
+          currency={i18nMeta.currency}
+        />
+        <HomeCatalogView i18nConfig={i18nMeta} />
+      </>
+    );
+  }
+
   const routeMeta = SEO_AGE_ROUTES[ageSlug];
 
   if (!routeMeta) {

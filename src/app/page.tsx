@@ -23,6 +23,7 @@ import { PRODUCTS, AGE_CATEGORIES, GENERAL_CATEGORY_MAPPING, Product, CLOTHING_S
 import { ALL_SITE_PRODUCTS } from '@/data/allCatalogProducts';
 import { matchesSearchQuery } from '@/utils/search';
 import { LiveSearchResult } from '@/app/api/live-search/route';
+import { I18nRouteConfig } from '@/lib/i18nRoutes';
 import {
   BadgePercent,
   Gift,
@@ -77,6 +78,10 @@ const AGE_BANNER_ICONS: Record<string, { icon: React.ComponentType<{ className?:
 };
 
 export default function HomePage() {
+  return <HomeCatalogView />;
+}
+
+export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }) {
   const { formatPrice } = useCurrency();
   const [selectedAge, setSelectedAge] = useState<string>('all');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -813,12 +818,18 @@ export default function HomePage() {
               <div>
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-3 shadow-2xs border border-amber-200 bg-amber-50/80 text-amber-950">
                   <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                  <span>Búsqueda Inteligente Amazon España · Edición {new Date().getFullYear()}</span>
+                  <span>
+                    {i18nConfig
+                      ? `${i18nConfig.flag} ${i18nConfig.brandTranslation} · ${i18nConfig.nativeName} · ${new Date().getFullYear()}`
+                      : `Buscador Inteligente Global · Edición ${new Date().getFullYear()} (€ / $)`}
+                  </span>
                 </div>
 
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.15] mb-3 text-slate-900">
                   {currentAgeMeta ? (
                     <span>{currentAgeMeta.h1}</span>
+                  ) : i18nConfig ? (
+                    <span>{i18nConfig.h1}</span>
                   ) : (
                     <span>
                       ¿A quién quieres{' '}
@@ -832,7 +843,9 @@ export default function HomePage() {
                 <p className="text-xs sm:text-sm lg:text-base text-slate-600 leading-relaxed mb-4 max-w-2xl mx-auto">
                   {currentAgeMeta
                     ? currentAgeMeta.description
-                    : 'Escribe a quién quieres regalar o qué le apasiona. Nuestro motor inteligente encontrará las mejores ideas verificadas en Amazon al instante.'}
+                    : i18nConfig
+                    ? i18nConfig.subtitle
+                    : 'Escribe a quién quieres regalar o qué le apasiona. Nuestro motor inteligente encontrará las mejores ideas de regalo al instante en tu idioma y moneda (€ / $).'}
                 </p>
 
                 {/* MAIN PROMPT / SEARCH BAR ESTILO AMAZON */}
@@ -845,7 +858,10 @@ export default function HomePage() {
                       type="text"
                       value={searchQuery}
                       onChange={(e) => handleSearchChange(e.target.value)}
-                      placeholder="Ej: Para mi novio friki de Star Wars, gamer, cafetera, niña 6 años..."
+                      placeholder={
+                        i18nConfig?.searchPlaceholder ||
+                        'Ej: Para mi novio friki de Star Wars, gamer, cafetera, niña 6 años...'
+                      }
                       className="w-full bg-transparent px-2 py-2 text-sm sm:text-base text-slate-800 placeholder-slate-400 focus:outline-none"
                     />
                     {searchQuery && (
@@ -1380,11 +1396,60 @@ export default function HomePage() {
         <section className="rounded-3xl p-6 sm:p-10 mb-12 border border-slate-200 bg-white text-slate-800 shadow-xs space-y-8">
           <div>
             <h2 className="text-2xl sm:text-3xl font-black mb-4 tracking-tight text-slate-900">
-              ¿Qué Regalar? Guía de Ideas de Regalo Originales para Todas las Edades
+              {i18nConfig
+                ? i18nConfig.seoSectionTitle
+                : '¿Qué Regalar? Guía de Ideas de Regalo Originales para Todas las Edades'}
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
-              Elegir qué <strong>regalar</strong> en un cumpleaños, aniversario, amigo invisible, Navidad o Reyes Magos es mucho más fácil cuando filtras por edad y aficiones reales. En <strong>Un Buen Regalo</strong> (<em>A Good Gift</em>) seleccionamos los productos mejor valorados para que encuentres desde un detalle económico hasta un gran regalo que sorprenda de verdad en cualquier parte del mundo. Además, cuentas con nuestra herramienta gratuita de <Link href="/votar" className="text-indigo-600 font-bold hover:underline">votación de regalos en grupo por WhatsApp</Link>, el <Link href="/carta-papa-noel" className="text-indigo-600 font-bold hover:underline">buzón oficial de Carta a Papá Noel</Link> y los catálogos especiales de <Link href="/regalos-gta-6" className="text-indigo-600 font-bold hover:underline">GTA 6 / GTA VI</Link>, <Link href="/motoristas" className="text-indigo-600 font-bold hover:underline">Motoristas</Link>, <Link href="/gaming" className="text-indigo-600 font-bold hover:underline">Gaming</Link> o <Link href="/amantes-del-cafe" className="text-indigo-600 font-bold hover:underline">Café Barista</Link>.
+              {i18nConfig ? (
+                <>
+                  {i18nConfig.seoSectionBody}{' '}
+                  <Link href="/votar" className="text-indigo-600 font-bold hover:underline">
+                    WhatsApp Group Gift Voting
+                  </Link>
+                  {' · '}
+                  <Link href="/carta-papa-noel" className="text-indigo-600 font-bold hover:underline">
+                    Santa Claus Letter
+                  </Link>
+                  {' · '}
+                  <Link href="/regalos-gta-6" className="text-indigo-600 font-bold hover:underline">
+                    GTA 6 / GTA VI Gifts
+                  </Link>
+                  {' · '}
+                  <Link href="/gaming" className="text-indigo-600 font-bold hover:underline">
+                    Gaming
+                  </Link>
+                  {' · '}
+                  <Link href="/motoristas" className="text-indigo-600 font-bold hover:underline">
+                    Bikers
+                  </Link>
+                  {' · '}
+                  <Link href="/amantes-del-cafe" className="text-indigo-600 font-bold hover:underline">
+                    Barista Coffee
+                  </Link>
+                </>
+              ) : (
+                <>
+                  Elegir qué <strong>regalar</strong> en un cumpleaños, aniversario, amigo invisible, Navidad o Reyes Magos es mucho más fácil cuando filtras por edad y aficiones reales. En <strong>Un Buen Regalo</strong> (<em>A Good Gift</em>) seleccionamos los productos mejor valorados para que encuentres desde un detalle económico hasta un gran regalo que sorprenda de verdad en cualquier parte del mundo. Además, cuentas con nuestra herramienta gratuita de <Link href="/votar" className="text-indigo-600 font-bold hover:underline">votación de regalos en grupo por WhatsApp</Link>, el <Link href="/carta-papa-noel" className="text-indigo-600 font-bold hover:underline">buzón oficial de Carta a Papá Noel</Link> y los catálogos especiales de <Link href="/regalos-gta-6" className="text-indigo-600 font-bold hover:underline">GTA 6 / GTA VI</Link>, <Link href="/motoristas" className="text-indigo-600 font-bold hover:underline">Motoristas</Link>, <Link href="/gaming" className="text-indigo-600 font-bold hover:underline">Gaming</Link> o <Link href="/amantes-del-cafe" className="text-indigo-600 font-bold hover:underline">Café Barista</Link>.
+                </>
+              )}
             </p>
+            {i18nConfig && i18nConfig.faqItems.length > 0 && (
+              <div className="mb-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+                {i18nConfig.faqItems.map((faq, idx) => (
+                  <div
+                    key={idx}
+                    className="p-4 rounded-2xl bg-slate-50 border border-slate-200/90 space-y-1.5"
+                  >
+                    <h3 className="font-bold text-sm text-slate-900 flex items-center gap-2">
+                      <span>{i18nConfig.flag}</span>
+                      <span>{faq.question}</span>
+                    </h3>
+                    <p className="text-xs text-slate-600 leading-relaxed">{faq.answer}</p>
+                  </div>
+                ))}
+              </div>
+            )}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs sm:text-sm leading-relaxed text-slate-600">
               <div className="space-y-2">
                 <h3 className="font-bold text-base flex items-center gap-2 text-indigo-600">

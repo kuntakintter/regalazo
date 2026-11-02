@@ -7,6 +7,7 @@ import { useCurrency, Currency } from '@/context/CurrencyContext';
 export interface LanguageOption {
   code: string;
   googleCode?: string;
+  seoPath?: string;
   name: string;
   nativeName: string;
   flag: string;
@@ -20,18 +21,31 @@ export const LANGUAGES: LanguageOption[] = [
   {
     code: 'es',
     googleCode: 'es',
+    seoPath: '/',
     name: 'Español (España)',
-    nativeName: 'Español',
+    nativeName: 'Español (€ EUR)',
     flag: '🇪🇸',
     currency: 'EUR',
     currencySymbol: '€',
     popular: true,
   },
   {
+    code: 'es-US',
+    googleCode: 'es',
+    seoPath: '/es-us',
+    name: 'Español (América / Global)',
+    nativeName: 'Español ($ USD)',
+    flag: '🌎',
+    currency: 'USD',
+    currencySymbol: '$',
+    popular: true,
+  },
+  {
     code: 'en-US',
     googleCode: 'en',
+    seoPath: '/en',
     name: 'English (US / Americano)',
-    nativeName: 'American English',
+    nativeName: 'American English ($ USD)',
     flag: '🇺🇸',
     currency: 'USD',
     currencySymbol: '$',
@@ -40,8 +54,9 @@ export const LANGUAGES: LanguageOption[] = [
   {
     code: 'en-GB',
     googleCode: 'en',
+    seoPath: '/en-gb',
     name: 'English (UK)',
-    nativeName: 'British English',
+    nativeName: 'British English (€ EUR)',
     flag: '🇬🇧',
     currency: 'EUR',
     currencySymbol: '€',
@@ -50,8 +65,9 @@ export const LANGUAGES: LanguageOption[] = [
   {
     code: 'de',
     googleCode: 'de',
+    seoPath: '/de',
     name: 'Alemán',
-    nativeName: 'Deutsch',
+    nativeName: 'Deutsch (€ EUR)',
     flag: '🇩🇪',
     currency: 'EUR',
     currencySymbol: '€',
@@ -60,8 +76,9 @@ export const LANGUAGES: LanguageOption[] = [
   {
     code: 'ru',
     googleCode: 'ru',
+    seoPath: '/ru',
     name: 'Ruso',
-    nativeName: 'Русский',
+    nativeName: 'Русский (€ EUR)',
     flag: '🇷🇺',
     currency: 'EUR',
     currencySymbol: '€',
@@ -70,8 +87,9 @@ export const LANGUAGES: LanguageOption[] = [
   {
     code: 'fr',
     googleCode: 'fr',
+    seoPath: '/fr',
     name: 'Francés',
-    nativeName: 'Français',
+    nativeName: 'Français (€ EUR)',
     flag: '🇫🇷',
     currency: 'EUR',
     currencySymbol: '€',
@@ -80,8 +98,9 @@ export const LANGUAGES: LanguageOption[] = [
   {
     code: 'it',
     googleCode: 'it',
+    seoPath: '/it',
     name: 'Italiano',
-    nativeName: 'Italiano',
+    nativeName: 'Italiano (€ EUR)',
     flag: '🇮🇹',
     currency: 'EUR',
     currencySymbol: '€',
@@ -90,8 +109,9 @@ export const LANGUAGES: LanguageOption[] = [
   {
     code: 'pt',
     googleCode: 'pt',
+    seoPath: '/pt',
     name: 'Portugués',
-    nativeName: 'Português',
+    nativeName: 'Português (€ EUR)',
     flag: '🇵🇹',
     currency: 'EUR',
     currencySymbol: '€',
@@ -99,24 +119,24 @@ export const LANGUAGES: LanguageOption[] = [
   },
 
   // Otros idiomas disponibles
-  { code: 'nl', googleCode: 'nl', name: 'Holandés', nativeName: 'Nederlands', flag: '🇳🇱' },
-  { code: 'pl', googleCode: 'pl', name: 'Polaco', nativeName: 'Polski', flag: '🇵🇱' },
-  { code: 'zh-CN', googleCode: 'zh-CN', name: 'Chino (Simplificado)', nativeName: '简体中文', flag: '🇨🇳' },
-  { code: 'ja', googleCode: 'ja', name: 'Japonés', nativeName: '日本語', flag: '🇯🇵' },
-  { code: 'ar', googleCode: 'ar', name: 'Árabe', nativeName: 'العربية', flag: '🇸🇦' },
-  { code: 'uk', googleCode: 'uk', name: 'Ucraniano', nativeName: 'Українська', flag: '🇺🇦' },
-  { code: 'sv', googleCode: 'sv', name: 'Sueco', nativeName: 'Svenska', flag: '🇸🇪' },
-  { code: 'no', googleCode: 'no', name: 'Noruego', nativeName: 'Norsk', flag: '🇳🇴' },
-  { code: 'da', googleCode: 'da', name: 'Danés', nativeName: 'Dansk', flag: '🇩🇰' },
-  { code: 'fi', googleCode: 'fi', name: 'Finlandés', nativeName: 'Suomi', flag: '🇫🇮' },
-  { code: 'el', googleCode: 'el', name: 'Griego', nativeName: 'Ελληνικά', flag: '🇬🇷' },
-  { code: 'tr', googleCode: 'tr', name: 'Turco', nativeName: 'Türkçe', flag: '🇹🇷' },
-  { code: 'ro', googleCode: 'ro', name: 'Rumano', nativeName: 'Română', flag: '🇷🇴' },
-  { code: 'bg', googleCode: 'bg', name: 'Búlgaro', nativeName: 'Български', flag: '🇧🇬' },
-  { code: 'cs', googleCode: 'cs', name: 'Checo', nativeName: 'Čeština', flag: '🇨🇿' },
-  { code: 'hu', googleCode: 'hu', name: 'Húngaro', nativeName: 'Magyar', flag: '🇭🇺' },
-  { code: 'ko', googleCode: 'ko', name: 'Coreano', nativeName: '한국어', flag: '🇰🇷' },
-  { code: 'hi', googleCode: 'hi', name: 'Hindi', nativeName: 'हिन्दी', flag: '🇮🇳' },
+  { code: 'nl', googleCode: 'nl', seoPath: '/nl', name: 'Holandés', nativeName: 'Nederlands', flag: '🇳🇱', currency: 'EUR', currencySymbol: '€' },
+  { code: 'pl', googleCode: 'pl', seoPath: '/pl', name: 'Polaco', nativeName: 'Polski', flag: '🇵🇱', currency: 'EUR', currencySymbol: '€' },
+  { code: 'zh-CN', googleCode: 'zh-CN', seoPath: '/zh', name: 'Chino (Simplificado)', nativeName: '简体中文', flag: '🇨🇳', currency: 'USD', currencySymbol: '$' },
+  { code: 'ja', googleCode: 'ja', seoPath: '/ja', name: 'Japonés', nativeName: '日本語', flag: '🇯🇵', currency: 'USD', currencySymbol: '$' },
+  { code: 'ar', googleCode: 'ar', seoPath: '/ar', name: 'Árabe', nativeName: 'العربية', flag: '🇸🇦', currency: 'USD', currencySymbol: '$' },
+  { code: 'uk', googleCode: 'uk', seoPath: '/uk', name: 'Ucraniano', nativeName: 'Українська', flag: '🇺🇦', currency: 'EUR', currencySymbol: '€' },
+  { code: 'sv', googleCode: 'sv', seoPath: '/sv', name: 'Sueco', nativeName: 'Svenska', flag: '🇸🇪', currency: 'EUR', currencySymbol: '€' },
+  { code: 'no', googleCode: 'no', seoPath: '/no', name: 'Noruego', nativeName: 'Norsk', flag: '🇳🇴', currency: 'EUR', currencySymbol: '€' },
+  { code: 'da', googleCode: 'da', seoPath: '/da', name: 'Danés', nativeName: 'Dansk', flag: '🇩🇰', currency: 'EUR', currencySymbol: '€' },
+  { code: 'fi', googleCode: 'fi', seoPath: '/fi', name: 'Finlandés', nativeName: 'Suomi', flag: '🇫🇮', currency: 'EUR', currencySymbol: '€' },
+  { code: 'el', googleCode: 'el', seoPath: '/el', name: 'Griego', nativeName: 'Ελληνικά', flag: '🇬🇷', currency: 'EUR', currencySymbol: '€' },
+  { code: 'tr', googleCode: 'tr', seoPath: '/tr', name: 'Turco', nativeName: 'Türkçe', flag: '🇹🇷', currency: 'EUR', currencySymbol: '€' },
+  { code: 'ro', googleCode: 'ro', seoPath: '/ro', name: 'Rumano', nativeName: 'Română', flag: '🇷🇴', currency: 'EUR', currencySymbol: '€' },
+  { code: 'bg', googleCode: 'bg', seoPath: '/bg', name: 'Búlgaro', nativeName: 'Български', flag: '🇧🇬', currency: 'EUR', currencySymbol: '€' },
+  { code: 'cs', googleCode: 'cs', seoPath: '/cs', name: 'Checo', nativeName: 'Čeština', flag: '🇨🇿', currency: 'EUR', currencySymbol: '€' },
+  { code: 'hu', googleCode: 'hu', seoPath: '/hu', name: 'Húngaro', nativeName: 'Magyar', flag: '🇭🇺', currency: 'EUR', currencySymbol: '€' },
+  { code: 'ko', googleCode: 'ko', seoPath: '/ko', name: 'Coreano', nativeName: '한국어', flag: '🇰🇷', currency: 'USD', currencySymbol: '$' },
+  { code: 'hi', googleCode: 'hi', seoPath: '/hi', name: 'Hindi', nativeName: 'हिन्दी', flag: '🇮🇳', currency: 'USD', currencySymbol: '$' },
 ];
 
 export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
@@ -402,7 +422,18 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
                             </span>
                           </div>
                         </div>
-                        {isSelected && <Check className="w-3.5 h-3.5 text-white shrink-0" />}
+                        <div className="flex items-center gap-2">
+                          {lang.currencySymbol && (
+                            <span className={`text-[10px] font-black px-1.5 py-0.5 rounded ${
+                              isSelected
+                                ? 'bg-white/20 text-white'
+                                : 'bg-slate-100 text-slate-600'
+                            }`}>
+                              {lang.currencySymbol} {lang.currency}
+                            </span>
+                          )}
+                          {isSelected && <Check className="w-3.5 h-3.5 text-white shrink-0" />}
+                        </div>
                       </button>
                     );
                   })}

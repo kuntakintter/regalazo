@@ -5,6 +5,7 @@ import CookieBanner from '@/components/CookieBanner';
 import { CurrencyProvider } from '@/context/CurrencyContext';
 import { VotingProvider } from '@/context/VotingContext';
 import VotingDrawer from '@/components/VotingDrawer';
+import { getHreflangAlternates, I18N_SEO_ROUTES } from '@/lib/i18nRoutes';
 
 export const metadata: Metadata = {
   title: 'Un Buen Regalo 【2026】 ¿Qué Regalar? Ideas y Regalos Originales',
@@ -101,6 +102,7 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: 'https://www.unbuenregalo.es',
+    languages: getHreflangAlternates(),
   },
 };
 
@@ -119,15 +121,26 @@ export default function RootLayout({
         name: 'Un Buen Regalo',
         alternateName: [
           'A Good Gift',
+          'Ein Gutes Geschenk',
+          'Un Bon Cadeau',
+          'Un Buon Regalo',
+          'Um Bom Presente',
+          'Хороший Подарок',
+          'Een Goed Cadeau',
+          'Dobry Prezent',
+          '好礼物',
+          '良いプレゼント',
+          'هدية جيدة',
+          '좋은 선물',
+          'एक अच्छा उपहार',
           'UnBuenRegalo.es',
-          'Regalazo',
           'Qué Regalar',
           'Best Gift Ideas & Group Gift Voting',
         ],
         url: 'https://www.unbuenregalo.es',
-        inLanguage: ['es', 'en', 'fr', 'de', 'it', 'pt'],
+        inLanguage: ['es', ...Object.values(I18N_SEO_ROUTES).map((r) => r.hreflang)],
         description:
-          '¿No sabes qué regalar? Descubre en Un Buen Regalo (A Good Gift) ideas de regalo originales para bebés, niños, jóvenes y adultos en todo el mundo.',
+          '¿No sabes qué regalar? Descubre en Un Buen Regalo (A Good Gift) ideas de regalo originales para bebés, niños, jóvenes y adultos en todo el mundo (€ EUR / $ USD).',
         potentialAction: {
           '@type': 'SearchAction',
           target: 'https://www.unbuenregalo.es/?q={search_term_string}',
