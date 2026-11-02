@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface BrandLogoProps {
   size?: 'normal' | 'large' | 'compact';
@@ -15,53 +16,72 @@ export default function BrandLogo({ size = 'normal', showSubtitle = true, varian
   const isLight = variant === 'light';
 
   return (
-    <Link href="/" className="inline-flex flex-col shrink-0 group select-none transition-opacity hover:opacity-95">
-      {/* Premium Typographic Wordmark */}
-      <div className="flex items-center tracking-tight leading-none">
-        <span
-          className={`font-black tracking-tight ${
-            isLight ? 'text-white' : 'text-slate-900'
-          } ${
-            isCompact
-              ? 'text-lg tracking-[-0.03em]'
-              : isLarge
-              ? 'text-2xl sm:text-3xl tracking-[-0.04em]'
-              : 'text-xl sm:text-[22px] tracking-[-0.035em]'
-          }`}
-        >
-          UN BUEN{' '}
-          <span
-            className={
-              isLight
-                ? 'bg-gradient-to-r from-amber-400 via-amber-300 to-orange-400 bg-clip-text text-transparent'
-                : 'bg-gradient-to-r from-indigo-600 via-indigo-600 to-violet-600 bg-clip-text text-transparent'
-            }
-          >
-            REGALO
-          </span>
-        </span>
+    <Link
+      href="/"
+      className="inline-flex items-center gap-2 sm:gap-2.5 shrink-0 group select-none transition-transform hover:scale-[1.01]"
+    >
+      {/* Bursting Gift Box Official Brand Icon */}
+      <div
+        className={`relative shrink-0 transition-transform duration-200 group-hover:scale-105 ${
+          isCompact
+            ? 'w-9 h-10'
+            : isLarge
+            ? 'w-13 h-14 sm:w-15 sm:h-16'
+            : 'w-11 h-12 sm:w-12 sm:h-13'
+        }`}
+      >
+        <Image
+          src="/brand-icon.png"
+          alt="Logo Un Buen Regalo"
+          fill
+          priority
+          sizes="64px"
+          className="object-contain drop-shadow-[0_1px_2px_rgba(255,255,255,0.25)]"
+        />
       </div>
 
-      {/* Elegant Editorial Subtitle */}
-      {showSubtitle && (
-        <div className="flex items-center gap-1.5 mt-1">
+      {/* Brand Wordmark & Subtitle matching the official logo palette */}
+      <div className="flex flex-col justify-center leading-none">
+        <div className="flex items-center tracking-tight leading-none">
           <span
-            className={`text-[9.5px] uppercase tracking-[0.18em] font-extrabold ${
-              isLight ? 'text-slate-300 group-hover:text-amber-300' : 'text-slate-400 group-hover:text-indigo-600'
-            } transition-colors`}
-          >
-            Guía de Regalos
-          </span>
-          <span className={`text-[9px] font-bold ${isLight ? 'text-slate-500' : 'text-slate-300'}`}>•</span>
-          <span
-            className={`text-[9px] sm:text-[9.5px] uppercase tracking-[0.12em] font-extrabold ${
-              isLight ? 'text-amber-400' : 'text-indigo-600'
+            className={`font-black uppercase ${
+              isCompact
+                ? 'text-[17px] tracking-[-0.02em]'
+                : isLarge
+                ? 'text-2xl sm:text-3xl tracking-[-0.03em]'
+                : 'text-xl sm:text-[23px] tracking-[-0.025em]'
             }`}
           >
-            De 0 a +18 Años
+            <span className={isLight ? 'text-[#18b8d6]' : 'text-[#0aa2c0]'}>
+              UN BUEN
+            </span>{' '}
+            <span className="text-[#f15950]">
+              REGALO
+            </span>
           </span>
         </div>
-      )}
+
+        {/* Subtitle / Domain */}
+        {showSubtitle && (
+          <div className="flex items-center gap-1.5 mt-1">
+            <span
+              className={`text-[10px] sm:text-[10.5px] font-black tracking-wide ${
+                isLight ? 'text-[#18b8d6]' : 'text-[#0aa2c0]'
+              }`}
+            >
+              unbuenregalo.es
+            </span>
+            <span className={`text-[9px] font-bold ${isLight ? 'text-slate-500' : 'text-slate-300'}`}>•</span>
+            <span
+              className={`text-[9px] sm:text-[9.5px] uppercase tracking-[0.1em] font-extrabold ${
+                isLight ? 'text-slate-300 group-hover:text-white' : 'text-slate-500 group-hover:text-slate-800'
+              } transition-colors`}
+            >
+              De 0 a +18 Años
+            </span>
+          </div>
+        )}
+      </div>
     </Link>
   );
 }
