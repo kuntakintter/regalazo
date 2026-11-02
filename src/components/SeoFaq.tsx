@@ -10,6 +10,10 @@ interface FaqItem {
 
 const FAQS: FaqItem[] = [
   {
+    question: '¿Qué regalar cuando no sabes qué comprar o buscas un regalazo sorpresa original?',
+    answer: 'En Un Buen Regalo hemos diseñado el recomendador definitivo para acertar siempre: tanto si buscas un detalle económico de menos de 20 € para el amigo invisible como si quieres hacer un auténtico regalazo sorpresa de cumpleaños, aniversario, Navidad o Reyes Magos. Puedes filtrar por edad exacta (de 0 a más de 18 años), por pasiones (gaming, GTA VI, motoristas, ciclismo, café barista, automóvil o mascotas) o crear una encuesta de votación en grupo por WhatsApp para elegir el obsequio perfecto entre varios amigos.'
+  },
+  {
     question: '¿Qué regalar a un recién nacido que resulte realmente útil para los padres?',
     answer: 'El regalo más agradecido e indiscutible para los padres primerizos son las tartas de pañales de calidad (como Dodot Sensitive) combinadas con productos de primera necesidad: muselinas de bambú, cremas calmantes de caléndula, doudous de apego y recuerdos como marcos de huellas en arcilla atóxica. Los pañales suponen el mayor gasto mensual durante el primer año, por lo que una presentación bonita y artesanal une utilidad y emoción.'
   },

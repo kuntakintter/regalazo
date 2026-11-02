@@ -7,8 +7,8 @@ import { VotingProvider } from '@/context/VotingContext';
 import VotingDrawer from '@/components/VotingDrawer';
 
 export const metadata: Metadata = {
-  title: '🎁 Un Buen Regalo 【2026】 ¿Qué Regalar? Ideas de Regalo para Todas las Edades',
-  description: '¿No sabes qué regalar? En Un Buen Regalo encuentras el regalo perfecto en segundos: ideas para regalar a bebés, niños, jóvenes, novios y adultos con precios reales de Amazon España y votación en grupo por WhatsApp.',
+  title: 'Un Buen Regalo 【2026】 ¿Qué Regalar? Tu Regalazo y Sorpresa',
+  description: '¿No sabes qué regalar? Encuentra un buen regalo, ese regalazo o sorpresa original para bebés, niños, jóvenes y adultos. Detalles e ideas top en Amazon.',
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
@@ -22,10 +22,23 @@ export const metadata: Metadata = {
   keywords: [
     'un buen regalo',
     'regalo',
+    'regalos',
     'regalar',
     'que regalar',
+    'regalazo',
+    'regalazos',
+    'regalo sorpresa',
+    'sorpresa original',
+    'detalles originales',
+    'obsequios',
     'ideas para regalar',
     'regalos originales',
+    'regalos de cumpleanos',
+    'regalos amigo invisible',
+    'que regalar a un hombre',
+    'que regalar a una mujer',
+    'que regalar a mi novio',
+    'que regalar a mi novia',
     'un buen regalo gta vi',
     'un buen regalo gta 6',
     'regalos gta 6',
@@ -99,8 +112,16 @@ export default function RootLayout({
         '@type': 'WebSite',
         '@id': 'https://www.unbuenregalo.es/#website',
         name: 'Un Buen Regalo',
+        alternateName: [
+          'Regalazo',
+          'UnBuenRegalo.es',
+          'Qué Regalar',
+          'Ideas de Regalo y Sorpresas Originales',
+        ],
         url: 'https://www.unbuenregalo.es',
         inLanguage: 'es-ES',
+        description:
+          '¿No sabes qué regalar? Encuentra un buen regalo, ese regalazo o sorpresa original para bebés, niños, jóvenes y adultos con opiniones reales en Amazon.',
         potentialAction: {
           '@type': 'SearchAction',
           target: 'https://www.unbuenregalo.es/?q={search_term_string}',
@@ -111,6 +132,7 @@ export default function RootLayout({
         '@type': 'Organization',
         '@id': 'https://www.unbuenregalo.es/#organization',
         name: 'Un Buen Regalo',
+        alternateName: ['Regalazo', 'UnBuenRegalo'],
         url: 'https://www.unbuenregalo.es',
         logo: {
           '@type': 'ImageObject',

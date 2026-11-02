@@ -1377,34 +1377,39 @@ export default function HomePage() {
         )}
 
         {/* SEO CONTENT SECTION */}
-        <section className="rounded-3xl p-6 sm:p-10 mb-12 border border-slate-200 bg-white text-slate-800 shadow-xs">
-          <h2 className="text-2xl sm:text-3xl font-black mb-4 tracking-tight text-slate-900">
-            Guía de Compra Inteligente: ¿Cómo acertar con el regalo según la edad?
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs sm:text-sm leading-relaxed text-slate-600">
-            <div className="space-y-2">
-              <h3 className="font-bold text-base flex items-center gap-2 text-indigo-600">
-                <span>🧸</span> Recién Nacidos y 0 a 3 Años
-              </h3>
-              <p>
-                Para los más pequeños, los regalos deben combinar <strong>seguridad certificada</strong>, materiales hipoalergénicos y practicidad para los padres. Las <strong>tartas de pañales personalizadas</strong> son el detalle por excelencia porque ofrecen más de 50 pañales de primera puesta organizados con estética de alta gama. Los juguetes de madera Montessori impulsan el agarre y la motricidad libre sin sobreestimular.
-              </p>
-            </div>
-            <div className="space-y-2">
-              <h3 className="font-bold text-base flex items-center gap-2 text-indigo-600">
-                <span>🎨</span> Niños de 4 a 12 Años
-              </h3>
-              <p>
-                En esta franja el juego simbólico y social cobra protagonismo. Los <strong>juegos de mesa familiares modernos</strong> como Catán Junior o Virus desarrollan la agilidad mental y reúnen a toda la familia alrededor de la mesa. Los sets de construcción tipo LEGO Creator y los circuitos Scalextric despiertan la emoción de la competición sana sin pantallas.
-              </p>
-            </div>
-            <div className="space-y-2">
-              <h3 className="font-bold text-base flex items-center gap-2 text-indigo-600">
-                <span>🎧</span> Jóvenes y Adolescentes (13 a 18 Años)
-              </h3>
-              <p>
-                Los adolescentes buscan reafirmar su personalidad propia. En lugar de regalos genéricos, triunfan los artículos con personalidad: desde videojuegos de <strong>PlayStation 5</strong> y periféricos de setup gaming hasta <strong>estilo personal y creativo</strong> con velas aromáticas WoodWick, diarios encuadernados en piel vintage y auriculares de alta fidelidad con cancelación de ruido.
-              </p>
+        <section className="rounded-3xl p-6 sm:p-10 mb-12 border border-slate-200 bg-white text-slate-800 shadow-xs space-y-8">
+          <div>
+            <h2 className="text-2xl sm:text-3xl font-black mb-4 tracking-tight text-slate-900">
+              ¿Qué Regalar? Tu Guía para Encontrar un Buen Regalo, ese Regalazo o Sorpresa Original
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
+              Elegir qué <strong>regalar</strong> en un cumpleaños, aniversario, amigo invisible, Navidad o Reyes Magos ya no es un dilema. En <strong>Un Buen Regalo</strong> analizamos miles de valoraciones verificadas para proponerte desde un <strong>detalle original y económico</strong> hasta un auténtico <strong>regalazo sorpresa</strong> que emocione de verdad. Además, con nuestra herramienta gratuita de <Link href="/votar" className="text-indigo-600 font-bold hover:underline">votación de regalos en grupo por WhatsApp</Link>, el <Link href="/carta-papa-noel" className="text-indigo-600 font-bold hover:underline">buzón oficial de Carta a Papá Noel</Link> y los hubs especializados de <Link href="/regalos-gta-6" className="text-indigo-600 font-bold hover:underline">GTA 6 / GTA VI</Link>, <Link href="/motoristas" className="text-indigo-600 font-bold hover:underline">Motoristas</Link>, <Link href="/gaming" className="text-indigo-600 font-bold hover:underline">Gaming</Link> o <Link href="/amantes-del-cafe" className="text-indigo-600 font-bold hover:underline">Café Barista</Link>, siempre tendrás el obsequio perfecto a un clic.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs sm:text-sm leading-relaxed text-slate-600">
+              <div className="space-y-2">
+                <h3 className="font-bold text-base flex items-center gap-2 text-indigo-600">
+                  <span>🧸</span> Recién Nacidos y 0 a 3 Años
+                </h3>
+                <p>
+                  Para los más pequeños, los regalos deben combinar <strong>seguridad certificada</strong>, materiales hipoalergénicos y practicidad para los padres. Las <strong>tartas de pañales personalizadas</strong> son el detalle por excelencia porque ofrecen más de 50 pañales de primera puesta organizados con estética de alta gama. Los juguetes de madera Montessori impulsan el agarre y la motricidad libre sin sobreestimular.
+                </p>
+              </div>
+              <div className="space-y-2">
+                <h3 className="font-bold text-base flex items-center gap-2 text-indigo-600">
+                  <span>🎨</span> Niños de 4 a 12 Años
+                </h3>
+                <p>
+                  En esta franja el juego simbólico y social cobra protagonismo. Los <strong>juegos de mesa familiares modernos</strong> como Catán Junior o Virus desarrollan la agilidad mental y reúnen a toda la familia alrededor de la mesa. Los sets de construcción tipo LEGO Creator y los circuitos Scalextric despiertan la emoción de la competición sana sin pantallas.
+                </p>
+              </div>
+              <div className="space-y-2">
+                <h3 className="font-bold text-base flex items-center gap-2 text-indigo-600">
+                  <span>🎧</span> Jóvenes, Adultos y Regalazos (+18)
+                </h3>
+                <p>
+                  Para adolescentes, novios, novias, padres y adultos que parecen tenerlo todo, triunfan las <strong>sorpresas con personalidad</strong>: desde videojuegos de <strong>PlayStation 5</strong>, merchandising de <strong>GTA VI</strong> y periféricos gaming hasta cafeteras espresso barista, equipamiento motero, cajas de experiencias Smartbox y gadgets tecnológicos de última generación.
+                </p>
+              </div>
             </div>
           </div>
         </section>
