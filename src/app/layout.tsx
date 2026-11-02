@@ -7,8 +7,8 @@ import { VotingProvider } from '@/context/VotingContext';
 import VotingDrawer from '@/components/VotingDrawer';
 
 export const metadata: Metadata = {
-  title: '🎁 Un Buen Regalo 【Guía 2026】 Ideas de Regalo para Todas las Edades',
-  description: '¿No sabes qué regalar? Descubre las mejores ideas de regalo para bebés, niños, jóvenes y adultos con opiniones reales y ofertas de Amazon España. ¡Acierta seguro!',
+  title: '🎁 Un Buen Regalo 【2026】 ¿Qué Regalar? Ideas de Regalo para Todas las Edades',
+  description: '¿No sabes qué regalar? En Un Buen Regalo encuentras el regalo perfecto en segundos: ideas para regalar a bebés, niños, jóvenes, novios y adultos con precios reales de Amazon España y votación en grupo por WhatsApp.',
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
@@ -21,6 +21,11 @@ export const metadata: Metadata = {
   },
   keywords: [
     'un buen regalo',
+    'regalo',
+    'regalar',
+    'que regalar',
+    'ideas para regalar',
+    'regalos originales',
     'un buen regalo gta vi',
     'un buen regalo gta 6',
     'regalos gta 6',
