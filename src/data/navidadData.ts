@@ -24,7 +24,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
   // =========================================================================
   {
     id: 'nav-tren-arbol-humo-sonido-luz',
-    asin: 'B08L7V8XYZ',
+    asin: 'B0GWDFL78K',
     title: 'Tren Eléctrico de Navidad para Árbol con Humo Real, Sonido Auténtico de Locomotora y Faro LED',
     category: 'trenes',
     categoryLabel: 'Trenes de Navidad para Árbol',
@@ -33,7 +33,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
     priceNumeric: 39.99,
     rating: 4.8,
     reviewsCount: 14500,
-    imageUrl: 'https://m.media-amazon.com/images/I/81Pj6E0W1wL._AC_SL1500_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/71JL-5coiZL._AC_SL1000_.jpg',
     badge: 'Nº 1 Más Vendido en Trenes de Árbol',
     description: 'Circuito de vías circulares y ovaladas diseñado para rodear la base del árbol de Navidad. Locomotora de vapor clásica que expulsa vapor de agua frío totalmente seguro, emite sonido real de silbato y faro frontal luminoso.',
     pros: [
@@ -46,7 +46,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'nav-tren-arbol-suspendido-tronco',
-    asin: 'B07J5K98MN',
+    asin: 'B0HDBXYP5P',
     title: 'Tren de Navidad Suspendido para Montar en el Tronco del Árbol a Media Altura con Vía Elevada',
     category: 'trenes',
     categoryLabel: 'Trenes de Navidad para Árbol',
@@ -55,7 +55,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
     priceNumeric: 49.99,
     rating: 4.7,
     reviewsCount: 8900,
-    imageUrl: 'https://m.media-amazon.com/images/I/81xZ0JbZ5CL._AC_SL1500_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/81y6klUaw9L._AC_SL1000_.jpg',
     badge: 'Efecto Mágico Flotante',
     description: 'Sistema patentado con brazos de fijación ajustables que se anclan firmemente al tronco de cualquier árbol artificial o natural, haciendo circular el tren a media altura entre las ramas y las luces.',
     pros: [
@@ -68,7 +68,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'nav-tren-madera-artesanal-mesa',
-    asin: 'B07Y8Q19Z4',
+    asin: 'B07W54W7ZZ',
     title: 'Tren Navideño Tradicional de Madera Artesanal con Muñeco de Nieve y Papá Noel para Decoración',
     category: 'trenes',
     categoryLabel: 'Trenes de Navidad para Árbol',
@@ -77,7 +77,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
     priceNumeric: 14.99,
     rating: 4.6,
     reviewsCount: 6300,
-    imageUrl: 'https://m.media-amazon.com/images/I/71Y8X-Y1a9L._AC_SL1500_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/81su4tQYbCL._AC_SL1000_.jpg',
     badge: 'Artesanía Nórdica',
     description: 'Precioso adorno navideño de madera natural pintada a mano en tonos rojo, blanco y verde festivo. Cuatro vagones articulados con figuras detalladas de Papá Noel, muñecos de nieve, ositos y regalos.',
     pros: [
@@ -90,7 +90,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'nav-tren-control-remoto-expreso-polar',
-    asin: 'B08F9VXYZ2',
+    asin: 'B0DDT84L63',
     title: 'Circuito Ferroviario Expreso Polar Navideño Gran Escala con Mando a Distancia y Luces Festivas',
     category: 'trenes',
     categoryLabel: 'Trenes de Navidad para Árbol',
@@ -99,7 +99,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
     priceNumeric: 79.99,
     rating: 4.8,
     reviewsCount: 11200,
-    imageUrl: 'https://m.media-amazon.com/images/I/81kH2lQv6PL._AC_SL1500_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/81eIWzFqtxL._AC_SL1000_.jpg',
     badge: 'Gama Alta Coleccionista',
     description: 'Set prémium de tren navideño a escala con mando de radiofrecuencia para controlar marcha adelante, marcha atrás, velocidad, toque de campana y sonidos reales de vía férrea.',
     pros: [
@@ -112,7 +112,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'nav-tren-bloques-construccion-navidad',
-    asin: 'B09R27BTP2',
+    asin: 'B07B4GG659',
     title: 'Set de Bloques de Construcción Tren de Navidad con Estación Nevada y Vías Circulares (780 Piezas)',
     category: 'trenes',
     categoryLabel: 'Trenes de Navidad para Árbol',
@@ -121,7 +121,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
     priceNumeric: 36.99,
     rating: 4.7,
     reviewsCount: 4800,
-    imageUrl: 'https://m.media-amazon.com/images/I/81vJ9R2m9ZL._AC_SL1500_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/810F5SfQcPL._AC_SL1000_.jpg',
     badge: 'Diversión en Familia',
     description: 'Juego de construcción compatible con las principales marcas de bloques. Permite construir una locomotora con farol, vagón de dulces, vagón de regalos y un andén nevado con árbol de Navidad.',
     pros: [
@@ -138,7 +138,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
   // =========================================================================
   {
     id: 'nav-villa-navidena-luces-musica-patinaje',
-    asin: 'B097MJF76Q',
+    asin: 'B0G4D37JS9',
     title: 'Pueblo Navideño Iluminado con Escena de Patinadores en Movimiento, Luces LED y Música',
     category: 'decoracion',
     categoryLabel: 'Decoración & Luces Navideñas',
@@ -147,7 +147,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
     priceNumeric: 45.99,
     rating: 4.7,
     reviewsCount: 7600,
-    imageUrl: 'https://m.media-amazon.com/images/I/81w3uJ3oNIL._AC_SL1500_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/81pD+F8tBhL._AC_SL1000_.jpg',
     badge: 'La Magia de la Nieve',
     description: 'Pueblo de resina pintado a mano con pista de hielo magnética donde giran patinadores, casas nevadas con ventanas iluminadas y 8 villancicos clásicos seleccionables.',
     pros: [
@@ -160,7 +160,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'nav-arbol-navidad-artificial-frondoso-180',
-    asin: 'B08G8JTY5N',
+    asin: 'B0H4NTN9PD',
     title: 'Árbol de Navidad Artificial Frondoso 180 cm con 930 Ramas Densas y Base Metálica Reforzada',
     category: 'decoracion',
     categoryLabel: 'Decoración & Luces Navideñas',
@@ -169,7 +169,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
     priceNumeric: 64.99,
     rating: 4.8,
     reviewsCount: 19800,
-    imageUrl: 'https://m.media-amazon.com/images/I/81M7rQ9Y7kL._AC_SL1500_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/81u4W0tf4LL._AC_SL1000_.jpg',
     badge: 'Máxima Frondosidad',
     description: 'Abeto artificial de gran densidad con agujas de PVC de doble tono que imitan el follaje real del bosque alpino. Estructura con bisagras automáticas para montaje y desmontaje en menos de 10 minutos.',
     pros: [
@@ -182,7 +182,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'nav-falda-pie-arbol-felpa-blanca',
-    asin: 'B07MVD9W44',
+    asin: 'B0HDCCV87M',
     title: 'Falda Cubrepíe para Árbol de Navidad 90 cm de Pelo Sintético Blanco Nieve con Copos Dorados',
     category: 'decoracion',
     categoryLabel: 'Decoración & Luces Navideñas',
@@ -191,7 +191,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
     priceNumeric: 16.99,
     rating: 4.8,
     reviewsCount: 12400,
-    imageUrl: 'https://m.media-amazon.com/images/I/71Y8s4G8m1L._AC_SL1500_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/81ZeiekfcpL._AC_SL1000_.jpg',
     badge: 'Tacto Peluche de Lujo',
     description: 'Alfombra redonda para ocultar la base metálica del árbol de Navidad y los cables de las luces. Tejido de felpa esponjosa que simula un manto de nieve recién caída donde reposar los regalos.',
     pros: [
@@ -226,7 +226,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'nav-proyector-copos-nieve-exterior',
-    asin: 'B07MVD9W55',
+    asin: 'B08JLXM285',
     title: 'Proyector LED Navideño de Copos de Nieve Dinámicos Giratorios IP65 para Fachada y Salón',
     category: 'decoracion',
     categoryLabel: 'Decoración & Luces Navideñas',
@@ -235,7 +235,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
     priceNumeric: 27.99,
     rating: 4.6,
     reviewsCount: 9100,
-    imageUrl: 'https://m.media-amazon.com/images/I/71Y9tV8M0aL._AC_SL1500_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/51MxdaSnf+L._AC_SL1000_.jpg',
     badge: 'Nevada Mágica en Casa',
     description: 'Lámpara proyector con lente óptica mejorada que proyecta una suave caída de copos de nieve en movimiento sobre paredes, fachadas o techos de hasta 50 m² de cobertura.',
     pros: [
@@ -248,7 +248,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'nav-bolas-arbol-set-50-dorado-rojo',
-    asin: 'B08G8K7TY3',
+    asin: 'B087P8Y9NJ',
     title: 'Set de 50 Bolas de Navidad Irrompibles Surtidas en Oro Champagne y Rojo Clásico',
     category: 'decoracion',
     categoryLabel: 'Decoración & Luces Navideñas',
@@ -257,7 +257,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
     priceNumeric: 21.99,
     rating: 4.6,
     reviewsCount: 14200,
-    imageUrl: 'https://m.media-amazon.com/images/I/81kF9U7l1wL._AC_SL1500_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/814H8t6u2uL._AC_SL1000_.jpg',
     badge: '100% Antiroturas',
     description: 'Conjunto completo de adornos esféricos con acabados brillante, mate y con purpurina. Fabricadas en plástico ecológico ultra resistente a caídas de mascotas o juegos infantiles.',
     pros: [
@@ -270,7 +270,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'nav-corona-navidena-puerta-40cm',
-    asin: 'B07MVD9W66',
+    asin: 'B096XG112C',
     title: 'Corona Navideña de Puerta 40 cm con Piñas Naturales, Bayas Rojas y Luces Micro-LED',
     category: 'decoracion',
     categoryLabel: 'Decoración & Luces Navideñas',
@@ -279,7 +279,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
     priceNumeric: 23.99,
     rating: 4.7,
     reviewsCount: 6800,
-    imageUrl: 'https://m.media-amazon.com/images/I/81qN9G2t1aL._AC_SL1500_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/81tAF0vUZbL._AC_SL1000_.jpg',
     badge: 'Bienvenida Festiva',
     description: 'Corona artesanal para colgar en la puerta principal de entrada o sobre la chimenea. Compuesta por ramas de abeto artificial perenne, piñas de pino naturales secas y guirnalda de luces a pilas con temporizador.',
     pros: [
@@ -292,7 +292,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'nav-papa-noel-inflable-gigante-180',
-    asin: 'B08FCVTY99',
+    asin: 'B0DBLHRSLL',
     title: 'Figura Hinchable de Papá Noel Gigante 180 cm con Iluminación LED y Motor Silencioso',
     category: 'decoracion',
     categoryLabel: 'Decoración & Luces Navideñas',
@@ -301,7 +301,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
     priceNumeric: 38.99,
     rating: 4.6,
     reviewsCount: 5400,
-    imageUrl: 'https://m.media-amazon.com/images/I/71oZ8N1s2wL._AC_SL1500_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/81Yt4x1sd+L._AC_SL1000_.jpg',
     badge: 'La Ilusión del Barrio',
     description: 'Muñeco inflable de Papá Noel saludando con bolsa de regalos. Dispone de un potente ventilador interno integrado que lo hincha en menos de 1 minuto nada más enchufarlo a la corriente.',
     pros: [
@@ -340,7 +340,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'nav-calendario-adviento-kinder',
-    asin: 'B07MVD9W77',
+    asin: 'B0FWBN2VSV',
     title: 'Kinder Calendario de Adviento Casita Navideña con Chocolates y Sorpresas Variadas',
     category: 'adviento',
     categoryLabel: 'Calendarios de Adviento 2026',
@@ -349,7 +349,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
     priceNumeric: 16.99,
     rating: 4.8,
     reviewsCount: 18400,
-    imageUrl: 'https://m.media-amazon.com/images/I/81dG7L2m3wL._AC_SL1500_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/71ccxfqQXzL._AC_SL1000_.jpg',
     badge: 'El Favorito de los Niños',
     description: 'Preciosa caja en forma de chalet alpino con 24 ventanas rellenas de las chocolatinas más queridas de Kinder: Schoko-Bons, Kinder Chocolate Mini, Kinder Bueno y figuras de chocolate con leche.',
     pros: [
@@ -388,7 +388,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'nav-calcetines-navidenos-caja-regalo',
-    asin: 'B08FCVTY88',
+    asin: 'B0BKVDBGVH',
     title: 'Set de 4 Pares de Calcetines Navideños Divertidos de Algodón en Caja de Regalo',
     category: 'amigo-invisible',
     categoryLabel: 'Regalos Amigo Invisible (<15 €)',
@@ -397,7 +397,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
     priceNumeric: 13.99,
     rating: 4.7,
     reviewsCount: 9700,
-    imageUrl: 'https://m.media-amazon.com/images/I/81xZ8V2o4wL._AC_SL1500_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/81klkFlCH0L._AC_SL1000_.jpg',
     badge: 'Detalle Cálido & Divertido',
     description: 'Pack de calcetines elásticos de tacto suave con motivos de renos, copos de nieve, Papá Noel y árboles navideños. Empaquetados en una bonita lata metálica o estuche listo para obsequiar.',
     pros: [

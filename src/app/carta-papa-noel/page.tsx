@@ -43,6 +43,7 @@ function CartaPapaNoelContent() {
   const [sendStep, setSendStep] = useState(0); // 0 = idle, 1 = folding, 2 = flying, 3 = delivered
   const [isDelivered, setIsDelivered] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
+  const [failedImgIds, setFailedImgIds] = useState<Record<string, boolean>>({});
 
   // Reset pagination when filters change
   useEffect(() => {
@@ -312,8 +313,20 @@ function CartaPapaNoelContent() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {selectedToys.map((t, idx) => (
                     <div key={t.id} className="flex items-center gap-3 bg-white p-2.5 rounded-xl border border-amber-200 shadow-xs">
-                      <div className="relative w-12 h-12 rounded-lg overflow-hidden shrink-0 bg-slate-50">
-                        <Image src={t.imageUrl} alt={t.shortTitle} fill unoptimized className="object-contain p-1" sizes="48px" />
+                      <div className="relative w-12 h-12 rounded-lg overflow-hidden shrink-0 bg-slate-50 flex items-center justify-center">
+                        {!failedImgIds[t.id] ? (
+                          <Image
+                            src={t.imageUrl}
+                            alt={t.shortTitle}
+                            fill
+                            unoptimized
+                            onError={() => setFailedImgIds(prev => ({ ...prev, [t.id]: true }))}
+                            className="object-contain p-1"
+                            sizes="48px"
+                          />
+                        ) : (
+                          <span className="text-xl" aria-hidden="true">🎁</span>
+                        )}
                       </div>
                       <div className="min-w-0 flex-1">
                         <span className="text-[10px] font-bold text-red-700 block">Deseo #{idx + 1}</span>
@@ -521,8 +534,20 @@ function CartaPapaNoelContent() {
                           <div className="absolute -top-1.5 left-4 w-8 h-3 bg-amber-200/70 border border-amber-300/80 -rotate-3 rounded-xs pointer-events-none" />
 
                           <div className="flex items-center gap-2.5 min-w-0">
-                            <div className="relative w-12 h-12 rounded-lg overflow-hidden shrink-0 bg-slate-50 border border-slate-100">
-                              <Image src={t.imageUrl} alt={t.shortTitle} fill unoptimized className="object-contain p-1" sizes="48px" />
+                            <div className="relative w-12 h-12 rounded-lg overflow-hidden shrink-0 bg-slate-50 border border-slate-100 flex items-center justify-center">
+                              {!failedImgIds[t.id] ? (
+                                <Image
+                                  src={t.imageUrl}
+                                  alt={t.shortTitle}
+                                  fill
+                                  unoptimized
+                                  onError={() => setFailedImgIds(prev => ({ ...prev, [t.id]: true }))}
+                                  className="object-contain p-1"
+                                  sizes="48px"
+                                />
+                              ) : (
+                                <span className="text-xl" aria-hidden="true">🎁</span>
+                              )}
                             </div>
                             <div className="min-w-0 flex-1">
                               <span className="text-[10px] font-black text-red-700 uppercase tracking-wider block">
@@ -820,15 +845,23 @@ function CartaPapaNoelContent() {
                       )}
 
                       {/* Imagen grande del juguete */}
-                      <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-slate-50 mb-3 group-hover:scale-105 transition-transform duration-300">
-                        <Image
-                          src={toy.imageUrl}
-                          alt={toy.shortTitle}
-                          fill
-                          unoptimized
-                          className="object-contain p-2"
-                          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                        />
+                      <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-slate-50 mb-3 group-hover:scale-105 transition-transform duration-300 flex items-center justify-center">
+                        {!failedImgIds[toy.id] ? (
+                          <Image
+                            src={toy.imageUrl}
+                            alt={toy.shortTitle}
+                            fill
+                            unoptimized
+                            onError={() => setFailedImgIds(prev => ({ ...prev, [toy.id]: true }))}
+                            className="object-contain p-2"
+                            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                          />
+                        ) : (
+                          <div className="flex flex-col items-center justify-center p-3 text-center text-slate-500">
+                            <span className="text-3xl mb-1" aria-hidden="true">🎁</span>
+                            <span className="text-[11px] font-bold text-slate-700 line-clamp-2">{toy.shortTitle}</span>
+                          </div>
+                        )}
                       </div>
 
                       {/* Título del juguete */}

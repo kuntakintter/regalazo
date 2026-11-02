@@ -141,7 +141,7 @@ export const GAMING_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'game-auriculares-razer-blackshark-v2x',
-    asin: 'B089SSF5L8',
+    asin: 'B0D4QVV1WV',
     title: 'Razer BlackShark V2 X Auriculares Gaming Multiplataforma con Drivers TriForce 50mm',
     category: 'auriculares',
     categoryLabel: 'Auriculares & Audio',
@@ -150,7 +150,7 @@ export const GAMING_PRODUCTS: HubProduct[] = [
     priceNumeric: 49.99,
     rating: 4.5,
     reviewsCount: 38000,
-    imageUrl: 'https://m.media-amazon.com/images/I/61vmsbQ9m4L._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/41njRLDFnFL._AC_SL1000_.jpg',
     badge: 'Top eSports Razer',
     description: 'Diseño ultraligero de solo 240g con diafragmas de titanio de 50mm, micrófono cardioide HyperClear y cancelación pasiva avanzada de ruido exterior.',
     pros: [
@@ -163,7 +163,7 @@ export const GAMING_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'game-teclado-corsair-k55-rgb',
-    asin: 'B08XYQ5ZDM',
+    asin: 'B0H2WMGBPK',
     title: 'Corsair K55 RGB PRO Teclado Gaming con 6 Teclas Macro Dedicadas y Software iCUE',
     category: 'teclados',
     categoryLabel: 'Teclados Mecánicos',
@@ -172,7 +172,7 @@ export const GAMING_PRODUCTS: HubProduct[] = [
     priceNumeric: 59.99,
     rating: 4.5,
     reviewsCount: 12500,
-    imageUrl: 'https://m.media-amazon.com/images/I/71R20Kq10LL._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/71w9ssepAoL._AC_SL1000_.jpg',
     badge: 'Teclas Macro Elgato',
     description: 'Iluminación dinámica RGB de 5 zonas, 6 teclas macro dedicadas integradas con el software Elgato Stream Deck y protección IP42 contra polvo y derrames.',
     pros: [
