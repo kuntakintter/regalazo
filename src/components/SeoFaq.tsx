@@ -10,6 +10,10 @@ interface FaqItem {
 
 const FAQS: FaqItem[] = [
   {
+    question: '¿Cuáles son los 10 mejores regalos y productos para regalar en 2026 según nuestra comparativa?',
+    answer: 'En nuestra tabla comparativa actualizada de los 10 mejores regalos de 2026 destacan los productos con valoración superior a 4.7 estrellas y miles de opiniones verificadas: desde tartas de pañales y juguetes Montessori para bebés y niños, hasta sets de construcción LEGO, juegos de mesa familiares, mandos DualSense y periféricos para PS5 / GTA VI, equipamiento para motoristas, cafeteras espresso barista y cajas de experiencias para adultos. Además, puedes comparar candidatos y votar en grupo gratis por WhatsApp.'
+  },
+  {
     question: '¿Qué regalar cuando no sabes qué comprar a alguien que ya tiene de todo?',
     answer: 'En Un Buen Regalo hemos diseñado el recomendador para acertar incluso con las personas más difíciles: tanto si buscas un detalle económico de menos de 20 € para el amigo invisible como si quieres hacer un regalo original de cumpleaños, aniversario, Navidad o Reyes Magos. Puedes filtrar por edad exacta (de 0 a más de 18 años), por aficiones (gaming, GTA VI, motoristas, ciclismo, café barista, automóvil o mascotas) o crear una votación en grupo por WhatsApp para elegir la mejor opción entre varios amigos.'
   },

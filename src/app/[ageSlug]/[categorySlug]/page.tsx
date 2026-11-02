@@ -49,9 +49,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const currentSub = subcategories.find((s) => s.slug === categorySlug);
   if (!currentSub) return {};
 
-  const pageTitle = `Top ${currentSub.label} (${ageMeta.h1}) 【Guía 2026】`;
-  const socialTitle = `🎁 ${currentSub.label} (${ageMeta.h1}) 【Guía 2026】`;
-  const pageDesc = `¿Buscas ${currentSub.label.toLowerCase()} para ${ageMeta.h1.toLowerCase()}? Descubre los más recomendados y vendidos en Amazon España con opiniones reales y envío Prime.`;
+  const pageTitle = `Los 10 Mejores ${currentSub.label} 【Comparativa 2026】 | Un Buen Regalo`;
+  const socialTitle = `🎁 Los 10 Mejores ${currentSub.label} 【Comparativa 2026】`;
+  const pageDesc = `Comparativa y ranking de los 10 mejores ${currentSub.label.toLowerCase()} (${ageMeta.h1.toLowerCase()}). Analizamos los productos mejor valorados por calidad-precio y opiniones reales.`;
   const canonicalUrl = `https://www.unbuenregalo.es/${ageSlug}/${categorySlug}`;
   const ogImage = getCategoryOgImage(currentSub.label);
 
@@ -62,7 +62,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     canonicalUrl,
     imageUrl: ogImage.url,
     imageAlt: ogImage.alt,
-    keywords: [currentSub.label.toLowerCase(), `regalos ${currentSub.label.toLowerCase()}`, ageMeta.h1.toLowerCase()],
+    keywords: [
+      `los 10 mejores ${currentSub.label.toLowerCase()}`,
+      `comparativa ${currentSub.label.toLowerCase()}`,
+      `mejores productos ${currentSub.label.toLowerCase()}`,
+      currentSub.label.toLowerCase(),
+      `regalos ${currentSub.label.toLowerCase()}`,
+      ageMeta.h1.toLowerCase(),
+    ],
   });
 }
 
@@ -145,11 +152,11 @@ export default async function SubcategoryLandingPage({ params }: PageProps) {
           </div>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.15] mb-4 text-slate-900">
-            Mejores Opciones de {currentSub.label}
+            Los 10 Mejores {currentSub.label}: Comparativa y Ranking 2026
           </h1>
 
           <p className="text-sm sm:text-base text-slate-600 leading-relaxed mb-6 max-w-3xl mx-auto">
-            Selección exclusiva verificada de {currentSub.label.toLowerCase()} recomendados para {ageMeta.h1.toLowerCase()}. Consulta valoraciones reales, stock y precios actualizados directamente con la garantía oficial de Amazon España.
+            Tabla comparativa y selección verificada de los mejores {currentSub.label.toLowerCase()} recomendados para {ageMeta.h1.toLowerCase()}. Consulta valoraciones reales, relación calidad-precio y ofertas actualizadas.
           </p>
 
           {/* THEMATIC EXPLORATION BOX (SIBLING CATEGORIES) */}

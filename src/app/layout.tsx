@@ -22,7 +22,13 @@ export const metadata: Metadata = {
   },
   keywords: [
     'un buen regalo',
+    'los 10 mejores regalos',
+    'los 10 mejores productos',
+    'comparativa mejores regalos',
+    'ranking mejores regalos 2026',
+    'top 10 regalos originales',
     'a good gift',
+    'top 10 best gifts',
     'best gift ideas',
     'what to gift',
     'original gifts',
