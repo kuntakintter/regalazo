@@ -11,6 +11,10 @@ export const metadata: Metadata = buildSocialMetadata({
   imageUrl: snippet.imageUrl,
   imageAlt: snippet.imageAlt,
   keywords: [
+    'un buen regalo gta vi',
+    'un buen regalo gta 6',
+    'unbuenregalo gta vi',
+    'unbuenregalo gta 6',
     'regalos gta 6',
     'regalos gta vi',
     'merchandising gta 6',

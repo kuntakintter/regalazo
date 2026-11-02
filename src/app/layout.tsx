@@ -21,6 +21,12 @@ export const metadata: Metadata = {
   },
   keywords: [
     'un buen regalo',
+    'un buen regalo gta vi',
+    'un buen regalo gta 6',
+    'regalos gta 6',
+    'regalos gta vi',
+    'carta a papa noel online',
+    'votar regalo en grupo',
     'ideas de regalo',
     'ideas de regalo para ninos',
     'regalos recien nacido originales',
