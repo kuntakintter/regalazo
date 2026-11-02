@@ -93,10 +93,16 @@ export const metadata: Metadata = {
     description: 'Encuentra el regalo perfecto en segundos para cualquier edad y ocasión, con buscador inteligente y votación en grupo por WhatsApp.',
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=1200&h=630&q=80',
+        url: 'https://www.unbuenregalo.es/og-cover.png',
         width: 1200,
         height: 630,
-        alt: 'Un Buen Regalo - A Good Gift - Recomendaciones de regalos para todas las edades',
+        alt: 'Un Buen Regalo - Ideas de Regalo y Comparativas Top 10 (unbuenregalo.es)',
+      },
+      {
+        url: 'https://www.unbuenregalo.es/logo-square.png',
+        width: 1024,
+        height: 1024,
+        alt: 'Logo Oficial Un Buen Regalo (unbuenregalo.es)',
       },
     ],
   },
@@ -104,7 +110,10 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: '🎁 Un Buen Regalo | ¿Qué Regalar? Ideas y Regalos Originales',
     description: 'Guía global de ideas de regalo originales para todas las edades y votación en grupo por WhatsApp.',
-    images: ['https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=1200&h=630&q=80'],
+    images: ['https://www.unbuenregalo.es/og-cover.png'],
+  },
+  other: {
+    thumbnail: 'https://www.unbuenregalo.es/logo-square.png',
   },
   alternates: {
     canonical: 'https://www.unbuenregalo.es',
@@ -161,10 +170,29 @@ export default function RootLayout({
         url: 'https://www.unbuenregalo.es',
         logo: {
           '@type': 'ImageObject',
-          url: 'https://www.unbuenregalo.es/icon.png',
-          width: 512,
-          height: 512,
+          url: 'https://www.unbuenregalo.es/logo-square.png',
+          width: 1024,
+          height: 1024,
         },
+        image: [
+          'https://www.unbuenregalo.es/logo-square.png',
+          'https://www.unbuenregalo.es/og-cover.png',
+          'https://www.unbuenregalo.es/icon.png',
+        ],
+      },
+      {
+        '@type': 'WebPage',
+        '@id': 'https://www.unbuenregalo.es/#webpage',
+        url: 'https://www.unbuenregalo.es',
+        name: 'Un Buen Regalo 【2026】 ¿Qué Regalar? Ideas y Regalos Originales',
+        isPartOf: { '@id': 'https://www.unbuenregalo.es/#website' },
+        primaryImageOfPage: {
+          '@type': 'ImageObject',
+          url: 'https://www.unbuenregalo.es/logo-square.png',
+          width: 1024,
+          height: 1024,
+        },
+        thumbnailUrl: 'https://www.unbuenregalo.es/logo-square.png',
       },
       {
         '@type': 'ItemList',
