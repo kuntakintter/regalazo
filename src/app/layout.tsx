@@ -8,7 +8,7 @@ import VotingDrawer from '@/components/VotingDrawer';
 
 export const metadata: Metadata = {
   title: 'Un Buen Regalo 【2026】 ¿Qué Regalar? Ideas y Regalos Originales',
-  description: '¿No sabes qué regalar? Descubre en Un Buen Regalo ideas de regalo originales para bebés, niños, jóvenes y adultos con precios en vivo de Amazon España.',
+  description: '¿No sabes qué regalar? Descubre en Un Buen Regalo ideas de regalo originales para bebés, niños, jóvenes y adultos con votación en grupo por WhatsApp.',
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
@@ -21,6 +21,11 @@ export const metadata: Metadata = {
   },
   keywords: [
     'un buen regalo',
+    'a good gift',
+    'best gift ideas',
+    'what to gift',
+    'original gifts',
+    'group gift voting',
     'regalo',
     'regalos',
     'regalar',
@@ -55,8 +60,7 @@ export const metadata: Metadata = {
     'regalos mayores de 18 anos',
     'juegos ps5 recomendados',
     'smartbox escapadas',
-    'que regalar a un nino',
-    'mejores regalos amazon espana'
+    'que regalar a un nino'
   ],
   authors: [{ name: 'Un Buen Regalo Editorial' }],
   creator: 'Un Buen Regalo',
@@ -75,23 +79,24 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'es_ES',
+    alternateLocale: ['en_US', 'en_GB', 'es_MX', 'es_AR', 'es_CO', 'fr_FR', 'de_DE', 'it_IT', 'pt_PT'],
     url: 'https://www.unbuenregalo.es',
-    siteName: 'Un Buen Regalo',
-    title: '🎁 Un Buen Regalo | Guía de Regalos de 0 a más de 18 Años',
-    description: 'Encuentra el regalo perfecto en segundos con recomendaciones contrastadas de Amazon España.',
+    siteName: 'Un Buen Regalo | A Good Gift',
+    title: '🎁 Un Buen Regalo | ¿Qué Regalar? Ideas y Regalos Originales',
+    description: 'Encuentra el regalo perfecto en segundos para cualquier edad y ocasión, con buscador inteligente y votación en grupo por WhatsApp.',
     images: [
       {
         url: 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=1200&h=630&q=80',
         width: 1200,
         height: 630,
-        alt: 'Un Buen Regalo - Recomendaciones de regalos para todas las edades',
+        alt: 'Un Buen Regalo - A Good Gift - Recomendaciones de regalos para todas las edades',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: '🎁 Un Buen Regalo | Ideas de Regalo de 0 a más de 18 Años',
-    description: 'Guía definitiva con recomendaciones verificadas de Amazon España.',
+    title: '🎁 Un Buen Regalo | ¿Qué Regalar? Ideas y Regalos Originales',
+    description: 'Guía global de ideas de regalo originales para todas las edades y votación en grupo por WhatsApp.',
     images: ['https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=1200&h=630&q=80'],
   },
   alternates: {
@@ -113,15 +118,16 @@ export default function RootLayout({
         '@id': 'https://www.unbuenregalo.es/#website',
         name: 'Un Buen Regalo',
         alternateName: [
-          'Regalazo',
+          'A Good Gift',
           'UnBuenRegalo.es',
+          'Regalazo',
           'Qué Regalar',
-          'Ideas de Regalo y Sorpresas Originales',
+          'Best Gift Ideas & Group Gift Voting',
         ],
         url: 'https://www.unbuenregalo.es',
-        inLanguage: 'es-ES',
+        inLanguage: ['es', 'en', 'fr', 'de', 'it', 'pt'],
         description:
-          '¿No sabes qué regalar? Encuentra un buen regalo, ese regalazo o sorpresa original para bebés, niños, jóvenes y adultos con opiniones reales en Amazon.',
+          '¿No sabes qué regalar? Descubre en Un Buen Regalo (A Good Gift) ideas de regalo originales para bebés, niños, jóvenes y adultos en todo el mundo.',
         potentialAction: {
           '@type': 'SearchAction',
           target: 'https://www.unbuenregalo.es/?q={search_term_string}',
@@ -132,7 +138,7 @@ export default function RootLayout({
         '@type': 'Organization',
         '@id': 'https://www.unbuenregalo.es/#organization',
         name: 'Un Buen Regalo',
-        alternateName: ['Regalazo', 'UnBuenRegalo'],
+        alternateName: ['A Good Gift', 'Regalazo', 'UnBuenRegalo'],
         url: 'https://www.unbuenregalo.es',
         logo: {
           '@type': 'ImageObject',

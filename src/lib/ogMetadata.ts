@@ -14,14 +14,14 @@ export const HUB_OG_SNIPPETS: Record<string, SocialHubSnippet> = {
   motoristas: {
     title: 'Top Regalos para Motoristas 【Guía 2026】 Cascos y Gadgets | Un Buen Regalo',
     socialTitle: '🏍️ Top Regalos para Motoristas: Cascos, Chaquetas y Gadgets | Un Buen Regalo',
-    description: 'En Un Buen Regalo seleccionamos las mejores ideas para acertar con un motero: cascos homologados, guantes térmicos, intercomunicadores Cardo y antirrobos en Amazon España.',
+    description: 'En Un Buen Regalo seleccionamos las mejores ideas para acertar con un motero: cascos homologados, guantes térmicos, intercomunicadores Cardo y antirrobos.',
     imageUrl: 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1200&h=630&q=85',
     imageAlt: 'Motorista equipado en ruta panorámica con casco y chaqueta de protección',
   },
   gaming: {
     title: 'Top Regalos para Gamers y Setup 【2026】 PC y PS5 | Un Buen Regalo',
     socialTitle: '🎮 El Regalo Gamer Perfecto: Mandos PS5, Auriculares y Setup | Un Buen Regalo',
-    description: 'Descubre en Un Buen Regalo las mejores ideas para jugadores de PC, PS5 y Xbox: auriculares HyperX, ratones Logitech G502, iluminación RGB y accesorios eSports en Amazon.',
+    description: 'Descubre en Un Buen Regalo las mejores ideas para jugadores de PC, PS5 y Xbox: auriculares HyperX, ratones Logitech G502, iluminación RGB y accesorios eSports.',
     imageUrl: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&h=630&q=85',
     imageAlt: 'Setup gaming profesional con teclado mecánico, ratón RGB e iluminación envolvente',
   },
@@ -42,7 +42,7 @@ export const HUB_OG_SNIPPETS: Record<string, SocialHubSnippet> = {
   mascotas: {
     title: 'Top Regalos para Dueños de Perros y Gatos 【2026】 | Un Buen Regalo',
     socialTitle: '🐾 Regalos Estrella para Dueños de Perros y Gatos | Un Buen Regalo',
-    description: 'En Un Buen Regalo recopilamos lo mejor para mascotas: localizadores GPS Tractive, fuentes Catit inteligentes, arneses Julius-K9 y juguetes interactivos con envío Prime.',
+    description: 'En Un Buen Regalo recopilamos lo mejor para mascotas: localizadores GPS Tractive, fuentes Catit inteligentes, arneses Julius-K9 y juguetes interactivos.',
     imageUrl: 'https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=1200&h=630&q=85',
     imageAlt: 'Perro y gato felices con accesorios de cuidado y bienestar animal',
   },
@@ -55,7 +55,7 @@ export const HUB_OG_SNIPPETS: Record<string, SocialHubSnippet> = {
   },
   'regalos-gta-6': {
     title: 'Un Buen Regalo GTA VI y Regalos GTA 6 【2026】 Merchandising Grand Theft Auto',
-    socialTitle: '🌴 Un Buen Regalo GTA VI y GTA 6: Los Mejores Regalos Oficiales en Amazon',
+    socialTitle: '🌴 Un Buen Regalo GTA VI y GTA 6: Los Mejores Regalos Oficiales',
     description: '¿Buscas un buen regalo de GTA VI o GTA 6? En Un Buen Regalo tienes la guía oficial de Grand Theft Auto VI: pósters enmarcados, mandos PS5 Nova Pink, luces neón Vice City y tarjetas reserva.',
     imageUrl: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1200&h=630&q=85',
     imageAlt: 'Setup gamer con luces de neón rosa y azul estilo retro Vice City de GTA 6',
@@ -63,7 +63,7 @@ export const HUB_OG_SNIPPETS: Record<string, SocialHubSnippet> = {
   navidad: {
     title: 'Top Regalos de Navidad y Reyes 2026 | Trenes y Decoración | Un Buen Regalo',
     socialTitle: '🎄 Especial Navidad y Reyes: Trenes para Árbol y Regalos | Un Buen Regalo',
-    description: 'Guía completa de Navidad y Reyes Magos en Un Buen Regalo: trenes eléctricos para rodear el árbol, decoración navideña, calendarios de adviento y amigo invisible en Amazon España.',
+    description: 'Guía completa de Navidad y Reyes Magos en Un Buen Regalo: trenes eléctricos para rodear el árbol, decoración navideña, calendarios de adviento y amigo invisible.',
     imageUrl: 'https://images.unsplash.com/photo-1543258103-a62bdc069871?auto=format&fit=crop&w=1200&h=630&q=85',
     imageAlt: 'Árbol de Navidad decorado con luces cálidas y tren clásico navideño rodeando la base',
   },
