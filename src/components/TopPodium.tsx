@@ -618,15 +618,20 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
                 : 'bg-gradient-to-r from-slate-900 via-[#131921] to-slate-900 text-white border-slate-800'
             }`}
           >
-            <div className="flex items-center gap-3">
-              <span className="w-8 h-8 rounded-xl bg-amber-400 text-slate-950 font-black text-xs flex items-center justify-center shrink-0 shadow-xs">
-                TOP 10
-              </span>
+            <div className="flex items-center gap-3.5">
+              <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-amber-300 via-amber-400 to-amber-500 text-slate-950 flex items-center justify-center shrink-0 shadow-md ring-2 ring-amber-300/40">
+                <Trophy className="w-5 h-5 stroke-[2.5]" />
+              </div>
               <div>
-                <h3 className="text-sm sm:text-base font-black text-white leading-tight">
-                  📊 Comparativa: Los {top10ComparisonList.length} Mejores Regalos y Productos{' '}
-                  {filterLabel ? `en ${filterLabel}` : 'de 2026'}
-                </h3>
+                <div className="flex flex-wrap items-center gap-2 mb-0.5">
+                  <span className="px-2 py-0.5 rounded-md bg-amber-400 text-slate-950 font-black text-[10px] uppercase tracking-wider whitespace-nowrap shadow-2xs">
+                    TOP {top10ComparisonList.length} RANKING
+                  </span>
+                  <h3 className="text-sm sm:text-base font-black text-white leading-tight">
+                    Comparativa: Los {top10ComparisonList.length} Mejores Regalos y Productos{' '}
+                    {filterLabel ? `en ${filterLabel}` : 'de 2026'}
+                  </h3>
+                </div>
                 <p className="text-[11px] text-slate-300">
                   Tabla comparativa actualizada por valoración media, opiniones verificadas y relación calidad-precio
                 </p>
@@ -676,7 +681,7 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
                     >
                       <td className="py-2.5 px-3 sm:px-4 text-center font-black">
                         <span
-                          className={`inline-flex items-center justify-center w-7 h-7 rounded-full text-xs font-black ${
+                          className={`inline-flex items-center justify-center min-w-7 h-7 px-1.5 rounded-full text-xs font-black whitespace-nowrap ${
                             idx === 0
                               ? 'bg-amber-400 text-slate-950 shadow-xs'
                               : idx === 1
