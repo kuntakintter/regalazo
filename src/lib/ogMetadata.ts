@@ -154,7 +154,7 @@ export function getCategoryOgImage(subcategoryName: string): { url: string; alt:
     }
   }
   return {
-    url: 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=1200&h=630&q=85',
+    url: 'https://www.unbuenregalo.es/og-cover.png',
     alt: `Ideas de regalo seleccionadas en ${subcategoryName}`,
   };
 }
@@ -185,6 +185,9 @@ export function buildSocialMetadata({
     alternates: {
       canonical: canonicalUrl,
     },
+    other: {
+      thumbnail: 'https://www.unbuenregalo.es/logo-square.png',
+    },
     openGraph: {
       title: displayTitle,
       description,
@@ -198,7 +201,12 @@ export function buildSocialMetadata({
           width: 1200,
           height: 630,
           alt: imageAlt,
-          type: 'image/jpeg',
+        },
+        {
+          url: 'https://www.unbuenregalo.es/logo-square.png',
+          width: 1024,
+          height: 1024,
+          alt: 'Un Buen Regalo (unbuenregalo.es)',
         },
       ],
     },

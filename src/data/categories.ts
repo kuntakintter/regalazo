@@ -131,6 +131,7 @@ export const AGE_SUBCATEGORIES_MAP: Record<string, string[]> = {
     'Fiestas y Revelación de Género'
   ],
   '1-3': [
+    'Coches Eléctricos, Quads y Patinetes',
     'Juguetes Montessori y Madera',
     'LEGO DUPLO y Construcción',
     'Triciclos y Bicis de Equilibrio',
@@ -141,6 +142,7 @@ export const AGE_SUBCATEGORIES_MAP: Record<string, string[]> = {
     'Ropa y Zapatillas Primeros Pasos'
   ],
   '4-6': [
+    'Coches Eléctricos, Quads y Patinetes',
     'Circuitos de Coches Infantiles',
     'Juegos de Mesa Infantiles',
     'Patinetes con Ruedas LED',
@@ -151,6 +153,7 @@ export const AGE_SUBCATEGORIES_MAP: Record<string, string[]> = {
     'Colonias Infantiles Frescas'
   ],
   '7-9': [
+    'Coches Eléctricos, Quads y Patinetes',
     'Cartas y Sobres Pokémon',
     'Scalextric y Pistas de Carreras',
     'Coches RC y Teledirigidos',
@@ -163,6 +166,7 @@ export const AGE_SUBCATEGORIES_MAP: Record<string, string[]> = {
     'Moda y Ropa Deportiva Infantil'
   ],
   '10-12': [
+    'Coches Eléctricos, Quads y Patinetes',
     'Cartas y Sobres Pokémon',
     'Figuras de Colección y Cine',
     'Juegos de Cartas Competitivos (Virus!)',
@@ -175,6 +179,7 @@ export const AGE_SUBCATEGORIES_MAP: Record<string, string[]> = {
     'Moda Urbana, Sudaderas y Mochilas'
   ],
   '13-15': [
+    'Coches Eléctricos, Quads y Patinetes',
     'Cartas y Sobres Pokémon',
     'Figuras de Colección y Cine',
     'Smartphones y Telefonía',

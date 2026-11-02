@@ -84,40 +84,69 @@ export default async function SubcategoryLandingPage({ params }: PageProps) {
 
   if (!currentSub) notFound();
 
-  // Filter products for this age AND subcategory
+  // Filter products for this age AND subcategory (with smart cross-age fallback for universal categories like Pokémon, Figuras, Sobre Ruedas, Smartphones & Reveal)
   const targetSub = currentSub.label.toLowerCase().trim();
-  const matchedProducts = PRODUCTS.filter((p) => {
-    // Check age match
+  const strictMatches = PRODUCTS.filter((p) => {
     if (ageMeta.ageId !== 'reveal' && p.ageRange !== ageMeta.ageId) {
       return false;
     }
-
     const pSub = p.subcategory.toLowerCase().trim();
-    return pSub === targetSub;
+    const pCat = p.category.toLowerCase().trim();
+    return pSub === targetSub || pCat === targetSub;
   });
 
-  // Breadcrumb schema
+  const matchedProducts =
+    strictMatches.length >= 3
+      ? strictMatches
+      : [
+          ...strictMatches,
+          ...PRODUCTS.filter((p) => {
+            if (strictMatches.some((sm) => sm.id === p.id)) return false;
+            const pSub = p.subcategory.toLowerCase().trim();
+            const pCat = p.category.toLowerCase().trim();
+            return pSub === targetSub || pCat === targetSub;
+          }),
+        ];
+
+  // Breadcrumb & ItemList schema for Google Rich Snippets ("Los 10 Mejores...")
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
+    '@graph': [
       {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Inicio',
-        item: 'https://www.unbuenregalo.es',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Inicio',
+            item: 'https://www.unbuenregalo.es',
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: ageMeta.h1,
+            item: `https://www.unbuenregalo.es/${ageSlug}`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: currentSub.label,
+            item: `https://www.unbuenregalo.es/${ageSlug}/${categorySlug}`,
+          },
+        ],
       },
       {
-        '@type': 'ListItem',
-        position: 2,
-        name: ageMeta.h1,
-        item: `https://www.unbuenregalo.es/${ageSlug}`,
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name: currentSub.label,
-        item: `https://www.unbuenregalo.es/${ageSlug}/${categorySlug}`,
+        '@type': 'ItemList',
+        name: `Los 10 Mejores ${currentSub.label} (${ageMeta.h1}) - Comparativa 2026`,
+        description: `Ranking y tabla comparativa de los mejores ${currentSub.label.toLowerCase()} recomendados por relación calidad-precio y opiniones verificadas.`,
+        numberOfItems: Math.min(10, matchedProducts.length),
+        itemListOrder: 'https://schema.org/ItemListOrderDescending',
+        itemListElement: matchedProducts.slice(0, 10).map((prod, idx) => ({
+          '@type': 'ListItem',
+          position: idx + 1,
+          name: prod.title,
+          url: `https://www.unbuenregalo.es/${ageSlug}/${categorySlug}#${prod.id}`,
+        })),
       },
     ],
   };
