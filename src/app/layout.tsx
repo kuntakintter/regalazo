@@ -7,8 +7,8 @@ import { VotingProvider } from '@/context/VotingContext';
 import VotingDrawer from '@/components/VotingDrawer';
 
 export const metadata: Metadata = {
-  title: 'Un Buen Regalo 【2026】 ¿Qué Regalar? Tu Regalazo y Sorpresa',
-  description: '¿No sabes qué regalar? Encuentra un buen regalo, ese regalazo o sorpresa original para bebés, niños, jóvenes y adultos. Detalles e ideas top en Amazon.',
+  title: 'Un Buen Regalo 【2026】 ¿Qué Regalar? Ideas y Regalos Originales',
+  description: '¿No sabes qué regalar? Descubre en Un Buen Regalo ideas de regalo originales para bebés, niños, jóvenes y adultos con precios en vivo de Amazon España.',
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
