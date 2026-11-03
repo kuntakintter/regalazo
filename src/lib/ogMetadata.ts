@@ -19,9 +19,9 @@ export const HUB_OG_SNIPPETS: Record<string, SocialHubSnippet> = {
     imageAlt: 'Motorista equipado en ruta panorámica con casco y chaqueta de protección',
   },
   gaming: {
-    title: 'Top Regalos para Gamers y Setup 【2026】 PC y PS5 | Un Buen Regalo',
-    socialTitle: '🎮 El Regalo Gamer Perfecto: Mandos PS5, Auriculares y Setup | Un Buen Regalo',
-    description: 'Descubre en Un Buen Regalo las mejores ideas para jugadores de PC, PS5 y Xbox: auriculares HyperX, ratones Logitech G502, iluminación RGB y accesorios eSports.',
+    title: 'Regalos para Gamers 【2026】: Ideas Originales, Setup y Baratos | Un Buen Regalo',
+    socialTitle: '🎮 Los Mejores Regalos para Gamers 2026: Ideas Originales y Setup | Un Buen Regalo',
+    description: '¿Buscas el regalo gamer perfecto? Descubre las mejores ideas para jugadores de PC, PS5 y Switch: auriculares HyperX, ratones Logitech, iluminación y chollos baratos.',
     imageUrl: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&h=630&q=85',
     imageAlt: 'Setup gaming profesional con teclado mecánico, ratón RGB e iluminación envolvente',
   },

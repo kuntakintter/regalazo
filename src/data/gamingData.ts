@@ -17,6 +17,8 @@ export const GAMING_BRANDS = [
   'HyperX',
   'SteelSeries',
   'Corsair',
+  'Paladone',
+  '8BitDo',
   'BenQ',
 ];
 
@@ -40,7 +42,7 @@ export const GAMING_PRODUCTS: HubProduct[] = [
     priceNumeric: 74.99,
     rating: 4.6,
     reviewsCount: 78000,
-    imageUrl: 'https://m.media-amazon.com/images/I/71TzR126poL._AC_UL320_.jpg',
+    imageUrl: '/images/products/game-auriculares-hyperx-cloud-2-1.jpg',
     badge: 'El Rey de los Torneos',
     description: 'Diadema de aluminio resistente con almohadillas viscoelásticas de cuero sintético y micrófono con cancelación pasiva de ruido desmontable.',
     pros: [
@@ -62,7 +64,7 @@ export const GAMING_PRODUCTS: HubProduct[] = [
     priceNumeric: 47.9,
     rating: 4.7,
     reviewsCount: 65000,
-    imageUrl: 'https://m.media-amazon.com/images/I/61drBproFZL._AC_UL320_.jpg',
+    imageUrl: '/images/products/game-raton-logitech-g502-hero-1.jpg',
     badge: 'Ratón Más Vendido del Mundo',
     description: 'Sensor de precisión submicrométrica sin suavizado ni filtros. 11 botones programables, rueda hiperrápida y 5 pesas ajustables de 3,6g.',
     pros: [
@@ -84,7 +86,7 @@ export const GAMING_PRODUCTS: HubProduct[] = [
     priceNumeric: 39.99,
     rating: 4.7,
     reviewsCount: 18400,
-    imageUrl: 'https://m.media-amazon.com/images/I/61cbO+mNV6L._AC_UL320_.jpg',
+    imageUrl: '/images/products/game-barra-luz-monitor-benq-1.jpg',
     badge: 'Protege la Vista',
     description: 'Iluminación asimétrica que alumbra el escritorio y teclado sin proyectar ningún reflejo en la pantalla del monitor, evitando la fatiga ocular.',
     pros: [
@@ -94,6 +96,116 @@ export const GAMING_PRODUCTS: HubProduct[] = [
     ],
     idealFor: 'Cualquier persona que pase horas jugando o trabajando de noche frente al PC.',
     searchQuery: 'barra de luz monitor ordenador quntis screenbar'
+  },
+  {
+    id: 'game-raton-razer-deathadder-essential',
+    asin: 'B092R5MCB3',
+    title: 'Razer DeathAdder Essential Ratón Gaming con Sensor Óptico 6.400 DPI',
+    category: 'ratones',
+    categoryLabel: 'Ratones & Alfombrillas XXL',
+    brand: 'Razer',
+    priceText: '24,99 €',
+    priceNumeric: 24.99,
+    rating: 4.6,
+    reviewsCount: 42000,
+    imageUrl: '/images/products/game-raton-razer-deathadder-essential-1.jpg',
+    badge: 'Chollo Gamer Top (<25€)',
+    description: 'Diseño ergonómico legendario con agarres laterales de goma antideslizante, 5 botones Hyperesponse de alta durabilidad y sensor óptico de gran precisión.',
+    pros: [
+      'Sensor óptico de 6.400 DPI con respuesta sin latencia',
+      'Ergonomía icónica de Razer comodísima para sesiones maratonianas',
+      'Interruptores mecánicos probados para más de 10 millones de clics'
+    ],
+    idealFor: 'El mejor ratón gaming de marca por menos de 25 euros para cualquier juego.',
+    searchQuery: 'razer deathadder essential raton gaming 6400 dpi'
+  },
+  {
+    id: 'game-alfombrilla-steelseries-qck-xxl',
+    asin: 'B00WAA2704',
+    title: 'SteelSeries QcK Heavy XXL Alfombrilla Gaming Gruesa de Tela Micro-Tejida (900 x 400 mm)',
+    category: 'ratones',
+    categoryLabel: 'Ratones & Alfombrillas XXL',
+    brand: 'SteelSeries',
+    priceText: '19,99 €',
+    priceNumeric: 19.99,
+    rating: 4.7,
+    reviewsCount: 31000,
+    imageUrl: '/images/products/game-alfombrilla-steelseries-qck-xxl-1.jpg',
+    badge: 'Indispensable Setup (<20€)',
+    description: 'Alfombrilla gigante de 900x400 mm con paño de microtejido exclusivo QcK optimizado para seguimiento con sensores láser y ópticos de bajo y alto CPI.',
+    pros: [
+      'Base de goma antideslizante extra gruesa para máxima solidez en mesa',
+      'Superficie de tela micro-tejida legendaria con deslizamiento suave',
+      'Tamaño extendido para cubrir teclado, ratón y reposamuñecas'
+    ],
+    idealFor: 'Gamers que quieren comodidad total en las muñecas y precisión de píxel en sus movimientos.',
+    searchQuery: 'steelseries qck heavy xxl alfombrilla gaming 900x400'
+  },
+  {
+    id: 'game-lampara-playstation-paladone',
+    asin: 'B079CBP6P9',
+    title: 'Paladone Lámpara Oficial Iconos PlayStation con 3 Modos de Iluminación y Reacción Sonora',
+    category: 'iluminacion',
+    categoryLabel: 'Iluminación RGB & Barras Monitor',
+    brand: 'Paladone',
+    priceText: '22,99 €',
+    priceNumeric: 22.99,
+    rating: 4.7,
+    reviewsCount: 29500,
+    imageUrl: '/images/products/game-lampara-playstation-paladone-1.jpg',
+    badge: 'Regalo Estrella PS5 (<25€)',
+    description: 'Iluminación decorativa oficial con los símbolos clásicos de PlayStation (triángulo, círculo, cruz y cuadrado) con efectos de fases y modo reactivo a la música.',
+    pros: [
+      'Licencia oficial Sony PlayStation con acabados de primera calidad',
+      'Modo reactivo a la música y al sonido del juego que baila al ritmo',
+      'Funciona con cable USB o a pilas para colocar en cualquier estantería'
+    ],
+    idealFor: 'El regalo definitivo para fans de PlayStation 4 y PS5 para ambientar su habitación.',
+    searchQuery: 'paladone lampara playstation iconos luz oficial'
+  },
+  {
+    id: 'game-soporte-auriculares-rgb-newbee',
+    asin: 'B09XQMFF1B',
+    title: 'New Bee Soporte de Auriculares para Juegos con Iluminación RGB y 2 Puertos USB Hub',
+    category: 'auriculares',
+    categoryLabel: 'Auriculares & Audio',
+    brand: 'Otros',
+    priceText: '17,99 €',
+    priceNumeric: 17.99,
+    rating: 4.6,
+    reviewsCount: 9400,
+    imageUrl: '/images/products/game-soporte-auriculares-rgb-newbee-1.jpg',
+    badge: 'Organizador Setup (<20€)',
+    description: 'Soporte universal para cascos con base de iluminación RGB dinámica con modos respiración y arcoíris, y 2 puertos USB integrados para conectar accesorios.',
+    pros: [
+      'Base con múltiples modos RGB seleccionables con botón táctil',
+      '2 puertos USB para cargar mandos, ratón o transferir datos',
+      'Base con peso y goma antideslizante para evitar balanceos'
+    ],
+    idealFor: 'Tener los cascos siempre recogidos y añadir ambiente de luces al escritorio.',
+    searchQuery: 'soporte auriculares rgb new bee hub usb setup'
+  },
+  {
+    id: 'game-mando-inalambrico-8bitdo',
+    asin: 'B0C2V3QPN7',
+    title: '8BitDo Ultimate C Mando Inalámbrico 2.4G para PC Windows 10/11, Steam Deck y Android',
+    category: 'mandos',
+    categoryLabel: 'Mandos Pro & Soporte',
+    brand: '8BitDo',
+    priceText: '29,99 €',
+    priceNumeric: 29.99,
+    rating: 4.6,
+    reviewsCount: 8800,
+    imageUrl: '/images/products/game-mando-inalambrico-8bitdo-1.jpg',
+    badge: 'Mejor Mando Calidad/Precio (<30€)',
+    description: 'Mando inalámbrico de baja latencia con receptor USB 2.4G incluido, batería recargable de 25 horas, vibración inmersiva y ergonomía optimizada.',
+    pros: [
+      'Conexión inalámbrica 2.4G ultra estable sin retraso de pulsación',
+      'Batería de larga duración de hasta 25 horas con carga rápida USB-C',
+      'Gatillos analógicos y cruceta clásica de altísima precisión'
+    ],
+    idealFor: 'Jugar a FIFA, juegos de coches, plataformas y RPG en PC y Steam Deck.',
+    searchQuery: '8bitdo ultimate c 2.4g mando inalambrico pc'
   },
   {
     id: 'game-teclado-logitech-g213',
@@ -106,7 +218,7 @@ export const GAMING_PRODUCTS: HubProduct[] = [
     priceNumeric: 54.99,
     rating: 4.6,
     reviewsCount: 24000,
-    imageUrl: 'https://m.media-amazon.com/images/I/61fG2Zep+CL._AC_UL320_.jpg',
+    imageUrl: '/images/products/game-teclado-logitech-g213-1.jpg',
     badge: 'Resistente a Líquidos',
     description: 'Rendimiento hasta 4 veces más rápido que los teclados estándar con matriz anti-ghosting, reposamuñecas integrado y controles multimedia.',
     pros: [
@@ -128,7 +240,7 @@ export const GAMING_PRODUCTS: HubProduct[] = [
     priceNumeric: 49.99,
     rating: 4.6,
     reviewsCount: 16800,
-    imageUrl: 'https://m.media-amazon.com/images/I/61nBW1Uwq6L._AC_UL320_.jpg',
+    imageUrl: '/images/products/game-teclado-steelseries-apex-3-1.jpg',
     badge: 'Silencioso y Resistente',
     description: 'Interruptores para juegos ultrasilenciosos con durabilidad garantizada para más de 20 millones de pulsaciones, certificación IP32 contra salpicaduras y reposamuñecas premium.',
     pros: [
@@ -150,7 +262,7 @@ export const GAMING_PRODUCTS: HubProduct[] = [
     priceNumeric: 49.99,
     rating: 4.5,
     reviewsCount: 38000,
-    imageUrl: 'https://m.media-amazon.com/images/I/41njRLDFnFL._AC_SL1000_.jpg',
+    imageUrl: '/images/products/game-auriculares-razer-blackshark-v2x-1.jpg',
     badge: 'Top eSports Razer',
     description: 'Diseño ultraligero de solo 240g con diafragmas de titanio de 50mm, micrófono cardioide HyperClear y cancelación pasiva avanzada de ruido exterior.',
     pros: [
@@ -172,7 +284,7 @@ export const GAMING_PRODUCTS: HubProduct[] = [
     priceNumeric: 59.99,
     rating: 4.5,
     reviewsCount: 12500,
-    imageUrl: 'https://m.media-amazon.com/images/I/71w9ssepAoL._AC_SL1000_.jpg',
+    imageUrl: '/images/products/game-teclado-corsair-k55-rgb-1.jpg',
     badge: 'Teclas Macro Elgato',
     description: 'Iluminación dinámica RGB de 5 zonas, 6 teclas macro dedicadas integradas con el software Elgato Stream Deck y protección IP42 contra polvo y derrames.',
     pros: [

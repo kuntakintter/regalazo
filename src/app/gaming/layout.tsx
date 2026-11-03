@@ -12,12 +12,18 @@ export const metadata: Metadata = buildSocialMetadata({
   imageAlt: snippet.imageAlt,
   keywords: [
     'regalos para gamers',
-    'regalos para setup gamer',
+    'regalos para gamers baratos',
+    'que regalar a un gamer',
+    'ideas de regalos para gamers',
+    'regalos setup gamer',
+    'regalos para novio gamer',
     'auriculares hyperx cloud ii',
     'raton logitech g502 hero',
+    'razer deathadder essential',
     'teclado gaming mecanico',
     'barra de luz monitor quntis',
-    'mandos ps5 dualsense edge',
+    'lampara playstation iconos paladone',
+    'mandos pc y ps5',
   ],
 });
 
