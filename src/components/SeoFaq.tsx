@@ -11,31 +11,31 @@ interface FaqItem {
 const FAQS: FaqItem[] = [
   {
     question: '¿Cuáles son los 10 mejores regalos y productos para regalar en 2026 según nuestra comparativa?',
-    answer: 'En nuestra tabla comparativa actualizada de los 10 mejores regalos de 2026 destacan los productos con valoración superior a 4.7 estrellas y miles de opiniones verificadas: desde tartas de pañales y juguetes Montessori para bebés y niños, hasta sets de construcción LEGO, juegos de mesa familiares, mandos DualSense y periféricos para PS5 / GTA VI, equipamiento para motoristas, cafeteras espresso barista y cajas de experiencias para adultos. Además, puedes comparar candidatos y votar en grupo gratis por WhatsApp.'
+    answer: 'En nuestra comparativa de los mejores regalos destacan productos con más de 4.7 estrellas. Encontrarás ideas para todas las edades, desde tartas de pañales hasta sets LEGO y periféricos gaming. También incluimos cafeteras espresso, accesorios para motoristas y experiencias de relax. Además, puedes comparar opciones y votar en grupo gratis por WhatsApp.'
   },
   {
     question: '¿Qué regalar cuando no sabes qué comprar a alguien que ya tiene de todo?',
-    answer: 'En Un Buen Regalo hemos diseñado el recomendador para acertar incluso con las personas más difíciles: tanto si buscas un detalle económico de menos de 20 € para el amigo invisible como si quieres hacer un regalo original de cumpleaños, aniversario, Navidad o Reyes Magos. Puedes filtrar por edad exacta (de 0 a más de 18 años), por aficiones (gaming, GTA VI, motoristas, ciclismo, café barista, automóvil o mascotas) o crear una votación en grupo por WhatsApp para elegir la mejor opción entre varios amigos.'
+    answer: 'El recomendador de Un Buen Regalo te ayuda a acertar con las personas más difíciles. Puedes filtrar por edad exacta o por aficiones como gaming, café barista o motoristas. También dispones de filtros de precio desde menos de 20 euros. Por último, puedes crear una encuesta por WhatsApp para decidir el regalo entre amigos.'
   },
   {
     question: '¿Qué regalar a un recién nacido que resulte realmente útil para los padres?',
-    answer: 'El regalo más agradecido e indiscutible para los padres primerizos son las tartas de pañales de calidad (como Dodot Sensitive) combinadas con productos de primera necesidad: muselinas de bambú, cremas calmantes de caléndula, doudous de apego y recuerdos como marcos de huellas en arcilla atóxica. Los pañales suponen el mayor gasto mensual durante el primer año, por lo que una presentación bonita y artesanal une utilidad y emoción.'
+    answer: 'El detalle más útil para padres primerizos son las tartas de pañales de calidad. Los pañales representan el mayor gasto durante el primer año del bebé. Además, se combinan con muselinas de bambú, cremas calmantes y peluches doudou de apego. Es un regalo que une utilidad práctica y emoción familiar.'
   },
   {
     question: '¿Qué ideas de regalo triunfan con adolescentes de 16 a 18 años que buscan estilo propio y personalidad?',
-    answer: 'Los jóvenes de 16 a 18 años valoran los detalles con personalidad propia: velas aromáticas WoodWick con mecha de madera crujiente, diarios encuadernados en cuero vintage con hojas de pergamino, auriculares de alta fidelidad, iluminación ambiental neón y fragancias icónicas como CK One. Son regalos que conectan de verdad con sus gustos e identidad.'
+    answer: 'Los adolescentes valoran los regalos con estilo propio y utilidad real. Triunfan las velas WoodWick con mecha crepitante y los cuadernos de cuero vintage. También destacan los auriculares de alta fidelidad, la iluminación LED y los perfumes icónicos. Son detalles modernos que conectan con su personalidad.'
   },
   {
     question: '¿Cuáles son los mejores juegos y accesorios de PS5 para regalar a chicos y chicas?',
-    answer: 'Para PlayStation 5, los grandes referentes son Marvel\'s Spider-Man 2 (aventura y gráficos deslumbrantes para todos los públicos), EA SPORTS FC 25 (el rey de las reuniones con amigos) y obras maestras como Elden Ring para jugadores experimentados. En accesorios, el mando DualSense Edge o unos auriculares inalámbricos 7.1 con cancelación de ruido marcan la diferencia competitiva.'
+    answer: 'Para PlayStation 5, el gran éxito familiar es Marvel\'s Spider-Man 2. Para jugar con amigos destaca EA SPORTS FC 25, y para expertos recomendamos Elden Ring. En accesorios, el mando DualSense Edge y los auriculares con cancelación de ruido marcan la diferencia.'
   },
   {
     question: '¿Por qué elegir juguetes Montessori para niños de 1 a 3 años?',
-    answer: 'El método Montessori prioriza materiales nobles como la madera maciza frente al plástico estridente con luces pasivas. Juguetes como la torre de aprendizaje, la tabla curva de equilibrio o los bloques sensoriales fomentan la autonomía, el pensamiento abstracto y la motricidad fina, permitiendo que el niño sea el protagonista activo del juego.'
+    answer: 'La filosofía Montessori prioriza materiales nobles como la madera maciza sobre el plástico con luces. Elementos como torres de aprendizaje o bloques sensoriales impulsan la autonomía infantil. De este modo, el niño desarrolla su motricidad fina siendo el protagonista del juego.'
   },
   {
     question: '¿Son seguros los enlaces de recomendación a Amazon y qué comisiones se aplican?',
-    answer: 'Absolutamente. Todos los productos recomendados enlazan de forma directa y oficial a Amazon España (StoreID: vapegadgets22-21). Las compras cuentan con la garantía total de Amazon: devoluciones sin coste, pago seguro cifrado y envíos rápidos con Amazon Prime. El precio para ti es exactamente el mismo (no pagas ni un céntimo de más); la pequeña comisión de afiliado nos ayuda a mantener actualizada y gratuita esta guía de recomendaciones.'
+    answer: 'Todos los enlaces dirigen de forma oficial a Amazon España. Cuentas con la garantía total de compra, envíos rápidos con Prime y devoluciones gratuitas. El precio es exactamente el mismo para ti. La pequeña comisión nos permite mantener esta guía abierta y 100% gratuita.'
   }
 ];
 

@@ -250,7 +250,7 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
             href={directProductUrl}
             target="_blank"
             rel="nofollow sponsored noopener noreferrer"
-            aria-label={`Ver oferta de ${product.title} en Amazon`}
+            aria-label="Ver mejor oferta en Amazon"
             className="w-full py-2 px-3 rounded-xl text-xs font-black text-slate-950 bg-[#ffd814] hover:bg-[#f7ca00] active:bg-[#f0b800] border border-[#fcd200] shadow-xs text-center flex items-center justify-center gap-1.5 transition-all cursor-pointer hover:scale-101"
           >
             <span>Ver oferta en Amazon</span>

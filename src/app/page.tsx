@@ -160,12 +160,13 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
 
   // Dynamic Chollos pool (< 20 €) for Right Showcase Wing (16 diverse budget products)
   const budgetShowcasePool = useMemo(() => {
+    const topIds = new Set(topShowcasePool.map((p) => p.id));
     const budgetItems = PRODUCTS.filter((p) => {
       const price = parsePrice(p.priceText);
-      return price > 0 && price <= 20 && p.imageUrl;
+      return price > 0 && price <= 20 && p.imageUrl && !topIds.has(p.id);
     });
     return sampleDiverseShowcase(budgetItems, 16, sessionSeed + 3);
-  }, [sessionSeed]);
+  }, [topShowcasePool, sessionSeed]);
 
   // Carousel page state (changes every 10 seconds)
   const [leftCarouselIndex, setLeftCarouselIndex] = useState(0);
@@ -820,6 +821,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                       <div key={sIdx} className="w-full shrink-0 grid grid-cols-2 gap-2.5">
                         {slideProducts.map((item) => {
                           const amazonUrl = getAmazonProductUrl(item.asin, item.searchQuery || item.title);
+                          const shortTitle = item.title.split(' - ')[0].trim();
                           return (
                             <a
                               key={item.id}
@@ -831,13 +833,13 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                               <div className="relative w-full aspect-square bg-white rounded-xl overflow-hidden mb-1.5 p-1 border border-amber-100">
                                 <Image
                                   src={item.imageUrl}
-                                  alt={item.title}
+                                  alt={`${shortTitle} top ventas`}
                                   fill
                                   className="object-contain p-1 group-hover/item:scale-105 transition-transform"
                                 />
                               </div>
                               <span className="text-[11px] font-bold text-slate-800 line-clamp-1 group-hover/item:text-amber-800 transition-colors">
-                                {item.title}
+                                {shortTitle}
                               </span>
                               <div className="flex items-center justify-between mt-0.5">
                                 <span className="text-xs font-black text-slate-950">
@@ -1029,6 +1031,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                       <div key={sIdx} className="w-full shrink-0 grid grid-cols-2 gap-2.5">
                         {slideProducts.map((item) => {
                           const amazonUrl = getAmazonProductUrl(item.asin, item.searchQuery || item.title);
+                          const shortTitle = item.title.split(' - ')[0].trim();
                           return (
                             <a
                               key={item.id}
@@ -1040,13 +1043,13 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                               <div className="relative w-full aspect-square bg-white rounded-xl overflow-hidden mb-1.5 p-1 border border-emerald-100">
                                 <Image
                                   src={item.imageUrl}
-                                  alt={item.title}
+                                  alt={`${shortTitle} chollo`}
                                   fill
                                   className="object-contain p-1 group-hover/item:scale-105 transition-transform"
                                 />
                               </div>
                               <span className="text-[11px] font-bold text-slate-800 line-clamp-1 group-hover/item:text-emerald-800 transition-colors">
-                                {item.title}
+                                {shortTitle}
                               </span>
                               <div className="flex items-center justify-between mt-0.5">
                                 <span className="text-xs font-black text-emerald-700">
@@ -1590,7 +1593,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                 </>
               ) : (
                 <>
-                  Elegir qué <strong>regalar</strong> en un cumpleaños, aniversario, amigo invisible, Navidad o Reyes Magos es mucho más fácil cuando filtras por edad y aficiones reales. En <strong>Un Buen Regalo</strong> seleccionamos los productos mejor valorados para que encuentres desde <Link href="/regalos-menos-20-euros" className="text-emerald-700 font-bold hover:underline">regalos por menos de 20 euros</Link> hasta un gran regalo que sorprenda de verdad. Además, cuentas con nuestra herramienta gratuita de <Link href="/votar" className="text-indigo-600 font-bold hover:underline">votación de regalos en grupo por WhatsApp</Link>, el <Link href="/carta-papa-noel" className="text-indigo-600 font-bold hover:underline">buzón oficial de Carta a Papá Noel</Link> y los catálogos especiales de <Link href="/regalos-gta-6" className="text-indigo-600 font-bold hover:underline">GTA 6 / GTA VI</Link>, <Link href="/motoristas" className="text-indigo-600 font-bold hover:underline">Motoristas</Link>, <Link href="/gaming" className="text-indigo-600 font-bold hover:underline">Gaming</Link> o <Link href="/amantes-del-cafe" className="text-indigo-600 font-bold hover:underline">Café Barista</Link>.
+                  Elegir qué <strong>regalar</strong> en un cumpleaños, aniversario, amigo invisible o Navidad es mucho más sencillo al filtrar por edad y aficiones reales. En <strong>Un Buen Regalo</strong> seleccionamos los productos mejor valorados para que aciertes siempre. Descubre desde <Link href="/regalos-menos-20-euros" className="text-emerald-700 font-bold hover:underline">regalos por menos de 20 euros</Link> hasta detalles que sorprenden de verdad. Además, puedes utilizar nuestra <Link href="/votar" className="text-indigo-600 font-bold hover:underline">votación de regalos en grupo por WhatsApp</Link> o escribir la <Link href="/carta-papa-noel" className="text-indigo-600 font-bold hover:underline">Carta a Papá Noel online</Link>. Explora también nuestros catálogos temáticos de <Link href="/regalos-gta-6" className="text-indigo-600 font-bold hover:underline">GTA 6</Link>, <Link href="/motoristas" className="text-indigo-600 font-bold hover:underline">Motoristas</Link>, <Link href="/gaming" className="text-indigo-600 font-bold hover:underline">Gaming</Link> o <Link href="/amantes-del-cafe" className="text-indigo-600 font-bold hover:underline">Café Barista</Link>.
                 </>
               )}
             </p>
@@ -1616,7 +1619,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                   <span>🧸</span> Recién Nacidos y 0 a 3 Años
                 </h3>
                 <p>
-                  Para los más pequeños, los regalos deben combinar <strong>seguridad certificada</strong>, materiales hipoalergénicos y practicidad para los padres. Las <strong>tartas de pañales personalizadas</strong> son el detalle por excelencia porque ofrecen más de 50 pañales de primera puesta organizados con estética de alta gama. Los juguetes de madera Montessori impulsan el agarre y la motricidad libre sin sobreestimular.
+                  Para los más pequeños, los regalos deben combinar <strong>seguridad certificada</strong> y practicidad para los padres. Las <strong>tartas de pañales</strong> son un acierto seguro al incluir pañales de primera calidad. Además, los juguetes Montessori de madera estimulan la motricidad libre sin pantallas ni sobreestimulación.
                 </p>
               </div>
               <div className="space-y-2">
@@ -1624,7 +1627,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                   <span>🎨</span> Niños de 4 a 12 Años
                 </h3>
                 <p>
-                  En esta franja el juego simbólico y social cobra protagonismo. Los <strong>juegos de mesa familiares modernos</strong> como Catán Junior o Virus desarrollan la agilidad mental y reúnen a toda la familia alrededor de la mesa. Los sets de construcción tipo LEGO Creator y los circuitos Scalextric despiertan la emoción de la competición sana sin pantallas.
+                  En esta etapa el juego en familia cobra protagonismo. Los <strong>juegos de mesa modernos</strong> como Catán Junior o Virus desarrollan la agilidad mental y reúnen a todos. También triunfan los sets de construcción LEGO Creator y los circuitos Scalextric para disfrutar compitiendo sin pantallas.
                 </p>
               </div>
               <div className="space-y-2">
@@ -1632,7 +1635,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                   <span>🎧</span> Jóvenes, Adultos y Regalazos (+18)
                 </h3>
                 <p>
-                  Para adolescentes, novios, novias, padres y adultos que parecen tenerlo todo, triunfan las <strong>sorpresas con personalidad</strong>: desde videojuegos de <strong>PlayStation 5</strong>, merchandising de <strong>GTA VI</strong> y periféricos gaming hasta cafeteras espresso barista, equipamiento motero, cajas de experiencias Smartbox y gadgets tecnológicos de última generación.
+                  Para adolescentes y adultos que parecen tenerlo todo, los detalles con personalidad propia son la clave. Destacan los videojuegos de <strong>PlayStation 5</strong>, el merchandising de <strong>GTA VI</strong> y los periféricos gaming. Para amantes del relax, las cafeteras espresso barista, el equipamiento motero y las cajas Smartbox nunca fallan.
                 </p>
               </div>
             </div>
