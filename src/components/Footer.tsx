@@ -60,6 +60,7 @@ export default function Footer({ currentTheme }: FooterProps) {
               Ocasiones & Fiestas
             </span>
             <ul className="space-y-2 text-xs opacity-80">
+              <li><Link href="/regalos-para-los-que-tienen-de-todo" className="hover:underline font-bold text-purple-700">✨ Para los que Tienen de Todo</Link></li>
               <li><Link href="/regalos-menos-20-euros" className="hover:underline font-bold text-emerald-700">🏷️ Regalos por Menos de 20€</Link></li>
               <li><Link href="/carta-papa-noel" className="hover:underline font-bold text-amber-700">🎅 Carta a Papá Noel (Oficial)</Link></li>
               <li><Link href="/navidad" className="hover:underline font-bold text-emerald-700">🎄 Especial Navidad & Reyes Magos</Link></li>
