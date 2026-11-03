@@ -19,7 +19,7 @@ export default function MujerClient() {
   const mujerProducts = useMemo(() => {
     return PRODUCTS.filter((p) => {
       if (p.gender === 'boy') return false;
-      if (p.ageRange === '0-12m' || p.ageRange === '1-3' || p.ageRange === '4-6') return false;
+      if (p.ageRange === '0-12m' || p.ageRange === '1-3' || p.ageRange === '4-6' || p.ageRange === '7-9' || p.ageRange === '10-12') return false;
       return true;
     });
   }, []);
@@ -65,7 +65,12 @@ export default function MujerClient() {
     } else if (sortBy === 'rating') {
       list.sort((a, b) => (b.rating || 0) - (a.rating || 0));
     } else {
-      list.sort((a, b) => ((b.reviewsCount || 0) * (b.rating || 1)) - ((a.reviewsCount || 0) * (a.rating || 1)));
+      list.sort((a, b) => {
+        const aGirl = a.gender === 'girl' ? 1 : 0;
+        const bGirl = b.gender === 'girl' ? 1 : 0;
+        if (aGirl !== bGirl) return bGirl - aGirl;
+        return ((b.reviewsCount || 0) * (b.rating || 1)) - ((a.reviewsCount || 0) * (a.rating || 1));
+      });
     }
     return list;
   }, [filteredProducts, sortBy]);

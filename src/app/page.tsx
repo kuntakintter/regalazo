@@ -447,7 +447,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
     });
   }, [selectedAge, selectedCategory, selectedClothingSub, selectedAnimeSub, selectedWheelsSub, selectedGender, selectedPrice, searchQuery]);
 
-  // Sorted products based on sortBy
+  // Sorted products based on sortBy and gender priority
   const sortedFilteredProducts = useMemo(() => {
     const list = [...filteredProducts];
     if (sortBy === 'price-asc') {
@@ -456,9 +456,23 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
       list.sort((a, b) => parsePrice(b.priceText) - parsePrice(a.priceText));
     } else if (sortBy === 'rating') {
       list.sort((a, b) => b.rating - a.rating);
+    } else {
+      list.sort((a, b) => {
+        // Prioritize matching gender over generic unisex when gender filter is active
+        if (selectedGender === 'girl') {
+          const aGirl = a.gender === 'girl' ? 1 : 0;
+          const bGirl = b.gender === 'girl' ? 1 : 0;
+          if (aGirl !== bGirl) return bGirl - aGirl;
+        } else if (selectedGender === 'boy') {
+          const aBoy = a.gender === 'boy' ? 1 : 0;
+          const bBoy = b.gender === 'boy' ? 1 : 0;
+          if (aBoy !== bBoy) return bBoy - aBoy;
+        }
+        return ((b.reviewsCount || 0) * (b.rating || 1)) - ((a.reviewsCount || 0) * (a.rating || 1));
+      });
     }
     return list;
-  }, [filteredProducts, sortBy]);
+  }, [filteredProducts, sortBy, selectedGender]);
 
   const sortedLiveAmazonProducts = useMemo(() => {
     const list = [...liveAmazonProducts];

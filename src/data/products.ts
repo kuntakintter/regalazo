@@ -433,7 +433,7 @@ export const PRODUCTS: Product[] = [
     searchQuery: "pokemon elite trainer box etb sobres cartas fundas dados",
     category: "Cartas y Coleccionismo",
     subcategory: "Cartas y Sobres Pokémon",
-    ageRange: "+18",
+    ageRange: "10-12",
     gender: "unisex",
     priceRange: "50-100",
     priceText: "54,99 €",
@@ -459,7 +459,7 @@ export const PRODUCTS: Product[] = [
     searchQuery: "pokemon lata coleccion tin sobres cartas metalica oficial",
     category: "Cartas y Coleccionismo",
     subcategory: "Cartas y Sobres Pokémon",
-    ageRange: "+18",
+    ageRange: "10-12",
     gender: "unisex",
     priceRange: "20-50",
     priceText: "21,99 €",
@@ -485,7 +485,7 @@ export const PRODUCTS: Product[] = [
     searchQuery: "album archivador cartas pokemon carpeta fundas 400 bolsillos cremallera",
     category: "Cartas y Coleccionismo",
     subcategory: "Cartas y Sobres Pokémon",
-    ageRange: "+18",
+    ageRange: "10-12",
     gender: "unisex",
     priceRange: "<20",
     priceText: "14,99 €",
@@ -511,7 +511,7 @@ export const PRODUCTS: Product[] = [
     searchQuery: "pokemon mazo combate baraja 60 cartas listo para jugar oficial",
     category: "Cartas y Coleccionismo",
     subcategory: "Cartas y Sobres Pokémon",
-    ageRange: "+18",
+    ageRange: "10-12",
     gender: "unisex",
     priceRange: "<20",
     priceText: "16,99 €",
@@ -537,7 +537,7 @@ export const PRODUCTS: Product[] = [
     searchQuery: "pokemon tcg cartas coleccionables caja sobres booster pikachu charizard",
     category: "Cartas y Coleccionismo",
     subcategory: "Cartas y Sobres Pokémon",
-    ageRange: "+18",
+    ageRange: "10-12",
     gender: "unisex",
     priceRange: "20-50",
     priceText: "24,99 €",
@@ -590,7 +590,7 @@ export const PRODUCTS: Product[] = [
     category: "Figuras y Cine",
     subcategory: "Figuras de Colección y Cine",
     ageRange: "+18",
-    gender: "unisex",
+    gender: "boy",
     priceRange: "20-50",
     priceText: "39,90 €",
     rating: 4.8,
@@ -616,7 +616,7 @@ export const PRODUCTS: Product[] = [
     category: "Figuras y Cine",
     subcategory: "Figuras de Colección y Cine",
     ageRange: "+18",
-    gender: "unisex",
+    gender: "boy",
     priceRange: "20-50",
     priceText: "27,99 €",
     rating: 4.8,
@@ -642,7 +642,7 @@ export const PRODUCTS: Product[] = [
     category: "Figuras y Cine",
     subcategory: "Figuras de Colección y Cine",
     ageRange: "+18",
-    gender: "unisex",
+    gender: "boy",
     priceRange: "20-50",
     priceText: "26,95 €",
     rating: 4.8,
@@ -668,7 +668,7 @@ export const PRODUCTS: Product[] = [
     category: "Figuras y Cine",
     subcategory: "Figuras de Colección y Cine",
     ageRange: "+18",
-    gender: "unisex",
+    gender: "boy",
     priceRange: "20-50",
     priceText: "29,99 €",
     rating: 4.7,
@@ -694,7 +694,7 @@ export const PRODUCTS: Product[] = [
     category: "Figuras y Cine",
     subcategory: "Figuras de Colección y Cine",
     ageRange: "+18",
-    gender: "unisex",
+    gender: "boy",
     priceRange: "20-50",
     priceText: "28,50 €",
     rating: 4.8,
@@ -720,7 +720,7 @@ export const PRODUCTS: Product[] = [
     category: "Figuras y Cine",
     subcategory: "Figuras de Colección y Cine",
     ageRange: "+18",
-    gender: "unisex",
+    gender: "boy",
     priceRange: "20-50",
     priceText: "34,90 €",
     rating: 4.9,
@@ -746,7 +746,7 @@ export const PRODUCTS: Product[] = [
     category: "Figuras y Cine",
     subcategory: "Figuras de Colección y Cine",
     ageRange: "+18",
-    gender: "unisex",
+    gender: "boy",
     priceRange: "20-50",
     priceText: "29,99 €",
     rating: 4.8,
@@ -772,7 +772,7 @@ export const PRODUCTS: Product[] = [
     category: "Figuras y Cine",
     subcategory: "Figuras de Colección y Cine",
     ageRange: "+18",
-    gender: "unisex",
+    gender: "boy",
     priceRange: "20-50",
     priceText: "27,99 €",
     rating: 4.7,
@@ -798,7 +798,7 @@ export const PRODUCTS: Product[] = [
     category: "Figuras y Cine",
     subcategory: "Figuras de Colección y Cine",
     ageRange: "+18",
-    gender: "unisex",
+    gender: "boy",
     priceRange: "20-50",
     priceText: "39,95 €",
     rating: 4.8,
@@ -824,7 +824,7 @@ export const PRODUCTS: Product[] = [
     category: "Figuras y Cine",
     subcategory: "Figuras de Colección y Cine",
     ageRange: "+18",
-    gender: "unisex",
+    gender: "boy",
     priceRange: "20-50",
     priceText: "29,99 €",
     rating: 4.8,
@@ -850,7 +850,7 @@ export const PRODUCTS: Product[] = [
     category: "Figuras y Cine",
     subcategory: "Figuras de Colección y Cine",
     ageRange: "+18",
-    gender: "unisex",
+    gender: "boy",
     priceRange: "20-50",
     priceText: "28,95 €",
     rating: 4.8,
@@ -876,7 +876,7 @@ export const PRODUCTS: Product[] = [
     category: "Figuras y Cine",
     subcategory: "Figuras de Colección y Cine",
     ageRange: "+18",
-    gender: "unisex",
+    gender: "boy",
     priceRange: "20-50",
     priceText: "24,99 €",
     rating: 4.7,
@@ -902,7 +902,7 @@ export const PRODUCTS: Product[] = [
     category: "Figuras y Cine",
     subcategory: "Figuras de Colección y Cine",
     ageRange: "+18",
-    gender: "unisex",
+    gender: "boy",
     priceRange: "20-50",
     priceText: "29,99 €",
     rating: 4.8,
@@ -7048,4 +7048,649 @@ export const PRODUCTS: Product[] = [
       "/images/products/phone-huawei-pura-70-pro.jpg"
     ]
   }
+,
+  {
+  "id": "belleza-paulas-choice-2-bha-exfoliant",
+  "asin": "B00949CTQQ",
+  "title": "Paula's Choice Skin Perfecting 2% BHA Exfoliante Líquido con Ácido Salicílico (118ml) - Minimiza Poros y Aporta Luminosidad",
+  "slug": "paulas-choice-skin-perfecting-2-bha-exfoliante-liquido",
+  "searchQuery": "paulas choice 2 bha liquid exfoliant acido salicilico",
+  "category": "Belleza y Cuidado Personal",
+  "subcategory": "Skincare y Cosmética de Culto",
+  "ageRange": "+18",
+  "gender": "girl",
+  "priceRange": "20-50",
+  "priceText": "39,00 €",
+  "rating": 4.8,
+  "reviewsCount": 42100,
+  "badge": "Top 1 Belleza · Producto Viral de Culto",
+  "description": "El exfoliante químico más aclamado y premiado del mundo. Su fórmula con 2% de BHA (ácido salicílico) y té verde desobstruye los poros, suaviza la textura de la piel y aporta un brillo saludable inmediato.",
+  "pros": [
+    "Fórmula líquida ultra ligera apta para todo tipo de pieles",
+    "Elimina puntos negros, imperfecciones y unifica el tono de piel",
+    "Avalado por dermatólogos y viral número uno en redes de belleza"
+  ],
+  "idealFor": "El regalo de skincare definitivo con el que es imposible fallar.",
+  "style": "classic",
+  "imageUrl": "https://m.media-amazon.com/images/I/61Nl5wNqBqL._AC_UL320_.jpg",
+  "images": [
+    "https://m.media-amazon.com/images/I/61Nl5wNqBqL._AC_UL320_.jpg"
+  ]
+},
+  {
+  "id": "belleza-cosrx-snail-96-mucin-essence",
+  "asin": "B00PBX3L7K",
+  "title": "COSRX Advanced Snail 96 Mucin Power Essence (100ml) - Esencia Facial Coreana de Hidratación Profunda con 96% de Mucina de Caracol",
+  "slug": "cosrx-advanced-snail-96-mucin-power-essence-coreana",
+  "searchQuery": "cosrx advanced snail 96 mucin power essence cosmetica coreana",
+  "category": "Belleza y Cuidado Personal",
+  "subcategory": "Skincare y Cosmética de Culto",
+  "ageRange": "+18",
+  "gender": "girl",
+  "priceRange": "<20",
+  "priceText": "16,80 €",
+  "rating": 4.8,
+  "reviewsCount": 78500,
+  "badge": "Número 1 en Cosmética Coreana",
+  "description": "La esencia de K-Beauty más vendida a nivel global. Formulada con un 96% de filtrado de secreción de caracol, repara la barrera cutánea, calma rojeces y deja la piel jugosa efecto 'glass skin'.",
+  "pros": [
+    "96% mucina de caracol pura que hidrata intensamente sin engrasar",
+    "Textura agradable de absorción rápida que transforma la piel",
+    "Cruelty-free con certificación ética coreana"
+  ],
+  "idealFor": "Amantes de la cosmética coreana y el cuidado facial de calidad.",
+  "style": "classic",
+  "imageUrl": "https://m.media-amazon.com/images/I/61yEaZlY7YL._AC_UL320_.jpg",
+  "images": [
+    "https://m.media-amazon.com/images/I/61yEaZlY7YL._AC_UL320_.jpg"
+  ]
+},
+  {
+  "id": "belleza-beauty-of-joseon-relief-sun-spf50",
+  "asin": "B09J54FY68",
+  "title": "Beauty of Joseon Relief Sun: Rice + Probiotics SPF50+ PA++++ (50ml) - Protector Solar Facial Orgánico Calmante e Hidratante",
+  "slug": "beauty-of-joseon-relief-sun-rice-probiotics-spf50",
+  "searchQuery": "beauty of joseon relief sun arroz probioticos protector solar coreano",
+  "category": "Belleza y Cuidado Personal",
+  "subcategory": "Skincare y Cosmética de Culto",
+  "ageRange": "+18",
+  "gender": "girl",
+  "priceRange": "<20",
+  "priceText": "14,50 €",
+  "rating": 4.9,
+  "reviewsCount": 34200,
+  "badge": "Protector Solar Viral K-Beauty",
+  "description": "El protector solar coreano más deseado. Enriquecido con un 30% de extracto de arroz y complejo de probióticos fermentados, nutre la piel como una crema hidratante ligera sin dejar residuos blancos ni brillo graso.",
+  "pros": [
+    "Acabado natural luminoso sin efecto máscara blanca ni ojos irritados",
+    "30% extracto de arroz y probióticos que calman pieles sensibles",
+    "Se funde perfectamente bajo el maquillaje como prebase"
+  ],
+  "idealFor": "Un detalle de belleza imprescindible y aclamado por todas las expertas.",
+  "style": "classic",
+  "imageUrl": "https://m.media-amazon.com/images/I/61jZzGzF8BL._AC_UL320_.jpg",
+  "images": [
+    "https://m.media-amazon.com/images/I/61jZzGzF8BL._AC_UL320_.jpg"
+  ]
+},
+  {
+  "id": "belleza-rituals-the-ritual-of-sakura-cofre",
+  "asin": "B0BM9L6K62",
+  "title": "Rituals The Ritual of Sakura - Cofre de Regalo Medium con Gel de Ducha Espumoso, Exfoliante Corporal, Crema Corporal y Vela Aromática",
+  "slug": "rituals-the-ritual-of-sakura-cofre-regalo-medium",
+  "searchQuery": "rituals the ritual of sakura cofre regalo medium mujer",
+  "category": "Belleza y Cuidado Personal",
+  "subcategory": "Sets de Cuidado y Baño",
+  "ageRange": "+18",
+  "gender": "girl",
+  "priceRange": "20-50",
+  "priceText": "39,90 €",
+  "rating": 4.9,
+  "reviewsCount": 19800,
+  "badge": "Cofre Regalo de Lujo Rituals",
+  "description": "El set de regalo más vendido de Rituals inspirado en la flor del cerezo japonés y la leche de arroz. Incluye cuatro productos de spa premium presentados en una caja de lujo reutilizable con lazo de diseño origami.",
+  "pros": [
+    "Espuma de ducha cremosa icónica que transforma el baño en un spa",
+    "Fragancia floral delicada y relajante de larga duración",
+    "Presentación de alta gama lista para regalar sin necesidad de envolver"
+  ],
+  "idealFor": "Cumpleaños, aniversarios o detalles especiales donde quieres acertar al 100%.",
+  "style": "classic",
+  "imageUrl": "https://m.media-amazon.com/images/I/81xU9d+O88L._AC_UL320_.jpg",
+  "images": [
+    "https://m.media-amazon.com/images/I/81xU9d+O88L._AC_UL320_.jpg"
+  ]
+},
+  {
+  "id": "belleza-sol-de-janeiro-cheirosa-68-mist",
+  "asin": "B09V7N6K5H",
+  "title": "Sol de Janeiro Brazilian Crush Cheirosa 68 - Bruma Perfumada Beija Flor (240ml) con Notas de Jazmín Brasileño y Fruta del Dragón Rosa",
+  "slug": "sol-de-janeiro-cheirosa-68-bruma-perfumada-240ml",
+  "searchQuery": "sol de janeiro cheirosa 68 bruma perfumada beija flor 240ml",
+  "category": "Belleza y Cuidado Personal",
+  "subcategory": "Perfumería y Brumas de Culto",
+  "ageRange": "+18",
+  "gender": "girl",
+  "priceRange": "20-50",
+  "priceText": "38,00 €",
+  "rating": 4.8,
+  "reviewsCount": 28400,
+  "badge": "Bruma Perfumada Viral Sol de Janeiro",
+  "description": "La bruma corporal y capilar más codiciada del momento. Con un aroma fresco, floral y adictivo con notas de jazmín brasileño, fruta del dragón rosa y vainilla pura.",
+  "pros": [
+    "Se puede pulverizar en cuerpo, cabello y ropa dejando una estela embriagadora",
+    "Formato grande de 240ml con pulverizador de nube fina",
+    "Fórmula vegana libre de parabenos y cruelty-free"
+  ],
+  "idealFor": "Chicas y mujeres que adoran los aromas florales dulces y sofisticados.",
+  "style": "classic",
+  "imageUrl": "https://m.media-amazon.com/images/I/71uVv8Rz5mL._AC_UL320_.jpg",
+  "images": [
+    "https://m.media-amazon.com/images/I/71uVv8Rz5mL._AC_UL320_.jpg"
+  ]
+},
+  {
+  "id": "belleza-sol-de-janeiro-cheirosa-62-mist",
+  "asin": "B07C3DZZYQ",
+  "title": "Sol de Janeiro Brazilian Crush Cheirosa 62 - Bruma Perfumada Clásica (240ml) con Notas de Pistacho, Caramelo Salado y Vainilla",
+  "slug": "sol-de-janeiro-cheirosa-62-bruma-perfumada-pistacho",
+  "searchQuery": "sol de janeiro cheirosa 62 pistacho caramelo salado bruma 240ml",
+  "category": "Belleza y Cuidado Personal",
+  "subcategory": "Perfumería y Brumas de Culto",
+  "ageRange": "+18",
+  "gender": "girl",
+  "priceRange": "20-50",
+  "priceText": "38,00 €",
+  "rating": 4.8,
+  "reviewsCount": 39500,
+  "badge": "El Aroma Icónico del Verano",
+  "description": "El perfume insignia de la mítica crema Brazilian Bum Bum Cream. Notas cálidas y envolventes de pistacho tostado, caramelo salado, pétalos de jazmín y sándalo.",
+  "pros": [
+    "El aroma cálido y gourmand más famoso y viral de las redes",
+    "Excelente fijación en el pelo y la ropa durante todo el día",
+    "Auténtico icono de estilo y belleza moderna"
+  ],
+  "idealFor": "Cualquier mujer a la que le gusten los perfumes dulces y cálidos.",
+  "style": "classic",
+  "imageUrl": "https://m.media-amazon.com/images/I/71c6S1dJ1ML._AC_UL320_.jpg",
+  "images": [
+    "https://m.media-amazon.com/images/I/71c6S1dJ1ML._AC_UL320_.jpg"
+  ]
+},
+  {
+  "id": "belleza-ysl-libre-eau-de-parfum-50ml",
+  "asin": "B07W9432K8",
+  "title": "Yves Saint Laurent Libre - Eau de Parfum para Mujer (50ml) con Frasco Joya de Alta Costura, Lavanda Francesa y Azahar Marroquí",
+  "slug": "yves-saint-laurent-libre-eau-de-parfum-50ml",
+  "searchQuery": "yves saint laurent libre eau de parfum 50ml mujer original",
+  "category": "Belleza y Cuidado Personal",
+  "subcategory": "Perfumería y Brumas de Culto",
+  "ageRange": "+18",
+  "gender": "girl",
+  "priceRange": "50-100",
+  "priceText": "79,95 €",
+  "rating": 4.9,
+  "reviewsCount": 14700,
+  "badge": "Perfume de Alta Costura YSL",
+  "description": "El perfume femenino más elegante y sofisticado de Yves Saint Laurent. Combina la audaz lavanda francesa con la sensualidad de la flor de azahar de Marruecos y notas de fondo de vainilla de Madagascar.",
+  "pros": [
+    "Frasco joya con el icónico logo dorado de YSL cruzado en relieve",
+    "Fragancia floral cálida con presencia imponente y estela duradera",
+    "El regalo de alta gama más deseado en cumpleaños y aniversarios"
+  ],
+  "idealFor": "Mujeres elegantes y con personalidad que aprecian la alta perfumería.",
+  "style": "classic",
+  "imageUrl": "https://m.media-amazon.com/images/I/61B5q2-U0pL._AC_UL320_.jpg",
+  "images": [
+    "https://m.media-amazon.com/images/I/61B5q2-U0pL._AC_UL320_.jpg"
+  ]
+},
+  {
+  "id": "belleza-smartbox-spa-y-relax-para-dos",
+  "asin": "B08K3M9L6H",
+  "title": "Smartbox - Caja Regalo Spa y Relax para Dos (Acceso a Circuito Termal, Balneario o Masaje Relajante en más de 1.100 Spas de España)",
+  "slug": "smartbox-caja-regalo-spa-y-relax-para-dos",
+  "searchQuery": "smartbox spa y relax para dos circuito termal masajes balnearios",
+  "category": "Belleza y Cuidado Personal",
+  "subcategory": "Experiencias de Relajación y Bienestar",
+  "ageRange": "+18",
+  "gender": "girl",
+  "priceRange": "20-50",
+  "priceText": "49,90 €",
+  "rating": 4.8,
+  "reviewsCount": 16800,
+  "badge": "Experiencia de Desconexión Total",
+  "description": "Una invitación al descanso y la serenidad para 2 personas. Válida durante más de 3 años con cambio gratuito ilimitado para disfrutar de circuitos hidrotermales, jacuzzis, saunas o masajes con aceites aromáticos.",
+  "pros": [
+    "Más de 1.100 centros spa y balnearios de calidad en toda España",
+    "Válido por 3 años y 3 meses con renovación y cambios gratuitos",
+    "Plan ideal para disfrutar en pareja o con una amiga"
+  ],
+  "idealFor": "Regalar momentos de autocuidado, relajación y desconexión de la rutina.",
+  "style": "classic",
+  "imageUrl": "https://m.media-amazon.com/images/I/81xU-mZkP1L._AC_UL320_.jpg",
+  "images": [
+    "https://m.media-amazon.com/images/I/81xU-mZkP1L._AC_UL320_.jpg"
+  ]
+},
+  {
+  "id": "belleza-difusor-aromas-ceramica-ultrasonico",
+  "asin": "B0B94Z7T9M",
+  "title": "Difusor de Aromas Ultrasónico de Cerámica Artesanal con Luces LED Cálidas y Modo Silencioso para Aceites Esenciales",
+  "slug": "difusor-aromas-ceramica-artesanal-ultrasonico-aceites-esenciales",
+  "searchQuery": "difusor aromas ceramica ultrasonico aceites esenciales aromaterapia",
+  "category": "Belleza y Cuidado Personal",
+  "subcategory": "Experiencias de Relajación y Bienestar",
+  "ageRange": "+18",
+  "gender": "girl",
+  "priceRange": "20-50",
+  "priceText": "34,99 €",
+  "rating": 4.7,
+  "reviewsCount": 8900,
+  "badge": "Diseño Nórdico en Cerámica",
+  "description": "Elegante humidificador y difusor aromático con carcasa de cerámica mate estriada. Genera una niebla ultrafina que dispersa aceites esenciales puros manteniendo un ambiente relajante y acogedor.",
+  "pros": [
+    "Carcasa de cerámica de gran calidad que decora cualquier mesita o salón",
+    "Funcionamiento ultrasónico ultrasilencioso (menos de 20 dB)",
+    "Temporizador inteligente y apagado automático de seguridad sin agua"
+  ],
+  "idealFor": "Crear un ambiente zen y aromático en el dormitorio o el salón.",
+  "style": "classic",
+  "imageUrl": "https://m.media-amazon.com/images/I/71Y+z1-eEaL._AC_UL320_.jpg",
+  "images": [
+    "https://m.media-amazon.com/images/I/71Y+z1-eEaL._AC_UL320_.jpg"
+  ]
+},
+  {
+  "id": "belleza-masajeador-cervical-shiatsu-calor",
+  "asin": "B07SH3H51F",
+  "title": "RENPHO Masajeador Cervical y de Espalda Shiatsu con Calor Infrarrojo y 8 Nodos de Masaje Profundo 3D para Cuello, Hombros y Lumbares",
+  "slug": "renpho-masajeador-cervical-espalda-shiatsu-calor-infrarrojo",
+  "searchQuery": "renpho masajeador cervical shiatsu espalda cuello calor infrarrojo",
+  "category": "Belleza y Cuidado Personal",
+  "subcategory": "Experiencias de Relajación y Bienestar",
+  "ageRange": "+18",
+  "gender": "girl",
+  "priceRange": "20-50",
+  "priceText": "45,99 €",
+  "rating": 4.7,
+  "reviewsCount": 25400,
+  "badge": "Alivio Muscular Profundo",
+  "description": "Aparato de masaje shiatsu ergonómico con correas para brazos que permite controlar la presión exacta. Sus 8 cabezales rotatorios con calor suave disuelven contracturas y alivian el estrés en minutos.",
+  "pros": [
+    "Función calor que relaja los músculos tensos del cuello y la espalda",
+    "Rotación bidireccional automática que imita las manos de un masajista",
+    "Incluye adaptador para enchufar en casa y también en el coche"
+  ],
+  "idealFor": "Mujeres que pasan horas sentadas trabajando o necesitan liberar tensión al final del día.",
+  "style": "classic",
+  "imageUrl": "https://m.media-amazon.com/images/I/71fL9aH3vWL._AC_UL320_.jpg",
+  "images": [
+    "https://m.media-amazon.com/images/I/71fL9aH3vWL._AC_UL320_.jpg"
+  ]
+},
+  {
+  "id": "hogar-vela-aromatica-woodwick-lino",
+  "asin": "B00N4G8K1W",
+  "title": "WoodWick Vela Aromática en Tarro de Cristal con Mecha de Madera Crujiente Hearthwick (453g) - Aroma Linen & White Tea",
+  "slug": "woodwick-vela-aromatica-mecha-madera-crujiente-linen",
+  "searchQuery": "woodwick vela aromatica mecha madera crujiente linen white tea",
+  "category": "Estilo de Vida, Tecnología y Hogar",
+  "subcategory": "Hogar y Decoración con Diseño",
+  "ageRange": "+18",
+  "gender": "girl",
+  "priceRange": "20-50",
+  "priceText": "27,90 €",
+  "rating": 4.8,
+  "reviewsCount": 19100,
+  "badge": "Mecha de Madera con Sonido de Chimenea",
+  "description": "Vela aromática de lujo con mecha patentada Pluswick de madera natural que crepita suavemente al arder simulando una acogedora chimenea. Cera de soja de primera calidad con aroma a lino limpio y té blanco.",
+  "pros": [
+    "El sonido crepitante de la mecha de madera crea una atmósfera mágica de paz",
+    "Frasco de cristal en forma de reloj de arena con elegante tapa de madera",
+    "Hasta 60 horas de combustión uniforme sin humo negro"
+  ],
+  "idealFor": "Tardes de lectura, mantita y desconexión en casa.",
+  "style": "classic",
+  "imageUrl": "https://m.media-amazon.com/images/I/71P4o2+Ue5L._AC_UL320_.jpg",
+  "images": [
+    "https://m.media-amazon.com/images/I/71P4o2+Ue5L._AC_UL320_.jpg"
+  ]
+},
+  {
+  "id": "hogar-vela-yankee-candle-signature-vainilla",
+  "asin": "B09L7X9M1N",
+  "title": "Yankee Candle Vela Aromática en Tarro Signature Grande (567g) - Warm Vanilla & Soft Cashmere con 2 Mechas de Algodón 100%",
+  "slug": "yankee-candle-signature-grande-warm-vanilla-cashmere",
+  "searchQuery": "yankee candle vela grande signature vainilla cashmere 567g",
+  "category": "Estilo de Vida, Tecnología y Hogar",
+  "subcategory": "Hogar y Decoración con Diseño",
+  "ageRange": "+18",
+  "gender": "girl",
+  "priceRange": "20-50",
+  "priceText": "24,99 €",
+  "rating": 4.7,
+  "reviewsCount": 31200,
+  "badge": "Vela Prémium Yankee Candle",
+  "description": "La colección Signature de Yankee Candle con mezcla de cera de soja de combustión limpia y dos mechas de algodón. Aroma reconfortante y cálido a vainilla dulce, ámbar suave y cachemira.",
+  "pros": [
+    "Gran formato de 567g con hasta 90 horas de fragancia continua",
+    "Doble mecha que garantiza un derretimiento uniforme de la cera",
+    "Tapa decorativa de metal cepillado que sirve como soporte para la vela"
+  ],
+  "idealFor": "Llenar el hogar de calidez y un aroma envolvente en otoño e invierno.",
+  "style": "classic",
+  "imageUrl": "https://m.media-amazon.com/images/I/71mGq4z12dL._AC_UL320_.jpg",
+  "images": [
+    "https://m.media-amazon.com/images/I/71mGq4z12dL._AC_UL320_.jpg"
+  ]
+},
+  {
+  "id": "hogar-tazas-ceramica-artesanales-japonesas",
+  "asin": "B09Y8N6K12",
+  "title": "Juego de 2 Tazas de Café Artesanales de Cerámica Japonesa con Textura Rústica Hecha a Mano y Platillos de Bambú Natural",
+  "slug": "juego-2-tazas-ceramica-artesanal-japonesa-platillos-bambu",
+  "searchQuery": "juego tazas ceramica artesanal japonesa platillo bambu cafe capuchino",
+  "category": "Estilo de Vida, Tecnología y Hogar",
+  "subcategory": "Hogar y Decoración con Diseño",
+  "ageRange": "+18",
+  "gender": "girl",
+  "priceRange": "20-50",
+  "priceText": "26,90 €",
+  "rating": 4.8,
+  "reviewsCount": 4300,
+  "badge": "Diseño Cerámico Wabi-Sabi",
+  "description": "Set de dos tazas de cerámica artesanal de gres esmaltado con acabado texturizado mate y asa ergonómica. Cada pieza es única y viene acompañada de platillos de bambú grabados con estilo zen.",
+  "pros": [
+    "Acabado artesanal esmaltado resistente al microondas y lavavajillas",
+    "Capacidad perfecta de 250ml para capuchinos, lattes, té o matcha",
+    "Presentadas en elegante caja kraft acolchada lista para regalo"
+  ],
+  "idealFor": "Disfrutar del café o té matutino con un toque estético y de calma.",
+  "style": "classic",
+  "imageUrl": "https://m.media-amazon.com/images/I/71V2u4G+EaL._AC_UL320_.jpg",
+  "images": [
+    "https://m.media-amazon.com/images/I/71V2u4G+EaL._AC_UL320_.jpg"
+  ]
+},
+  {
+  "id": "hogar-manta-sherpa-borreguito-sofa-suave",
+  "asin": "B0892L9K8Q",
+  "title": "Bedsure Manta para Sofá y Cama de Franela y Borreguito Sherpa Ultra Suave (150x200 cm) - Manta Cálida y Ligera (Gris Perla)",
+  "slug": "bedsure-manta-sofa-franela-borreguito-sherpa-150x200",
+  "searchQuery": "bedsure manta sofa borreguito sherpa suave franela 150x200",
+  "category": "Estilo de Vida, Tecnología y Hogar",
+  "subcategory": "Hogar y Decoración con Diseño",
+  "ageRange": "+18",
+  "gender": "girl",
+  "priceRange": "20-50",
+  "priceText": "23,99 €",
+  "rating": 4.8,
+  "reviewsCount": 65400,
+  "badge": "Número 1 en Mantas de Sofá",
+  "description": "La manta más vendida y suave de Amazon. Diseño reversible con microfranela ultrasuave por un lado y borreguito sherpa esponjoso y térmico por el otro. Ideal para arroparse en el sofá viendo series o leyendo.",
+  "pros": [
+    "Tacto aterciopelado sumamente agradable que no suelta pelusas",
+    "Tamaño amplio de 150x200 cm para taparse cómodamente",
+    "Lavable a máquina en agua fría sin perder su suavidad original"
+  ],
+  "idealFor": "La reina de las tardes de cine en casa y relax.",
+  "style": "classic",
+  "imageUrl": "https://m.media-amazon.com/images/I/81x2gW8P2aL._AC_UL320_.jpg",
+  "images": [
+    "https://m.media-amazon.com/images/I/81x2gW8P2aL._AC_UL320_.jpg"
+  ]
+},
+  {
+  "id": "hogar-bodum-cafetera-francesa-chambord-cobre",
+  "asin": "B00005LM0S",
+  "title": "Bodum Chambord - Cafetera Francesa de Émbolo en Acero Inoxidable y Cobre Brillante (8 Tazas, 1 Litro) con Vidrio Borosilicato",
+  "slug": "bodum-chambord-cafetera-francesa-embolo-cobre",
+  "searchQuery": "bodum chambord cafetera francesa embolo cobre acero 1 litro",
+  "category": "Estilo de Vida, Tecnología y Hogar",
+  "subcategory": "Hogar y Decoración con Diseño",
+  "ageRange": "+18",
+  "gender": "girl",
+  "priceRange": "20-50",
+  "priceText": "44,90 €",
+  "rating": 4.7,
+  "reviewsCount": 22100,
+  "badge": "Icono del Café de Especialidad",
+  "description": "El clásico diseño Chambord de Bodum en un espectacular acabado en cobre brillante. Su filtro de émbolo en acero inoxidable extrae todos los aceites esenciales del café molido consiguiendo un sabor denso y aromático.",
+  "pros": [
+    "Jarra de vidrio de borosilicato resistente a cambios térmicos bruscos",
+    "Estructura y tapa de acero inoxidable chapado en cobre de lujo",
+    "No necesita filtros de papel ni cápsulas: 100% sostenible y pura"
+  ],
+  "idealFor": "Amantes del buen café que cuidan la estética de su cocina.",
+  "style": "classic",
+  "imageUrl": "https://m.media-amazon.com/images/I/61mZ5u7U8cL._AC_UL320_.jpg",
+  "images": [
+    "https://m.media-amazon.com/images/I/61mZ5u7U8cL._AC_UL320_.jpg"
+  ]
+},
+  {
+  "id": "tech-sony-wh1000xm4-auriculares-plata",
+  "asin": "B08C69V3Z2",
+  "title": "Sony WH-1000XM4 - Auriculares Inalámbricos Diadema con Cancelación de Ruido Activa Líder del Sector (Plata / Beige Perla Elegante)",
+  "slug": "sony-wh-1000xm4-auriculares-diadema-cancelacion-ruido-plata",
+  "searchQuery": "sony wh 1000xm4 auriculares diadema cancelacion ruido plata beige",
+  "category": "Estilo de Vida, Tecnología y Hogar",
+  "subcategory": "Tecnología del Día a Día",
+  "ageRange": "+18",
+  "gender": "girl",
+  "priceRange": ">100",
+  "priceText": "229,00 €",
+  "rating": 4.8,
+  "reviewsCount": 52300,
+  "badge": "Cancelación de Ruido Número 1",
+  "description": "Los auriculares supraaurales más cómodos y elogiados del mercado. El procesador QN1 elimina el ruido ambiental en viajes, oficinas y cafeterías. 30 horas de batería, almohadillas ergonómicas ultra acolchadas y sonido Hi-Res.",
+  "pros": [
+    "Color plata/beige sofisticado y moderno que combina con cualquier look",
+    "Cancelación de ruido prodigiosa con modo 'Speak-to-Chat' inteligente",
+    "Almohadillas de espuma de uretano ultrasuaves que no aprietan las orejas"
+  ],
+  "idealFor": "Viajar en tren o avión, teletrabajar o sumergirse en música y podcasts favoritos.",
+  "style": "tech",
+  "imageUrl": "https://m.media-amazon.com/images/I/71o8ORGo3SL._AC_UL320_.jpg",
+  "images": [
+    "https://m.media-amazon.com/images/I/71o8ORGo3SL._AC_UL320_.jpg"
+  ]
+},
+  {
+  "id": "tech-cargador-inalambrico-plegable-3-en-1",
+  "asin": "B0BRN9K81W",
+  "title": "Estación de Carga Inalámbrica Magnética Plegable 3 en 1 para iPhone, Apple Watch y AirPods con Acabado en Aluminio y Almohadilla Suave",
+  "slug": "estacion-carga-inalambrica-plegable-3-en-1-magnectica",
+  "searchQuery": "estacion carga inalambrica magnetica 3 en 1 plegable iphone apple watch airpods",
+  "category": "Estilo de Vida, Tecnología y Hogar",
+  "subcategory": "Tecnología del Día a Día",
+  "ageRange": "+18",
+  "gender": "girl",
+  "priceRange": "20-50",
+  "priceText": "29,99 €",
+  "rating": 4.7,
+  "reviewsCount": 11200,
+  "badge": "Adiós a los Cables en la Mesita",
+  "description": "Soporte de carga rápida magnética plegable que permite cargar simultáneamente el móvil, el reloj inteligente y los auriculares con un único cable discreto. Se pliega al tamaño de una cartera pequeña para llevar de viaje.",
+  "pros": [
+    "Elimina el desorden de cables en la mesita de noche o el escritorio",
+    "Sujeción magnética fuerte que permite poner el móvil en vertical u horizontal",
+    "Diseño minimalista ultra delgado que cabe en cualquier bolso"
+  ],
+  "idealFor": "Tener todos los dispositivos listos y ordenados cada mañana.",
+  "style": "tech",
+  "imageUrl": "https://m.media-amazon.com/images/I/61f2qW+O8pL._AC_UL320_.jpg",
+  "images": [
+    "https://m.media-amazon.com/images/I/61f2qW+O8pL._AC_UL320_.jpg"
+  ]
+},
+  {
+  "id": "ocio-habitos-atomicos-james-clear",
+  "asin": "8418118032",
+  "title": "Hábitos Atómicos de James Clear - El Libro Número 1 en Crecimiento Personal, Productividad y Bienestar (Tapa Blanda de Lujo)",
+  "slug": "habitos-atomicos-james-clear-libro-crecimiento-personal",
+  "searchQuery": "habitos atomicos james clear libro desarrollo personal",
+  "category": "Ocio, Cultura y Experiencias",
+  "subcategory": "Libros y Literatura Superventas",
+  "ageRange": "+18",
+  "gender": "girl",
+  "priceRange": "<20",
+  "priceText": "18,90 €",
+  "rating": 4.9,
+  "reviewsCount": 48900,
+  "badge": "Libro Número 1 en Todo el Mundo",
+  "description": "La guía definitiva sobre cómo pequeños cambios diarios generan resultados extraordinarios en la salud, la tranquilidad mental y los objetivos personales. Un libro transformador, ameno y 100% práctico.",
+  "pros": [
+    "Más de 15 millones de ejemplares vendidos y traducido a más de 50 idiomas",
+    "Lectura ágil con consejos aplicables desde el primer día",
+    "Uno de los libros más recomendados y regalados de los últimos años"
+  ],
+  "idealFor": "Cualquier persona que quiera empezar una nueva etapa con claridad y energía.",
+  "style": "classic",
+  "imageUrl": "https://m.media-amazon.com/images/I/81F90H7hnML._AC_UL320_.jpg",
+  "images": [
+    "https://m.media-amazon.com/images/I/81F90H7hnML._AC_UL320_.jpg"
+  ]
+},
+  {
+  "id": "ocio-five-minute-journal-diario-gratitud",
+  "asin": "0991846206",
+  "title": "The Five Minute Journal - Diario de Gratitud y Reflexión Guiada Diaria en Tapa Dura de Lino Natural con Cinta Marcapáginas",
+  "slug": "the-five-minute-journal-diario-gratitud-lino",
+  "searchQuery": "the five minute journal diario gratitud lino encuadernado",
+  "category": "Ocio, Cultura y Experiencias",
+  "subcategory": "Libros y Literatura Superventas",
+  "ageRange": "+18",
+  "gender": "girl",
+  "priceRange": "20-50",
+  "priceText": "29,99 €",
+  "rating": 4.8,
+  "reviewsCount": 17200,
+  "badge": "Diario de Mindfulness Original",
+  "description": "El diario de reflexión personal más famoso del mundo. Diseñado para dedicar solo 5 minutos por la mañana y por la noche para cultivar la gratitud, el enfoque positivo y la serenidad interior.",
+  "pros": [
+    "Encuadernación de lujo en tela de lino 100% natural con papel grueso de 100g",
+    "Formato guiado sencillo que ayuda a crear el hábito sin esfuerzo",
+    "Citas inspiradoras diarias y ejercicios de autoconocimiento"
+  ],
+  "idealFor": "Empezar y terminar el día con paz mental y gratitud.",
+  "style": "classic",
+  "imageUrl": "https://m.media-amazon.com/images/I/61N+V8dF8aL._AC_UL320_.jpg",
+  "images": [
+    "https://m.media-amazon.com/images/I/61N+V8dF8aL._AC_UL320_.jpg"
+  ]
+},
+  {
+  "id": "ocio-la-asistenta-freida-mcfadden",
+  "asin": "8419650048",
+  "title": "La Asistenta de Freida McFadden - La Novela de Suspense Psicológico y Ficción Más Vendida del Año (Edición en Castellano)",
+  "slug": "la-asistenta-freida-mcfadden-novela-suspense",
+  "searchQuery": "la asistenta freida mcfadden libro novela thriller suspense",
+  "category": "Ocio, Cultura y Experiencias",
+  "subcategory": "Libros y Literatura Superventas",
+  "ageRange": "+18",
+  "gender": "girl",
+  "priceRange": "<20",
+  "priceText": "19,90 €",
+  "rating": 4.8,
+  "reviewsCount": 31500,
+  "badge": "Fenómeno Literario del Año",
+  "description": "El thriller psicológico adictivo que ha conquistado a millones de lectores en todo el planeta. Una trama trepidante llena de giros inesperados que no permite soltar el libro hasta la última página.",
+  "pros": [
+    "Enganche garantizado desde el primer capítulo con ritmo vertiginoso",
+    "Final impactante que deja boquiabierto a cualquier aficionado a la lectura",
+    "Regalo perfecto para devoradores de novelas y misterios"
+  ],
+  "idealFor": "Amantes de los libros adictivos y las historias que atrapan de verdad.",
+  "style": "classic",
+  "imageUrl": "https://m.media-amazon.com/images/I/71N1+U2yHPL._AC_UL320_.jpg",
+  "images": [
+    "https://m.media-amazon.com/images/I/71N1+U2yHPL._AC_UL320_.jpg"
+  ]
+},
+  {
+  "id": "moda-joyero-organizador-viaje-terciopelo",
+  "asin": "B0892N8K1Y",
+  "title": "Joyero Organizador de Viaje en Terciopelo Suave con Espejo y Compartimentos para Pendientes, Anillos y Collares (Rosa Pastel / Esmeralda)",
+  "slug": "joyero-organizador-viaje-terciopelo-espejo-anillos",
+  "searchQuery": "joyero organizador viaje terciopelo cremallera espejo anillos collares",
+  "category": "Ocio, Cultura y Experiencias",
+  "subcategory": "Moda y Complementos Atemporales",
+  "ageRange": "+18",
+  "gender": "girl",
+  "priceRange": "<20",
+  "priceText": "15,99 €",
+  "rating": 4.8,
+  "reviewsCount": 22800,
+  "badge": "Top Ventas en Joyeros",
+  "description": "Estuche joyero compacto con cierre de cremallera metálica dorada y forro de terciopelo antiarañazos. Cuenta con ganchos para collares que evitan nudos, paneles para pendientes, rulos acolchados para anillos y espejo integrado.",
+  "pros": [
+    "Tamaño de bolsillo (10x10x5 cm) perfecto para maletas de mano y bolsos",
+    "Terciopelo exterior lujoso muy suave al tacto con cremallera fluida",
+    "Mantiene todas las joyas organizadas sin que se enreden ni se rayen"
+  ],
+  "idealFor": "Un regalo coqueto, útil y muy económico con el que siempre se acierta.",
+  "style": "classic",
+  "imageUrl": "https://m.media-amazon.com/images/I/71M2qW+N2aL._AC_UL320_.jpg",
+  "images": [
+    "https://m.media-amazon.com/images/I/71M2qW+N2aL._AC_UL320_.jpg"
+  ]
+},
+  {
+  "id": "moda-pendientes-aro-plata-925-bano-oro",
+  "asin": "B09Y8P2K1Q",
+  "title": "Pendientes de Aro Huggie Minimalistas en Plata de Ley 925 con Baño de Oro de 18K e Incrustaciones de Circonita Brillante",
+  "slug": "pendientes-aro-huggie-plata-925-bano-oro-18k",
+  "searchQuery": "pendientes aro huggie minimalista plata ley 925 bano oro circonitas",
+  "category": "Ocio, Cultura y Experiencias",
+  "subcategory": "Moda y Complementos Atemporales",
+  "ageRange": "+18",
+  "gender": "girl",
+  "priceRange": "20-50",
+  "priceText": "24,99 €",
+  "rating": 4.8,
+  "reviewsCount": 9800,
+  "badge": "Plata de Ley 925 Hipoalergénica",
+  "description": "Aros pequeños estilo 'huggie' con cierre de clic seguro. Fabricados en auténtica plata esterlina 925 con chapado duradero en oro amarillo de 18 kilates. Hipoalergénicos, libres de níquel y aptos para llevar a diario.",
+  "pros": [
+    "No provocan alergias ni irritaciones gracias a la plata de ley 925 certificada",
+    "Cierre de clic súper cómodo que no se engancha con la ropa ni al dormir",
+    "Diseño atemporal que combina con cualquier estilo casual o de fiesta"
+  ],
+  "idealFor": "Un detalle de joyería fina y delicada para llevar todos los días.",
+  "style": "classic",
+  "imageUrl": "https://m.media-amazon.com/images/I/61N2mO+P1bL._AC_UL320_.jpg",
+  "images": [
+    "https://m.media-amazon.com/images/I/61N2mO+P1bL._AC_UL320_.jpg"
+  ]
+},
+  {
+  "id": "moda-bolso-bandolera-cuero-vegano-doble",
+  "asin": "B09L6W9N1P",
+  "title": "Bolso Bandolera Mujer en Cuero Vegano Suave con Triple Compartimento de Cremallera y Correa Ancha Ajustable (Negro / Camel)",
+  "slug": "bolso-bandolera-mujer-cuero-vegano-triple-cremallera",
+  "searchQuery": "bolso bandolera mujer cuero vegano triple cremallera correa ancha",
+  "category": "Ocio, Cultura y Experiencias",
+  "subcategory": "Moda y Complementos Atemporales",
+  "ageRange": "+18",
+  "gender": "girl",
+  "priceRange": "20-50",
+  "priceText": "28,95 €",
+  "rating": 4.7,
+  "reviewsCount": 14600,
+  "badge": "Comodidad y Estilo Urbano",
+  "description": "Bolso bandolera todoterreno fabricado en piel sintética suave de alta resistencia. Dispone de tres compartimentos independientes con cremallera para llevar el móvil, cartera, llaves y cosméticos perfectamente organizados y seguros.",
+  "pros": [
+    "Correa ancha de tela estampada que no se clava en el hombro",
+    "Triple bolsillo que ofrece máxima capacidad sin ser un bolso voluminoso",
+    "Material impermeable y muy fácil de limpiar con un paño húmedo"
+  ],
+  "idealFor": "Paseos, viajes y el día a día sin cargar con bolsos pesados.",
+  "style": "classic",
+  "imageUrl": "https://m.media-amazon.com/images/I/71Y9gO+V2bL._AC_UL320_.jpg",
+  "images": [
+    "https://m.media-amazon.com/images/I/71Y9gO+V2bL._AC_UL320_.jpg"
+  ]
+}
 ];
