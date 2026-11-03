@@ -7072,9 +7072,9 @@ export const PRODUCTS: Product[] = [
   ],
   "idealFor": "El regalo de skincare definitivo con el que es imposible fallar.",
   "style": "classic",
-  "imageUrl": "https://m.media-amazon.com/images/I/61Nl5wNqBqL._AC_UL320_.jpg",
+  "imageUrl": "/images/products/belleza-paulas-choice-2-bha-exfoliant-1.jpg",
   "images": [
-    "https://m.media-amazon.com/images/I/61Nl5wNqBqL._AC_UL320_.jpg"
+    "/images/products/belleza-paulas-choice-2-bha-exfoliant-1.jpg"
   ]
 },
   {
@@ -7100,9 +7100,9 @@ export const PRODUCTS: Product[] = [
   ],
   "idealFor": "Amantes de la cosmética coreana y el cuidado facial de calidad.",
   "style": "classic",
-  "imageUrl": "https://m.media-amazon.com/images/I/61yEaZlY7YL._AC_UL320_.jpg",
+  "imageUrl": "/images/products/belleza-cosrx-snail-96-mucin-essence-1.jpg",
   "images": [
-    "https://m.media-amazon.com/images/I/61yEaZlY7YL._AC_UL320_.jpg"
+    "/images/products/belleza-cosrx-snail-96-mucin-essence-1.jpg"
   ]
 },
   {
@@ -7128,9 +7128,9 @@ export const PRODUCTS: Product[] = [
   ],
   "idealFor": "Un detalle de belleza imprescindible y aclamado por todas las expertas.",
   "style": "classic",
-  "imageUrl": "https://m.media-amazon.com/images/I/61jZzGzF8BL._AC_UL320_.jpg",
+  "imageUrl": "/images/products/belleza-beauty-of-joseon-relief-sun-spf50-1.jpg",
   "images": [
-    "https://m.media-amazon.com/images/I/61jZzGzF8BL._AC_UL320_.jpg"
+    "/images/products/belleza-beauty-of-joseon-relief-sun-spf50-1.jpg"
   ]
 },
   {
@@ -7156,9 +7156,9 @@ export const PRODUCTS: Product[] = [
   ],
   "idealFor": "Cumpleaños, aniversarios o detalles especiales donde quieres acertar al 100%.",
   "style": "classic",
-  "imageUrl": "https://m.media-amazon.com/images/I/81xU9d+O88L._AC_UL320_.jpg",
+  "imageUrl": "/images/products/belleza-rituals-the-ritual-of-sakura-cofre-1.jpg",
   "images": [
-    "https://m.media-amazon.com/images/I/81xU9d+O88L._AC_UL320_.jpg"
+    "/images/products/belleza-rituals-the-ritual-of-sakura-cofre-1.jpg"
   ]
 },
   {
@@ -7184,9 +7184,9 @@ export const PRODUCTS: Product[] = [
   ],
   "idealFor": "Chicas y mujeres que adoran los aromas florales dulces y sofisticados.",
   "style": "classic",
-  "imageUrl": "https://m.media-amazon.com/images/I/71uVv8Rz5mL._AC_UL320_.jpg",
+  "imageUrl": "/images/products/belleza-sol-de-janeiro-cheirosa-68-mist-1.jpg",
   "images": [
-    "https://m.media-amazon.com/images/I/71uVv8Rz5mL._AC_UL320_.jpg"
+    "/images/products/belleza-sol-de-janeiro-cheirosa-68-mist-1.jpg"
   ]
 },
   {
@@ -7212,9 +7212,9 @@ export const PRODUCTS: Product[] = [
   ],
   "idealFor": "Cualquier mujer a la que le gusten los perfumes dulces y cálidos.",
   "style": "classic",
-  "imageUrl": "https://m.media-amazon.com/images/I/71c6S1dJ1ML._AC_UL320_.jpg",
+  "imageUrl": "/images/products/belleza-sol-de-janeiro-cheirosa-62-mist-1.jpg",
   "images": [
-    "https://m.media-amazon.com/images/I/71c6S1dJ1ML._AC_UL320_.jpg"
+    "/images/products/belleza-sol-de-janeiro-cheirosa-62-mist-1.jpg"
   ]
 },
   {
@@ -7240,9 +7240,9 @@ export const PRODUCTS: Product[] = [
   ],
   "idealFor": "Mujeres elegantes y con personalidad que aprecian la alta perfumería.",
   "style": "classic",
-  "imageUrl": "https://m.media-amazon.com/images/I/61B5q2-U0pL._AC_UL320_.jpg",
+  "imageUrl": "/images/products/belleza-ysl-libre-eau-de-parfum-50ml-1.jpg",
   "images": [
-    "https://m.media-amazon.com/images/I/61B5q2-U0pL._AC_UL320_.jpg"
+    "/images/products/belleza-ysl-libre-eau-de-parfum-50ml-1.jpg"
   ]
 },
   {
@@ -7268,9 +7268,9 @@ export const PRODUCTS: Product[] = [
   ],
   "idealFor": "Regalar momentos de autocuidado, relajación y desconexión de la rutina.",
   "style": "classic",
-  "imageUrl": "https://m.media-amazon.com/images/I/81xU-mZkP1L._AC_UL320_.jpg",
+  "imageUrl": "/images/products/belleza-smartbox-spa-y-relax-para-dos-1.jpg",
   "images": [
-    "https://m.media-amazon.com/images/I/81xU-mZkP1L._AC_UL320_.jpg"
+    "/images/products/belleza-smartbox-spa-y-relax-para-dos-1.jpg"
   ]
 },
   {
@@ -7296,9 +7296,9 @@ export const PRODUCTS: Product[] = [
   ],
   "idealFor": "Crear un ambiente zen y aromático en el dormitorio o el salón.",
   "style": "classic",
-  "imageUrl": "https://m.media-amazon.com/images/I/71Y+z1-eEaL._AC_UL320_.jpg",
+  "imageUrl": "/images/products/belleza-difusor-aromas-ceramica-ultrasonico-1.jpg",
   "images": [
-    "https://m.media-amazon.com/images/I/71Y+z1-eEaL._AC_UL320_.jpg"
+    "/images/products/belleza-difusor-aromas-ceramica-ultrasonico-1.jpg"
   ]
 },
   {
@@ -7324,9 +7324,9 @@ export const PRODUCTS: Product[] = [
   ],
   "idealFor": "Mujeres que pasan horas sentadas trabajando o necesitan liberar tensión al final del día.",
   "style": "classic",
-  "imageUrl": "https://m.media-amazon.com/images/I/71fL9aH3vWL._AC_UL320_.jpg",
+  "imageUrl": "/images/products/belleza-masajeador-cervical-shiatsu-calor-1.jpg",
   "images": [
-    "https://m.media-amazon.com/images/I/71fL9aH3vWL._AC_UL320_.jpg"
+    "/images/products/belleza-masajeador-cervical-shiatsu-calor-1.jpg"
   ]
 },
   {
@@ -7352,9 +7352,9 @@ export const PRODUCTS: Product[] = [
   ],
   "idealFor": "Tardes de lectura, mantita y desconexión en casa.",
   "style": "classic",
-  "imageUrl": "https://m.media-amazon.com/images/I/71P4o2+Ue5L._AC_UL320_.jpg",
+  "imageUrl": "/images/products/hogar-vela-aromatica-woodwick-lino-1.jpg",
   "images": [
-    "https://m.media-amazon.com/images/I/71P4o2+Ue5L._AC_UL320_.jpg"
+    "/images/products/hogar-vela-aromatica-woodwick-lino-1.jpg"
   ]
 },
   {
@@ -7380,9 +7380,9 @@ export const PRODUCTS: Product[] = [
   ],
   "idealFor": "Llenar el hogar de calidez y un aroma envolvente en otoño e invierno.",
   "style": "classic",
-  "imageUrl": "https://m.media-amazon.com/images/I/71mGq4z12dL._AC_UL320_.jpg",
+  "imageUrl": "/images/products/hogar-vela-yankee-candle-signature-vainilla-1.jpg",
   "images": [
-    "https://m.media-amazon.com/images/I/71mGq4z12dL._AC_UL320_.jpg"
+    "/images/products/hogar-vela-yankee-candle-signature-vainilla-1.jpg"
   ]
 },
   {
@@ -7408,9 +7408,9 @@ export const PRODUCTS: Product[] = [
   ],
   "idealFor": "Disfrutar del café o té matutino con un toque estético y de calma.",
   "style": "classic",
-  "imageUrl": "https://m.media-amazon.com/images/I/71V2u4G+EaL._AC_UL320_.jpg",
+  "imageUrl": "/images/products/hogar-tazas-ceramica-artesanales-japonesas-1.jpg",
   "images": [
-    "https://m.media-amazon.com/images/I/71V2u4G+EaL._AC_UL320_.jpg"
+    "/images/products/hogar-tazas-ceramica-artesanales-japonesas-1.jpg"
   ]
 },
   {
@@ -7436,9 +7436,9 @@ export const PRODUCTS: Product[] = [
   ],
   "idealFor": "La reina de las tardes de cine en casa y relax.",
   "style": "classic",
-  "imageUrl": "https://m.media-amazon.com/images/I/81x2gW8P2aL._AC_UL320_.jpg",
+  "imageUrl": "/images/products/hogar-manta-sherpa-borreguito-sofa-suave-1.jpg",
   "images": [
-    "https://m.media-amazon.com/images/I/81x2gW8P2aL._AC_UL320_.jpg"
+    "/images/products/hogar-manta-sherpa-borreguito-sofa-suave-1.jpg"
   ]
 },
   {
@@ -7464,9 +7464,9 @@ export const PRODUCTS: Product[] = [
   ],
   "idealFor": "Amantes del buen café que cuidan la estética de su cocina.",
   "style": "classic",
-  "imageUrl": "https://m.media-amazon.com/images/I/61mZ5u7U8cL._AC_UL320_.jpg",
+  "imageUrl": "/images/products/hogar-bodum-cafetera-francesa-chambord-cobre-1.jpg",
   "images": [
-    "https://m.media-amazon.com/images/I/61mZ5u7U8cL._AC_UL320_.jpg"
+    "/images/products/hogar-bodum-cafetera-francesa-chambord-cobre-1.jpg"
   ]
 },
   {
@@ -7492,9 +7492,9 @@ export const PRODUCTS: Product[] = [
   ],
   "idealFor": "Viajar en tren o avión, teletrabajar o sumergirse en música y podcasts favoritos.",
   "style": "tech",
-  "imageUrl": "https://m.media-amazon.com/images/I/71o8ORGo3SL._AC_UL320_.jpg",
+  "imageUrl": "/images/products/tech-sony-wh1000xm4-auriculares-plata-1.jpg",
   "images": [
-    "https://m.media-amazon.com/images/I/71o8ORGo3SL._AC_UL320_.jpg"
+    "/images/products/tech-sony-wh1000xm4-auriculares-plata-1.jpg"
   ]
 },
   {
@@ -7520,9 +7520,9 @@ export const PRODUCTS: Product[] = [
   ],
   "idealFor": "Tener todos los dispositivos listos y ordenados cada mañana.",
   "style": "tech",
-  "imageUrl": "https://m.media-amazon.com/images/I/61f2qW+O8pL._AC_UL320_.jpg",
+  "imageUrl": "/images/products/tech-cargador-inalambrico-plegable-3-en-1-1.jpg",
   "images": [
-    "https://m.media-amazon.com/images/I/61f2qW+O8pL._AC_UL320_.jpg"
+    "/images/products/tech-cargador-inalambrico-plegable-3-en-1-1.jpg"
   ]
 },
   {
@@ -7576,9 +7576,9 @@ export const PRODUCTS: Product[] = [
   ],
   "idealFor": "Empezar y terminar el día con paz mental y gratitud.",
   "style": "classic",
-  "imageUrl": "https://m.media-amazon.com/images/I/61N+V8dF8aL._AC_UL320_.jpg",
+  "imageUrl": "/images/products/ocio-five-minute-journal-diario-gratitud-1.jpg",
   "images": [
-    "https://m.media-amazon.com/images/I/61N+V8dF8aL._AC_UL320_.jpg"
+    "/images/products/ocio-five-minute-journal-diario-gratitud-1.jpg"
   ]
 },
   {
@@ -7604,9 +7604,9 @@ export const PRODUCTS: Product[] = [
   ],
   "idealFor": "Amantes de los libros adictivos y las historias que atrapan de verdad.",
   "style": "classic",
-  "imageUrl": "https://m.media-amazon.com/images/I/71N1+U2yHPL._AC_UL320_.jpg",
+  "imageUrl": "/images/products/ocio-la-asistenta-freida-mcfadden-1.jpg",
   "images": [
-    "https://m.media-amazon.com/images/I/71N1+U2yHPL._AC_UL320_.jpg"
+    "/images/products/ocio-la-asistenta-freida-mcfadden-1.jpg"
   ]
 },
   {
@@ -7632,9 +7632,9 @@ export const PRODUCTS: Product[] = [
   ],
   "idealFor": "Un regalo coqueto, útil y muy económico con el que siempre se acierta.",
   "style": "classic",
-  "imageUrl": "https://m.media-amazon.com/images/I/71M2qW+N2aL._AC_UL320_.jpg",
+  "imageUrl": "/images/products/moda-joyero-organizador-viaje-terciopelo-1.jpg",
   "images": [
-    "https://m.media-amazon.com/images/I/71M2qW+N2aL._AC_UL320_.jpg"
+    "/images/products/moda-joyero-organizador-viaje-terciopelo-1.jpg"
   ]
 },
   {
@@ -7660,9 +7660,9 @@ export const PRODUCTS: Product[] = [
   ],
   "idealFor": "Un detalle de joyería fina y delicada para llevar todos los días.",
   "style": "classic",
-  "imageUrl": "https://m.media-amazon.com/images/I/61N2mO+P1bL._AC_UL320_.jpg",
+  "imageUrl": "/images/products/moda-pendientes-aro-plata-925-bano-oro-1.jpg",
   "images": [
-    "https://m.media-amazon.com/images/I/61N2mO+P1bL._AC_UL320_.jpg"
+    "/images/products/moda-pendientes-aro-plata-925-bano-oro-1.jpg"
   ]
 },
   {
@@ -7688,9 +7688,9 @@ export const PRODUCTS: Product[] = [
   ],
   "idealFor": "Paseos, viajes y el día a día sin cargar con bolsos pesados.",
   "style": "classic",
-  "imageUrl": "https://m.media-amazon.com/images/I/71Y9gO+V2bL._AC_UL320_.jpg",
+  "imageUrl": "/images/products/moda-bolso-bandolera-cuero-vegano-doble-1.jpg",
   "images": [
-    "https://m.media-amazon.com/images/I/71Y9gO+V2bL._AC_UL320_.jpg"
+    "/images/products/moda-bolso-bandolera-cuero-vegano-doble-1.jpg"
   ]
 }
 ];
