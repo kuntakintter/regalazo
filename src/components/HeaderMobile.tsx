@@ -33,6 +33,17 @@ export const AGE_DROPDOWN_ITEMS = [
   { label: 'Revelación de Género', range: 'Baby Shower', slug: 'fiesta-revelacion-genero', icon: '🎈', desc: 'Cañones confeti, globos enigma, humo holi' },
 ];
 
+export const PASSION_DROPDOWN_ITEMS = [
+  { label: 'Motoristas', slug: 'motoristas', icon: '🏍️', desc: 'Cascos, guantes, intercomunicadores y soportes' },
+  { label: 'Gaming y Streamers', slug: 'gaming', icon: '🎮', desc: 'Auriculares, teclados mecánicos, mandos y setup' },
+  { label: 'Café Barista', slug: 'amantes-del-cafe', icon: '☕', desc: 'Cafeteras espresso, molinillos y tazas térmicas' },
+  { label: 'Mascotas', slug: 'mascotas', icon: '🐾', desc: 'Juguetes interactivos, camas ortopédicas y fuentes' },
+  { label: 'Automóvil y Conducción', slug: 'automovil', icon: '🚗', desc: 'Dash cams, compresores portátiles y detailing' },
+  { label: 'Ciclismo y MTB', slug: 'ciclismo', icon: '🚴', desc: 'Luces potentes, maillots, cascos y herramientas' },
+  { label: 'Cartas Pokémon', slug: '?categoria=cartas-pokemon#catalogo-productos', icon: '⚡', desc: 'Sobres, cajas élite booster y carpetas' },
+  { label: 'Figuras Anime y Cine', slug: '?categoria=figuras-anime#catalogo-productos', icon: '🎎', desc: 'Banpresto, Funko Pop, Dragon Ball y One Piece' },
+];
+
 interface HeaderMobileProps {
   searchQuery: string;
   onSearchChange?: (query: string) => void;
@@ -61,12 +72,17 @@ export default function HeaderMobile({
   const { formatPrice } = useCurrency();
   const { voteItems, setIsDrawerOpen } = useVoting();
   const [isAgesOpen, setIsAgesOpen] = useState(false);
+  const [isPassionsOpen, setIsPassionsOpen] = useState(false);
   const agesDropdownRef = useRef<HTMLDivElement>(null);
+  const passionsDropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (agesDropdownRef.current && !agesDropdownRef.current.contains(event.target as Node)) {
         setIsAgesOpen(false);
+      }
+      if (passionsDropdownRef.current && !passionsDropdownRef.current.contains(event.target as Node)) {
+        setIsPassionsOpen(false);
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
@@ -370,89 +386,84 @@ export default function HeaderMobile({
             )}
           </div>
 
-          <Link
-            href="/motoristas"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-slate-100 font-medium text-xs whitespace-nowrap shrink-0"
-          >
-            <span>🏍️</span>
-            <span>Motoristas</span>
-          </Link>
+          {/* 2. DROPDOWN PASIONES Y HOBBIES */}
+          <div className="relative shrink-0" ref={passionsDropdownRef}>
+            <button
+              type="button"
+              onClick={() => setIsPassionsOpen(!isPassionsOpen)}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-semibold whitespace-nowrap transition-all shadow-xs ${
+                isPassionsOpen
+                  ? 'bg-purple-500/25 border-purple-400 text-white ring-1 ring-purple-400/50'
+                  : 'bg-white/5 border-white/10 text-slate-100 hover:bg-white/10'
+              }`}
+            >
+              <span>🎯</span>
+              <span>Pasiones & Hobbies</span>
+              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isPassionsOpen ? 'rotate-180' : ''}`} />
+            </button>
 
-          <Link
-            href="/gaming"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-slate-100 font-medium text-xs whitespace-nowrap shrink-0"
-          >
-            <span>🎮</span>
-            <span>Gaming</span>
-          </Link>
+            {isPassionsOpen && (
+              <>
+                <div
+                  className="fixed inset-0 z-40 bg-black/40 backdrop-blur-xs"
+                  onClick={() => setIsPassionsOpen(false)}
+                />
+                <div className="fixed left-2 right-2 top-28 z-50 rounded-2xl bg-white border border-slate-200 shadow-2xl overflow-hidden max-h-[75vh] flex flex-col animate-in fade-in zoom-in-95 duration-150">
+                  <div className="p-3 bg-linear-to-r from-purple-900 to-indigo-900 text-white flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">🎯</span>
+                      <div>
+                        <h3 className="font-extrabold text-sm leading-none">Pasiones y Aficiones</h3>
+                        <p className="text-[10px] text-purple-200/80 mt-0.5">Elige según sus gustos favoritos</p>
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setIsPassionsOpen(false)}
+                      className="p-1 rounded-lg bg-white/10 text-white hover:bg-white/20 text-xs px-2 font-bold"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                  <div className="p-2 grid grid-cols-1 sm:grid-cols-2 gap-1.5 overflow-y-auto">
+                    {PASSION_DROPDOWN_ITEMS.map((item) => (
+                      <Link
+                        key={item.slug}
+                        href={item.slug.startsWith('?') ? `/${item.slug}` : `/${item.slug}`}
+                        onClick={() => setIsPassionsOpen(false)}
+                        className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-purple-50 border border-slate-100 transition-colors group"
+                      >
+                        <span className="text-xl p-1.5 rounded-lg bg-slate-50 group-hover:bg-white shadow-2xs shrink-0">
+                          {item.icon}
+                        </span>
+                        <div className="min-w-0 flex-1">
+                          <p className="text-xs font-bold text-slate-900 group-hover:text-purple-950 truncate">{item.label}</p>
+                          <p className="text-[10px] text-slate-500 truncate">{item.desc}</p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
 
-          <Link
-            href="/amantes-del-cafe"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-slate-100 font-medium text-xs whitespace-nowrap shrink-0"
-          >
-            <span>☕</span>
-            <span>Café Barista</span>
-          </Link>
-
-          <Link
-            href="/mascotas"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-slate-100 font-medium text-xs whitespace-nowrap shrink-0"
-          >
-            <span>🐾</span>
-            <span>Mascotas</span>
-          </Link>
-
-          <Link
-            href="/automovil"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-slate-100 font-medium text-xs whitespace-nowrap shrink-0"
-          >
-            <span>🚗</span>
-            <span>Automóvil</span>
-          </Link>
-
-          <Link
-            href="/ciclismo"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-slate-100 font-medium text-xs whitespace-nowrap shrink-0"
-          >
-            <span>🚴</span>
-            <span>Ciclismo</span>
-          </Link>
-
-          <Link
-            href="/?categoria=cartas-pokemon#catalogo-productos"
-            onClick={() => {
-              if (typeof window !== 'undefined') {
-                window.dispatchEvent(new CustomEvent('select-category', { detail: 'Cartas y Sobres Pokémon' }));
-              }
-            }}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-200 font-semibold text-xs whitespace-nowrap shrink-0"
-          >
-            <span>⚡</span>
-            <span>Pokémon</span>
-          </Link>
-
-          <Link
-            href="/navidad"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-emerald-200 font-semibold text-xs whitespace-nowrap shrink-0"
-          >
-            <span>🎄</span>
-            <span>Navidad</span>
-          </Link>
-
+          {/* 3. NAVIDAD & CARTA PAPÁ NOEL */}
           <Link
             href="/carta-papa-noel"
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-linear-to-r from-red-600/30 to-amber-500/30 border border-amber-400/50 text-amber-200 font-black text-xs whitespace-nowrap shrink-0 shadow-xs"
           >
             <span>🎅</span>
-            <span>Carta Papá Noel</span>
+            <span>Navidad & Carta</span>
           </Link>
 
+          {/* 4. TENDENCIAS & GTA 6 */}
           <Link
             href="/regalos-gta-6"
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-pink-500/25 to-cyan-500/25 border border-pink-400/50 text-pink-200 font-black text-xs whitespace-nowrap shrink-0 shadow-xs"
           >
             <span>🌴</span>
-            <span>GTA 6 / GTA VI</span>
+            <span>GTA 6</span>
           </Link>
         </div>
       </div>

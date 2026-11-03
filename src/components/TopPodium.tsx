@@ -24,6 +24,7 @@ interface TopPodiumProps {
   products: Product[];
   filterLabel?: string;
   isDark?: boolean;
+  showTable?: boolean;
 }
 
 // Helper to categorize product family to prevent duplicates (e.g. NEVER 2 headphones, 2 books, etc.)
@@ -48,7 +49,7 @@ function getProductFamily(p: Product): string {
   return (p.subcategory || p.category || 'other').toLowerCase();
 }
 
-export default function TopPodium({ products, filterLabel, isDark = false }: TopPodiumProps) {
+export default function TopPodium({ products, filterLabel, isDark = false, showTable = false }: TopPodiumProps) {
   const { formatPrice } = useCurrency();
   const { toggleItem, isItemInList } = useVoting();
   const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
@@ -604,8 +605,8 @@ export default function TopPodium({ products, filterLabel, isDark = false }: Top
         )}
       </div>
 
-      {/* SEO TOP 10 COMPARISON TABLE (Structured HTML <table> for Google Featured Snippets & AI Overview) */}
-      {top10ComparisonList.length >= 4 && (
+      {/* SEO TOP 10 COMPARISON TABLE (Optional, disabled by default to keep layout ultra-clean) */}
+      {showTable && top10ComparisonList.length >= 4 && (
         <div
           className={`mt-8 rounded-3xl border overflow-hidden shadow-md ${
             isDark ? 'bg-slate-900/95 border-slate-800 text-white' : 'bg-white border-slate-200/90 text-slate-900'

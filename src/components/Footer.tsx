@@ -41,20 +41,53 @@ export default function Footer({ currentTheme }: FooterProps) {
         </div>
 
         {/* 4 Columns Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-12">
           
           {/* Col 1: Brand */}
           <div className="space-y-3">
             <BrandLogo size="compact" showSubtitle={false} />
             <p className="text-xs text-slate-700 leading-relaxed">
-              La plataforma global de recomendaciones de regalos para todas las edades: bebés, niños, jóvenes y adultos (+18 años). Seleccionamos los productos mejor valorados con precios en Euros (€) y Dólares ($) y votación en grupo por WhatsApp.
+              La plataforma de ideas de regalos originales para todas las edades: bebés, niños, jóvenes y adultos (+18 años). Seleccionamos los productos mejor valorados con comparativas, precios actualizados y votación en grupo por WhatsApp.
             </p>
             <div className="text-[11px] text-slate-700 font-medium">
-              Hecho con <Heart className="w-3 h-3 text-rose-500 inline fill-rose-500" /> para que encuentres el regalo perfecto en segundos.
+              Hecho con <Heart className="w-3 h-3 text-rose-500 inline fill-rose-500" /> para encontrar el regalo perfecto en segundos.
             </div>
           </div>
 
-          {/* Col 2: Edades */}
+          {/* Col 2: Ocasiones y Fiestas (SEO Poderoso) */}
+          <div>
+            <span className="text-xs font-bold uppercase tracking-wider mb-3 block opacity-90 text-indigo-600">
+              Ocasiones & Fiestas
+            </span>
+            <ul className="space-y-2 text-xs opacity-80">
+              <li><Link href="/carta-papa-noel" className="hover:underline font-bold text-amber-700">🎅 Carta a Papá Noel (Oficial)</Link></li>
+              <li><Link href="/navidad" className="hover:underline font-bold text-emerald-700">🎄 Especial Navidad & Reyes Magos</Link></li>
+              <li><Link href="/#catalogo-productos" className="hover:underline">🎂 Regalos de Cumpleaños</Link></li>
+              <li><Link href="/votar" className="hover:underline font-bold text-purple-700">🗳️ Amigo Invisible & Votación en Grupo</Link></li>
+              <li><Link href="/fiesta-revelacion-genero" className="hover:underline">🎈 Baby Shower & Revelación Género</Link></li>
+              <li><Link href="/halloween" className="hover:underline">🎃 Regalos y Disfraces Halloween</Link></li>
+              <li><Link href="/regalos-gta-6" className="hover:underline font-bold text-pink-600">🌴 Regalos GTA 6 / GTA VI</Link></li>
+            </ul>
+          </div>
+
+          {/* Col 3: Pasiones y Hobbies */}
+          <div>
+            <span className="text-xs font-bold uppercase tracking-wider mb-3 block opacity-90 text-indigo-600">
+              Pasiones & Hobbies
+            </span>
+            <ul className="space-y-2 text-xs opacity-80">
+              <li><Link href="/motoristas" className="hover:underline">🏍️ Accesorios para Motoristas</Link></li>
+              <li><Link href="/gaming" className="hover:underline">🎮 Periféricos Gaming & Setup</Link></li>
+              <li><Link href="/amantes-del-cafe" className="hover:underline">☕ Especial Amantes del Café</Link></li>
+              <li><Link href="/mascotas" className="hover:underline">🐾 Lo Mejor para Mascotas</Link></li>
+              <li><Link href="/automovil" className="hover:underline">🚗 Gadgets para Automóvil</Link></li>
+              <li><Link href="/ciclismo" className="hover:underline">🚴 Equipamiento Ciclismo & MTB</Link></li>
+              <li><Link href="/?categoria=cartas-pokemon#catalogo-productos" className="hover:underline">⚡ Cartas y Sobres Pokémon</Link></li>
+              <li><Link href="/?categoria=figuras-anime#catalogo-productos" className="hover:underline">🎎 Figuras Anime y Colección</Link></li>
+            </ul>
+          </div>
+
+          {/* Col 4: Regalos por Edad */}
           <div>
             <span className="text-xs font-bold uppercase tracking-wider mb-3 block opacity-90 text-indigo-600">
               Regalos por Edad
@@ -68,47 +101,6 @@ export default function Footer({ currentTheme }: FooterProps) {
               <li><Link href="/jovenes-13-a-15-anos" className="hover:underline">Adolescentes (13 a 15 Años)</Link></li>
               <li><Link href="/jovenes-16-a-18-anos" className="hover:underline">Jóvenes (16 a 18 Años)</Link></li>
               <li><Link href="/adultos-mas-de-18-anos" className="hover:underline">Adultos (+18 Años)</Link></li>
-              <li><Link href="/fiesta-revelacion-genero" className="hover:underline">Baby Shower & Revelación Género</Link></li>
-            </ul>
-          </div>
-
-          {/* Col 3: Hubs Especializados */}
-          <div>
-            <span className="text-xs font-bold uppercase tracking-wider mb-3 block opacity-90 text-indigo-600">
-              Hubs Especializados
-            </span>
-            <ul className="space-y-2 text-xs opacity-80">
-              <li><Link href="/carta-papa-noel" className="hover:underline text-amber-700 font-bold">🎅 Carta a Papá Noel</Link></li>
-              <li><Link href="/regalos-gta-6" className="hover:underline text-pink-600 font-bold">🌴 Regalos GTA 6 / GTA VI</Link></li>
-              <li><Link href="/votar" className="hover:underline text-emerald-700 font-bold">🗳️ Votación de Regalos en Grupo</Link></li>
-              <li><Link href="/navidad" className="hover:underline">🎄 Especial Navidad & Reyes</Link></li>
-              <li><Link href="/motoristas" className="hover:underline">🏍️ Accesorios para Motoristas</Link></li>
-              <li><Link href="/automovil" className="hover:underline">🚗 Gadgets para Automóvil</Link></li>
-              <li><Link href="/gaming" className="hover:underline">🎮 Periféricos Gaming & Setup</Link></li>
-              <li><Link href="/ciclismo" className="hover:underline">🚴 Equipamiento Ciclismo & MTB</Link></li>
-              <li><Link href="/amantes-del-cafe" className="hover:underline">☕ Especial Amantes del Café</Link></li>
-              <li><Link href="/mascotas" className="hover:underline">🐾 Lo Mejor para Mascotas</Link></li>
-            </ul>
-          </div>
-
-          {/* Col 4: Confianza y Garantía */}
-          <div>
-            <span className="text-xs font-bold uppercase tracking-wider mb-3 block opacity-90 text-indigo-600">
-              Garantía de Compra
-            </span>
-            <ul className="space-y-2 text-xs opacity-80">
-              <li className="flex items-center gap-1.5">
-                <ShoppingBag className="w-3.5 h-3.5 text-amber-500" />
-                <span>Gestión directa por Amazon.es</span>
-              </li>
-              <li className="flex items-center gap-1.5">
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
-                <span>Devoluciones 30 días garantizadas</span>
-              </li>
-              <li className="flex items-center gap-1.5">
-                <TrendingUp className="w-3.5 h-3.5 text-indigo-500" />
-                <span>Precios actualizados en tiempo real</span>
-              </li>
             </ul>
           </div>
 

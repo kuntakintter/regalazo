@@ -11,7 +11,7 @@ import { useCurrency } from '@/context/CurrencyContext';
 import { useVoting } from '@/context/VotingContext';
 import { Product } from '@/data/products';
 import { getAmazonSearchUrl } from '@/lib/amazon';
-import { AmazonLiveItem, AGE_DROPDOWN_ITEMS } from '@/components/HeaderMobile';
+import { AmazonLiveItem, AGE_DROPDOWN_ITEMS, PASSION_DROPDOWN_ITEMS } from '@/components/HeaderMobile';
 
 interface HeaderDesktopProps {
   searchQuery: string;
@@ -41,8 +41,10 @@ export default function HeaderDesktop({
   const { formatPrice } = useCurrency();
   const { voteItems, setIsDrawerOpen } = useVoting();
   const [isAgesOpen, setIsAgesOpen] = useState(false);
+  const [isPassionsOpen, setIsPassionsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const agesDropdownRef = useRef<HTMLDivElement>(null);
+  const passionsDropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -51,6 +53,9 @@ export default function HeaderDesktop({
       }
       if (agesDropdownRef.current && !agesDropdownRef.current.contains(event.target as Node)) {
         setIsAgesOpen(false);
+      }
+      if (passionsDropdownRef.current && !passionsDropdownRef.current.contains(event.target as Node)) {
+        setIsPassionsOpen(false);
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
@@ -427,102 +432,87 @@ export default function HeaderDesktop({
               )}
             </div>
 
-            <Link
-              href="/motoristas"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/25 text-slate-100 hover:text-white font-medium text-xs tracking-wide transition-all shadow-2xs whitespace-nowrap shrink-0 hover:scale-102 active:scale-98"
-            >
-              <span>🏍️</span>
-              <span>Motoristas</span>
-            </Link>
+            {/* 2. DROPDOWN PASIONES Y HOBBIES */}
+            <div className="relative shrink-0" ref={passionsDropdownRef}>
+              <button
+                type="button"
+                onClick={() => setIsPassionsOpen(!isPassionsOpen)}
+                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border text-xs tracking-wide transition-all shadow-2xs cursor-pointer select-none whitespace-nowrap shrink-0 hover:scale-102 active:scale-98 ${
+                  isPassionsOpen
+                    ? 'bg-purple-500/25 border-purple-400 text-white ring-1 ring-purple-400/50'
+                    : 'bg-white/5 hover:bg-white/15 border-white/10 hover:border-white/25 text-slate-100 hover:text-white font-medium'
+                }`}
+              >
+                <span>🎯</span>
+                <span className="font-semibold">Pasiones & Hobbies</span>
+                <ChevronDown
+                  className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                    isPassionsOpen ? 'rotate-180 text-purple-300' : 'text-slate-400'
+                  }`}
+                />
+              </button>
 
-            <Link
-              href="/gaming"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/25 text-slate-100 hover:text-white font-medium text-xs tracking-wide transition-all shadow-2xs whitespace-nowrap shrink-0 hover:scale-102 active:scale-98"
-            >
-              <span>🎮</span>
-              <span>Gaming</span>
-            </Link>
+              {isPassionsOpen && (
+                <div className="absolute left-0 top-full mt-2 w-[460px] bg-white rounded-2xl shadow-2xl border border-slate-200 z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+                  <div className="p-3 bg-linear-to-r from-purple-900 to-indigo-900 text-white flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">🎯</span>
+                      <div>
+                        <h3 className="font-extrabold text-sm leading-none">Pasiones y Aficiones</h3>
+                        <p className="text-[10px] text-purple-200/80 mt-0.5">Encuentra el regalo según lo que más le gusta</p>
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setIsPassionsOpen(false)}
+                      className="text-xs font-bold text-purple-200 hover:text-white p-1"
+                    >
+                      ✕
+                    </button>
+                  </div>
 
-            <Link
-              href="/amantes-del-cafe"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/25 text-slate-100 hover:text-white font-medium text-xs tracking-wide transition-all shadow-2xs whitespace-nowrap shrink-0 hover:scale-102 active:scale-98"
-            >
-              <span>☕</span>
-              <span>Café Barista</span>
-            </Link>
+                  <div className="p-3 grid grid-cols-2 gap-2 max-h-[70vh] overflow-y-auto">
+                    {PASSION_DROPDOWN_ITEMS.map((item) => (
+                      <Link
+                        key={item.slug}
+                        href={item.slug.startsWith('?') ? `/${item.slug}` : `/${item.slug}`}
+                        onClick={() => setIsPassionsOpen(false)}
+                        className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-purple-50/70 border border-slate-100 hover:border-purple-200 transition-all group cursor-pointer"
+                      >
+                        <span className="text-xl p-1.5 rounded-lg bg-slate-50 group-hover:bg-white group-hover:scale-110 transition-transform shrink-0 shadow-2xs">
+                          {item.icon}
+                        </span>
+                        <div className="min-w-0 flex-1">
+                          <span className="text-xs font-bold text-slate-900 group-hover:text-purple-950 truncate block">
+                            {item.label}
+                          </span>
+                          <p className="text-[10px] text-slate-500 group-hover:text-slate-600 line-clamp-1 mt-0.5">
+                            {item.desc}
+                          </p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
 
-            <Link
-              href="/mascotas"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/25 text-slate-100 hover:text-white font-medium text-xs tracking-wide transition-all shadow-2xs whitespace-nowrap shrink-0 hover:scale-102 active:scale-98"
-            >
-              <span>🐾</span>
-              <span>Mascotas</span>
-            </Link>
-
-            <Link
-              href="/automovil"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/25 text-slate-100 hover:text-white font-medium text-xs tracking-wide transition-all shadow-2xs whitespace-nowrap shrink-0 hover:scale-102 active:scale-98"
-            >
-              <span>🚗</span>
-              <span>Automóvil</span>
-            </Link>
-
-            <Link
-              href="/ciclismo"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/25 text-slate-100 hover:text-white font-medium text-xs tracking-wide transition-all shadow-2xs whitespace-nowrap shrink-0 hover:scale-102 active:scale-98"
-            >
-              <span>🚴</span>
-              <span>Ciclismo</span>
-            </Link>
-
-            <Link
-              href="/?categoria=cartas-pokemon#catalogo-productos"
-              onClick={() => {
-                if (typeof window !== 'undefined') {
-                  window.dispatchEvent(new CustomEvent('select-category', { detail: 'Cartas y Sobres Pokémon' }));
-                }
-              }}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-400/10 hover:bg-amber-400/20 border border-amber-400/30 hover:border-amber-400/50 text-amber-200 hover:text-amber-100 font-semibold text-xs tracking-wide transition-all shadow-2xs whitespace-nowrap shrink-0 hover:scale-102 active:scale-98"
-            >
-              <span>⚡</span>
-              <span>Pokémon</span>
-            </Link>
-
-            <Link
-              href="/?categoria=figuras-anime#catalogo-productos"
-              onClick={() => {
-                if (typeof window !== 'undefined') {
-                  window.dispatchEvent(new CustomEvent('select-category', { detail: 'Figuras de Colección y Cine' }));
-                }
-              }}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/25 text-slate-100 hover:text-white font-medium text-xs tracking-wide transition-all shadow-2xs whitespace-nowrap shrink-0 hover:scale-102 active:scale-98"
-            >
-              <span>🎎</span>
-              <span>Figuras & Anime</span>
-            </Link>
-
-            <Link
-              href="/navidad"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-400/30 hover:border-emerald-400/50 text-emerald-200 hover:text-emerald-100 font-semibold text-xs tracking-wide transition-all shadow-2xs whitespace-nowrap shrink-0 hover:scale-102 active:scale-98"
-            >
-              <span>🎄</span>
-              <span>Navidad & Reyes</span>
-            </Link>
-
+            {/* 3. NAVIDAD & CARTA PAPÁ NOEL */}
             <Link
               href="/carta-papa-noel"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-linear-to-r from-red-600/30 to-amber-500/30 hover:from-red-600/40 hover:to-amber-500/40 border border-amber-400/50 text-amber-200 hover:text-white font-black text-xs tracking-wide transition-all shadow-md whitespace-nowrap shrink-0 hover:scale-105 active:scale-98 ring-1 ring-amber-400/30"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-linear-to-r from-red-600/30 to-amber-500/30 hover:from-red-600/40 hover:to-amber-500/40 border border-amber-400/50 text-amber-200 hover:text-white font-black text-xs tracking-wide transition-all shadow-md whitespace-nowrap shrink-0 hover:scale-105 active:scale-98 ring-1 ring-amber-400/30"
             >
               <span>🎅</span>
-              <span>Carta a Papá Noel</span>
+              <span>Navidad & Carta</span>
             </Link>
 
+            {/* 4. TENDENCIAS & GTA 6 */}
             <Link
               href="/regalos-gta-6"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-pink-500/25 via-purple-500/25 to-cyan-500/25 hover:from-pink-500/40 hover:to-cyan-500/40 border border-pink-400/50 hover:border-pink-300 text-pink-200 hover:text-white font-black text-xs tracking-wide transition-all shadow-md whitespace-nowrap shrink-0 hover:scale-105 active:scale-98 ring-1 ring-pink-400/30"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-pink-500/25 via-purple-500/25 to-cyan-500/25 hover:from-pink-500/40 hover:to-cyan-500/40 border border-pink-400/50 hover:border-pink-300 text-pink-200 hover:text-white font-black text-xs tracking-wide transition-all shadow-md whitespace-nowrap shrink-0 hover:scale-105 active:scale-98 ring-1 ring-pink-400/30"
             >
               <span>🌴</span>
-              <span>GTA 6 / GTA VI</span>
+              <span>GTA 6</span>
             </Link>
 
           </div>
