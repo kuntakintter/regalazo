@@ -313,21 +313,21 @@ export default function HeaderMobile({
         </div>
       </div>
 
-      {/* 2. SUB-NAV MENÚ MÓVIL (DESPLAZABLE HORIZONTALMENTE) */}
+      {/* 2. SUB-NAV MENÚ MÓVIL (2 BOTONES HERO: EDADES Y PASIONES) */}
       <div className="bg-[#1f2833] text-white border-t border-slate-700/60 shadow-inner px-3 py-2">
-        <div className="flex items-center justify-start gap-2.5 overflow-x-auto scrollbar-none text-xs">
-          {/* Dropdown Por Edades */}
-          <div ref={agesDropdownRef} className="relative shrink-0">
+        <div className="grid grid-cols-2 gap-2.5 w-full text-xs">
+          {/* 1. Dropdown Por Edades */}
+          <div ref={agesDropdownRef} className="relative w-full">
             <button
               type="button"
               onClick={() => setIsAgesOpen((prev) => !prev)}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all whitespace-nowrap shadow-2xs ${
+              className={`w-full flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-black transition-all shadow-xs cursor-pointer ${
                 isAgesOpen
                   ? 'bg-[#febd69] text-slate-950 shadow-md ring-2 ring-amber-300/40'
-                  : 'bg-amber-400/15 text-amber-300 border border-amber-400/30'
+                  : 'bg-amber-400/15 text-amber-300 border border-amber-400/30 active:bg-amber-400/25'
               }`}
             >
-              <span>🎁</span>
+              <span className="text-sm">🎁</span>
               <span>Por Edades</span>
               <ChevronDown
                 className={`w-3.5 h-3.5 transition-transform duration-200 ${
@@ -386,18 +386,18 @@ export default function HeaderMobile({
             )}
           </div>
 
-          {/* 2. DROPDOWN PASIONES Y HOBBIES */}
-          <div className="relative shrink-0" ref={passionsDropdownRef}>
+          {/* 2. Dropdown Pasiones y Hobbies */}
+          <div className="relative w-full" ref={passionsDropdownRef}>
             <button
               type="button"
               onClick={() => setIsPassionsOpen(!isPassionsOpen)}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-semibold whitespace-nowrap transition-all shadow-xs ${
+              className={`w-full flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl border text-xs font-black transition-all shadow-xs cursor-pointer ${
                 isPassionsOpen
                   ? 'bg-purple-500/25 border-purple-400 text-white ring-1 ring-purple-400/50'
-                  : 'bg-white/5 border-white/10 text-slate-100 hover:bg-white/10'
+                  : 'bg-white/5 border-white/10 text-slate-100 hover:bg-white/10 active:bg-white/20'
               }`}
             >
-              <span>🎯</span>
+              <span className="text-sm">🎯</span>
               <span>Pasiones & Hobbies</span>
               <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isPassionsOpen ? 'rotate-180' : ''}`} />
             </button>
@@ -447,24 +447,6 @@ export default function HeaderMobile({
               </>
             )}
           </div>
-
-          {/* 3. TENDENCIAS & GTA 6 */}
-          <Link
-            href="/regalos-gta-6"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-pink-500/25 to-cyan-500/25 border border-pink-400/50 text-pink-200 font-black text-xs whitespace-nowrap shrink-0 shadow-xs"
-          >
-            <span>🌴</span>
-            <span>GTA 6</span>
-          </Link>
-
-          {/* 4. NAVIDAD & CARTA PAPÁ NOEL */}
-          <Link
-            href="/carta-papa-noel"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-linear-to-r from-red-600/30 to-amber-500/30 border border-amber-400/50 text-amber-200 font-black text-xs whitespace-nowrap shrink-0 shadow-xs"
-          >
-            <span>🎅</span>
-            <span>Navidad & Carta</span>
-          </Link>
         </div>
       </div>
     </div>
