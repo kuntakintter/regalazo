@@ -9,7 +9,6 @@ import SeoFaq from '@/components/SeoFaq';
 import AmazonLiveSearchCard from '@/components/AmazonLiveSearchCard';
 import AmazonGridDiscoveryCard from '@/components/AmazonGridDiscoveryCard';
 import ThemeAtmosphere from '@/components/ThemeAtmosphere';
-import SocialShareBar from '@/components/SocialShareBar';
 import TopPodium from '@/components/TopPodium';
 import AgeStageInterlinking from '@/components/AgeStageInterlinking';
 import ExpertBuyerTips from '@/components/ExpertBuyerTips';
@@ -315,9 +314,6 @@ export default async function AgeLandingPage({ params }: PageProps) {
             </span>
           </div>
         </section>
-
-        {/* SOCIAL SHARE WIDGET */}
-        <SocialShareBar />
 
         {/* PRODUCTS GRID */}
         <section className="mb-14">

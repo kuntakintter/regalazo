@@ -15,7 +15,6 @@ import SeoFaq from '@/components/SeoFaq';
 import ThemeAtmosphere from '@/components/ThemeAtmosphere';
 import AmazonLiveSearchCard from '@/components/AmazonLiveSearchCard';
 import AmazonGridDiscoveryCard from '@/components/AmazonGridDiscoveryCard';
-import SocialShareBar from '@/components/SocialShareBar';
 import ChristmasCountdown from '@/components/ChristmasCountdown';
 import { useCurrency } from '@/context/CurrencyContext';
 import { PRODUCTS, AGE_CATEGORIES, GENERAL_CATEGORY_MAPPING, Product, CLOTHING_SUBFILTERS, isClothingCategory, ANIME_SERIES_SUBFILTERS, isFiguresCategory, WHEELS_MOTOR_SUBFILTERS, isWheelsMotorCategory } from '@/data/products';
@@ -1070,9 +1069,6 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
           onClose={() => setIsAiModalOpen(false)}
           onApplyRecommendation={handleApplyRecommendation}
         />
-
-        {/* SOCIAL SHARE WIDGET */}
-        <SocialShareBar />
 
         {/* BLACK FRIDAY & CHOLLOS 2026 HIGH-CONVERTING ACTION BAR */}
         <section aria-label="Especial Black Friday y Chollos" className="my-6">

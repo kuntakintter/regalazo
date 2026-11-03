@@ -8,7 +8,6 @@ import LiveAmazonProductCard from '@/components/LiveAmazonProductCard';
 import AmazonLiveSearchCard from '@/components/AmazonLiveSearchCard';
 import AmazonGridDiscoveryCard from '@/components/AmazonGridDiscoveryCard';
 import ThemeAtmosphere from '@/components/ThemeAtmosphere';
-import SocialShareBar from '@/components/SocialShareBar';
 import TopPodium from '@/components/TopPodium';
 import {
   MOTORISTA_PRODUCTS,
@@ -276,9 +275,6 @@ export default function MotoristasPage() {
             </span>
           </div>
         </section>
-
-        {/* SOCIAL SHARE WIDGET */}
-        <SocialShareBar />
 
         {/* MOTORISTA FILTER BAR */}
         <div className="bg-white rounded-3xl border border-slate-200 p-5 sm:p-6 mb-8 shadow-xs">
