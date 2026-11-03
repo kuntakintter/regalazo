@@ -1158,7 +1158,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
         <div id="catalogo-productos" className="pt-2">
           {/* Unified Compact Control Bar: Title, Count, Budget Pills & Sorting */}
           <div className="bg-white border border-slate-200/90 rounded-2xl p-3.5 sm:p-4 shadow-xs mb-6">
-            <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-100">
+            <div className={`flex flex-wrap items-center justify-between gap-3 ${!showAdvancedFilters ? 'pb-3 border-b border-slate-100' : ''}`}>
               <div className="flex items-center gap-2.5">
                 <span className="w-2 h-6 rounded-full bg-amber-500 shrink-0"></span>
                 <div>
@@ -1214,83 +1214,85 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
               </div>
             </div>
 
-            {/* Quick Budget Pills directly visible in the bar */}
-            <div className="pt-3 flex items-center justify-between gap-2 overflow-x-auto scrollbar-none">
-              <div className="flex items-center gap-1.5 text-xs shrink-0">
-                <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mr-1">
-                  Presupuesto:
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setSelectedPrice('all')}
-                  className={`px-2.5 py-1 rounded-lg text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
-                    selectedPrice === 'all'
-                      ? 'bg-slate-900 text-white'
-                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-                  }`}
-                >
-                  Todos
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setSelectedPrice('<15')}
-                  className={`px-2.5 py-1 rounded-lg text-xs font-bold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1 ${
-                    selectedPrice === '<15'
-                      ? 'bg-emerald-600 text-white'
-                      : 'bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border border-emerald-200/80'
-                  }`}
-                >
-                  <span>🟢</span>
-                  <span>Hasta 15 €</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setSelectedPrice('15-30')}
-                  className={`px-2.5 py-1 rounded-lg text-xs font-bold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1 ${
-                    selectedPrice === '15-30'
-                      ? 'bg-amber-500 text-slate-950'
-                      : 'bg-amber-50 text-amber-800 hover:bg-amber-100 border border-amber-200/80'
-                  }`}
-                >
-                  <span>🟡</span>
-                  <span>15 € a 30 €</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setSelectedPrice('30-60')}
-                  className={`px-2.5 py-1 rounded-lg text-xs font-bold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1 ${
-                    selectedPrice === '30-60'
-                      ? 'bg-purple-600 text-white'
-                      : 'bg-purple-50 text-purple-800 hover:bg-purple-100 border border-purple-200/80'
-                  }`}
-                >
-                  <span>🟣</span>
-                  <span>30 € a 60 €</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setSelectedPrice('>60')}
-                  className={`px-2.5 py-1 rounded-lg text-xs font-bold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1 ${
-                    selectedPrice === '>60'
-                      ? 'bg-indigo-600 text-white'
-                      : 'bg-indigo-50 text-indigo-800 hover:bg-indigo-100 border border-indigo-200/80'
-                  }`}
-                >
-                  <span>💎</span>
-                  <span>Más de 60 €</span>
-                </button>
-              </div>
+            {/* Quick Budget Pills directly visible in the bar only when advanced filters are closed */}
+            {!showAdvancedFilters && (
+              <div className="pt-3 flex items-center justify-between gap-2 overflow-x-auto scrollbar-none">
+                <div className="flex items-center gap-1.5 text-xs shrink-0">
+                  <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mr-1">
+                    Presupuesto:
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedPrice('all')}
+                    className={`px-2.5 py-1 rounded-lg text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
+                      selectedPrice === 'all'
+                        ? 'bg-slate-900 text-white'
+                        : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                    }`}
+                  >
+                    Todos
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedPrice('<15')}
+                    className={`px-2.5 py-1 rounded-lg text-xs font-bold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1 ${
+                      selectedPrice === '<15'
+                        ? 'bg-emerald-600 text-white'
+                        : 'bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border border-emerald-200/80'
+                    }`}
+                  >
+                    <span>🟢</span>
+                    <span>Hasta 15 €</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedPrice('15-30')}
+                    className={`px-2.5 py-1 rounded-lg text-xs font-bold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1 ${
+                      selectedPrice === '15-30'
+                        ? 'bg-amber-500 text-slate-950'
+                        : 'bg-amber-50 text-amber-800 hover:bg-amber-100 border border-amber-200/80'
+                    }`}
+                  >
+                    <span>🟡</span>
+                    <span>15 € a 30 €</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedPrice('30-60')}
+                    className={`px-2.5 py-1 rounded-lg text-xs font-bold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1 ${
+                      selectedPrice === '30-60'
+                        ? 'bg-purple-600 text-white'
+                        : 'bg-purple-50 text-purple-800 hover:bg-purple-100 border border-purple-200/80'
+                    }`}
+                  >
+                    <span>🟣</span>
+                    <span>30 € a 60 €</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedPrice('>60')}
+                    className={`px-2.5 py-1 rounded-lg text-xs font-bold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1 ${
+                      selectedPrice === '>60'
+                        ? 'bg-indigo-600 text-white'
+                        : 'bg-indigo-50 text-indigo-800 hover:bg-indigo-100 border border-indigo-200/80'
+                    }`}
+                  >
+                    <span>💎</span>
+                    <span>Más de 60 €</span>
+                  </button>
+                </div>
 
-              {selectedPrice !== 'all' && (
-                <button
-                  type="button"
-                  onClick={() => setSelectedPrice('all')}
-                  className="text-[11px] font-bold text-rose-600 hover:underline cursor-pointer shrink-0 ml-auto"
-                >
-                  ✕ Quitar filtro
-                </button>
-              )}
-            </div>
+                {selectedPrice !== 'all' && (
+                  <button
+                    type="button"
+                    onClick={() => setSelectedPrice('all')}
+                    className="text-[11px] font-bold text-rose-600 hover:underline cursor-pointer shrink-0 ml-auto"
+                  >
+                    ✕ Quitar filtro
+                  </button>
+                )}
+              </div>
+            )}
           </div>
 
           {/* COLLAPSIBLE ADVANCED FILTER BAR */}
