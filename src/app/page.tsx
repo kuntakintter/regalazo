@@ -16,7 +16,6 @@ import ThemeAtmosphere from '@/components/ThemeAtmosphere';
 import AmazonLiveSearchCard from '@/components/AmazonLiveSearchCard';
 import AmazonGridDiscoveryCard from '@/components/AmazonGridDiscoveryCard';
 import SocialShareBar from '@/components/SocialShareBar';
-import TopPodium from '@/components/TopPodium';
 import ChristmasCountdown from '@/components/ChristmasCountdown';
 import { useCurrency } from '@/context/CurrencyContext';
 import { PRODUCTS, AGE_CATEGORIES, GENERAL_CATEGORY_MAPPING, Product, CLOTHING_SUBFILTERS, isClothingCategory, ANIME_SERIES_SUBFILTERS, isFiguresCategory, WHEELS_MOTOR_SUBFILTERS, isWheelsMotorCategory } from '@/data/products';
@@ -1127,45 +1126,146 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
           </div>
         </section>
 
-        {/* CATALOG SECTION WITH COLLAPSIBLE MANUAL FILTERS */}
+        {/* CATALOG SECTION: STREAMLINED FILTER & PRODUCT SHOWCASE */}
         <div id="catalogo-productos" className="pt-2">
-          {/* Header Row: Result count & Toggle Manual Filters */}
-          <div className="flex flex-wrap items-center justify-between gap-4 mb-4 pb-3 border-b border-slate-200/80">
-            <div className="flex items-center gap-3">
-              <span className="w-2 h-7 rounded-full bg-amber-500 shrink-0"></span>
-              <div>
-                <h2 className="text-lg sm:text-xl font-black text-slate-900 tracking-tight flex items-center gap-2">
-                  <span>Catálogo de Regalos</span>
-                  {searchQuery.trim() && (
-                    <span className="text-xs font-bold text-amber-900 bg-amber-100 border border-amber-200 px-2 py-0.5 rounded-full">
-                      Buscando: &quot;{searchQuery}&quot;
+          {/* Unified Compact Control Bar: Title, Count, Budget Pills & Sorting */}
+          <div className="bg-white border border-slate-200/90 rounded-2xl p-3.5 sm:p-4 shadow-xs mb-6">
+            <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-100">
+              <div className="flex items-center gap-2.5">
+                <span className="w-2 h-6 rounded-full bg-amber-500 shrink-0"></span>
+                <div>
+                  <h2 className="text-base sm:text-lg font-black text-slate-900 tracking-tight flex items-center gap-2">
+                    <span>
+                      {selectedCategory !== 'all'
+                        ? selectedCategory
+                        : selectedAge !== 'all'
+                        ? (currentAgeMeta?.label || selectedAge)
+                        : 'Catálogo de Regalos'}
                     </span>
-                  )}
-                </h2>
-                <p className="text-xs text-slate-700 font-medium">
-                  Mostrando <strong className="text-slate-900 font-bold">{filteredProducts.length + liveAmazonProducts.length}</strong> regalos verificados con opiniones reales
-                </p>
+                    {searchQuery.trim() && (
+                      <span className="text-[11px] font-bold text-amber-900 bg-amber-100 border border-amber-200 px-2 py-0.5 rounded-full">
+                        &ldquo;{searchQuery}&rdquo;
+                      </span>
+                    )}
+                  </h2>
+                  <p className="text-[11px] text-slate-500">
+                    <strong className="text-slate-900 font-bold">{filteredProducts.length + liveAmazonProducts.length}</strong> regalos seleccionados por valoraciones en Amazon
+                  </p>
+                </div>
+              </div>
+
+              {/* Sorting & Filter toggle */}
+              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1">
+                  <span className="text-[11px] text-slate-500 font-bold">Ordenar:</span>
+                  <select
+                    value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value as any)}
+                    aria-label="Ordenar productos"
+                    className="text-xs font-bold text-slate-800 bg-transparent focus:outline-hidden cursor-pointer"
+                  >
+                    <option value="featured">Recomendados (Top)</option>
+                    <option value="price-asc">Precio: Menor a mayor</option>
+                    <option value="price-desc">Precio: Mayor a menor</option>
+                    <option value="rating">Mejor valorados (5★)</option>
+                  </select>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setShowAdvancedFilters((prev) => !prev)}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1 text-xs font-bold rounded-xl border transition-all cursor-pointer ${
+                    showAdvancedFilters
+                      ? 'bg-amber-100 text-amber-950 border-amber-300'
+                      : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'
+                  }`}
+                >
+                  <SlidersHorizontal className="w-3.5 h-3.5 text-amber-600" />
+                  <span className="hidden sm:inline">{showAdvancedFilters ? 'Ocultar filtros' : 'Más filtros'}</span>
+                </button>
               </div>
             </div>
 
-            <button
-              type="button"
-              onClick={() => setShowAdvancedFilters((prev) => !prev)}
-              className={`inline-flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-xl border transition-all cursor-pointer shadow-xs ${
-                showAdvancedFilters || (selectedAge !== 'all' || selectedCategory !== 'all' || selectedGender !== 'all' || selectedPrice !== 'all')
-                  ? 'bg-amber-50 border-amber-300 text-amber-950 hover:bg-amber-100'
-                  : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50'
-              }`}
-            >
-              <SlidersHorizontal className="w-3.5 h-3.5 text-amber-600" />
-              <span>{showAdvancedFilters ? 'Ocultar filtros manuales' : 'Filtros manuales (edad, categoría...)'}</span>
-              {(selectedAge !== 'all' || selectedCategory !== 'all' || selectedGender !== 'all' || selectedPrice !== 'all') && (
-                <span className="w-2 h-2 rounded-full bg-amber-600 animate-pulse"></span>
+            {/* Quick Budget Pills directly visible in the bar */}
+            <div className="pt-3 flex items-center justify-between gap-2 overflow-x-auto scrollbar-none">
+              <div className="flex items-center gap-1.5 text-xs shrink-0">
+                <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mr-1">
+                  Presupuesto:
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setSelectedPrice('all')}
+                  className={`px-2.5 py-1 rounded-lg text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
+                    selectedPrice === 'all'
+                      ? 'bg-slate-900 text-white'
+                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                  }`}
+                >
+                  Todos
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedPrice('<15')}
+                  className={`px-2.5 py-1 rounded-lg text-xs font-bold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1 ${
+                    selectedPrice === '<15'
+                      ? 'bg-emerald-600 text-white'
+                      : 'bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border border-emerald-200/80'
+                  }`}
+                >
+                  <span>🟢</span>
+                  <span>Hasta 15 €</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedPrice('15-30')}
+                  className={`px-2.5 py-1 rounded-lg text-xs font-bold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1 ${
+                    selectedPrice === '15-30'
+                      ? 'bg-amber-500 text-slate-950'
+                      : 'bg-amber-50 text-amber-800 hover:bg-amber-100 border border-amber-200/80'
+                  }`}
+                >
+                  <span>🟡</span>
+                  <span>15 € a 30 €</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedPrice('30-60')}
+                  className={`px-2.5 py-1 rounded-lg text-xs font-bold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1 ${
+                    selectedPrice === '30-60'
+                      ? 'bg-purple-600 text-white'
+                      : 'bg-purple-50 text-purple-800 hover:bg-purple-100 border border-purple-200/80'
+                  }`}
+                >
+                  <span>🟣</span>
+                  <span>30 € a 60 €</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedPrice('>60')}
+                  className={`px-2.5 py-1 rounded-lg text-xs font-bold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1 ${
+                    selectedPrice === '>60'
+                      ? 'bg-indigo-600 text-white'
+                      : 'bg-indigo-50 text-indigo-800 hover:bg-indigo-100 border border-indigo-200/80'
+                  }`}
+                >
+                  <span>💎</span>
+                  <span>Más de 60 €</span>
+                </button>
+              </div>
+
+              {selectedPrice !== 'all' && (
+                <button
+                  type="button"
+                  onClick={() => setSelectedPrice('all')}
+                  className="text-[11px] font-bold text-rose-600 hover:underline cursor-pointer shrink-0 ml-auto"
+                >
+                  ✕ Quitar filtro
+                </button>
               )}
-            </button>
+            </div>
           </div>
 
-          {/* COLLAPSIBLE FILTER BAR */}
+          {/* COLLAPSIBLE ADVANCED FILTER BAR */}
           {showAdvancedFilters && (
             <div className="animate-in fade-in duration-200 mb-6">
               <FilterBar
@@ -1248,103 +1348,13 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
         {/* PRODUCTS GRID */}
         {filteredProducts.length > 0 ? (
           <>
-            {/* TOP 3 PODIUM RANKING */}
-            <TopPodium
-              products={sortedFilteredProducts}
-              filterLabel={
-                selectedCategory !== 'all'
-                  ? selectedCategory
-                  : selectedAge !== 'all'
-                  ? (currentAgeMeta?.label || selectedAge)
-                  : 'Catálogo General'
-              }
-            />
-
-            {/* QUICK BUDGET PILL FILTERS (DIRECTLY ABOVE PRODUCTS GRID) */}
-            <div className="my-5 flex flex-wrap items-center justify-between gap-3 p-3 sm:p-3.5 bg-white border border-slate-200/90 rounded-2xl shadow-xs">
-              <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none py-0.5">
-                <span className="text-xs font-black text-slate-800 uppercase tracking-wider mr-1.5 flex items-center gap-1">
-                  <span>💰</span>
-                  <span className="hidden sm:inline">Filtrar por</span> Presupuesto:
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setSelectedPrice('all')}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
-                    selectedPrice === 'all'
-                      ? 'bg-slate-900 text-white shadow-xs'
-                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-                  }`}
-                >
-                  Cualquier precio
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setSelectedPrice('<15')}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1 ${
-                    selectedPrice === '<15'
-                      ? 'bg-emerald-600 text-white shadow-xs'
-                      : 'bg-emerald-50 text-emerald-800 border border-emerald-200 hover:bg-emerald-100'
-                  }`}
-                >
-                  <span>🟢</span>
-                  <span>Hasta 15 €</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setSelectedPrice('15-30')}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1 ${
-                    selectedPrice === '15-30'
-                      ? 'bg-amber-500 text-slate-950 shadow-xs'
-                      : 'bg-amber-50 text-amber-800 border border-amber-200 hover:bg-amber-100'
-                  }`}
-                >
-                  <span>🟡</span>
-                  <span>15 € a 30 €</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setSelectedPrice('30-60')}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1 ${
-                    selectedPrice === '30-60'
-                      ? 'bg-purple-600 text-white shadow-xs'
-                      : 'bg-purple-50 text-purple-800 border border-purple-200 hover:bg-purple-100'
-                  }`}
-                >
-                  <span>🟣</span>
-                  <span>30 € a 60 €</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setSelectedPrice('>60')}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1 ${
-                    selectedPrice === '>60'
-                      ? 'bg-indigo-600 text-white shadow-xs'
-                      : 'bg-indigo-50 text-indigo-800 border border-indigo-200 hover:bg-indigo-100'
-                  }`}
-                >
-                  <span>💎</span>
-                  <span>Más de 60 €</span>
-                </button>
-              </div>
-
-              {selectedPrice !== 'all' && (
-                <button
-                  type="button"
-                  onClick={() => setSelectedPrice('all')}
-                  className="text-xs font-bold text-rose-600 hover:text-rose-800 hover:underline cursor-pointer ml-auto"
-                >
-                  ✕ Quitar filtro
-                </button>
-              )}
-            </div>
-
             <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 sm:gap-2.5 lg:gap-3 mb-12">
-              {sortedFilteredProducts.slice(0, visibleCount).map((product) => (
+              {sortedFilteredProducts.slice(0, visibleCount).map((product, idx) => (
                 <ProductCard
                   key={product.id}
                   product={product}
                   currentTheme="classic"
+                  rankBadge={sortBy === 'featured' ? (idx === 0 ? 1 : idx === 1 ? 2 : idx === 2 ? 3 : undefined) : undefined}
                 />
               ))}
 

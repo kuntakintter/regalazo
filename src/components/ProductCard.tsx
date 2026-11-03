@@ -11,9 +11,10 @@ import { Star, Heart, Share2, ShoppingBag, ChevronLeft, ChevronRight, ExternalLi
 interface ProductCardProps {
   product: Product;
   currentTheme?: string;
+  rankBadge?: 1 | 2 | 3;
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product, rankBadge }: ProductCardProps) {
   const { formatPrice } = useCurrency();
   const { toggleItem, isItemInList } = useVoting();
   const isInVote = isItemInList(product.id);
@@ -66,8 +67,45 @@ export default function ProductCard({ product }: ProductCardProps) {
     setActiveImgIndex((prev) => (prev < imagesList.length - 1 ? prev + 1 : 0));
   };
 
+  const isGold = rankBadge === 1;
+  const isSilver = rankBadge === 2;
+  const isBronze = rankBadge === 3;
+
   return (
-    <article className="group flex flex-col justify-between p-2.5 sm:p-3 rounded-2xl bg-white border border-slate-300 hover:border-slate-400 shadow-xs hover:shadow-md transition-all duration-200 relative">
+    <article
+      className={`group flex flex-col justify-between p-2.5 sm:p-3 rounded-2xl bg-white transition-all duration-200 relative ${
+        isGold
+          ? 'border-2 border-amber-400 shadow-md ring-2 ring-amber-400/20 hover:border-amber-500'
+          : isSilver
+          ? 'border-2 border-slate-300 shadow-md ring-2 ring-slate-300/30 hover:border-slate-400'
+          : isBronze
+          ? 'border-2 border-amber-700/60 shadow-md ring-2 ring-amber-700/20 hover:border-amber-700'
+          : 'border border-slate-300 hover:border-slate-400 shadow-xs hover:shadow-md'
+      }`}
+    >
+      {/* Top 1, 2, 3 Luxury Medal Badge */}
+      {rankBadge && (
+        <div className="absolute -top-2.5 left-3 z-30 select-none">
+          {isGold && (
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-black tracking-wider uppercase bg-linear-to-r from-amber-400 via-yellow-300 to-amber-500 text-slate-950 shadow-md ring-1 ring-amber-500/50">
+              <span>🥇</span>
+              <span>Nº1 TOP VENTAS</span>
+            </span>
+          )}
+          {isSilver && (
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-black tracking-wider uppercase bg-linear-to-r from-slate-200 via-gray-100 to-slate-300 text-slate-900 shadow-md ring-1 ring-slate-400/50">
+              <span>🥈</span>
+              <span>Nº2 CALIDAD/PRECIO</span>
+            </span>
+          )}
+          {isBronze && (
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-black tracking-wider uppercase bg-linear-to-r from-amber-700 via-amber-600 to-amber-800 text-white shadow-md ring-1 ring-amber-800/50">
+              <span>🥉</span>
+              <span>Nº3 MÁS ORIGINAL</span>
+            </span>
+          )}
+        </div>
+      )}
       {/* Product Image Viewport - Clean Amazon White Box */}
       <div className="relative aspect-square w-full mb-2 bg-slate-50/80 rounded-xl overflow-hidden p-2 flex items-center justify-center border border-slate-100">
         <a 
