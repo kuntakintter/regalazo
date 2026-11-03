@@ -315,7 +315,7 @@ export default function HeaderMobile({
 
       {/* 2. SUB-NAV MENÚ MÓVIL (DESPLAZABLE HORIZONTALMENTE) */}
       <div className="bg-[#1f2833] text-white border-t border-slate-700/60 shadow-inner px-3 py-2">
-        <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none text-xs">
+        <div className="flex items-center justify-center gap-2 overflow-x-auto scrollbar-none text-xs">
           {/* Dropdown Por Edades */}
           <div ref={agesDropdownRef} className="relative shrink-0">
             <button
@@ -448,22 +448,22 @@ export default function HeaderMobile({
             )}
           </div>
 
-          {/* 3. NAVIDAD & CARTA PAPÁ NOEL */}
-          <Link
-            href="/carta-papa-noel"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-linear-to-r from-red-600/30 to-amber-500/30 border border-amber-400/50 text-amber-200 font-black text-xs whitespace-nowrap shrink-0 shadow-xs"
-          >
-            <span>🎅</span>
-            <span>Navidad & Carta</span>
-          </Link>
-
-          {/* 4. TENDENCIAS & GTA 6 */}
+          {/* 3. TENDENCIAS & GTA 6 */}
           <Link
             href="/regalos-gta-6"
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-pink-500/25 to-cyan-500/25 border border-pink-400/50 text-pink-200 font-black text-xs whitespace-nowrap shrink-0 shadow-xs"
           >
             <span>🌴</span>
             <span>GTA 6</span>
+          </Link>
+
+          {/* 4. NAVIDAD & CARTA PAPÁ NOEL */}
+          <Link
+            href="/carta-papa-noel"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-linear-to-r from-red-600/30 to-amber-500/30 border border-amber-400/50 text-amber-200 font-black text-xs whitespace-nowrap shrink-0 shadow-xs"
+          >
+            <span>🎅</span>
+            <span>Navidad & Carta</span>
           </Link>
         </div>
       </div>
