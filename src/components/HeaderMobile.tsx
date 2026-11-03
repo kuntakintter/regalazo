@@ -321,16 +321,16 @@ export default function HeaderMobile({
             <button
               type="button"
               onClick={() => setIsAgesOpen((prev) => !prev)}
-              className={`w-full flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-black transition-all shadow-xs cursor-pointer ${
+              className={`w-full h-10 flex items-center justify-center gap-1.5 px-2 rounded-xl text-xs font-black transition-all shadow-xs cursor-pointer ${
                 isAgesOpen
                   ? 'bg-[#febd69] text-slate-950 shadow-md ring-2 ring-amber-300/40'
                   : 'bg-amber-400/15 text-amber-300 border border-amber-400/30 active:bg-amber-400/25'
               }`}
             >
-              <span className="text-sm">🎁</span>
-              <span>Por Edades</span>
+              <span className="text-sm shrink-0">🎁</span>
+              <span className="truncate">Por Edades</span>
               <ChevronDown
-                className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${
                   isAgesOpen ? 'rotate-180 text-slate-950' : 'text-amber-300/80'
                 }`}
               />
@@ -391,15 +391,15 @@ export default function HeaderMobile({
             <button
               type="button"
               onClick={() => setIsPassionsOpen(!isPassionsOpen)}
-              className={`w-full flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl border text-xs font-black transition-all shadow-xs cursor-pointer ${
+              className={`w-full h-10 flex items-center justify-center gap-1.5 px-2 rounded-xl border text-xs font-black transition-all shadow-xs cursor-pointer ${
                 isPassionsOpen
                   ? 'bg-purple-500/25 border-purple-400 text-white ring-1 ring-purple-400/50'
                   : 'bg-white/5 border-white/10 text-slate-100 hover:bg-white/10 active:bg-white/20'
               }`}
             >
-              <span className="text-sm">🎯</span>
-              <span>Pasiones & Hobbies</span>
-              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isPassionsOpen ? 'rotate-180' : ''}`} />
+              <span className="text-sm shrink-0">🎯</span>
+              <span className="truncate">Pasiones</span>
+              <ChevronDown className="w-3.5 h-3.5 shrink-0 transition-transform duration-200" />
             </button>
 
             {isPassionsOpen && (
