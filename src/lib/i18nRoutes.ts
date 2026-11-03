@@ -42,7 +42,7 @@ export const I18N_SEO_ROUTES: Record<string, I18nRouteConfig> = {
     title: 'A Good Gift 【2026】 What to Gift? Best Gift Ideas & Original Presents',
     description:
       'Looking for a good gift? Discover the best original gift ideas for babies, kids, teens, and adults in USD ($). Smart gift finder & WhatsApp group voting.',
-    h1: 'A Good Gift: Who do you want to surprise today?',
+    h1: 'Best Gift Ideas: What to Gift in 2026?',
     subtitle:
       'Type who you are buying for or what they love. Our smart gift finder recommends verified Amazon gift ideas by age, hobby, and budget in USD ($).',
     searchPlaceholder: 'E.g.: Gift for my gamer boyfriend, Star Wars, coffee lover, 6 year old girl...',
@@ -95,7 +95,7 @@ export const I18N_SEO_ROUTES: Record<string, I18nRouteConfig> = {
     title: 'A Good Gift UK 【2026】 What to Buy? Original Present Ideas & Group Voting',
     description:
       'Not sure what present to buy? Discover original gift ideas for babies, children, teenagers, and adults with real reviews and WhatsApp group gift voting.',
-    h1: 'A Good Gift: Find the Perfect Present in Seconds',
+    h1: 'Best Present Ideas UK: What to Buy in 2026?',
     subtitle:
       'Search by age, occasion, or hobby. Explore top-rated Amazon gift ideas for birthdays, Secret Santa, and Christmas with instant group voting.',
     searchPlaceholder: 'E.g.: Present for dad, gamer setup, barista coffee, 8 year old boy...',
@@ -139,7 +139,7 @@ export const I18N_SEO_ROUTES: Record<string, I18nRouteConfig> = {
     title: 'Un Buen Regalo 【2026】 ¿Qué Regalar? Ideas y Regalos Originales en Dólares ($)',
     description:
       '¿No sabes qué regalar? Encuentra en Un Buen Regalo las mejores ideas de regalo para bebés, niños, jóvenes y adultos con precios en dólares ($ USD) y votación en grupo.',
-    h1: '¿A quién quieres sorprender hoy con un buen regalo?',
+    h1: 'Ideas de Regalos Originales: ¿Qué Regalar en 2026? ($ USD)',
     subtitle:
       'Encuentra ideas de regalo verificadas en dólares ($ USD) para cumpleaños, amigo secreto, aniversario o Navidad, y vota en grupo por WhatsApp.',
     searchPlaceholder: 'Ej: Para mi novio gamer, cafeteras, niña de 6 años, regalo menos de $20...',
@@ -183,7 +183,7 @@ export const I18N_SEO_ROUTES: Record<string, I18nRouteConfig> = {
     title: 'Ein Gutes Geschenk 【2026】 Was Schenken? Originelle Geschenkideen',
     description:
       'Du weißt nicht, was du schenken sollst? Entdecke bei Ein Gutes Geschenk (Un Buen Regalo) originelle Geschenkideen für Babys, Kinder, Teenager und Erwachsene.',
-    h1: 'Ein Gutes Geschenk: Wen möchtest du heute überraschen?',
+    h1: 'Die besten Geschenkideen: Was schenken 2026?',
     subtitle:
       'Gib ein, wem du eine Freude machen möchtest. Unser intelligenter Geschenkefinder zeigt dir sofort die besten Amazon-Geschenkideen nach Alter und Budget.',
     searchPlaceholder: 'Z. B.: Geschenk für Freund, Gaming, Kaffeeliebhaber, Mädchen 6 Jahre...',
@@ -228,7 +228,7 @@ export const I18N_SEO_ROUTES: Record<string, I18nRouteConfig> = {
     title: 'Un Bon Cadeau 【2026】 Que Offrir ? Idées Cadeaux Originales pour Tous',
     description:
       'Vous ne savez pas quoi offrir ? Découvrez sur Un Bon Cadeau (Un Buen Regalo) les meilleures idées cadeaux pour bébés, enfants, ados et adultes avec vote en groupe.',
-    h1: 'Un Bon Cadeau : Qui voulez-vous surprendre aujourd’hui ?',
+    h1: 'Idées Cadeaux Originales : Que Choisir et Offrir en 2026 ?',
     subtitle:
       'Indiquez pour qui vous cherchez un cadeau ou ses passions. Notre moteur intelligent sélectionne les meilleures idées cadeaux vérifiées en quelques secondes.',
     searchPlaceholder: 'Ex : Cadeau pour mon copain gamer, amateur de café, fille 6 ans...',
@@ -273,7 +273,7 @@ export const I18N_SEO_ROUTES: Record<string, I18nRouteConfig> = {
     title: 'Un Buon Regalo 【2026】 Cosa Regalare? Idee Regalo Originali per Tutti',
     description:
       'Non sai cosa regalare? Scopri su Un Buon Regalo le migliori idee regalo originali per neonati, bambini, ragazzi e adulti con votazione di gruppo su WhatsApp.',
-    h1: 'Un Buon Regalo: Chi vuoi sorprendere oggi?',
+    h1: 'Idee Regalo Originali: Cosa Regalare nel 2026?',
     subtitle:
       'Scrivi per chi stai cercando un regalo o le sue passioni. Il nostro motore intelligente trova subito le migliori idee regalo verificate per ogni età e budget.',
     searchPlaceholder: 'Es: Regalo per fidanzato gamer, amante del caffè, bambina 6 anni...',
@@ -317,7 +317,7 @@ export const I18N_SEO_ROUTES: Record<string, I18nRouteConfig> = {
     title: 'Um Bom Presente 【2026】 O Que Dar de Presente? Ideias de Presentes Originais',
     description:
       'Não sabe o que dar de presente? Descubra em Um Bom Presente (Un Buen Regalo) as melhores ideias de presentes para bebés, crianças, jovens e adultos.',
-    h1: 'Um Bom Presente: Quem você quer surpreender hoje?',
+    h1: 'Ideias de Presentes Originais: O que Dar de Presente em 2026?',
     subtitle:
       'Pesquise por idade, orçamento ou paixão. Encontre presentes originais bem avaliados e organize votações de presentes em grupo pelo WhatsApp.',
     searchPlaceholder: 'Ex: Presente para namorado gamer, amante de café, criança 6 anos...',
@@ -361,7 +361,7 @@ export const I18N_SEO_ROUTES: Record<string, I18nRouteConfig> = {
     title: 'Хороший Подарок 【2026】 Что Подарить? Оригинальные Идеи Подарков',
     description:
       'Не знаете, что подарить? Откройте для себя лучшие идеи подарков для малышей, детей, подростков и взрослых с групповым голосованием в WhatsApp.',
-    h1: 'Хороший Подарок: Кого вы хотите удивить сегодня?',
+    h1: 'Оригинальные Идеи Подарков: Что Подарить в 2026 Году?',
     subtitle:
       'Введите, кому вы ищете подарок и чем он увлекается. Умный поиск мгновенно подберет проверенные идеи подарков по возрасту и бюджету в € или $.',
     searchPlaceholder: 'Например: подарок парню геймеру, любителю кофе, девочке 6 лет...',
@@ -405,7 +405,7 @@ export const I18N_SEO_ROUTES: Record<string, I18nRouteConfig> = {
     title: 'Een Goed Cadeau 【2026】 Wat te Geven? Originele Cadeau Ideeën',
     description:
       'Weet je niet wat je moet geven? Ontdek bij Een Goed Cadeau (Un Buen Regalo) originele cadeau-ideeën voor baby’s, kinderen, tieners en volwassenen.',
-    h1: 'Een Goed Cadeau: Wie wil jij vandaag verrassen?',
+    h1: 'Beste Cadeau Ideeën: Wat te Geven in 2026?',
     subtitle:
       'Zoek op leeftijd, hobby of budget en vind direct de best beoordeelde cadeaus met groepsstemmen via WhatsApp.',
     searchPlaceholder: 'Bijv.: Cadeau voor vriend, gamer, koffieliefhebber, meisje 6 jaar...',
@@ -434,7 +434,7 @@ export const I18N_SEO_ROUTES: Record<string, I18nRouteConfig> = {
     title: 'Dobry Prezent 【2026】 Co Kupić na Prezent? Oryginalne Pomysły na Prezent',
     description:
       'Nie wiesz, co kupić na prezent? Odkryj najlepsze pomysły na prezent dla niemowląt, dzieci, młodzieży i dorosłych oraz głosowanie grupowe na WhatsApp.',
-    h1: 'Dobry Prezent: Kogo chcesz dzisiaj zaskoczyć?',
+    h1: 'Najlepsze Pomysły na Prezent: Co Kupić w 2026 Roku?',
     subtitle:
       'Wpisz, dla kogo szukasz prezentu lub czym się pasjonuje. Nasza wyszukiwarka dopasuje najlepsze prezenty według wieku i budżetu.',
     searchPlaceholder: 'Np.: Prezent dla chłopaka gracza, miłośnika kawy, dziewczynki 6 lat...',
@@ -463,7 +463,7 @@ export const I18N_SEO_ROUTES: Record<string, I18nRouteConfig> = {
     title: '好礼物 【2026】 送什么礼物好？最佳创意礼物推荐与群组投票',
     description:
       '不知道送什么礼物好？在 Un Buen Regalo (好礼物) 探索适合婴儿、儿童、青少年和成人的高分创意礼物推荐，支持美元($)与欧元(€)及群组投票。',
-    h1: '好礼物：今天你想给谁一份惊喜？',
+    h1: '创意礼物推荐指南：2026年送什么礼物好？',
     subtitle: '输入收礼人或兴趣爱好，智能搜索引擎为您按年龄和预算推荐精选礼物（支持 $ USD / € EUR）。',
     searchPlaceholder: '例如：送游戏男友的礼物、咖啡爱好者、6岁女孩玩具...',
     seoSectionTitle: '送什么礼物好？全年龄段创意礼物挑选指南',
@@ -491,7 +491,7 @@ export const I18N_SEO_ROUTES: Record<string, I18nRouteConfig> = {
     title: '良いプレゼント 【2026】 何を贈る？おすすめのギフトアイデア＆グループ投票',
     description:
       'プレゼント選びに迷ったら！赤ちゃん、子供、ティーン、大人向けの人気ギフトアイデアを年齢・予算別に検索。グループ投票機能付き。',
-    h1: '良いプレゼント：今日は誰を驚かせたいですか？',
+    h1: '人気プレゼント特集：2026年に何を贈る？おすすめギフト',
     subtitle: '贈る相手や趣味を入力するだけで、年齢や予算（$ USD / € EUR）に合った高評価ギフトを瞬時に提案します。',
     searchPlaceholder: '例：ゲーマーの彼氏へのプレゼント、コーヒー好き、6歳の女の子...',
     seoSectionTitle: '何を贈る？年齢・趣味別おすすめプレゼント完全ガイド',
@@ -519,7 +519,7 @@ export const I18N_SEO_ROUTES: Record<string, I18nRouteConfig> = {
     title: 'هدية جيدة 【2026】 ماذا أهدي؟ أفضل أفكار الهدايا المبتكرة والتصويت الجماعي',
     description:
       'هل تحتار ماذا تهدي؟ اكتشف أفضل أفكار الهدايا للأطفال والشباب والكبار بالدولار ($) واليورو (€) مع ميزة التصويت الجماعي عبر واتساب.',
-    h1: 'هدية جيدة: من تريد أن تفاجئ اليوم؟',
+    h1: 'أفضل أفكار الهدايا: ماذا تهدي في 2026؟ هدايا مميزة',
     subtitle: 'ابحث حسب العمر أو الهواية أو الميزانية بالدولار ($) لاختيار الهدية المثالية في ثوانٍ.',
     searchPlaceholder: 'مثال: هدية لصديق يحب الألعاب، عشاق القهوة، طفل 6 سنوات...',
     seoSectionTitle: 'ماذا أهدي؟ دليلك الشامل لأفضل أفكار الهدايا لجميع الأعمار',
@@ -547,7 +547,7 @@ export const I18N_SEO_ROUTES: Record<string, I18nRouteConfig> = {
     title: 'Гарний Подарунок 【2026】 Що Подарувати? Оригінальні Ідеї Подарунків',
     description:
       'Не знаєте, що подарувати? Найкращі ідеї подарунків для малюків, дітей, підлітків і дорослих зі спільним голосуванням у WhatsApp.',
-    h1: 'Гарний Подарунок: Кого ви хочете здивувати сьогодні?',
+    h1: 'Найкращі Ідеї Подарунків: Що Подарувати у 2026 Році?',
     subtitle: 'Обирайте перевірені подарунки за віком, хобі та бюджетом у € або $ за лічені секунди.',
     searchPlaceholder: 'Наприклад: подарунок хлопцю геймеру, кавоману, дівчинці 6 років...',
     seoSectionTitle: 'Що Подарувати? Путівник Оригінальними Подарунками для Всіх',
@@ -575,7 +575,7 @@ export const I18N_SEO_ROUTES: Record<string, I18nRouteConfig> = {
     title: 'En Bra Present 【2026】 Vad Ska Man Ge i Present? Bästa Presenttipsen',
     description:
       'Vet du inte vad du ska ge i present? Upptäck originella presenttips för bebisar, barn, tonåringar och vuxna med gruppröstning på WhatsApp.',
-    h1: 'En Bra Present: Vem vill du överraska idag?',
+    h1: 'Bästa Presenttipsen: Vad Ska Man Ge i Present 2026?',
     subtitle: 'Sök efter ålder, intresse eller budget och hitta topprankade presenter direkt.',
     searchPlaceholder: 'T.ex.: Present till pojkvän, gamer, kaffeälskare, 6-åring...',
     seoSectionTitle: 'Vad Ska Man Ge i Present? Guide till Originella Presenttips',
@@ -603,7 +603,7 @@ export const I18N_SEO_ROUTES: Record<string, I18nRouteConfig> = {
     title: 'En God Gave 【2026】 Hva Skal Man Gi i Gave? Beste Gavetips',
     description:
       'Usikker på hva du skal gi i gave? Finn originale gavetips til baby, barn, ungdom og voksne med gruppeavstemning på WhatsApp.',
-    h1: 'En God Gave: Hvem vil du overraske i dag?',
+    h1: 'Beste Gavetips: Hva Skal Man Gi i Gave i 2026?',
     subtitle: 'Søk etter alder, hobby eller budsjett for å finne den perfekte gaven på sekunder.',
     searchPlaceholder: 'F.eks.: Gave til kjæreste, gamer, kaffeelsker, 6-åring...',
     seoSectionTitle: 'Hva Skal Man Gi i Gave? Guide til Originale Gavetips',
@@ -631,7 +631,7 @@ export const I18N_SEO_ROUTES: Record<string, I18nRouteConfig> = {
     title: 'En God Gave 【2026】 Hvad Skal Man Give i Gave? Originale Gaveideer',
     description:
       'Ved du ikke, hvad du skal give i gave? Find de bedste gaveideer til babyer, børn, unge og voksne med gruppeafstemning på WhatsApp.',
-    h1: 'En God Gave: Hvem vil du overraske i dag?',
+    h1: 'Bedste Gaveideer: Hvad Skal Man Give i Gave i 2026?',
     subtitle: 'Filtrer efter alder, interesse og budget for at finde de bedste gaver med det samme.',
     searchPlaceholder: 'F.eks.: Gave til kæreste, gamer, kaffeelsker, 6-årig...',
     seoSectionTitle: 'Hvad Skal Man Give i Gave? Guide til Gaveideer for Alle Aldre',
@@ -659,7 +659,7 @@ export const I18N_SEO_ROUTES: Record<string, I18nRouteConfig> = {
     title: 'Hyvä Lahja 【2026】 Mitä Lahjaksi? Parhaat Lahjaideat Kaikenikäisille',
     description:
       'Etkö tiedä mitä ostaa lahjaksi? Löydä parhaat lahjaideat vauvoille, lapsille, nuorille ja aikuisille sekä WhatsApp-ryhmääänestys.',
-    h1: 'Hyvä Lahja: Kenet haluat yllättää tänään?',
+    h1: 'Parhaat Lahjaideat: Mitä Antaa Lahjaksi 2026?',
     subtitle: 'Etsi lahjoja iän, harrastuksen tai budjetin mukaan ja löydä täydellinen lahja hetkessä.',
     searchPlaceholder: 'Esim.: Lahja poikaystävälle, pelaajalle, kahvin ystävälle...',
     seoSectionTitle: 'Mitä Lahjaksi? Opas Parhaisiin Lahjaideoihin',
@@ -687,7 +687,7 @@ export const I18N_SEO_ROUTES: Record<string, I18nRouteConfig> = {
     title: 'Ένα Καλό Δώρο 【2026】 Τι Δώρο να Πάρω; Πρωτότυπες Ιδέες για Δώρα',
     description:
       'Δεν ξέρετε τι δώρο να πάρετε; Ανακαλύψτε τις καλύτερες ιδέες για δώρα για μωρά, παιδιά, εφήβους και ενήλικες με ομαδική ψηφοφορία στο WhatsApp.',
-    h1: 'Ένα Καλό Δώρο: Ποιον θέλετε να εκπλήξετε σήμερα;',
+    h1: 'Πρωτότυπες Ιδέες για Δώρα: Τι Δώρο να Πάρω το 2026;',
     subtitle: 'Αναζητήστε ανά ηλικία, χόμπι ή προϋπολογισμό και βρείτε το τέλειο δώρο σε δευτερόλεπτα.',
     searchPlaceholder: 'Π.χ.: Δώρο για αγόρι gamer, λάτρη του καφέ, παιδί 6 ετών...',
     seoSectionTitle: 'Τι Δώρο να Πάρω; Οδηγός με Πρωτότυπες Ιδέες για Δώρα',
@@ -715,7 +715,7 @@ export const I18N_SEO_ROUTES: Record<string, I18nRouteConfig> = {
     title: 'İyi Bir Hediye 【2026】 Ne Hediye Alınır? Orijinal Hediye Fikirleri',
     description:
       'Ne hediye alacağınızı bilmiyor musunuz? Bebekler, çocuklar, gençler ve yetişkinler için en iyi hediye fikirlerini ve WhatsApp grup oylamasını keşfedin.',
-    h1: 'İyi Bir Hediye: Bugün kimi şaşırtmak istiyorsun?',
+    h1: 'En İyi Hediye Fikirleri: 2026\'da Ne Hediye Alınır?',
     subtitle: 'Yaşa, ilgi alanına veya bütçeye göre arayın; en yüksek puanlı hediye önerilerini anında bulun.',
     searchPlaceholder: 'Örn: Oyuncu sevgiliye hediye, kahve tutkunu, 6 yaş çocuk...',
     seoSectionTitle: 'Ne Hediye Alınır? Her Yaş İçin Orijinal Hediye Rehberi',
@@ -743,7 +743,7 @@ export const I18N_SEO_ROUTES: Record<string, I18nRouteConfig> = {
     title: 'Un Cadou Bun 【2026】 Ce Cadou să Cumpăr? Idei de Cadouri Originale',
     description:
       'Nu știi ce cadou să alegi? Descoperă cele mai bune idei de cadouri pentru bebeluși, copii, adolescenți și adulți cu vot în grup pe WhatsApp.',
-    h1: 'Un Cadou Bun: Pe cine vrei să surprinzi astăzi?',
+    h1: 'Idei de Cadouri Originale: Ce Cadou să Cumperi în 2026?',
     subtitle: 'Caută după vârstă, pasiune sau buget și găsește instantaneu cadoul potrivit.',
     searchPlaceholder: 'Ex: Cadou pentru iubit gamer, iubitor de cafea, fetiță 6 ani...',
     seoSectionTitle: 'Ce Cadou să Cumpăr? Ghidul Ideilor de Cadouri Originale',
@@ -771,7 +771,7 @@ export const I18N_SEO_ROUTES: Record<string, I18nRouteConfig> = {
     title: 'Добър Подарък 【2026】 Какво да Подаря? Оригинални Идеи за Подарък',
     description:
       'Не знаете какво да подарите? Открийте най-добрите идеи за подарък за бебета, деца, тийнейджъри и възрастни с групово гласуване в WhatsApp.',
-    h1: 'Добър Подарък: Кого искате да изненадате днес?',
+    h1: 'Най-добрите Идеи за Подарък: Какво да Подаря през 2026?',
     subtitle: 'Търсете по възраст, хоби или бюджет и открийте най-високо оценените подаръци.',
     searchPlaceholder: 'Напр.: Подарък за геймър, любител на кафето, дете на 6 г...',
     seoSectionTitle: 'Какво да Подаря? Наръчник за Оригинални Подаръци',
@@ -799,7 +799,7 @@ export const I18N_SEO_ROUTES: Record<string, I18nRouteConfig> = {
     title: 'Dobrý Dárek 【2026】 Co Dát jako Dárek? Originální Tipy na Dárky',
     description:
       'Nevíte, co koupit jako dárek? Objevte nejlepší tipy na dárky pro miminka, děti, teenagery i dospělé se skupinovým hlasováním na WhatsAppu.',
-    h1: 'Dobrý Dárek: Koho chcete dnes překvapit?',
+    h1: 'Nejlepší Tipy na Dárky: Co Koupit jako Dárek v Roce 2026?',
     subtitle: 'Hledejte podle věku, koníčků nebo rozpočtu a najděte ten nejlepší dárek během několika sekund.',
     searchPlaceholder: 'Např.: Dárek pro přítele hráče, milovníka kávy, dívku 6 let...',
     seoSectionTitle: 'Co Koupit jako Dárek? Průvodce Originálními Dárky',
@@ -827,7 +827,7 @@ export const I18N_SEO_ROUTES: Record<string, I18nRouteConfig> = {
     title: 'Egy Jó Ajándék 【2026】 Mit Ajándékozzak? Eredeti Ajándékötletek',
     description:
       'Nem tudod, mit ajándékozz? Fedezd fel a legjobb ajándékötleteket babáknak, gyerekeknek, tiniknek és felnőtteknek csoportos WhatsApp-szavazással.',
-    h1: 'Egy Jó Ajándék: Kit szeretnél ma meglepni?',
+    h1: 'Legjobb Ajándékötletek: Mit Ajándékozzak 2026-ban?',
     subtitle: 'Keress életkor, hobbi vagy ár alapján, és találd meg a tökéletes ajándékot másodpercek alatt.',
     searchPlaceholder: 'Pl.: Ajándék gamer barátnak, kávékedvelőnek, 6 éves kislánynak...',
     seoSectionTitle: 'Mit Ajándékozzak? Eredeti Ajándékötletek Minden Korosztálynak',
@@ -855,7 +855,7 @@ export const I18N_SEO_ROUTES: Record<string, I18nRouteConfig> = {
     title: '좋은 선물 【2026】 무엇을 선물할까? 센스있는 선물 추천 및 그룹 투표',
     description:
       '무엇을 선물할지 고민되시나요? 아기, 어린이, 청소년, 성인을 위한 연령별·예산별 최고의 선물 추천과 그룹 투표 기능을 만나보세요 ($ USD / € EUR 지원).',
-    h1: '좋은 선물: 오늘 누구에게 깜짝 선물을 주고 싶으신가요?',
+    h1: '베스트 선물 추천: 2026년 센스있는 선물 아이디어',
     subtitle: '받는 사람이나 취미를 입력하면 연령과 예산($ USD / € EUR)에 맞는 인기 선물을 즉시 찾아드립니다.',
     searchPlaceholder: '예: 게이머 남자친구 선물, 커피 애호가, 6세 여아 장난감...',
     seoSectionTitle: '무엇을 선물할까? 연령별·취향별 베스트 선물 가이드',
@@ -883,7 +883,7 @@ export const I18N_SEO_ROUTES: Record<string, I18nRouteConfig> = {
     title: 'एक अच्छा उपहार 【2026】 क्या गिफ्ट दें? बेस्ट गिफ्ट आइडियाज और ग्रुप वोटिंग',
     description:
       'समझ नहीं आ रहा कि क्या गिफ्ट दें? बच्चों, युवाओं और बड़ों के लिए उम्र और बजट ($ USD / € EUR) के अनुसार बेहतरीन गिफ्ट आइडियाज और व्हाट्सएप ग्रुप वोटिंग खोजें।',
-    h1: 'एक अच्छा उपहार: आज आप किसे सरप्राइज देना चाहते हैं?',
+    h1: 'बेस्ट गिफ्ट आइडियाज: 2026 में क्या गिफ्ट दें?',
     subtitle: 'उम्र, शौक या बजट के अनुसार खोजें और सेकंडों में सबसे बेहतरीन गिफ्ट आइडियाज पाएं।',
     searchPlaceholder: 'उदा.: गेमर दोस्त के लिए गिफ्ट, कॉफी लवर, 6 साल की बच्ची...',
     seoSectionTitle: 'क्या गिफ्ट दें? हर उम्र के लिए ओरिजिनल गिफ्ट आइडियाज गाइड',

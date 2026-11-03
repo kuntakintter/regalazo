@@ -78,6 +78,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.95,
     },
     {
+      url: `${baseUrl}/que-regalar-a-un-hombre`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.98,
+    },
+    {
+      url: `${baseUrl}/que-regalar-a-una-mujer`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.98,
+    },
+    {
       url: `${baseUrl}/regalos-para-los-que-tienen-de-todo`,
       lastModified: new Date(),
       changeFrequency: 'daily',

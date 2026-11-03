@@ -52,18 +52,19 @@ const QUICK_PROMPTS: Array<{
   query: string;
   price?: string;
   category?: string;
+  gender?: 'boy' | 'girl' | 'reveal' | 'all';
   sort?: 'featured' | 'price-asc' | 'price-desc' | 'rating';
 }> = [
-  { label: '🏎️ Coches Eléctricos, Quads y Patinetes', query: '', category: 'Sobre Ruedas: Coches, Quads y Patinetes' },
-  { label: '🔥 Chollos Black Friday', query: 'ofertas', sort: 'rating' },
-  { label: '💸 Menos de 20 € (Amigo Invisible)', query: '', price: '<20', sort: 'price-asc' },
-  { label: '⚡ Menos de 15 € (Detalles Top)', query: '', price: '<15', sort: 'price-asc' },
-  { label: '🎁 Para mi novio', query: 'novio' },
-  { label: '🎮 Gamer / Friki', query: 'gaming' },
+  { label: '👨 Para Hombres', query: '', gender: 'boy' },
+  { label: '👩 Para Mujeres', query: '', gender: 'girl' },
+  { label: '❤️ Para mi Novio/a', query: 'novio' },
+  { label: '🏷️ Menos de 20 €', query: '', price: '<20', sort: 'price-asc' },
+  { label: '🎁 Amigo Invisible (<15 €)', query: '', price: '<15', sort: 'price-asc' },
+  { label: '🎮 Gamer & Setup', query: 'gaming' },
+  { label: '🏎️ Coches Eléctricos & Ruedas', query: '', category: 'Sobre Ruedas: Coches, Quads y Patinetes' },
   { label: '👶 Bebés y Niños', query: 'bebe' },
   { label: '🏍️ Moteros', query: 'moto' },
-  { label: '☕ Amante del café', query: 'cafe' },
-  { label: '🐾 Mascotas', query: 'mascotas' },
+  { label: '☕ Amantes del Café', query: 'cafe' },
 ];
 
 const AGE_BANNER_ICONS: Record<string, { icon: React.ComponentType<{ className?: string }>; bg: string; color: string }> = {
@@ -221,6 +222,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
     query: string;
     price?: string;
     category?: string;
+    gender?: 'boy' | 'girl' | 'reveal' | 'all';
     sort?: 'featured' | 'price-asc' | 'price-desc' | 'rating';
   }) => {
     setSearchQuery(promptItem.query);
@@ -228,6 +230,11 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
       setSelectedPrice(promptItem.price);
     } else {
       setSelectedPrice('all');
+    }
+    if (promptItem.gender) {
+      setSelectedGender(promptItem.gender);
+    } else {
+      setSelectedGender('all');
     }
     if (promptItem.sort) {
       setSortBy(promptItem.sort);
@@ -869,9 +876,9 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                     <span>{i18nConfig.h1}</span>
                   ) : (
                     <span>
-                      ¿A quién quieres{' '}
+                      Ideas de Regalos Originales:{' '}
                       <span className="inline-block pr-2.5 pb-1 bg-clip-text text-transparent bg-gradient-to-r from-amber-600 via-orange-600 to-indigo-600">
-                        sorprender hoy?
+                        ¿Qué Regalar en 2026?
                       </span>
                     </span>
                   )}
@@ -882,7 +889,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                     ? currentAgeMeta.description
                     : i18nConfig
                     ? i18nConfig.subtitle
-                    : 'Escribe a quién quieres regalar o qué le apasiona. Nuestro motor inteligente encontrará las mejores ideas de regalo al instante en tu idioma y moneda (€ / $).'}
+                    : 'Encuentra qué regalar a hombres, mujeres, niños o amigos invisibles. Selección de productos mejor valorados en Amazon con comparativas de precios reales y votación en grupo por WhatsApp.'}
                 </p>
 
                 {/* MAIN PROMPT / SEARCH BAR ESTILO AMAZON */}

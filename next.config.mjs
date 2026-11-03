@@ -45,6 +45,26 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/regalos-para-hombres',
+        destination: '/que-regalar-a-un-hombre',
+        permanent: true,
+      },
+      {
+        source: '/regalos-hombre',
+        destination: '/que-regalar-a-un-hombre',
+        permanent: true,
+      },
+      {
+        source: '/regalos-para-mujeres',
+        destination: '/que-regalar-a-una-mujer',
+        permanent: true,
+      },
+      {
+        source: '/regalos-mujer',
+        destination: '/que-regalar-a-una-mujer',
+        permanent: true,
+      },
+      {
         source: '/gta-6',
         destination: '/regalos-gta-6',
         permanent: true,
