@@ -6,7 +6,9 @@ import Footer from '@/components/Footer';
 import ProductCard from '@/components/ProductCard';
 import TopPodium from '@/components/TopPodium';
 import { PRODUCTS, Product } from '@/data/products';
+import { generateProductItemListSchema } from '@/lib/schemaProduct';
 import { Sparkles, HelpCircle, Gift, Compass, Lightbulb, ArrowUpDown } from 'lucide-react';
+import Link from 'next/link';
 
 export default function TienenDeTodoClient() {
   const [sortBy, setSortBy] = useState<'featured' | 'rating' | 'reviews'>('featured');
@@ -86,11 +88,20 @@ export default function TienenDeTodoClient() {
     ],
   };
 
+  // Schema ItemList for Google Product Stars
+  const itemListSchema = useMemo(() => {
+    return generateProductItemListSchema(sortedProducts, 'Regalos para los que Tienen de Todo');
+  }, [sortedProducts]);
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col font-sans">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
       />
 
       <Header

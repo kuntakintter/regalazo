@@ -7,7 +7,8 @@ import ProductCard from '@/components/ProductCard';
 import TopPodium from '@/components/TopPodium';
 import { PRODUCTS, Product } from '@/data/products';
 import { parsePrice } from '@/lib/amazon';
-import { Tag, Sparkles, HelpCircle, ShieldCheck, Heart, ArrowUpDown, CheckCircle2 } from 'lucide-react';
+import { generateProductItemListSchema } from '@/lib/schemaProduct';
+import { Tag, Sparkles, HelpCircle, ShieldCheck, Heart, ArrowUpDown, CheckCircle2, Compass } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Under20Client() {
@@ -98,11 +99,20 @@ export default function Under20Client() {
     ],
   };
 
+  // Schema ItemList for Google Product Stars
+  const itemListSchema = useMemo(() => {
+    return generateProductItemListSchema(sortedProducts, 'Regalos por Menos de 20 Euros');
+  }, [sortedProducts]);
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col font-sans">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
       />
 
       <Header

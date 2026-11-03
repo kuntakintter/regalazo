@@ -60,8 +60,10 @@ export default function Footer({ currentTheme }: FooterProps) {
               Ocasiones & Destinatarios
             </span>
             <ul className="space-y-2 text-xs opacity-80">
-              <li><Link href="/que-regalar-a-un-hombre" className="hover:underline font-bold text-indigo-700">👨 Qué Regalar a un Hombre</Link></li>
-              <li><Link href="/que-regalar-a-una-mujer" className="hover:underline font-bold text-pink-700">👩 Qué Regalar a una Mujer</Link></li>
+              <li><Link href="/que-regalar-a-mi-novio" className="hover:underline font-bold text-indigo-700">❤️ Qué Regalar a mi Novio</Link></li>
+              <li><Link href="/que-regalar-a-mi-novia" className="hover:underline font-bold text-pink-700">💕 Qué Regalar a mi Novia</Link></li>
+              <li><Link href="/que-regalar-a-un-hombre" className="hover:underline font-bold text-indigo-600">👨 Qué Regalar a un Hombre</Link></li>
+              <li><Link href="/que-regalar-a-una-mujer" className="hover:underline font-bold text-pink-600">👩 Qué Regalar a una Mujer</Link></li>
               <li><Link href="/regalos-para-los-que-tienen-de-todo" className="hover:underline font-bold text-purple-700">✨ Para los que Tienen de Todo</Link></li>
               <li><Link href="/regalos-menos-20-euros" className="hover:underline font-bold text-emerald-700">🏷️ Regalos por Menos de 20€</Link></li>
               <li><Link href="/carta-papa-noel" className="hover:underline font-bold text-amber-700">🎅 Carta a Papá Noel (Oficial)</Link></li>

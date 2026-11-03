@@ -45,6 +45,26 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/regalos-para-mi-novio',
+        destination: '/que-regalar-a-mi-novio',
+        permanent: true,
+      },
+      {
+        source: '/regalos-novio',
+        destination: '/que-regalar-a-mi-novio',
+        permanent: true,
+      },
+      {
+        source: '/regalos-para-mi-novia',
+        destination: '/que-regalar-a-mi-novia',
+        permanent: true,
+      },
+      {
+        source: '/regalos-novia',
+        destination: '/que-regalar-a-mi-novia',
+        permanent: true,
+      },
+      {
         source: '/regalos-para-hombres',
         destination: '/que-regalar-a-un-hombre',
         permanent: true,

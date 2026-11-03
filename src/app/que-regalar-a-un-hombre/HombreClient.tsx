@@ -6,7 +6,8 @@ import Footer from '@/components/Footer';
 import ProductCard from '@/components/ProductCard';
 import { PRODUCTS, Product } from '@/data/products';
 import { parsePrice } from '@/lib/amazon';
-import { HelpCircle, ShieldCheck, TrendingUp, Sparkles, SlidersHorizontal, ChevronRight } from 'lucide-react';
+import { generateProductItemListSchema } from '@/lib/schemaProduct';
+import { HelpCircle, ShieldCheck, TrendingUp, Sparkles, SlidersHorizontal, ChevronRight, Compass } from 'lucide-react';
 import Link from 'next/link';
 
 export default function HombreClient() {
@@ -107,11 +108,20 @@ export default function HombreClient() {
     ],
   };
 
+  // Schema ItemList with Product Stars
+  const itemListSchema = useMemo(() => {
+    return generateProductItemListSchema(sortedProducts, 'Ideas de Regalo para Hombres');
+  }, [sortedProducts]);
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
       />
 
       <Header
@@ -161,6 +171,79 @@ export default function HombreClient() {
             </div>
           </div>
         </section>
+
+        {/* VEREDICTO RÁPIDO: TOP 3 RECOMENDACIONES EN 5 SEGUNDOS */}
+        <div className="mb-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="p-4 rounded-2xl bg-amber-50/80 border-2 border-amber-300/80 shadow-xs flex flex-col justify-between">
+            <div>
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-amber-500 text-slate-950 mb-2">
+                <span>🥇</span> Mejor Elección Global
+              </span>
+              <h3 className="font-bold text-sm text-slate-900 mb-1">Dior Sauvage / Cafetera Barista</h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Productos icónicos de alta valoración y utilidad diaria que cualquier hombre agradece al instante.
+              </p>
+            </div>
+            <div className="mt-3 pt-2 border-t border-amber-200/60 flex items-center justify-between text-xs font-bold text-amber-900">
+              <span>Valoración 4.8 ★</span>
+              <span>Acierto seguro</span>
+            </div>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-emerald-50/80 border-2 border-emerald-300/80 shadow-xs flex flex-col justify-between">
+            <div>
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-emerald-600 text-white mb-2">
+                <span>🥈</span> Mejor Calidad/Precio
+              </span>
+              <h3 className="font-bold text-sm text-slate-900 mb-1">Kit Coctelería Boston / Guatafac</h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Detalles originales por menos de 25 € para disfrutar en reuniones con amigos o en casa.
+              </p>
+            </div>
+            <div className="mt-3 pt-2 border-t border-emerald-200/60 flex items-center justify-between text-xs font-bold text-emerald-900">
+              <span>Valoración 4.7 ★</span>
+              <span>Económico y top</span>
+            </div>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-purple-50/80 border-2 border-purple-300/80 shadow-xs flex flex-col justify-between">
+            <div>
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-purple-600 text-white mb-2">
+                <span>💎</span> Opción Prémium / Gran Detalle
+              </span>
+              <h3 className="font-bold text-sm text-slate-900 mb-1">DJI Mini 4K / Smartbox 3 Días</h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Regalos de alto impacto que dejan huella: drones ultraligeros 4K o escapadas rurales de fin de semana.
+              </p>
+            </div>
+            <div className="mt-3 pt-2 border-t border-purple-200/60 flex items-center justify-between text-xs font-bold text-purple-900">
+              <span>Valoración 4.8 ★</span>
+              <span>Gran impacto</span>
+            </div>
+          </div>
+        </div>
+
+        {/* ENLAZADO INTERNO CRUZADO ESTRATÉGICO */}
+        <div className="mb-6 p-3 bg-white rounded-2xl border border-slate-200 flex flex-wrap items-center justify-between gap-2 text-xs">
+          <span className="font-bold text-slate-600 flex items-center gap-1.5">
+            <Compass className="w-4 h-4 text-indigo-600" />
+            Explora otras guías recomendadas:
+          </span>
+          <div className="flex flex-wrap items-center gap-2">
+            <Link href="/que-regalar-a-mi-novio" className="px-3 py-1 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-800 border border-indigo-200 font-bold transition-colors">
+              💙 ¿Es tu pareja? Ver Regalos para mi Novio →
+            </Link>
+            <Link href="/regalos-menos-20-euros" className="px-3 py-1 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 font-bold transition-colors">
+              🏷️ Menos de 20 € →
+            </Link>
+            <Link href="/regalos-para-los-que-tienen-de-todo" className="px-3 py-1 rounded-xl bg-purple-50 hover:bg-purple-100 text-purple-800 border border-purple-200 font-bold transition-colors">
+              ✨ Para los que Tienen de Todo →
+            </Link>
+            <Link href="/que-regalar-a-una-mujer" className="px-3 py-1 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-800 border border-rose-200 font-bold transition-colors">
+              👩 Para Mujeres →
+            </Link>
+          </div>
+        </div>
 
         {/* CONTROL BAR: BUDGET PILLS + CATEGORIES + SORT */}
         <div className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-xs mb-6 space-y-3">

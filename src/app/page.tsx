@@ -1,6 +1,7 @@
 'use client';
 
 import { parsePrice, getAmazonProductUrl } from '@/lib/amazon';
+import { generateProductItemListSchema } from '@/lib/schemaProduct';
 
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import Image from 'next/image';
@@ -474,6 +475,11 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
     return list;
   }, [filteredProducts, sortBy, selectedGender]);
 
+  // Structured Data ItemList for Google Product Stars
+  const itemListSchema = useMemo(() => {
+    return generateProductItemListSchema(sortedFilteredProducts, 'Ideas de Regalo Recomendadas');
+  }, [sortedFilteredProducts]);
+
   const sortedLiveAmazonProducts = useMemo(() => {
     const list = [...liveAmazonProducts];
     if (sortBy === 'price-asc') {
@@ -704,6 +710,11 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
 
   return (
     <div className="min-h-screen relative flex flex-col bg-[#eaeded] text-slate-900 selection:bg-amber-500 selection:text-slate-950 overflow-x-hidden w-full max-w-full">
+      {/* Product Stars & Reviews ItemList Schema for Google */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+      />
       {/* Background Subtle Atmosphere */}
       <ThemeAtmosphere />
 

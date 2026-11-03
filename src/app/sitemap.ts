@@ -90,6 +90,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.98,
     },
     {
+      url: `${baseUrl}/que-regalar-a-mi-novio`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.98,
+    },
+    {
+      url: `${baseUrl}/que-regalar-a-mi-novia`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.98,
+    },
+    {
       url: `${baseUrl}/regalos-para-los-que-tienen-de-todo`,
       lastModified: new Date(),
       changeFrequency: 'daily',
