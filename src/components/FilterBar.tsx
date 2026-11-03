@@ -21,11 +21,6 @@ import {
   Users,
   Heart,
   PartyPopper,
-  Tag,
-  Gift,
-  Gem,
-  Crown,
-  Coins,
   Calendar,
   Target,
   Smartphone,
@@ -219,42 +214,6 @@ export default function FilterBar({
             <span>{currency === 'USD' ? '$110' : '100 €'}</span>
             <span>{currency === 'USD' ? '$160+ (Sin límite)' : '150 €+ (Sin límite)'}</span>
           </div>
-        </div>
-
-        {/* Quick Shortcut Buttons */}
-        <div className="flex items-center gap-1.5 pt-3 overflow-x-auto scrollbar-thin flex-wrap">
-          <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mr-1">
-            Accesos rápidos:
-          </span>
-          {[
-            { id: 'all', label: 'Cualquier Presupuesto', icon: Coins, iconColor: 'text-amber-500' },
-            { id: '20', label: currency === 'USD' ? 'Hasta $22' : 'Hasta 20 €', icon: Tag, iconColor: 'text-emerald-500' },
-            { id: '50', label: currency === 'USD' ? 'Hasta $55' : 'Hasta 50 €', icon: Gift, iconColor: 'text-indigo-500' },
-            { id: '100', label: currency === 'USD' ? 'Hasta $110' : 'Hasta 100 €', icon: Gem, iconColor: 'text-purple-500' },
-            { id: '>100', label: currency === 'USD' ? 'Más de $110' : 'Más de 100 €', icon: Crown, iconColor: 'text-amber-600' },
-          ].map((preset) => {
-            const isActive =
-              preset.id === selectedPrice ||
-              (preset.id === '20' && selectedPrice === '<20') ||
-              (preset.id === '50' && selectedPrice === '20-50') ||
-              (preset.id === '100' && selectedPrice === '50-100');
-            const IconComp = preset.icon;
-
-            return (
-              <button
-                key={preset.id}
-                onClick={() => onSelectPrice(preset.id)}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all border cursor-pointer flex items-center gap-1.5 ${
-                  isActive
-                    ? 'bg-indigo-600 text-white border-indigo-600 shadow-xs'
-                    : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-100'
-                }`}
-              >
-                <IconComp className={`w-3.5 h-3.5 ${isActive ? 'text-white' : preset.iconColor}`} />
-                <span>{preset.label}</span>
-              </button>
-            );
-          })}
         </div>
       </div>
 
