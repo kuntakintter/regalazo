@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Gift, ShieldCheck, Heart, TrendingUp, ShoppingBag } from 'lucide-react';
 import BrandLogo from '@/components/BrandLogo';
 import LanguageSelector from '@/components/LanguageSelector';
+import SocialShareWidget from '@/components/SocialShareWidget';
 import { I18N_SEO_ROUTES } from '@/lib/i18nRoutes';
 import { AMAZON_DISCLOSURE, AMAZON_AFFILIATE_TAG } from '@/lib/amazon';
 
@@ -110,6 +111,19 @@ export default function Footer({ currentTheme }: FooterProps) {
             </ul>
           </div>
 
+        </div>
+
+        {/* Social Sharing Bar (Clean, Non-intrusive for Real Users & SEO) */}
+        <div className="border-t border-slate-200/80 pt-6 pb-6 mb-2 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="text-center md:text-left">
+            <span className="text-xs font-bold text-slate-800 block">
+              ¿Te gusta Un Buen Regalo? Compártelo con amigos o en tus grupos:
+            </span>
+            <span className="text-[11px] text-slate-500">
+              Ayuda a otras personas a encontrar ideas de regalo originales sin dar vueltas.
+            </span>
+          </div>
+          <SocialShareWidget compact={false} />
         </div>
 
         {/* International SEO Editions & Currencies Bar */}

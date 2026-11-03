@@ -13,6 +13,7 @@ import ProductCard from '@/components/ProductCard';
 import LiveAmazonProductCard from '@/components/LiveAmazonProductCard';
 import GiftWizard from '@/components/GiftWizard';
 import SeoFaq from '@/components/SeoFaq';
+import SocialShareWidget from '@/components/SocialShareWidget';
 import ThemeAtmosphere from '@/components/ThemeAtmosphere';
 import AmazonLiveSearchCard from '@/components/AmazonLiveSearchCard';
 import AmazonGridDiscoveryCard from '@/components/AmazonGridDiscoveryCard';
@@ -1638,6 +1639,15 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                   Para adolescentes y adultos que parecen tenerlo todo, los detalles con personalidad propia son la clave. Destacan los videojuegos de <strong>PlayStation 5</strong>, el merchandising de <strong>GTA VI</strong> y los periféricos gaming. Para amantes del relax, las cafeteras espresso barista, el equipamiento motero y las cajas Smartbox nunca fallan.
                 </p>
               </div>
+            </div>
+
+            {/* Social Share Bar inline */}
+            <div className="mt-8 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="text-xs text-slate-600 text-center sm:text-left">
+                <span className="font-bold text-slate-900 block">¿Te ha servido nuestra guía de regalos?</span>
+                <span>Compártela en tus redes o en el grupo de WhatsApp de amigos y familia:</span>
+              </div>
+              <SocialShareWidget />
             </div>
           </div>
         </section>
