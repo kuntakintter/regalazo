@@ -9,7 +9,7 @@ import FloatingVotingBar from '@/components/FloatingVotingBar';
 import { getHreflangAlternates, I18N_SEO_ROUTES } from '@/lib/i18nRoutes';
 
 export const metadata: Metadata = {
-  title: 'Un Buen Regalo 【2026】 ¿Qué Regalar? Ideas y Regalos Originales',
+  title: 'Ideas de Regalos Originales 2026 | Un Buen Regalo',
   description: '¿No sabes qué regalar? Descubre en Un Buen Regalo ideas de regalo originales para bebés, niños, jóvenes y adultos con votación en grupo por WhatsApp.',
   icons: {
     icon: [

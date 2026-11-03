@@ -88,8 +88,8 @@ export default function Footer({ currentTheme }: FooterProps) {
               <li><Link href="/mascotas" className="hover:underline">🐾 Lo Mejor para Mascotas</Link></li>
               <li><Link href="/automovil" className="hover:underline">🚗 Gadgets para Automóvil</Link></li>
               <li><Link href="/ciclismo" className="hover:underline">🚴 Equipamiento Ciclismo & MTB</Link></li>
-              <li><Link href="/?categoria=cartas-pokemon#catalogo-productos" className="hover:underline">⚡ Cartas y Sobres Pokémon</Link></li>
-              <li><Link href="/?categoria=figuras-anime#catalogo-productos" className="hover:underline">🎎 Figuras Anime y Colección</Link></li>
+              <li><Link href="/?categoria=cartas-pokemon#catalogo-productos" rel="nofollow" className="hover:underline">⚡ Cartas y Sobres Pokémon</Link></li>
+              <li><Link href="/?categoria=figuras-anime#catalogo-productos" rel="nofollow" className="hover:underline">🎎 Figuras Anime y Colección</Link></li>
             </ul>
           </div>
 

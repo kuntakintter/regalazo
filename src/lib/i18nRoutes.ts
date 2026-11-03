@@ -903,16 +903,12 @@ export function getHreflangAlternates(): Record<string, string> {
   const baseUrl = 'https://www.unbuenregalo.es';
   const languages: Record<string, string> = {
     es: baseUrl,
-    'es-ES': baseUrl,
     'x-default': `${baseUrl}/en`,
   };
 
   for (const route of Object.values(I18N_SEO_ROUTES)) {
     languages[route.hreflang] = `${baseUrl}/${route.slug}`;
   }
-
-  // Also add en-US explicitly pointing to /en
-  languages['en-US'] = `${baseUrl}/en`;
 
   return languages;
 }

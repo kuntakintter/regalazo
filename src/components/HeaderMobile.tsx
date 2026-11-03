@@ -430,6 +430,7 @@ export default function HeaderMobile({
                       <Link
                         key={item.slug}
                         href={item.slug.startsWith('?') ? `/${item.slug}` : `/${item.slug}`}
+                        rel={item.slug.startsWith('?') ? 'nofollow' : undefined}
                         onClick={() => setIsPassionsOpen(false)}
                         className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-purple-50 border border-slate-100 transition-colors group"
                       >

@@ -103,7 +103,8 @@ export default function LiveAmazonProductCard({
           href={directProductUrl}
           target="_blank"
           rel="nofollow sponsored noopener noreferrer"
-          aria-label={`Ver ${product.title} en Amazon`}
+          tabIndex={-1}
+          aria-hidden="true"
           className="block w-full h-full cursor-pointer relative"
         >
           {product.imageUrl && !hasImgError ? (
@@ -167,16 +168,17 @@ export default function LiveAmazonProductCard({
           )}
 
           {/* Title */}
-          <h3 className="font-medium text-xs sm:text-[13px] leading-snug text-slate-900 line-clamp-2 group-hover:text-[#c45500] transition-colors mb-1 min-h-[2rem]">
+          <p className="font-medium text-xs sm:text-[13px] leading-snug text-slate-900 line-clamp-2 group-hover:text-[#c45500] transition-colors mb-1 min-h-[2rem]">
             <a
               href={directProductUrl}
               target="_blank"
               rel="nofollow sponsored noopener noreferrer"
+              aria-label={`Ver oferta de ${product.title} en Amazon`}
               className="hover:underline"
             >
               {product.title}
             </a>
-          </h3>
+          </p>
 
           {/* Rating and Reviews */}
           <div className="flex items-center gap-1 text-[11px] mb-1.5">
@@ -211,7 +213,7 @@ export default function LiveAmazonProductCard({
           {/* Prime delivery line */}
           <div className="flex items-center gap-1 text-[10px] sm:text-[11px] text-slate-600 font-normal mb-2">
             <span className="text-[#007185] font-black text-xs">✓prime</span>
-            <span>Entrega <strong className="text-slate-800 font-bold">Mañana</strong></span>
+            <span>Entrega <span className="text-slate-800 font-semibold">Mañana</span></span>
           </div>
 
           {/* Amazon Yellow Button */}
@@ -219,6 +221,7 @@ export default function LiveAmazonProductCard({
             href={directProductUrl}
             target="_blank"
             rel="nofollow sponsored noopener noreferrer"
+            aria-label={`Ver oferta de ${product.title} en Amazon`}
             className="w-full py-2 px-3 rounded-xl text-xs font-black text-slate-950 bg-[#ffd814] hover:bg-[#f7ca00] active:bg-[#f0b800] border border-[#fcd200] shadow-xs text-center flex items-center justify-center gap-1.5 transition-all cursor-pointer hover:scale-101"
           >
             <span>Ver oferta en Amazon</span>

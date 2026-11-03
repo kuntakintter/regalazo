@@ -476,6 +476,7 @@ export default function HeaderDesktop({
                       <Link
                         key={item.slug}
                         href={item.slug.startsWith('?') ? `/${item.slug}` : `/${item.slug}`}
+                        rel={item.slug.startsWith('?') ? 'nofollow' : undefined}
                         onClick={() => setIsPassionsOpen(false)}
                         className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-purple-50/70 border border-slate-100 hover:border-purple-200 transition-all group cursor-pointer"
                       >
