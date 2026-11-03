@@ -497,7 +497,21 @@ export default function HeaderDesktop({
               )}
             </div>
 
-            {/* 3. TENDENCIAS & GTA 6 */}
+            {/* 3. VOTAR EN GRUPO WHATSAPP (ACCESO DIRECTO HERO) */}
+            <button
+              type="button"
+              onClick={() => setIsDrawerOpen(true)}
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-linear-to-r from-emerald-500/25 to-teal-500/25 hover:from-emerald-500/40 hover:to-teal-500/40 border border-emerald-400/50 hover:border-emerald-300 text-emerald-200 hover:text-white font-black text-xs tracking-wide transition-all shadow-md whitespace-nowrap shrink-0 hover:scale-105 active:scale-98 ring-1 ring-emerald-400/30 cursor-pointer"
+              title="Votación de Regalos en Grupo para WhatsApp"
+            >
+              <span>🗳️</span>
+              <span>Votar en Grupo</span>
+              <span className="text-[10px] font-black bg-emerald-400 text-slate-950 px-1.5 py-0.2 rounded-full ml-0.5">
+                {voteItems.length}
+              </span>
+            </button>
+
+            {/* 4. TENDENCIAS & GTA 6 */}
             <Link
               href="/regalos-gta-6"
               className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-pink-500/25 via-purple-500/25 to-cyan-500/25 hover:from-pink-500/40 hover:to-cyan-500/40 border border-pink-400/50 hover:border-pink-300 text-pink-200 hover:text-white font-black text-xs tracking-wide transition-all shadow-md whitespace-nowrap shrink-0 hover:scale-105 active:scale-98 ring-1 ring-pink-400/30"
@@ -506,7 +520,7 @@ export default function HeaderDesktop({
               <span>GTA 6</span>
             </Link>
 
-            {/* 4. NAVIDAD & CARTA PAPÁ NOEL */}
+            {/* 5. NAVIDAD & CARTA PAPÁ NOEL */}
             <Link
               href="/carta-papa-noel"
               className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-linear-to-r from-red-600/30 to-amber-500/30 hover:from-red-600/40 hover:to-amber-500/40 border border-amber-400/50 text-amber-200 hover:text-white font-black text-xs tracking-wide transition-all shadow-md whitespace-nowrap shrink-0 hover:scale-105 active:scale-98 ring-1 ring-amber-400/30"

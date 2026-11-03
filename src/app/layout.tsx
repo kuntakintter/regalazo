@@ -5,6 +5,7 @@ import CookieBanner from '@/components/CookieBanner';
 import { CurrencyProvider } from '@/context/CurrencyContext';
 import { VotingProvider } from '@/context/VotingContext';
 import VotingDrawer from '@/components/VotingDrawer';
+import FloatingVotingBar from '@/components/FloatingVotingBar';
 import { getHreflangAlternates, I18N_SEO_ROUTES } from '@/lib/i18nRoutes';
 
 export const metadata: Metadata = {
@@ -302,6 +303,7 @@ export default function RootLayout({
           <VotingProvider>
             {children}
             <VotingDrawer />
+            <FloatingVotingBar />
             <CookieBanner />
           </VotingProvider>
         </CurrencyProvider>

@@ -448,7 +448,20 @@ export default function HeaderMobile({
             )}
           </div>
 
-          {/* 3. TENDENCIAS & GTA 6 */}
+          {/* 3. VOTAR EN GRUPO WHATSAPP */}
+          <button
+            type="button"
+            onClick={() => setIsDrawerOpen(true)}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-linear-to-r from-emerald-500/25 to-teal-500/25 border border-emerald-400/50 text-emerald-200 font-black text-xs whitespace-nowrap shrink-0 shadow-xs cursor-pointer"
+          >
+            <span>🗳️</span>
+            <span>Votar</span>
+            <span className="text-[10px] font-black bg-emerald-400 text-slate-950 px-1.5 py-0.2 rounded-full">
+              {voteItems.length}
+            </span>
+          </button>
+
+          {/* 4. TENDENCIAS & GTA 6 */}
           <Link
             href="/regalos-gta-6"
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-pink-500/25 to-cyan-500/25 border border-pink-400/50 text-pink-200 font-black text-xs whitespace-nowrap shrink-0 shadow-xs"
@@ -457,7 +470,7 @@ export default function HeaderMobile({
             <span>GTA 6</span>
           </Link>
 
-          {/* 4. NAVIDAD & CARTA PAPÁ NOEL */}
+          {/* 5. NAVIDAD & CARTA PAPÁ NOEL */}
           <Link
             href="/carta-papa-noel"
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-linear-to-r from-red-600/30 to-amber-500/30 border border-amber-400/50 text-amber-200 font-black text-xs whitespace-nowrap shrink-0 shadow-xs"
