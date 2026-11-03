@@ -315,7 +315,7 @@ export default function HeaderMobile({
 
       {/* 2. SUB-NAV MENÚ MÓVIL (DESPLAZABLE HORIZONTALMENTE) */}
       <div className="bg-[#1f2833] text-white border-t border-slate-700/60 shadow-inner px-3 py-2">
-        <div className="flex items-center justify-center gap-2 overflow-x-auto scrollbar-none text-xs">
+        <div className="flex items-center justify-start gap-2.5 overflow-x-auto scrollbar-none text-xs">
           {/* Dropdown Por Edades */}
           <div ref={agesDropdownRef} className="relative shrink-0">
             <button
