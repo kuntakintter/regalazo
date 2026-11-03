@@ -1260,6 +1260,85 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
               }
             />
 
+            {/* QUICK BUDGET PILL FILTERS (DIRECTLY ABOVE PRODUCTS GRID) */}
+            <div className="my-5 flex flex-wrap items-center justify-between gap-3 p-3 sm:p-3.5 bg-white border border-slate-200/90 rounded-2xl shadow-xs">
+              <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none py-0.5">
+                <span className="text-xs font-black text-slate-800 uppercase tracking-wider mr-1.5 flex items-center gap-1">
+                  <span>💰</span>
+                  <span className="hidden sm:inline">Filtrar por</span> Presupuesto:
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setSelectedPrice('all')}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
+                    selectedPrice === 'all'
+                      ? 'bg-slate-900 text-white shadow-xs'
+                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                  }`}
+                >
+                  Cualquier precio
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedPrice('<15')}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1 ${
+                    selectedPrice === '<15'
+                      ? 'bg-emerald-600 text-white shadow-xs'
+                      : 'bg-emerald-50 text-emerald-800 border border-emerald-200 hover:bg-emerald-100'
+                  }`}
+                >
+                  <span>🟢</span>
+                  <span>Hasta 15 €</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedPrice('15-30')}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1 ${
+                    selectedPrice === '15-30'
+                      ? 'bg-amber-500 text-slate-950 shadow-xs'
+                      : 'bg-amber-50 text-amber-800 border border-amber-200 hover:bg-amber-100'
+                  }`}
+                >
+                  <span>🟡</span>
+                  <span>15 € a 30 €</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedPrice('30-60')}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1 ${
+                    selectedPrice === '30-60'
+                      ? 'bg-purple-600 text-white shadow-xs'
+                      : 'bg-purple-50 text-purple-800 border border-purple-200 hover:bg-purple-100'
+                  }`}
+                >
+                  <span>🟣</span>
+                  <span>30 € a 60 €</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedPrice('>60')}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1 ${
+                    selectedPrice === '>60'
+                      ? 'bg-indigo-600 text-white shadow-xs'
+                      : 'bg-indigo-50 text-indigo-800 border border-indigo-200 hover:bg-indigo-100'
+                  }`}
+                >
+                  <span>💎</span>
+                  <span>Más de 60 €</span>
+                </button>
+              </div>
+
+              {selectedPrice !== 'all' && (
+                <button
+                  type="button"
+                  onClick={() => setSelectedPrice('all')}
+                  className="text-xs font-bold text-rose-600 hover:text-rose-800 hover:underline cursor-pointer ml-auto"
+                >
+                  ✕ Quitar filtro
+                </button>
+              )}
+            </div>
+
             <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 sm:gap-2.5 lg:gap-3 mb-12">
               {sortedFilteredProducts.slice(0, visibleCount).map((product) => (
                 <ProductCard
