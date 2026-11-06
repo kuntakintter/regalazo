@@ -31,7 +31,43 @@ export function generateProductItemListSchema(products: Product[], listName?: st
             priceCurrency: 'EUR',
             availability: 'https://schema.org/InStock',
             url: directUrl,
+            validFrom: '2026-01-01',
             priceValidUntil: '2026-12-31',
+            hasMerchantReturnPolicy: {
+              '@type': 'MerchantReturnPolicy',
+              applicableCountry: 'ES',
+              returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+              merchantReturnDays: 30,
+              returnMethod: 'https://schema.org/ReturnByMail',
+              returnFees: 'https://schema.org/FreeReturn',
+            },
+            shippingDetails: {
+              '@type': 'OfferShippingDetails',
+              shippingRate: {
+                '@type': 'MonetaryAmount',
+                value: '0.00',
+                currency: 'EUR',
+              },
+              shippingDestination: {
+                '@type': 'DefinedRegion',
+                addressCountry: 'ES',
+              },
+              deliveryTime: {
+                '@type': 'ShippingDeliveryTime',
+                handlingTime: {
+                  '@type': 'QuantitativeValue',
+                  minValue: 0,
+                  maxValue: 1,
+                  unitCode: 'DAY',
+                },
+                transitTime: {
+                  '@type': 'QuantitativeValue',
+                  minValue: 1,
+                  maxValue: 3,
+                  unitCode: 'DAY',
+                },
+              },
+            },
           },
           aggregateRating: {
             '@type': 'AggregateRating',
