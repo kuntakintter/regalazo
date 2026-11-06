@@ -8,6 +8,7 @@ import LanguageSelector from '@/components/LanguageSelector';
 import SocialShareWidget from '@/components/SocialShareWidget';
 import { I18N_SEO_ROUTES } from '@/lib/i18nRoutes';
 import { AMAZON_DISCLOSURE, AMAZON_AFFILIATE_TAG } from '@/lib/amazon';
+import FooterDirectory from '@/components/FooterDirectory';
 
 interface FooterProps {
   currentTheme: string;
@@ -112,6 +113,9 @@ export default function Footer({ currentTheme }: FooterProps) {
           </div>
 
         </div>
+
+        {/* Directory of all 80+ Subcategories for Googlebot & Users */}
+        <FooterDirectory />
 
         {/* Social Sharing Bar (Clean, Non-intrusive for Real Users & SEO) */}
         <div className="border-t border-slate-200/80 pt-6 pb-6 mb-2 flex flex-col md:flex-row items-center justify-between gap-4">
