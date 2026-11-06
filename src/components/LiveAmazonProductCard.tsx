@@ -103,8 +103,7 @@ export default function LiveAmazonProductCard({
           href={directProductUrl}
           target="_blank"
           rel="nofollow sponsored noopener noreferrer"
-          tabIndex={-1}
-          aria-hidden="true"
+          aria-label={`Ver producto: ${product.title}`}
           className="block w-full h-full cursor-pointer relative"
         >
           {product.imageUrl && !hasImgError ? (
@@ -221,7 +220,7 @@ export default function LiveAmazonProductCard({
             href={directProductUrl}
             target="_blank"
             rel="nofollow sponsored noopener noreferrer"
-            aria-label="Ver mejor oferta en Amazon"
+            aria-label={`Ver oferta de ${product.title} en Amazon`}
             className="w-full py-2 px-3 rounded-xl text-xs font-black text-slate-950 bg-[#ffd814] hover:bg-[#f7ca00] active:bg-[#f0b800] border border-[#fcd200] shadow-xs text-center flex items-center justify-center gap-1.5 transition-all cursor-pointer hover:scale-101"
           >
             <span>Ver oferta en Amazon</span>

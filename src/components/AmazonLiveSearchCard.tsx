@@ -114,6 +114,7 @@ export default function AmazonLiveSearchCard({
               type="text"
               value={customTerm}
               onChange={(e) => setCustomTerm(e.target.value)}
+              aria-label="Buscar cualquier producto en Amazon"
               placeholder="Ej. Colonia One Million, Scalextric..."
               className={`w-full py-2.5 pl-9 pr-3 rounded-xl text-xs sm:text-sm border outline-none font-medium transition-colors ${
                 isDark

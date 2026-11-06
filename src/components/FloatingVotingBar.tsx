@@ -33,6 +33,7 @@ export default function FloatingVotingBar() {
       <button
         type="button"
         onClick={() => setIsDrawerOpen(true)}
+        aria-label="Abrir panel de votación de regalos en grupo por WhatsApp"
         className="flex items-center gap-2.5 px-4 sm:px-5 py-3 rounded-full bg-linear-to-r from-emerald-500 via-teal-600 to-emerald-600 hover:from-emerald-400 hover:to-teal-500 text-white font-extrabold text-xs sm:text-sm shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-200 border-2 border-emerald-300/40 cursor-pointer group ring-4 ring-emerald-500/20"
         title="Crear encuesta para votar regalos con amigos por WhatsApp"
       >

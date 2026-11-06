@@ -463,6 +463,7 @@ function CartaPapaNoelContent() {
                       type="text"
                       value={childName}
                       onChange={(e) => setChildName(e.target.value)}
+                      aria-label="Nombre del niño o niña"
                       placeholder="Escribe tu nombre..."
                       className="border-b-2 border-dashed border-red-700 bg-transparent text-lg sm:text-xl font-bold font-serif text-red-950 focus:outline-hidden focus:border-red-900 px-2 py-0 inline-block w-48 sm:w-60 placeholder:text-slate-400 placeholder:font-normal placeholder:text-sm text-center"
                       maxLength={30}
@@ -472,6 +473,7 @@ function CartaPapaNoelContent() {
                       type="number"
                       value={childAge}
                       onChange={(e) => setChildAge(e.target.value)}
+                      aria-label="Edad del niño o niña en años"
                       min="1"
                       max="14"
                       className="border-b-2 border-dashed border-red-700 bg-transparent text-lg sm:text-xl font-bold font-serif text-red-950 focus:outline-hidden px-1 py-0 inline-block w-14 text-center"
@@ -773,12 +775,14 @@ function CartaPapaNoelContent() {
                       type="text"
                       value={searchToyQuery}
                       onChange={(e) => setSearchToyQuery(e.target.value)}
+                      aria-label="Buscar juguete específico en el catálogo"
                       placeholder="🔍 Buscar juguete específico (Mercedes, Quad, Minimoto, Patinete, Lego...)"
                       className="w-full pl-10 pr-9 py-2.5 rounded-2xl bg-white/10 border-2 border-white/15 focus:border-amber-400 focus:bg-white/15 focus:outline-hidden text-xs sm:text-sm text-white placeholder:text-slate-300 shadow-inner"
                     />
                     {searchToyQuery && (
                       <button
                         onClick={() => setSearchToyQuery('')}
+                        aria-label="Borrar búsqueda de juguetes"
                         className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-300 hover:text-white p-1"
                         title="Borrar búsqueda"
                       >

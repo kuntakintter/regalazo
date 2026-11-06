@@ -203,6 +203,7 @@ export default function FilterBar({
             step={5}
             value={sliderValue}
             onChange={handleSliderChange}
+            aria-label="Filtro de presupuesto máximo"
             className="w-full h-2.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-indigo-600 transition-all focus:outline-none"
           />
           {/* Milestone markers below track */}

@@ -331,6 +331,7 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
                 type="text"
                 value={searchFilter}
                 onChange={(e) => setSearchFilter(e.target.value)}
+                aria-label="Buscar idioma o país"
                 placeholder="Buscar idioma o país (americano, alemán, ruso)..."
                 className="w-full pl-8 pr-3 py-1.5 text-xs rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-indigo-500 focus:ring-1 focus:ring-indigo-200 outline-none transition-all placeholder:text-slate-400"
                 autoFocus

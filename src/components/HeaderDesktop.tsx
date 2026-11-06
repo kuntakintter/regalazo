@@ -92,6 +92,7 @@ export default function HeaderDesktop({
                     onSearchChange?.(e.target.value);
                     setIsFocused(true);
                   }}
+                  aria-label="Buscar regalo: Lego, zapatillas, perfumes, PS5..."
                   placeholder="Buscar regalo: Lego, zapatillas, perfumes, PS5..."
                   className="w-full px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:outline-none bg-transparent"
                 />
@@ -334,7 +335,7 @@ export default function HeaderDesktop({
       </div>
 
       {/* 2. SUB-NAV MENÚ DE ESCRITORIO (TABS CONTEXTUALES Y DROPDOWN) */}
-      <div className="bg-[#1f2833] text-white border-t border-slate-700/60 shadow-inner">
+      <nav aria-label="Navegación principal" className="bg-[#1f2833] text-white border-t border-slate-700/60 shadow-inner">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center gap-3 py-2 text-xs">
             
@@ -532,7 +533,7 @@ export default function HeaderDesktop({
 
           </div>
         </div>
-      </div>
+      </nav>
     </div>
   );
 }

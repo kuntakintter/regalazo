@@ -57,7 +57,12 @@ export default function VotingDrawer() {
       />
 
       {/* Drawer Panel */}
-      <div className="relative w-full max-w-md bg-white h-full shadow-2xl flex flex-col z-10 animate-in slide-in-from-right duration-300">
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Panel de votación en grupo"
+        className="relative w-full max-w-md bg-white h-full shadow-2xl flex flex-col z-10 animate-in slide-in-from-right duration-300"
+      >
         {/* Header */}
         <div className="p-4 sm:p-5 border-b border-slate-200 bg-gradient-to-r from-amber-50 via-white to-orange-50 flex items-center justify-between">
           <div className="flex items-center gap-2.5">

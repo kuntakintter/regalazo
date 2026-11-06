@@ -1123,6 +1123,7 @@ export default function GiftWizard({
                     type="text"
                     value={customInterest}
                     onChange={(e) => setCustomInterest(e.target.value)}
+                    aria-label="Buscar o escribir interés personalizado"
                     placeholder="Ej: Cómics de Marvel, One Piece, Spider-Man, Batman, Harry Potter..."
                     className="w-full pl-9 pr-3.5 py-2 text-xs rounded-xl border border-slate-200 bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none transition-all placeholder:text-slate-400 text-slate-800"
                   />

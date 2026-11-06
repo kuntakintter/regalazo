@@ -931,6 +931,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                       type="text"
                       value={searchQuery}
                       onChange={(e) => handleSearchChange(e.target.value)}
+                      aria-label="Buscador inteligente de regalos"
                       placeholder={
                         i18nConfig?.searchPlaceholder ||
                         'Ej: Para mi novio friki de Star Wars, gamer, cafetera, niña 6 años...'
@@ -941,6 +942,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                       <button
                         type="button"
                         onClick={() => handleSearchChange('')}
+                        aria-label="Borrar búsqueda"
                         className="p-1.5 text-slate-400 hover:text-slate-600 rounded-lg mr-1 cursor-pointer transition-colors"
                         title="Borrar búsqueda"
                       >

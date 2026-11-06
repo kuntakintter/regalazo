@@ -151,6 +151,7 @@ export default function HeaderMobile({
                 onSearchChange?.(e.target.value);
                 setIsFocused(true);
               }}
+              aria-label="Buscar regalo: Lego, zapatillas, perfumes, PS5..."
               placeholder="Buscar regalo: Lego, zapatillas, perfumes, PS5..."
               className="w-full px-2.5 py-2 text-xs text-slate-900 placeholder-slate-400 focus:outline-none bg-transparent"
             />
@@ -314,7 +315,7 @@ export default function HeaderMobile({
       </div>
 
       {/* 2. SUB-NAV MENÚ MÓVIL (2 BOTONES HERO: EDADES Y PASIONES) */}
-      <div className="bg-[#1f2833] text-white border-t border-slate-700/60 shadow-inner px-3 py-2">
+      <nav aria-label="Navegación móvil" className="bg-[#1f2833] text-white border-t border-slate-700/60 shadow-inner px-3 py-2">
         <div className="grid grid-cols-2 gap-2.5 w-full text-xs">
           {/* 1. Dropdown Por Edades */}
           <div ref={agesDropdownRef} className="relative w-full">
@@ -449,7 +450,7 @@ export default function HeaderMobile({
             )}
           </div>
         </div>
-      </div>
+      </nav>
     </div>
   );
 }
