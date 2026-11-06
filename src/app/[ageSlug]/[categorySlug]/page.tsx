@@ -49,9 +49,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const currentSub = subcategories.find((s) => s.slug === categorySlug);
   if (!currentSub) return {};
 
-  const pageTitle = `Los 10 Mejores ${currentSub.label} 【Comparativa 2026】 | Un Buen Regalo`;
-  const socialTitle = `🎁 Los 10 Mejores ${currentSub.label} 【Comparativa 2026】`;
-  const pageDesc = `Comparativa y ranking de los 10 mejores ${currentSub.label.toLowerCase()} (${ageMeta.h1.toLowerCase()}). Analizamos los productos mejor valorados por calidad-precio y opiniones reales.`;
+  const pageTitle = `Un Buen Regalo: ${currentSub.label} 【2026】 Ideas y Comparativa de Regalos`;
+  const socialTitle = `🎁 Un Buen Regalo: ${currentSub.label} 【2026】`;
+  const pageDesc = `¿Buscas un buen regalo de ${currentSub.label.toLowerCase()}? Comparativa y ranking de ideas de regalos (${ageMeta.h1.toLowerCase()}) mejor valoradas en Amazon.`;
   const canonicalUrl = `https://www.unbuenregalo.es/${ageSlug}/${categorySlug}`;
   const ogImage = getCategoryOgImage(currentSub.label);
 
@@ -63,11 +63,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     imageUrl: ogImage.url,
     imageAlt: ogImage.alt,
     keywords: [
+      `un buen regalo ${currentSub.label.toLowerCase()}`,
+      `regalo ${currentSub.label.toLowerCase()}`,
+      `regalos ${currentSub.label.toLowerCase()}`,
+      `ideas de regalos ${currentSub.label.toLowerCase()}`,
       `los 10 mejores ${currentSub.label.toLowerCase()}`,
       `comparativa ${currentSub.label.toLowerCase()}`,
       `mejores productos ${currentSub.label.toLowerCase()}`,
       currentSub.label.toLowerCase(),
-      `regalos ${currentSub.label.toLowerCase()}`,
       ageMeta.h1.toLowerCase(),
     ],
   });

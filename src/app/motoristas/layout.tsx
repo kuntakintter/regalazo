@@ -11,7 +11,10 @@ export const metadata: Metadata = buildSocialMetadata({
   imageUrl: snippet.imageUrl,
   imageAlt: snippet.imageAlt,
   keywords: [
+    'un buen regalo para un motero',
+    'regalo para motorista',
     'regalos para motoristas',
+    'ideas de regalos para moteros',
     'regalos moteros',
     'cascos de moto para regalar',
     'casco moto modular doble visera',

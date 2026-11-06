@@ -212,14 +212,14 @@ export default function CafePage() {
           </div>
 
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] mb-5 text-slate-900">
-            Mejores Regalos para Cafeteros:{' '}
+            Un Buen Regalo para un Amante del Café:{' '}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-700 via-yellow-600 to-orange-500">
-              Molinillos, Cafeteras y Barista
+              Molinillos, Cafeteras e Ideas Barista 2026
             </span>
           </h1>
 
           <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed mb-6 max-w-2xl mx-auto">
-            Regalos que elevan el café de cada mañana a nivel de cafetería de especialidad: las míticas italianas Bialetti, molinillos manuales con muelas CNC de precisión, espumadores cremosos y tazas térmicas Stanley.
+            ¿Qué regalar a un cafetero? Las míticas italianas Bialetti, molinillos manuales con muelas CNC de precisión, espumadores cremosos y tazas térmicas Stanley para un buen regalo barista.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs font-medium text-slate-500 mb-8">

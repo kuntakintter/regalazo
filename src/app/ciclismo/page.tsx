@@ -212,14 +212,14 @@ export default function CiclismoPage() {
           </div>
 
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] mb-5 text-slate-900">
-            Mejores Regalos para Ciclistas:{' '}
+            Un Buen Regalo para un Ciclista:{' '}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-500">
-              GPS, Luces Radar y Taller
+              Ideas de Regalos, GPS y Accesorios 2026
             </span>
           </h1>
 
           <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed mb-6 max-w-2xl mx-auto">
-            Selección contrastada de regalos para ciclistas: radares Garmin Varia que avisan de coches por detrás, ciclocomputadores con mapas de ruta, multiherramientas profesionales y lubricantes de cera pura.
+            ¿Buscas un buen regalo para un ciclista de carretera, gravel o MTB? Radares Garmin Varia que avisan de coches, GPS con mapas, multiherramientas profesionales y lubricantes de cera pura.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs font-medium text-slate-500 mb-8">

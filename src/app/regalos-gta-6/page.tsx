@@ -262,11 +262,10 @@ export default function RegalosGta6Page() {
 
           {/* H1 SEO Optimizado para GTA 6 y GTA VI */}
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white mb-6 leading-tight">
-            Los Mejores Regalos para Fans de{' '}
+            Un Buen Regalo para Fans de{' '}
             <span className="bg-gradient-to-r from-[#ff2a85] via-[#ff7300] to-[#00f0ff] bg-clip-text text-transparent drop-shadow-[0_0_35px_rgba(255,42,133,0.4)]">
               GTA 6
-            </span>{' '}
-            y Merchandising Oficial{' '}
+            </span>: Ideas de Regalos y Merch{' '}
             <span className="bg-gradient-to-r from-[#00f0ff] to-[#a855f7] bg-clip-text text-transparent">
               GTA VI
             </span>

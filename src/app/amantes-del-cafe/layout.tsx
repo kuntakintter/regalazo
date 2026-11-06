@@ -11,7 +11,10 @@ export const metadata: Metadata = buildSocialMetadata({
   imageUrl: snippet.imageUrl,
   imageAlt: snippet.imageAlt,
   keywords: [
+    'un buen regalo para un amante del cafe',
+    'regalo para barista cafe',
     'regalos para amantes del cafe',
+    'ideas de regalos barista',
     'regalos barista cafe de especialidad',
     'cafetera moka bialetti express',
     'molinillo cafe timemore c3',

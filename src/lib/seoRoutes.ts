@@ -14,66 +14,66 @@ export const SEO_AGE_ROUTES: Record<string, SeoRouteMeta> = {
   'bebes-0-a-12-meses': {
     ageId: '0-12m',
     ageSlug: 'bebes-0-a-12-meses',
-    title: 'Los 10 Mejores Regalos para Bebés y Recién Nacidos 【Comparativa 2026】 | Un Buen Regalo',
-    h1: 'Los 10 Mejores Regalos para Bebés y Recién Nacidos (0 a 12 Meses)',
-    description: 'Comparativa de los 10 mejores regalos y productos para un recién nacido: tartas de pañales, cunas colecho, cochecitos ligeros y juguetes sensoriales mejor valorados.',
-    keywords: ['los 10 mejores regalos para bebes', 'comparativa regalos bebes recien nacidos', 'mejores productos para bebes', 'regalo bebe 1 año', 'tartas de pañales', 'cochecitos de bebe ligeros', 'cuna colecho recomendada']
+    title: 'Un Buen Regalo para un Bebé y Recién Nacido (0-12m) | Ideas de Regalos 2026',
+    h1: 'Un Buen Regalo para Bebés y Recién Nacidos: Ideas Originales (0 a 12 Meses)',
+    description: '¿Qué regalar a un recién nacido? Comparativa con un buen regalo para bebés: tartas de pañales, cunas colecho, cochecitos ligeros y juguetes sensoriales recomendados.',
+    keywords: ['un buen regalo para un bebe', 'regalo bebe recien nacido', 'los 10 mejores regalos para bebes', 'comparativa regalos bebes recien nacidos', 'mejores productos para bebes', 'regalo bebe 1 año', 'tartas de pañales', 'cochecitos de bebe ligeros']
   },
   'ninos-1-a-3-anos': {
     ageId: '1-3',
     ageSlug: 'ninos-1-a-3-anos',
-    title: 'Los 10 Mejores Regalos para Niños de 1 a 3 Años 【Comparativa 2026】 | Un Buen Regalo',
-    h1: 'Los 10 Mejores Regalos para Primeros Pasos (1 a 3 Años)',
-    description: 'Ranking y comparativa de los 10 mejores regalos y juguetes Montessori de madera, torres de aprendizaje, LEGO DUPLO y triciclos evolutivos para niños de 1, 2 y 3 años.',
-    keywords: ['los 10 mejores regalos niños 1 a 3 años', 'comparativa juguetes montessori', 'regalos niños 1 año', 'regalos niños 2 años', 'regalos niños 3 años', 'juguetes montessori madera', 'lego duplo']
+    title: 'Un Buen Regalo para un Niño de 1 a 3 Años: Juguetes Montessori e Ideas 2026',
+    h1: 'Un Buen Regalo para Primeros Pasos: Juguetes Montessori (1 a 3 Años)',
+    description: '¿Qué regalar a un niño de 1, 2 o 3 años? Ideas de regalo y juguetes Montessori de madera, torres de aprendizaje, LEGO DUPLO y triciclos evolutivos.',
+    keywords: ['un buen regalo para un niño de 1 a 3 años', 'regalo niño 1 año', 'regalo niño 2 años', 'regalo niño 3 años', 'los 10 mejores regalos niños 1 a 3 años', 'juguetes montessori madera', 'lego duplo']
   },
   'ninos-4-a-6-anos': {
     ageId: '4-6',
     ageSlug: 'ninos-4-a-6-anos',
-    title: 'Los 10 Mejores Regalos para Niños de 4 a 6 Años 【Comparativa 2026】 | Un Buen Regalo',
-    h1: 'Los 10 Mejores Regalos para Infantil y Creatividad (4 a 6 Años)',
-    description: 'Tabla comparativa con los 10 mejores regalos para niños y niñas de 4 a 6 años: circuitos Mario Kart Carrera, patinetes con ruedas LED, juegos de mesa y maletines creativos.',
-    keywords: ['los 10 mejores regalos niños 4 a 6 años', 'comparativa regalos infantiles', 'regalos niños 4 años', 'regalos niños 5 años', 'regalos niños 6 años', 'circuitos coches infantiles', 'patinete niño ruedas led']
+    title: 'Un Buen Regalo para un Niño de 4 a 6 Años: Juegos Creativos e Ideas 2026',
+    h1: 'Un Buen Regalo para Niños y Niñas de 4 a 6 Años: Juegos y Creatividad',
+    description: '¿Buscas un buen regalo para niños y niñas de 4 a 6 años? Circuitos Mario Kart Carrera, patinetes con ruedas LED, juegos de mesa y maletines creativos.',
+    keywords: ['un buen regalo para un niño de 4 a 6 años', 'regalo niña 4 años', 'regalo niño 5 años', 'regalo niño 6 años', 'los 10 mejores regalos niños 4 a 6 años', 'circuitos coches infantiles', 'patinete niño ruedas led']
   },
   'ninos-7-a-9-anos': {
     ageId: '7-9',
     ageSlug: 'ninos-7-a-9-anos',
-    title: 'Los 10 Mejores Regalos para Niños de 7 a 9 Años 【Comparativa 2026】 | Un Buen Regalo',
-    h1: 'Los 10 Mejores Regalos para Primaria y Acción (7 a 9 Años)',
-    description: 'Comparativa de los 10 mejores regalos para niños de 7 a 9 años: pistas de Scalextric Compact, coches teledirigidos 4x4, sets LEGO Creator 3 en 1 y cajas de magia.',
-    keywords: ['los 10 mejores regalos niños 7 a 9 años', 'comparativa juguetes 8 años', 'regalos niños 7 años', 'regalos niños 8 años', 'regalos niños 9 años', 'scalextric compact pista', 'lego creator 3 en 1']
+    title: 'Un Buen Regalo para un Niño de 7 a 9 Años: Scalextric, LEGO e Ideas 2026',
+    h1: 'Un Buen Regalo para Niños de 7 a 9 Años: Scalextric, LEGO y STEM',
+    description: 'Ideas y el mejor regalo para niños de 7 a 9 años: pistas Scalextric Compact, coches teledirigidos 4x4, sets LEGO Creator 3 en 1 y magia Borrás.',
+    keywords: ['un buen regalo para un niño de 7 a 9 años', 'regalo niño 7 años', 'regalo niño 8 años', 'regalo niño 9 años', 'los 10 mejores regalos niños 7 a 9 años', 'scalextric compact pista', 'lego creator 3 en 1']
   },
   'ninos-10-a-12-anos': {
     ageId: '10-12',
     ageSlug: 'ninos-10-a-12-anos',
-    title: 'Los 10 Mejores Regalos para Niños de 10 a 12 Años 【Comparativa 2026】 | Un Buen Regalo',
-    h1: 'Los 10 Mejores Regalos para Preadolescentes (10 a 12 Años)',
-    description: 'Ranking y comparativa de los 10 mejores regalos para chicos y chicas de 10 a 12 años: juegos de cartas competitivos, minidrones con cámara, escape rooms y LEGO.',
-    keywords: ['los 10 mejores regalos niños 10 a 12 años', 'comparativa regalos preadolescentes', 'regalos niños 10 años', 'regalos niños 11 años', 'regalos niños 12 años', 'juego virus cartas', 'minidrones infantiles con camara']
+    title: 'Un Buen Regalo para Niños y Niñas de 10 a 12 Años | Ideas de Regalos 2026',
+    h1: 'Un Buen Regalo para Preadolescentes (10 a 12 Años): Chicos y Chicas',
+    description: '¿Qué regalar a un chico o chica de 10 a 12 años? Juegos de cartas competitivos como Virus!, minidrones con cámara, escape rooms en casa y LEGO.',
+    keywords: ['un buen regalo para niños de 10 a 12 años', 'regalo niña 10 años', 'regalo niño 11 años', 'regalo niño 12 años', 'los 10 mejores regalos niños 10 a 12 años', 'juego virus cartas', 'minidrones infantiles con camara']
   },
   'jovenes-13-a-15-anos': {
     ageId: '13-15',
     ageSlug: 'jovenes-13-a-15-anos',
-    title: 'Los 10 Mejores Regalos para Adolescentes (13-15 Años) 【Comparativa 2026】 | Un Buen Regalo',
-    h1: 'Los 10 Mejores Regalos para Adolescentes (13 a 15 Años)',
-    description: 'Comparativa con los 10 mejores regalos para adolescentes de 13 a 15 años: auriculares inalámbricos, cámaras instantáneas Instax Mini, juegos como Catan y periféricos gaming.',
-    keywords: ['los 10 mejores regalos adolescentes', 'comparativa regalos 13 a 15 años', 'regalos adolescentes 13 años', 'regalos adolescentes 14 años', 'regalos adolescentes 15 años', 'auriculares inalambricos jbl', 'catan juego de mesa']
+    title: 'Un Buen Regalo para Niñas y Adolescentes (13-15 Años) | Ideas de Regalos 2026',
+    h1: 'Un Buen Regalo para Adolescentes: Niñas y Chicos de 13 a 15 Años',
+    description: '¿Qué regalar a una niña o adolescente de 13 a 15 años? Cámaras instantáneas Instax Mini, auriculares inalámbricos, juegos de mesa Catan, skincare juvenil y moda teen.',
+    keywords: ['un buen regalo para una niña de 13 a 15 años', 'regalo para niña de 13 años', 'regalo para niña de 14 años', 'regalo para niña de 15 años', 'regalos para niñas de 13 a 15 años', 'regalos adolescentes 13 a 15 años', 'auriculares inalambricos jbl', 'catan juego de mesa', 'instax mini 12']
   },
   'jovenes-16-a-18-anos': {
     ageId: '16-18',
     ageSlug: 'jovenes-16-a-18-anos',
-    title: 'Los 10 Mejores Regalos para Jóvenes de 16 a 18 Años 【Comparativa 2026】 | Un Buen Regalo',
-    h1: 'Los 10 Mejores Regalos para Jóvenes (16 a 18 Años - Gaming y Estilo)',
-    description: 'Tabla comparativa de los 10 mejores regalos y productos para jóvenes de 16 a 18 años: mandos oficiales de PS5, setup gamer pro, fragancias y tecnología juvenil.',
-    keywords: ['los 10 mejores regalos jovenes', 'comparativa regalos 16 a 18 años', 'regalos 16 años chico', 'regalos 18 años chica', 'mandos ps5 dualsense edge', 'accesorios gaming pc', 'fragancias jovenes']
+    title: 'Un Buen Regalo para un Joven de 16 a 18 Años: Gaming, PS5 e Ideas de Regalos 2026',
+    h1: 'Un Buen Regalo para Jóvenes (16 a 18 Años - Gaming, Estilo y Tech)',
+    description: '¿Qué regalar a un joven de 16 a 18 años? Mandos y juegos PS5, periféricos gaming de precisión, fragancias unisex icónicas y diarios de cuero artesanal.',
+    keywords: ['un buen regalo para un joven de 16 a 18 años', 'regalo 16 años chico', 'regalo 18 años chica', 'los 10 mejores regalos jovenes', 'mandos ps5 dualsense edge', 'accesorios gaming pc', 'fragancias jovenes']
   },
   'adultos-mas-de-18-anos': {
     ageId: '+18',
     ageSlug: 'adultos-mas-de-18-anos',
-    title: 'Los 10 Mejores Regalos para Adultos (+18 Años) 【Comparativa 2026】 | Un Buen Regalo',
-    h1: 'Los 10 Mejores Regalos Originales para Adultos (+18 Años)',
-    description: 'Ranking y comparativa de los 10 mejores regalos para adultos, hombres y mujeres: cajas Smartbox de escapadas, sets LEGO Icons, cafeteras barista, drones 4K y gadgets top.',
-    keywords: ['los 10 mejores regalos para adultos', 'comparativa mejores regalos', 'los 10 mejores productos para regalar', 'regalos a partir de 18 años', 'regalos para adultos', 'cajas smartbox escapada', 'lego icons adultos', 'drones con camara 4k']
+    title: 'Un Buen Regalo para Adultos (+18 Años) | Experiencias e Ideas de Regalos 2026',
+    h1: 'Un Buen Regalo para Adultos: Ideas Originales (+18 Años)',
+    description: 'Ranking y comparativa con un buen regalo para adultos, hombres y mujeres: cajas Smartbox de escapadas, maquetas LEGO Icons, cafeteras barista y drones 4K.',
+    keywords: ['un buen regalo para adultos', 'regalo para hombre adulto', 'regalo para mujer adulta', 'los 10 mejores regalos para adultos', 'cajas smartbox escapada', 'lego icons adultos', 'drones con camara 4k']
   },
   'fiesta-revelacion-genero': {
     ageId: 'reveal',

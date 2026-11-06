@@ -1,13 +1,14 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: '🎅 Carta a Papá Noel 2026 Online: Escribir, Rellenar e Imprimir | Un Buen Regalo',
+  title: 'Un Buen Regalo 🎅 Carta a Papá Noel 2026 Online: Escribir, Rellenar e Imprimir Gratis',
   description: 'Escribe tu carta mágica a Papá Noel online con buzón mágico al Polo Norte. Catálogo con más de 370 juguetes: LEGO, coches eléctricos, minimotos, quads, patinetes, gaming y cascos de seguridad.',
   keywords: [
+    'escribir carta a papa noel online gratis',
     'carta a papa noel online',
     'carta para papa noel para rellenar',
     'carta papa noel para imprimir',
-    'escribir carta a papa noel',
+    'carta reyes magos y papa noel online',
     'catalogo de juguetes navidad 2026',
     'juguetes navidad 2026',
     'coches electricos para niños',

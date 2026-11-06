@@ -117,7 +117,7 @@ export default function TienenDeTodoClient() {
             <span>Selección Editorial de Sorpresas Únicas 2026</span>
           </div>
           <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight">
-            Regalos para los que Tienen de Todo
+            Un Buen Regalo para los que Tienen de Todo: Ideas de Regalos Únicas
           </h1>
           <p className="text-xs sm:text-sm text-purple-100/90 max-w-2xl mx-auto leading-relaxed">
             ¿Es imposible encontrarle algo? Aquí tienes ideas fuera de lo común: tecnología curiosa, experiencias inolvidables y regalos que jamás se comprarían por sí mismos.

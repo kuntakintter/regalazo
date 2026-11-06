@@ -11,7 +11,10 @@ export const metadata: Metadata = buildSocialMetadata({
   imageUrl: snippet.imageUrl,
   imageAlt: snippet.imageAlt,
   keywords: [
+    'un buen regalo para amantes de los perros',
+    'regalo para amantes de las mascotas',
     'regalos para amantes de las mascotas',
+    'ideas de regalos para perros y gatos',
     'regalos para perros y gatos',
     'gps perros tractive sumergible',
     'fuente gatos inteligente catit pixi',

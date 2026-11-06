@@ -3,10 +3,13 @@ import type { Metadata } from 'next';
 import TienenDeTodoClient from './TienenDeTodoClient';
 
 export const metadata: Metadata = {
-  title: 'Regalos para los que Tienen de Todo 【2026】 Ideas que Sorprenden',
-  description: '¿No sabes qué regalar a quien ya lo tiene todo? Descubre regalos originales, gadgets curiosos, experiencias y sorpresas inolvidables para no fallar jamás.',
+  title: 'Un Buen Regalo para los que Tienen de Todo 【2026】 Ideas de Regalos que Sorprenden',
+  description: '¿Buscas un buen regalo para quien ya lo tiene todo? Descubre regalos originales, gadgets insólitos y sorpresas que nadie se espera.',
   keywords: [
+    'un buen regalo para quien tiene de todo',
+    'regalo para quien tiene de todo',
     'regalos para los que tienen de todo',
+    'ideas de regalos originales',
     'que regalar a quien tiene de todo',
     'regalos originales sorprendentes',
     'ideas regalo para gente dificil',
@@ -17,7 +20,7 @@ export const metadata: Metadata = {
     canonical: 'https://www.unbuenregalo.es/regalos-para-los-que-tienen-de-todo',
   },
   openGraph: {
-    title: 'Regalos para los que Tienen de Todo 【2026】 Ideas que Sorprenden',
+    title: 'Un Buen Regalo para los que Tienen de Todo 【2026】 Ideas de Regalos que Sorprenden',
     description: 'Guía oficial de regalos insólitos y experiencias para personas que parecen tenerlo todo.',
     url: 'https://www.unbuenregalo.es/regalos-para-los-que-tienen-de-todo',
     siteName: 'Un Buen Regalo',
@@ -34,7 +37,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Regalos para los que Tienen de Todo 【2026】 Ideas que Sorprenden',
+    title: 'Un Buen Regalo para los que Tienen de Todo 【2026】 Ideas que Sorprenden',
     description: 'Ideas sorprendentes y originales para personas que no necesitan nada.',
     images: ['https://www.unbuenregalo.es/og-cover.png'],
   },

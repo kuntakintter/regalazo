@@ -3,15 +3,17 @@ import type { Metadata } from 'next';
 import NovioClient from './NovioClient';
 
 export const metadata: Metadata = {
-  title: '¿Qué Regalar a mi Novio? 【2026】 Ideas Originales de Aniversario y Cumpleaños',
-  description: '¿No sabes qué regalar a tu novio? Descubre las mejores ideas de regalo para tu pareja: tecnología, gaming, estilo, accesorios y detalles románticos con los que acertarás seguro.',
+  title: 'Un Buen Regalo para mi Novio: ¿Qué Regalar? 【2026】 Ideas de Regalos Originales',
+  description: '¿Buscas un buen regalo para tu novio? Descubre qué regalarle con ideas de regalos originales para cumpleaños, aniversario o Navidad: tecnología, gadgets y estilo.',
   keywords: [
+    'un buen regalo para mi novio',
+    'regalo para mi novio',
     'que regalar a mi novio',
     'regalos para mi novio',
     'ideas de regalos para novios',
     'regalos aniversario novio',
     'que regalarle a mi novio en su cumpleanos',
-    'regalos originales novio',
+    'regalo original novio 2026',
     'sorpresas para mi novio',
     'detalles para mi novio'
   ],
@@ -19,7 +21,7 @@ export const metadata: Metadata = {
     canonical: 'https://www.unbuenregalo.es/que-regalar-a-mi-novio',
   },
   openGraph: {
-    title: '¿Qué Regalar a mi Novio? 【2026】 Ideas Originales y Sorprendentes',
+    title: 'Un Buen Regalo para mi Novio: ¿Qué Regalar? 【2026】 Ideas de Regalos Originales',
     description: 'Selección de regalos para novios: tecnología, gaming, estilo, fragancias y escapadas románticas con opiniones contrastadas en Amazon.',
     url: 'https://www.unbuenregalo.es/que-regalar-a-mi-novio',
     siteName: 'Un Buen Regalo',
@@ -36,7 +38,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: '¿Qué Regalar a mi Novio? 【2026】 Ideas Originales',
+    title: 'Un Buen Regalo para mi Novio: ¿Qué Regalar? 【2026】',
     description: 'Ideas de regalos para tu novio en su cumpleaños, aniversario o Navidad. Comparativas de precios y valoraciones.',
     images: ['https://www.unbuenregalo.es/og-cover.png'],
   },

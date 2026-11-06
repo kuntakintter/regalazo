@@ -233,9 +233,9 @@ export default function NavidadPage() {
           </div>
 
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] mb-5 text-slate-900">
-            Especial Navidad & Reyes:{' '}
+            Un Buen Regalo de Navidad 2026:{' '}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-rose-600 via-amber-600 to-emerald-600">
-              Trenes de Árbol, Decoración & Regalos
+              Ideas de Regalos, Trenes de Árbol y Reyes Magos
             </span>
           </h1>
 

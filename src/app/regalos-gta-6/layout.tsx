@@ -13,10 +13,11 @@ export const metadata: Metadata = buildSocialMetadata({
   keywords: [
     'un buen regalo gta vi',
     'un buen regalo gta 6',
-    'unbuenregalo gta vi',
-    'unbuenregalo gta 6',
+    'un buen regalo para un fan de gta 6',
+    'regalo gta 6',
     'regalos gta 6',
     'regalos gta vi',
+    'ideas de regalos gta 6',
     'merchandising gta 6',
     'merchandising gta vi',
     'grand theft auto 6 regalos',

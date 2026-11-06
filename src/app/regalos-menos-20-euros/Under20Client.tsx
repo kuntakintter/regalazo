@@ -128,7 +128,7 @@ export default function Under20Client() {
             <span>Guía Oficial de Regalos Económicos 2026</span>
           </div>
           <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight">
-            Regalos por Menos de 20 Euros
+            Un Buen Regalo por Menos de 20 Euros: Ideas de Regalos Baratos
           </h1>
           <p className="text-xs sm:text-sm text-emerald-100/90 max-w-2xl mx-auto leading-relaxed">
             Las ideas de regalo más originales, valoradas y sorprendentes con presupuesto ajustado. Ideales para cumpleaños, aniversarios, amigo invisible y detalles con envío en 24h.

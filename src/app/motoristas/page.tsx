@@ -249,14 +249,14 @@ export default function MotoristasPage() {
           </div>
 
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] mb-5 text-slate-900">
-            Mejores Regalos para Motoristas:{' '}
+            Un Buen Regalo para un Motero:{' '}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-500 via-orange-600 to-red-600">
-              Cascos, Ropa y Accesorios
+              Cascos, Gadgets e Ideas de Regalos 2026
             </span>
           </h1>
 
           <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed mb-6 max-w-2xl mx-auto">
-            Selección experta de regalos para apasionados de las motos: cascos modulares e integrales, chaquetas con protecciones, guantes térmicos, intercomunicadores y candados antirrobo con las mejores valoraciones de Amazon España.
+            ¿Buscas un buen regalo para un motorista o motero? Cascos modulares, chaquetas con protecciones, guantes térmicos, intercomunicadores Cardo y candados antirrobo con garantía oficial Amazon.
           </p>
 
           {/* Quick Badges of Trust */}

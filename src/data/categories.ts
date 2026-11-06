@@ -15,8 +15,8 @@ export const AGE_CATEGORIES: AgeCategoryMeta[] = [
     label: 'Recién Nacidos (0-12m)',
     tagline: 'Cochecitos, cunas de colecho, bañeras, tartas de pañales, cuentos y colonias suaves',
     description: 'Los mejores regalos y artículos esenciales para recién nacidos: desde sillas de paseo y cunas hasta tartas de pañales Dodot, bañeras seguras, canastillas, cuentos de tela y colonias sin alcohol.',
-    h1: 'Regalos y Artículos Esenciales para Recién Nacidos y Bebés (0 a 12 Meses)',
-    seoKeywords: ['regalos recién nacido', 'cochecito bebe', 'cuna colecho chicco', 'tarta de pañales dodot', 'bañera bebe plegable', 'colonia suavinex bebe'],
+    h1: 'Un Buen Regalo para Bebés y Recién Nacidos (0 a 12 Meses)',
+    seoKeywords: ['un buen regalo para un bebe', 'regalos recién nacido', 'cochecito bebe', 'cuna colecho chicco', 'tarta de pañales dodot', 'bañera bebe plegable', 'colonia suavinex bebe'],
     theme: 'baby',
     icon: '🧸'
   },
@@ -25,8 +25,8 @@ export const AGE_CATEGORIES: AgeCategoryMeta[] = [
     label: '1 a 3 Años',
     tagline: 'Torres de aprendizaje, Montessori, triciclos, cuentos interactivos y primeros pasos',
     description: 'Juguetes educativos de madera, torres de aprendizaje, triciclos evolutivos, plastilina Play-Doh, cuentos con solapas como El Pollo Pepe y ropa de primeros pasos.',
-    h1: 'Regalos Educativos y Montessori para Niños y Niñas de 1 a 3 Años',
-    seoKeywords: ['regalos niños 1 año', 'juguetes montessori 2 años', 'triciclo evolutivo bebe', 'torre de aprendizaje', 'el pollo pepe cuento'],
+    h1: 'Un Buen Regalo para Niños de 1 a 3 Años: Juguetes Montessori e Ideas',
+    seoKeywords: ['un buen regalo para un niño de 1 a 3 años', 'regalo niño 1 año', 'regalos niños 2 años', 'juguetes montessori 2 años', 'triciclo evolutivo bebe', 'torre de aprendizaje', 'el pollo pepe cuento'],
     theme: 'kids',
     icon: '🧩'
   },
@@ -35,8 +35,8 @@ export const AGE_CATEGORIES: AgeCategoryMeta[] = [
     label: '4 a 6 Años',
     tagline: 'Circuitos Mario Kart, juegos de mesa iniciales, cuentos ilustrados y creatividad',
     description: 'Juegos cooperativos como El Monstruo de Colores, circuitos de coches de Mario Kart, patinetes con ruedas LED, maletines de pintura y disfraces infantiles.',
-    h1: 'Ideas de Regalo para Niños y Niñas de 4 a 6 Años',
-    seoKeywords: ['regalos niña 4 años', 'regalos niño 5 años', 'juegos educativos 6 años', 'circuito mario kart carrera first', 'el monstruo de colores'],
+    h1: 'Un Buen Regalo para Niños y Niñas de 4 a 6 Años: Creatividad y Juegos',
+    seoKeywords: ['un buen regalo para un niño de 4 a 6 años', 'regalos niña 4 años', 'regalos niño 5 años', 'juegos educativos 6 años', 'circuito mario kart carrera first', 'el monstruo de colores'],
     theme: 'kids',
     icon: '🎨'
   },
@@ -45,8 +45,8 @@ export const AGE_CATEGORIES: AgeCategoryMeta[] = [
     label: '7 a 9 Años',
     tagline: 'Scalextric, Magia Borrás, LEGO Creator, cómics y estrategia familiar',
     description: 'Circuitos Scalextric Compact, coches teledirigidos 4x4, sets LEGO Creator 3 en 1, cajas de Magia Borrás, Catan Junior y los cómics infantiles más divertidos.',
-    h1: 'Juegos de Magia, Scalextric, LEGO y Regalos para Niños de 7 a 9 Años',
-    seoKeywords: ['scalextric compact pista', 'juegos de magia borras', 'catan junior devir', 'lego creator 3 en 1', 'regalos nino 8 anos', 'comics infantiles'],
+    h1: 'Un Buen Regalo para Niños de 7 a 9 Años: Scalextric, LEGO y STEM',
+    seoKeywords: ['un buen regalo para un niño de 7 a 9 años', 'scalextric compact pista', 'juegos de magia borras', 'catan junior devir', 'lego creator 3 en 1', 'regalos nino 8 anos', 'comics infantiles'],
     theme: 'classic',
     icon: '🎩'
   },
@@ -55,8 +55,8 @@ export const AGE_CATEGORIES: AgeCategoryMeta[] = [
     label: '10 a 12 Años',
     tagline: 'Juegos de cartas competitivos (Virus!), drones, escape room y novelas juveniles',
     description: 'El superventas Virus!, minidrones resistentes anticolisión, escape rooms familiares, novelas de Harry Potter y Diario de Greg, rotuladores de lettering y sudaderas urbanas.',
-    h1: 'Regalos para Preadolescentes de 10 a 12 Años',
-    seoKeywords: ['juego virus tranjis games', 'dron infantil camara potensic', 'diario de greg libro', 'regalos preadolescentes 11 anos', 'carcassonne devir'],
+    h1: 'Un Buen Regalo para Niños y Niñas de 10 a 12 Años (Preadolescentes)',
+    seoKeywords: ['un buen regalo para niños de 10 a 12 años', 'juego virus tranjis games', 'dron infantil camara potensic', 'diario de greg libro', 'regalos preadolescentes 11 anos', 'carcassonne devir'],
     theme: 'classic',
     icon: '🚀'
   },
@@ -65,8 +65,8 @@ export const AGE_CATEGORIES: AgeCategoryMeta[] = [
     label: '13 a 15 Años',
     tagline: 'Auriculares ANC, fotografía instantánea, Catan, skincare juvenil y estilo teen',
     description: 'Auriculares inalámbricos con cancelación de ruido, cámaras instantáneas Instax Mini, juego Catan oficial, rutina CeraVe antiacné, manga y mochilas urbanas.',
-    h1: 'Regalos para Adolescentes de 13 a 15 Años',
-    seoKeywords: ['regalos 14 anos', 'auriculares jbl bluetooth', 'fujifilm instax mini 12', 'catan juego de mesa', 'skincare cerave adolescente'],
+    h1: 'Un Buen Regalo para Niñas y Adolescentes de 13 a 15 Años',
+    seoKeywords: ['un buen regalo para una niña de 13 a 15 años', 'regalos para niñas de 13 a 15 años', 'regalo para niña de 14 años', 'regalos 14 anos', 'auriculares jbl bluetooth', 'fujifilm instax mini 12', 'catan juego de mesa', 'skincare cerave adolescente'],
     theme: 'gamer',
     icon: '🎧'
   },
@@ -75,8 +75,8 @@ export const AGE_CATEGORIES: AgeCategoryMeta[] = [
     label: '16 a 18 Años',
     tagline: 'PlayStation 5, setup gamer, sonido prémium, perfumería, libros y estilo personal',
     description: 'Accesorios PS5 de competición, periféricos gaming Logitech, realidad virtual, diarios de cuero artesanal, fragancias icónicas CK One, libros inspiradores y moda urbana.',
-    h1: 'Regalos para Jóvenes de 16 a 18 Años (Gaming, Tech, Perfumería, Libros y Moda)',
-    seoKeywords: ['juegos ps5 spiderman 2', 'mando dualsense edge ps5', 'calvin klein ck one original', 'diario cuero vintage moonster', 'regalos 18 anos chico chica'],
+    h1: 'Un Buen Regalo para Jóvenes de 16 a 18 Años (Gaming, Tech y Estilo)',
+    seoKeywords: ['un buen regalo para un joven de 16 a 18 años', 'juegos ps5 spiderman 2', 'mando dualsense edge ps5', 'calvin klein ck one original', 'diario cuero vintage moonster', 'regalos 18 anos chico chica'],
     theme: 'gamer',
     icon: '⚡'
   },
@@ -85,8 +85,8 @@ export const AGE_CATEGORIES: AgeCategoryMeta[] = [
     label: 'A partir de 18 Años',
     tagline: 'Cajas Smartbox, robótica avanzada, maquetas LEGO Icons, smartphones insignia y gourmet',
     description: 'Los mejores regalos a partir de 18 años y adultos: escapadas y spas de fin de semana con Smartbox, smartphones buques insignia, coleccionismo LEGO Icons, robótica y drones 4K, juegos de mesa estratégicos y experiencias gourmet.',
-    h1: 'Ideas de Regalo Originales a Partir de 18 Años (Adultos)',
-    seoKeywords: ['regalos a partir de 18 años', 'regalos para adultos', 'smartbox escapada spa', 'lego icons botanicals', 'smartphones buques insignia', 'drones camara 4k', 'juegos de mesa adultos', 'regalos originales hombre mujer'],
+    h1: 'Un Buen Regalo para Adultos a Partir de 18 Años (Experiencias y Tech)',
+    seoKeywords: ['un buen regalo para adultos', 'regalo para hombre adulto', 'regalo para mujer adulta', 'regalos a partir de 18 años', 'smartbox escapada spa', 'lego icons botanicals', 'smartphones buques insignia', 'drones camara 4k', 'juegos de mesa adultos'],
     theme: 'classic',
     icon: '🎯'
   }

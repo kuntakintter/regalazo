@@ -11,7 +11,10 @@ export const metadata: Metadata = buildSocialMetadata({
   imageUrl: snippet.imageUrl,
   imageAlt: snippet.imageAlt,
   keywords: [
+    'un buen regalo para un ciclista',
+    'regalo para ciclista',
     'regalos para ciclistas',
+    'ideas de regalos ciclismo',
     'regalos mtb ciclismo',
     'garmin varia radar luz trasera',
     'ciclocomputador garmin edge',

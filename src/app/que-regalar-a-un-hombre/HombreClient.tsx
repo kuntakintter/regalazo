@@ -149,9 +149,9 @@ export default function HombreClient() {
             </div>
 
             <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
-              ¿Qué Regalar a un Hombre?{' '}
+              Un Buen Regalo para un Hombre:{' '}
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-400 via-orange-300 to-amber-200">
-                Las Mejores Ideas de 2026
+                ¿Qué Regalar? Ideas de Regalos 2026
               </span>
             </h1>
 

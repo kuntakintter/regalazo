@@ -275,14 +275,14 @@ export default function GamingPage() {
           </div>
 
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] mb-5 text-slate-900">
-            Regalos para Gamers:{' '}
+            Un Buen Regalo para un Gamer:{' '}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-indigo-600 to-pink-500">
-              Ideas Originales, Setup y Baratos 2026
+              Ideas de Regalos, Setup y Chollos 2026
             </span>
           </h1>
 
           <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed mb-6 max-w-2xl mx-auto">
-            ¿No sabes qué regalar a un gamer? Descubre los periféricos más recomendados para PC, PlayStation 5, Xbox y Switch: auriculares con audio 7.1, ratones de alta precisión y chollos por menos de 30 €.
+            ¿Buscas un buen regalo para un gamer barato o ideas originales para PC, PS5 y Switch? Auriculares con audio posicional 7.1, ratones de 25K DPI y accesorios recomendados por menos de 30 €.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs font-medium text-slate-500 mb-8">

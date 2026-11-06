@@ -212,14 +212,14 @@ export default function AutomovilPage() {
           </div>
 
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] mb-5 text-slate-900">
-            Mejores Regalos para el Coche:{' '}
+            Un Buen Regalo para Amantes de los Coches:{' '}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500">
-              Gadgets, Dashcams y Limpieza
+              Gadgets, Dashcams e Ideas de Regalo 2026
             </span>
           </h1>
 
           <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed mb-6 max-w-2xl mx-auto">
-            Regalos indispensables y contrastados para conductores y entusiastas del automóvil: arrancadores de batería ultra compactos, cámaras dashcam 2.7K, infladores digitales y cosmética de detallado profesional.
+            ¿Qué regalar a alguien que le gustan los coches? Arrancadores ultra compactos, cámaras dashcam 4K, compresores digitales Xiaomi y kits de detailing para un buen regalo de coche.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs font-medium text-slate-500 mb-8">

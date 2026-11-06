@@ -3,15 +3,17 @@ import type { Metadata } from 'next';
 import NoviaClient from './NoviaClient';
 
 export const metadata: Metadata = {
-  title: '¿Qué Regalar a mi Novia? 【2026】 Ideas Románticas, Originales y Virales',
-  description: '¿No sabes qué regalar a tu novia? Descubre las mejores ideas de regalo para tu pareja: cosmética viral, perfumes de culto, joyería minimalista, bolsos y escapadas en pareja.',
+  title: 'Un Buen Regalo para mi Novia: ¿Qué Regalar? 【2026】 Ideas de Regalos Originales',
+  description: '¿Buscas un buen regalo para tu novia? Descubre qué regalarle con ideas de regalos originales y románticos para cumpleaños, aniversario o Navidad.',
   keywords: [
+    'un buen regalo para mi novia',
+    'regalo para mi novia',
     'que regalar a mi novia',
     'regalos para mi novia',
     'ideas de regalos para novias',
     'regalos aniversario novia',
     'que regalarle a mi novia en su cumpleanos',
-    'regalos originales novia',
+    'regalo original novia 2026',
     'sorpresas para mi novia',
     'detalles romanticos para mi novia'
   ],
@@ -19,7 +21,7 @@ export const metadata: Metadata = {
     canonical: 'https://www.unbuenregalo.es/que-regalar-a-mi-novia',
   },
   openGraph: {
-    title: '¿Qué Regalar a mi Novia? 【2026】 Ideas Románticas y Especiales',
+    title: 'Un Buen Regalo para mi Novia: ¿Qué Regalar? 【2026】 Ideas de Regalos Originales',
     description: 'Guía de regalos para novias: belleza de culto, perfumes virales, joyería fina, hogar acogedor y planes para dos con opiniones verificadas.',
     url: 'https://www.unbuenregalo.es/que-regalar-a-mi-novia',
     siteName: 'Un Buen Regalo',
@@ -36,7 +38,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: '¿Qué Regalar a mi Novia? 【2026】 Ideas Románticas',
+    title: 'Un Buen Regalo para mi Novia: ¿Qué Regalar? 【2026】',
     description: 'Ideas de regalos para tu novia en su cumpleaños, aniversario o San Valentín. Precios y opiniones reales en Amazon.',
     images: ['https://www.unbuenregalo.es/og-cover.png'],
   },

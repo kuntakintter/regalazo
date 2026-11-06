@@ -11,7 +11,10 @@ export const metadata: Metadata = buildSocialMetadata({
   imageUrl: snippet.imageUrl,
   imageAlt: snippet.imageAlt,
   keywords: [
+    'un buen regalo para el coche',
+    'regalo para amante de los coches',
     'regalos para amantes de los coches',
+    'ideas de regalos para el coche',
     'regalos para el coche',
     'gadgets para el coche',
     'arrancador de baterias noco',

@@ -1,10 +1,12 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: '🗳️ Votación de Regalos en Grupo por WhatsApp: Elegir Regalo entre Amigos | Un Buen Regalo',
+  title: 'Un Buen Regalo 🗳️ Votación de Regalos en Grupo por WhatsApp: Elegir Regalo entre Amigos',
   description:
     '¿Caos en el grupo de WhatsApp para decidir qué regalar? Selecciona tus ideas favoritas, comparte el enlace único y votad en tiempo real el regalo ganador. Gratis y sin registro.',
   keywords: [
+    'votar regalo en grupo por whatsapp',
+    'elegir regalo en grupo por whatsapp',
     'votar regalo en grupo',
     'elegir regalo entre amigos',
     'encuesta regalo cumpleaños whatsapp',

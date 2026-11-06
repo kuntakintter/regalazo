@@ -247,14 +247,14 @@ export default function MascotasPage() {
           </div>
 
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] mb-5 text-slate-900">
-            Mejores Regalos para Mascotas:{' '}
+            Un Buen Regalo para Dueños de Perros y Gatos:{' '}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-rose-600 via-pink-600 to-amber-500">
-              Perros, Gatos y sus Dueños
+              Gadgets, Bienestar e Ideas de Regalos 2026
             </span>
           </h1>
 
           <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed mb-6 max-w-2xl mx-auto">
-            Detalles que enamoran a cualquier dueño de perro o gato: localizadores GPS en tiempo real para no perderlos nunca, fuentes de agua inteligentes ultrasilenciosas, arneses ergonómicos antitirones y cepillos deslanadores profesionales.
+            ¿Buscas un buen regalo para un dueño de perro o gato? Localizadores GPS en tiempo real para no perderlos nunca, fuentes de agua inteligentes ultrasilenciosas, arneses ergonómicos y accesorios de bienestar.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs font-medium text-slate-500 mb-8">
