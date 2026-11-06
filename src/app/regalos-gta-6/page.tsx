@@ -547,6 +547,7 @@ function GtaProductCard({
           <button
             type="button"
             onClick={onToggleVote}
+            aria-label={isInVote ? `Quitar ${prod.title} de la lista de votación` : `Añadir ${prod.title} a la lista de votación`}
             className={`p-2 rounded-xl transition-all shadow-md cursor-pointer ${
               isInVote
                 ? 'bg-pink-500 text-white shadow-pink-500/30'
@@ -560,6 +561,7 @@ function GtaProductCard({
           <button
             type="button"
             onClick={onShare}
+            aria-label={`Compartir enlace de ${prod.title}`}
             className="p-2 rounded-xl bg-slate-950/90 text-slate-300 hover:text-white hover:bg-slate-900 border border-slate-700/60 transition-all shadow-md cursor-pointer"
             title="Compartir enlace de Amazon"
           >

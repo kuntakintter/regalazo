@@ -355,6 +355,7 @@ export default function HeaderMobile({
                       type="button"
                       onClick={() => setIsAgesOpen(false)}
                       className="p-1 rounded-lg text-slate-400 hover:text-slate-700"
+                      aria-label="Cerrar catálogo por edades"
                     >
                       <X className="w-4 h-4" />
                     </button>
@@ -422,6 +423,7 @@ export default function HeaderMobile({
                       type="button"
                       onClick={() => setIsPassionsOpen(false)}
                       className="p-1 rounded-lg bg-white/10 text-white hover:bg-white/20 text-xs px-2 font-bold"
+                      aria-label="Cerrar menú de pasiones y aficiones"
                     >
                       ✕
                     </button>

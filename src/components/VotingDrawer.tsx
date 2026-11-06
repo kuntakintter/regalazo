@@ -210,6 +210,7 @@ export default function VotingDrawer() {
                       onClick={() => removeItem(item.id)}
                       className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer shrink-0"
                       title="Eliminar de la votación"
+                      aria-label={`Eliminar ${item.title} de la votación`}
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>

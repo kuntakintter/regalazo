@@ -6,7 +6,7 @@ import { Product } from '@/data/products';
 import { getAmazonProductUrl } from '@/lib/amazon';
 import { useCurrency } from '@/context/CurrencyContext';
 import { useVoting } from '@/context/VotingContext';
-import { Star, Heart, Share2, ShoppingBag, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
+import { Star, Heart, Share2, ShoppingBag, ChevronLeft, ChevronRight, ExternalLink, MessageSquare, ChevronDown, Users, CheckCircle2, Target } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
@@ -20,6 +20,7 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
   const isInVote = isItemInList(product.id);
   const [copied, setCopied] = useState(false);
   const [activeImgIndex, setActiveImgIndex] = useState(0);
+  const [showVerdict, setShowVerdict] = useState(false);
 
   // Multi-image navigation
   const imagesList = product.images && product.images.length > 0 ? product.images : (product.imageUrl ? [product.imageUrl] : []);
@@ -227,6 +228,89 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
             <span className="text-[#007185] hover:underline font-medium text-[11px]">
               ({product.reviewsCount ? product.reviewsCount.toLocaleString() : '120'})
             </span>
+          </div>
+
+          {/* Botón interactivo: Veredicto y opinión de compradores */}
+          <div className="my-1.5">
+            <button
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setShowVerdict((prev) => !prev);
+              }}
+              aria-expanded={showVerdict}
+              aria-label={showVerdict ? 'Ocultar veredicto de compradores' : 'Ver qué opinan los compradores'}
+              className={`w-full flex items-center justify-between px-2 py-1.5 rounded-lg text-[11px] font-semibold transition-all border cursor-pointer select-none ${
+                showVerdict
+                  ? 'bg-amber-50 border-amber-300 text-amber-900 shadow-2xs'
+                  : 'bg-slate-50/80 hover:bg-amber-50/60 border-slate-200/90 hover:border-amber-200 text-slate-700 hover:text-amber-900'
+              }`}
+            >
+              <span className="flex items-center gap-1.5 truncate">
+                <MessageSquare className="w-3.5 h-3.5 text-amber-600 shrink-0" />
+                <span className="truncate">¿Por qué gusta a los compradores?</span>
+              </span>
+              <ChevronDown
+                className={`w-3 h-3 text-slate-400 transition-transform duration-200 shrink-0 ml-1 ${
+                  showVerdict ? 'rotate-180 text-amber-600' : ''
+                }`}
+              />
+            </button>
+
+            {/* Desplegable con el consenso editorial y pros */}
+            {showVerdict && (
+              <div className="mt-1.5 p-2.5 rounded-xl bg-amber-50/40 border border-amber-200/80 text-left text-xs transition-all animate-in fade-in duration-150">
+                {/* Cabecera del consenso */}
+                <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-amber-200/60 gap-1.5">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-slate-600 flex items-center gap-1 min-w-0">
+                    <Users className="w-3 h-3 text-amber-600 shrink-0" />
+                    <span className="truncate">Consenso ({product.reviewsCount ? product.reviewsCount.toLocaleString() : '100+'} reseñas)</span>
+                  </span>
+                  <span className="text-[10px] font-black text-emerald-700 bg-emerald-100/90 px-1.5 py-0.5 rounded whitespace-nowrap shrink-0">
+                    ★ {product.rating} / 5
+                  </span>
+                </div>
+
+                {/* Lo más destacado / Pros */}
+                {product.pros && product.pros.length > 0 ? (
+                  <div className="mb-2">
+                    <p className="text-[10px] font-extrabold text-slate-800 mb-1 flex items-center gap-1">
+                      <CheckCircle2 className="w-3 h-3 text-emerald-600 shrink-0" />
+                      <span>Lo más valorado por quienes lo tienen:</span>
+                    </p>
+                    <ul className="space-y-1 text-[11px] text-slate-700 pl-3.5 list-disc marker:text-emerald-500 leading-snug">
+                      {product.pros.slice(0, 2).map((pro, idx) => (
+                        <li key={idx}>{pro}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : (
+                  <div className="mb-2">
+                    <p className="text-[10px] font-extrabold text-slate-800 mb-1 flex items-center gap-1">
+                      <CheckCircle2 className="w-3 h-3 text-emerald-600 shrink-0" />
+                      <span>Por qué destaca:</span>
+                    </p>
+                    <p className="text-[11px] text-slate-700 leading-snug">
+                      {product.description || 'Excelente valoración media por su fiabilidad, facilidad de uso y relación calidad/precio.'}
+                    </p>
+                  </div>
+                )}
+
+                {/* Ideal para */}
+                {product.idealFor && (
+                  <div className="pt-1.5 border-t border-amber-200/50">
+                    <p className="text-[10px] font-extrabold text-slate-800 mb-0.5 flex items-center gap-1">
+                      <Target className="w-3 h-3 text-amber-700 shrink-0" />
+                      <span>Para quién es ideal:</span>
+                    </p>
+                    <p className="text-[11px] text-slate-700 leading-snug">
+                      {product.idealFor}
+                    </p>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
 

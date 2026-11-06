@@ -361,7 +361,9 @@ function CartaPapaNoelContent() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   <button
+                    type="button"
                     onClick={handleCopyLink}
+                    aria-label="Copiar enlace de la carta de Papá Noel"
                     className="py-2.5 px-3 rounded-xl bg-white hover:bg-slate-50 text-slate-900 font-bold text-xs border border-slate-300 shadow-xs flex items-center justify-center gap-2 transition-all cursor-pointer"
                   >
                     {copiedLink ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4 text-slate-600" />}

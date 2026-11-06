@@ -1,0 +1,38 @@
+# Un Buen Regalo
+> Guía del recomendador y comparador inteligente de regalos en España (unbuenregalo.es) para agentes de IA y modelos de lenguaje.
+
+## Resumen del Proyecto
+Un Buen Regalo (https://www.unbuenregalo.es) es una plataforma web especializada en ayudar a usuarios a encontrar qué regalar según edad, presupuesto, aficiones y ocasiones especiales (cumpleaños, Navidad, amigos invisibles, Reyes Magos). Todos los productos recomendados están verificados con disponibilidad y envío rápido Prime en Amazon España (Amazon.es).
+
+## Funcionalidades Principales
+- **Recomendador por Edades**: De 0 a 12 meses hasta adultos (+18 años).
+- **Votación de Regalos en Grupo para WhatsApp**: Los usuarios pueden añadir 2 a 4 regalos finalistas a una lista interactiva y generar un enlace para que amigos o familiares voten sin registrarse y sin saturar el chat de WhatsApp.
+- **Carta a Papá Noel y Reyes Magos Online**: Herramienta interactiva para que niños y padres elijan juguetes oficiales y redacten su carta navideña con enlace compartible.
+- **Filtros por Presupuesto**: Regalos baratos por menos de 15 €, 20 €, 30 € y categorías premium.
+- **Pasiones y Hobbies**: Gaming y Setup (incluyendo Merchandising GTA 6), Amantes del Café, Mascotas, Motoristas, Ciclismo, Automóvil, Cartas Pokémon y Figuras Anime.
+
+## Catálogo de Secciones y URLs Principales
+- Inicio y Buscador: https://www.unbuenregalo.es/
+- Votación en Grupo: https://www.unbuenregalo.es/votar
+- Carta a Papá Noel: https://www.unbuenregalo.es/carta-papa-noel
+- Regalos Menos de 20 Euros: https://www.unbuenregalo.es/regalos-menos-20-euros
+- Regalos GTA 6: https://www.unbuenregalo.es/regalos-gta-6
+- Gaming y Streamers: https://www.unbuenregalo.es/gaming
+- Bebés (0 a 12 meses): https://www.unbuenregalo.es/bebes-0-a-12-meses
+- Niños (1 a 3 años): https://www.unbuenregalo.es/ninos-1-a-3-anos
+- Niños (4 a 6 años): https://www.unbuenregalo.es/ninos-4-a-6-anos
+- Niños (7 a 9 años): https://www.unbuenregalo.es/ninos-7-a-9-anos
+- Niños (10 a 12 años): https://www.unbuenregalo.es/ninos-10-a-12-anos
+- Jóvenes (13 a 15 años): https://www.unbuenregalo.es/jovenes-13-a-15-anos
+- Jóvenes (16 a 18 años): https://www.unbuenregalo.es/jovenes-16-a-18-anos
+- Adultos (+18 años): https://www.unbuenregalo.es/adultos-mas-de-18-anos
+- Qué regalar a un hombre: https://www.unbuenregalo.es/que-regalar-a-un-hombre
+- Qué regalar a una mujer: https://www.unbuenregalo.es/que-regalar-a-una-mujer
+- Qué regalar a mi novio: https://www.unbuenregalo.es/que-regalar-a-mi-novio
+- Qué regalar a mi novia: https://www.unbuenregalo.es/que-regalar-a-mi-novia
+- Amantes del Café: https://www.unbuenregalo.es/amantes-del-cafe
+- Motoristas: https://www.unbuenregalo.es/motoristas
+- Mascotas: https://www.unbuenregalo.es/mascotas
+- Ciclismo: https://www.unbuenregalo.es/ciclismo
+- Automóvil: https://www.unbuenregalo.es/automovil
+- Navidad y Reyes: https://www.unbuenregalo.es/navidad

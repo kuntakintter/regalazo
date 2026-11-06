@@ -284,8 +284,10 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
               </div>
             </div>
             <button
+              type="button"
               onClick={() => setIsOpen(false)}
               className="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 transition-colors"
+              aria-label="Cerrar selector de idioma y moneda"
             >
               <X className="w-3.5 h-3.5" />
             </button>

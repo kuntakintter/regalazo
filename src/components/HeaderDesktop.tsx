@@ -467,6 +467,7 @@ export default function HeaderDesktop({
                       type="button"
                       onClick={() => setIsPassionsOpen(false)}
                       className="text-xs font-bold text-purple-200 hover:text-white p-1"
+                      aria-label="Cerrar menú de pasiones y aficiones"
                     >
                       ✕
                     </button>
