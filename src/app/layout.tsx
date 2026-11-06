@@ -249,6 +249,18 @@ export default function RootLayout({
   return (
     <html lang="es" className="scroll-smooth">
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema) }}
+        />
+        <meta name="theme-color" content="#4f46e5" />
+        <meta name="msvalidate.01" content="4AF0EBAFECCF6A3AA51203D44DE90AD6" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
+        <link rel="icon" href="/icon.png" type="image/png" sizes="512x512" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+      </head>
+      <body className="antialiased font-sans selection:bg-indigo-500 selection:text-white">
         {/* Google Analytics 4 (gtag.js) */}
         <Script
           strategy="afterInteractive"
@@ -265,20 +277,11 @@ export default function RootLayout({
             gtag('config', 'G-YVZTK194QQ');
           `}
         </Script>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema) }}
-        />
-        <meta name="theme-color" content="#4f46e5" />
-        <meta name="msvalidate.01" content="4AF0EBAFECCF6A3AA51203D44DE90AD6" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
-        <link rel="icon" href="/icon.png" type="image/png" sizes="512x512" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        {/* Google Translate Integration */}
+
+        {/* Google Translate Integration - lazyOnload to protect Core Web Vitals on mobile */}
         <Script
           id="google-translate-init"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         >
           {`
             function googleTranslateElementInit() {
@@ -293,11 +296,10 @@ export default function RootLayout({
         </Script>
         <Script
           id="google-translate-script"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
         />
-      </head>
-      <body className="antialiased font-sans selection:bg-indigo-500 selection:text-white">
+
         <div id="google_translate_element" style={{ display: 'none' }} />
         <CurrencyProvider>
           <VotingProvider>

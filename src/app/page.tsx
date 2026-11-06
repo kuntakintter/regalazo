@@ -836,6 +836,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                                   src={item.imageUrl}
                                   alt={`${shortTitle} top ventas`}
                                   fill
+                                  sizes="(max-width: 640px) 120px, 150px"
                                   className="object-contain p-1 group-hover/item:scale-105 transition-transform"
                                 />
                               </div>
@@ -1046,6 +1047,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                                   src={item.imageUrl}
                                   alt={`${shortTitle} chollo`}
                                   fill
+                                  sizes="(max-width: 640px) 120px, 150px"
                                   className="object-contain p-1 group-hover/item:scale-105 transition-transform"
                                 />
                               </div>

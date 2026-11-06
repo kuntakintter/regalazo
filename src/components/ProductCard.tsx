@@ -121,6 +121,7 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
               src={currentImgSrc}
               alt={`${product.title} - Foto ${activeImgIndex + 1}`}
               fill
+              priority={rankBadge === 1 || rankBadge === 2}
               unoptimized={currentImgSrc.startsWith('http')}
               onError={() => setHasImgError(true)}
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 16vw"
