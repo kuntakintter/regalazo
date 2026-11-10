@@ -167,8 +167,9 @@ function CartaPapaNoelContent() {
 
   // Amazon Remote Cart URL (All selected items straight to Amazon cart with affiliate tag)
   const handleOpenAmazonCart = () => {
-    const asins = selectedToys.map(t => t.asin);
-    const cartUrl = buildAmazonRemoteCartUrl(asins, 'vapegadgets22-21');
+    const asins = selectedToys.map((t) => t.asin);
+    const fallbackTitles = selectedToys.map((t) => t.shortTitle || t.title);
+    const cartUrl = buildAmazonRemoteCartUrl(asins, 'vapegadgets22-21', fallbackTitles);
     window.open(cartUrl, '_blank');
   };
 

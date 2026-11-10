@@ -131,7 +131,7 @@ export default function RegalosGta6Page() {
           '@type': 'ListItem',
           position: index + 1,
           name: prod.title,
-          url: getAmazonProductUrl(prod.asin, prod.searchQuery),
+          url: getAmazonProductUrl(prod.asin, prod.searchQuery || prod.title),
           image: prod.imageUrl,
           offers: {
             '@type': 'Offer',

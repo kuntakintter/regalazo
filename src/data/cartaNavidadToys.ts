@@ -1,3 +1,5 @@
+import { DEAD_OR_INVALID_ASINS, getAmazonSearchUrl } from '@/lib/amazon';
+
 export interface ChristmasToy {
   id: string;
   title: string;
@@ -5289,13 +5291,23 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
   }
 ];
 
-export function buildAmazonRemoteCartUrl(asins: string[], tag: string = 'vapegadgets22-21'): string {
+export function buildAmazonRemoteCartUrl(
+  asins: string[],
+  tag: string = 'vapegadgets22-21',
+  fallbackQueries?: string[]
+): string {
   if (!asins || asins.length === 0) {
-    return `https://www.amazon.es/?tag=${tag}`;
+    return fallbackQueries && fallbackQueries.length > 0
+      ? getAmazonSearchUrl(fallbackQueries[0])
+      : `https://www.amazon.es/?tag=${tag}`;
   }
-  const validAsins = Array.from(new Set(asins.filter(a => a && a.length >= 8))).slice(0, 10);
+  const validAsins = Array.from(
+    new Set(asins.filter((a) => a && a.length >= 8 && !DEAD_OR_INVALID_ASINS.has(a.trim())))
+  ).slice(0, 10);
   if (validAsins.length === 0) {
-    return `https://www.amazon.es/?tag=${tag}`;
+    return fallbackQueries && fallbackQueries.length > 0
+      ? getAmazonSearchUrl(fallbackQueries[0])
+      : getAmazonSearchUrl('juguetes navidad recomendados');
   }
   const params = new URLSearchParams();
   params.set('tag', tag);

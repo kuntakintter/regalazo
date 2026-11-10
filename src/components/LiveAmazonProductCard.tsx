@@ -58,7 +58,7 @@ export default function LiveAmazonProductCard({
 
   // Direct product URL with affiliate tag
   const directProductUrl = product.asin
-    ? getAmazonProductUrl(product.asin)
+    ? getAmazonProductUrl(product.asin, product.title)
     : product.url;
 
   const handleShare = async (e: React.MouseEvent) => {

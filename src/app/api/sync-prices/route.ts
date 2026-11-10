@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { PRODUCTS } from '@/data/products';
+import { DEAD_OR_INVALID_ASINS } from '@/lib/amazon';
 import https from 'https';
 
 export const dynamic = 'force-dynamic';
@@ -28,6 +29,11 @@ function fetchLivePriceDirect(asin: string): Promise<string | null> {
         },
       },
       (res) => {
+        if (res.statusCode && res.statusCode >= 400) {
+          res.resume();
+          resolve(null);
+          return;
+        }
         let data = '';
         res.on('data', (chunk) => (data += chunk));
         res.on('end', () => {
@@ -84,10 +90,10 @@ export async function GET(request: Request) {
     const clientSecret = process.env.AMAZON_CLIENT_SECRET;
     const partnerTag = process.env.AMAZON_PARTNER_TAG || 'vapegadgets22-21';
 
-    // Filter target ASIN or batch
+    // Filter target ASIN or batch (skipping known dead/404 ASINs in batch mode)
     const itemsToProcess = targetAsin
       ? PRODUCTS.filter((p) => p.asin === targetAsin)
-      : PRODUCTS.filter((p) => Boolean(p.asin)).slice(0, Math.min(limit, 25));
+      : PRODUCTS.filter((p) => p.asin && !DEAD_OR_INVALID_ASINS.has(p.asin)).slice(0, Math.min(limit, 25));
 
     // Try official Creators API token
     let apiToken: string | null = null;
@@ -129,10 +135,12 @@ export async function GET(request: Request) {
       let livePrice: string | null = null;
       let source: 'creators_api' | 'live_fetch' | 'cached' = 'cached';
 
-      // Fallback: direct live fetch (reliable & works without 30-day sales requirement)
-      livePrice = await fetchLivePriceDirect(item.asin);
-      if (livePrice) {
-        source = 'live_fetch';
+      if (!DEAD_OR_INVALID_ASINS.has(item.asin)) {
+        // Fallback: direct live fetch (reliable & works without 30-day sales requirement)
+        livePrice = await fetchLivePriceDirect(item.asin);
+        if (livePrice) {
+          source = 'live_fetch';
+        }
       }
 
       const isUpdated = Boolean(livePrice && livePrice !== item.priceText);
