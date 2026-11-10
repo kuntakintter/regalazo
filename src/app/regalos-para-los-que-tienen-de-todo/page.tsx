@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import { getHreflangAlternatesForPath } from '@/lib/filterRoutes';
 import TienenDeTodoClient from './TienenDeTodoClient';
 
 export const metadata: Metadata = {
@@ -18,6 +19,7 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: 'https://www.unbuenregalo.es/regalos-para-los-que-tienen-de-todo',
+    languages: getHreflangAlternatesForPath('/regalos-para-los-que-tienen-de-todo'),
   },
   openGraph: {
     title: 'Un Buen Regalo para los que Tienen de Todo 【2026】 Ideas de Regalos que Sorprenden',

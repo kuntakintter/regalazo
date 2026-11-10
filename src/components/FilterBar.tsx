@@ -1,12 +1,19 @@
 'use client';
 
 import React from 'react';
-import { AGE_CATEGORIES, AGE_SUBCATEGORIES_MAP, CLOTHING_SUBFILTERS, isClothingCategory, ANIME_SERIES_SUBFILTERS, isFiguresCategory, WHEELS_MOTOR_SUBFILTERS, isWheelsMotorCategory } from '@/data/products';
-import { useCurrency } from '@/context/CurrencyContext';
+import {
+  AGE_CATEGORIES,
+  AGE_SUBCATEGORIES_MAP,
+  CLOTHING_SUBFILTERS,
+  isClothingCategory,
+  ANIME_SERIES_SUBFILTERS,
+  isFiguresCategory,
+  WHEELS_MOTOR_SUBFILTERS,
+  isWheelsMotorCategory,
+} from '@/data/products';
+import { useActiveLocale } from '@/hooks/useActiveLocale';
 import {
   LayoutGrid,
-  X,
-  Check,
   SlidersHorizontal,
   RotateCcw,
   Baby,
@@ -27,7 +34,7 @@ import {
   Clapperboard,
   Zap,
   ArrowUpDown,
-  Shirt
+  Shirt,
 } from 'lucide-react';
 
 const AGE_ICONS: Record<string, { icon: React.ComponentType<{ className?: string }>; color: string }> = {
@@ -78,9 +85,10 @@ export default function FilterBar({
   onSelectPrice,
   sortBy = 'featured',
   onSelectSort,
-  totalResults
+  totalResults,
 }: FilterBarProps) {
-  const { currency, currencySymbol } = useCurrency();
+  const { ui, activeCurrency, tTerm, tBudget } = useActiveLocale();
+
   const hasActiveFilters =
     selectedAge !== 'all' ||
     selectedCategory !== 'all' ||
@@ -91,7 +99,6 @@ export default function FilterBar({
     selectedGender !== 'all' ||
     sortBy !== 'featured';
 
-  // Subcategorías específicas para la edad seleccionada
   const availableSubcategories =
     AGE_SUBCATEGORIES_MAP[selectedAge] || AGE_SUBCATEGORIES_MAP['all'];
 
@@ -109,9 +116,13 @@ export default function FilterBar({
   // Convert current selectedPrice to numeric slider value (15 to 150)
   const getSliderValue = (): number => {
     if (selectedPrice === 'all') return 150;
+    if (selectedPrice === '<15') return 15;
     if (selectedPrice === '<20') return 20;
+    if (selectedPrice === '15-30') return 30;
     if (selectedPrice === '20-50') return 50;
+    if (selectedPrice === '30-60') return 60;
     if (selectedPrice === '50-100') return 100;
+    if (selectedPrice === '>60') return 150;
     if (selectedPrice === '>100') return 150;
     const num = Number(selectedPrice);
     if (!isNaN(num)) return Math.min(Math.max(num, 15), 150);
@@ -129,22 +140,30 @@ export default function FilterBar({
     }
   };
 
-  // Human-readable current budget label
   const getBudgetLabel = () => {
     if (selectedPrice === 'all' || sliderValue >= 150) {
-      return 'Cualquier Presupuesto (Sin límite)';
+      return ui.budgetAnyUnlimited;
     }
-    const isUsd = currency === 'USD';
-    if (selectedPrice === '<20') return isUsd ? 'Hasta $22' : 'Hasta 20 €';
-    if (selectedPrice === '20-50') return isUsd ? 'Entre $22 y $55' : 'Entre 20 € y 50 €';
-    if (selectedPrice === '50-100') return isUsd ? 'Entre $55 y $110' : 'Entre 50 € y 100 €';
-    if (selectedPrice === '>100') return isUsd ? 'Más de $110' : 'Más de 100 €';
-    return isUsd ? `Hasta $${Math.round(sliderValue * 1.08)}` : `Hasta ${sliderValue} €`;
+    if (
+      selectedPrice === '<15' ||
+      selectedPrice === '<20' ||
+      selectedPrice === '15-30' ||
+      selectedPrice === '20-50' ||
+      selectedPrice === '30-60' ||
+      selectedPrice === '50-100' ||
+      selectedPrice === '>60' ||
+      selectedPrice === '>100'
+    ) {
+      return tBudget(selectedPrice);
+    }
+    const isUsd = activeCurrency === 'USD';
+    return isUsd
+      ? `${ui.budgetUpToPrefix} $${Math.round(sliderValue * 1.08)}`
+      : `${ui.budgetUpToPrefix} ${sliderValue} €`;
   };
 
   return (
     <div className="rounded-3xl p-5 sm:p-7 mb-8 border border-slate-200 bg-white text-slate-900 shadow-sm transition-all space-y-6">
-      
       {/* 1. BARRA DE PRESUPUESTO MÁXIMO (SLIDER INTERACTIVO) */}
       <div className="bg-gradient-to-r from-slate-50 via-indigo-50/30 to-purple-50/30 rounded-2xl p-4 sm:p-5 border border-indigo-100/70">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
@@ -154,7 +173,7 @@ export default function FilterBar({
             </div>
             <div>
               <span className="text-xs font-black uppercase tracking-wider text-slate-600 block">
-                Presupuesto Máximo
+                {ui.maxBudgetLabel}
               </span>
               <span className="text-sm sm:text-base font-black text-indigo-700">
                 {getBudgetLabel()}
@@ -164,21 +183,21 @@ export default function FilterBar({
 
           <div className="flex flex-wrap items-center gap-2 self-start sm:self-auto">
             <span className="text-xs font-bold px-3 py-1.5 rounded-xl bg-white text-indigo-700 border border-indigo-200 shadow-xs">
-              {totalResults} ideas recomendadas
+              {totalResults} {ui.ideasUnit}
             </span>
             {onSelectSort && (
               <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-white text-slate-800 border border-indigo-200 shadow-xs">
                 <ArrowUpDown className="w-3.5 h-3.5 text-indigo-600 shrink-0" />
                 <select
                   value={sortBy}
-                  aria-label="Ordenar productos"
-                  onChange={(e) => onSelectSort(e.target.value as any)}
+                  aria-label={ui.sortLabel}
+                  onChange={(e) => onSelectSort(e.target.value as 'featured' | 'price-asc' | 'price-desc' | 'rating')}
                   className="bg-transparent text-slate-800 font-bold text-xs outline-none cursor-pointer"
                 >
-                  <option value="featured">⭐ Recomendados</option>
-                  <option value="price-asc">📉 Más baratos a más caros</option>
-                  <option value="price-desc">📈 Más caros a más baratos</option>
-                  <option value="rating">🏆 Mejor valorados</option>
+                  <option value="featured">{ui.sortFeatured}</option>
+                  <option value="price-asc">{ui.sortPriceAsc}</option>
+                  <option value="price-desc">{ui.sortPriceDesc}</option>
+                  <option value="rating">{ui.sortRating}</option>
                 </select>
               </div>
             )}
@@ -187,10 +206,10 @@ export default function FilterBar({
                 type="button"
                 onClick={resetFilters}
                 className="text-xs font-bold px-2.5 py-1.5 rounded-xl text-rose-700 hover:bg-rose-50 border border-transparent hover:border-rose-200 transition-colors flex items-center gap-1 cursor-pointer"
-                title="Restablecer filtros"
+                title={ui.resetFiltersBtn}
               >
                 <RotateCcw className="w-3.5 h-3.5" />
-                <span>Limpiar</span>
+                <span>{ui.clearFilters}</span>
               </button>
             )}
           </div>
@@ -205,17 +224,16 @@ export default function FilterBar({
             step={5}
             value={sliderValue}
             onChange={handleSliderChange}
-            aria-label="Filtro de presupuesto máximo"
+            aria-label={ui.maxBudgetLabel}
             className="w-full h-2.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-indigo-600 transition-all focus:outline-none"
           />
-          {/* Milestone markers below track */}
           <div className="flex justify-between text-[11px] font-bold text-slate-600 mt-1.5 px-0.5">
-            <span>{currency === 'USD' ? '$16' : '15 €'}</span>
-            <span>{currency === 'USD' ? '$32' : '30 €'}</span>
-            <span>{currency === 'USD' ? '$55' : '50 €'}</span>
-            <span>{currency === 'USD' ? '$80' : '75 €'}</span>
-            <span>{currency === 'USD' ? '$110' : '100 €'}</span>
-            <span>{currency === 'USD' ? '$160+ (Sin límite)' : '150 €+ (Sin límite)'}</span>
+            <span>{activeCurrency === 'USD' ? '$16' : '15 €'}</span>
+            <span>{activeCurrency === 'USD' ? '$32' : '30 €'}</span>
+            <span>{activeCurrency === 'USD' ? '$55' : '50 €'}</span>
+            <span>{activeCurrency === 'USD' ? '$80' : '75 €'}</span>
+            <span>{activeCurrency === 'USD' ? '$110' : '100 €'}</span>
+            <span>{activeCurrency === 'USD' ? `$160+ ${ui.budgetNoLimitSuffix}` : `150 €+ ${ui.budgetNoLimitSuffix}`}</span>
           </div>
         </div>
       </div>
@@ -225,7 +243,7 @@ export default function FilterBar({
         <div className="flex items-center justify-between mb-2.5">
           <p className="text-xs font-black uppercase tracking-wider text-slate-600 flex items-center gap-2">
             <Calendar className="w-4 h-4 text-indigo-600" />
-            <span>Selecciona la Edad:</span>
+            <span>{ui.ageSelectLabel}</span>
           </p>
         </div>
 
@@ -243,7 +261,7 @@ export default function FilterBar({
             }`}
           >
             <LayoutGrid className={`w-4 h-4 ${selectedAge === 'all' ? 'text-indigo-400' : 'text-slate-600'}`} />
-            <span>Todas las Edades</span>
+            <span>{ui.ageAllLabel}</span>
           </button>
 
           {AGE_CATEGORIES.map((cat) => {
@@ -267,18 +285,18 @@ export default function FilterBar({
                 }`}
               >
                 <IconComp className={`w-4 h-4 ${isActive ? 'text-white' : iconColor}`} />
-                <span>{cat.label}</span>
+                <span>{tTerm(cat.label)}</span>
               </button>
             );
           })}
         </div>
       </div>
 
-      {/* 3. SELECTOR DE DESTINATARIO: PARA ÉL / PARA ELLA / UNISEX */}
+      {/* 3. SELECTOR DE DESTINATARIO */}
       <div className="pt-1">
         <p className="text-xs font-black uppercase tracking-wider text-slate-600 flex items-center gap-2 mb-2.5">
           <Target className="w-4 h-4 text-indigo-600" />
-          <span>¿Para quién es el regalo?:</span>
+          <span>{ui.genderLabel}</span>
         </p>
 
         <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-thin">
@@ -292,7 +310,7 @@ export default function FilterBar({
             }`}
           >
             <Users className={`w-4 h-4 ${selectedGender === 'all' ? 'text-white' : 'text-indigo-600'}`} />
-            <span>Todos / Unisex</span>
+            <span>{ui.genderAll}</span>
           </button>
 
           <button
@@ -305,7 +323,7 @@ export default function FilterBar({
             }`}
           >
             <User className={`w-4 h-4 ${selectedGender === 'boy' ? 'text-white' : 'text-blue-700'}`} />
-            <span>Para Él</span>
+            <span>{ui.genderBoy}</span>
           </button>
 
           <button
@@ -318,7 +336,7 @@ export default function FilterBar({
             }`}
           >
             <Heart className={`w-4 h-4 ${selectedGender === 'girl' ? 'text-white' : 'text-pink-700'}`} />
-            <span>Para Ella</span>
+            <span>{ui.genderGirl}</span>
           </button>
 
           {selectedAge === '0-12m' && (
@@ -332,16 +350,16 @@ export default function FilterBar({
               }`}
             >
               <PartyPopper className={`w-4 h-4 ${selectedGender === 'reveal' ? 'text-white' : 'text-amber-700'}`} />
-              <span>Fiesta Revelación de Género</span>
+              <span>{tTerm('Fiesta Revelación de Género')}</span>
             </button>
           )}
         </div>
       </div>
 
-      {/* 3. TIPO DE REGALO (CATEGORÍAS Y SUBCATEGORÍAS) */}
+      {/* 4. CATEGORÍAS Y SUBCATEGORÍAS */}
       <div>
         <p className="text-[11px] font-black uppercase tracking-wider text-slate-600 block mb-2">
-          Tipo de Regalo ({selectedAge === '0-12m' ? 'Exclusivo Bebés' : selectedAge === 'all' ? 'Populares' : 'Para esta edad'}):
+          {ui.categoryLabel}
         </p>
         <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-thin flex-wrap">
           <button
@@ -356,7 +374,7 @@ export default function FilterBar({
                 : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
           >
-            Todas las opciones
+            {ui.categoryAll}
           </button>
           {availableSubcategories.map((subcat) => {
             const isSmartphone = subcat === 'Smartphones y Telefonía';
@@ -399,13 +417,13 @@ export default function FilterBar({
                 {isFigures && <Clapperboard className={`w-3.5 h-3.5 ${isSelected ? 'text-white' : 'text-amber-600'}`} />}
                 {isSmartphone && <Smartphone className={`w-3.5 h-3.5 ${isSelected ? 'text-white' : 'text-indigo-600'}`} />}
                 {isClothing && <Shirt className={`w-3.5 h-3.5 ${isSelected ? 'text-white' : 'text-purple-600'}`} />}
-                <span>{subcat}</span>
+                <span>{tTerm(subcat)}</span>
               </button>
             );
           })}
         </div>
 
-        {/* SUBFILTRO DE SOBRE RUEDAS & MOTOR (Coches Eléctricos 12V/24V, Quads, Minimotos, Patinetes Eléctricos, Bicis) */}
+        {/* SUBFILTRO DE SOBRE RUEDAS & MOTOR */}
         {isWheelsMotorCategory(selectedCategory) && (
           <div className="mt-3.5 p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-emerald-50/90 via-teal-50/80 to-amber-50/70 border border-emerald-300/90 shadow-xs animate-fadeIn">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2.5">
@@ -415,10 +433,7 @@ export default function FilterBar({
                 </span>
                 <div>
                   <span className="text-[11px] font-black uppercase tracking-wider text-emerald-950 block leading-tight">
-                    Subfiltro Sobre Ruedas & Motor (Coches Eléctricos, Quads, Minimotos y Patinetes)
-                  </span>
-                  <span className="text-[11px] text-slate-600 font-medium">
-                    ¿Qué vehículo buscas? Filtra por Coches 12V/24V, Quads, Minimotos o Patinetes Eléctricos:
+                    {ui.wheelsSubfilterLabel}
                   </span>
                 </div>
               </div>
@@ -428,7 +443,7 @@ export default function FilterBar({
                   onClick={() => onSelectWheelsSub('all')}
                   className="text-xs font-bold text-emerald-800 hover:text-emerald-950 underline self-start sm:self-auto cursor-pointer"
                 >
-                  Ver todos los vehículos
+                  {ui.viewAllLink}
                 </button>
               )}
             </div>
@@ -448,7 +463,7 @@ export default function FilterBar({
                     }`}
                   >
                     <span>{sub.icon}</span>
-                    <span>{sub.label}</span>
+                    <span>{tTerm(sub.label)}</span>
                   </button>
                 );
               })}
@@ -456,7 +471,7 @@ export default function FilterBar({
           </div>
         )}
 
-        {/* SUBFILTRO DE ROPA Y PRENDAS (Pijamas, Chándal, Calzado, Disfraces, Ropa de Diario) */}
+        {/* SUBFILTRO DE ROPA Y PRENDAS */}
         {isClothingCategory(selectedCategory) && (
           <div className="mt-3.5 p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-purple-50/80 via-indigo-50/70 to-pink-50/70 border border-purple-200/80 shadow-xs animate-fadeIn">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2.5">
@@ -466,10 +481,7 @@ export default function FilterBar({
                 </span>
                 <div>
                   <span className="text-[11px] font-black uppercase tracking-wider text-purple-950 block leading-tight">
-                    Subfiltro de Ropa, Calzado & Disfraces
-                  </span>
-                  <span className="text-[11px] text-slate-600 font-medium">
-                    ¿Qué prenda específica buscas? Filtra al instante:
+                    {ui.clothingSubfilterLabel}
                   </span>
                 </div>
               </div>
@@ -479,7 +491,7 @@ export default function FilterBar({
                   onClick={() => onSelectClothingSub('all')}
                   className="text-xs font-bold text-purple-700 hover:text-purple-900 underline self-start sm:self-auto cursor-pointer"
                 >
-                  Ver toda la ropa
+                  {ui.viewAllLink}
                 </button>
               )}
             </div>
@@ -499,7 +511,7 @@ export default function FilterBar({
                     }`}
                   >
                     <span>{sub.icon}</span>
-                    <span>{sub.label}</span>
+                    <span>{tTerm(sub.label)}</span>
                   </button>
                 );
               })}
@@ -507,7 +519,7 @@ export default function FilterBar({
           </div>
         )}
 
-        {/* SUBFILTRO DE ANIME, CINE & SERIES (Dragon Ball, Pokémon, One Piece, One Punch Man, etc.) */}
+        {/* SUBFILTRO DE ANIME, CINE & SERIES */}
         {isFiguresCategory(selectedCategory) && (
           <div className="mt-3.5 p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-rose-500/10 border border-amber-300/80 shadow-xs animate-fadeIn">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2.5">
@@ -517,10 +529,7 @@ export default function FilterBar({
                 </span>
                 <div>
                   <span className="text-[11px] font-black uppercase tracking-wider text-amber-950 block leading-tight">
-                    Filtrar por Anime o Saga Favorita
-                  </span>
-                  <span className="text-[11px] text-slate-600 font-medium">
-                    ¿Qué anime, cine o cartas colecciona? Elige su universo:
+                    {ui.animeSubfilterLabel}
                   </span>
                 </div>
               </div>
@@ -530,7 +539,7 @@ export default function FilterBar({
                   onClick={() => onSelectAnimeSub('all')}
                   className="text-xs font-bold text-amber-700 hover:text-amber-900 underline self-start sm:self-auto cursor-pointer"
                 >
-                  Ver todas las series
+                  {ui.viewAllLink}
                 </button>
               )}
             </div>
@@ -550,7 +559,7 @@ export default function FilterBar({
                     }`}
                   >
                     <span>{sub.icon}</span>
-                    <span>{sub.label}</span>
+                    <span>{tTerm(sub.label)}</span>
                   </button>
                 );
               })}
@@ -558,7 +567,6 @@ export default function FilterBar({
           </div>
         )}
       </div>
-
     </div>
   );
 }

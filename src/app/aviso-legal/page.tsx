@@ -10,6 +10,10 @@ import { AMAZON_AFFILIATE_TAG_ES, AMAZON_AFFILIATE_TAG_INTL } from '@/lib/amazon
 export const metadata: Metadata = {
   title: 'Aviso Legal | Un Buen Regalo',
   description: 'Información legal, condiciones de uso y divulgación obligatoria del programa de Afiliados de Amazon en España y tiendas internacionales para Un Buen Regalo.',
+  robots: {
+    index: false,
+    follow: true,
+  },
   alternates: {
     canonical: 'https://www.unbuenregalo.es/aviso-legal',
   },

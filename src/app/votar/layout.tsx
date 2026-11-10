@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { getHreflangAlternatesForPath } from '@/lib/filterRoutes';
 
 export const metadata: Metadata = {
   title: 'Un Buen Regalo 🗳️ Votación de Regalos en Grupo por WhatsApp: Elegir Regalo entre Amigos',
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: 'https://www.unbuenregalo.es/votar',
+    languages: getHreflangAlternatesForPath('/votar'),
   },
   openGraph: {
     title: '🗳️ ¡Vota el Regalo en Grupo! Elige tu opción favorita aquí',

@@ -182,66 +182,53 @@ export default function RootLayout({
         ],
       },
       {
-        '@type': 'WebPage',
-        '@id': 'https://www.unbuenregalo.es/#webpage',
-        url: 'https://www.unbuenregalo.es',
-        name: 'Un Buen Regalo 【2026】 ¿Qué Regalar? Ideas y Regalos Originales',
-        isPartOf: { '@id': 'https://www.unbuenregalo.es/#website' },
-        primaryImageOfPage: {
-          '@type': 'ImageObject',
-          url: 'https://www.unbuenregalo.es/logo-square.png',
-          width: 1024,
-          height: 1024,
-        },
-        thumbnailUrl: 'https://www.unbuenregalo.es/logo-square.png',
+        '@type': 'SiteNavigationElement',
+        '@id': 'https://www.unbuenregalo.es/#nav-navidad',
+        position: 1,
+        name: 'Navidad y Reyes 2026',
+        url: 'https://www.unbuenregalo.es/navidad',
       },
       {
-        '@type': 'ItemList',
-        name: 'Secciones Principales Un Buen Regalo',
-        itemListElement: [
-          {
-            '@type': 'SiteNavigationElement',
-            position: 1,
-            name: 'Navidad y Reyes 2026',
-            url: 'https://www.unbuenregalo.es/navidad',
-          },
-          {
-            '@type': 'SiteNavigationElement',
-            position: 2,
-            name: 'Carta Oficial a Papá Noel',
-            url: 'https://www.unbuenregalo.es/carta-papa-noel',
-          },
-          {
-            '@type': 'SiteNavigationElement',
-            position: 3,
-            name: 'Regalos GTA 6 / GTA VI',
-            url: 'https://www.unbuenregalo.es/regalos-gta-6',
-          },
-          {
-            '@type': 'SiteNavigationElement',
-            position: 4,
-            name: 'Votación de Regalos en Grupo',
-            url: 'https://www.unbuenregalo.es/votar',
-          },
-          {
-            '@type': 'SiteNavigationElement',
-            position: 5,
-            name: 'Regalos para Motoristas',
-            url: 'https://www.unbuenregalo.es/motoristas',
-          },
-          {
-            '@type': 'SiteNavigationElement',
-            position: 6,
-            name: 'Regalos Gaming y Streamers',
-            url: 'https://www.unbuenregalo.es/gaming',
-          },
-          {
-            '@type': 'SiteNavigationElement',
-            position: 7,
-            name: 'Amantes del Café Barista',
-            url: 'https://www.unbuenregalo.es/amantes-del-cafe',
-          },
-        ],
+        '@type': 'SiteNavigationElement',
+        '@id': 'https://www.unbuenregalo.es/#nav-carta',
+        position: 2,
+        name: 'Carta Oficial a Papá Noel',
+        url: 'https://www.unbuenregalo.es/carta-papa-noel',
+      },
+      {
+        '@type': 'SiteNavigationElement',
+        '@id': 'https://www.unbuenregalo.es/#nav-gta6',
+        position: 3,
+        name: 'Regalos GTA 6 / GTA VI',
+        url: 'https://www.unbuenregalo.es/regalos-gta-6',
+      },
+      {
+        '@type': 'SiteNavigationElement',
+        '@id': 'https://www.unbuenregalo.es/#nav-votar',
+        position: 4,
+        name: 'Votación de Regalos en Grupo',
+        url: 'https://www.unbuenregalo.es/votar',
+      },
+      {
+        '@type': 'SiteNavigationElement',
+        '@id': 'https://www.unbuenregalo.es/#nav-motoristas',
+        position: 5,
+        name: 'Regalos para Motoristas',
+        url: 'https://www.unbuenregalo.es/motoristas',
+      },
+      {
+        '@type': 'SiteNavigationElement',
+        '@id': 'https://www.unbuenregalo.es/#nav-gaming',
+        position: 6,
+        name: 'Regalos Gaming y Streamers',
+        url: 'https://www.unbuenregalo.es/gaming',
+      },
+      {
+        '@type': 'SiteNavigationElement',
+        '@id': 'https://www.unbuenregalo.es/#nav-cafe',
+        position: 7,
+        name: 'Amantes del Café Barista',
+        url: 'https://www.unbuenregalo.es/amantes-del-cafe',
       },
     ],
   };
@@ -278,7 +265,6 @@ export default function RootLayout({
           `}
         </Script>
 
-        <div id="google_translate_element" style={{ display: 'none' }} />
         <CurrencyProvider>
           <VotingProvider>
             {children}

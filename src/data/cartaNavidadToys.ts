@@ -2140,7 +2140,7 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
   },
   {
     "id": "toy-virus-el-juego-cartas",
-    "title": "Tranjis Games - Virus! El Juego de Cartas Más Contagioso de España",
+    "title": "Tranjis Games - Virus! El Juego de Cartas Más Contagioso",
     "shortTitle": "Virus! Juego de Cartas",
     "category": "juegos",
     "categoryLabel": "Juegos de Mesa",

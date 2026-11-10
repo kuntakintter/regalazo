@@ -9,6 +9,10 @@ import { Shield, Lock, Eye, ArrowLeft, CheckCircle2 } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Política de Privacidad (RGPD) | Un Buen Regalo',
   description: 'Política de Privacidad y Protección de Datos personales conforme al Reglamento General de Protección de Datos (RGPD) y la LOPDGDD.',
+  robots: {
+    index: false,
+    follow: true,
+  },
   alternates: {
     canonical: 'https://www.unbuenregalo.es/politica-de-privacidad',
   },

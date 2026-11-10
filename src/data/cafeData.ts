@@ -118,3 +118,99 @@ export const CAFE_PRODUCTS: HubProduct[] = [
     searchQuery: 'stanley 1913 transit flip top taza termica 0.47l'
   }
 ];
+
+export const CAFE_EXTRA_PRODUCTS: HubProduct[] = [
+  {
+    id: '18plus-cecotec-power-espresso-cafetera',
+    asin: '',
+    title: 'Cecotec Cafetera Express Power Espresso 20 Professionale - 20 Bares con Manómetro Tradicional y Vaporizador',
+    category: 'espresso',
+    categoryLabel: 'Cafeteras Espresso & Moka',
+    brand: 'Cecotec',
+    priceText: '89,90 €',
+    priceNumeric: 89.9,
+    rating: 4.7,
+    reviewsCount: 28900,
+    imageUrl: 'https://m.media-amazon.com/images/I/71lLByP8C3L._AC_UL320_.jpg',
+    badge: 'El Espresso Perfecto con Crema Densa en Casa',
+    description: 'Diseñada para auténticos amantes del café barista. Bomba de presión italiana de 20 bares con manómetro de control de presión en tiempo real y vaporizador orientable para emulsionar leche y preparar cappuccinos sedosos.',
+    pros: [
+      'Bomba de 20 bares con tecnología ForceAroma para máxima crema',
+      'Manómetro de estilo retro vintage muy elegante en cocina',
+      'Bandeja calientatazas de acero inoxidable'
+    ],
+    idealFor: 'Adultos amantes del café recién molido y desayunos de calidad.',
+    searchQuery: 'cecotec cafetera express power espresso 20 bars manometro vaporizador leche cafe molido'
+  },
+  {
+    id: '18plus-hario-v60-kit-cafe-filtro',
+    asin: 'B0DMF4TRH4',
+    title: 'Hario V60 - Set Completo de Café de Filtro Manual con Jarra de Cristal Servidora, Cono y Filtros de Papel',
+    category: 'filtro',
+    categoryLabel: 'Café de Especialidad & Filtro (V60)',
+    brand: 'Hario',
+    priceText: '28,95 €',
+    priceNumeric: 28.95,
+    rating: 4.9,
+    reviewsCount: 16400,
+    imageUrl: 'https://m.media-amazon.com/images/I/51HKCT6qsFL._AC_UL320_.jpg',
+    badge: 'El Método de Extracción Preferido de los Baristas',
+    description: 'Fabricado en Japón, el método de goteo Hario V60 extrae las notas afrutadas y florales más sutiles del café de especialidad. Incluye cono de extracción con estrías espirales, jarra de vidrio resistente al calor y cuchara medidora.',
+    pros: [
+      'Extrae el sabor más limpio, aromático y dulce del café',
+      'Vidrio japonés borosilicato de máxima resistencia térmica',
+      'Un ritual matutino de paz y sabor incomparable'
+    ],
+    idealFor: 'Gourmets del café de origen y amantes del café de filtro.',
+    searchQuery: 'hario v60 set cafe goteo filtro manual jarra cristal servidor barista'
+  },
+  {
+    id: 'hogar-bodum-cafetera-francesa-chambord-cobre',
+    asin: '',
+    title: 'Bodum Chambord - Cafetera Francesa de Émbolo en Acero Inoxidable y Cobre Brillante (8 Tazas, 1 Litro) con Vidrio Borosilicato',
+    category: 'filtro',
+    categoryLabel: 'Café de Especialidad & Filtro (V60)',
+    brand: 'Otros',
+    priceText: '44,90 €',
+    priceNumeric: 44.9,
+    rating: 4.7,
+    reviewsCount: 22100,
+    imageUrl: '/images/products/hogar-bodum-cafetera-francesa-chambord-cobre-1.jpg',
+    badge: 'Icono del Café de Especialidad',
+    description: 'El clásico diseño Chambord de Bodum en un espectacular acabado en cobre brillante. Su filtro de émbolo en acero inoxidable extrae todos los aceites esenciales del café molido consiguiendo un sabor denso y aromático.',
+    pros: [
+      'Jarra de vidrio de borosilicato resistente a cambios térmicos bruscos',
+      'Estructura y tapa de acero inoxidable chapado en cobre de lujo',
+      'No necesita filtros de papel ni cápsulas: 100% sostenible y pura'
+    ],
+    idealFor: 'Amantes del buen café que cuidan la estética de su cocina.',
+    searchQuery: 'bodum chambord cafetera francesa embolo cobre acero 1 litro'
+  },
+  {
+    id: 'hogar-tazas-ceramica-artesanales-japonesas',
+    asin: '',
+    title: 'Juego de 2 Tazas de Café Artesanales de Cerámica Japonesa con Textura Rústica Hecha a Mano y Platillos de Bambú Natural',
+    category: 'termos',
+    categoryLabel: 'Tazas Térmicas & Mugs (Stanley)',
+    brand: 'Otros',
+    priceText: '26,90 €',
+    priceNumeric: 26.9,
+    rating: 4.8,
+    reviewsCount: 4300,
+    imageUrl: '/images/products/hogar-tazas-ceramica-artesanales-japonesas-1.jpg',
+    badge: 'Diseño Cerámico Wabi-Sabi',
+    description: 'Set de dos tazas de cerámica artesanal de gres esmaltado con acabado texturizado mate y asa ergonómica. Cada pieza es única y viene acompañada de platillos de bambú grabados con estilo zen.',
+    pros: [
+      'Acabado artesanal esmaltado resistente al microondas y lavavajillas',
+      'Capacidad perfecta de 250ml para capuchinos, lattes, té o matcha',
+      'Presentadas en elegante caja kraft acolchada lista para regalo'
+    ],
+    idealFor: 'Disfrutar del café o té matutino con un toque estético y de calma.',
+    searchQuery: 'juego tazas ceramica artesanal japonesa platillo bambu cafe capuchino'
+  }
+];
+
+export const CAFE_HUB_PRODUCTS: HubProduct[] = [
+  ...CAFE_PRODUCTS,
+  ...CAFE_EXTRA_PRODUCTS,
+];

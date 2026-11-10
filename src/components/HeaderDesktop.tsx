@@ -7,11 +7,11 @@ import { Search, X, ExternalLink, ArrowRight, Star, Loader2, ShoppingBag, Chevro
 import BrandLogo from '@/components/BrandLogo';
 import LanguageSelector from '@/components/LanguageSelector';
 import VotingOnboardingTooltip from '@/components/VotingOnboardingTooltip';
-import { useCurrency } from '@/context/CurrencyContext';
 import { useVoting } from '@/context/VotingContext';
 import { Product } from '@/data/products';
 import { getAmazonSearchUrl } from '@/lib/amazon';
 import { AmazonLiveItem, AGE_DROPDOWN_ITEMS, PASSION_DROPDOWN_ITEMS } from '@/components/HeaderMobile';
+import { useActiveLocale } from '@/hooks/useActiveLocale';
 
 interface HeaderDesktopProps {
   searchQuery: string;
@@ -38,7 +38,7 @@ export default function HeaderDesktop({
   amazonResults,
   isLoadingAmazon,
 }: HeaderDesktopProps) {
-  const { formatPrice, amazonRegion, amazonSiteName } = useCurrency();
+  const { localeKey, ui, amazonRegion, amazonSiteName, formatPrice, localePath, tTerm } = useActiveLocale();
   const { voteItems, setIsDrawerOpen } = useVoting();
   const [isAgesOpen, setIsAgesOpen] = useState(false);
   const [isPassionsOpen, setIsPassionsOpen] = useState(false);
@@ -62,7 +62,8 @@ export default function HeaderDesktop({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [setIsFocused]);
 
-  const amazonSearchUrl = getAmazonSearchUrl(searchQuery.trim() || 'regalos', amazonRegion);
+  const defaultQuery = localeKey === 'es' || localeKey === 'es-us' ? 'regalos' : 'gifts';
+  const amazonSearchUrl = getAmazonSearchUrl(searchQuery.trim() || defaultQuery, amazonRegion);
 
   const hasAnyResults = liveMatches.length > 0 || amazonResults.length > 0;
 
@@ -72,8 +73,6 @@ export default function HeaderDesktop({
       <div className="bg-[#131921] text-white py-2">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between gap-4 lg:gap-8">
-            
-            {/* Logo */}
             <BrandLogo variant="light" />
 
             {/* Quick Search Bar with Live Amazon Integration */}
@@ -92,12 +91,11 @@ export default function HeaderDesktop({
                     onSearchChange?.(e.target.value);
                     setIsFocused(true);
                   }}
-                  aria-label="Buscar regalo: Lego, zapatillas, perfumes, PS5..."
-                  placeholder="Buscar regalo: Lego, zapatillas, perfumes, PS5..."
+                  aria-label={ui.headerSearchPlaceholder}
+                  placeholder={ui.headerSearchPlaceholder}
                   className="w-full px-3 py-2 text-sm text-slate-900 placeholder-slate-600 focus:outline-none bg-transparent"
                 />
 
-                {/* Action Buttons inside Input */}
                 <div className="flex items-center shrink-0">
                   {isLoadingAmazon && (
                     <Loader2 className="w-4 h-4 text-slate-600 animate-spin mr-2" />
@@ -106,16 +104,16 @@ export default function HeaderDesktop({
                     <button
                       type="button"
                       onClick={clearSearch}
-                      aria-label="Borrar búsqueda"
+                      aria-label={ui.headerClearSearch}
                       className="min-w-7 min-h-7 flex items-center justify-center p-1 mr-1 rounded-full text-slate-600 hover:text-slate-900 hover:bg-slate-200 transition-colors cursor-pointer"
-                      title="Borrar búsqueda"
+                      title={ui.headerClearSearch}
                     >
                       <X className="w-4 h-4" />
                     </button>
                   )}
                   <button
                     type="submit"
-                    aria-label="Buscar regalo"
+                    aria-label={ui.headerSearchButton}
                     className="bg-[#febd69] hover:bg-[#f3a847] active:bg-[#e47911] text-slate-950 px-5 py-2.5 flex items-center justify-center transition-colors cursor-pointer"
                   >
                     <Search className="w-4 h-4 stroke-[2.5]" />
@@ -126,13 +124,11 @@ export default function HeaderDesktop({
               {/* LIVE AUTOCOMPLETE DROPDOWN */}
               {isFocused && searchQuery.trim().length >= 2 && (
                 <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-150 max-h-[80vh] overflow-y-auto">
-                  
-                  {/* Catálogo Recomendado */}
                   {liveMatches.length > 0 && (
                     <div>
                       <div className="p-2.5 bg-slate-50 border-b border-slate-100 flex items-center justify-between text-[11px] font-bold text-slate-700 uppercase tracking-wider">
-                        <span>Catálogo Recomendado</span>
-                        <span className="text-indigo-700">{liveMatches.length} productos</span>
+                        <span>{ui.searchRecommendedCatalog}</span>
+                        <span className="text-indigo-700">{liveMatches.length} {ui.productsUnit}</span>
                       </div>
 
                       <div className="divide-y divide-slate-100">
@@ -171,7 +167,7 @@ export default function HeaderDesktop({
                                   {product.rating}
                                 </span>
                                 <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium truncate">
-                                  {product.category}
+                                  {tTerm(product.subcategory || product.category)}
                                 </span>
                               </span>
                             </span>
@@ -182,16 +178,15 @@ export default function HeaderDesktop({
                     </div>
                   )}
 
-                  {/* Productos en Vivo de Amazon */}
                   {amazonResults.length > 0 && (
                     <div className={liveMatches.length > 0 ? 'border-t-2 border-slate-100' : ''}>
                       <div className="p-2.5 bg-gradient-to-r from-amber-50/80 to-orange-50/50 border-b border-amber-100 flex items-center justify-between text-[11px] font-bold text-amber-950 uppercase tracking-wider">
                         <div className="flex items-center gap-1.5">
                           <ShoppingBag className="w-3.5 h-3.5 text-amber-700" />
-                          <span>Productos en Vivo de {amazonSiteName}</span>
+                          <span>{ui.searchLiveFrom} {amazonSiteName}</span>
                         </div>
                         <span className="text-[10px] bg-amber-200 text-amber-950 px-2 py-0.5 rounded-full font-black">
-                          Precios al minuto
+                          {ui.searchLivePrices}
                         </span>
                       </div>
 
@@ -237,7 +232,7 @@ export default function HeaderDesktop({
                               </div>
                             </div>
                             <div className="flex items-center gap-1 px-2 py-1 rounded-lg bg-amber-50 text-amber-900 text-[11px] font-bold shrink-0 group-hover:bg-amber-600 group-hover:text-white transition-colors">
-                              <span>Comprar</span>
+                              <span>{ui.searchBuyBtn}</span>
                               <ExternalLink className="w-3 h-3" />
                             </div>
                           </a>
@@ -246,19 +241,17 @@ export default function HeaderDesktop({
                     </div>
                   )}
 
-                  {/* Estado de carga */}
                   {isLoadingAmazon && amazonResults.length === 0 && (
                     <div className="p-4 text-center text-xs text-slate-600 flex items-center justify-center gap-2">
                       <Loader2 className="w-4 h-4 text-indigo-600 animate-spin" />
-                      <span>Buscando &quot;{searchQuery}&quot; en {amazonSiteName}...</span>
+                      <span>{ui.searchLoadingAmazon}</span>
                     </div>
                   )}
 
-                  {/* Sin resultados */}
                   {!hasAnyResults && !isLoadingAmazon && (
                     <div className="p-5 text-center bg-gradient-to-b from-white to-amber-50/40">
                       <p className="text-xs text-slate-700 mb-3">
-                        ¿Buscas &quot;<strong>{searchQuery}</strong>&quot;? Encuéntralo con envío rápido y garantía oficial en {amazonSiteName}.
+                        {ui.searchNoLocalMatches}
                       </p>
                       <a
                         href={amazonSearchUrl}
@@ -266,13 +259,12 @@ export default function HeaderDesktop({
                         rel="noopener noreferrer sponsored"
                         className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-xs transition-transform hover:scale-102 shadow-md cursor-pointer"
                       >
-                        <span>Buscar &quot;{searchQuery}&quot; en {amazonSiteName}</span>
+                        <span>{ui.searchDirectOn} {amazonSiteName}</span>
                         <ExternalLink className="w-4 h-4" />
                       </a>
                     </div>
                   )}
 
-                  {/* Barra de acción inferior */}
                   {hasAnyResults && (
                     <div className="p-2.5 bg-slate-50 border-t border-slate-100 flex gap-2">
                       {liveMatches.length > 0 && (
@@ -281,7 +273,7 @@ export default function HeaderDesktop({
                           onClick={onSearchSubmit}
                           className="flex-1 text-center py-2 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-colors cursor-pointer"
                         >
-                          Filtrar en catálogo ({liveMatches.length})
+                          {ui.searchRecommendedCatalog} ({liveMatches.length})
                         </button>
                       )}
                       <a
@@ -290,29 +282,27 @@ export default function HeaderDesktop({
                         rel="noopener noreferrer sponsored"
                         className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 text-xs font-black transition-colors shadow-xs"
                       >
-                        <span>Ver más en {amazonSiteName} (+50.000)</span>
+                        <span>{ui.searchDirectOn} {amazonSiteName}</span>
                         <ExternalLink className="w-3.5 h-3.5" />
                       </a>
                     </div>
                   )}
-
                 </div>
               )}
             </div>
 
             {/* Right Actions: Group Voting Button & Language Selector */}
             <div className="flex items-center gap-3 shrink-0">
-              {/* Votación en Grupo Button (Hero Feature) with Onboarding Callout */}
               <div className="relative">
                 <button
                   type="button"
                   onClick={() => setIsDrawerOpen(true)}
                   className="flex items-center gap-2.5 px-5 h-11 rounded-xl bg-[#febd69] hover:bg-[#f3a847] active:bg-[#e47911] text-slate-950 font-black transition-all duration-150 shadow-sm hover:scale-102 active:scale-98 cursor-pointer shrink-0 border border-amber-400 group"
-                  title="Votación de Regalos en Grupo para WhatsApp"
+                  title={ui.navVoting}
                 >
                   <span className="text-xl group-hover:scale-110 transition-transform leading-none" aria-hidden="true">🗳️</span>
                   <span className="text-sm font-extrabold text-slate-950 tracking-normal whitespace-nowrap">
-                    Votar en grupo
+                    {ui.navVoting}
                   </span>
                   {' '}
                   <span
@@ -324,26 +314,22 @@ export default function HeaderDesktop({
                   >
                     {voteItems.length}
                   </span>
-                  <span className="sr-only"> regalos — Abrir lista de votación de regalos</span>
                 </button>
 
-                {/* Smart Onboarding Tooltip with Cookie Persistence */}
                 <VotingOnboardingTooltip variant="desktop" />
               </div>
 
               <LanguageSelector dark={true} />
             </div>
-
           </div>
         </div>
       </div>
 
-      {/* 2. SUB-NAV MENÚ DE ESCRITORIO (TABS CONTEXTUALES Y DROPDOWN) */}
-      <nav aria-label="Navegación principal" className="bg-[#1f2833] text-white border-t border-slate-700/60 shadow-inner">
+      {/* 2. SUB-NAV MENÚ DE ESCRITORIO */}
+      <nav aria-label={ui.navMenu} className="bg-[#1f2833] text-white border-t border-slate-700/60 shadow-inner">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center gap-3 py-2 text-xs">
-            
-            {/* Dropdown Por Edades */}
+            {/* Dropdown Edades */}
             <div ref={agesDropdownRef} className="relative shrink-0">
               <button
                 type="button"
@@ -356,8 +342,7 @@ export default function HeaderDesktop({
                 aria-expanded={isAgesOpen}
               >
                 <span aria-hidden="true">🎁</span>
-                <span>Por Edades</span>
-                <span className="sr-only"> — Abrir catálogo por edades</span>
+                <span>{ui.navAges}</span>
                 <ChevronDown
                   className={`w-3.5 h-3.5 transition-transform duration-200 ${
                     isAgesOpen ? 'rotate-180 text-slate-950' : 'text-amber-300/80'
@@ -367,16 +352,15 @@ export default function HeaderDesktop({
 
               {isAgesOpen && (
                 <div className="absolute left-0 mt-2 w-[540px] bg-white text-slate-900 rounded-2xl shadow-2xl border border-slate-200 z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-150">
-                  {/* Header */}
                   <div className="px-4 py-3 bg-gradient-to-r from-amber-500/10 via-amber-50 to-orange-50/50 border-b border-amber-100 flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <span className="text-base">🎁</span>
                       <div>
                         <p className="text-xs font-black text-slate-900 leading-tight">
-                          Regalos por Rango de Edad
+                          {ui.navAges}
                         </p>
                         <p className="text-[11px] text-slate-600">
-                          Selecciona una etapa para ver ideas verificadas
+                          {ui.exploreThemesSubtitle}
                         </p>
                       </div>
                     </div>
@@ -384,18 +368,17 @@ export default function HeaderDesktop({
                       type="button"
                       onClick={() => setIsAgesOpen(false)}
                       className="min-w-7 min-h-7 flex items-center justify-center p-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 transition-colors cursor-pointer"
-                      aria-label="Cerrar menú de edades"
+                      aria-label={ui.navClose}
                     >
                       <X className="w-4 h-4" />
                     </button>
                   </div>
 
-                  {/* Grid of Ages */}
                   <div className="p-3 grid grid-cols-2 gap-2 max-h-[70vh] overflow-y-auto">
                     {AGE_DROPDOWN_ITEMS.map((item) => (
                       <Link
                         key={item.slug}
-                        href={`/${item.slug}`}
+                        href={localePath(`/${item.slug}`)}
                         onClick={() => setIsAgesOpen(false)}
                         className="flex items-start gap-2.5 p-2.5 rounded-xl hover:bg-amber-50/70 border border-slate-100 hover:border-amber-200 transition-all group cursor-pointer"
                       >
@@ -405,31 +388,30 @@ export default function HeaderDesktop({
                         <div className="min-w-0 flex-1">
                           <div className="flex items-center justify-between gap-1">
                             <span className="text-xs font-bold text-slate-900 group-hover:text-amber-900 truncate">
-                              {item.label}
+                              {tTerm(item.termKey)}
                             </span>
                             <span className="text-[10px] font-black text-amber-800 bg-amber-100/80 px-1.5 py-0.5 rounded shrink-0">
                               {item.range}
                             </span>
                           </div>
                           <p className="text-[11px] text-slate-600 group-hover:text-slate-800 line-clamp-1 mt-0.5">
-                            {item.desc}
+                            {tTerm(item.descTermKey)}
                           </p>
                         </div>
                       </Link>
                     ))}
                   </div>
 
-                  {/* Footer bar */}
                   <div className="p-2.5 bg-slate-50 border-t border-slate-100 flex items-center justify-between text-xs">
                     <span className="text-[11px] text-slate-600 font-medium">
-                      Recomendados por valoraciones reales en {amazonSiteName}
+                      {amazonSiteName} · {ui.amazonStoreBadge}
                     </span>
                     <Link
-                      href="/#catalogo-productos"
+                      href={localePath('/')}
                       onClick={() => setIsAgesOpen(false)}
                       className="text-xs font-bold text-amber-800 hover:text-amber-950 hover:underline flex items-center gap-1 ml-auto"
                     >
-                      <span>Ver catálogo completo</span>
+                      <span>{ui.navAllIdeas}</span>
                       <span>→</span>
                     </Link>
                   </div>
@@ -450,8 +432,7 @@ export default function HeaderDesktop({
                 }`}
               >
                 <span aria-hidden="true">🎯</span>
-                <span className="font-semibold">Pasiones & Hobbies</span>
-                <span className="sr-only"> — Abrir catálogo de pasiones y hobbies</span>
+                <span className="font-semibold">{ui.navThemes}</span>
                 <ChevronDown
                   className={`w-3.5 h-3.5 transition-transform duration-200 ${
                     isPassionsOpen ? 'rotate-180 text-purple-300' : 'text-slate-300'
@@ -465,15 +446,15 @@ export default function HeaderDesktop({
                     <div className="flex items-center gap-2">
                       <span className="text-xl">🎯</span>
                       <div>
-                        <p className="font-extrabold text-sm leading-none">Pasiones y Aficiones</p>
-                        <p className="text-[10px] text-purple-100 mt-0.5">Encuentra el regalo según lo que más le gusta</p>
+                        <p className="font-extrabold text-sm leading-none">{ui.navThemes}</p>
+                        <p className="text-[10px] text-purple-100 mt-0.5">{ui.verifiedCatalogNote}</p>
                       </div>
                     </div>
                     <button
                       type="button"
                       onClick={() => setIsPassionsOpen(false)}
                       className="min-w-7 min-h-7 flex items-center justify-center text-xs font-bold text-purple-100 hover:text-white p-1.5 cursor-pointer"
-                      aria-label="Cerrar menú de pasiones y aficiones"
+                      aria-label={ui.navClose}
                     >
                       ✕
                     </button>
@@ -483,14 +464,8 @@ export default function HeaderDesktop({
                     {PASSION_DROPDOWN_ITEMS.map((item) => (
                       <Link
                         key={item.slug}
-                        href={item.slug.startsWith('#') ? `/${item.slug}` : `/${item.slug}`}
-                        onClick={() => {
-                          setIsPassionsOpen(false);
-                          if (item.slug.startsWith('#categoria-') && typeof window !== 'undefined') {
-                            const cat = item.slug.replace('#categoria-', '');
-                            window.dispatchEvent(new CustomEvent('select-category', { detail: cat }));
-                          }
-                        }}
+                        href={localePath(`/${item.slug}`)}
+                        onClick={() => setIsPassionsOpen(false)}
                         className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-purple-50/70 border border-slate-100 hover:border-purple-200 transition-all group cursor-pointer"
                       >
                         <span className="text-xl p-1.5 rounded-lg bg-slate-50 group-hover:bg-white group-hover:scale-110 transition-transform shrink-0 shadow-2xs">
@@ -498,10 +473,10 @@ export default function HeaderDesktop({
                         </span>
                         <div className="min-w-0 flex-1">
                           <span className="text-xs font-bold text-slate-900 group-hover:text-purple-950 truncate block">
-                            {item.label}
+                            {tTerm(item.termKey)}
                           </span>
                           <p className="text-[10px] text-slate-600 group-hover:text-slate-800 line-clamp-1 mt-0.5">
-                            {item.desc}
+                            {tTerm(item.descTermKey)}
                           </p>
                         </div>
                       </Link>
@@ -511,25 +486,24 @@ export default function HeaderDesktop({
               )}
             </div>
 
-            {/* 3. VOTAR EN GRUPO WHATSAPP (ACCESO DIRECTO HERO) */}
+            {/* 3. VOTAR EN GRUPO */}
             <button
               type="button"
               onClick={() => setIsDrawerOpen(true)}
               className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-linear-to-r from-emerald-500/25 to-teal-500/25 hover:from-emerald-500/40 hover:to-teal-500/40 border border-emerald-400/50 hover:border-emerald-300 text-emerald-100 hover:text-white font-black text-xs tracking-wide transition-all shadow-md whitespace-nowrap shrink-0 hover:scale-105 active:scale-98 ring-1 ring-emerald-400/30 cursor-pointer"
-              title="Votación de Regalos en Grupo para WhatsApp"
+              title={ui.navVoting}
             >
               <span aria-hidden="true">🗳️</span>
-              <span>Votar en Grupo</span>
+              <span>{ui.navVoting}</span>
               {' '}
               <span className="text-[10px] font-black bg-emerald-400 text-slate-950 px-1.5 py-0.2 rounded-full ml-0.5">
                 {voteItems.length}
               </span>
-              <span className="sr-only"> regalos seleccionados — WhatsApp</span>
             </button>
 
-            {/* 4. TENDENCIAS & GTA 6 */}
+            {/* 4. GTA 6 */}
             <Link
-              href="/regalos-gta-6"
+              href={localePath('/regalos-gta-6')}
               className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-pink-500/25 via-purple-500/25 to-cyan-500/25 hover:from-pink-500/40 hover:to-cyan-500/40 border border-pink-400/50 hover:border-pink-300 text-pink-200 hover:text-white font-black text-xs tracking-wide transition-all shadow-md whitespace-nowrap shrink-0 hover:scale-105 active:scale-98 ring-1 ring-pink-400/30"
             >
               <span>🌴</span>
@@ -538,13 +512,12 @@ export default function HeaderDesktop({
 
             {/* 5. NAVIDAD & CARTA PAPÁ NOEL */}
             <Link
-              href="/carta-papa-noel"
+              href={localePath('/carta-papa-noel')}
               className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-linear-to-r from-red-600/30 to-amber-500/30 hover:from-red-600/40 hover:to-amber-500/40 border border-amber-400/50 text-amber-200 hover:text-white font-black text-xs tracking-wide transition-all shadow-md whitespace-nowrap shrink-0 hover:scale-105 active:scale-98 ring-1 ring-amber-400/30"
             >
               <span>🎅</span>
-              <span>Navidad & Carta</span>
+              <span>{ui.navLetter}</span>
             </Link>
-
           </div>
         </div>
       </nav>

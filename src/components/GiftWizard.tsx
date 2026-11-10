@@ -5,8 +5,6 @@ import confetti from 'canvas-confetti';
 import {
   Lightbulb,
   ArrowRight,
-  RotateCcw,
-  Check,
   Heart,
   X,
   Bot,
@@ -22,23 +20,15 @@ import {
   Wine,
   PartyPopper,
   LayoutGrid,
-  Smartphone,
   Tag,
   Gift,
   Gem,
   Crown,
   Coins,
-  Film,
-  BookOpen,
-  Bike,
-  Compass,
-  Coffee,
-  Dog,
-  Flame,
-  Camera,
-  ShieldCheck,
-  Search
+  Search,
 } from 'lucide-react';
+import { useActiveLocale } from '@/hooks/useActiveLocale';
+import { getHubStrings } from '@/lib/i18nContent';
 
 export interface GiftWizardRecommendation {
   age: string;
@@ -60,9 +50,12 @@ interface GiftWizardProps {
 
 interface Step1AgeOption {
   id: string;
-  label: string;
-  badge: string;
-  desc: string;
+  termKey: string;
+  badgeKey: string;
+  esLabel: string;
+  esBadge: string;
+  esDesc: string;
+  subtitleTermKey: string;
   icon: React.ComponentType<{ className?: string }>;
   iconColor: string;
 }
@@ -70,84 +63,114 @@ interface Step1AgeOption {
 const AGE_STEP_OPTIONS: Step1AgeOption[] = [
   {
     id: '0-12m',
-    label: 'Bebé y Recién Nacido (0 a 12 meses)',
-    badge: '0-12 Meses',
-    desc: 'Cochecitos, cunas colecho, tartas Dodot, bañeras, cuentos de tela y colonias suaves',
+    termKey: 'Bebés (0-12 meses)',
+    badgeKey: 'Recién Nacidos (0-12m)',
+    esLabel: 'Bebé y Recién Nacido (0 a 12 meses)',
+    esBadge: '0-12 Meses',
+    esDesc: 'Cochecitos, cunas colecho, tartas Dodot, bañeras, cuentos de tela y colonias suaves',
+    subtitleTermKey: 'Tartas de Pañales y Canastillas',
     icon: Baby,
-    iconColor: 'text-rose-500'
+    iconColor: 'text-rose-500',
   },
   {
     id: '1-3',
-    label: '1 a 3 Años (Primeros Pasos)',
-    badge: '1-3 Años',
-    desc: 'Juguetes Montessori de madera, LEGO DUPLO, triciclos evolutivos y plastilina',
+    termKey: 'Niños (1-3 años)',
+    badgeKey: '1 a 3 Años',
+    esLabel: '1 a 3 Años (Primeros Pasos)',
+    esBadge: '1-3 Años',
+    esDesc: 'Juguetes Montessori de madera, LEGO DUPLO, triciclos evolutivos y plastilina',
+    subtitleTermKey: 'Juguetes Montessori y Madera',
     icon: Puzzle,
-    iconColor: 'text-emerald-500'
+    iconColor: 'text-emerald-500',
   },
   {
     id: '4-6',
-    label: '4 a 6 Años (Infantil y Juego)',
-    badge: '4-6 Años',
-    desc: 'Circuitos Mario Kart, patinetes con luz LED, juegos de mesa y disfraces',
+    termKey: 'Niños (4-6 años)',
+    badgeKey: '4 a 6 Años',
+    esLabel: '4 a 6 Años (Infantil y Juego)',
+    esBadge: '4-6 Años',
+    esDesc: 'Circuitos Mario Kart, patinetes con luz LED, juegos de mesa y disfraces',
+    subtitleTermKey: 'Patinetes con Ruedas LED',
     icon: Palette,
-    iconColor: 'text-amber-500'
+    iconColor: 'text-amber-500',
   },
   {
     id: '7-9',
-    label: '7 a 9 Años (Primaria y Acción)',
-    badge: '7-9 Años',
-    desc: 'Scalextric, coches RC 4x4, LEGO Creator, Magia Borrás y cartas Pokémon',
+    termKey: 'Niños (7-9 años)',
+    badgeKey: '7 a 9 Años',
+    esLabel: '7 a 9 Años (Primaria y Acción)',
+    esBadge: '7-9 Años',
+    esDesc: 'Scalextric, coches RC 4x4, LEGO Creator, Magia Borrás y cartas Pokémon',
+    subtitleTermKey: 'Scalextric y Pistas de Carreras',
     icon: Wand2,
-    iconColor: 'text-indigo-500'
+    iconColor: 'text-indigo-500',
   },
   {
     id: '10-12',
-    label: '10 a 12 Años (Preadolescentes)',
-    badge: '10-12 Años',
-    desc: 'Juego Virus!, minidrones con cámara, escape rooms, Diario de Greg y cómic',
+    termKey: 'Preadolescentes (10-12 años)',
+    badgeKey: '10 a 12 Años',
+    esLabel: '10 a 12 Años (Preadolescentes)',
+    esBadge: '10-12 Años',
+    esDesc: 'Juego Virus!, minidrones con cámara, escape rooms, Diario de Greg y cómic',
+    subtitleTermKey: 'Juegos de Cartas Competitivos (Virus!)',
     icon: Rocket,
-    iconColor: 'text-blue-500'
+    iconColor: 'text-blue-500',
   },
   {
     id: '13-15',
-    label: '13 a 15 Años (Adolescentes)',
-    badge: '13-15 Años',
-    desc: 'Cómics & Manga, cartas Pokémon, smartphones, auriculares ANC y cámaras Instax',
+    termKey: 'Adolescentes (13-15 años)',
+    badgeKey: '13 a 15 Años',
+    esLabel: '13 a 15 Años (Adolescentes)',
+    esBadge: '13-15 Años',
+    esDesc: 'Cómics & Manga, cartas Pokémon, smartphones, auriculares ANC y cámaras Instax',
+    subtitleTermKey: 'Smartphones y Telefonía',
     icon: Headphones,
-    iconColor: 'text-violet-500'
+    iconColor: 'text-violet-500',
   },
   {
     id: '16-18',
-    label: '16 a 18 Años (Jóvenes)',
-    badge: '16-18 Años',
-    desc: 'Cultura Friki & Cómics, gaming PS5/PC, cartas Pokémon, smartphones y moda urbana',
+    termKey: 'Jóvenes (16-18 años)',
+    badgeKey: '16 a 18 Años',
+    esLabel: '16 a 18 Años (Jóvenes)',
+    esBadge: '16-18 Años',
+    esDesc: 'Cultura Friki & Cómics, gaming PS5/PC, cartas Pokémon, smartphones y moda urbana',
+    subtitleTermKey: 'Videojuegos y Setup Gamer',
     icon: Gamepad2,
-    iconColor: 'text-purple-600'
+    iconColor: 'text-purple-600',
   },
   {
     id: '+18',
-    label: 'A partir de 18 Años (Adultos)',
-    badge: 'Adultos 18+',
-    desc: 'Coleccionismo retro, Smartbox escapadas, motos, LEGO Icons, gourmet y tecnología',
+    termKey: 'Adultos (+18 años)',
+    badgeKey: 'A partir de 18 Años',
+    esLabel: 'A partir de 18 Años (Adultos)',
+    esBadge: 'Adultos 18+',
+    esDesc: 'Coleccionismo retro, Smartbox escapadas, motos, LEGO Icons, gourmet y tecnología',
+    subtitleTermKey: 'Escapadas y Experiencias',
     icon: Wine,
-    iconColor: 'text-rose-600'
+    iconColor: 'text-rose-600',
   },
   {
     id: 'reveal',
-    label: 'Fiesta Revelación de Género',
-    badge: 'Baby Shower',
-    desc: 'Cañones de confeti y humo holi biodegradables, globos enigma sorpresa y photocall',
+    termKey: 'Fiesta Revelación de Género',
+    badgeKey: 'Fiesta Revelación de Género',
+    esLabel: 'Fiesta Revelación de Género',
+    esBadge: 'Baby Shower',
+    esDesc: 'Cañones de confeti y humo holi biodegradables, globos enigma sorpresa y photocall',
+    subtitleTermKey: 'Fiestas y Revelación de Género',
     icon: PartyPopper,
-    iconColor: 'text-amber-500'
+    iconColor: 'text-amber-500',
   },
   {
     id: 'all',
-    label: 'Todas las Edades (Ver Todo)',
-    badge: 'Catálogo',
-    desc: 'Explorar las mejores ideas de regalo y superventas para cualquier edad',
+    termKey: 'Unisex / Todos',
+    badgeKey: 'Unisex / Todos',
+    esLabel: 'Todas las Edades (Ver Todo)',
+    esBadge: 'Catálogo',
+    esDesc: 'Explorar las mejores ideas de regalo y superventas para cualquier edad',
+    subtitleTermKey: 'Todas las categorías',
     icon: LayoutGrid,
-    iconColor: 'text-slate-600'
-  }
+    iconColor: 'text-slate-600',
+  },
 ];
 
 export interface AgeThemeOption {
@@ -165,10 +188,10 @@ export const AGE_THEMES_MAP: Record<string, AgeThemeOption[]> = {
     {
       id: 'friki-comics-manga-1618',
       label: '🦸‍♂️ Cultura Friki, Cómics, Manga & Anime',
-      desc: 'Cómics Marvel, tomos manga (One Piece, Dragon Ball), figuras Banpresto y réplicas de cine (DeLorean, Batmóvil)',
+      desc: 'Cómics Marvel, tomos manga (One Piece, Dragon Ball), figuras Banpresto y réplicas de cine',
       category: 'Figuras de Colección y Cine',
       searchQuery: 'comic',
-      quickChips: ['Cómics Marvel', 'One Piece', 'Dragon Ball', 'Batman', 'Demon Slayer', 'Star Wars']
+      quickChips: ['Marvel', 'One Piece', 'Dragon Ball', 'Batman', 'Demon Slayer', 'Star Wars'],
     },
     {
       id: 'pokemon-tcg-1618',
@@ -176,31 +199,23 @@ export const AGE_THEMES_MAP: Record<string, AgeThemeOption[]> = {
       desc: 'Cajas de sobres booster box, barajas de combate oficiales y cartas coleccionables',
       category: 'Cartas y Sobres Pokémon',
       searchQuery: 'pokemon',
-      quickChips: ['Sobres Pokémon', 'Booster Box', 'Baraja Pokémon', 'Álbum Cartas']
+      quickChips: ['Pokémon', 'Booster Box', 'TCG'],
     },
     {
       id: 'gamer-ps5-pc-1618',
       label: '🎮 Gamer & Setup (PS5, PC, Switch)',
       desc: 'Spider-Man 2, mandos inalámbricos DualSense, ratones Logitech Lightspeed y accesorios de setup',
-      category: 'Videojuegos y Accesorios PS5',
+      category: 'Videojuegos y Setup Gamer',
       searchQuery: 'ps5',
-      quickChips: ['Spider-Man 2', 'Mando PS5', 'Ratón Gamer', 'Teclado Mecánico', 'Gafas VR']
+      quickChips: ['Spider-Man 2', 'DualSense', 'Logitech'],
     },
     {
       id: 'tech-gadgets-vr-1618',
       label: '📱 Smartphones, Gadgets & Realidad Virtual',
       desc: 'Gafas VR Meta Quest 3S, smartphones de última generación, pulseras inteligentes y gadgets',
-      category: 'Tecnología, Audio Hi-Fi y Wearables',
+      category: 'Tecnología y Gadgets',
       searchQuery: 'meta quest',
-      quickChips: ['Meta Quest 3S', 'iPhone', 'Galaxy S24', 'Smartwatch']
-    },
-    {
-      id: 'music-anc-audio-1618',
-      label: '🎧 Música, Festivales & Auriculares',
-      desc: 'Auriculares inalámbricos con cancelación de ruido activa (JBL, Sony, Soundcore) y altavoces portátiles',
-      category: 'Tecnología, Audio Hi-Fi y Wearables',
-      searchQuery: 'auriculares',
-      quickChips: ['Auriculares Bluetooth', 'Altavoz JBL', 'Cancelación Ruido']
+      quickChips: ['Meta Quest 3S', 'iPhone', 'Galaxy', 'Smartwatch'],
     },
     {
       id: 'motor-biker-1618',
@@ -208,31 +223,31 @@ export const AGE_THEMES_MAP: Record<string, AgeThemeOption[]> = {
       desc: 'Cascos homologados, guantes térmicos, soportes de móvil anti-vibración y accesorios moteros',
       category: 'all',
       hubUrl: '/motoristas',
-      quickChips: ['Casco Moto', 'Guantes Moto', 'Soporte Móvil Moto']
+      quickChips: ['Cardo', 'Helmet', 'Moto'],
     },
     {
       id: 'art-creativity-vintage-1618',
       label: '🎨 Creativo, Arte, Dibujo & Papelería',
-      desc: 'Rotuladores Posca, libretas de dibujo, cuadernos de piel encuadernados a mano Moonster y acuarelas',
-      category: 'Cuadernos de Piel y Papelería Artesanal',
+      desc: 'Rotuladores Posca, libretas de dibujo, cuadernos de piel Moonster y acuarelas',
+      category: 'Manualidades y Creatividad',
       searchQuery: 'posca',
-      quickChips: ['Rotuladores Posca', 'Diario de Piel', 'Set Dibujo']
+      quickChips: ['Posca', 'Moonster'],
     },
     {
       id: 'books-novels-1618',
       label: '📚 Lector / Novelas Juveniles & Fantasía',
       desc: 'Novelas gráficas Heartstopper, sagas de fantasía juvenil y literatura contemporánea',
-      category: 'Libros y Novelas Juveniles',
-      searchQuery: 'novela',
-      quickChips: ['Heartstopper', 'Fantasía Juvenil', 'Novela Gráfica']
+      category: 'Libros y Lectura Infantil y Juvenil',
+      searchQuery: 'heartstopper',
+      quickChips: ['Heartstopper', 'Manga'],
     },
     {
       id: 'urban-fashion-perfume-1618',
       label: '👟 Moda Urbana, Zapatillas & Fragancias',
-      desc: 'Colonias icónicas Calvin Klein, mochilas urbanas con puerto USB para portátil y carteras slim',
-      category: 'Perfumería y Fragancias',
+      desc: 'Colonias icónicas Calvin Klein, mochilas urbanas con puerto USB y carteras slim',
+      category: 'Perfumería, Colonias y Fragancias',
       searchQuery: 'calvin klein',
-      quickChips: ['Calvin Klein', 'Mochila Portátil', 'Cartera Slim']
+      quickChips: ['Calvin Klein', 'Sneakers'],
     },
     {
       id: 'pets-lover-1618',
@@ -240,25 +255,24 @@ export const AGE_THEMES_MAP: Record<string, AgeThemeOption[]> = {
       desc: 'Juguetes interactivos Kong anti-ansiedad, accesorios de paseo y comederos inteligentes',
       category: 'all',
       hubUrl: '/mascotas',
-      quickChips: ['Juguete Kong', 'Perros', 'Gatos']
+      quickChips: ['KONG', 'Tractive', 'Catit'],
     },
     {
       id: 'all-infallible-1618',
       label: '🌟 El Regalo Infalible (Lo más vendido)',
-      desc: 'Los productos más vendidos y mejor valorados con miles de compras positivas para acertar sí o sí',
+      desc: 'Los productos más vendidos y mejor valorados con miles de compras positivas',
       category: 'all',
-      quickChips: ['Superventas', 'Regalo Seguro', 'Top Valorados']
-    }
+      quickChips: ['LEGO', 'PlayStation 5', 'Kindle'],
+    },
   ],
-
   '13-15': [
     {
       id: 'friki-manga-anime-1315',
       label: '🦸‍♂️ Cómics, Manga & Figuras Anime',
-      desc: 'Manga en español de One Piece, figuras de Saitama, Kakashi, Tanjiro y cómics de superhéroes',
-      category: 'Libros Juveniles, Fantasía y Manga',
+      desc: 'Manga de One Piece, figuras de Saitama, Kakashi, Tanjiro y cómics de superhéroes',
+      category: 'Figuras de Colección y Cine',
       searchQuery: 'one piece',
-      quickChips: ['One Piece', 'Demon Slayer', 'Dragon Ball', 'Naruto', 'Marvel']
+      quickChips: ['One Piece', 'Demon Slayer', 'Dragon Ball', 'Naruto'],
     },
     {
       id: 'pokemon-cards-1315',
@@ -266,163 +280,137 @@ export const AGE_THEMES_MAP: Record<string, AgeThemeOption[]> = {
       desc: 'Sobres de cartas coleccionables, booster packs, álbumes y barajas de combate',
       category: 'Cartas y Sobres Pokémon',
       searchQuery: 'pokemon',
-      quickChips: ['Cartas Pokémon', 'Sobres Booster', 'Mazo Combate']
+      quickChips: ['Pokémon', 'Booster Box'],
     },
     {
       id: 'gaming-consoles-1315',
       label: '🎮 Videojuegos & Gaming (PS5, PC, Switch)',
       desc: 'Spider-Man 2, mandos DualSense, auriculares gaming y accesorios para el setup',
-      category: 'Figuras de Colección y Cine',
+      category: 'Videojuegos y Setup Gamer',
       searchQuery: 'ps5',
-      quickChips: ['Spider-Man 2', 'Mando PS5', 'Auriculares Gaming']
-    },
-    {
-      id: 'photography-instant-1315',
-      label: '📸 Fotografía Instantánea & Recuerdos',
-      desc: 'Cámaras Fujifilm Instax Mini 12 para hacer fotos físicas al instante con los amigos',
-      category: 'Cámaras Instantáneas y Fotografía',
-      searchQuery: 'instax',
-      quickChips: ['Instax Mini 12', 'Carretes Fotos', 'Cámara Instantánea']
+      quickChips: ['PS5', 'Nintendo Switch', 'HyperX'],
     },
     {
       id: 'smartphones-audio-1315',
       label: '📱 Smartphones & Auriculares Inalámbricos',
-      desc: 'Móviles iPhone y Galaxy con gran cámara y auriculares Soundcore con cancelación de ruido',
+      desc: 'Móviles iPhone y Galaxy con gran cámara y auriculares Soundcore',
       category: 'Smartphones y Telefonía',
       searchQuery: 'smartphone',
-      quickChips: ['iPhone', 'Galaxy', 'Auriculares Inalámbricos']
-    },
-    {
-      id: 'skincare-beauty-1315',
-      label: '💄 Skincare Adolescente, Colonias & Cuidado',
-      desc: 'Rutinas CeraVe antiimperfecciones, fragancias frescas y bálsamos labiales',
-      category: 'Cuidado Facial, Skincare y Colonias',
-      searchQuery: 'cerave',
-      quickChips: ['CeraVe', 'Limpiador Facial', 'Colonia Fresca']
+      quickChips: ['iPhone', 'Samsung Galaxy', 'Sony'],
     },
     {
       id: 'boardgames-catan-1315',
-      label: '🎲 Juegos de Mesa (Catán Oficial, Virus!)',
+      label: '🎲 Juegos de Mesa (Catan, Virus!)',
       desc: 'Estrategia, risas familiares y enigmas cooperativos de escape room',
-      category: 'Juegos de Mesa Clásicos (Catan)',
+      category: 'Juegos de Mesa y Cartas',
       searchQuery: 'catan',
-      quickChips: ['Catán', 'Virus!', 'Escape Room']
+      quickChips: ['Catan', 'Virus!', 'EXIT'],
     },
     {
       id: 'all-infallible-1315',
       label: '🌟 El Regalo Infalible (Acierto Seguro)',
       desc: 'La selección estrella con la que no fallarás jamás para chicos y chicas de 13 a 15',
       category: 'all',
-      quickChips: ['Superventas', 'Regalo Seguro']
-    }
+      quickChips: ['Instax', 'Catan', 'Pokémon'],
+    },
   ],
-
   '+18': [
     {
       id: 'adult-pop-cine-retro',
       label: '🎬 Coleccionismo Pop, Réplicas de Cine & Cultura Friki',
-      desc: 'Maqueta de metal DeLorean de Regreso al Futuro, Batmóvil Tumbler, figuras de colección y nostalgia retro',
+      desc: 'Maqueta de metal DeLorean, Batmóvil Tumbler, figuras de colección y nostalgia retro',
       category: 'Figuras de Colección y Cine',
       searchQuery: 'delorean',
-      quickChips: ['DeLorean', 'Regreso al Futuro', 'Batmóvil', 'Star Wars', 'Cine Retro']
+      quickChips: ['DeLorean', 'Batmobile', 'Star Wars'],
     },
     {
       id: 'adult-motor-biker',
       label: '🏍️ Motero / Amante de las Dos Ruedas',
-      desc: 'Cascos integrales homologados ECE, guantes de invierno, soportes antivibración y chaquetas moteras',
+      desc: 'Cascos integrales homologados ECE, intercomunicadores Cardo y soportes antivibración',
       category: 'all',
       hubUrl: '/motoristas',
-      quickChips: ['Casco Moto', 'Guantes Invierno', 'Intercomunicador', 'Soporte Móvil']
+      quickChips: ['Cardo', 'Quad Lock', 'Abus'],
     },
     {
       id: 'adult-auto',
       label: '🚗 Automóvil & Conducción',
-      desc: 'Compresores de aire portátiles, arrancadores de batería, dash cams y accesorios de coche',
+      desc: 'Compresores de aire portátiles, arrancadores NOCO, dash cams 4K y detailing',
       category: 'all',
       hubUrl: '/automovil',
-      quickChips: ['Compresor Xiaomi', 'Arrancador Batería', 'Dash Cam']
+      quickChips: ['NOCO', 'Xiaomi', 'Dashcam'],
     },
     {
       id: 'adult-smartbox',
       label: '🍷 Escapadas, Spas & Experiencias (Smartbox)',
       desc: 'Cajas regalo de escapadas rurales de fin de semana, circuitos termales con spa y cenas gourmet',
-      category: 'Escapadas y Experiencias (Smartbox)',
+      category: 'Escapadas y Experiencias',
       searchQuery: 'smartbox',
-      quickChips: ['Smartbox Spa', 'Escapada 2 Días', 'Cena Gourmet']
+      quickChips: ['Smartbox', 'Spa', 'Wellness'],
     },
     {
       id: 'adult-coffee-gourmet',
       label: '☕ Café de Especialidad & Barista',
-      desc: 'Cafeteras espresso Cecotec, molinillos de muelas, prensadores y café en grano de autor',
-      category: 'Café de Especialidad y Coctelería Gourmet',
+      desc: 'Cafeteras espresso, molinillos Timemore C3, Bialetti y café en grano de autor',
+      category: 'Gourmet, Café y Coctelería',
       hubUrl: '/amantes-del-cafe',
-      quickChips: ['Cafetera Cecotec', 'Molinillo Café', 'Café Especialidad']
+      quickChips: ['Bialetti', 'Timemore C3', 'Stanley'],
     },
     {
       id: 'adult-lego-icons',
       label: '🧱 LEGO Icons & Maquetas para Adultos',
-      desc: 'Sets de orquídeas y flores botánicas, coches clásicos y maquetas arquitectónicas relajantes',
-      category: 'LEGO Icons y Maquetas para Adultos',
+      desc: 'Sets botánicos, coches clásicos y maquetas arquitectónicas relajantes',
+      category: 'LEGO y Construcción',
       searchQuery: 'lego',
-      quickChips: ['LEGO Flores', 'LEGO Coche Clásico', 'LEGO Bonsái']
+      quickChips: ['LEGO Icons', 'LEGO Technic'],
     },
     {
       id: 'adult-tech-audio',
       label: '📱 Smartphones Buque Insignia & Sonido Prémium',
-      desc: 'iPhone 16 Pro Titanio, Samsung Galaxy S24 Ultra, lectores Kindle Paperwhite y altavoces Bose',
+      desc: 'iPhone 16 Pro, Samsung Galaxy S24 Ultra, lectores Kindle Paperwhite y altavoces Bose',
       category: 'Smartphones y Telefonía',
       searchQuery: 'kindle',
-      quickChips: ['Kindle Paperwhite', 'iPhone 16 Pro', 'Altavoz Bose']
+      quickChips: ['Kindle', 'iPhone', 'Bose'],
     },
     {
       id: 'adult-boardgames',
       label: '🎲 Juegos de Mesa Expertos & para Parejas',
-      desc: 'Terraforming Mars, Wingspan, Catán y juegos de estrategia profunda para compartir',
-      category: 'Juegos de Mesa para Adultos y Parejas',
+      desc: 'Terraforming Mars, Wingspan, Catan y juegos de estrategia profunda',
+      category: 'Juegos de Mesa y Cartas',
       searchQuery: 'wingspan',
-      quickChips: ['Wingspan', 'Terraforming Mars', 'Juegos Pareja']
-    },
-    {
-      id: 'adult-drones-rc',
-      label: '🚁 Drones 4K, Robótica & RC Avanzado',
-      desc: 'Drones Potensic con cámara 4K gimbal y buggies todoterreno de alta velocidad',
-      category: 'Drones, Robótica y RC Avanzado',
-      searchQuery: 'dron',
-      quickChips: ['Dron 4K', 'Potensic Atom', 'Buggy RC']
+      quickChips: ['Wingspan', 'Terraforming Mars', 'Catan'],
     },
     {
       id: 'adult-perfumes',
       label: '💎 Perfumería Prémium de Autor & Cuidado',
-      desc: 'Dior Sauvage, Giorgio Armani Sì, Tom Ford y sets de afeitado vintage',
-      category: 'Perfumería Prémium de Autor',
+      desc: 'Dior Sauvage, Giorgio Armani Sì y sets de afeitado clásico',
+      category: 'Perfumería, Colonias y Fragancias',
       searchQuery: 'dior',
-      quickChips: ['Dior Sauvage', 'Armani Sì', 'Set Afeitado']
+      quickChips: ['Dior Sauvage', 'Armani Sì'],
     },
     {
       id: 'adult-pets',
       label: '🐾 Amante de Perros y Gatos',
-      desc: 'Comederos automáticos, juguetes Kong anti-ansiedad y camas ortopédicas',
+      desc: 'Localizadores Tractive GPS, fuentes Catit, juguetes Kong y camas ortopédicas',
       category: 'all',
       hubUrl: '/mascotas',
-      quickChips: ['Kong Perros', 'Rascador Gatos', 'Cama Ortopédica']
+      quickChips: ['KONG', 'Tractive', 'Catit'],
     },
     {
       id: 'adult-infallible',
       label: '🌟 El Regalo Infalible (Acierto Seguro)',
-      desc: 'Los regalos con mayores ventas y más de 10.000 valoraciones 5 estrellas',
+      desc: 'Los regalos con mayores ventas y miles de valoraciones 5 estrellas',
       category: 'all',
-      quickChips: ['Superventas', 'Acierto Seguro']
-    }
+      quickChips: ['Kindle', 'LEGO Icons', 'Smartbox'],
+    },
   ],
-
   '10-12': [
     {
       id: 'comics-harrypotter-1012',
       label: '🧙‍♂️ Cómics, Harry Potter, Manga & Aventuras',
       desc: 'Diario de Greg, libros ilustrados de Harry Potter, cómics y novelas de intriga',
-      category: 'Libros Juveniles y Cómics',
+      category: 'Libros y Lectura Infantil y Juvenil',
       searchQuery: 'harry potter',
-      quickChips: ['Harry Potter', 'Diario de Greg', 'Cómics', 'Manga']
+      quickChips: ['Harry Potter', 'Manga', 'Comics'],
     },
     {
       id: 'pokemon-cards-1012',
@@ -430,81 +418,64 @@ export const AGE_THEMES_MAP: Record<string, AgeThemeOption[]> = {
       desc: 'Sobres booster packs de cartas Pokémon, carpetas y barajas oficiales',
       category: 'Cartas y Sobres Pokémon',
       searchQuery: 'pokemon',
-      quickChips: ['Cartas Pokémon', 'Sobres Booster', 'Álbum Pokémon']
+      quickChips: ['Pokémon', 'Booster Box'],
     },
     {
       id: 'competitive-games-1012',
       label: '🃏 Juegos de Cartas y Piques Rápidos (Virus!)',
-      desc: 'El superventas Virus!, Dobble, Exploding Kittens y juegos de reflejos rápidos',
-      category: 'Juegos de Cartas Competitivos (Virus!)',
+      desc: 'Virus!, Dobble, Exploding Kittens y juegos de reflejos rápidos',
+      category: 'Juegos de Mesa y Cartas',
       searchQuery: 'virus',
-      quickChips: ['Virus!', 'Exploding Kittens', 'Dobble']
+      quickChips: ['Virus!', 'Exploding Kittens', 'Carcassonne'],
     },
     {
       id: 'drones-stem-1012',
       label: '🚁 Minidrones con Cámara & Robótica STEM',
-      desc: 'Drones Potensic con protectores 360° anticolisión y kits de ciencia',
-      category: 'Drones RC y Robótica STEM',
+      desc: 'Drones Potensic con protectores anticolisión y kits de ciencia',
+      category: 'Tecnología y Gadgets',
       searchQuery: 'dron',
-      quickChips: ['Minidron Cámara', 'Robótica STEM']
+      quickChips: ['Drone', 'STEM', 'LEGO'],
     },
     {
       id: 'art-lettering-1012',
       label: '🎨 Manualidades, Lettering & Rotuladores Posca',
       desc: 'Rotuladores Posca profesionales, libretas de caligrafía y kits creativos',
-      category: 'Manualidades, Lettering y Creatividad',
+      category: 'Manualidades y Creatividad',
       searchQuery: 'posca',
-      quickChips: ['Rotuladores Posca', 'Lettering', 'Kits Creativos']
-    },
-    {
-      id: 'magic-1012',
-      label: '🪄 Magia Borrás & Trucos de Ilusionismo',
-      desc: 'Kits de magia con efectos luminosos y trucos de cartas para dejar a todos boquiabiertos',
-      category: 'Magia Borrás Avanzada',
-      searchQuery: 'magia borras',
-      quickChips: ['Magia Borrás', 'Trucos Ilusionismo']
-    },
-    {
-      id: 'escapes-board-1012',
-      label: '🧩 Escape Rooms & Juegos de Mesa (Carcassonne)',
-      desc: 'Enigmas cooperativos Exit y juegos de estrategia mental',
-      category: 'Juegos de Mesa y Escape Room',
-      searchQuery: 'carcassonne',
-      quickChips: ['Carcassonne', 'Exit Escape Room']
+      quickChips: ['Posca', 'Lettering'],
     },
     {
       id: 'all-infallible-1012',
       label: '🌟 El Regalo Infalible',
       desc: 'Top ventas garantizado para 10 a 12 años',
       category: 'all',
-      quickChips: ['Superventas', 'Regalo Seguro']
-    }
+      quickChips: ['Virus!', 'Pokémon', 'Harry Potter'],
+    },
   ],
-
   '7-9': [
     {
       id: 'scalextric-79',
       label: '🏎️ Scalextric & Pistas de Carreras',
       desc: 'Circuitos Scalextric Compact con looping, coches con luces y mandos con turbo',
-      category: 'Scalextric y Pistas de Carreras',
+      category: 'Scalextric y Circuitos de Coches',
       searchQuery: 'scalextric',
-      quickChips: ['Scalextric Compact', 'Coches Carreras']
+      quickChips: ['Scalextric', 'Slot Cars'],
     },
     {
       id: 'rc-cars-79',
       label: '🚙 Coches Teledirigidos RC 4x4 Todoterreno',
       desc: 'Monster trucks resistentes a golpes con batería recargable y tracción total',
-      category: 'Coches RC y Teledirigidos',
-      searchQuery: 'teledirigido',
-      quickChips: ['Coche Teledirigido', 'Monster Truck 4x4']
+      category: 'Sobre Ruedas: Coches, Quads y Patinetes',
+      searchQuery: 'rc 4x4',
+      quickChips: ['RC 4x4', 'Monster Truck'],
     },
     {
       id: 'lego-creator-79',
       label: '🧱 LEGO Creator 3 en 1',
-      desc: 'Sets de construcción donde 1 caja permite armar 3 modelos distintos (dragones, dinosaurios, naves)',
-      category: 'LEGO Creator y Construcción',
+      desc: 'Sets de construcción donde 1 caja permite armar 3 modelos distintos',
+      category: 'LEGO y Construcción',
       searchQuery: 'lego creator',
-      quickChips: ['LEGO Creator', 'LEGO Dinosaurio', 'Castillo Medieval']
+      quickChips: ['LEGO Creator', 'LEGO'],
     },
     {
       id: 'pokemon-action-79',
@@ -512,274 +483,149 @@ export const AGE_THEMES_MAP: Record<string, AgeThemeOption[]> = {
       desc: 'Sobres de cartas Pokémon TCG, cinturones Pokéball y figuras de acción',
       category: 'Cartas y Sobres Pokémon',
       searchQuery: 'pokemon',
-      quickChips: ['Cartas Pokémon', 'Pokéball', 'Pikachu']
-    },
-    {
-      id: 'magic-borras-79',
-      label: '🪄 Magia Borrás Oficial (100 Trucos)',
-      desc: 'El clásico juego de magia español con varita, chistera y trucos explicados paso a paso',
-      category: 'Juegos de Magia Borrás',
-      searchQuery: 'magia borras',
-      quickChips: ['Magia Borrás', 'Trucos de Magia']
-    },
-    {
-      id: 'comics-books-79',
-      label: '📚 Libros Divertidos & Cómics (Los Compas)',
-      desc: 'Cómics de Los Compas, Amanda Black y aventuras con muchas ilustraciones a color',
-      category: 'Libros y Cómics Infantiles',
-      searchQuery: 'los compas',
-      quickChips: ['Los Compas', 'Amanda Black', 'Cómics Infantiles']
+      quickChips: ['Pokémon', 'Pikachu'],
     },
     {
       id: 'boardgames-79',
       label: '🎲 Juegos de Mesa Familiares (Catán Junior, Dixit)',
       desc: 'Juegos para reunir a toda la familia alrededor de la mesa con diversión garantizada',
-      category: 'Juegos de Mesa y Estrategia Familiar',
-      searchQuery: 'catan junior',
-      quickChips: ['Catan Junior', 'Dixit', 'Fantasma Blitz']
+      category: 'Juegos de Mesa y Cartas',
+      searchQuery: 'dixit',
+      quickChips: ['Catan Junior', 'Dixit'],
     },
     {
       id: 'all-infallible-79',
       label: '🌟 El Regalo Infalible (Más Vendido)',
       desc: 'El superventas seguro para acertar de 7 a 9 años',
       category: 'all',
-      quickChips: ['Superventas', 'Acierto Seguro']
-    }
+      quickChips: ['LEGO', 'Scalextric'],
+    },
   ],
-
   '4-6': [
     {
       id: 'mario-circuits-46',
       label: '🏎️ Circuitos de Coches Infantiles (Mario Kart)',
-      desc: 'Pistas Carrera First diseñadas para niños pequeños con Mario y Luigi, mandos ergonómicos y no se salen',
-      category: 'Circuitos de Coches Infantiles',
+      desc: 'Pistas Carrera First diseñadas para niños pequeños con Mario y Luigi',
+      category: 'Scalextric y Circuitos de Coches',
       searchQuery: 'mario kart',
-      quickChips: ['Mario Kart Circuito', 'Carrera First']
+      quickChips: ['Mario Kart', 'Carrera First'],
     },
     {
       id: 'scooters-led-46',
       label: '🛴 Patinetes de 3 Ruedas con Luces LED',
-      desc: 'Patinetes autoestables con giro por inclinación natural y ruedas que se iluminan al rodar',
-      category: 'Patinetes con Ruedas LED',
+      desc: 'Patinetes autoestables con giro por inclinación natural y ruedas LED',
+      category: 'Bicis y Patinetes con Ruedas',
       searchQuery: 'patinete',
-      quickChips: ['Patinete LED', 'Patinete 3 Ruedas']
+      quickChips: ['LED Scooter', 'Micro'],
     },
     {
       id: 'boardgames-kids-46',
-      label: '🎲 Juegos de Mesa Infantiles (El Monstruo de Colores, Dobble)',
-      desc: 'Juegos cooperativos para gestionar emociones, agudeza visual y risas en familia',
-      category: 'Juegos de Mesa Infantiles',
-      searchQuery: 'monstruo de colores',
-      quickChips: ['El Monstruo de Colores', 'Dobble Kids']
-    },
-    {
-      id: 'plush-interactive-46',
-      label: '🤖 Peluches Interactivos & Mascotas Digitales (Bitzee, Pikachu)',
-      desc: 'Mascotas que responden al tacto, luces y sonidos reales sin pantallas adictivas',
-      category: 'Peluches Interactivos y Muñecos',
-      searchQuery: 'bitzee',
-      quickChips: ['Bitzee', 'Pikachu Peluche', 'Mascota Interactiva']
-    },
-    {
-      id: 'costumes-superheroes-46',
-      label: '🦸 Disfraces de Superhéroes (Spiderman, Batman) & Princesas',
-      desc: 'Capas con máscaras suaves de velcro seguro para imaginar aventuras heroicas',
-      category: 'Disfraces y Ropa Infantil',
-      searchQuery: 'disfraz spiderman',
-      quickChips: ['Spiderman', 'Batman', 'Disfraz Princesa', 'Superhéroes']
+      label: '🎲 Juegos de Mesa Infantiles (Dobble Kids)',
+      desc: 'Juegos cooperativos para gestionar emociones y agudeza visual en familia',
+      category: 'Juegos de Mesa y Cartas',
+      searchQuery: 'dobble',
+      quickChips: ['Dobble Kids'],
     },
     {
       id: 'crafts-drawing-46',
       label: '🎨 Maletines de Dibujo, Acuarelas & Plastilina',
-      desc: 'Ceras lavables, acuarelas seguras y botes de plastilina Play-Doh para crear libremente',
-      category: 'Manualidades, Dibujo y Pintura',
+      desc: 'Ceras lavables, acuarelas seguras y botes Play-Doh para crear libremente',
+      category: 'Manualidades y Creatividad',
       searchQuery: 'play doh',
-      quickChips: ['Maletín Pintura', 'Play-Doh', 'Acuarelas Lavables']
-    },
-    {
-      id: 'early-readers-46',
-      label: '📖 Cuentos & Primeros Lectores (Letra Mayúscula)',
-      desc: 'Historias con letra grande e ilustraciones vivas para empezar a amar la lectura',
-      category: 'Cuentos y Primeros Lectores',
-      searchQuery: 'cuentos letra mayuscula',
-      quickChips: ['Cuentos Letra Mayúscula', 'Primeros Lectores']
+      quickChips: ['Play-Doh', 'Crayola'],
     },
     {
       id: 'all-infallible-46',
       label: '🌟 El Regalo Infalible',
       desc: 'Los superventas favoritos de los niños de 4 a 6 años',
       category: 'all',
-      quickChips: ['Superventas', 'Regalo Seguro']
-    }
+      quickChips: ['Mario Kart', 'Play-Doh'],
+    },
   ],
-
   '1-3': [
     {
       id: 'montessori-wood-13',
       label: '🪵 Juguetes Montessori de Madera & Estimulación',
-      desc: 'Torres de aprendizaje, bloques de encajar y motricidad fina recomendados por pedagogos',
-      category: 'Juguetes Montessori y Madera',
-      searchQuery: 'montessori madera',
-      quickChips: ['Torre Aprendizaje', 'Bloques Madera', 'Juguete Montessori']
+      desc: 'Torres de aprendizaje, bloques de encajar y motricidad fina',
+      category: 'Manualidades y Creatividad',
+      searchQuery: 'montessori',
+      quickChips: ['Montessori', 'Wooden Toys'],
     },
     {
       id: 'lego-duplo-13',
       label: '🧱 LEGO DUPLO & Construcción Segura',
-      desc: 'Ladrillos grandes anti-atragantamiento, tren de números y vehículos de construcción',
-      category: 'LEGO DUPLO y Construcción',
+      desc: 'Ladrillos grandes anti-atragantamiento, tren de números y vehículos',
+      category: 'LEGO y Construcción',
       searchQuery: 'lego duplo',
-      quickChips: ['LEGO DUPLO Tren', 'LEGO DUPLO Caja']
+      quickChips: ['LEGO DUPLO'],
     },
     {
       id: 'trikes-bikes-13',
       label: '🚲 Triciclos Evolutivos & Bicis sin Pedales',
-      desc: 'Correpasillos y bicicletas de equilibrio para dominar los primeros pasos con seguridad',
-      category: 'Triciclos y Bicis de Equilibrio',
+      desc: 'Correpasillos y bicicletas de equilibrio para dominar los primeros pasos',
+      category: 'Bicis y Patinetes con Ruedas',
       searchQuery: 'bicicleta sin pedales',
-      quickChips: ['Bicicleta sin Pedales', 'Triciclo Evolutivo']
-    },
-    {
-      id: 'imitation-kitchen-13',
-      label: '🍳 Cocinitas & Juegos de Imitación de Madera',
-      desc: 'Comiditas cortables de velcro con cuchillos de madera redondeados y cocinitas',
-      category: 'Cocina Infantil y Juegos de Imitación',
-      searchQuery: 'cocinita madera',
-      quickChips: ['Cocinita Madera', 'Comiditas Velcro']
-    },
-    {
-      id: 'toddler-books-13',
-      label: '📖 Cuentos con Solapas & Títeres (El Pollo Pepe)',
-      desc: 'Cuentos interactivos de cartón grueso para tocar, levantar solapas y escuchar',
-      category: 'Cuentos y Libros Infantiles',
-      searchQuery: 'el pollo pepe',
-      quickChips: ['El Pollo Pepe', 'Cuentos Solapas']
-    },
-    {
-      id: 'playdoh-crafts-13',
-      label: '🎨 Plastilina Play-Doh No Tóxica & Manualidades',
-      desc: 'Botes de colores seguros y herramientas blandas para aplastar y moldear',
-      category: 'Manualidades, Plastilina y Pintura',
-      searchQuery: 'play doh',
-      quickChips: ['Play-Doh', 'Plastilina Segura']
+      quickChips: ['Balance Bike'],
     },
     {
       id: 'all-infallible-13',
       label: '🌟 El Regalo Infalible (Acierto Seguro)',
       desc: 'Los juguetes infantiles con mejores valoraciones de pediatras y familias',
       category: 'all',
-      quickChips: ['Superventas', 'Acierto Seguro']
-    }
+      quickChips: ['LEGO DUPLO', 'Montessori'],
+    },
   ],
-
   '0-12m': [
     {
       id: 'diaper-cakes-012',
-      label: '🎂 Tartas de Pañales Dodot & Canastillas',
-      desc: 'El regalo estrella práctico por excelencia con más de 50 pañales y cosmética Mustela',
-      category: 'Tartas de Pañales y Canastillas',
-      searchQuery: 'tarta panales dodot',
-      quickChips: ['Tarta Pañales', 'Canastilla Mustela']
-    },
-    {
-      id: 'cribs-sleep-012',
-      label: '🛏️ Cunas de Colecho, Hamacas & Nidos Antivuelco',
-      desc: 'Cunas Chicco Next2Me, hamacas ergonómicas y nidos para el descanso seguro del bebé',
-      category: 'Cunas de Colecho y Descanso',
-      searchQuery: 'cuna colecho',
-      quickChips: ['Cuna Colecho', 'Hamaca Ergonómica']
+      label: '🎂 Tartas de Pañales & Canastillas',
+      desc: 'El regalo estrella práctico con más de 50 pañales y cosmética para bebé',
+      category: 'Cochecitos y Esenciales de Bebé',
+      searchQuery: 'panales',
+      quickChips: ['Dodot', 'Mustela'],
     },
     {
       id: 'strollers-gear-012',
       label: '🍼 Cochecitos Ligeros, Tronas & Mobiliario',
-      desc: 'Sillas de paseo compactas para maletero y tronas evolutivas de primera puesta',
-      category: 'Cochecitos y Mobiliario de Bebé',
-      searchQuery: 'silla paseo ligera',
-      quickChips: ['Silla Paseo', 'Trona Evolutiva']
-    },
-    {
-      id: 'baths-hygiene-012',
-      label: '🛁 Bañeras Plegables & Cuidado Suave',
-      desc: 'Bañeras con termómetro integrado antideslizantes y sets de tijeritas seguras',
-      category: 'Bañeras e Higiene del Bebé',
-      searchQuery: 'banera plegable',
-      quickChips: ['Bañera Plegable', 'Set Higiene Bebé']
-    },
-    {
-      id: 'sensory-sophie-012',
-      label: '🧸 Juguetes Sensoriales & Sophie la Girafe',
-      desc: 'Mordedores de caucho natural Hevea 100% seguros y mantitas de estimulación',
-      category: 'Juguetes Sensoriales y Mordedores',
-      searchQuery: 'sophie la girafe',
-      quickChips: ['Sophie la Girafe', 'Manta Sensorial']
-    },
-    {
-      id: 'soft-books-012',
-      label: '📖 Libros Blandos de Tela de Alto Contraste',
-      desc: 'Cuentos en blanco y negro y texturas táctiles ideales para la vista del recién nacido',
-      category: 'Libros Blandos y Cuentos de Tela',
-      searchQuery: 'libros blandos tela',
-      quickChips: ['Libro Blando Tela', 'Alto Contraste']
-    },
-    {
-      id: 'clothes-organic-012',
-      label: '👶 Bodies & Pijamas 100% Algodón Orgánico',
-      desc: 'Packs de bodies Carter\'s con cuello expandible hipoalergénicos',
-      category: 'Ropa, Bodies y Patucos',
-      searchQuery: 'bodies algodon',
-      quickChips: ['Bodies Algodón', 'Pijama Bebé']
+      desc: 'Sillas de paseo compactas para maletero y cunas de colecho',
+      category: 'Cochecitos y Esenciales de Bebé',
+      searchQuery: 'colecho',
+      quickChips: ['Chicco Next2Me'],
     },
     {
       id: 'gender-reveal-012',
       label: '🎉 Fiestas y Revelación de Género & Baby Shower',
       desc: 'Cañones de confeti y humo holi biodegradables para desvelar si es niño o niña',
       category: 'Fiestas y Revelación de Género',
-      searchQuery: 'revelacion genero',
-      quickChips: ['Cañones Confeti', 'Globos Enigma']
+      searchQuery: 'revelacion',
+      quickChips: ['Baby Shower', 'Confetti'],
     },
     {
       id: 'all-infallible-012',
       label: '🌟 El Regalo Infalible (Indispensables de Padres)',
-      desc: 'Lo que todo padre y madre agradece de corazón recibir',
+      desc: 'Lo que todo padre y madre agradece recibir',
       category: 'all',
-      quickChips: ['Superventas', 'Regalo Seguro']
-    }
+      quickChips: ['Sophie la Girafe'],
+    },
   ],
-
-  'reveal': [
+  reveal: [
     {
       id: 'all-reveal-party',
       label: '🎉 Todo para Fiesta Revelación de Género',
       desc: 'Todos los artículos de fiesta enigma y sorpresa para celebrar la dulce espera',
       category: 'Fiestas y Revelación de Género',
-      searchQuery: 'revelacion genero',
-      quickChips: ['Cañones Confeti', 'Globos Enigma', 'Polvos Holi']
+      searchQuery: 'revelacion',
+      quickChips: ['Gender Reveal', 'Confetti'],
     },
-    {
-      id: 'cannons-confetti',
-      label: '💥 Cañones de Confeti y Humo Holi',
-      desc: 'Disparadores biodegradables rosas o azules para el clímax de la fiesta',
-      category: 'Fiestas y Revelación de Género',
-      searchQuery: 'canones confeti revelacion',
-      quickChips: ['Cañón Rosa', 'Cañón Azul']
-    },
-    {
-      id: 'enigma-balloons',
-      label: '🎈 Globos Gigantes Enigma de 90 cm',
-      desc: 'Globos negros sorpresa para pinchar con confeti y polvo interior',
-      category: 'Fiestas y Revelación de Género',
-      searchQuery: 'globos sorpresa revelacion',
-      quickChips: ['Globo Enigma', 'Photocall']
-    }
   ],
-
-  'all': [
+  all: [
     {
       id: 'all-friki-pop',
       label: '🦸‍♂️ Cultura Friki, Cómics, Manga & Pop Culture',
       desc: 'Cómics Marvel, tomos One Piece, Dragon Ball, figuras de colección y réplicas de cine',
       category: 'Figuras de Colección y Cine',
       searchQuery: 'comic',
-      quickChips: ['Cómics Marvel', 'One Piece', 'Dragon Ball', 'Batman']
+      quickChips: ['Marvel', 'One Piece', 'Dragon Ball', 'Batman'],
     },
     {
       id: 'all-pokemon',
@@ -787,7 +633,7 @@ export const AGE_THEMES_MAP: Record<string, AgeThemeOption[]> = {
       desc: 'Cajas de sobres booster box y barajas oficiales',
       category: 'Cartas y Sobres Pokémon',
       searchQuery: 'pokemon',
-      quickChips: ['Cartas Pokémon', 'Booster Box']
+      quickChips: ['Pokémon', 'Booster Box'],
     },
     {
       id: 'all-gaming',
@@ -795,7 +641,7 @@ export const AGE_THEMES_MAP: Record<string, AgeThemeOption[]> = {
       desc: 'Mandos PS5 DualSense, periféricos gaming Logitech y títulos top',
       category: 'Videojuegos y Setup Gamer',
       searchQuery: 'ps5',
-      quickChips: ['Mando PS5', 'Spider-Man 2', 'Setup Gamer']
+      quickChips: ['PS5 DualSense', 'HyperX'],
     },
     {
       id: 'all-motor',
@@ -803,7 +649,7 @@ export const AGE_THEMES_MAP: Record<string, AgeThemeOption[]> = {
       desc: 'Cascos homologados, guantes y accesorios para moteros',
       category: 'all',
       hubUrl: '/motoristas',
-      quickChips: ['Casco Moto', 'Guantes Moto']
+      quickChips: ['Cardo', 'Quad Lock'],
     },
     {
       id: 'all-pets',
@@ -811,15 +657,15 @@ export const AGE_THEMES_MAP: Record<string, AgeThemeOption[]> = {
       desc: 'Juguetes Kong anti-ansiedad y accesorios para animales',
       category: 'all',
       hubUrl: '/mascotas',
-      quickChips: ['Juguete Kong', 'Perros', 'Gatos']
+      quickChips: ['KONG', 'Tractive', 'Catit'],
     },
     {
       id: 'all-coffee',
       label: '☕ Café Barista & Especialidad',
-      desc: 'Cafeteras express Cecotec y café de autor',
+      desc: 'Cafeteras espresso, molinillos y café de autor',
       category: 'all',
       hubUrl: '/amantes-del-cafe',
-      quickChips: ['Cafetera Cecotec', 'Molinillo Café']
+      quickChips: ['Bialetti', 'Timemore'],
     },
     {
       id: 'all-boardgames',
@@ -827,7 +673,7 @@ export const AGE_THEMES_MAP: Record<string, AgeThemeOption[]> = {
       desc: 'Desde Virus! y Catan hasta Wingspan y escape rooms',
       category: 'Juegos de Mesa y Cartas',
       searchQuery: 'catan',
-      quickChips: ['Catan', 'Virus!', 'Escape Room']
+      quickChips: ['Catan', 'Virus!', 'Wingspan'],
     },
     {
       id: 'all-lego',
@@ -835,7 +681,7 @@ export const AGE_THEMES_MAP: Record<string, AgeThemeOption[]> = {
       desc: 'DUPLO, Creator 3 en 1 y LEGO Icons para adultos',
       category: 'LEGO y Construcción',
       searchQuery: 'lego',
-      quickChips: ['LEGO Creator', 'LEGO Icons']
+      quickChips: ['LEGO Creator', 'LEGO Icons'],
     },
     {
       id: 'all-phones',
@@ -843,25 +689,55 @@ export const AGE_THEMES_MAP: Record<string, AgeThemeOption[]> = {
       desc: 'Apple iPhone, Samsung Galaxy, Google Pixel y Xiaomi',
       category: 'Smartphones y Telefonía',
       searchQuery: 'smartphone',
-      quickChips: ['iPhone', 'Galaxy S24']
+      quickChips: ['iPhone', 'Galaxy'],
     },
     {
       id: 'all-everything',
       label: '🌟 Ver Todas las Ideas (Catálogo Completo)',
       desc: 'Explora todos los productos verificados sin filtrar',
       category: 'all',
-      quickChips: ['Superventas', 'Ofertas']
-    }
-  ]
+      quickChips: ['LEGO', 'Kindle', 'PlayStation'],
+    },
+  ],
 };
+
+function getThemeDisplay(
+  item: AgeThemeOption,
+  isEs: boolean,
+  localeKey: string,
+  tTerm: (s: string) => string,
+  ui: { showingAllCatalog: string; verifiedCatalogNote: string }
+): { label: string; desc: string } {
+  if (isEs) {
+    return { label: item.label, desc: item.desc };
+  }
+  const emojiMatch = item.label.match(/^(\S+)\s+/);
+  const emoji = emojiMatch ? emojiMatch[1] : '🎁';
+  if (item.hubUrl) {
+    const hubSlug = item.hubUrl.replace(/^\//, '');
+    const hub = getHubStrings(localeKey, hubSlug);
+    return {
+      label: `${emoji} ${hub.breadcrumbLabel}`,
+      desc: item.quickChips.join(' · ') || hub.subtitle,
+    };
+  }
+  const catLabel = item.category === 'all' ? ui.showingAllCatalog : tTerm(item.category);
+  return {
+    label: `${emoji} ${catLabel}`,
+    desc: item.quickChips.length > 0 ? item.quickChips.join(' · ') : ui.verifiedCatalogNote,
+  };
+}
 
 export default function GiftWizard({
   isOpen,
   initialAge = 'all',
   initialGender = 'all',
   onClose,
-  onApplyRecommendation
+  onApplyRecommendation,
 }: GiftWizardProps) {
+  const { localeKey, ui, tTerm, tBudget, localePath, isRtl } = useActiveLocale();
+  const isEs = localeKey === 'es' || localeKey === 'es-us';
+
   const [step, setStep] = useState(1);
   const [selectedAge, setSelectedAge] = useState<string>('16-18');
   const [selectedVibe, setSelectedVibe] = useState<string>('friki-comics-manga-1618');
@@ -869,7 +745,6 @@ export default function GiftWizard({
   const [selectedGender, setSelectedGender] = useState<'all' | 'boy' | 'girl' | 'reveal'>('all');
   const [selectedBudget, setSelectedBudget] = useState<string>('20-50');
 
-  // Sincronizar inteligentemente si el usuario ya tenía una edad seleccionada en la web
   useEffect(() => {
     if (isOpen) {
       setStep(1);
@@ -877,7 +752,7 @@ export default function GiftWizard({
       setSelectedAge(validInitial);
       setSelectedGender(initialGender || 'all');
       const themes = AGE_THEMES_MAP[validInitial] || AGE_THEMES_MAP['16-18'];
-      setSelectedVibe(themes[0]?.id || 'any');
+      setSelectedVibe(themes[0]?.id || 'all-everything');
       setCustomInterest('');
     }
   }, [isOpen, initialAge, initialGender]);
@@ -897,16 +772,13 @@ export default function GiftWizard({
 
   const handleSelectAge = (ageId: string) => {
     setSelectedAge(ageId);
-
-    // Si elige fiesta revelación, el género es automáticamente reveal
     if (ageId === 'reveal') {
       setSelectedGender('reveal');
     } else if (selectedGender === 'reveal') {
       setSelectedGender('all');
     }
-
-    const availableThemes = AGE_THEMES_MAP[ageId] || AGE_THEMES_MAP['all'];
-    setSelectedVibe(availableThemes[0]?.id || 'any');
+    const availableThemes = AGE_THEMES_MAP[ageId] || AGE_THEMES_MAP.all;
+    setSelectedVibe(availableThemes[0]?.id || 'all-everything');
     setCustomInterest('');
   };
 
@@ -919,7 +791,7 @@ export default function GiftWizard({
     let searchQueryToApply: string | undefined = undefined;
     let hubUrlToApply: string | undefined = undefined;
 
-    const currentOptions = AGE_THEMES_MAP[selectedAge] || AGE_THEMES_MAP['all'];
+    const currentOptions = AGE_THEMES_MAP[selectedAge] || AGE_THEMES_MAP.all;
     const matched = currentOptions.find((opt) => opt.id === selectedVibe);
 
     if (selectedAge === 'reveal') {
@@ -929,7 +801,7 @@ export default function GiftWizard({
     } else if (matched) {
       targetCategory = matched.category;
       if (matched.hubUrl) {
-        hubUrlToApply = matched.hubUrl;
+        hubUrlToApply = localePath(matched.hubUrl);
       }
       if (customInterest.trim().length > 0) {
         searchQueryToApply = customInterest.trim();
@@ -945,7 +817,7 @@ export default function GiftWizard({
       price: selectedBudget,
       searchQuery: searchQueryToApply,
       hubUrl: hubUrlToApply,
-      themeLabel: matched?.label
+      themeLabel: matched ? getThemeDisplay(matched, isEs, localeKey, tTerm, ui).label : undefined,
     });
 
     onClose();
@@ -958,15 +830,20 @@ export default function GiftWizard({
     }
   };
 
-  const currentThemes = AGE_THEMES_MAP[selectedAge] || AGE_THEMES_MAP['all'];
+  const currentThemes = AGE_THEMES_MAP[selectedAge] || AGE_THEMES_MAP.all;
   const isRevealMode = selectedAge === 'reveal';
   const selectedThemeObj = currentThemes.find((t) => t.id === selectedVibe) || currentThemes[0];
+  const selectedAgeOpt = AGE_STEP_OPTIONS.find((a) => a.id === selectedAge);
+  const selectedThemeDisplay = selectedThemeObj
+    ? getThemeDisplay(selectedThemeObj, isEs, localeKey, tTerm, ui)
+    : { label: ui.categoryAll, desc: '' };
 
   return (
     <div
+      dir={isRtl ? 'rtl' : 'ltr'}
       role="dialog"
       aria-modal="true"
-      aria-label="Asistente inteligente para elegir regalo"
+      aria-label={ui.wizardTitle}
       className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 animate-in fade-in duration-200"
     >
       <div
@@ -977,27 +854,29 @@ export default function GiftWizard({
       <div className="w-full max-w-2xl bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden relative z-10 flex flex-col max-h-[92vh]">
         {/* Header */}
         <div className="p-4 sm:p-6 border-b border-slate-100 flex items-center justify-between bg-gradient-to-r from-indigo-50/90 via-white to-purple-50/50">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-indigo-600 text-white flex items-center justify-center shadow-md">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="w-10 h-10 rounded-2xl bg-indigo-600 text-white flex items-center justify-center shadow-md shrink-0">
               <Bot className="w-5 h-5 animate-pulse" />
             </div>
-            <div>
-              <div className="flex items-center gap-2">
+            <div className="min-w-0">
+              <div className="flex items-center gap-2 flex-wrap">
                 <span className="text-[11px] font-black uppercase tracking-wider text-indigo-700 bg-indigo-100/80 px-2 py-0.5 rounded-full">
-                  Asistente Inteligente IA
+                  {ui.wizardTitle}
                 </span>
-                <span className="text-xs text-slate-600 font-bold">Paso {step} de 4</span>
+                <span className="text-xs text-slate-600 font-bold">
+                  {ui.wizardStepLabel} {step} / 4
+                </span>
               </div>
-              <h2 className="text-base sm:text-lg font-black text-slate-900 leading-tight">
-                Encuentra el regalo perfecto según sus gustos
+              <h2 className="text-base sm:text-lg font-black text-slate-900 leading-tight line-clamp-1">
+                {ui.wizardSubtitle}
               </h2>
             </div>
           </div>
           <button
             type="button"
             onClick={onClose}
-            aria-label="Cerrar asistente"
-            className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 flex items-center justify-center transition-colors cursor-pointer"
+            aria-label={ui.wizardClose}
+            className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 flex items-center justify-center transition-colors cursor-pointer shrink-0"
           >
             <X className="w-4 h-4" />
           </button>
@@ -1005,26 +884,28 @@ export default function GiftWizard({
 
         {/* Modal Body */}
         <div className="p-4 sm:p-6 overflow-y-auto flex-1">
-          
-          {/* PASO 1: EDAD / ETAPA (PUNTO DE PARTIDA INELUDIBLE) */}
+          {/* STEP 1 */}
           {step === 1 && (
             <div className="space-y-4">
               <div className="text-left">
                 <span className="text-xs font-black uppercase tracking-wider text-indigo-700 block mb-1">
-                  Paso 1 · Edad del destinatario
+                  {ui.wizardStepLabel} 1 · {ui.navAges}
                 </span>
                 <h3 className="text-base sm:text-lg font-black text-slate-900">
-                  ¿Para qué edad o etapa es el regalo?
+                  {ui.wizardAgeQuestion}
                 </h3>
-                <p className="text-xs text-slate-600 mt-0.5">
-                  Las preguntas, temáticas frikis, gaming y aficiones se adaptarán exclusivamente a esta edad.
-                </p>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
                 {AGE_STEP_OPTIONS.map((opt) => {
                   const IconComp = opt.icon;
                   const isSelected = selectedAge === opt.id;
+                  const displayLabel = isEs
+                    ? opt.esLabel
+                    : opt.id === 'all'
+                    ? ui.ageAllLabel
+                    : tTerm(opt.termKey);
+                  const displayDesc = isEs ? opt.esDesc : tTerm(opt.subtitleTermKey);
                   return (
                     <button
                       key={opt.id}
@@ -1036,17 +917,19 @@ export default function GiftWizard({
                           : 'border-slate-200 bg-slate-50/60 hover:bg-slate-100 text-slate-800'
                       }`}
                     >
-                      <span className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${isSelected ? 'bg-indigo-600 text-white' : 'bg-white border border-slate-200'}`}>
+                      <span
+                        className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${
+                          isSelected ? 'bg-indigo-600 text-white' : 'bg-white border border-slate-200'
+                        }`}
+                      >
                         <IconComp className={`w-4 h-4 ${isSelected ? 'text-white' : opt.iconColor}`} />
                       </span>
                       <span className="block flex-1 min-w-0">
-                        <span className="flex items-center justify-between gap-1 mb-0.5">
-                          <span className="font-bold text-xs sm:text-sm text-slate-900 leading-tight">
-                            {opt.label}
-                          </span>
+                        <span className="font-bold text-xs sm:text-sm text-slate-900 leading-tight block mb-0.5">
+                          {displayLabel}
                         </span>
                         <span className="block text-[11px] text-slate-600 leading-tight line-clamp-2">
-                          {opt.desc}
+                          {displayDesc}
                         </span>
                       </span>
                     </button>
@@ -1056,29 +939,28 @@ export default function GiftWizard({
             </div>
           )}
 
-          {/* PASO 2: TEMÁTICA / AFICIONES / GUSTOS (¡LA CLAVE QUE PIDIÓ EL USUARIO!) */}
+          {/* STEP 2 */}
           {step === 2 && (
             <div className="space-y-4">
               <div className="text-left">
                 <span className="text-xs font-black uppercase tracking-wider text-indigo-700 block mb-1">
-                  Paso 2 · Temática & Aficiones
+                  {ui.wizardStepLabel} 2 · {ui.navThemes}
                 </span>
                 <h3 className="text-base sm:text-lg font-black text-slate-900">
-                  ¿Tiene alguna afición o temática en especial?
+                  {ui.wizardThemeQuestion}
                 </h3>
-                <p className="text-xs text-slate-600 mt-0.5">
-                  Si tu amigo es friki de los cómics, gamer, motero o le gusta la música, el asistente seleccionará los mejores regalos específicos para{' '}
-                  <strong className="text-indigo-700">
-                    {AGE_STEP_OPTIONS.find((a) => a.id === selectedAge)?.badge || selectedAge}
-                  </strong>.
-                </p>
+                {selectedAgeOpt && (
+                  <p className="text-xs text-indigo-700 font-bold mt-0.5">
+                    {isEs ? selectedAgeOpt.esBadge : tTerm(selectedAgeOpt.badgeKey)}
+                  </p>
+                )}
               </div>
 
-              {/* Grid de Temáticas adaptadas */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1 max-h-[38vh] overflow-y-auto pr-1">
                 {currentThemes.map((item) => {
                   const isSelected = selectedVibe === item.id;
                   const isInfalible = item.id.includes('infallible') || item.id.includes('everything');
+                  const disp = getThemeDisplay(item, isEs, localeKey, tTerm, ui);
                   return (
                     <button
                       key={item.id}
@@ -1093,29 +975,26 @@ export default function GiftWizard({
                       }`}
                     >
                       <span className="flex items-center justify-between gap-2">
-                        <span className="font-bold text-xs sm:text-sm leading-tight">
-                          {item.label}
-                        </span>
+                        <span className="font-bold text-xs sm:text-sm leading-tight">{disp.label}</span>
                         {isInfalible && !isSelected && (
-                          <span className="text-[10px] font-black uppercase px-2 py-0.5 bg-amber-200 text-amber-900 rounded-full">
-                            Infalible
+                          <span className="text-[10px] font-black uppercase px-2 py-0.5 bg-amber-200 text-amber-900 rounded-full shrink-0">
+                            {ui.badgeTop}
                           </span>
                         )}
                       </span>
                       <span className={`text-[11px] leading-tight ${isSelected ? 'text-indigo-100' : 'text-slate-600'}`}>
-                        {item.desc}
+                        {disp.desc}
                       </span>
                     </button>
                   );
                 })}
               </div>
 
-              {/* INPUT DE INTERÉS CONCRETO / PERSONAJE FAVORITO (OPCIONAL) */}
               <div className="mt-3 p-3.5 rounded-2xl bg-indigo-50/50 border border-indigo-100">
                 <div className="text-xs font-bold text-indigo-950 flex items-center justify-between mb-1.5">
                   <label htmlFor="gift-wizard-interest" className="flex items-center gap-1.5 cursor-pointer">
                     <Lightbulb className="w-3.5 h-3.5 text-indigo-600" />
-                    <span>¿Le gusta algún personaje, saga o detalle concreto? (Opcional)</span>
+                    <span>{ui.headerSearchButton}</span>
                   </label>
                   {customInterest && (
                     <button
@@ -1123,7 +1002,7 @@ export default function GiftWizard({
                       onClick={() => setCustomInterest('')}
                       className="text-[11px] text-slate-700 hover:text-slate-950 underline cursor-pointer"
                     >
-                      Limpiar
+                      {ui.clearFilters}
                     </button>
                   )}
                 </div>
@@ -1134,16 +1013,14 @@ export default function GiftWizard({
                     type="text"
                     value={customInterest}
                     onChange={(e) => setCustomInterest(e.target.value)}
-                    aria-label="Buscar o escribir interés personalizado"
-                    placeholder="Ej: Cómics de Marvel, One Piece, Spider-Man, Batman, Harry Potter..."
+                    aria-label={ui.wizardInterestPlaceholder}
+                    placeholder={ui.wizardInterestPlaceholder}
                     className="w-full pl-9 pr-3.5 py-2 text-xs rounded-xl border border-slate-200 bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none transition-all placeholder:text-slate-500 text-slate-800"
                   />
                 </div>
 
-                {/* Chips rápidos de sugerencia */}
                 {selectedThemeObj?.quickChips && selectedThemeObj.quickChips.length > 0 && (
                   <div className="flex flex-wrap items-center gap-1.5 mt-2">
-                    <span className="text-[10px] font-bold text-slate-600">Sugerencias rápidas:</span>
                     {selectedThemeObj.quickChips.map((chip) => (
                       <button
                         key={chip}
@@ -1164,27 +1041,18 @@ export default function GiftWizard({
             </div>
           )}
 
-          {/* PASO 3: DESTINATARIO (ADAPTADO LÓGICAMENTE A LA EDAD DEL PASO 1) */}
+          {/* STEP 3 */}
           {step === 3 && (
             <div className="space-y-4">
               <div className="text-left">
                 <span className="text-xs font-black uppercase tracking-wider text-indigo-700 block mb-1">
-                  Paso 3 · Destinatario
+                  {ui.wizardStepLabel} 3 · {ui.genderLabel}
                 </span>
                 <h3 className="text-base sm:text-lg font-black text-slate-900">
-                  {selectedAge === '+18'
-                    ? '¿Para quién es el regalo de adulto?'
-                    : selectedAge === '0-12m'
-                    ? '¿El bebé es niño, niña o aún es sorpresa?'
-                    : isRevealMode
-                    ? 'Ocasión de la Fiesta Revelación'
-                    : '¿Para quién buscas el regalo?'}
+                  {ui.navRecipients}
                 </h3>
-                <p className="text-xs text-slate-600 mt-0.5">
-                  Adaptado a la temática elegida:{' '}
-                  <strong className="text-indigo-700">
-                    {selectedThemeObj?.label || 'General'}
-                  </strong>
+                <p className="text-xs text-indigo-700 font-bold mt-0.5">
+                  {selectedThemeDisplay.label}
                 </p>
               </div>
 
@@ -1201,9 +1069,11 @@ export default function GiftWizard({
                       }`}
                     >
                       <PartyPopper className="w-6 h-6 text-amber-500 mb-1" />
-                      <span className="font-bold text-sm text-slate-900">Fiesta Revelación de Género & Baby Shower</span>
+                      <span className="font-bold text-sm text-slate-900">
+                        {tTerm('Fiesta Revelación de Género')}
+                      </span>
                       <span className="text-xs text-slate-600 leading-relaxed">
-                        Kits enigma, cañones de humo holi, globos sorpresa para desvelar el sexo del bebé.
+                        {tTerm('Fiestas y Revelación de Género')}
                       </span>
                     </button>
 
@@ -1217,59 +1087,9 @@ export default function GiftWizard({
                       }`}
                     >
                       <Gift className="w-6 h-6 text-indigo-600 mb-1" />
-                      <span className="font-bold text-sm text-slate-900">Regalo para los Futuros Papás</span>
+                      <span className="font-bold text-sm text-slate-900">{ui.genderAll}</span>
                       <span className="text-xs text-slate-600 leading-relaxed">
-                        Detalles para celebrar la dulce espera y artículos conmemorativos.
-                      </span>
-                    </button>
-                  </>
-                ) : selectedAge === '+18' ? (
-                  <>
-                    <button
-                      type="button"
-                      onClick={() => setSelectedGender('boy')}
-                      className={`p-3.5 sm:p-4 rounded-2xl text-left border transition-all flex flex-col gap-1.5 cursor-pointer ${
-                        selectedGender === 'boy'
-                          ? 'border-blue-600 bg-blue-50 text-blue-950 ring-2 ring-blue-500 shadow-sm'
-                          : 'border-slate-200 bg-slate-50 hover:bg-slate-100'
-                      }`}
-                    >
-                      <User className="w-6 h-6 text-blue-600 mb-1" />
-                      <span className="font-bold text-sm text-slate-900">Para Él (Hombre / Chico)</span>
-                      <span className="text-xs text-slate-600 leading-relaxed">
-                        Fragancias como Dior Sauvage, réplicas retro de cine, motos y tecnología.
-                      </span>
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={() => setSelectedGender('girl')}
-                      className={`p-3.5 sm:p-4 rounded-2xl text-left border transition-all flex flex-col gap-1.5 cursor-pointer ${
-                        selectedGender === 'girl'
-                          ? 'border-pink-600 bg-pink-50 text-pink-950 ring-2 ring-pink-500 shadow-sm'
-                          : 'border-slate-200 bg-slate-50 hover:bg-slate-100'
-                      }`}
-                    >
-                      <Heart className="w-6 h-6 text-pink-600 mb-1" />
-                      <span className="font-bold text-sm text-slate-900">Para Ella (Mujer / Chica)</span>
-                      <span className="text-xs text-slate-600 leading-relaxed">
-                        Armani Sì, sets botánicos LEGO Icons, spas y coctelería gourmet.
-                      </span>
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={() => setSelectedGender('all')}
-                      className={`p-3.5 sm:p-4 rounded-2xl text-left border transition-all flex flex-col gap-1.5 cursor-pointer ${
-                        selectedGender === 'all'
-                          ? 'border-indigo-600 bg-indigo-50 text-indigo-950 ring-2 ring-indigo-500 shadow-sm'
-                          : 'border-slate-200 bg-slate-50 hover:bg-slate-100'
-                      }`}
-                    >
-                      <Users className="w-6 h-6 text-indigo-600 mb-1" />
-                      <span className="font-bold text-sm text-slate-900">Todos / Unisex / Pareja</span>
-                      <span className="text-xs text-slate-600 leading-relaxed">
-                        Smartphones buque insignia, juegos de mesa expertos y escapadas.
+                        {tTerm('Cochecitos y Esenciales de Bebé')}
                       </span>
                     </button>
                   </>
@@ -1285,9 +1105,9 @@ export default function GiftWizard({
                       }`}
                     >
                       <User className="w-6 h-6 text-blue-600 mb-1" />
-                      <span className="font-bold text-sm text-slate-900">Para Chico / Amigo</span>
+                      <span className="font-bold text-sm text-slate-900">{ui.genderBoy}</span>
                       <span className="text-xs text-slate-600 leading-relaxed">
-                        Cultura friki, gaming, cartas coleccionables, coches o ropa urbana.
+                        {tTerm('Regalos para Él')}
                       </span>
                     </button>
 
@@ -1301,9 +1121,9 @@ export default function GiftWizard({
                       }`}
                     >
                       <Heart className="w-6 h-6 text-pink-600 mb-1" />
-                      <span className="font-bold text-sm text-slate-900">Para Chica / Amiga</span>
+                      <span className="font-bold text-sm text-slate-900">{ui.genderGirl}</span>
                       <span className="text-xs text-slate-600 leading-relaxed">
-                        Creatividad, manga, fotografía instantánea Instax, skincare y estilo.
+                        {tTerm('Regalos para Ella')}
                       </span>
                     </button>
 
@@ -1317,9 +1137,9 @@ export default function GiftWizard({
                       }`}
                     >
                       <Users className="w-6 h-6 text-indigo-600 mb-1" />
-                      <span className="font-bold text-sm text-slate-900">Todos / Unisex</span>
+                      <span className="font-bold text-sm text-slate-900">{ui.genderAll}</span>
                       <span className="text-xs text-slate-600 leading-relaxed">
-                        Recomendaciones neutrales, cómic, manga, cartas Pokémon y superventas.
+                        {tTerm('Unisex / Todos')}
                       </span>
                     </button>
                   </>
@@ -1328,28 +1148,26 @@ export default function GiftWizard({
             </div>
           )}
 
-          {/* PASO 4: PRESUPUESTO & CONFIRMACIÓN */}
+          {/* STEP 4 */}
           {step === 4 && (
             <div className="space-y-4">
               <div className="text-left">
                 <span className="text-xs font-black uppercase tracking-wider text-indigo-700 block mb-1">
-                  Paso 4 · Presupuesto
+                  {ui.wizardStepLabel} 4 · {ui.maxBudgetLabel}
                 </span>
                 <h3 className="text-base sm:text-lg font-black text-slate-900">
-                  ¿Cuál es tu rango de precio?
+                  {ui.wizardBudgetQuestion}
                 </h3>
-                <p className="text-xs text-slate-600 mt-0.5">
-                  Seleccionaremos las opciones con mejor puntuación y garantía oficial de Amazon.
-                </p>
+                <p className="text-xs text-slate-600 mt-0.5">{ui.verifiedCatalogNote}</p>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
                 {[
-                  { id: '<20', label: 'Menos de 20 €', desc: 'Detalles económicos, cómics, cartas y accesorios', icon: Tag, iconColor: 'text-emerald-500' },
-                  { id: '20-50', label: '20 € a 50 €', desc: 'El rango más popular para cumpleaños y amigos invisibles', icon: Gift, iconColor: 'text-indigo-500' },
-                  { id: '50-100', label: '50 € a 100 €', desc: 'Regalos prémium, figuras de colección, sets de LEGO y gaming', icon: Gem, iconColor: 'text-purple-500' },
-                  { id: '>100', label: 'Más de 100 €', desc: 'Smartphones buque insignia, PS5, Smartbox de lujo y drones', icon: Crown, iconColor: 'text-amber-500' },
-                  { id: 'all', label: 'Cualquier Presupuesto', desc: 'Ver todas las recomendaciones sin límite de precio', icon: Coins, iconColor: 'text-slate-500' },
+                  { id: '<20', icon: Tag, iconColor: 'text-emerald-500' },
+                  { id: '20-50', icon: Gift, iconColor: 'text-indigo-500' },
+                  { id: '50-100', icon: Gem, iconColor: 'text-purple-500' },
+                  { id: '>100', icon: Crown, iconColor: 'text-amber-500' },
+                  { id: 'all', icon: Coins, iconColor: 'text-slate-500' },
                 ].map((item) => {
                   const IconComp = item.icon;
                   const isSelected = selectedBudget === item.id;
@@ -1358,29 +1176,27 @@ export default function GiftWizard({
                       key={item.id}
                       type="button"
                       onClick={() => setSelectedBudget(item.id)}
-                      className={`p-3.5 rounded-2xl text-left border transition-all flex items-start gap-3 cursor-pointer ${
+                      className={`p-3.5 rounded-2xl text-left border transition-all flex items-center gap-3 cursor-pointer ${
                         isSelected
                           ? 'border-indigo-600 bg-indigo-50/80 text-indigo-950 ring-2 ring-indigo-500 shadow-xs'
                           : 'border-slate-200 bg-slate-50/70 text-slate-800 hover:bg-slate-100'
                       }`}
                     >
-                      <span className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${isSelected ? 'bg-indigo-600 text-white' : 'bg-white border border-slate-200'}`}>
+                      <span
+                        className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${
+                          isSelected ? 'bg-indigo-600 text-white' : 'bg-white border border-slate-200'
+                        }`}
+                      >
                         <IconComp className={`w-4 h-4 ${isSelected ? 'text-white' : item.iconColor}`} />
                       </span>
-                      <span className="block flex-1 min-w-0">
-                        <span className="font-bold text-xs sm:text-sm text-slate-900 block leading-tight">
-                          {item.label}
-                        </span>
-                        <span className="text-[11px] text-slate-600 leading-tight block mt-0.5">
-                          {item.desc}
-                        </span>
+                      <span className="font-bold text-xs sm:text-sm text-slate-900 block leading-tight">
+                        {tBudget(item.id)}
                       </span>
                     </button>
                   );
                 })}
               </div>
 
-              {/* RESUMEN VISUAL DEL ASISTENTE */}
               <div className="mt-4 p-4 rounded-2xl bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 border border-indigo-200/80">
                 <div className="flex items-start gap-3">
                   <div className="w-8 h-8 rounded-xl bg-indigo-600 text-white flex items-center justify-center shrink-0 shadow-xs">
@@ -1388,34 +1204,30 @@ export default function GiftWizard({
                   </div>
                   <div className="text-xs">
                     <span className="font-black text-indigo-950 block mb-0.5">
-                      Resumen del Asistente IA:
+                      {ui.wizardTitle}
                     </span>
-                    <p className="text-slate-600">
-                      Buscando para:{' '}
+                    <p className="text-slate-700">
                       <strong className="text-slate-900">
-                        {AGE_STEP_OPTIONS.find((a) => a.id === selectedAge)?.badge || selectedAge}
+                        {selectedAgeOpt
+                          ? isEs
+                            ? selectedAgeOpt.esBadge
+                            : tTerm(selectedAgeOpt.badgeKey)
+                          : selectedAge}
                       </strong>{' '}
-                      • Temática:{' '}
-                      <strong className="text-indigo-700">
-                        {selectedThemeObj?.label}
-                      </strong>
+                      • <strong className="text-indigo-700">{selectedThemeDisplay.label}</strong>
                       {customInterest && (
                         <span>
-                          {' '}(Gusto específico: <strong className="text-purple-700">&quot;{customInterest}&quot;</strong>)
+                          {' '}
+                          (<strong className="text-purple-700">&quot;{customInterest}&quot;</strong>)
                         </span>
-                      )}
-                      {' '}• Rango:{' '}
-                      <strong className="text-slate-900">
-                        {selectedBudget === '<20' ? '<20 €' : selectedBudget === '20-50' ? '20-50 €' : selectedBudget === '50-100' ? '50-100 €' : selectedBudget === '>100' ? '>100 €' : 'Todos'}
-                      </strong>
+                      )}{' '}
+                      • <strong className="text-slate-900">{tBudget(selectedBudget)}</strong>
                     </p>
                   </div>
                 </div>
               </div>
-
             </div>
           )}
-
         </div>
 
         {/* Footer Navigation */}
@@ -1426,7 +1238,7 @@ export default function GiftWizard({
               onClick={() => setStep(step - 1)}
               className="text-xs font-bold text-slate-700 hover:text-slate-950 px-3 py-2 transition-colors cursor-pointer"
             >
-              ← Volver al paso {step - 1}
+              ← {ui.wizardBack}
             </button>
           ) : (
             <div />
@@ -1438,8 +1250,8 @@ export default function GiftWizard({
               onClick={() => setStep(step + 1)}
               className="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-bold flex items-center gap-2 shadow-sm transition-all cursor-pointer"
             >
-              <span>Continuar al Paso {step + 1}</span>
-              <ArrowRight className="w-4 h-4" />
+              <span>{ui.wizardNext}</span>
+              <ArrowRight className={`w-4 h-4 ${isRtl ? 'rotate-180' : ''}`} />
             </button>
           ) : (
             <button
@@ -1448,11 +1260,10 @@ export default function GiftWizard({
               className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-indigo-700 via-purple-700 to-pink-700 hover:opacity-95 text-white text-xs sm:text-sm font-black flex items-center gap-2 shadow-md transition-all scale-102 cursor-pointer"
             >
               <Bot className="w-4 h-4 text-amber-300" />
-              <span>Ver Recomendaciones IA</span>
+              <span>{ui.wizardSeeResults}</span>
             </button>
           )}
         </div>
-
       </div>
     </div>
   );

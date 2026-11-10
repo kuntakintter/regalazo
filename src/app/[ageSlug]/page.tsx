@@ -1,25 +1,19 @@
-import React from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import ProductCard from '@/components/ProductCard';
-import FilterBar from '@/components/FilterBar';
-import SeoFaq from '@/components/SeoFaq';
-import AmazonLiveSearchCard from '@/components/AmazonLiveSearchCard';
-import AmazonGridDiscoveryCard from '@/components/AmazonGridDiscoveryCard';
-import ThemeAtmosphere from '@/components/ThemeAtmosphere';
-import TopPodium from '@/components/TopPodium';
-import AgeStageInterlinking from '@/components/AgeStageInterlinking';
-import ExpertBuyerTips from '@/components/ExpertBuyerTips';
-import { PRODUCTS, Product } from '@/data/products';
-import { SEO_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
-import { I18N_SEO_ROUTES, getHreflangAlternates } from '@/lib/i18nRoutes';
-import { HUB_OG_SNIPPETS, buildSocialMetadata } from '@/lib/ogMetadata';
-import LocaleAutoInitializer from '@/components/LocaleAutoInitializer';
-import { HomeCatalogView } from '@/app/page';
-import { ShieldCheck, TrendingUp, Gift, ChevronRight, ShoppingBag, Compass, ArrowRight } from 'lucide-react';
-import Link from 'next/link';
+import { I18N_SEO_ROUTES } from '@/lib/i18nRoutes';
+import { SEO_AGE_ROUTES } from '@/lib/seoRoutes';
+import { SEO_FILTER_ROUTES } from '@/lib/filterRoutes';
+import {
+  getLocalizedHomeMetadata,
+  getLocalizedNestedMetadata,
+} from '@/lib/routeMetadata';
+import {
+  renderLocalizedHomeView,
+  renderLocalizedRouteView,
+} from '@/lib/routeViews';
+
+export const dynamicParams = true;
+export const revalidate = 86400;
 
 interface PageProps {
   params: Promise<{
@@ -28,9 +22,11 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  const ageSlugs = Object.keys(SEO_AGE_ROUTES);
   const i18nSlugs = Object.keys(I18N_SEO_ROUTES);
-  return [...ageSlugs, ...i18nSlugs].map((ageSlug) => ({
+  const ageSlugs = Object.keys(SEO_AGE_ROUTES);
+  const filterSlugs = Object.keys(SEO_FILTER_ROUTES);
+
+  return [...i18nSlugs, ...ageSlugs, ...filterSlugs].map((ageSlug) => ({
     ageSlug,
   }));
 }
@@ -38,333 +34,26 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { ageSlug } = await params;
 
-  const i18nMeta = I18N_SEO_ROUTES[ageSlug];
-  if (i18nMeta) {
-    const canonicalUrl = `https://www.unbuenregalo.es/${ageSlug}`;
-    const imageUrl = 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=1200&h=630&q=85';
-
-    return {
-      title: i18nMeta.title,
-      description: i18nMeta.description,
-      keywords: i18nMeta.keywords,
-      alternates: {
-        canonical: canonicalUrl,
-        languages: getHreflangAlternates(),
-      },
-      openGraph: {
-        type: 'website',
-        locale: i18nMeta.ogLocale,
-        url: canonicalUrl,
-        siteName: `${i18nMeta.brandTranslation} | Un Buen Regalo`,
-        title: `🎁 ${i18nMeta.title}`,
-        description: i18nMeta.description,
-        images: [
-          {
-            url: imageUrl,
-            width: 1200,
-            height: 630,
-            alt: i18nMeta.h1,
-          },
-        ],
-      },
-      twitter: {
-        card: 'summary_large_image',
-        title: `🎁 ${i18nMeta.title}`,
-        description: i18nMeta.description,
-        images: [imageUrl],
-      },
-    };
+  if (I18N_SEO_ROUTES[ageSlug]) {
+    return getLocalizedHomeMetadata(ageSlug) || {};
   }
 
-  const meta = SEO_AGE_ROUTES[ageSlug];
-  if (!meta) return {};
-
-  const snippet = HUB_OG_SNIPPETS[ageSlug];
-  const canonicalUrl = `https://www.unbuenregalo.es/${ageSlug}`;
-
-  return buildSocialMetadata({
-    title: meta.title,
-    socialTitle: snippet?.socialTitle || meta.title,
-    description: snippet?.description || meta.description,
-    canonicalUrl,
-    imageUrl: snippet?.imageUrl || 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=1200&h=630&q=85',
-    imageAlt: snippet?.imageAlt || meta.h1,
-    keywords: meta.keywords,
-  });
+  return getLocalizedNestedMetadata('es', [ageSlug]) || {};
 }
 
-export default async function AgeLandingPage({ params }: PageProps) {
+export default async function SingleSlugPage({ params }: PageProps) {
   const { ageSlug } = await params;
 
-  // International Language & Currency Landing Route (/en, /de, /fr, /it, /pt, /ru, /es-us, etc.)
-  const i18nMeta = I18N_SEO_ROUTES[ageSlug];
-  if (i18nMeta) {
-    const i18nSchema = {
-      '@context': 'https://schema.org',
-      '@graph': [
-        {
-          '@type': 'WebPage',
-          '@id': `https://www.unbuenregalo.es/${i18nMeta.slug}#webpage`,
-          url: `https://www.unbuenregalo.es/${i18nMeta.slug}`,
-          name: i18nMeta.title,
-          description: i18nMeta.description,
-          inLanguage: i18nMeta.hreflang,
-          isPartOf: {
-            '@id': 'https://www.unbuenregalo.es/#website',
-          },
-        },
-        ...(i18nMeta.faqItems.length > 0
-          ? [
-              {
-                '@type': 'FAQPage',
-                mainEntity: i18nMeta.faqItems.map((item) => ({
-                  '@type': 'Question',
-                  name: item.question,
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: item.answer,
-                  },
-                })),
-              },
-            ]
-          : []),
-      ],
-    };
-
-    return (
-      <>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(i18nSchema) }}
-        />
-        <LocaleAutoInitializer
-          langCode={i18nMeta.langCode}
-          googleCode={i18nMeta.googleCode}
-          currency={i18nMeta.currency}
-        />
-        <HomeCatalogView i18nConfig={i18nMeta} />
-      </>
-    );
+  if (I18N_SEO_ROUTES[ageSlug]) {
+    const homeView = renderLocalizedHomeView(ageSlug);
+    if (!homeView) notFound();
+    return homeView;
   }
 
-  const routeMeta = SEO_AGE_ROUTES[ageSlug];
-
-  if (!routeMeta) {
+  const nestedView = renderLocalizedRouteView('es', [ageSlug]);
+  if (!nestedView) {
     notFound();
   }
 
-  // Filter products for this specific age category
-  const ageProducts = PRODUCTS.filter((p) => {
-    if (routeMeta.ageId === 'reveal') {
-      return (
-        p.subcategory === 'Fiestas y Revelación de Género' ||
-        p.title.toLowerCase().includes('revelación') ||
-        p.description.toLowerCase().includes('revelación') ||
-        p.searchQuery.toLowerCase().includes('revelacion')
-      );
-    }
-    return p.ageRange === routeMeta.ageId;
-  });
-
-  const subcategoryList = getSubcategorySlugMap(routeMeta.ageId);
-
-  // JSON-LD ItemList Schema
-  const itemListSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'ItemList',
-    itemListElement: ageProducts.slice(0, 15).map((p, idx) => ({
-      '@type': 'ListItem',
-      position: idx + 1,
-      name: p.title,
-      description: p.description,
-      image: `https://www.unbuenregalo.es${p.imageUrl}`,
-    })),
-  };
-
-  // JSON-LD BreadcrumbList Schema
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Inicio',
-        item: 'https://www.unbuenregalo.es',
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: routeMeta.h1,
-        item: `https://www.unbuenregalo.es/${ageSlug}`,
-      },
-    ],
-  };
-
-  return (
-    <div className="min-h-screen relative flex flex-col bg-slate-50 text-slate-900 selection:bg-indigo-600 selection:text-white">
-      <ThemeAtmosphere />
-
-      {/* JSON-LD Schemas */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-
-      <Header currentTheme="classic" />
-
-      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full z-10">
-        
-        {/* Breadcrumb Navigation */}
-        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-semibold text-slate-600 mb-6">
-          <Link href="/" className="hover:text-indigo-700 transition-colors py-1">Inicio</Link>
-          <ChevronRight className="w-3.5 h-3.5" />
-          <span className="text-slate-900">{routeMeta.h1}</span>
-        </nav>
-
-        {/* HERO SEO SECTION */}
-        <section className="text-center py-6 sm:py-8 max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-4 shadow-xs border border-slate-200 bg-white/90 backdrop-blur-md text-slate-800">
-            <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span>Edición Actualizada {new Date().getFullYear()} • Catálogo Verificado en Amazon</span>
-          </div>
-
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.15] mb-4 text-slate-900">
-            {routeMeta.h1}
-          </h1>
-
-          <p className="text-sm sm:text-base text-slate-600 leading-relaxed mb-6 max-w-3xl mx-auto">
-            {routeMeta.description}
-          </p>
-
-          {/* THEMATIC EXPLORATION BOX (PREMIUM AMAZON-STYLE CATEGORY NAV) */}
-          {subcategoryList.length > 0 && (
-            <div className="max-w-4xl mx-auto mb-10 text-left rounded-3xl overflow-hidden border-2 border-slate-300 bg-white shadow-lg">
-              {/* Header Bar - Amazon Deep Navy with Amber Accent */}
-              <div className="bg-[#131921] px-5 py-3.5 border-b-2 border-amber-400/60 flex items-center justify-between text-white">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-xl bg-[#febd69] text-slate-950 flex items-center justify-center font-black shadow-xs shrink-0">
-                    <Compass className="w-4 h-4 stroke-[2.5]" />
-                  </div>
-                  <div>
-                    <h2 className="text-xs sm:text-sm font-black text-[#febd69] uppercase tracking-wider flex items-center gap-2">
-                      <span>Explorar por Temática y Categoría</span>
-                    </h2>
-                    <p className="text-[11px] text-slate-300 hidden sm:block">
-                      Selecciona una temática especializada para ver los mejores regalos verificados
-                    </p>
-                  </div>
-                </div>
-                <span className="text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full bg-white/10 text-amber-300 border border-white/20 shrink-0">
-                  {subcategoryList.length} Temáticas
-                </span>
-              </div>
-
-              {/* Grid of Subcategories */}
-              <div className="p-4 sm:p-5 bg-gradient-to-b from-slate-50/80 via-white to-amber-50/30">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5">
-                  {subcategoryList.map((sub) => (
-                    <Link
-                      key={sub.slug}
-                      href={`/${ageSlug}/${sub.slug}`}
-                      className="group relative flex items-center justify-between p-3 rounded-2xl bg-white hover:bg-[#131921] border-2 border-slate-200 hover:border-[#131921] text-slate-800 hover:text-white transition-all shadow-xs hover:shadow-md hover:-translate-y-0.5 cursor-pointer"
-                    >
-                      <div className="flex items-center gap-2.5 min-w-0 pr-2">
-                        <span className="w-2 h-2 rounded-full bg-amber-500 group-hover:scale-125 transition-transform shrink-0" />
-                        <span className="text-xs font-bold truncate group-hover:text-amber-200 transition-colors">
-                          {sub.label}
-                        </span>
-                      </div>
-                      <ArrowRight className="w-3.5 h-3.5 text-slate-600 group-hover:text-[#febd69] group-hover:translate-x-1 transition-all shrink-0" />
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-              {/* Informative Footer Bar */}
-              <div className="px-5 py-2.5 bg-slate-50 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-1 text-[11px] text-slate-600">
-                <span className="flex items-center gap-1.5 font-medium">
-                  <span className="text-amber-700 font-black">✓</span>
-                  <span>Catálogo oficial con opiniones verificadas 4.5+ ★ y envío Prime</span>
-                </span>
-                <span className="font-bold text-slate-700">
-                  {ageProducts.length} productos analizados
-                </span>
-              </div>
-            </div>
-          )}
-
-          {/* Trust badges */}
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs font-medium text-slate-600">
-            <span className="flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-emerald-600" />
-              Garantía Oficial Amazon
-            </span>
-            <span className="flex items-center gap-1.5">
-              <TrendingUp className="w-4 h-4 text-indigo-600" />
-              Valoraciones 4.5+ Estrellas
-            </span>
-            <span className="flex items-center gap-1.5">
-              <ShoppingBag className="w-4 h-4 text-amber-600" />
-              Precios y Stock Actualizados
-            </span>
-          </div>
-        </section>
-
-        {/* PRODUCTS GRID */}
-        <section className="mb-14">
-          {/* TOP 3 PODIUM */}
-          <TopPodium products={ageProducts} filterLabel={routeMeta.h1} />
-
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-black text-slate-900 flex items-center gap-2">
-              <Gift className="w-5 h-5 text-indigo-600" />
-              <span>Productos Recomendados ({ageProducts.length} ideas)</span>
-            </h2>
-            <Link
-              href="/"
-              className="text-xs font-bold text-indigo-700 hover:text-indigo-900 hover:underline py-1"
-            >
-              ← Ver todas las edades
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 sm:gap-2.5 lg:gap-3 mb-12">
-            {ageProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                currentTheme="classic"
-              />
-            ))}
-            <AmazonGridDiscoveryCard
-              selectedAge={routeMeta.ageId}
-            />
-          </div>
-
-          {/* Amazon live card for custom search */}
-          <AmazonLiveSearchCard
-            currentTheme="classic"
-            initialQuery={routeMeta.keywords[0] || 'regalos infantiles'}
-          />
-        </section>
-
-        {/* EXPERT EDITORIAL BUYER'S GUIDE */}
-        <ExpertBuyerTips ageTitle={routeMeta.h1} />
-
-        {/* INTERLINKING ETAPAS ADYACENTES (SEO LINK JUICE) */}
-        <AgeStageInterlinking currentAgeSlug={ageSlug} />
-
-        {/* SEO FAQ SECTION */}
-        <SeoFaq currentTheme="classic" />
-
-      </main>
-
-      <Footer currentTheme="classic" />
-    </div>
-  );
+  return nestedView;
 }

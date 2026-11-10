@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import { getHreflangAlternatesForPath } from '@/lib/filterRoutes';
 import MujerClient from './MujerClient';
 
 export const metadata: Metadata = {
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: 'https://www.unbuenregalo.es/que-regalar-a-una-mujer',
+    languages: getHreflangAlternatesForPath('/que-regalar-a-una-mujer'),
   },
   openGraph: {
     title: 'Un Buen Regalo para una Mujer: ¿Qué Regalar? 【2026】 Ideas de Regalos Originales',

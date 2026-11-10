@@ -4,9 +4,22 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { Product } from '@/data/products';
 import { getAmazonProductUrl } from '@/lib/amazon';
-import { useCurrency } from '@/context/CurrencyContext';
 import { useVoting } from '@/context/VotingContext';
-import { Star, Heart, Share2, ShoppingBag, ChevronLeft, ChevronRight, ExternalLink, MessageSquare, ChevronDown, Users, CheckCircle2, Target } from 'lucide-react';
+import { useActiveLocale } from '@/hooks/useActiveLocale';
+import {
+  Star,
+  Heart,
+  Share2,
+  ShoppingBag,
+  ChevronLeft,
+  ChevronRight,
+  ExternalLink,
+  MessageSquare,
+  ChevronDown,
+  Users,
+  CheckCircle2,
+  Target,
+} from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
@@ -15,15 +28,19 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, rankBadge }: ProductCardProps) {
-  const { formatPrice, amazonRegion } = useCurrency();
+  const { ui, langCode, amazonRegion, formatPrice, tTerm } = useActiveLocale();
   const { toggleItem, isItemInList } = useVoting();
   const isInVote = isItemInList(product.id);
   const [copied, setCopied] = useState(false);
   const [activeImgIndex, setActiveImgIndex] = useState(0);
   const [showVerdict, setShowVerdict] = useState(false);
 
-  // Multi-image navigation
-  const imagesList = product.images && product.images.length > 0 ? product.images : (product.imageUrl ? [product.imageUrl] : []);
+  const imagesList =
+    product.images && product.images.length > 0
+      ? product.images
+      : product.imageUrl
+      ? [product.imageUrl]
+      : [];
   const currentImgSrc = imagesList[activeImgIndex] || product.imageUrl || '';
   const [hasImgError, setHasImgError] = useState(false);
 
@@ -31,8 +48,11 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
     setHasImgError(false);
   }, [currentImgSrc]);
 
-  // Enlace directo al producto específico en Amazon (con fallback seguro antierror 404)
-  const directProductUrl = getAmazonProductUrl(product.asin, product.searchQuery || product.title, amazonRegion);
+  const directProductUrl = getAmazonProductUrl(
+    product.asin,
+    product.searchQuery || product.title,
+    amazonRegion
+  );
 
   const handleShare = async (e: React.MouseEvent) => {
     e.preventDefault();
@@ -84,42 +104,43 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
           : 'border border-slate-300 hover:border-slate-400 shadow-xs hover:shadow-md'
       }`}
     >
-      {/* Top 1, 2, 3 Luxury Medal Badge */}
+      {/* Top 1, 2, 3 Medal Badge */}
       {rankBadge && (
         <div className="absolute -top-2.5 left-3 z-30 select-none">
           {isGold && (
             <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-black tracking-wider uppercase bg-linear-to-r from-amber-400 via-yellow-300 to-amber-500 text-slate-950 shadow-md ring-1 ring-amber-500/50">
               <span>🥇</span>
-              <span>Nº1 TOP VENTAS</span>
+              <span>{ui.podiumWinnerBadge}</span>
             </span>
           )}
           {isSilver && (
             <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-black tracking-wider uppercase bg-linear-to-r from-slate-200 via-gray-100 to-slate-300 text-slate-900 shadow-md ring-1 ring-slate-400/50">
               <span>🥈</span>
-              <span>Nº2 CALIDAD/PRECIO</span>
+              <span>{ui.podiumSilverBadge}</span>
             </span>
           )}
           {isBronze && (
             <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-black tracking-wider uppercase bg-linear-to-r from-amber-700 via-amber-600 to-amber-800 text-white shadow-md ring-1 ring-amber-800/50">
               <span>🥉</span>
-              <span>Nº3 MÁS ORIGINAL</span>
+              <span>{ui.podiumBronzeBadge}</span>
             </span>
           )}
         </div>
       )}
-      {/* Product Image Viewport - Clean Amazon White Box */}
+
+      {/* Product Image Viewport */}
       <div className="relative aspect-square w-full mb-2 bg-slate-50/80 rounded-xl overflow-hidden p-2 flex items-center justify-center border border-slate-100">
-        <a 
+        <a
           href={directProductUrl}
           target="_blank"
           rel="nofollow sponsored noopener noreferrer"
-          aria-label={`Ver foto de ${product.title}`}
+          aria-label={`${ui.viewOnAmazon}: ${product.title}`}
           className="block w-full h-full cursor-pointer relative"
         >
           {currentImgSrc && !hasImgError ? (
             <Image
               src={currentImgSrc}
-              alt={`${product.title} - Foto ${activeImgIndex + 1}`}
+              alt={`${product.title} (${activeImgIndex + 1})`}
               fill
               loading={rankBadge === 1 || rankBadge === 2 ? 'eager' : 'lazy'}
               unoptimized={currentImgSrc.startsWith('http')}
@@ -143,7 +164,7 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
             <button
               type="button"
               onClick={handlePrevImage}
-              aria-label="Ver imagen anterior"
+              aria-label="Previous image"
               className="absolute left-1 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/70 hover:bg-black/85 text-white flex items-center justify-center backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity z-20 cursor-pointer shadow-xs"
             >
               <ChevronLeft className="w-3.5 h-3.5" />
@@ -151,7 +172,7 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
             <button
               type="button"
               onClick={handleNextImage}
-              aria-label="Ver siguiente imagen"
+              aria-label="Next image"
               className="absolute right-1 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/70 hover:bg-black/85 text-white flex items-center justify-center backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity z-20 cursor-pointer shadow-xs"
             >
               <ChevronRight className="w-3.5 h-3.5" />
@@ -168,8 +189,8 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
               e.stopPropagation();
               toggleItem(product);
             }}
-            aria-label={isInVote ? 'Quitar de la lista de votación' : 'Añadir a la lista de votación'}
-            title={isInVote ? 'En tu lista de votación en grupo' : 'Añadir a votación en grupo'}
+            aria-label={`${isInVote ? ui.removeFromVote : ui.addToVote}: ${product.title}`}
+            title={isInVote ? ui.inVoteList : ui.addToVote}
             className={`w-7 h-7 rounded-full backdrop-blur-xs flex items-center justify-center transition-transform shadow-2xs cursor-pointer border ${
               isInVote
                 ? 'bg-rose-50 border-rose-200 text-rose-600 scale-105'
@@ -181,7 +202,7 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
           <button
             type="button"
             onClick={handleShare}
-            aria-label="Compartir idea"
+            aria-label={`${ui.shareBtnCopy}: ${product.title}`}
             className="w-7 h-7 rounded-full bg-white/95 backdrop-blur-xs flex items-center justify-center text-slate-600 hover:text-slate-950 hover:scale-105 transition-transform shadow-2xs cursor-pointer border border-slate-200"
           >
             <Share2 className="w-3.5 h-3.5" />
@@ -189,19 +210,19 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
         </div>
       </div>
 
-      {/* Product Content (Amazon Exact Clean Layout) */}
+      {/* Product Content */}
       <div className="flex flex-col flex-1 justify-between">
         <div>
           {/* Subcategory Label */}
           {product.subcategory && (
             <div className="mb-1">
               <span className="text-[11px] text-slate-600 font-medium truncate block">
-                {product.subcategory}
+                {tTerm(product.subcategory)}
               </span>
             </div>
           )}
 
-          {/* Title (Amazon clean style: text-slate-900, 2 lines, no heavy cards) */}
+          {/* Title */}
           <p className="font-medium text-xs sm:text-[13px] leading-snug text-slate-900 group-hover:text-[#c45500] transition-colors mb-1 min-h-[2rem]">
             <a
               href={directProductUrl}
@@ -213,7 +234,7 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
             </a>
           </p>
 
-          {/* Rating and Reviews (Amazon star rating with blue review count) */}
+          {/* Rating and Reviews */}
           <div className="flex items-center gap-1 text-[11px] mb-1.5">
             <div className="flex items-center text-amber-500">
               {[...Array(5)].map((_, i) => (
@@ -229,11 +250,11 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
             </div>
             <span className="font-bold text-slate-900 text-xs ml-0.5">{product.rating}</span>
             <span className="text-[#007185] hover:underline font-medium text-[11px]">
-              ({product.reviewsCount ? product.reviewsCount.toLocaleString('es-ES') : '120'})
+              ({product.reviewsCount ? product.reviewsCount.toLocaleString(langCode) : '120'})
             </span>
           </div>
 
-          {/* Botón interactivo: Veredicto y opinión de compradores */}
+          {/* Buyer Verdict Toggle */}
           <div className="my-1.5">
             <button
               type="button"
@@ -251,8 +272,7 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
             >
               <span className="flex items-center gap-1.5 truncate">
                 <MessageSquare className="w-3.5 h-3.5 text-amber-600 shrink-0" />
-                <span className="truncate">¿Por qué gusta a los compradores?</span>
-                <span className="sr-only"> — {showVerdict ? 'Ocultar' : 'Ver'} opinión y reseñas</span>
+                <span className="truncate">{ui.prosLabel}</span>
               </span>
               <ChevronDown
                 className={`w-3 h-3 text-slate-600 transition-transform duration-200 shrink-0 ml-1 ${
@@ -261,26 +281,25 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
               />
             </button>
 
-            {/* Desplegable con el consenso editorial y pros */}
             {showVerdict && (
               <div className="mt-1.5 p-2.5 rounded-xl bg-amber-50/40 border border-amber-200/80 text-left text-xs transition-all animate-in fade-in duration-150">
-                {/* Cabecera del consenso */}
                 <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-amber-200/60 gap-1.5">
                   <span className="text-[10px] font-bold uppercase tracking-wider text-slate-600 flex items-center gap-1 min-w-0">
                     <Users className="w-3 h-3 text-amber-600 shrink-0" />
-                    <span className="truncate">Consenso ({product.reviewsCount ? product.reviewsCount.toLocaleString('es-ES') : '100+'} reseñas)</span>
+                    <span className="truncate">
+                      {product.reviewsCount ? product.reviewsCount.toLocaleString(langCode) : '100+'} {ui.verifiedReviews}
+                    </span>
                   </span>
                   <span className="text-[10px] font-black text-emerald-700 bg-emerald-100/90 px-1.5 py-0.5 rounded whitespace-nowrap shrink-0">
                     ★ {product.rating} / 5
                   </span>
                 </div>
 
-                {/* Lo más destacado / Pros */}
                 {product.pros && product.pros.length > 0 ? (
                   <div className="mb-2">
                     <p className="text-[10px] font-extrabold text-slate-800 mb-1 flex items-center gap-1">
                       <CheckCircle2 className="w-3 h-3 text-emerald-600 shrink-0" />
-                      <span>Lo más valorado por quienes lo tienen:</span>
+                      <span>{ui.prosLabel}:</span>
                     </p>
                     <ul className="space-y-1 text-[11px] text-slate-700 pl-3.5 list-disc marker:text-emerald-500 leading-snug">
                       {product.pros.slice(0, 2).map((pro, idx) => (
@@ -292,20 +311,19 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
                   <div className="mb-2">
                     <p className="text-[10px] font-extrabold text-slate-800 mb-1 flex items-center gap-1">
                       <CheckCircle2 className="w-3 h-3 text-emerald-600 shrink-0" />
-                      <span>Por qué destaca:</span>
+                      <span>{ui.prosLabel}:</span>
                     </p>
                     <p className="text-[11px] text-slate-700 leading-snug">
-                      {product.description || 'Excelente valoración media por su fiabilidad, facilidad de uso y relación calidad/precio.'}
+                      {product.description || ui.verifiedCatalogNote}
                     </p>
                   </div>
                 )}
 
-                {/* Ideal para */}
                 {product.idealFor && (
                   <div className="pt-1.5 border-t border-amber-200/50">
                     <p className="text-[10px] font-extrabold text-slate-800 mb-0.5 flex items-center gap-1">
                       <Target className="w-3 h-3 text-amber-700 shrink-0" />
-                      <span>Para quién es ideal:</span>
+                      <span>{ui.idealForLabel}:</span>
                     </p>
                     <p className="text-[11px] text-slate-700 leading-snug">
                       {product.idealFor}
@@ -317,37 +335,33 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
           </div>
         </div>
 
-        {/* Pricing, Prime & Amazon Official Yellow Pill Button */}
+        {/* Pricing, Prime & Amazon Button */}
         <div className="pt-1 mt-auto">
-          {/* Price & Prime Badge */}
           <div className="flex items-baseline gap-1 mb-0.5">
             <span className="text-base sm:text-lg font-black text-slate-950 tracking-tight">
               {formatPrice(product.priceText)}
             </span>
           </div>
 
-          {/* Prime delivery line */}
           <div className="flex items-center gap-1 text-[10px] sm:text-[11px] text-slate-600 font-normal mb-2">
             <span className="text-[#007185] font-black text-xs">✓prime</span>
-            <span>Entrega <span className="text-slate-800 font-semibold">Mañana</span></span>
+            <span className="text-slate-700 font-medium">{ui.amazonPrimeFast}</span>
           </div>
 
-          {/* Amazon Yellow Button */}
           <a
             href={directProductUrl}
             target="_blank"
             rel="nofollow sponsored noopener noreferrer"
             className="w-full py-2 px-3 rounded-xl text-xs font-black text-slate-950 bg-[#ffd814] hover:bg-[#f7ca00] active:bg-[#f0b800] border border-[#fcd200] shadow-xs text-center flex items-center justify-center gap-1.5 transition-all cursor-pointer hover:scale-101"
           >
-            <span>Ver oferta en Amazon</span>
+            <span>{ui.viewOnAmazon}</span>
             <span className="sr-only">: {product.title}</span>
-            <ExternalLink className="w-3.5 h-3.5 text-slate-900" />
+            <ExternalLink className="w-3.5 h-3.5 text-slate-900" aria-hidden="true" />
           </a>
 
-          {/* Toast feedback when copied */}
           {copied && (
             <div className="text-center text-[9px] text-emerald-700 font-bold mt-1">
-              ✓ ¡Enlace copiado!
+              ✓ {ui.shareBtnCopied}
             </div>
           )}
         </div>

@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useActiveLocale } from '@/hooks/useActiveLocale';
 
 interface BrandLogoProps {
   size?: 'normal' | 'large' | 'compact';
@@ -11,13 +12,18 @@ interface BrandLogoProps {
 }
 
 export default function BrandLogo({ size = 'normal', showSubtitle = true, variant = 'dark' }: BrandLogoProps) {
+  const { ui, localePath } = useActiveLocale();
   const isCompact = size === 'compact';
   const isLarge = size === 'large';
   const isLight = variant === 'light';
 
+  const brandWords = ui.brandName.trim().split(/\s+/);
+  const firstPart = brandWords.length > 1 ? brandWords.slice(0, -1).join(' ') : ui.brandName;
+  const lastWord = brandWords.length > 1 ? brandWords[brandWords.length - 1] : '';
+
   return (
     <Link
-      href="/"
+      href={localePath('/')}
       className="inline-flex items-center gap-2 sm:gap-2.5 shrink-0 group select-none transition-transform hover:scale-[1.01]"
     >
       {/* Bursting Gift Box Official Brand Icon */}
@@ -32,7 +38,7 @@ export default function BrandLogo({ size = 'normal', showSubtitle = true, varian
       >
         <Image
           src="/brand-icon.png"
-          alt="Logo Un Buen Regalo"
+          alt={ui.logoAlt}
           fill
           loading="eager"
           sizes="(max-width: 640px) 48px, 64px"
@@ -53,11 +59,16 @@ export default function BrandLogo({ size = 'normal', showSubtitle = true, varian
             }`}
           >
             <span className={isLight ? 'text-[#38bdf8]' : 'text-[#07687a]'}>
-              UN BUEN
-            </span>{' '}
-            <span className={isLight ? 'text-[#f87171]' : 'text-[#c42b22]'}>
-              REGALO
+              {firstPart}
             </span>
+            {lastWord ? (
+              <>
+                {' '}
+                <span className={isLight ? 'text-[#f87171]' : 'text-[#c42b22]'}>
+                  {lastWord}
+                </span>
+              </>
+            ) : null}
           </span>
         </div>
 
@@ -77,7 +88,7 @@ export default function BrandLogo({ size = 'normal', showSubtitle = true, varian
                 isLight ? 'text-slate-300 group-hover:text-white' : 'text-slate-600 group-hover:text-slate-900'
               } transition-colors`}
             >
-              De 0 a +18 Años
+              {ui.brandAgesSubtitle}
             </span>
           </div>
         )}

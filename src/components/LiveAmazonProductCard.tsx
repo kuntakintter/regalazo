@@ -6,9 +6,9 @@ import { Star, Heart, Share2, ShoppingBag, ExternalLink } from 'lucide-react';
 import { trackShareEvent } from '@/lib/analytics';
 import { LiveSearchResult } from '@/app/api/live-search/route';
 import { getAmazonProductUrl } from '@/lib/amazon';
-import { useCurrency } from '@/context/CurrencyContext';
 import { useVoting } from '@/context/VotingContext';
 import { Product } from '@/data/products';
+import { useActiveLocale } from '@/hooks/useActiveLocale';
 
 interface LiveAmazonProductCardProps {
   product: LiveSearchResult;
@@ -19,13 +19,15 @@ interface LiveAmazonProductCardProps {
 export default function LiveAmazonProductCard({
   product,
   categoryLabel = 'Amazon',
-  badgeLabel = 'Oferta flash',
+  badgeLabel,
 }: LiveAmazonProductCardProps) {
-  const { formatPrice, amazonRegion, amazonSiteName } = useCurrency();
+  const { ui, langCode, amazonRegion, formatPrice, tTerm } = useActiveLocale();
   const { toggleItem, isItemInList } = useVoting();
   const isInVote = isItemInList(product.asin);
   const [copied, setCopied] = useState(false);
   const [hasImgError, setHasImgError] = useState(false);
+
+  const resolvedBadge = badgeLabel || ui.liveBadge;
 
   const handleToggleVote = () => {
     const adapted: Product = {
@@ -36,7 +38,7 @@ export default function LiveAmazonProductCard({
       priceRange: '20-50',
       rating: product.rating || 4.5,
       reviewsCount: product.reviewsCount || 100,
-      badge: badgeLabel,
+      badge: resolvedBadge,
       category: categoryLabel,
       subcategory: categoryLabel,
       imageUrl: product.imageUrl || '',
@@ -56,7 +58,6 @@ export default function LiveAmazonProductCard({
     setHasImgError(false);
   }, [product.imageUrl]);
 
-  // Direct product URL with affiliate tag
   const directProductUrl = product.asin
     ? getAmazonProductUrl(product.asin, product.title, amazonRegion)
     : product.url;
@@ -68,7 +69,7 @@ export default function LiveAmazonProductCard({
       try {
         await navigator.share({
           title: product.title,
-          text: `Mira este regalo en ${amazonSiteName}: ${product.title}`,
+          text: product.title,
           url: directProductUrl,
         });
         trackShareEvent('Native Share', 'product_card', {
@@ -103,7 +104,7 @@ export default function LiveAmazonProductCard({
           href={directProductUrl}
           target="_blank"
           rel="nofollow sponsored noopener noreferrer"
-          aria-label={`Ver foto de ${product.title}`}
+          aria-label={`${ui.viewOnAmazon}: ${product.title}`}
           className="block w-full h-full cursor-pointer relative"
         >
           {product.imageUrl && !hasImgError ? (
@@ -128,15 +129,15 @@ export default function LiveAmazonProductCard({
 
         {/* Action icons (Wishlist & Share) */}
         <div className="absolute top-1.5 right-1.5 flex items-center gap-1 z-10">
-            <button
+          <button
             type="button"
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
               handleToggleVote();
             }}
-            aria-label={isInVote ? 'Quitar de la lista de votación' : 'Añadir a la lista de votación'}
-            title={isInVote ? 'En tu lista de votación en grupo' : 'Añadir a votación en grupo'}
+            aria-label={`${isInVote ? ui.removeFromVote : ui.addToVote}: ${product.title}`}
+            title={isInVote ? ui.inVoteList : ui.addToVote}
             className={`w-7 h-7 rounded-full backdrop-blur-xs flex items-center justify-center transition-transform shadow-2xs cursor-pointer border ${
               isInVote
                 ? 'bg-rose-50 border-rose-200 text-rose-600 scale-105'
@@ -148,7 +149,7 @@ export default function LiveAmazonProductCard({
           <button
             type="button"
             onClick={handleShare}
-            aria-label="Compartir idea"
+            aria-label={`${ui.shareBtnCopy}: ${product.title}`}
             className="w-7 h-7 rounded-full bg-white/95 backdrop-blur-xs flex items-center justify-center text-slate-600 hover:text-slate-950 hover:scale-105 transition-transform shadow-2xs cursor-pointer border border-slate-200"
           >
             <Share2 className="w-3.5 h-3.5" />
@@ -159,16 +160,14 @@ export default function LiveAmazonProductCard({
       {/* Product Content */}
       <div className="flex flex-col flex-1 justify-between">
         <div>
-          {/* Subcategory Label */}
           {categoryLabel && (
             <div className="mb-1">
               <span className="text-[11px] text-slate-600 font-medium truncate block">
-                {categoryLabel}
+                {tTerm(categoryLabel)}
               </span>
             </div>
           )}
 
-          {/* Title */}
           <p className="font-medium text-xs sm:text-[13px] leading-snug text-slate-900 group-hover:text-[#c45500] transition-colors mb-1 min-h-[2rem]">
             <a
               href={directProductUrl}
@@ -180,7 +179,6 @@ export default function LiveAmazonProductCard({
             </a>
           </p>
 
-          {/* Rating and Reviews */}
           <div className="flex items-center gap-1 text-[11px] mb-1.5">
             <div className="flex items-center text-amber-500">
               {[...Array(5)].map((_, i) => (
@@ -196,42 +194,37 @@ export default function LiveAmazonProductCard({
             </div>
             <span className="font-bold text-slate-900 text-xs ml-0.5">{product.rating}</span>
             <span className="text-[#007185] hover:underline font-medium text-[11px]">
-              ({(product.reviewsCount || 180).toLocaleString('es-ES')})
+              ({(product.reviewsCount || 180).toLocaleString(langCode)})
             </span>
           </div>
         </div>
 
-        {/* Pricing, Prime & Amazon Official Yellow Pill Button */}
         <div className="pt-1 mt-auto">
-          {/* Price */}
           <div className="flex items-baseline gap-1 mb-0.5">
             <span className="text-base sm:text-lg font-black text-slate-950 tracking-tight">
               {formatPrice(product.priceText)}
             </span>
           </div>
 
-          {/* Prime delivery line */}
           <div className="flex items-center gap-1 text-[10px] sm:text-[11px] text-slate-600 font-normal mb-2">
             <span className="text-[#007185] font-black text-xs">✓prime</span>
-            <span>Entrega <span className="text-slate-800 font-semibold">Mañana</span></span>
+            <span className="text-slate-700 font-medium">{ui.amazonPrimeFast}</span>
           </div>
 
-          {/* Amazon Yellow Button */}
           <a
             href={directProductUrl}
             target="_blank"
             rel="nofollow sponsored noopener noreferrer"
             className="w-full py-2 px-3 rounded-xl text-xs font-black text-slate-950 bg-[#ffd814] hover:bg-[#f7ca00] active:bg-[#f0b800] border border-[#fcd200] shadow-xs text-center flex items-center justify-center gap-1.5 transition-all cursor-pointer hover:scale-101"
           >
-            <span>Ver oferta en Amazon</span>
+            <span>{ui.viewOnAmazon}</span>
             <span className="sr-only">: {product.title}</span>
             <ExternalLink className="w-3.5 h-3.5 text-slate-900" />
           </a>
 
-          {/* Toast feedback when copied */}
           {copied && (
             <div className="text-center text-[9px] text-emerald-700 font-bold mt-1">
-              ✓ ¡Enlace copiado!
+              ✓ {ui.shareBtnCopied}
             </div>
           )}
         </div>

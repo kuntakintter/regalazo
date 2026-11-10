@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { getHreflangAlternatesForPath } from '@/lib/filterRoutes';
 
 export const metadata: Metadata = {
   title: 'Un Buen Regalo 🎅 Carta a Papá Noel 2026 Online: Escribir, Rellenar e Imprimir Gratis',
@@ -23,6 +24,7 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: 'https://www.unbuenregalo.es/carta-papa-noel',
+    languages: getHreflangAlternatesForPath('/carta-papa-noel'),
   },
   openGraph: {
     title: '🎅 Carta Oficial a Papá Noel 2026: Escribe, Rellena y Envía al Polo Norte',

@@ -1,17 +1,45 @@
 import { Product } from '@/data/products';
-import { parsePrice, getAmazonProductUrl, isValidActiveAsin } from '@/lib/amazon';
+import { parsePrice, getAmazonProductUrl, isValidActiveAsin, AmazonRegion } from '@/lib/amazon';
+import { EUR_TO_USD_RATE } from '@/context/CurrencyContext';
 
-export function generateProductItemListSchema(products: Product[], listName?: string) {
+export interface ItemListSchemaOptions {
+  currency?: 'EUR' | 'USD';
+  countryCode?: string;
+  region?: AmazonRegion;
+  brandFallback?: string;
+}
+
+export function generateProductItemListSchema(
+  products: Product[],
+  listName?: string,
+  options?: ItemListSchemaOptions
+) {
+  const currency = options?.currency === 'USD' ? 'USD' : 'EUR';
+  const region: AmazonRegion = options?.region || (currency === 'USD' ? 'intl' : 'es');
+  const countryCode = options?.countryCode || (currency === 'USD' ? 'US' : 'ES');
+  const brandFallback = options?.brandFallback || 'Un Buen Regalo';
+
   return {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     ...(listName ? { name: listName } : {}),
     numberOfItems: products.length,
     itemListElement: products.slice(0, 30).map((prod, idx) => {
-      const priceNum = parsePrice(prod.priceText) || 25;
+      const basePrice = parsePrice(prod.priceText) || 25;
+      const isSourceUsd = prod.priceText?.includes('$');
+      const finalPrice =
+        currency === 'USD'
+          ? isSourceUsd
+            ? basePrice
+            : basePrice * EUR_TO_USD_RATE
+          : isSourceUsd
+          ? basePrice / EUR_TO_USD_RATE
+          : basePrice;
+
       const cleanAsin = prod.asin?.trim();
       const validAsin = cleanAsin && isValidActiveAsin(cleanAsin) ? cleanAsin : undefined;
-      const directUrl = getAmazonProductUrl(prod.asin, prod.searchQuery || prod.title);
+      const directUrl = getAmazonProductUrl(prod.asin, prod.searchQuery || prod.title, region);
+
       return {
         '@type': 'ListItem',
         position: idx + 1,
@@ -25,19 +53,19 @@ export function generateProductItemListSchema(products: Product[], listName?: st
           ...(validAsin ? { sku: validAsin, mpn: validAsin } : {}),
           brand: {
             '@type': 'Brand',
-            name: prod.subcategory || prod.category || 'Un Buen Regalo',
+            name: prod.subcategory || prod.category || brandFallback,
           },
           offers: {
             '@type': 'Offer',
-            price: priceNum.toFixed(2),
-            priceCurrency: 'EUR',
+            price: finalPrice.toFixed(2),
+            priceCurrency: currency,
             availability: 'https://schema.org/InStock',
             url: directUrl,
             validFrom: '2026-01-01',
             priceValidUntil: '2026-12-31',
             hasMerchantReturnPolicy: {
               '@type': 'MerchantReturnPolicy',
-              applicableCountry: 'ES',
+              applicableCountry: countryCode,
               returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
               merchantReturnDays: 30,
               returnMethod: 'https://schema.org/ReturnByMail',
@@ -48,11 +76,11 @@ export function generateProductItemListSchema(products: Product[], listName?: st
               shippingRate: {
                 '@type': 'MonetaryAmount',
                 value: '0.00',
-                currency: 'EUR',
+                currency,
               },
               shippingDestination: {
                 '@type': 'DefinedRegion',
-                addressCountry: 'ES',
+                addressCountry: countryCode,
               },
               deliveryTime: {
                 '@type': 'ShippingDeliveryTime',

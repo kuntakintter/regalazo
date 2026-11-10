@@ -1,6 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect, useCallback, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 import {
   parsePrice,
   AmazonRegion,
@@ -10,6 +11,7 @@ import {
   AMAZON_BASE_URL,
   AMAZON_AFFILIATE_TAG_ES,
 } from '@/lib/amazon';
+import { I18N_SEO_ROUTES } from '@/lib/i18nRoutes';
 
 export type Currency = 'EUR' | 'USD';
 
@@ -26,6 +28,27 @@ interface CurrencyContextType {
   amazonSiteName: string;
   formatPrice: (priceText?: string) => string;
   currencySymbol: string;
+}
+
+function getRouteDefaults(pathname?: string | null): {
+  isLocaleRoute: boolean;
+  defaultCurrency: Currency;
+  defaultRegion: AmazonRegion;
+} {
+  const firstSeg = (pathname || '/').replace(/^\/+/, '').split('/')[0]?.toLowerCase() || '';
+  const cfg = firstSeg ? I18N_SEO_ROUTES[firstSeg] : undefined;
+  if (cfg) {
+    return {
+      isLocaleRoute: true,
+      defaultCurrency: cfg.currency,
+      defaultRegion: 'intl',
+    };
+  }
+  return {
+    isLocaleRoute: false,
+    defaultCurrency: 'EUR',
+    defaultRegion: 'es',
+  };
 }
 
 function detectClientDefaultCurrency(): Currency {
@@ -59,8 +82,11 @@ const CurrencyContext = createContext<CurrencyContextType>({
 });
 
 export function CurrencyProvider({ children }: { children: React.ReactNode }) {
-  const [currency, setCurrencyState] = useState<Currency>('EUR');
-  const [amazonRegion, setAmazonRegionState] = useState<AmazonRegion>('es');
+  const pathname = usePathname();
+  const routeDefaults = getRouteDefaults(pathname);
+
+  const [currency, setCurrencyState] = useState<Currency>(routeDefaults.defaultCurrency);
+  const [amazonRegion, setAmazonRegionState] = useState<AmazonRegion>(routeDefaults.defaultRegion);
   const currencyPersistedRef = useRef(false);
   const regionPersistedRef = useRef(false);
   const currencyAppliedRef = useRef(false);
@@ -68,17 +94,36 @@ export function CurrencyProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     try {
-      if (!regionAppliedRef.current) {
+      const savedRegion = localStorage.getItem('site_amazon_region');
+      const savedCurrency = localStorage.getItem('site_currency');
+
+      if (savedRegion === 'es' || savedRegion === 'intl') {
+        regionPersistedRef.current = true;
+        if (!regionAppliedRef.current) {
+          setAmazonRegionState(savedRegion);
+        }
+      } else if (!routeDefaults.isLocaleRoute && !regionAppliedRef.current) {
         setAmazonRegionState(detectClientAmazonRegion());
+      } else if (routeDefaults.isLocaleRoute && !regionAppliedRef.current) {
+        setAmazonRegionState(routeDefaults.defaultRegion);
       }
 
-      if (!currencyAppliedRef.current) {
+      if (savedCurrency === 'EUR' || savedCurrency === 'USD') {
+        currencyPersistedRef.current = true;
+        if (!currencyAppliedRef.current) {
+          setCurrencyState(savedCurrency);
+        }
+      } else if (!routeDefaults.isLocaleRoute && !currencyAppliedRef.current) {
         setCurrencyState(detectClientDefaultCurrency());
+      } else if (routeDefaults.isLocaleRoute && !currencyAppliedRef.current) {
+        setCurrencyState(routeDefaults.defaultCurrency);
       }
     } catch {
       // ignore
     }
+  }, [routeDefaults.isLocaleRoute, routeDefaults.defaultCurrency, routeDefaults.defaultRegion]);
 
+  useEffect(() => {
     // Escuchar eventos de cambio de idioma/moneda/región
     const handleCurrencyChange = (e: Event) => {
       const detail = (e as CustomEvent<Currency>).detail;
@@ -137,15 +182,24 @@ export function CurrencyProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const resetLocaleToSavedOrBrowser = useCallback(() => {
+    const currentDefaults = getRouteDefaults(pathname);
     if (!currencyPersistedRef.current) {
       currencyAppliedRef.current = false;
-      setCurrencyState(detectClientDefaultCurrency());
+      setCurrencyState(
+        currentDefaults.isLocaleRoute
+          ? currentDefaults.defaultCurrency
+          : detectClientDefaultCurrency()
+      );
     }
     if (!regionPersistedRef.current) {
       regionAppliedRef.current = false;
-      setAmazonRegionState(detectClientAmazonRegion());
+      setAmazonRegionState(
+        currentDefaults.isLocaleRoute
+          ? currentDefaults.defaultRegion
+          : detectClientAmazonRegion()
+      );
     }
-  }, []);
+  }, [pathname]);
 
   const formatPrice = useCallback(
     (priceText?: string): string => {

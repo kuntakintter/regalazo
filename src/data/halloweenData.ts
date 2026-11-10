@@ -107,3 +107,99 @@ export const HALLOWEEN_PRODUCTS: HubProduct[] = [
     searchQuery: 'disfraz hinchable sumo gigante halloween fiesta risas'
   }
 ];
+
+export const HALLOWEEN_EXTRA_PRODUCTS: HubProduct[] = [
+  {
+    id: '46-capa-mascara-superheroes',
+    asin: '',
+    title: 'Pack de 5 Capas de Superhéroes de Satén con Máscaras de Fieltro y Muñequeras',
+    category: 'disfraces',
+    categoryLabel: 'Disfraces Terror & Cosplay',
+    brand: 'Party Heroes',
+    priceText: '18,99 €',
+    priceNumeric: 18.99,
+    rating: 4.8,
+    reviewsCount: 17200,
+    imageUrl: '/images/products/46-capa-mascara-superheroes-1.jpg',
+    badge: 'El Set de Disfraces Más Vendido',
+    description: 'Capas dobles reversibles de satén brillante con cierre de velcro en el cuello y máscaras de fieltro suave para fiestas temáticas, Halloween y Carnaval.',
+    pros: [
+      'Cierres de velcro de seguridad que se sueltan si se enganchan',
+      'Satén de doble cara lavable muy brillante y ligero',
+      'Pack de 5 para disfrazarse en grupo con amigos y hermanos'
+    ],
+    idealFor: 'Fantasía y fiestas de disfraces en grupo.',
+    searchQuery: 'pack 5 capas superheroes ninos antifaces fieltro disfraces fiesta cumpleanos'
+  },
+  {
+    id: '46-pijama-kigurumi-dinosaurio',
+    asin: '',
+    title: 'Pijama Entero Kigurumi de Forro Polar con Capucha de Dinosaurio y Cola Acolchada',
+    category: 'disfraces',
+    categoryLabel: 'Disfraces Terror & Cosplay',
+    brand: 'Kigurumi Fun',
+    priceText: '22,99 €',
+    priceNumeric: 22.99,
+    rating: 4.8,
+    reviewsCount: 9100,
+    imageUrl: '/images/products/46-pijama-kigurumi-dinosaurio-1.jpg',
+    badge: 'Disfraz Kigurumi Abrigado',
+    description: 'Mono pijama kigurumi ultra cálido con cremallera frontal, dientes 3D en la capucha y cresta con cola acolchada. Ideal para salir a pedir caramelos sin pasar frío.',
+    pros: [
+      'Forro polar esponjoso perfecto para noches frescas de octubre',
+      'Fácil de poner sobre ropa de calle o pijama',
+      'Diseño de dinosaurio muy vistoso para fiestas de disfraces'
+    ],
+    idealFor: 'Salir a pedir Truco o Trato calentito en Halloween y fiestas escolares.',
+    searchQuery: 'pijama entero kigurumi dinosaurio infantil forro polar capucha cola cremallera'
+  },
+  {
+    id: '79-fantasma-blitz',
+    asin: '',
+    title: 'Devir - Fantasma Blitz: El Juego de Reflejos Mentales Rápidos con Figuras de Madera',
+    category: 'chuches',
+    categoryLabel: 'Caramelos Truco o Trato & Fiestas',
+    brand: 'Devir',
+    priceText: '15,95 €',
+    priceNumeric: 15.95,
+    rating: 4.8,
+    reviewsCount: 9400,
+    imageUrl: '/images/products/79-fantasma-blitz-1.jpg',
+    badge: 'Juego de Mesa Fiesta Halloween',
+    description: '5 figuras de madera en el centro de la mesa presididas por un divertido fantasma blanco. Gana la ronda quien atrapa al vuelo la figura correcta en fiestas familiares y de Halloween.',
+    pros: [
+      'Temática de fantasmas perfecta para noches de Halloween en familia',
+      'Piezas de madera maciza muy resistentes',
+      'Partidas rápidas llenas de risas para niños y adultos'
+    ],
+    idealFor: 'Animar reuniones, fiestas de Halloween y sobremesas con amigos.',
+    searchQuery: 'fantasma blitz devir juego de mesa figuras de madera rapidez mental reflejos'
+  },
+  {
+    id: 'fig-blade-marvel-legends-hasbro',
+    asin: 'B0FHKXCKPQ',
+    title: 'Hasbro Marvel Legends - Figura Coleccionable Blade El Cazador de Vampiros 15cm con Accesorios',
+    category: 'mascaras',
+    categoryLabel: 'Máscaras LED La Purga & Maquillaje FX',
+    brand: 'Hasbro',
+    priceText: '21,99 €',
+    priceNumeric: 21.99,
+    rating: 4.8,
+    reviewsCount: 3900,
+    imageUrl: 'https://m.media-amazon.com/images/I/71rcriiCy9L._AC_UL320_.jpg',
+    badge: 'Coleccionable Terror & Vampiros',
+    description: 'Figura de acción prémium de 15 cm de Blade, el cazador de vampiros de Marvel, con katana plateada, gabardina táctica y accesorios sobrenaturales.',
+    pros: [
+      'Línea oficial Hasbro Marvel Legends con más de 20 puntos de articulación',
+      'Estética oscura ideal para decoración friki de Halloween',
+      'Incluye katana plateada y manos intercambiables'
+    ],
+    idealFor: 'Coleccionistas de terror sobrenatural, vampiros y cine Marvel.',
+    searchQuery: 'marvel legends blade cazador de vampiros figura hasbro oficial'
+  }
+];
+
+export const HALLOWEEN_HUB_PRODUCTS: HubProduct[] = [
+  ...HALLOWEEN_PRODUCTS,
+  ...HALLOWEEN_EXTRA_PRODUCTS,
+];

@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import { getHreflangAlternatesForPath } from '@/lib/filterRoutes';
 import NoviaClient from './NoviaClient';
 
 export const metadata: Metadata = {
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: 'https://www.unbuenregalo.es/que-regalar-a-mi-novia',
+    languages: getHreflangAlternatesForPath('/que-regalar-a-mi-novia'),
   },
   openGraph: {
     title: 'Un Buen Regalo para mi Novia: ¿Qué Regalar? 【2026】 Ideas de Regalos Originales',

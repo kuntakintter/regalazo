@@ -1,4 +1,6 @@
 import { Metadata } from 'next';
+import { I18N_SEO_ROUTES } from '@/lib/i18nRoutes';
+import { getHreflangAlternatesForPath } from '@/lib/filterRoutes';
 
 export interface SocialHubSnippet {
   title: string;
@@ -171,6 +173,9 @@ export function buildSocialMetadata({
   socialTitle,
   description,
   canonicalUrl,
+  routePath,
+  ogLocale = 'es_ES',
+  siteName = 'Un Buen Regalo',
   imageUrl,
   imageAlt,
   keywords,
@@ -179,11 +184,27 @@ export function buildSocialMetadata({
   socialTitle?: string;
   description: string;
   canonicalUrl: string;
+  routePath?: string;
+  ogLocale?: string;
+  siteName?: string;
   imageUrl: string;
   imageAlt: string;
   keywords?: string[];
 }): Metadata {
   const displayTitle = socialTitle || title;
+
+  // Derivar routePath automáticamente del canonicalUrl cuando no se pasa explícitamente,
+  // retirando prefijo de idioma si lo tuviera para que todas las 27 variantes hreflang apunten recíprocamente.
+  let resolvedPath = routePath;
+  if (resolvedPath === undefined && canonicalUrl.startsWith('https://www.unbuenregalo.es')) {
+    let tail = canonicalUrl.slice('https://www.unbuenregalo.es'.length);
+    const segments = tail.split('/').filter(Boolean);
+    if (segments.length > 0 && I18N_SEO_ROUTES[segments[0]]) {
+      segments.shift();
+      tail = segments.length > 0 ? `/${segments.join('/')}` : '';
+    }
+    resolvedPath = tail;
+  }
 
   return {
     title,
@@ -191,6 +212,9 @@ export function buildSocialMetadata({
     keywords,
     alternates: {
       canonical: canonicalUrl,
+      ...(resolvedPath !== undefined
+        ? { languages: getHreflangAlternatesForPath(resolvedPath) }
+        : {}),
     },
     other: {
       thumbnail: 'https://www.unbuenregalo.es/logo-square.png',
@@ -200,8 +224,8 @@ export function buildSocialMetadata({
       description,
       url: canonicalUrl,
       type: 'website',
-      siteName: 'Un Buen Regalo',
-      locale: 'es_ES',
+      siteName,
+      locale: ogLocale,
       images: [
         {
           url: imageUrl,

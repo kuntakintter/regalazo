@@ -1,25 +1,22 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { Globe, Check, ChevronDown, Search, X, Coins, ShoppingBag } from 'lucide-react';
-import { useCurrency, Currency } from '@/context/CurrencyContext';
-import { I18N_SEO_ROUTES } from '@/lib/i18nRoutes';
-import {
-  ensureGoogleTranslateLoaded,
-  getGoogleTranslateCookieCode,
-  setGoogleTranslateCookie,
-} from '@/lib/googleTranslate';
+import { Currency } from '@/context/CurrencyContext';
+import { useActiveLocale } from '@/hooks/useActiveLocale';
+import { getLocaleHref } from '@/lib/i18nContent';
+import { LocaleKey } from '@/lib/i18nTypes';
 
 export interface LanguageOption {
   code: string;
-  googleCode?: string;
-  seoPath?: string;
+  localeKey: LocaleKey;
+  seoPath: string;
   name: string;
   nativeName: string;
   flag: string;
-  currency?: Currency;
-  currencySymbol?: string;
+  currency: Currency;
+  currencySymbol: string;
   popular?: boolean;
 }
 
@@ -27,7 +24,7 @@ export const LANGUAGES: LanguageOption[] = [
   // Principales solicitados
   {
     code: 'es',
-    googleCode: 'es',
+    localeKey: 'es',
     seoPath: '/',
     name: 'Español (España)',
     nativeName: 'Español (€ EUR)',
@@ -38,7 +35,7 @@ export const LANGUAGES: LanguageOption[] = [
   },
   {
     code: 'es-US',
-    googleCode: 'es',
+    localeKey: 'es-us',
     seoPath: '/es-us',
     name: 'Español (América / Global)',
     nativeName: 'Español ($ USD)',
@@ -49,9 +46,9 @@ export const LANGUAGES: LanguageOption[] = [
   },
   {
     code: 'en-US',
-    googleCode: 'en',
+    localeKey: 'en',
     seoPath: '/en',
-    name: 'English (US / Americano)',
+    name: 'English (US / Global)',
     nativeName: 'American English ($ USD)',
     flag: '🇺🇸',
     currency: 'USD',
@@ -60,7 +57,7 @@ export const LANGUAGES: LanguageOption[] = [
   },
   {
     code: 'en-GB',
-    googleCode: 'en',
+    localeKey: 'en-gb',
     seoPath: '/en-gb',
     name: 'English (UK)',
     nativeName: 'British English (€ EUR)',
@@ -71,9 +68,9 @@ export const LANGUAGES: LanguageOption[] = [
   },
   {
     code: 'de',
-    googleCode: 'de',
+    localeKey: 'de',
     seoPath: '/de',
-    name: 'Alemán',
+    name: 'Deutsch',
     nativeName: 'Deutsch (€ EUR)',
     flag: '🇩🇪',
     currency: 'EUR',
@@ -82,9 +79,9 @@ export const LANGUAGES: LanguageOption[] = [
   },
   {
     code: 'ru',
-    googleCode: 'ru',
+    localeKey: 'ru',
     seoPath: '/ru',
-    name: 'Ruso',
+    name: 'Русский',
     nativeName: 'Русский (€ EUR)',
     flag: '🇷🇺',
     currency: 'EUR',
@@ -93,9 +90,9 @@ export const LANGUAGES: LanguageOption[] = [
   },
   {
     code: 'fr',
-    googleCode: 'fr',
+    localeKey: 'fr',
     seoPath: '/fr',
-    name: 'Francés',
+    name: 'Français',
     nativeName: 'Français (€ EUR)',
     flag: '🇫🇷',
     currency: 'EUR',
@@ -104,7 +101,7 @@ export const LANGUAGES: LanguageOption[] = [
   },
   {
     code: 'it',
-    googleCode: 'it',
+    localeKey: 'it',
     seoPath: '/it',
     name: 'Italiano',
     nativeName: 'Italiano (€ EUR)',
@@ -115,9 +112,9 @@ export const LANGUAGES: LanguageOption[] = [
   },
   {
     code: 'pt',
-    googleCode: 'pt',
+    localeKey: 'pt',
     seoPath: '/pt',
-    name: 'Portugués',
+    name: 'Português',
     nativeName: 'Português (€ EUR)',
     flag: '🇵🇹',
     currency: 'EUR',
@@ -126,73 +123,44 @@ export const LANGUAGES: LanguageOption[] = [
   },
 
   // Otros idiomas disponibles
-  { code: 'nl', googleCode: 'nl', seoPath: '/nl', name: 'Holandés', nativeName: 'Nederlands', flag: '🇳🇱', currency: 'EUR', currencySymbol: '€' },
-  { code: 'pl', googleCode: 'pl', seoPath: '/pl', name: 'Polaco', nativeName: 'Polski', flag: '🇵🇱', currency: 'EUR', currencySymbol: '€' },
-  { code: 'zh-CN', googleCode: 'zh-CN', seoPath: '/zh', name: 'Chino (Simplificado)', nativeName: '简体中文', flag: '🇨🇳', currency: 'USD', currencySymbol: '$' },
-  { code: 'ja', googleCode: 'ja', seoPath: '/ja', name: 'Japonés', nativeName: '日本語', flag: '🇯🇵', currency: 'USD', currencySymbol: '$' },
-  { code: 'ar', googleCode: 'ar', seoPath: '/ar', name: 'Árabe', nativeName: 'العربية', flag: '🇸🇦', currency: 'USD', currencySymbol: '$' },
-  { code: 'uk', googleCode: 'uk', seoPath: '/uk', name: 'Ucraniano', nativeName: 'Українська', flag: '🇺🇦', currency: 'EUR', currencySymbol: '€' },
-  { code: 'sv', googleCode: 'sv', seoPath: '/sv', name: 'Sueco', nativeName: 'Svenska', flag: '🇸🇪', currency: 'EUR', currencySymbol: '€' },
-  { code: 'no', googleCode: 'no', seoPath: '/no', name: 'Noruego', nativeName: 'Norsk', flag: '🇳🇴', currency: 'EUR', currencySymbol: '€' },
-  { code: 'da', googleCode: 'da', seoPath: '/da', name: 'Danés', nativeName: 'Dansk', flag: '🇩🇰', currency: 'EUR', currencySymbol: '€' },
-  { code: 'fi', googleCode: 'fi', seoPath: '/fi', name: 'Finlandés', nativeName: 'Suomi', flag: '🇫🇮', currency: 'EUR', currencySymbol: '€' },
-  { code: 'el', googleCode: 'el', seoPath: '/el', name: 'Griego', nativeName: 'Ελληνικά', flag: '🇬🇷', currency: 'EUR', currencySymbol: '€' },
-  { code: 'tr', googleCode: 'tr', seoPath: '/tr', name: 'Turco', nativeName: 'Türkçe', flag: '🇹🇷', currency: 'EUR', currencySymbol: '€' },
-  { code: 'ro', googleCode: 'ro', seoPath: '/ro', name: 'Rumano', nativeName: 'Română', flag: '🇷🇴', currency: 'EUR', currencySymbol: '€' },
-  { code: 'bg', googleCode: 'bg', seoPath: '/bg', name: 'Búlgaro', nativeName: 'Български', flag: '🇧🇬', currency: 'EUR', currencySymbol: '€' },
-  { code: 'cs', googleCode: 'cs', seoPath: '/cs', name: 'Checo', nativeName: 'Čeština', flag: '🇨🇿', currency: 'EUR', currencySymbol: '€' },
-  { code: 'hu', googleCode: 'hu', seoPath: '/hu', name: 'Húngaro', nativeName: 'Magyar', flag: '🇭🇺', currency: 'EUR', currencySymbol: '€' },
-  { code: 'ko', googleCode: 'ko', seoPath: '/ko', name: 'Coreano', nativeName: '한국어', flag: '🇰🇷', currency: 'USD', currencySymbol: '$' },
-  { code: 'hi', googleCode: 'hi', seoPath: '/hi', name: 'Hindi', nativeName: 'हिन्दी', flag: '🇮🇳', currency: 'USD', currencySymbol: '$' },
+  { code: 'nl', localeKey: 'nl', seoPath: '/nl', name: 'Nederlands', nativeName: 'Nederlands (€ EUR)', flag: '🇳🇱', currency: 'EUR', currencySymbol: '€' },
+  { code: 'pl', localeKey: 'pl', seoPath: '/pl', name: 'Polski', nativeName: 'Polski (€ EUR)', flag: '🇵🇱', currency: 'EUR', currencySymbol: '€' },
+  { code: 'zh-CN', localeKey: 'zh', seoPath: '/zh', name: '简体中文', nativeName: '简体中文 ($ USD)', flag: '🇨🇳', currency: 'USD', currencySymbol: '$' },
+  { code: 'ja', localeKey: 'ja', seoPath: '/ja', name: '日本語', nativeName: '日本語 ($ USD)', flag: '🇯🇵', currency: 'USD', currencySymbol: '$' },
+  { code: 'ar', localeKey: 'ar', seoPath: '/ar', name: 'العربية', nativeName: 'العربية ($ USD)', flag: '🇸🇦', currency: 'USD', currencySymbol: '$' },
+  { code: 'uk', localeKey: 'uk', seoPath: '/uk', name: 'Українська', nativeName: 'Українська (€ EUR)', flag: '🇺🇦', currency: 'EUR', currencySymbol: '€' },
+  { code: 'sv', localeKey: 'sv', seoPath: '/sv', name: 'Svenska', nativeName: 'Svenska (€ EUR)', flag: '🇸🇪', currency: 'EUR', currencySymbol: '€' },
+  { code: 'no', localeKey: 'no', seoPath: '/no', name: 'Norsk', nativeName: 'Norsk (€ EUR)', flag: '🇳🇴', currency: 'EUR', currencySymbol: '€' },
+  { code: 'da', localeKey: 'da', seoPath: '/da', name: 'Dansk', nativeName: 'Dansk (€ EUR)', flag: '🇩🇰', currency: 'EUR', currencySymbol: '€' },
+  { code: 'fi', localeKey: 'fi', seoPath: '/fi', name: 'Suomi', nativeName: 'Suomi (€ EUR)', flag: '🇫🇮', currency: 'EUR', currencySymbol: '€' },
+  { code: 'el', localeKey: 'el', seoPath: '/el', name: 'Ελληνικά', nativeName: 'Ελληνικά (€ EUR)', flag: '🇬🇷', currency: 'EUR', currencySymbol: '€' },
+  { code: 'tr', localeKey: 'tr', seoPath: '/tr', name: 'Türkçe', nativeName: 'Türkçe (€ EUR)', flag: '🇹🇷', currency: 'EUR', currencySymbol: '€' },
+  { code: 'ro', localeKey: 'ro', seoPath: '/ro', name: 'Română', nativeName: 'Română (€ EUR)', flag: '🇷🇴', currency: 'EUR', currencySymbol: '€' },
+  { code: 'bg', localeKey: 'bg', seoPath: '/bg', name: 'Български', nativeName: 'Български (€ EUR)', flag: '🇧🇬', currency: 'EUR', currencySymbol: '€' },
+  { code: 'cs', localeKey: 'cs', seoPath: '/cs', name: 'Čeština', nativeName: 'Čeština (€ EUR)', flag: '🇨🇿', currency: 'EUR', currencySymbol: '€' },
+  { code: 'hu', localeKey: 'hu', seoPath: '/hu', name: 'Magyar', nativeName: 'Magyar (€ EUR)', flag: '🇭🇺', currency: 'EUR', currencySymbol: '€' },
+  { code: 'ko', localeKey: 'ko', seoPath: '/ko', name: '한국어', nativeName: '한국어 ($ USD)', flag: '🇰🇷', currency: 'USD', currencySymbol: '$' },
+  { code: 'hi', localeKey: 'hi', seoPath: '/hi', name: 'हिन्दी', nativeName: 'हिन्दी ($ USD)', flag: '🇮🇳', currency: 'USD', currencySymbol: '$' },
 ];
 
+const LEGAL_PATHS = new Set(['/aviso-legal', '/politica-de-privacidad', '/politica-de-cookies']);
+
 export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
-  const pathname = usePathname();
+  const router = useRouter();
+  const {
+    localeKey,
+    basePath,
+    ui,
+    activeCurrency,
+    currencySymbol,
+    setCurrency,
+    amazonRegion,
+    setAmazonRegion,
+  } = useActiveLocale();
+
   const [isOpen, setIsOpen] = useState(false);
-  const [currentLang, setCurrentLang] = useState('es');
   const [searchFilter, setSearchFilter] = useState('');
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const { currency, setCurrency, amazonRegion, setAmazonRegion, currencySymbol } = useCurrency();
-
-  // Sincronizar idioma activo desde preferencia explícita, ruta i18n o cookie
-  useEffect(() => {
-    try {
-      const savedLang = localStorage.getItem('site_language');
-      const routeSlug = (pathname || '/').replace(/^\//, '').split('/')[0];
-      const routeConfig = routeSlug ? I18N_SEO_ROUTES[routeSlug] : undefined;
-      const cookieCode = getGoogleTranslateCookieCode();
-
-      const resolvedCode =
-        savedLang ||
-        routeConfig?.langCode ||
-        (cookieCode && cookieCode !== 'es' ? cookieCode : 'es');
-
-      setCurrentLang(resolvedCode);
-
-      if (!routeConfig && savedLang) {
-        const savedOpt = LANGUAGES.find((l) => l.code === savedLang);
-        const targetGoogle = savedOpt?.googleCode || savedLang;
-        if (targetGoogle && targetGoogle !== 'es') {
-          ensureGoogleTranslateLoaded(targetGoogle);
-        }
-      } else if (!routeConfig && !savedLang && cookieCode && cookieCode !== 'es') {
-        ensureGoogleTranslateLoaded(cookieCode);
-      }
-    } catch {
-      // ignore
-    }
-
-    const handleLangEvent = (e: Event) => {
-      const detail = (e as CustomEvent<string>).detail;
-      if (detail) {
-        setCurrentLang(detail);
-      }
-    };
-    window.addEventListener('siteLanguageChange', handleLangEvent);
-    return () => {
-      window.removeEventListener('siteLanguageChange', handleLangEvent);
-    };
-  }, [pathname]);
 
   // Cerrar al hacer clic fuera
   useEffect(() => {
@@ -210,41 +178,27 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
   }, [isOpen]);
 
   const changeLanguage = (langObj: LanguageOption) => {
-    const langCode = langObj.code;
-    const googleCode = langObj.googleCode || langCode;
-
-    setCurrentLang(langCode);
     setIsOpen(false);
     setSearchFilter('');
 
-    if (langObj.currency) {
-      setCurrency(langObj.currency, true);
-    }
-    setAmazonRegion(langCode === 'es' ? 'es' : 'intl', true);
+    setCurrency(langObj.currency, true);
+    setAmazonRegion(langObj.localeKey === 'es' ? 'es' : 'intl', true);
 
     try {
-      localStorage.setItem('site_language', langCode);
-      window.dispatchEvent(new CustomEvent('siteLanguageChange', { detail: langCode }));
-
-      if (googleCode === 'es') {
-        setGoogleTranslateCookie('es');
-        const wasTranslated =
-          document.documentElement.classList.contains('translated-ltr') ||
-          document.documentElement.classList.contains('translated-rtl') ||
-          Boolean(document.querySelector('.goog-te-combo'));
-        if (wasTranslated) {
-          window.location.reload();
-        }
-      } else {
-        ensureGoogleTranslateLoaded(googleCode);
-      }
-    } catch (err) {
-      console.error('Error switching language:', err);
-      window.location.reload();
+      localStorage.setItem('site_language', langObj.code);
+      window.dispatchEvent(new CustomEvent('siteLanguageChange', { detail: langObj.code }));
+      // Expirar cualquier cookie heredada de Google Translate
+      document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    } catch {
+      // ignore storage errors
     }
+
+    const safeTargetBase = LEGAL_PATHS.has(basePath) ? '/' : basePath || '/';
+    const targetHref = getLocaleHref(langObj.localeKey, safeTargetBase);
+    router.push(targetHref);
   };
 
-  const activeLangObj = LANGUAGES.find((l) => l.code === currentLang) || LANGUAGES[0];
+  const activeLangObj = LANGUAGES.find((l) => l.localeKey === localeKey) || LANGUAGES[0];
   const activeCodeBadge = activeLangObj.code.split('-')[0].toUpperCase();
 
   const filteredLanguages = LANGUAGES.filter((l) => {
@@ -253,7 +207,8 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
     return (
       l.name.toLowerCase().includes(q) ||
       l.nativeName.toLowerCase().includes(q) ||
-      l.code.toLowerCase().includes(q)
+      l.code.toLowerCase().includes(q) ||
+      l.localeKey.toLowerCase().includes(q)
     );
   });
 
@@ -272,7 +227,7 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
             : 'bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200/90 hover:border-slate-300'
         }`}
         aria-expanded={isOpen}
-        title="Cambiar idioma, moneda (€/$) y tienda de Amazon"
+        title={ui.langButtonAria}
       >
         <span className={`uppercase tracking-wider font-extrabold text-[11px] sm:text-xs leading-none ${dark ? 'text-slate-200' : 'text-slate-700'}`}>
           {activeCodeBadge}
@@ -285,24 +240,23 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
         }`}>
           {currencySymbol}
         </span>
-        <span className="sr-only"> — Cambiar idioma, moneda y tienda Amazon</span>
+        <span className="sr-only"> — {ui.langButtonAria}</span>
         <ChevronDown className={`w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0 transition-transform duration-200 ${dark ? 'text-slate-300' : 'text-slate-600'} ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
       {/* Menú Desplegable con Búsqueda, Selector de Moneda, Tienda e Idiomas */}
       {isOpen && (
         <div className="absolute right-0 mt-2 w-[calc(100vw-24px)] max-w-xs sm:w-84 rounded-2xl bg-white shadow-2xl border border-slate-200 z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-150">
-          
           {/* Header del Selector */}
           <div className="p-3 bg-gradient-to-r from-slate-50 via-indigo-50/40 to-slate-50 border-b border-slate-100 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Globe className="w-4 h-4 text-indigo-600" />
               <div>
                 <span className="text-xs font-black text-slate-900 block leading-tight">
-                  Idioma, Moneda y Tienda
+                  {ui.langModalTitle}
                 </span>
                 <span className="text-[10px] text-slate-600">
-                  Adapta idioma, divisa y Amazon de tu país
+                  {ui.langModalSubtitle}
                 </span>
               </div>
             </div>
@@ -310,7 +264,7 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
               type="button"
               onClick={() => setIsOpen(false)}
               className="min-w-7 min-h-7 flex items-center justify-center p-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 transition-colors cursor-pointer"
-              aria-label="Cerrar selector de idioma y moneda"
+              aria-label={ui.langCloseLabel}
             >
               <X className="w-3.5 h-3.5" />
             </button>
@@ -320,30 +274,30 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
           <div className="px-3 py-2 bg-slate-50/90 border-b border-slate-100 flex items-center justify-between">
             <span className="text-[11px] font-bold text-slate-700 flex items-center gap-1.5">
               <Coins className="w-3.5 h-3.5 text-indigo-600" />
-              <span>Moneda:</span>
+              <span>{ui.langCurrencyLabel}:</span>
             </span>
             <div className="flex items-center gap-1 bg-white p-0.5 rounded-xl border border-slate-200 shadow-2xs">
               <button
                 type="button"
                 onClick={() => setCurrency('EUR', true)}
                 className={`px-2.5 py-1 min-h-[28px] rounded-lg text-xs font-black transition-all cursor-pointer ${
-                  currency === 'EUR'
+                  activeCurrency === 'EUR'
                     ? 'bg-indigo-600 text-white shadow-2xs'
                     : 'text-slate-700 hover:bg-slate-100'
                 }`}
               >
-                € EUR<span className="sr-only"> — Mostrar precios en Euros</span>
+                € EUR
               </button>
               <button
                 type="button"
                 onClick={() => setCurrency('USD', true)}
                 className={`px-2.5 py-1 min-h-[28px] rounded-lg text-xs font-black transition-all cursor-pointer ${
-                  currency === 'USD'
+                  activeCurrency === 'USD'
                     ? 'bg-emerald-700 text-white shadow-2xs'
                     : 'text-slate-700 hover:bg-slate-100'
                 }`}
               >
-                $ USD<span className="sr-only"> — Mostrar precios en Dólares</span>
+                $ USD
               </button>
             </div>
           </div>
@@ -352,7 +306,7 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
           <div className="px-3 py-2 bg-slate-50/60 border-b border-slate-100 flex items-center justify-between">
             <span className="text-[11px] font-bold text-slate-700 flex items-center gap-1.5">
               <ShoppingBag className="w-3.5 h-3.5 text-amber-700" />
-              <span>Tienda Amazon:</span>
+              <span>{ui.langStoreLabel}:</span>
             </span>
             <div className="flex items-center gap-1 bg-white p-0.5 rounded-xl border border-slate-200 shadow-2xs">
               <button
@@ -363,8 +317,9 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
                     ? 'bg-slate-900 text-amber-300 shadow-2xs'
                     : 'text-slate-700 hover:bg-slate-100'
                 }`}
+                title={ui.langStoreEs}
               >
-                <span aria-hidden="true">🇪🇸</span> .es<span className="sr-only"> — Comprar en Amazon España</span>
+                <span aria-hidden="true">🇪🇸</span> .es
               </button>
               <button
                 type="button"
@@ -374,8 +329,9 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
                     ? 'bg-slate-900 text-amber-300 shadow-2xs'
                     : 'text-slate-700 hover:bg-slate-100'
                 }`}
+                title={ui.langStoreIntl}
               >
-                <span aria-hidden="true">🌎</span> .com<span className="sr-only"> — Comprar en Amazon Internacional</span>
+                <span aria-hidden="true">🌎</span> .com
               </button>
             </div>
           </div>
@@ -388,8 +344,8 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
                 type="text"
                 value={searchFilter}
                 onChange={(e) => setSearchFilter(e.target.value)}
-                aria-label="Buscar idioma o país"
-                placeholder="Buscar idioma o país (americano, alemán, ruso)..."
+                aria-label={ui.langSearchPlaceholder}
+                placeholder={ui.langSearchPlaceholder}
                 className="w-full pl-8 pr-3 py-1.5 text-xs rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-indigo-500 focus:ring-1 focus:ring-indigo-200 outline-none transition-all placeholder:text-slate-500 text-slate-900"
               />
             </div>
@@ -397,16 +353,14 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
 
           {/* Listado de Idiomas */}
           <div className="max-h-72 overflow-y-auto p-2 scrollbar-thin divide-y divide-slate-100">
-            
-            {/* Idiomas Destacados */}
             {popularLanguages.length > 0 && (
               <div className="pb-2">
                 <span className="text-[10px] font-black uppercase tracking-wider text-slate-600 px-2 py-1 block">
-                  Idiomas y Monedas Principales
+                  {ui.langPopularTitle}
                 </span>
                 <div className="grid grid-cols-1 gap-1">
                   {popularLanguages.map((lang) => {
-                    const isSelected = lang.code === currentLang;
+                    const isSelected = lang.localeKey === localeKey;
                     return (
                       <button
                         key={lang.code}
@@ -430,15 +384,13 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
                           </span>
                         </span>
                         <span className="flex items-center gap-2">
-                          {lang.currencySymbol && (
-                            <span className={`text-[11px] font-black px-1.5 py-0.5 rounded ${
-                              isSelected
-                                ? 'bg-white/20 text-white'
-                                : 'bg-slate-100 text-slate-700'
-                            }`}>
-                              {lang.currencySymbol} {lang.currency}
-                            </span>
-                          )}
+                          <span
+                            className={`text-[11px] font-black px-1.5 py-0.5 rounded ${
+                              isSelected ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-700'
+                            }`}
+                          >
+                            {lang.currencySymbol} {lang.currency}
+                          </span>
                           {isSelected && <Check className="w-4 h-4 text-white shrink-0" />}
                         </span>
                       </button>
@@ -448,15 +400,14 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
               </div>
             )}
 
-            {/* Otros Idiomas Disponibles */}
             {otherLanguages.length > 0 && (
               <div className="pt-2">
                 <span className="text-[10px] font-black uppercase tracking-wider text-slate-600 px-2 py-1 block">
-                  Más Idiomas Disponibles
+                  {ui.langMoreTitle}
                 </span>
                 <div className="grid grid-cols-1 gap-1">
                   {otherLanguages.map((lang) => {
-                    const isSelected = lang.code === currentLang;
+                    const isSelected = lang.localeKey === localeKey;
                     return (
                       <button
                         key={lang.code}
@@ -480,15 +431,13 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
                           </span>
                         </span>
                         <span className="flex items-center gap-2">
-                          {lang.currencySymbol && (
-                            <span className={`text-[10px] font-black px-1.5 py-0.5 rounded ${
-                              isSelected
-                                ? 'bg-white/20 text-white'
-                                : 'bg-slate-100 text-slate-700'
-                            }`}>
-                              {lang.currencySymbol} {lang.currency}
-                            </span>
-                          )}
+                          <span
+                            className={`text-[10px] font-black px-1.5 py-0.5 rounded ${
+                              isSelected ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-700'
+                            }`}
+                          >
+                            {lang.currencySymbol} {lang.currency}
+                          </span>
                           {isSelected && <Check className="w-3.5 h-3.5 text-white shrink-0" />}
                         </span>
                       </button>
@@ -500,17 +449,15 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
 
             {filteredLanguages.length === 0 && (
               <div className="py-6 text-center text-xs text-slate-600">
-                No se encontraron opciones para &quot;{searchFilter}&quot;
+                {ui.langNoResults}
               </div>
             )}
-
           </div>
 
           {/* Footer Informativo */}
           <div className="p-2 bg-slate-50 border-t border-slate-100 text-[10px] text-center text-slate-600 flex items-center justify-center gap-1">
-            <span>España (.es) y Global (.com + OneLink) activos</span>
+            <span>{ui.langFooterNote}</span>
           </div>
-
         </div>
       )}
     </div>

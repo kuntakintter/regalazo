@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  htmlLimitedBots: /.*/,
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
@@ -118,6 +119,56 @@ const nextConfig = {
       {
         source: '/votacion-en-grupo',
         destination: '/votar',
+        permanent: true,
+      },
+      {
+        source: '/regalos-15-a-30-euros',
+        destination: '/regalos-de-15-a-30-euros',
+        permanent: true,
+      },
+      {
+        source: '/regalos-30-a-60-euros',
+        destination: '/regalos-de-30-a-60-euros',
+        permanent: true,
+      },
+      {
+        source: '/regalos-20-a-50-euros',
+        destination: '/regalos-de-20-a-50-euros',
+        permanent: true,
+      },
+      {
+        source: '/regalos-50-a-100-euros',
+        destination: '/regalos-de-50-a-100-euros',
+        permanent: true,
+      },
+      {
+        source: '/coches-electricos-infantiles',
+        destination: '/coches-electricos-para-ninos',
+        permanent: true,
+      },
+      {
+        source: '/:lang(en|en-gb|es-us|de|fr|it|pt|ru|nl|pl|zh|ja|ar|uk|sv|no|da|fi|el|tr|ro|bg|cs|hu|ko|hi)/regalos-15-a-30-euros',
+        destination: '/:lang/regalos-de-15-a-30-euros',
+        permanent: true,
+      },
+      {
+        source: '/:lang(en|en-gb|es-us|de|fr|it|pt|ru|nl|pl|zh|ja|ar|uk|sv|no|da|fi|el|tr|ro|bg|cs|hu|ko|hi)/regalos-30-a-60-euros',
+        destination: '/:lang/regalos-de-30-a-60-euros',
+        permanent: true,
+      },
+      {
+        source: '/:lang(en|en-gb|es-us|de|fr|it|pt|ru|nl|pl|zh|ja|ar|uk|sv|no|da|fi|el|tr|ro|bg|cs|hu|ko|hi)/regalos-20-a-50-euros',
+        destination: '/:lang/regalos-de-20-a-50-euros',
+        permanent: true,
+      },
+      {
+        source: '/:lang(en|en-gb|es-us|de|fr|it|pt|ru|nl|pl|zh|ja|ar|uk|sv|no|da|fi|el|tr|ro|bg|cs|hu|ko|hi)/regalos-50-a-100-euros',
+        destination: '/:lang/regalos-de-50-a-100-euros',
+        permanent: true,
+      },
+      {
+        source: '/:lang(en|en-gb|es-us|de|fr|it|pt|ru|nl|pl|zh|ja|ar|uk|sv|no|da|fi|el|tr|ro|bg|cs|hu|ko|hi)/coches-electricos-infantiles',
+        destination: '/:lang/coches-electricos-para-ninos',
         permanent: true,
       },
     ];

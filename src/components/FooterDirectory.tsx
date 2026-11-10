@@ -2,21 +2,25 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ChevronDown, FolderTree, Compass, Sparkles } from 'lucide-react';
+import { ChevronDown, FolderTree, Compass } from 'lucide-react';
 import { SEO_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
+import { ALL_STATIC_HUB_SLUGS, SEO_FILTER_ROUTES } from '@/lib/filterRoutes';
+import { getHubStrings, getLocalizedAgeMeta } from '@/lib/i18nContent';
+import { useActiveLocale } from '@/hooks/useActiveLocale';
 
 export default function FooterDirectory({ isDark = false }: { isDark?: boolean }) {
+  const { localeKey, activeCurrency, localePath, tTerm, ui } = useActiveLocale();
   const [isOpen, setIsOpen] = useState(true);
 
-  // Exclude reveal category from standard age listing if needed or keep it
-  const ageEntries = Object.entries(SEO_AGE_ROUTES).filter(([slug]) => slug !== 'fiesta-revelacion-genero');
+  const ageEntries = Object.entries(SEO_AGE_ROUTES);
+  const filterEntries = Object.values(SEO_FILTER_ROUTES);
 
   return (
     <div className={`border-t pt-8 pb-8 my-6 ${isDark ? 'border-slate-800' : 'border-slate-200/80'}`}>
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
         <div className="flex items-center gap-2.5">
           <div
-            className={`w-8 h-8 rounded-xl border flex items-center justify-center shadow-2xs ${
+            className={`w-8 h-8 rounded-xl border flex items-center justify-center shadow-2xs shrink-0 ${
               isDark
                 ? 'bg-indigo-950/60 border-indigo-700 text-indigo-300'
                 : 'bg-indigo-50 border-indigo-200 text-indigo-700'
@@ -26,7 +30,7 @@ export default function FooterDirectory({ isDark = false }: { isDark?: boolean }
           </div>
           <div>
             <h2 className={`text-sm font-black flex items-center gap-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>
-              <span>Directorio Completo de Ideas de Regalo por Etapa y Temática</span>
+              <span>{ui.directoryTitle}</span>
               <span
                 className={`hidden sm:inline-flex text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full border ${
                   isDark
@@ -34,11 +38,11 @@ export default function FooterDirectory({ isDark = false }: { isDark?: boolean }
                     : 'bg-emerald-50 text-emerald-800 border-emerald-200'
                 }`}
               >
-                +80 Rankings 2026
+                {ui.directoryBadge}
               </span>
             </h2>
             <p className={`text-[11px] ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
-              Guía oficial de comparativas y selecciones verificadas con opiniones de compradores en Amazon (España e Internacional)
+              {ui.directorySubtitle}
             </p>
           </div>
         </div>
@@ -54,57 +58,106 @@ export default function FooterDirectory({ isDark = false }: { isDark?: boolean }
           aria-expanded={isOpen}
         >
           <FolderTree className={`w-3.5 h-3.5 ${isDark ? 'text-indigo-300' : 'text-indigo-700'}`} />
-          <span>{isOpen ? 'Ocultar directorio' : 'Ver las 80+ temáticas'}</span>
-          <span className="sr-only">{isOpen ? ' de temáticas' : ' del directorio'}</span>
-          <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isDark ? 'text-slate-300' : 'text-slate-600'} ${isOpen ? 'rotate-180' : ''}`} />
+          <span>{isOpen ? ui.directoryToggleClose : ui.directoryToggleOpen}</span>
+          <ChevronDown
+            className={`w-3.5 h-3.5 transition-transform duration-200 ${
+              isDark ? 'text-slate-300' : 'text-slate-600'
+            } ${isOpen ? 'rotate-180' : ''}`}
+          />
         </button>
       </div>
 
-      {/* Directory Grid */}
       {isOpen && (
         <div
-          className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 p-5 rounded-3xl border shadow-xs animate-in fade-in duration-200 ${
-            isDark
-              ? 'bg-slate-900/90 border-slate-800'
-              : 'bg-white/90 border-slate-200/90'
+          className={`space-y-6 p-5 rounded-3xl border shadow-xs animate-in fade-in duration-200 ${
+            isDark ? 'bg-slate-900/90 border-slate-800' : 'bg-white/90 border-slate-200/90'
           }`}
         >
-          {ageEntries.map(([ageSlug, meta]) => {
-            const subcategories = getSubcategorySlugMap(meta.ageId);
-            return (
-              <div key={ageSlug} className="space-y-2">
+          {/* 1. Age Stages + All ~80 Subcategories */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {ageEntries.map(([ageSlug, meta]) => {
+              const subcategories = getSubcategorySlugMap(meta.ageId);
+              const ageTitle = getLocalizedAgeMeta(localeKey, ageSlug, activeCurrency).h1;
+              return (
+                <div key={ageSlug} className="space-y-2">
+                  <Link
+                    href={localePath(`/${ageSlug}`)}
+                    className={`font-bold text-xs transition-colors flex items-center gap-1.5 group py-0.5 ${
+                      isDark ? 'text-white hover:text-indigo-300' : 'text-slate-900 hover:text-indigo-700'
+                    }`}
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 group-hover:scale-125 transition-transform shrink-0" />
+                    <span className="truncate">{ageTitle}</span>
+                  </Link>
+
+                  <ul className={`space-y-1 pl-3 border-l-2 ${isDark ? 'border-slate-700' : 'border-slate-200'}`}>
+                    {subcategories.map((sub) => (
+                      <li key={sub.slug}>
+                        <Link
+                          href={localePath(`/${ageSlug}/${sub.slug}`)}
+                          className={`text-[11px] hover:underline line-clamp-1 transition-colors block py-0.5 ${
+                            isDark
+                              ? 'text-slate-300 hover:text-indigo-300'
+                              : 'text-slate-600 hover:text-indigo-700'
+                          }`}
+                        >
+                          {tTerm(sub.label)}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* 2. All 17 Niche Hubs & Interactive Tools */}
+          <div className={`border-t pt-5 ${isDark ? 'border-slate-800' : 'border-slate-200/80'}`}>
+            <h3 className={`text-xs font-extrabold uppercase tracking-wider mb-3 ${isDark ? 'text-amber-300' : 'text-indigo-700'}`}>
+              {ui.directoryHubsTitle}
+            </h3>
+            <div className="flex flex-wrap gap-1.5">
+              {ALL_STATIC_HUB_SLUGS.map((hubSlug) => {
+                const hub = getHubStrings(localeKey, hubSlug);
+                return (
+                  <Link
+                    key={hubSlug}
+                    href={localePath(`/${hubSlug}`)}
+                    className={`px-2.5 py-1 rounded-xl text-[11px] font-semibold border transition-colors ${
+                      isDark
+                        ? 'bg-slate-800/80 border-slate-700 text-slate-200 hover:bg-slate-700 hover:text-white'
+                        : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-indigo-50 hover:border-indigo-300 hover:text-indigo-800'
+                    }`}
+                  >
+                    {hub.breadcrumbLabel}
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* 3. All 44 Filter Landing Pages (Categories, Fashion, Anime, Vehicles, Budget, Gender) */}
+          <div className={`border-t pt-5 ${isDark ? 'border-slate-800' : 'border-slate-200/80'}`}>
+            <h3 className={`text-xs font-extrabold uppercase tracking-wider mb-3 ${isDark ? 'text-amber-300' : 'text-indigo-700'}`}>
+              {ui.directoryFiltersTitle}
+            </h3>
+            <div className="flex flex-wrap gap-1.5">
+              {filterEntries.map((flt) => (
                 <Link
-                  href={`/${ageSlug}`}
-                  className={`font-bold text-xs transition-colors flex items-center gap-1.5 group py-0.5 ${
+                  key={flt.slug}
+                  href={localePath(`/${flt.slug}`)}
+                  className={`px-2.5 py-1 rounded-xl text-[11px] font-medium border transition-colors ${
                     isDark
-                      ? 'text-white hover:text-indigo-300'
-                      : 'text-slate-900 hover:text-indigo-700'
+                      ? 'bg-slate-800/60 border-slate-700 text-slate-200 hover:bg-slate-700 hover:text-white'
+                      : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-amber-50 hover:border-amber-300 hover:text-amber-900'
                   }`}
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 group-hover:scale-125 transition-transform" />
-                  <span className="truncate">{meta.h1.split(':')[0]}</span>
+                  <span aria-hidden="true">{flt.icon} </span>
+                  {tTerm(flt.label)}
                 </Link>
-
-                <ul className={`space-y-1 pl-3 border-l-2 ${isDark ? 'border-slate-700' : 'border-slate-200'}`}>
-                  {subcategories.map((sub) => (
-                    <li key={sub.slug}>
-                      <Link
-                        href={`/${ageSlug}/${sub.slug}`}
-                        className={`text-[11px] hover:underline line-clamp-1 transition-colors block py-1 ${
-                          isDark
-                            ? 'text-slate-300 hover:text-indigo-300'
-                            : 'text-slate-600 hover:text-indigo-700'
-                        }`}
-                        title={`Los 10 mejores ${sub.label.toLowerCase()} para ${meta.h1.toLowerCase()}`}
-                      >
-                        {sub.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            );
-          })}
+              ))}
+            </div>
+          </div>
         </div>
       )}
     </div>

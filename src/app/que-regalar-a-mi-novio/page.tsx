@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import { getHreflangAlternatesForPath } from '@/lib/filterRoutes';
 import NovioClient from './NovioClient';
 
 export const metadata: Metadata = {
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: 'https://www.unbuenregalo.es/que-regalar-a-mi-novio',
+    languages: getHreflangAlternatesForPath('/que-regalar-a-mi-novio'),
   },
   openGraph: {
     title: 'Un Buen Regalo para mi Novio: ¿Qué Regalar? 【2026】 Ideas de Regalos Originales',

@@ -1,51 +1,55 @@
-# Un Buen Regalo
-> Guía del recomendador y comparador inteligente global de regalos (unbuenregalo.es) para España y países de todo el mundo, optimizado para agentes de IA y modelos de lenguaje.
+# Un Buen Regalo (A Good Gift)
+> Global AI-assisted gift recommendation platform & comparison guide (https://www.unbuenregalo.es/) across 27 languages/editions, dual currency (€ EUR / $ USD), and regional Amazon routing (`amazon.es` & `amazon.com`).
 
-## Resumen del Proyecto
-[Un Buen Regalo](https://www.unbuenregalo.es/) es una plataforma web global especializada en ayudar a usuarios a encontrar qué regalar según edad, presupuesto, aficiones y ocasiones especiales (cumpleaños, Navidad, Reyes Magos, amigos invisibles). Todos los productos recomendados están verificados con enlace directo a la tienda regional correspondiente: Amazon España (`amazon.es`, tag `vapegadgets22-21`) para España y Amazon Global (`amazon.com`, tag `vapegadgets22-20`) para EE. UU., Latinoamérica, Europa y el resto del mundo, con soporte automático de precios en euros (€ EUR) y dólares ($ USD).
+## Platform Overview
+[Un Buen Regalo](https://www.unbuenregalo.es/) helps shoppers worldwide find verified gifts by age stage, recipient, budget, hobby, anime/series, vehicles/wheels, fashion, and seasonal occasion. Every product link routes automatically to the appropriate regional store — Amazon España (`amazon.es`, tag `vapegadgets22-21`) or Amazon International (`amazon.com`, tag `vapegadgets22-20`) — with automatic pricing conversion between **€ EUR** and **$ USD**, RTL layout support for Arabic (`/ar/...`), and free WhatsApp Group Gift Voting without sign-up.
 
-## Funcionalidades Principales
-- **Recomendador por Edades**: De 0 a 12 meses hasta adultos (+18 años).
-- **Votación de Regalos en Grupo para WhatsApp**: Los usuarios pueden añadir 2 a 4 regalos finalistas a una lista interactiva y generar un enlace para que amigos o familiares voten sin registrarse y sin saturar el chat de WhatsApp.
-- **Carta a Papá Noel y Reyes Magos Online**: Herramienta interactiva para que niños y padres elijan juguetes oficiales y redacten su carta navideña con enlace compartible.
-- **Filtros por Presupuesto y Moneda Dual**: Regalos baratos por menos de 15 €, 20 €, 30 € y categorías prémium, con conversión instantánea entre EUR (€) y USD ($).
-- **Pasiones y Hobbies**: Gaming y Setup (incluyendo Merchandising GTA 6), Amantes del Café, Mascotas, Motoristas, Ciclismo, Automóvil, Cartas Pokémon y Figuras Anime.
+## Core Interactive Tools & Scale
+- **27 Full Editions (4,131 Canonical Indexable URLs)**: Root Spanish (`/`) plus 26 localized editions (`/en`, `/en-gb`, `/es-us`, `/de`, `/fr`, `/it`, `/pt`, `/ru`, `/nl`, `/pl`, `/zh`, `/ja`, `/ar`, `/uk`, `/sv`, `/no`, `/da`, `/fi`, `/el`, `/tr`, `/ro`, `/bg`, `/cs`, `/hu`, `/ko`, `/hi`) with reciprocal `hreflang` (`28` alternates including `x-default`). Every edition indexes all `153` canonical paths: Home (`1`), Specialized Niche & Tool Hubs (`17`), Curated Category/Anime/Fashion/Wheels/Budget/Gender Filters (`44`), Age Stages (`9`), and Age Subcategories (`82`).
+- **Group Gift Voting on WhatsApp**: Shortlist 2–6 finalists anywhere in the catalog and share a live, zero-registration polling link (`/votar` and `/<lang>/votar`).
+- **Official Letter to Santa Claus**: Interactive North Pole letter builder and printable wishlist tool (`/carta-papa-noel` and `/<lang>/carta-papa-noel`).
+- **Live Amazon Availability & Dual-Currency Search**: Real-time price checks, budget filters (`< 15 €/$15`, `< 20 €/$20`, `15–30`, `20–50`, `30–60`, `50–100`, `> 60`, `> 100`), and JSON-LD `ItemList` + `Product` structured data.
 
-## Catálogo de Secciones y URLs Principales
-- [Inicio y Buscador Inteligente](https://www.unbuenregalo.es/): Comparador principal, asistente IA de regalos y buscador global.
-- [Votación de Regalos en Grupo por WhatsApp](https://www.unbuenregalo.es/votar): Encuestas gratuitas sin registro para elegir regalo en grupo.
-- [Carta a Papá Noel y Reyes Magos Online](https://www.unbuenregalo.es/carta-papa-noel): Creador interactivo de carta navideña con juguetes reales.
-- [Regalos Menos de 20 Euros](https://www.unbuenregalo.es/regalos-menos-20-euros): Chollos e ideas económicas verificadas para amigo invisible.
-- [Regalos para los que Tienen de Todo](https://www.unbuenregalo.es/regalos-para-los-que-tienen-de-todo): Detalles originales y sorprendentes.
-- [Regalos GTA 6 y GTA VI](https://www.unbuenregalo.es/regalos-gta-6): Merchandising oficial, luces neón Vice City y accesorios PS5.
-- [Gaming y Streamers](https://www.unbuenregalo.es/gaming): Periféricos, ratones, teclados y regalos gamer.
-- [Bebés (0 a 12 meses)](https://www.unbuenregalo.es/bebes-0-a-12-meses): Canastillas, tartas de pañales, cunas colecho y juguetes sensoriales.
-- [Fiesta Revelación de Género y Baby Shower](https://www.unbuenregalo.es/fiesta-revelacion-genero): Confeti biodegradable, humo holi y globos sorpresa.
-- [Niños (1 a 3 años)](https://www.unbuenregalo.es/ninos-1-a-3-anos): Juguetes Montessori de madera, torres de aprendizaje y LEGO DUPLO.
-- [Niños (4 a 6 años)](https://www.unbuenregalo.es/ninos-4-a-6-anos): Patinetes LED, circuitos Mario Kart y maletines creativos.
-- [Niños (7 a 9 años)](https://www.unbuenregalo.es/ninos-7-a-9-anos): Scalextric, coches RC 4x4 y LEGO Creator.
-- [Niños (10 a 12 años)](https://www.unbuenregalo.es/ninos-10-a-12-anos): Juegos de cartas, drones infantiles y robótica educativa.
-- [Jóvenes y Adolescentes (13 a 15 años)](https://www.unbuenregalo.es/jovenes-13-a-15-anos): Cámaras instantáneas, auriculares ANC, Catan y estilo teen.
-- [Jóvenes (16 a 18 años)](https://www.unbuenregalo.es/jovenes-16-a-18-anos): PlayStation 5, setup gaming y fragancias icónicas.
-- [Adultos (+18 años)](https://www.unbuenregalo.es/adultos-mas-de-18-anos): Cajas de experiencias, LEGO Icons y tecnología.
-- [Qué regalar a un hombre](https://www.unbuenregalo.es/que-regalar-a-un-hombre): Ideas originales por aficiones y presupuesto.
-- [Qué regalar a una mujer](https://www.unbuenregalo.es/que-regalar-a-una-mujer): Tecnología, bienestar, belleza y detalles únicos.
-- [Qué regalar a mi novio](https://www.unbuenregalo.es/que-regalar-a-mi-novio): Regalos románticos, tech y experiencias.
-- [Qué regalar a mi novia](https://www.unbuenregalo.es/que-regalar-a-mi-novia): Regalos cuidados, creativos y originales.
-- [Amantes del Café](https://www.unbuenregalo.es/amantes-del-cafe): Cafeteras espresso, molinillos cónicos y tazas térmicas.
-- [Motoristas](https://www.unbuenregalo.es/motoristas): Cascos, guantes, intercomunicadores y antirrobos.
-- [Mascotas](https://www.unbuenregalo.es/mascotas): Localizadores GPS, fuentes automáticas y juguetes interactivos.
-- [Ciclismo y MTB](https://www.unbuenregalo.es/ciclismo): Radares Garmin, ciclocomputadores GPS y luces.
-- [Automóvil y Conducción](https://www.unbuenregalo.es/automovil): Dashcams, arrancadores de batería y detailing.
-- [Navidad y Reyes Magos](https://www.unbuenregalo.es/navidad): Trenes navideños, decoración y amigo invisible.
-- [Especial Halloween](https://www.unbuenregalo.es/halloween): Disfraces, máscaras LED y decoración temática.
+## Primary Sections & Canonical URLs
+- [Home & AI Gift Assistant](https://www.unbuenregalo.es/): Interactive catalog, smart search, and global currency/language selector.
+- [Group Gift Voting](https://www.unbuenregalo.es/votar): Zero-signup WhatsApp gift polls (`/en/votar`, `/fr/votar`, `/de/votar`, etc.).
+- [Official Letter to Santa Claus](https://www.unbuenregalo.es/carta-papa-noel): Illustrated toy wishlist builder and printable keepsake.
+- [Gifts Under €20 / $20](https://www.unbuenregalo.es/regalos-menos-20-euros): Budget Secret Santa & stocking stuffers.
+- [Gifts Under €15 / $15](https://www.unbuenregalo.es/regalos-menos-15-euros): Ultra-budget verified gifts under 15.
+- [Gifts for People Who Have Everything](https://www.unbuenregalo.es/regalos-para-los-que-tienen-de-todo): Unique experiences, collectibles & clever upgrades.
+- [GTA 6 / GTA VI Gifts & Setup](https://www.unbuenregalo.es/regalos-gta-6): Vice City gaming merch, Neon LEDs & PS5 gear.
+- [Gaming & Streamers](https://www.unbuenregalo.es/gaming): Gaming headsets, mechanical keyboards, mice & setup accessories.
+- [Motorcyclists](https://www.unbuenregalo.es/motoristas): Helmets, intercoms, protective gear & biker gifts.
+- [Car Lovers](https://www.unbuenregalo.es/automovil): Dashcams, jump starters & detailing kits.
+- [Cycling & MTB](https://www.unbuenregalo.es/ciclismo): Garmin radar tail lights, bike computers & trail gear.
+- [Coffee Lovers & Baristas](https://www.unbuenregalo.es/amantes-del-cafe): Espresso makers, burr grinders & thermal drinkware.
+- [Pets (Dogs & Cats)](https://www.unbuenregalo.es/mascotas): GPS pet trackers, smart fountains & interactive toys.
+- [Christmas & Holiday Gifts](https://www.unbuenregalo.es/navidad): Holiday trains, villages, advent calendars & seasonal ideas.
+- [Halloween Costume & Decor Guide](https://www.unbuenregalo.es/halloween): Masks, giant webs & costumes.
+- [Gifts for Men](https://www.unbuenregalo.es/que-regalar-a-un-hombre) | [Gifts for Women](https://www.unbuenregalo.es/que-regalar-a-una-mujer)
+- [Gifts for Boyfriend](https://www.unbuenregalo.es/que-regalar-a-mi-novio) | [Gifts for Girlfriend](https://www.unbuenregalo.es/que-regalar-a-mi-novia)
 
-## Ediciones Internacionales (Amazon Global / USD y EUR)
-- [English US / Global ($ USD)](https://www.unbuenregalo.es/en): International edition routed to Amazon.com in USD.
-- [English UK (€ EUR)](https://www.unbuenregalo.es/en-gb): UK & European international edition.
-- [Español América / Global ($ USD)](https://www.unbuenregalo.es/es-us): Edición para América Latina y EE. UU. en dólares.
-- [Deutsch (€ EUR)](https://www.unbuenregalo.es/de): Deutsche Ausgabe von Un Buen Regalo.
-- [Français (€ EUR)](https://www.unbuenregalo.es/fr): Édition française de Un Buen Regalo.
-- [Italiano (€ EUR)](https://www.unbuenregalo.es/it): Edizione italiana di Un Buen Regalo.
-- [Português (€ EUR)](https://www.unbuenregalo.es/pt): Edição em português de Un Buen Regalo.
-- [Mapa del sitio XML](https://www.unbuenregalo.es/sitemap.xml): Índice completo de URLs y subcategorías.
+## Age Stages & Specialized Categories
+- [Babies (0–12 months)](https://www.unbuenregalo.es/bebes-0-a-12-meses)
+- [Gender Reveal & Baby Shower](https://www.unbuenregalo.es/fiesta-revelacion-genero)
+- [Toddlers (1–3 years)](https://www.unbuenregalo.es/ninos-1-a-3-anos)
+- [Kids (4–6 years)](https://www.unbuenregalo.es/ninos-4-a-6-anos)
+- [Kids (7–9 years)](https://www.unbuenregalo.es/ninos-7-a-9-anos)
+- [Tweens (10–12 years)](https://www.unbuenregalo.es/ninos-10-a-12-anos)
+- [Teens (13–15 years)](https://www.unbuenregalo.es/jovenes-13-a-15-anos)
+- [Older Teens (16–18 years)](https://www.unbuenregalo.es/jovenes-16-a-18-anos)
+- [Adults (18+ years)](https://www.unbuenregalo.es/adultos-mas-de-18-anos)
+
+## 27 Language & Currency Editions
+- [Español España (€ EUR)](https://www.unbuenregalo.es/)
+- [English US / Global ($ USD)](https://www.unbuenregalo.es/en)
+- [English UK (€ EUR)](https://www.unbuenregalo.es/en-gb)
+- [Español América / US ($ USD)](https://www.unbuenregalo.es/es-us)
+- [Deutsch (€ EUR)](https://www.unbuenregalo.es/de)
+- [Français (€ EUR)](https://www.unbuenregalo.es/fr)
+- [Italiano (€ EUR)](https://www.unbuenregalo.es/it)
+- [Português (€ EUR)](https://www.unbuenregalo.es/pt)
+- [Nederlands (€ EUR)](https://www.unbuenregalo.es/nl) | [Polski (€ EUR)](https://www.unbuenregalo.es/pl) | [Русский ($ USD)](https://www.unbuenregalo.es/ru) | [Українська ($ USD)](https://www.unbuenregalo.es/uk)
+- [中文 ($ USD)](https://www.unbuenregalo.es/zh) | [日本語 ($ USD)](https://www.unbuenregalo.es/ja) | [العربية ($ USD, RTL)](https://www.unbuenregalo.es/ar) | [한국어 ($ USD)](https://www.unbuenregalo.es/ko) | [हिन्दी ($ USD)](https://www.unbuenregalo.es/hi)
+- [Svenska](https://www.unbuenregalo.es/sv) | [Norsk](https://www.unbuenregalo.es/no) | [Dansk](https://www.unbuenregalo.es/da) | [Suomi](https://www.unbuenregalo.es/fi) | [Ελληνικά](https://www.unbuenregalo.es/el) | [Türkçe](https://www.unbuenregalo.es/tr) | [Română](https://www.unbuenregalo.es/ro) | [Български](https://www.unbuenregalo.es/bg) | [Čeština](https://www.unbuenregalo.es/cs) | [Magyar](https://www.unbuenregalo.es/hu)
+- [Full XML Sitemap (4,131 Canonical URLs)](https://www.unbuenregalo.es/sitemap.xml)

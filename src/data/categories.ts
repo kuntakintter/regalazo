@@ -351,7 +351,7 @@ export const CLOTHING_SUBFILTERS: ClothingSubfilter[] = [
     label: 'Pijamas y Batas',
     shortLabel: 'Pijamas',
     icon: '🛌',
-    keywords: ['pijama', 'batas', 'bata', 'pelele', 'dormir', 'camison', 'kigurumi'],
+    keywords: ['pijama', 'pijamas', 'batas', 'bata', 'pelele', 'saco de dormir', 'camisón', 'camison', 'kigurumi'],
     searchPhrase: 'pijamas divertidos batas estar por casa algodon comodo'
   },
   {
@@ -359,7 +359,7 @@ export const CLOTHING_SUBFILTERS: ClothingSubfilter[] = [
     label: 'Chándals y Deporte',
     shortLabel: 'Chándals',
     icon: '🏃',
-    keywords: ['chandal', 'chándal', 'deportiv', 'sudadera', 'pantalon deporte', 'jogger', 'running', 'fitness', 'hoodie', 'chubasquero'],
+    keywords: ['chandal', 'chándal', 'ropa deportiva', 'sudadera', 'pantalon deporte', 'jogger', 'running', 'fitness', 'hoodie', 'chubasquero', 'bolsa de deporte'],
     searchPhrase: 'chandal conjunto deportivo sudadera con capucha pantalon jogger'
   },
   {
@@ -367,7 +367,7 @@ export const CLOTHING_SUBFILTERS: ClothingSubfilter[] = [
     label: 'Zapatillas y Calzado',
     shortLabel: 'Calzado',
     icon: '👟',
-    keywords: ['zapatill', 'calzado', 'botas', 'bota', 'sneaker', 'patucos', 'primeros pasos', 'chanclas', 'zapatos', 'attipas', 'calcetines'],
+    keywords: ['zapatillas', 'calzado', 'botas', 'sneaker', 'patucos', 'zapatos', 'attipas', 'calcetines'],
     searchPhrase: 'zapatillas deportivas calzado comodo sneakers'
   },
   {
@@ -375,7 +375,7 @@ export const CLOTHING_SUBFILTERS: ClothingSubfilter[] = [
     label: 'Disfraces y Fiestas',
     shortLabel: 'Disfraces',
     icon: '🎭',
-    keywords: ['disfraz', 'disfraces', 'capa', 'mascara', 'superheroe', 'princesa', 'carnaval', 'fiesta tematica', 'halloween', 'tiara', 'varita'],
+    keywords: ['disfraz', 'disfraces', 'capa y máscara', 'capas dobles', 'superhéroes', 'vestido princesa', 'vestido de princesa', 'carnaval', 'fiesta temática', 'halloween', 'cosplay', 'máscara led'],
     searchPhrase: 'disfraces infantiles superheroes princesas fiesta carnaval'
   },
   {
@@ -383,7 +383,7 @@ export const CLOTHING_SUBFILTERS: ClothingSubfilter[] = [
     label: 'Ropa de Diario y Básicos',
     shortLabel: 'Diario & Cole',
     icon: '👕',
-    keywords: ['camiseta', 'polo', 'body', 'bodies', 'conjunto', 'vestido', 'vaquero', 'camisa', 'pantalon', 'jersey', 'gorra', 'gorro', 'beanie', 'uniforme', 'babero', 'mochila', 'bandolera', 'rinonera'],
+    keywords: ['camiseta', 'polo', 'body', 'bodies', 'conjunto', 'vestido', 'vaquero', 'camisa', 'pantalon', 'jersey', 'gorra', 'gorro', 'beanie', 'uniforme', 'babero', 'mochila escolar', 'mochila antirrobo', 'bandolera', 'riñonera', 'rinonera'],
     searchPhrase: 'ropa diario algodon camisetas polos conjuntos basicos'
   }
 ];
@@ -441,7 +441,7 @@ export const ANIME_SERIES_SUBFILTERS: AnimeSeriesSubfilter[] = [
     label: 'One Piece',
     shortLabel: 'One Piece',
     icon: '👒',
-    keywords: ['one piece', 'luffy', 'gear 5', 'zoro', 'sanji', 'nami', 'chopper', 'thousand sunny', 'mugiwara', 'shanks', 'ace'],
+    keywords: ['one piece', 'luffy', 'gear 5', 'zoro', 'sanji', 'nami', 'chopper', 'thousand sunny', 'mugiwara', 'shanks', 'portgas d. ace'],
     searchPhrase: 'one piece luffy gear 5 figuras banpresto zoro estatua oficial'
   },
   {
@@ -449,7 +449,7 @@ export const ANIME_SERIES_SUBFILTERS: AnimeSeriesSubfilter[] = [
     label: 'One Punch Man',
     shortLabel: 'One Punch Man',
     icon: '👊',
-    keywords: ['one punch man', 'saitama', 'genos', 'tatsumaki', 'garou', 'boros', 'one punch'],
+    keywords: ['one punch man', 'saitama', 'genos', 'tatsumaki', 'garou', 'lord boros', 'one punch'],
     searchPhrase: 'one punch man saitama figuras estatua coleccion'
   },
   {
@@ -457,7 +457,7 @@ export const ANIME_SERIES_SUBFILTERS: AnimeSeriesSubfilter[] = [
     label: 'Demon Slayer (Kimetsu)',
     shortLabel: 'Demon Slayer',
     icon: '⚔️',
-    keywords: ['demon slayer', 'kimetsu', 'tanjiro', 'nezuko', 'zenitsu', 'inosuke', 'rengoku', 'katana'],
+    keywords: ['demon slayer', 'kimetsu', 'tanjiro', 'nezuko', 'zenitsu', 'inosuke', 'rengoku', 'nichirin'],
     searchPhrase: 'demon slayer kimetsu no yaiba figuras tanjiro nezuko banpresto'
   },
   {
@@ -513,7 +513,7 @@ export const WHEELS_MOTOR_SUBFILTERS: WheelsMotorSubfilter[] = [
     label: 'Coches Eléctricos (12V / 24V)',
     shortLabel: 'Coches Eléctricos',
     icon: '🚗',
-    keywords: ['coche eléctrico', 'coche electrico', 'mercedes g63', 'audi r8', 'audi tt', 'audi q8', 'audi rs', 'lamborghini', 'porsche cayenne', 'jeep', 'tractor eléctrico', 'tractor electrico', '12v', '24v'],
+    keywords: ['coche eléctrico', 'coche electrico', 'mercedes g63', 'audi r8', 'audi tt', 'audi q8', 'audi rs', 'lamborghini', 'porsche cayenne', 'todoterreno jeep', 'tractor eléctrico', 'tractor electrico'],
     searchPhrase: 'coche electrico para ninos 12v mando mercedes audi jeep lamborghini'
   },
   {
@@ -537,7 +537,7 @@ export const WHEELS_MOTOR_SUBFILTERS: WheelsMotorSubfilter[] = [
     label: 'Patinetes Eléctricos y Hoverboards',
     shortLabel: 'Patinetes Eléctricos',
     icon: '🛴',
-    keywords: ['patinete eléctrico', 'patinete electrico', 'xiaomi', 'cecotec', 'bongo', 'segway', 'ninebot', 'hoverboard', 'skateboard eléctrico', 'skateboard electrico', 'scooter eléctrico'],
+    keywords: ['patinete eléctrico', 'patinete electrico', 'xiaomi patinete', 'cecotec patinete', 'bongo d20e', 'segway-ninebot', 'ninebot', 'hoverboard', 'skateboard eléctrico', 'skateboard electrico', 'scooter eléctrico'],
     searchPhrase: 'patinete electrico xiaomi cecotec ninos hoverboard kart'
   },
   {
@@ -545,7 +545,7 @@ export const WHEELS_MOTOR_SUBFILTERS: WheelsMotorSubfilter[] = [
     label: 'Bicis, Karts y Patines LED',
     shortLabel: 'Bicis, Karts & Patines',
     icon: '🚲',
-    keywords: ['bicicleta', 'triciclo', 'kart', 'go-kart', 'patines', 'patinete 3 ruedas', 'equilibrio'],
+    keywords: ['bicicleta', 'triciclo', 'go-kart', 'kart pedales', 'patines', 'patinete 3 ruedas', 'sin pedales', 'bici de equilibrio'],
     searchPhrase: 'bicicleta infantil kart pedales patines linea luminosos'
   }
 ];

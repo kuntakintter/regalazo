@@ -1,7 +1,10 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { Product } from '@/data/products';
+import { I18N_SEO_ROUTES } from '@/lib/i18nRoutes';
+import { getLocaleHref, normalizeLocaleKey } from '@/lib/i18nContent';
 
 interface VotingContextType {
   voteItems: Product[];
@@ -24,10 +27,15 @@ const STORAGE_KEY_ITEMS = 'regalazo_vote_items_v1';
 const STORAGE_KEY_RECIPIENT = 'regalazo_vote_recipient_v1';
 
 export function VotingProvider({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
   const [voteItems, setVoteItems] = useState<Product[]>([]);
   const [recipientName, setRecipientNameState] = useState<string>('');
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
+
+  const firstSeg = (pathname || '/').replace(/^\/+/, '').split('/')[0]?.toLowerCase() || '';
+  const activeLocaleKey =
+    firstSeg && firstSeg in I18N_SEO_ROUTES ? normalizeLocaleKey(firstSeg) : 'es';
 
   // Load from localStorage on mount
   useEffect(() => {
@@ -68,12 +76,21 @@ export function VotingProvider({ children }: { children: React.ReactNode }) {
 
   const addItem = (product: Product): { success: boolean; message?: string } => {
     if (voteItems.some((item) => item.id === product.id)) {
-      return { success: false, message: 'El producto ya está en tu lista de votación' };
+      return {
+        success: false,
+        message:
+          activeLocaleKey === 'es' || activeLocaleKey === 'es-us'
+            ? 'El producto ya está en tu lista de votación'
+            : 'Already added to your poll list',
+      };
     }
     if (voteItems.length >= MAX_VOTE_ITEMS) {
       return {
         success: false,
-        message: `Máximo ${MAX_VOTE_ITEMS} productos por votación para que tus amigos elijan fácilmente`,
+        message:
+          activeLocaleKey === 'es' || activeLocaleKey === 'es-us'
+            ? `Máximo ${MAX_VOTE_ITEMS} productos por votación para que tus amigos elijan fácilmente`
+            : `Max ${MAX_VOTE_ITEMS} items per group poll`,
       };
     }
     setVoteItems((prev) => [...prev, product]);
@@ -112,7 +129,8 @@ export function VotingProvider({ children }: { children: React.ReactNode }) {
     const baseUrl = window.location.origin;
     const ids = voteItems.map((item) => item.id).join(',');
     const nameParam = recipientName.trim() ? `&para=${encodeURIComponent(recipientName.trim())}` : '';
-    return `${baseUrl}/votar?ids=${encodeURIComponent(ids)}${nameParam}`;
+    const pollPath = getLocaleHref(activeLocaleKey, '/votar');
+    return `${baseUrl}${pollPath}?ids=${encodeURIComponent(ids)}${nameParam}`;
   };
 
   return (

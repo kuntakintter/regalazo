@@ -1,21 +1,13 @@
-import React from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import ProductCard from '@/components/ProductCard';
-import SeoFaq from '@/components/SeoFaq';
-import AmazonLiveSearchCard from '@/components/AmazonLiveSearchCard';
-import AmazonGridDiscoveryCard from '@/components/AmazonGridDiscoveryCard';
-import ThemeAtmosphere from '@/components/ThemeAtmosphere';
-import TopPodium from '@/components/TopPodium';
-import AgeStageInterlinking from '@/components/AgeStageInterlinking';
-import ExpertBuyerTips from '@/components/ExpertBuyerTips';
-import { PRODUCTS } from '@/data/products';
+import { I18N_SEO_ROUTES } from '@/lib/i18nRoutes';
 import { SEO_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
-import { buildSocialMetadata, getCategoryOgImage } from '@/lib/ogMetadata';
-import { Gift, ChevronRight, ShieldCheck, ShoppingBag, TrendingUp, Compass, ArrowRight } from 'lucide-react';
-import Link from 'next/link';
+import { ALL_STATIC_HUB_SLUGS } from '@/lib/filterRoutes';
+import { getLocalizedNestedMetadata } from '@/lib/routeMetadata';
+import { renderLocalizedRouteView } from '@/lib/routeViews';
+
+export const dynamicParams = true;
+export const revalidate = 86400;
 
 interface PageProps {
   params: Promise<{
@@ -27,12 +19,21 @@ interface PageProps {
 export async function generateStaticParams() {
   const params: { ageSlug: string; categorySlug: string }[] = [];
 
-  for (const [ageSlug, route] of Object.entries(SEO_AGE_ROUTES)) {
+  for (const route of Object.values(SEO_AGE_ROUTES)) {
     const subcategories = getSubcategorySlugMap(route.ageId);
     for (const sub of subcategories) {
       params.push({
-        ageSlug,
+        ageSlug: route.ageSlug,
         categorySlug: sub.slug,
+      });
+    }
+  }
+
+  if (I18N_SEO_ROUTES.en) {
+    for (const hubSlug of ALL_STATIC_HUB_SLUGS) {
+      params.push({
+        ageSlug: 'en',
+        categorySlug: hubSlug,
       });
     }
   }
@@ -42,282 +43,27 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { ageSlug, categorySlug } = await params;
-  const ageMeta = SEO_AGE_ROUTES[ageSlug];
-  if (!ageMeta) return {};
 
-  const subcategories = getSubcategorySlugMap(ageMeta.ageId);
-  const currentSub = subcategories.find((s) => s.slug === categorySlug);
-  if (!currentSub) return {};
+  if (I18N_SEO_ROUTES[ageSlug]) {
+    return getLocalizedNestedMetadata(ageSlug, [categorySlug]) || {};
+  }
 
-  const pageTitle = `Un Buen Regalo: ${currentSub.label} 【2026】 Ideas y Comparativa de Regalos`;
-  const socialTitle = `🎁 Un Buen Regalo: ${currentSub.label} 【2026】`;
-  const pageDesc = `¿Buscas un buen regalo de ${currentSub.label.toLowerCase()}? Comparativa y ranking de ideas de regalos (${ageMeta.h1.toLowerCase()}) mejor valoradas en Amazon.`;
-  const canonicalUrl = `https://www.unbuenregalo.es/${ageSlug}/${categorySlug}`;
-  const ogImage = getCategoryOgImage(currentSub.label);
-
-  return buildSocialMetadata({
-    title: pageTitle,
-    socialTitle,
-    description: pageDesc,
-    canonicalUrl,
-    imageUrl: ogImage.url,
-    imageAlt: ogImage.alt,
-    keywords: [
-      `un buen regalo ${currentSub.label.toLowerCase()}`,
-      `regalo ${currentSub.label.toLowerCase()}`,
-      `regalos ${currentSub.label.toLowerCase()}`,
-      `ideas de regalos ${currentSub.label.toLowerCase()}`,
-      `los 10 mejores ${currentSub.label.toLowerCase()}`,
-      `comparativa ${currentSub.label.toLowerCase()}`,
-      `mejores productos ${currentSub.label.toLowerCase()}`,
-      currentSub.label.toLowerCase(),
-      ageMeta.h1.toLowerCase(),
-    ],
-  });
+  return getLocalizedNestedMetadata('es', [ageSlug, categorySlug]) || {};
 }
 
-export default async function SubcategoryLandingPage({ params }: PageProps) {
+export default async function TwoSegmentDynamicPage({ params }: PageProps) {
   const { ageSlug, categorySlug } = await params;
-  const ageMeta = SEO_AGE_ROUTES[ageSlug];
 
-  if (!ageMeta) notFound();
+  if (I18N_SEO_ROUTES[ageSlug]) {
+    const localizedView = renderLocalizedRouteView(ageSlug, [categorySlug]);
+    if (!localizedView) notFound();
+    return localizedView;
+  }
 
-  const subcategories = getSubcategorySlugMap(ageMeta.ageId);
-  const currentSub = subcategories.find((s) => s.slug === categorySlug);
+  const rootSubcatView = renderLocalizedRouteView('es', [ageSlug, categorySlug]);
+  if (!rootSubcatView) {
+    notFound();
+  }
 
-  if (!currentSub) notFound();
-
-  // Filter products for this age AND subcategory (with smart cross-age fallback for universal categories like Pokémon, Figuras, Sobre Ruedas, Smartphones & Reveal)
-  const targetSub = currentSub.label.toLowerCase().trim();
-  const strictMatches = PRODUCTS.filter((p) => {
-    if (ageMeta.ageId !== 'reveal' && p.ageRange !== ageMeta.ageId) {
-      return false;
-    }
-    const pSub = p.subcategory.toLowerCase().trim();
-    const pCat = p.category.toLowerCase().trim();
-    return pSub === targetSub || pCat === targetSub;
-  });
-
-  const matchedProducts =
-    strictMatches.length >= 3
-      ? strictMatches
-      : [
-          ...strictMatches,
-          ...PRODUCTS.filter((p) => {
-            if (strictMatches.some((sm) => sm.id === p.id)) return false;
-            const pSub = p.subcategory.toLowerCase().trim();
-            const pCat = p.category.toLowerCase().trim();
-            return pSub === targetSub || pCat === targetSub;
-          }),
-        ];
-
-  // Breadcrumb & ItemList schema for Google Rich Snippets ("Los 10 Mejores...")
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          {
-            '@type': 'ListItem',
-            position: 1,
-            name: 'Inicio',
-            item: 'https://www.unbuenregalo.es',
-          },
-          {
-            '@type': 'ListItem',
-            position: 2,
-            name: ageMeta.h1,
-            item: `https://www.unbuenregalo.es/${ageSlug}`,
-          },
-          {
-            '@type': 'ListItem',
-            position: 3,
-            name: currentSub.label,
-            item: `https://www.unbuenregalo.es/${ageSlug}/${categorySlug}`,
-          },
-        ],
-      },
-      {
-        '@type': 'ItemList',
-        name: `Los 10 Mejores ${currentSub.label} (${ageMeta.h1}) - Comparativa 2026`,
-        description: `Ranking y tabla comparativa de los mejores ${currentSub.label.toLowerCase()} recomendados por relación calidad-precio y opiniones verificadas.`,
-        numberOfItems: Math.min(10, matchedProducts.length),
-        itemListOrder: 'https://schema.org/ItemListOrderDescending',
-        itemListElement: matchedProducts.slice(0, 10).map((prod, idx) => ({
-          '@type': 'ListItem',
-          position: idx + 1,
-          name: prod.title,
-          url: `https://www.unbuenregalo.es/${ageSlug}/${categorySlug}#${prod.id}`,
-        })),
-      },
-    ],
-  };
-
-  return (
-    <div className="min-h-screen relative flex flex-col bg-slate-50 text-slate-900 selection:bg-indigo-600 selection:text-white">
-      <ThemeAtmosphere />
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-
-      <Header currentTheme="classic" />
-
-      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full z-10">
-        
-        {/* Breadcrumb Navigation */}
-        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-semibold text-slate-600 mb-6 flex-wrap">
-          <Link href="/" className="hover:text-indigo-700 transition-colors py-1">Inicio</Link>
-          <ChevronRight className="w-3.5 h-3.5" />
-          <Link href={`/${ageSlug}`} className="hover:text-indigo-700 transition-colors py-1">{ageMeta.h1}</Link>
-          <ChevronRight className="w-3.5 h-3.5" />
-          <span className="text-slate-900 font-bold">{currentSub.label}</span>
-        </nav>
-
-        {/* HERO */}
-        <section className="text-center py-6 sm:py-8 max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-4 shadow-xs border border-slate-200 bg-white/90 backdrop-blur-md text-slate-800">
-            <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span>Edición 2026 • Catálogo Especializado</span>
-          </div>
-
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.15] mb-4 text-slate-900">
-            Los 10 Mejores {currentSub.label}: Comparativa y Ranking 2026
-          </h1>
-
-          <p className="text-sm sm:text-base text-slate-600 leading-relaxed mb-6 max-w-3xl mx-auto">
-            Tabla comparativa y selección verificada de los mejores {currentSub.label.toLowerCase()} recomendados para {ageMeta.h1.toLowerCase()}. Consulta valoraciones reales, relación calidad-precio y ofertas actualizadas.
-          </p>
-
-          {/* THEMATIC EXPLORATION BOX (SIBLING CATEGORIES) */}
-          {subcategories.filter((s) => s.slug !== categorySlug).length > 0 && (
-            <div className="max-w-4xl mx-auto mb-10 text-left rounded-3xl overflow-hidden border-2 border-slate-300 bg-white shadow-lg">
-              {/* Header Bar */}
-              <div className="bg-[#131921] px-5 py-3.5 border-b-2 border-amber-400/60 flex items-center justify-between text-white">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-xl bg-[#febd69] text-slate-950 flex items-center justify-center font-black shadow-xs shrink-0">
-                    <Compass className="w-4 h-4 stroke-[2.5]" />
-                  </div>
-                  <div>
-                    <h2 className="text-xs sm:text-sm font-black text-[#febd69] uppercase tracking-wider">
-                      Otras Temáticas en {ageMeta.h1}
-                    </h2>
-                    <p className="text-[11px] text-slate-300 hidden sm:block">
-                      Explora más alternativas dentro de esta misma etapa
-                    </p>
-                  </div>
-                </div>
-                <Link
-                  href={`/${ageSlug}`}
-                  className="text-xs font-bold text-amber-300 hover:text-white flex items-center gap-1 transition-colors px-3 py-1 rounded-full bg-white/10 border border-white/20 shrink-0"
-                >
-                  <span>← Ver todas</span>
-                </Link>
-              </div>
-
-              {/* Grid of Other Subcategories */}
-              <div className="p-4 sm:p-5 bg-gradient-to-b from-slate-50/80 via-white to-amber-50/30">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5">
-                  {subcategories
-                    .filter((s) => s.slug !== categorySlug)
-                    .map((sub) => (
-                      <Link
-                        key={sub.slug}
-                        href={`/${ageSlug}/${sub.slug}`}
-                        className="group relative flex items-center justify-between p-3 rounded-2xl bg-white hover:bg-[#131921] border-2 border-slate-200 hover:border-[#131921] text-slate-800 hover:text-white transition-all shadow-xs hover:shadow-md hover:-translate-y-0.5 cursor-pointer"
-                      >
-                        <div className="flex items-center gap-2.5 min-w-0 pr-2">
-                          <span className="w-2 h-2 rounded-full bg-amber-500 group-hover:scale-125 transition-transform shrink-0" />
-                          <span className="text-xs font-bold truncate group-hover:text-amber-200 transition-colors">
-                            {sub.label}
-                          </span>
-                        </div>
-                        <ArrowRight className="w-3.5 h-3.5 text-slate-600 group-hover:text-[#febd69] group-hover:translate-x-1 transition-all shrink-0" />
-                      </Link>
-                    ))}
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Trust badges */}
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs font-medium text-slate-600">
-            <span className="flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-emerald-600" />
-              Devolución Gratuita 30 días
-            </span>
-            <span className="flex items-center gap-1.5">
-              <TrendingUp className="w-4 h-4 text-indigo-600" />
-              Top Valorados
-            </span>
-            <span className="flex items-center gap-1.5">
-              <ShoppingBag className="w-4 h-4 text-amber-600" />
-              Envío Rápido Prime
-            </span>
-          </div>
-        </section>
-
-        {/* PRODUCTS GRID */}
-        <section className="mb-14">
-          {/* TOP 3 PODIUM */}
-          {matchedProducts.length >= 3 && (
-            <TopPodium products={matchedProducts} filterLabel={currentSub.label} />
-          )}
-
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-black text-slate-900 flex items-center gap-2">
-              <Gift className="w-5 h-5 text-indigo-600" />
-              <span>{currentSub.label} ({matchedProducts.length} productos)</span>
-            </h2>
-          </div>
-
-          {matchedProducts.length > 0 ? (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 sm:gap-2.5 lg:gap-3 mb-12">
-              {matchedProducts.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  currentTheme="classic"
-                />
-              ))}
-              <AmazonGridDiscoveryCard
-                selectedCategory={currentSub.label}
-                selectedAge={ageMeta.ageId}
-              />
-            </div>
-          ) : (
-            <div className="text-center py-12 px-4 rounded-3xl border border-dashed border-slate-300 mb-8 bg-white/60">
-              <p className="text-sm text-slate-600 mb-4">
-                Estamos actualizando la selección de {currentSub.label} con las últimas novedades de 2026.
-              </p>
-              <Link
-                href={`/${ageSlug}`}
-                className="px-5 py-2.5 rounded-xl bg-indigo-600 text-white font-bold text-xs hover:bg-indigo-700 transition-colors inline-block"
-              >
-                Explorar el catálogo completo de {ageMeta.h1}
-              </Link>
-            </div>
-          )}
-
-          <AmazonLiveSearchCard
-            currentTheme="classic"
-            initialQuery={currentSub.label}
-          />
-        </section>
-
-        {/* EXPERT EDITORIAL BUYER'S GUIDE */}
-        <ExpertBuyerTips ageTitle={`${currentSub.label} (${ageMeta.h1})`} />
-
-        {/* INTERLINKING ETAPAS ADYACENTES (SEO LINK JUICE) */}
-        <AgeStageInterlinking currentAgeSlug={ageSlug} />
-
-        <SeoFaq currentTheme="classic" />
-
-      </main>
-
-      <Footer currentTheme="classic" />
-    </div>
-  );
+  return rootSubcatView;
 }

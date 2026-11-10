@@ -7,10 +7,10 @@ import { Search, X, ExternalLink, ArrowRight, Star, Loader2, ShoppingBag, Chevro
 import BrandLogo from '@/components/BrandLogo';
 import LanguageSelector from '@/components/LanguageSelector';
 import VotingOnboardingTooltip from '@/components/VotingOnboardingTooltip';
-import { useCurrency } from '@/context/CurrencyContext';
 import { useVoting } from '@/context/VotingContext';
 import { Product } from '@/data/products';
 import { getAmazonSearchUrl } from '@/lib/amazon';
+import { useActiveLocale } from '@/hooks/useActiveLocale';
 
 export interface AmazonLiveItem {
   asin: string;
@@ -22,26 +22,80 @@ export interface AmazonLiveItem {
 }
 
 export const AGE_DROPDOWN_ITEMS = [
-  { label: 'Recién Nacidos', range: '0-12 meses', slug: 'bebes-0-a-12-meses', icon: '🧸', desc: 'Cunas, cochecitos, tartas de pañales' },
-  { label: 'Primeros Pasos', range: '1 a 3 años', slug: 'ninos-1-a-3-anos', icon: '🧩', desc: 'Montessori, triciclos, torres de madera' },
-  { label: 'Infantil y Creatividad', range: '4 a 6 años', slug: 'ninos-4-a-6-anos', icon: '🎨', desc: 'Mario Kart, patinetes LED, disfraces' },
-  { label: 'Primaria y Acción', range: '7 a 9 años', slug: 'ninos-7-a-9-anos', icon: '🎩', desc: 'Scalextric, LEGO Creator, Magia Borrás' },
-  { label: 'Preadolescentes', range: '10 a 12 años', slug: 'ninos-10-a-12-anos', icon: '🚀', desc: 'Juego Virus!, minidrones, robótica' },
-  { label: 'Adolescentes', range: '13 a 15 años', slug: 'jovenes-13-a-15-anos', icon: '🎧', desc: 'Auriculares ANC, Instax, Catan, skincare' },
-  { label: 'Jóvenes y Gaming', range: '16 a 18 años', slug: 'jovenes-16-a-18-anos', icon: '⚡', desc: 'PlayStation 5, setup gamer, perfumes' },
-  { label: 'Adultos (+18)', range: '+18 años', slug: 'adultos-mas-de-18-anos', icon: '🎯', desc: 'Smartbox, LEGO Icons, smartphones, gourmet' },
-  { label: 'Revelación de Género', range: 'Baby Shower', slug: 'fiesta-revelacion-genero', icon: '🎈', desc: 'Cañones confeti, globos enigma, humo holi' },
+  {
+    termKey: 'Recién Nacidos (0-12m)',
+    descTermKey: 'Cochecitos y Esenciales de Bebé',
+    range: '0-12m',
+    slug: 'bebes-0-a-12-meses',
+    icon: '🧸',
+  },
+  {
+    termKey: '1 a 3 Años',
+    descTermKey: 'Juguetes Montessori y Madera',
+    range: '1-3',
+    slug: 'ninos-1-a-3-anos',
+    icon: '🧩',
+  },
+  {
+    termKey: '4 a 6 Años',
+    descTermKey: 'Manualidades y Creatividad',
+    range: '4-6',
+    slug: 'ninos-4-a-6-anos',
+    icon: '🎨',
+  },
+  {
+    termKey: '7 a 9 Años',
+    descTermKey: 'Scalextric y Circuitos de Coches',
+    range: '7-9',
+    slug: 'ninos-7-a-9-anos',
+    icon: '🎩',
+  },
+  {
+    termKey: '10 a 12 Años',
+    descTermKey: 'Drones RC y Robótica STEM',
+    range: '10-12',
+    slug: 'ninos-10-a-12-anos',
+    icon: '🚀',
+  },
+  {
+    termKey: '13 a 15 Años',
+    descTermKey: 'Auriculares Inalámbricos y Audio',
+    range: '13-15',
+    slug: 'jovenes-13-a-15-anos',
+    icon: '🎧',
+  },
+  {
+    termKey: '16 a 18 Años',
+    descTermKey: 'Videojuegos y Setup Gamer',
+    range: '16-18',
+    slug: 'jovenes-16-a-18-anos',
+    icon: '⚡',
+  },
+  {
+    termKey: 'A partir de 18 Años',
+    descTermKey: 'Escapadas y Experiencias',
+    range: '18+',
+    slug: 'adultos-mas-de-18-anos',
+    icon: '🎯',
+  },
+  {
+    termKey: 'Fiesta Revelación de Género',
+    descTermKey: 'Fiestas y Revelación de Género',
+    range: 'Baby Shower',
+    slug: 'fiesta-revelacion-genero',
+    icon: '🎈',
+  },
 ];
 
 export const PASSION_DROPDOWN_ITEMS = [
-  { label: 'Motoristas', slug: 'motoristas', icon: '🏍️', desc: 'Cascos, guantes, intercomunicadores y soportes' },
-  { label: 'Gaming y Streamers', slug: 'gaming', icon: '🎮', desc: 'Auriculares, teclados mecánicos, mandos y setup' },
-  { label: 'Café Barista', slug: 'amantes-del-cafe', icon: '☕', desc: 'Cafeteras espresso, molinillos y tazas térmicas' },
-  { label: 'Mascotas', slug: 'mascotas', icon: '🐾', desc: 'Juguetes interactivos, camas ortopédicas y fuentes' },
-  { label: 'Automóvil y Conducción', slug: 'automovil', icon: '🚗', desc: 'Dash cams, compresores portátiles y detailing' },
-  { label: 'Ciclismo y MTB', slug: 'ciclismo', icon: '🚴', desc: 'Luces potentes, maillots, cascos y herramientas' },
-  { label: 'Cartas Pokémon', slug: '#categoria-cartas-pokemon', icon: '⚡', desc: 'Sobres, cajas élite booster y carpetas' },
-  { label: 'Figuras Anime y Cine', slug: '#categoria-figuras-anime', icon: '🎎', desc: 'Banpresto, Funko Pop, Dragon Ball y One Piece' },
+  { termKey: 'Motoristas', descTermKey: 'Motoristas', slug: 'motoristas', icon: '🏍️' },
+  { termKey: 'Gaming', descTermKey: 'Videojuegos y Setup Gamer', slug: 'gaming', icon: '🎮' },
+  { termKey: 'Amantes del Café', descTermKey: 'Gourmet, Café y Coctelería', slug: 'amantes-del-cafe', icon: '☕' },
+  { termKey: 'Mascotas', descTermKey: 'Mascotas', slug: 'mascotas', icon: '🐾' },
+  { termKey: 'Automóvil', descTermKey: 'Automóvil', slug: 'automovil', icon: '🚗' },
+  { termKey: 'Ciclismo y MTB', descTermKey: 'Ciclismo y MTB', slug: 'ciclismo', icon: '🚴' },
+  { termKey: 'Cartas y Sobres Pokémon', descTermKey: 'Pokémon (Cartas TCG & Figuras)', slug: 'cartas-y-sobres-pokemon', icon: '⚡' },
+  { termKey: 'Figuras de Colección y Cine', descTermKey: 'Todo Anime, Cine & Series', slug: 'figuras-de-coleccion-y-cine', icon: '🎎' },
 ];
 
 interface HeaderMobileProps {
@@ -69,7 +123,7 @@ export default function HeaderMobile({
   amazonResults,
   isLoadingAmazon,
 }: HeaderMobileProps) {
-  const { formatPrice, amazonRegion, amazonSiteName } = useCurrency();
+  const { localeKey, ui, amazonRegion, amazonSiteName, formatPrice, localePath, tTerm } = useActiveLocale();
   const { voteItems, setIsDrawerOpen } = useVoting();
   const [isAgesOpen, setIsAgesOpen] = useState(false);
   const [isPassionsOpen, setIsPassionsOpen] = useState(false);
@@ -89,32 +143,29 @@ export default function HeaderMobile({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const amazonSearchUrl = getAmazonSearchUrl(searchQuery.trim() || 'regalos', amazonRegion);
+  const defaultQuery = localeKey === 'es' || localeKey === 'es-us' ? 'regalos' : 'gifts';
+  const amazonSearchUrl = getAmazonSearchUrl(searchQuery.trim() || defaultQuery, amazonRegion);
 
   const hasAnyResults = liveMatches.length > 0 || amazonResults.length > 0;
 
   return (
     <div className="w-full overflow-hidden select-none">
-      {/* 1. BARRA PRINCIPAL MÓVIL (DEEP NAVY AMAZON) */}
+      {/* 1. BARRA PRINCIPAL MÓVIL */}
       <div className="bg-[#131921] text-white px-3 py-2">
-        {/* FILA 1: LOGO + ACCIONES DERECHA (VOTACIÓN Y SELECTOR DE IDIOMA/MONEDA) */}
         <div className="flex items-center justify-between gap-2">
-          {/* Logo */}
           <div className="shrink-0">
             <BrandLogo variant="light" size="compact" />
           </div>
 
-          {/* Acciones Derecha: Votación en Grupo e Idioma/Moneda */}
           <div className="flex items-center gap-1.5 shrink-0">
-            {/* Botón de Votación en Grupo */}
             <button
               type="button"
               onClick={() => setIsDrawerOpen(true)}
               className="flex items-center gap-1.5 px-3 h-8.5 rounded-xl bg-[#febd69] hover:bg-[#f3a847] text-slate-950 font-black text-xs transition-all shadow-sm cursor-pointer group active:scale-95 shrink-0 border border-amber-400"
-              title="Votación de Regalos en Grupo"
+              title={ui.navVoting}
             >
               <span className="text-base leading-none" aria-hidden="true">🗳️</span>
-              <span className="font-extrabold text-xs tracking-normal text-slate-950">Votar</span>
+              <span className="font-extrabold text-xs tracking-normal text-slate-950">{ui.navVoting}</span>
               {' '}
               <span
                 className={`px-1.5 py-0.5 rounded-full text-[10px] font-black leading-none transition-colors ${
@@ -125,18 +176,14 @@ export default function HeaderMobile({
               >
                 {voteItems.length}
               </span>
-              <span className="sr-only"> regalos — Abrir lista de votación de regalos</span>
             </button>
 
-            {/* Selector de Idioma y Moneda */}
             <LanguageSelector dark={true} />
-
-            {/* Smart Mobile Onboarding Callout */}
             <VotingOnboardingTooltip variant="mobile" />
           </div>
         </div>
 
-        {/* FILA 2: BARRA DE BÚSQUEDA COMPLETA CON LUPA INTEGRADA */}
+        {/* BARRA DE BÚSQUEDA MÓVIL */}
         <div className="mt-2 relative">
           <form
             onSubmit={onSearchSubmit}
@@ -152,12 +199,11 @@ export default function HeaderMobile({
                 onSearchChange?.(e.target.value);
                 setIsFocused(true);
               }}
-              aria-label="Buscar regalo: Lego, zapatillas, perfumes, PS5..."
-              placeholder="Buscar regalo: Lego, zapatillas, perfumes, PS5..."
+              aria-label={ui.headerSearchPlaceholder}
+              placeholder={ui.headerSearchPlaceholder}
               className="w-full px-2.5 py-2 text-xs text-slate-900 placeholder-slate-600 focus:outline-none bg-transparent"
             />
 
-            {/* Iconos de Limpiar y Botón Lupa */}
             <div className="flex items-center shrink-0">
               {isLoadingAmazon && (
                 <Loader2 className="w-3.5 h-3.5 text-slate-600 animate-spin mr-1.5" />
@@ -166,16 +212,16 @@ export default function HeaderMobile({
                 <button
                   type="button"
                   onClick={clearSearch}
-                  aria-label="Borrar búsqueda"
+                  aria-label={ui.headerClearSearch}
                   className="min-w-7 min-h-7 flex items-center justify-center p-1 mr-1 rounded-full text-slate-600 hover:text-slate-900 hover:bg-slate-200 transition-colors cursor-pointer"
-                  title="Borrar búsqueda"
+                  title={ui.headerClearSearch}
                 >
                   <X className="w-3.5 h-3.5" />
                 </button>
               )}
               <button
                 type="submit"
-                aria-label="Buscar regalo"
+                aria-label={ui.headerSearchButton}
                 className="bg-[#febd69] hover:bg-[#f3a847] active:bg-[#e47911] text-slate-950 px-3.5 py-2.5 flex items-center justify-center transition-colors cursor-pointer shrink-0"
               >
                 <Search className="w-4 h-4 stroke-[2.5]" />
@@ -183,16 +229,13 @@ export default function HeaderMobile({
             </div>
           </form>
 
-          {/* AUTOCOMPLETE DROPDOWN MÓVIL A PANTALLA COMPLETA */}
           {isFocused && searchQuery.trim().length >= 2 && (
             <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-150 max-h-[75vh] overflow-y-auto">
-              
-              {/* Catálogo Recomendado */}
               {liveMatches.length > 0 && (
                 <div>
                   <div className="p-2.5 bg-slate-50 border-b border-slate-100 flex items-center justify-between text-[11px] font-bold text-slate-700 uppercase tracking-wider">
-                    <span>Catálogo Recomendado</span>
-                    <span className="text-indigo-700">{liveMatches.length} productos</span>
+                    <span>{ui.searchRecommendedCatalog}</span>
+                    <span className="text-indigo-700">{liveMatches.length} {ui.productsUnit}</span>
                   </div>
 
                   <div className="divide-y divide-slate-100">
@@ -239,16 +282,15 @@ export default function HeaderMobile({
                 </div>
               )}
 
-              {/* Productos en Vivo de Amazon */}
               {amazonResults.length > 0 && (
                 <div className={liveMatches.length > 0 ? 'border-t-2 border-slate-100' : ''}>
                   <div className="p-2.5 bg-gradient-to-r from-amber-50/80 to-orange-50/50 border-b border-amber-100 flex items-center justify-between text-[11px] font-bold text-amber-900 uppercase tracking-wider">
                     <div className="flex items-center gap-1.5">
                       <ShoppingBag className="w-3.5 h-3.5 text-amber-700" />
-                      <span>En Vivo {amazonSiteName}</span>
+                      <span>{ui.searchLiveFrom} {amazonSiteName}</span>
                     </div>
                     <span className="text-[9px] bg-amber-200 text-amber-950 px-1.5 py-0.5 rounded-full font-black">
-                      Al minuto
+                      {ui.searchLivePrices}
                     </span>
                   </div>
 
@@ -290,7 +332,7 @@ export default function HeaderMobile({
                           </div>
                         </div>
                         <div className="flex items-center gap-1 px-2 py-1 rounded-lg bg-amber-100 text-amber-950 text-[11px] font-bold shrink-0">
-                          <span>Ver</span>
+                          <span>{ui.searchBuyBtn}</span>
                           <ExternalLink className="w-3 h-3" />
                         </div>
                       </a>
@@ -299,7 +341,6 @@ export default function HeaderMobile({
                 </div>
               )}
 
-              {/* Botón de acción */}
               {hasAnyResults && (
                 <div className="p-2.5 bg-slate-50 border-t border-slate-100">
                   <a
@@ -308,7 +349,7 @@ export default function HeaderMobile({
                     rel="noopener noreferrer sponsored"
                     className="w-full flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 text-xs font-black shadow-xs"
                   >
-                    <span>Ver más en {amazonSiteName}</span>
+                    <span>{ui.searchDirectOn} {amazonSiteName}</span>
                     <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                 </div>
@@ -318,10 +359,10 @@ export default function HeaderMobile({
         </div>
       </div>
 
-      {/* 2. SUB-NAV MENÚ MÓVIL (2 BOTONES HERO: EDADES Y PASIONES) */}
-      <nav aria-label="Navegación móvil" className="bg-[#1f2833] text-white border-t border-slate-700/60 shadow-inner px-3 py-2">
+      {/* 2. SUB-NAV MENÚ MÓVIL */}
+      <nav aria-label={ui.navMenu} className="bg-[#1f2833] text-white border-t border-slate-700/60 shadow-inner px-3 py-2">
         <div className="grid grid-cols-2 gap-2.5 w-full text-xs">
-          {/* 1. Dropdown Por Edades */}
+          {/* 1. Dropdown Edades */}
           <div ref={agesDropdownRef} className="relative w-full">
             <button
               type="button"
@@ -334,8 +375,7 @@ export default function HeaderMobile({
               }`}
             >
               <span className="text-sm shrink-0" aria-hidden="true">🎁</span>
-              <span className="truncate">Por Edades</span>
-              <span className="sr-only"> — Abrir catálogo de regalos por rango de edad</span>
+              <span className="truncate">{ui.navAges}</span>
               <ChevronDown
                 className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${
                   isAgesOpen ? 'rotate-180 text-slate-950' : 'text-amber-200'
@@ -355,14 +395,14 @@ export default function HeaderMobile({
                     <div className="flex items-center gap-2">
                       <span className="text-base">🎁</span>
                       <p className="text-xs font-black text-slate-900">
-                        Regalos por Rango de Edad
+                        {ui.navAges}
                       </p>
                     </div>
                     <button
                       type="button"
                       onClick={() => setIsAgesOpen(false)}
                       className="min-w-7 min-h-7 flex items-center justify-center p-1.5 rounded-lg text-slate-600 hover:text-slate-900 cursor-pointer"
-                      aria-label="Cerrar catálogo por edades"
+                      aria-label={ui.navClose}
                     >
                       <X className="w-4 h-4" />
                     </button>
@@ -372,7 +412,7 @@ export default function HeaderMobile({
                     {AGE_DROPDOWN_ITEMS.map((item) => (
                       <Link
                         key={item.slug}
-                        href={`/${item.slug}`}
+                        href={localePath(`/${item.slug}`)}
                         onClick={() => setIsAgesOpen(false)}
                         className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-amber-50/70 border border-slate-100"
                       >
@@ -381,10 +421,10 @@ export default function HeaderMobile({
                         </span>
                         <div className="min-w-0 flex-1">
                           <span className="text-xs font-bold text-slate-900 truncate block">
-                            {item.label}
+                            {tTerm(item.termKey)}
                           </span>
-                          <span className="text-[10px] text-amber-800 font-bold">
-                            {item.range}
+                          <span className="text-[10px] text-amber-800 font-bold truncate block">
+                            {tTerm(item.descTermKey)}
                           </span>
                         </div>
                       </Link>
@@ -395,7 +435,7 @@ export default function HeaderMobile({
             )}
           </div>
 
-          {/* 2. Dropdown Pasiones y Hobbies */}
+          {/* 2. Dropdown Pasiones y Temas */}
           <div className="relative w-full" ref={passionsDropdownRef}>
             <button
               type="button"
@@ -408,8 +448,7 @@ export default function HeaderMobile({
               }`}
             >
               <span className="text-sm shrink-0" aria-hidden="true">🎯</span>
-              <span className="truncate">Pasiones</span>
-              <span className="sr-only"> — Abrir catálogo de pasiones y aficiones</span>
+              <span className="truncate">{ui.navThemes}</span>
               <ChevronDown className="w-3.5 h-3.5 shrink-0 transition-transform duration-200" />
             </button>
 
@@ -425,15 +464,15 @@ export default function HeaderMobile({
                     <div className="flex items-center gap-2">
                       <span className="text-xl">🎯</span>
                       <div>
-                        <p className="font-extrabold text-sm leading-none">Pasiones y Aficiones</p>
-                        <p className="text-[10px] text-purple-100 mt-0.5">Elige según sus gustos favoritos</p>
+                        <p className="font-extrabold text-sm leading-none">{ui.navThemes}</p>
+                        <p className="text-[10px] text-purple-100 mt-0.5">{ui.verifiedCatalogNote}</p>
                       </div>
                     </div>
                     <button
                       type="button"
                       onClick={() => setIsPassionsOpen(false)}
                       className="min-w-7 min-h-7 flex items-center justify-center p-1.5 rounded-lg bg-white/10 text-white hover:bg-white/20 text-xs px-2 font-bold cursor-pointer"
-                      aria-label="Cerrar menú de pasiones y aficiones"
+                      aria-label={ui.navClose}
                     >
                       ✕
                     </button>
@@ -442,22 +481,20 @@ export default function HeaderMobile({
                     {PASSION_DROPDOWN_ITEMS.map((item) => (
                       <Link
                         key={item.slug}
-                        href={item.slug.startsWith('#') ? `/${item.slug}` : `/${item.slug}`}
-                        onClick={() => {
-                          setIsPassionsOpen(false);
-                          if (item.slug.startsWith('#categoria-') && typeof window !== 'undefined') {
-                            const cat = item.slug.replace('#categoria-', '');
-                            window.dispatchEvent(new CustomEvent('select-category', { detail: cat }));
-                          }
-                        }}
+                        href={localePath(`/${item.slug}`)}
+                        onClick={() => setIsPassionsOpen(false)}
                         className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-purple-50 border border-slate-100 transition-colors group"
                       >
                         <span className="text-xl p-1.5 rounded-lg bg-slate-50 group-hover:bg-white shadow-2xs shrink-0">
                           {item.icon}
                         </span>
                         <div className="min-w-0 flex-1">
-                          <span className="block text-xs font-bold text-slate-900 group-hover:text-purple-950 truncate">{item.label}</span>
-                          <span className="block text-[10px] text-slate-600 truncate">{item.desc}</span>
+                          <span className="block text-xs font-bold text-slate-900 group-hover:text-purple-950 truncate">
+                            {tTerm(item.termKey)}
+                          </span>
+                          <span className="block text-[10px] text-slate-600 truncate">
+                            {tTerm(item.descTermKey)}
+                          </span>
                         </div>
                       </Link>
                     ))}

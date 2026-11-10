@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import { getHreflangAlternatesForPath } from '@/lib/filterRoutes';
 import HombreClient from './HombreClient';
 
 export const metadata: Metadata = {
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: 'https://www.unbuenregalo.es/que-regalar-a-un-hombre',
+    languages: getHreflangAlternatesForPath('/que-regalar-a-un-hombre'),
   },
   openGraph: {
     title: 'Un Buen Regalo para un Hombre: ¿Qué Regalar? 【2026】 Ideas de Regalos Originales',

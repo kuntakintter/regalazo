@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import { getHreflangAlternatesForPath } from '@/lib/filterRoutes';
 import Under20Client from './Under20Client';
 
 export const metadata: Metadata = {
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: 'https://www.unbuenregalo.es/regalos-menos-20-euros',
+    languages: getHreflangAlternatesForPath('/regalos-menos-20-euros'),
   },
   openGraph: {
     title: 'Un Buen Regalo por Menos de 20€ 【2026】 Ideas de Regalos Baratos y Originales',

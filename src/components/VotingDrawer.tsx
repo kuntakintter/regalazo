@@ -3,9 +3,9 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { useVoting } from '@/context/VotingContext';
-import { useCurrency } from '@/context/CurrencyContext';
 import { trackShareEvent } from '@/lib/analytics';
-import { X, Trash2, Share2, Copy, Check, ExternalLink, ArrowRight, ThumbsUp } from 'lucide-react';
+import { useActiveLocale } from '@/hooks/useActiveLocale';
+import { X, Share2, Copy, Check, ArrowRight, Trash2 } from 'lucide-react';
 
 export default function VotingDrawer() {
   const {
@@ -18,13 +18,14 @@ export default function VotingDrawer() {
     setIsDrawerOpen,
     generateShareUrl,
   } = useVoting();
-  const { formatPrice } = useCurrency();
+  const { localeKey, ui, formatPrice, isRtl } = useActiveLocale();
   const [copied, setCopied] = useState(false);
 
   if (!isDrawerOpen) return null;
 
+  const isEs = localeKey === 'es' || localeKey === 'es-us';
   const shareUrl = generateShareUrl();
-  const displayName = recipientName.trim() || 'este regalo';
+  const displayName = recipientName.trim() || ui.brandName;
 
   const handleCopyLink = () => {
     if (!shareUrl) return;
@@ -39,17 +40,19 @@ export default function VotingDrawer() {
 
   const handleShareWhatsApp = () => {
     if (!shareUrl) return;
-    const text = `🗳️ ¡Ayúdame a elegir el regalo para ${displayName}!\nHe preseleccionado estos ${voteItems.length} regalos finalistas.\nVota tu favorito aquí 👇\n${shareUrl}`;
+    const text = isEs
+      ? `🗳️ ¡Ayúdame a elegir el regalo para ${displayName}!\nHe preseleccionado estos ${voteItems.length} regalos finalistas.\nVota tu favorito aquí 👇\n${shareUrl}`
+      : `🗳️ ${ui.votingDrawerTitle} — ${displayName} (${voteItems.length})\n${shareUrl}`;
     const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
     trackShareEvent('WhatsApp', 'voting_group', {
       recipient: displayName,
       product_count: voteItems.length,
     });
-    window.open(whatsappUrl, '_blank');
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex justify-end">
+    <div dir={isRtl ? 'rtl' : 'ltr'} className="fixed inset-0 z-50 flex justify-end">
       {/* Backdrop */}
       <div
         aria-hidden="true"
@@ -61,29 +64,29 @@ export default function VotingDrawer() {
       <div
         role="dialog"
         aria-modal="true"
-        aria-label="Panel de votación en grupo"
+        aria-label={ui.votingDrawerTitle}
         className="relative w-full max-w-md bg-white h-full shadow-2xl flex flex-col z-10 animate-in slide-in-from-right duration-300"
       >
         {/* Header */}
         <div className="p-4 sm:p-5 border-b border-slate-200 bg-gradient-to-r from-amber-50 via-white to-orange-50 flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-amber-500 text-slate-950 flex items-center justify-center font-black text-lg shadow-xs">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <div className="w-9 h-9 rounded-xl bg-amber-500 text-slate-950 flex items-center justify-center font-black text-lg shadow-xs shrink-0" aria-hidden="true">
               🗳️
             </div>
-            <div>
-              <h2 className="font-black text-slate-900 text-base leading-tight">
-                Votación en Grupo
+            <div className="min-w-0">
+              <h2 className="font-black text-slate-900 text-base leading-tight truncate">
+                {ui.votingDrawerTitle}
               </h2>
-              <p className="text-xs text-slate-600">
-                {voteItems.length} de 4 productos ideales
+              <p className="text-xs text-slate-600 line-clamp-1">
+                {voteItems.length} {ui.floatingBarCandidates}
               </p>
             </div>
           </div>
           <button
             type="button"
             onClick={() => setIsDrawerOpen(false)}
-            className="w-8 h-8 rounded-full hover:bg-slate-200 text-slate-600 hover:text-slate-900 flex items-center justify-center transition-colors cursor-pointer"
-            aria-label="Cerrar panel"
+            className="w-8 h-8 rounded-full hover:bg-slate-200 text-slate-600 hover:text-slate-900 flex items-center justify-center transition-colors cursor-pointer shrink-0"
+            aria-label={ui.navClose}
           >
             <X className="w-5 h-5" />
           </button>
@@ -91,54 +94,57 @@ export default function VotingDrawer() {
 
         {/* Content Body */}
         <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4">
-          {/* Visual Step-by-Step Guide */}
-          <div className="p-3.5 bg-gradient-to-br from-amber-500/10 via-white to-orange-500/10 border border-amber-300/80 rounded-2xl shadow-2xs">
-            <div className="flex items-center gap-1.5 text-xs font-black text-amber-950 uppercase tracking-wider mb-2.5">
-              <span>⚡</span>
-              <span>¿Cómo funciona? En 3 pasos:</span>
-            </div>
-            
-            <div className="grid grid-cols-3 gap-2 text-center">
-              {/* Step 1 */}
-              <div className="p-2 bg-white rounded-xl border border-amber-100/90 shadow-2xs flex flex-col items-center">
-                <span className="w-7 h-7 rounded-full bg-rose-100 text-rose-700 font-black text-xs flex items-center justify-center mb-1 shadow-2xs">
-                  ❤️
-                </span>
-                <strong className="text-[11px] font-bold text-slate-900 leading-tight">1. Elige</strong>
-                <span className="text-[10px] text-slate-600 leading-tight mt-0.5">2 a 4 regalos con el corazón</span>
+          {isEs ? (
+            <div className="p-3.5 bg-gradient-to-br from-amber-500/10 via-white to-orange-500/10 border border-amber-300/80 rounded-2xl shadow-2xs">
+              <div className="flex items-center gap-1.5 text-xs font-black text-amber-950 uppercase tracking-wider mb-2.5">
+                <span aria-hidden="true">⚡</span>
+                <span>¿Cómo funciona? En 3 pasos:</span>
               </div>
 
-              {/* Step 2 */}
-              <div className="p-2 bg-white rounded-xl border border-amber-100/90 shadow-2xs flex flex-col items-center">
-                <span className="w-7 h-7 rounded-full bg-emerald-100 text-emerald-700 font-black text-xs flex items-center justify-center mb-1 shadow-2xs">
-                  📲
-                </span>
-                <strong className="text-[11px] font-bold text-slate-900 leading-tight">2. Comparte</strong>
-                <span className="text-[10px] text-slate-600 leading-tight mt-0.5">Envía el link al grupo de WhatsApp</span>
-              </div>
+              <div className="grid grid-cols-3 gap-2 text-center">
+                <div className="p-2 bg-white rounded-xl border border-amber-100/90 shadow-2xs flex flex-col items-center">
+                  <span className="w-7 h-7 rounded-full bg-rose-100 text-rose-700 font-black text-xs flex items-center justify-center mb-1 shadow-2xs" aria-hidden="true">
+                    ❤️
+                  </span>
+                  <strong className="text-[11px] font-bold text-slate-900 leading-tight">1. Elige</strong>
+                  <span className="text-[10px] text-slate-600 leading-tight mt-0.5">2 a 6 regalos finales</span>
+                </div>
 
-              {/* Step 3 */}
-              <div className="p-2 bg-white rounded-xl border border-amber-100/90 shadow-2xs flex flex-col items-center">
-                <span className="w-7 h-7 rounded-full bg-indigo-100 text-indigo-700 font-black text-xs flex items-center justify-center mb-1 shadow-2xs">
-                  🗳️
-                </span>
-                <strong className="text-[11px] font-bold text-slate-900 leading-tight">3. ¡Votan!</strong>
-                <span className="text-[10px] text-slate-600 leading-tight mt-0.5">Deciden el ganador en 1 clic</span>
+                <div className="p-2 bg-white rounded-xl border border-amber-100/90 shadow-2xs flex flex-col items-center">
+                  <span className="w-7 h-7 rounded-full bg-emerald-100 text-emerald-700 font-black text-xs flex items-center justify-center mb-1 shadow-2xs" aria-hidden="true">
+                    📲
+                  </span>
+                  <strong className="text-[11px] font-bold text-slate-900 leading-tight">2. Comparte</strong>
+                  <span className="text-[10px] text-slate-600 leading-tight mt-0.5">Envía el link por WhatsApp</span>
+                </div>
+
+                <div className="p-2 bg-white rounded-xl border border-amber-100/90 shadow-2xs flex flex-col items-center">
+                  <span className="w-7 h-7 rounded-full bg-indigo-100 text-indigo-700 font-black text-xs flex items-center justify-center mb-1 shadow-2xs" aria-hidden="true">
+                    🗳️
+                  </span>
+                  <strong className="text-[11px] font-bold text-slate-900 leading-tight">3. ¡Votan!</strong>
+                  <span className="text-[10px] text-slate-600 leading-tight mt-0.5">Deciden el ganador en 1 clic</span>
+                </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <div className="p-3.5 bg-gradient-to-br from-amber-500/10 via-white to-orange-500/10 border border-amber-300/80 rounded-2xl shadow-2xs">
+              <p className="text-xs font-black text-amber-950 mb-1">{ui.votingDrawerSubtitle}</p>
+              <p className="text-[11px] text-slate-700 leading-relaxed">{ui.onboardingBody}</p>
+            </div>
+          )}
 
           {/* Recipient Name Input */}
           <div>
             <label htmlFor="recipient-name" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-              ¿Para quién es el regalo? (Opcional)
+              {ui.votingRecipientLabel}
             </label>
             <input
               id="recipient-name"
               type="text"
               value={recipientName}
               onChange={(e) => setRecipientName(e.target.value)}
-              placeholder="Ej: Cumple de Carlos, Amigo Invisible, Laura..."
+              placeholder={ui.votingRecipientPlaceholder}
               className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 text-sm text-slate-900 placeholder-slate-500 outline-none transition-all"
             />
           </div>
@@ -147,7 +153,7 @@ export default function VotingDrawer() {
           <div>
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">
-                Productos Seleccionados ({voteItems.length})
+                {voteItems.length} {ui.floatingBarCandidates}
               </span>
               {voteItems.length > 0 && (
                 <button
@@ -155,26 +161,26 @@ export default function VotingDrawer() {
                   onClick={clearList}
                   className="text-[11px] text-rose-700 hover:text-rose-800 font-bold hover:underline cursor-pointer"
                 >
-                  Vaciar lista
+                  {ui.votingClearBtn}
                 </button>
               )}
             </div>
 
             {voteItems.length === 0 ? (
               <div className="p-8 text-center bg-slate-50 rounded-2xl border-2 border-dashed border-slate-200">
-                <span className="text-3xl block mb-2">🎁</span>
+                <span className="text-3xl block mb-2" aria-hidden="true">🎁</span>
                 <p className="text-sm font-bold text-slate-800 mb-1">
-                  Tu lista de votación está vacía
+                  {ui.votingDrawerEmpty}
                 </p>
                 <p className="text-xs text-slate-600 mb-4">
-                  Navega por la web y pulsa el corazón ❤️ en los productos que más te gusten para añadirlos aquí.
+                  {ui.votingDrawerEmptyHint}
                 </p>
                 <button
                   type="button"
                   onClick={() => setIsDrawerOpen(false)}
                   className="px-4 py-2 rounded-xl bg-slate-900 text-white font-bold text-xs hover:bg-slate-800 transition-colors cursor-pointer"
                 >
-                  Explorar regalos
+                  {ui.navAllIdeas}
                 </button>
               </div>
             ) : (
@@ -205,15 +211,15 @@ export default function VotingDrawer() {
                         <span className="text-xs font-black text-slate-950">
                           {formatPrice(item.priceText)}
                         </span>
-                        <span className="text-[10px] text-[#007185] font-bold">✓prime</span>
+                        <span className="text-[10px] text-[#007185] font-bold">✓ Prime</span>
                       </div>
                     </div>
                     <button
                       type="button"
                       onClick={() => removeItem(item.id)}
                       className="min-w-7 min-h-7 flex items-center justify-center p-1.5 rounded-lg text-slate-600 hover:text-rose-700 hover:bg-rose-50 transition-colors cursor-pointer shrink-0"
-                      title="Eliminar de la votación"
-                      aria-label={`Eliminar ${item.title} de la votación`}
+                      title={ui.removeFromVote}
+                      aria-label={`${ui.removeFromVote}: ${item.title}`}
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
@@ -227,17 +233,15 @@ export default function VotingDrawer() {
         {/* Footer Actions */}
         {voteItems.length >= 2 ? (
           <div className="p-4 sm:p-5 border-t border-slate-200 bg-slate-50 space-y-2.5">
-            {/* WhatsApp Share Button */}
             <button
               type="button"
               onClick={handleShareWhatsApp}
               className="w-full py-3 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-black text-sm flex items-center justify-center gap-2 shadow-md transition-transform hover:scale-102 active:scale-98 cursor-pointer"
             >
               <Share2 className="w-4 h-4" />
-              <span>Compartir votación por WhatsApp</span>
+              <span>{ui.votingWhatsAppBtn}</span>
             </button>
 
-            {/* Copy Link Button */}
             <div className="flex items-center gap-2">
               <button
                 type="button"
@@ -247,12 +251,12 @@ export default function VotingDrawer() {
                 {copied ? (
                   <>
                     <Check className="w-3.5 h-3.5 text-emerald-600" />
-                    <span className="text-emerald-700">¡Enlace copiado!</span>
+                    <span className="text-emerald-700">{ui.votingCopiedBtn}</span>
                   </>
                 ) : (
                   <>
                     <Copy className="w-3.5 h-3.5" />
-                    <span>Copiar enlace</span>
+                    <span>{ui.votingCopyBtn}</span>
                   </>
                 )}
               </button>
@@ -260,18 +264,19 @@ export default function VotingDrawer() {
               <a
                 href={shareUrl}
                 target="_blank"
+                rel="noopener noreferrer"
                 className="py-2.5 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs flex items-center justify-center gap-1 transition-colors cursor-pointer shadow-2xs"
-                title="Ver cómo queda la encuesta"
+                title={ui.votingOpenPollBtn}
               >
-                <span>Probar</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <span>{ui.votingOpenPollBtn}</span>
+                <ArrowRight className={`w-3.5 h-3.5 ${isRtl ? 'rotate-180' : ''}`} />
               </a>
             </div>
           </div>
         ) : voteItems.length === 1 ? (
           <div className="p-4 border-t border-slate-200 bg-amber-50/50 text-center">
             <p className="text-xs font-bold text-amber-900">
-              💡 Añade al menos 1 producto más (mínimo 2) para poder crear la votación con tus amigos.
+              💡 {ui.votingDrawerEmptyHint}
             </p>
           </div>
         ) : null}

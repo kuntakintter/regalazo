@@ -496,7 +496,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
     reviewsCount: 28900,
     imageUrl: 'https://m.media-amazon.com/images/I/61pRhZYb1JL._AC_UL320_.jpg',
     badge: 'Código Inmediato',
-    description: 'Tarjeta prepago digital oficial para añadir 50 € a tu monedero de PlayStation Network España. Entrega inmediata del código digital tras la compra.',
+    description: 'Tarjeta prepago digital oficial para añadir 50 € a tu monedero de PlayStation Store. Entrega inmediata del código digital tras la compra.',
     pros: [
       'Envío instantáneo del código al correo electrónico para canjear en PS5',
       'Sin comisiones ni caducidad, saldo seguro para reservar GTA VI',
@@ -517,7 +517,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
     reviewsCount: 17800,
     imageUrl: 'https://m.media-amazon.com/images/I/618hNXADSML._AC_UL320_.jpg',
     badge: 'Pack Edición Deluxe',
-    description: 'Tarjeta digital con 100 € de saldo oficial PSN España. Cobertura completa garantizada para adquirir la Edición Deluxe o Gold de lanzamiento de GTA VI.',
+    description: 'Tarjeta digital con 100 € de saldo oficial PlayStation Store. Cobertura completa garantizada para adquirir la Edición Deluxe o Gold de lanzamiento de GTA VI.',
     pros: [
       'Cubre íntegramente la edición especial más completa de GTA VI con sus extras',
       'Canje seguro en la PlayStation Store directamente desde la consola',
@@ -538,7 +538,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
     reviewsCount: 15400,
     imageUrl: 'https://m.media-amazon.com/images/I/61yNar4sNnL._AC_UL320_.jpg',
     badge: 'Xbox Digital',
-    description: 'Tarjeta prepago oficial Microsoft de 50 € para canjear en Xbox Store España. Válida para Xbox Series X, Xbox Series S y PC.',
+    description: 'Tarjeta prepago oficial Microsoft de 50 € para canjear en Xbox Store. Válida para Xbox Series X, Xbox Series S y PC.',
     pros: [
       'Código digital enviado inmediatamente a tu cuenta sin esperas',
       'Ideal para usuarios de Xbox Series X y Series S que esperan GTA VI',

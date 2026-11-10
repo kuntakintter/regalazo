@@ -4,8 +4,8 @@ import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import Image from 'next/image';
 import { Product } from '@/data/products';
 import { getAmazonProductUrl } from '@/lib/amazon';
-import { useCurrency } from '@/context/CurrencyContext';
 import { useVoting } from '@/context/VotingContext';
+import { useActiveLocale } from '@/hooks/useActiveLocale';
 import {
   Trophy,
   Award,
@@ -17,7 +17,7 @@ import {
   ShoppingBag,
   Heart,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
 } from 'lucide-react';
 
 interface TopPodiumProps {
@@ -25,9 +25,9 @@ interface TopPodiumProps {
   filterLabel?: string;
   isDark?: boolean;
   showTable?: boolean;
+  omitSchema?: boolean;
 }
 
-// Helper to categorize product family to prevent duplicates (e.g. NEVER 2 headphones, 2 books, etc.)
 function getProductFamily(p: Product): string {
   const text = `${p.category || ''} ${p.subcategory || ''} ${p.title || ''} ${p.searchQuery || ''}`.toLowerCase();
   if (text.includes('auricular') || text.includes('headphone') || text.includes('soundcore') || text.includes('tune 510') || text.includes('airpods')) return 'audio';
@@ -49,8 +49,8 @@ function getProductFamily(p: Product): string {
   return (p.subcategory || p.category || 'other').toLowerCase();
 }
 
-export default function TopPodium({ products, filterLabel, isDark = false, showTable = false }: TopPodiumProps) {
-  const { formatPrice, amazonRegion } = useCurrency();
+export default function TopPodium({ products, filterLabel, isDark = false, showTable = false, omitSchema = false }: TopPodiumProps) {
+  const { ui, langCode, amazonRegion, formatPrice } = useActiveLocale();
   const { toggleItem, isItemInList } = useVoting();
   const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
   const [activeSetIndex, setActiveSetIndex] = useState(0);
@@ -58,7 +58,6 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
   const [isAnimating, setIsAnimating] = useState(false);
   const [showFullTop10, setShowFullTop10] = useState(false);
 
-  // Dynamic real-time Amazon Prime next-day shipping cutoff timer
   const [timeLeft, setTimeLeft] = useState<{ hours: number; minutes: number; seconds: number; isTomorrow: boolean }>({
     hours: 3,
     minutes: 42,
@@ -93,7 +92,6 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
     return () => clearInterval(interval);
   }, []);
 
-  // Build sequential diverse sets of 3 products from the current products pool
   const podiumSets = useMemo(() => {
     if (!products || products.length < 3) return [];
 
@@ -105,7 +103,7 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
 
     const sets: Array<[Product, Product, Product]> = [];
     const usedIds = new Set<string>();
-    const maxSets = 8; // Allows up to 8 rotating rankings with different products
+    const maxSets = 8;
 
     for (let s = 0; s < maxSets; s++) {
       const pool = sorted.filter((p) => !usedIds.has(p.id));
@@ -133,7 +131,6 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
       sets.push([gold, silver, bronze]);
     }
 
-    // Fallback if strict family diversity yielded fewer than 1 set
     if (sets.length === 0 && products.length >= 3) {
       sets.push([sorted[0], sorted[1], sorted[2]]);
     }
@@ -141,14 +138,12 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
     return sets;
   }, [products]);
 
-  // Adjust activeSetIndex if out of bounds
   useEffect(() => {
     if (activeSetIndex >= podiumSets.length) {
       setActiveSetIndex(0);
     }
   }, [podiumSets.length, activeSetIndex]);
 
-  // Slide navigation
   const switchSet = useCallback(
     (newIndex: number) => {
       if (newIndex === activeSetIndex) return;
@@ -173,7 +168,6 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
     switchSet(next);
   }, [activeSetIndex, podiumSets.length, switchSet]);
 
-  // Auto-advance smoothly every 7 seconds
   useEffect(() => {
     if (isPaused || podiumSets.length <= 1) return;
     const timer = setInterval(() => {
@@ -194,7 +188,7 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
   const podiumPicks = [
     {
       rank: 1,
-      badgeText: '🥇 Nº1 Más Vendido',
+      badgeText: `🥇 #1 ${ui.podiumAwards[0]}`,
       badgeClass: 'bg-gradient-to-r from-amber-500 to-yellow-400 text-slate-950 font-black shadow-xs border border-amber-300',
       cardClass: isDark
         ? 'border-2 border-amber-400 bg-gradient-to-b from-amber-500/20 via-slate-900 to-slate-950 shadow-xl shadow-amber-500/15 ring-2 ring-amber-400/30 text-white'
@@ -203,17 +197,17 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
       podiumHeight: 'h-16 sm:h-32 md:h-44',
       numberSize: 'text-3xl sm:text-5xl md:text-7xl',
       podiumNumber: '1',
-      podiumSubtitle: 'ORO · GANADOR',
+      podiumSubtitle: `#1 · ${ui.podiumWinnerBadge}`,
       podiumBg: 'bg-gradient-to-b from-[#fde68a] via-[#f59e0b] to-[#b45309]',
       podiumBorder: 'border-amber-400',
       podiumHighlight: 'border-t-4 border-amber-200/90 shadow-[inset_0_3px_6px_rgba(255,255,255,0.7),0_12px_24px_rgba(217,119,6,0.3)]',
       btnClass: 'bg-[#ffd814] hover:bg-[#f7ca00] text-slate-900 border border-[#fcd200]',
-      whyText: 'El favorito absoluto con miles de opiniones 5 estrellas',
+      whyText: ui.podiumAwards[0],
       product: gold,
     },
     {
       rank: 2,
-      badgeText: '🥈 Nº2 Calidad/Precio',
+      badgeText: `🥈 #2 ${ui.podiumAwards[1]}`,
       badgeClass: 'bg-gradient-to-r from-slate-200 to-slate-300 text-slate-900 font-black shadow-xs border border-slate-400',
       cardClass: isDark
         ? 'border-2 border-slate-500 bg-gradient-to-b from-slate-800 via-slate-900 to-slate-950 shadow-lg text-white'
@@ -222,17 +216,17 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
       podiumHeight: 'h-12 sm:h-24 md:h-32',
       numberSize: 'text-2xl sm:text-4xl md:text-6xl',
       podiumNumber: '2',
-      podiumSubtitle: 'PLATA · 2º PUESTO',
+      podiumSubtitle: `#2 · ${ui.podiumSilverBadge}`,
       podiumBg: 'bg-gradient-to-b from-[#f8fafc] via-[#cbd5e1] to-[#64748b]',
       podiumBorder: 'border-slate-300',
       podiumHighlight: 'border-t-4 border-white/90 shadow-[inset_0_3px_6px_rgba(255,255,255,0.8),0_10px_20px_rgba(100,116,139,0.2)]',
       btnClass: 'bg-[#ffd814] hover:bg-[#f7ca00] text-slate-900 border border-[#fcd200]',
-      whyText: 'Máxima calidad al precio más competitivo',
+      whyText: ui.podiumAwards[1],
       product: silver,
     },
     {
       rank: 3,
-      badgeText: '🥉 Nº3 El Más Original',
+      badgeText: `🥉 #3 ${ui.podiumAwards[2]}`,
       badgeClass: 'bg-gradient-to-r from-amber-700 to-orange-800 text-white font-black shadow-xs border border-amber-600',
       cardClass: isDark
         ? 'border-2 border-orange-500/70 bg-gradient-to-b from-orange-500/15 via-slate-900 to-slate-950 shadow-lg text-white'
@@ -241,17 +235,16 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
       podiumHeight: 'h-9 sm:h-20 md:h-26',
       numberSize: 'text-xl sm:text-3xl md:text-5xl',
       podiumNumber: '3',
-      podiumSubtitle: 'BRONCE · 3º PUESTO',
+      podiumSubtitle: `#3 · ${ui.podiumBronzeBadge}`,
       podiumBg: 'bg-gradient-to-b from-[#d97706] via-[#92400e] to-[#451a03]',
       podiumBorder: 'border-amber-600',
       podiumHighlight: 'border-t-4 border-amber-400/50 shadow-[inset_0_3px_6px_rgba(255,255,255,0.4),0_8px_16px_rgba(120,53,15,0.25)]',
       btnClass: 'bg-[#ffd814] hover:bg-[#f7ca00] text-slate-900 border border-[#fcd200]',
-      whyText: 'La sorpresa garantizada que enamora a cualquiera',
+      whyText: ui.podiumAwards[2],
       product: bronze,
     },
   ];
 
-  // Top 10 Comparison List sorted by popularity & rating for SEO Comparison Table & ItemList Schema
   const top10ComparisonList = useMemo(() => {
     if (!products || products.length === 0) return [];
     const sorted = [...products].sort((a, b) => {
@@ -262,31 +255,24 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
     return sorted.slice(0, 10);
   }, [products]);
 
-  const COMPARISON_AWARDS = [
-    '🥇 #1 Ganador Absoluto (Mejor Valorado)',
-    '🥈 #2 Mejor Relación Calidad/Precio',
-    '🥉 #3 El Regalo Más Original',
-    '🔥 #4 Top Ventas Verificado',
-    '💎 #5 Elección de los Expertos',
-    '⚡ #6 Favorito para Sorprender',
-    '🎁 #7 Acierto Seguro en Cumpleaños',
-    '🌟 #8 Mejor Puntuación de Usuarios',
-    '🚀 #9 Tendencia Destacada 2026',
-    '💸 #10 Compra Inteligente Recomendada',
-  ];
+  const awardForRank = (idx: number) => {
+    if (idx === 0) return `🥇 #1 ${ui.podiumAwards[0]}`;
+    if (idx === 1) return `🥈 #2 ${ui.podiumAwards[1]}`;
+    if (idx === 2) return `🥉 #3 ${ui.podiumAwards[2]}`;
+    return `★ #${idx + 1} Top`;
+  };
 
-  // Schema.org ItemList for Rich Snippets (Full Top 10 Comparison Ranking)
   const podiumSchema = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: `Comparativa: Los 10 Mejores Regalos y Productos ${filterLabel ? `en ${filterLabel}` : ''} (2026)`,
-    description: `Ranking actualizado y tabla comparativa con los 10 mejores regalos y productos ${filterLabel ? `de ${filterLabel}` : ''} según opiniones verificadas y relación calidad-precio.`,
+    name: `${ui.podiumTitlePrefix}${filterLabel ? ` ${filterLabel}` : ''} (2026)`,
+    description: ui.podiumSubtitle,
     numberOfItems: top10ComparisonList.length,
     itemListElement: top10ComparisonList.map((prod, idx) => ({
       '@type': 'ListItem',
       position: idx + 1,
       name: prod.title,
-      description: `${COMPARISON_AWARDS[idx] || 'Recomendado'} — ${prod.description || prod.title}`,
+      description: `${awardForRank(idx)} — ${prod.description || prod.title}`,
       image: prod.imageUrl.startsWith('http')
         ? prod.imageUrl
         : `https://www.unbuenregalo.es${prod.imageUrl}`,
@@ -296,7 +282,7 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
   return (
     <section
       className="mb-14 pt-2 relative overflow-x-clip"
-      aria-label="Top 3 Ventas"
+      aria-label={ui.podiumEyebrow}
       onMouseEnter={() => {
         if (typeof window !== 'undefined' && window.matchMedia('(hover: hover)').matches) {
           setIsPaused(true);
@@ -308,13 +294,14 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
         }
       }}
     >
-      {/* Schema.org for SEO */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(podiumSchema) }}
-      />
+      {!omitSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(podiumSchema) }}
+        />
+      )}
 
-      {/* Clean Original Header Banner (Without the cluttered 5 category tabs) */}
+      {/* Header Banner */}
       <div
         className={`relative mb-6 p-4 sm:p-5 rounded-3xl border backdrop-blur-md ${
           isDark
@@ -334,20 +321,19 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
                     isDark ? 'text-amber-300 bg-amber-950/80 border border-amber-500/40' : 'text-amber-800 bg-amber-100'
                   }`}
                 >
-                  Ranking Oficial 2026
+                  {ui.podiumEyebrow}
                 </span>
                 <span className={`text-xs font-bold hidden sm:inline ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
-                  • Catálogo Verificado
+                  • {ui.amazonStoreBadge}
                 </span>
               </div>
               <h2 className={`text-lg sm:text-xl font-black leading-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                🏆 Podio de Honor: Los 3 Más Vendidos {filterLabel ? `en ${filterLabel}` : ''}
+                🏆 {ui.podiumTitlePrefix}{filterLabel ? ` · ${filterLabel}` : ''}
               </h2>
             </div>
           </div>
 
           <div className="flex flex-col sm:flex-row items-end sm:items-center gap-2 self-end sm:self-center">
-            {/* Real Amazon Prime Delivery Cutoff Timer */}
             <div
               className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold shadow-2xs border ${
                 isDark
@@ -357,7 +343,7 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
             >
               <Clock className="w-3.5 h-3.5 text-rose-600 animate-pulse" />
               <span>
-                Envío exprés:{' '}
+                {ui.podiumCountdownLabel}:{' '}
                 <strong className={`font-mono ${isDark ? 'text-rose-200' : 'text-rose-900'}`}>
                   {String(timeLeft.hours).padStart(2, '0')}:{String(timeLeft.minutes).padStart(2, '0')}:
                   {String(timeLeft.seconds).padStart(2, '0')}
@@ -367,41 +353,36 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
 
             <div className={`text-xs font-semibold flex items-center gap-1.5 ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
               <Flame className="w-4 h-4 text-orange-600" />
-              <span>Revisado hoy</span>
+              <span>{ui.badgeUpdated2026}</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Podium Stage Container with Lateral Arrow Navigation */}
+      {/* Podium Stage Container */}
       <div className="max-w-4xl mx-auto relative px-1 sm:px-4 md:px-0">
-        {/* Left Arrow Navigation Button (Desktop only, hidden on mobile) */}
         {podiumSets.length > 1 && (
           <button
             type="button"
             onClick={handlePrev}
-            aria-label="Ver ranking anterior"
-            title="Ver ranking anterior"
+            aria-label="Previous ranking"
             className="hidden sm:flex absolute sm:-left-6 lg:-left-10 top-1/2 -translate-y-1/2 z-30 sm:w-12 sm:h-12 bg-white/95 dark:bg-slate-900/95 hover:bg-[#ffd814] dark:hover:bg-amber-500 text-slate-800 dark:text-white hover:text-slate-950 shadow-xl border-2 border-slate-200 dark:border-slate-700 hover:border-amber-400 rounded-full items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer group/nav"
           >
             <ChevronLeft className="w-6 h-6 group-hover/nav:-translate-x-0.5 transition-transform" />
           </button>
         )}
 
-        {/* Right Arrow Navigation Button (Desktop only, hidden on mobile) */}
         {podiumSets.length > 1 && (
           <button
             type="button"
             onClick={handleNext}
-            aria-label="Ver siguiente ranking"
-            title="Ver siguiente ranking"
+            aria-label="Next ranking"
             className="hidden sm:flex absolute sm:-right-6 lg:-right-10 top-1/2 -translate-y-1/2 z-30 sm:w-12 sm:h-12 bg-white/95 dark:bg-slate-900/95 hover:bg-[#ffd814] dark:hover:bg-amber-500 text-slate-800 dark:text-white hover:text-slate-950 shadow-xl border-2 border-slate-200 dark:border-slate-700 hover:border-amber-400 rounded-full items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer group/nav"
           >
             <ChevronRight className="w-6 h-6 group-hover/nav:translate-x-0.5 transition-transform" />
           </button>
         )}
 
-        {/* 3D Olympic Podium Grid (2nd Silver on left, 1st Gold elevated in center, 3rd Bronze on right) */}
         <div
           className={`grid grid-cols-3 gap-1.5 sm:gap-4 md:gap-5 items-end pt-3 sm:pt-5 transition-opacity duration-200 ${
             isAnimating ? 'opacity-40' : 'opacity-100'
@@ -420,37 +401,33 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
                 key={`${activeSetIndex}-${pick.product.id}`}
                 className={`flex flex-col ${pick.orderClass} relative group`}
               >
-                {/* 1. Compact Product Card perched atop the Podium */}
                 <div
                   className={`rounded-t-xl sm:rounded-t-2xl rounded-b-none p-1.5 sm:p-3.5 md:p-4 flex flex-col justify-between transition-all duration-300 relative ${
                     isGold ? 'pt-4 sm:pt-6 z-10' : 'z-0'
                   } ${pick.cardClass}`}
                 >
-                  {/* Floating Winner Crown for #1 */}
                   {isGold && (
                     <div className="absolute -top-2.5 sm:-top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 text-slate-950 font-black text-[7.5px] xs:text-[9px] sm:text-[10px] md:text-[11px] px-1.5 sm:px-3 py-0.5 rounded-full shadow-md border border-white sm:border-2 flex items-center gap-0.5 sm:gap-1 uppercase tracking-wider whitespace-nowrap z-20">
                       <span>👑</span>
-                      <span className="hidden sm:inline">GANADOR DEL RANKING</span>
-                      <span className="sm:hidden">GANADOR</span>
+                      <span className="hidden sm:inline">{ui.podiumWinnerBadge}</span>
+                      <span className="sm:hidden">#1</span>
                     </div>
                   )}
 
-                  {/* Top Ribbon & Rating */}
                   <div className="flex items-center justify-between gap-1 mb-1 sm:mb-2">
                     <span className={`px-1 sm:px-2 py-0.5 rounded text-[8px] sm:text-[11px] font-bold flex items-center gap-0.5 sm:gap-1 truncate ${pick.badgeClass}`}>
                       <span className="hidden sm:inline">{pick.badgeText}</span>
-                      <span className="sm:hidden">{pick.rank === 1 ? '🥇 Nº1' : pick.rank === 2 ? '🥈 Nº2' : '🥉 Nº3'}</span>
+                      <span className="sm:hidden">{pick.rank === 1 ? '🥇 #1' : pick.rank === 2 ? '🥈 #2' : '🥉 #3'}</span>
                     </span>
                     <div className="flex items-center gap-0.5 sm:gap-1 text-amber-500 text-[10px] sm:text-xs font-bold shrink-0">
-                      <Star className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 fill-amber-400 text-amber-400" />
+                      <Star className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 fill-amber-400 text-amber-400" aria-hidden="true" />
                       <span className={isDark ? 'text-white' : 'text-slate-900'}>{pick.product.rating}</span>
                       <span className={`text-[9px] sm:text-[10px] hidden md:inline ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
-                        ({pick.product.reviewsCount?.toLocaleString('es-ES')})
+                        ({pick.product.reviewsCount?.toLocaleString(langCode)})
                       </span>
                     </div>
                   </div>
 
-                  {/* Product Photo - Compact & Framed (Sibling button prevents nested interactive HTML) */}
                   <div className="relative w-full h-20 xs:h-24 sm:h-36 md:h-40 bg-white rounded-lg sm:rounded-xl mb-1.5 sm:mb-2.5 border border-slate-200/80 group-hover:border-slate-300 transition-colors overflow-hidden">
                     <a
                       href={directUrl}
@@ -458,6 +435,7 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
                       rel="nofollow sponsored noopener noreferrer"
                       className="w-full h-full p-1 sm:p-2 flex items-center justify-center cursor-pointer relative"
                     >
+                      <span className="sr-only">{ui.viewOnAmazon}: </span>
                       {!failedImages[pick.product.id] ? (
                         <Image
                           src={pick.product.imageUrl}
@@ -471,18 +449,20 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
                         />
                       ) : (
                         <span className="w-full h-full bg-slate-50 flex flex-col items-center justify-center text-slate-600 p-1 text-center">
-                          <ShoppingBag className="w-5 h-5 sm:w-8 sm:h-8 mb-0.5 text-amber-600" />
+                          <ShoppingBag className="w-5 h-5 sm:w-8 sm:h-8 mb-0.5 text-amber-600" aria-hidden="true" />
                           <span className="text-[9px] sm:text-[11px] font-bold text-slate-700 line-clamp-2">
                             {pick.product.title}
                           </span>
                         </span>
                       )}
-                      <span className="sr-only">Ver producto con envío </span>
-                      <span className="absolute bottom-1 right-1 text-[7.5px] sm:text-[9px] font-bold bg-slate-900/90 text-white px-1 sm:px-1.5 py-0.5 rounded backdrop-blur-xs flex items-center gap-0.5 z-10">
-                        <ShieldCheck className="w-2 h-2 sm:w-2.5 sm:h-2.5 text-emerald-400" />
-                        Prime
-                      </span>
                     </a>
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none select-none absolute bottom-1 right-1 text-[7.5px] sm:text-[9px] font-bold bg-slate-900/90 text-white px-1 sm:px-1.5 py-0.5 rounded backdrop-blur-xs flex items-center gap-0.5 z-10"
+                    >
+                      <ShieldCheck className="w-2 h-2 sm:w-2.5 sm:h-2.5 text-emerald-400" aria-hidden="true" />
+                      Prime
+                    </span>
                     <button
                       type="button"
                       onClick={(e) => {
@@ -490,19 +470,18 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
                         e.stopPropagation();
                         toggleItem(pick.product);
                       }}
-                      title="Añadir a votación en grupo"
-                      aria-label={isItemInList(pick.product.id) ? `Quitar ${pick.product.title} de la votación` : `Añadir ${pick.product.title} a la votación`}
+                      title={ui.addToVote}
+                      aria-label={`${isItemInList(pick.product.id) ? ui.removeFromVote : ui.addToVote}: ${pick.product.title}`}
                       className={`absolute top-1 right-1 w-6 h-6 sm:w-7 sm:h-7 rounded-full backdrop-blur-xs flex items-center justify-center transition-transform shadow-2xs z-20 cursor-pointer border ${
                         isItemInList(pick.product.id)
                           ? 'bg-rose-50 border-rose-200 text-rose-600 scale-105'
                           : 'bg-white/95 border-slate-200 text-slate-600 hover:text-rose-600 hover:scale-105'
                       }`}
                     >
-                      <Heart className={`w-3 h-3 sm:w-3.5 sm:h-3.5 ${isItemInList(pick.product.id) ? 'fill-rose-500 text-rose-600' : ''}`} />
+                      <Heart className={`w-3 h-3 sm:w-3.5 sm:h-3.5 ${isItemInList(pick.product.id) ? 'fill-rose-500 text-rose-600' : ''}`} aria-hidden="true" />
                     </button>
                   </div>
 
-                  {/* Title - Compact 2 lines */}
                   <a
                     href={directUrl}
                     target="_blank"
@@ -515,24 +494,24 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
                     {pick.product.title}
                   </a>
 
-                  {/* Why it's on podium (desktop/tablet only to keep mobile ultra-compact) */}
                   <div
                     className={`p-1.5 rounded-lg border mb-2.5 hidden sm:flex items-start gap-1.5 text-[11px] leading-tight ${
                       isDark ? 'bg-slate-800/80 border-slate-700 text-slate-300' : 'bg-slate-50 border-slate-200 text-slate-600'
                     }`}
                   >
-                    <Award className="w-3.5 h-3.5 text-amber-500 shrink-0 mt-0.5" />
+                    <Award className="w-3.5 h-3.5 text-amber-500 shrink-0 mt-0.5" aria-hidden="true" />
                     <span className="line-clamp-2">{pick.whyText}</span>
                   </div>
 
-                  {/* Price & Amazon Button */}
                   <div
                     className={`pt-1.5 sm:pt-2.5 border-t flex flex-col sm:flex-row items-center justify-between gap-1 sm:gap-2 ${
                       isDark ? 'border-slate-800' : 'border-slate-200/70'
                     }`}
                   >
                     <div className="w-full sm:w-auto text-center sm:text-left">
-                      <span className={`text-[7.5px] sm:text-[9px] uppercase font-bold block leading-none hidden sm:block ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>Oferta</span>
+                      <span className={`text-[7.5px] sm:text-[9px] uppercase font-bold block leading-none hidden sm:block ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+                        {ui.podiumPriceLabel}
+                      </span>
                       <span
                         className={`text-xs sm:text-base md:text-lg font-black tracking-tight leading-none ${
                           isDark ? 'text-white' : 'text-slate-950'
@@ -548,30 +527,25 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
                       rel="nofollow sponsored noopener noreferrer"
                       className={`w-full sm:w-auto px-2 sm:px-3.5 py-1.5 sm:py-2 rounded-full font-black text-[10px] sm:text-xs flex items-center justify-center gap-1.5 transition-all shadow-xs hover:scale-103 active:scale-97 shrink-0 cursor-pointer ${pick.btnClass}`}
                     >
-                      <span className="hidden sm:inline">Ver oferta en Amazon</span>
-                      <span className="sm:hidden">Ver oferta</span>
-                      <ExternalLink className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                      <span className="hidden sm:inline">{ui.podiumCheckPriceBtn}</span>
+                      <span className="sm:hidden">{ui.searchBuyBtn}</span>
+                      <span className="sr-only">: {pick.product.title}</span>
+                      <ExternalLink className="w-2.5 h-2.5 sm:w-3 sm:h-3" aria-hidden="true" />
                     </a>
                   </div>
                 </div>
 
-                {/* 2. Podium Pedestal Base (Matches 3D Olympic Podium: 2 on Left, 1 Center, 3 on Right) */}
                 <div
                   className={`w-full flex flex-col items-center justify-center py-1 sm:py-2.5 rounded-b-xl sm:rounded-b-2xl border-x-2 border-b-2 relative overflow-hidden transition-all select-none ${pick.podiumHeight} ${pick.podiumBg} ${pick.podiumBorder} ${pick.podiumHighlight}`}
                 >
-                  {/* Subtle 3D Top Bevel Light Line */}
                   <div className="absolute top-0 inset-x-0 h-0.5 sm:h-1 bg-gradient-to-r from-transparent via-white/80 to-transparent" />
-
-                  {/* Giant 3D Podium Number */}
                   <span
                     className={`font-black text-white tracking-tighter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] sm:drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)] leading-none ${pick.numberSize}`}
                   >
                     {pick.podiumNumber}
                   </span>
-
-                  {/* Podium Subtitle Ribbon */}
                   <span
-                    className={`text-[7.5px] sm:text-[10px] font-black tracking-wider uppercase px-1.5 sm:px-2 py-0.5 rounded-full mt-1 sm:mt-1.5 backdrop-blur-xs whitespace-nowrap shrink-0 ${
+                    className={`text-[7.5px] sm:text-[10px] font-black tracking-wider uppercase px-1.5 sm:px-2 py-0.5 rounded-full mt-1 sm:mt-1.5 backdrop-blur-xs whitespace-nowrap shrink-0 truncate max-w-[92%] ${
                       pick.rank === 1
                         ? 'bg-amber-50/85 text-amber-950 border border-amber-900/20'
                         : pick.rank === 2
@@ -580,7 +554,7 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
                     }`}
                   >
                     <span className="hidden sm:inline">{pick.podiumSubtitle}</span>
-                    <span className="sm:hidden">{pick.rank === 1 ? 'ORO' : pick.rank === 2 ? 'PLATA' : 'BRONCE'}</span>
+                    <span className="sm:hidden">#{pick.rank}</span>
                   </span>
                 </div>
               </div>
@@ -588,10 +562,8 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
           })}
         </div>
 
-        {/* Elegant Podium Stage Shadow Base */}
         <div className="hidden md:block h-3 mx-6 bg-gradient-to-b from-slate-900/20 to-transparent rounded-full filter blur-[2px] mt-1" />
 
-        {/* Discrete Pagination Dots at Bottom */}
         {podiumSets.length > 1 && (
           <div className="flex items-center justify-center gap-1 mt-4">
             {podiumSets.map((_, idx) => (
@@ -599,7 +571,7 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
                 key={idx}
                 type="button"
                 onClick={() => switchSet(idx)}
-                aria-label={`Ver podio ${idx + 1}`}
+                aria-label={`${ui.slideIndicatorAria} ${idx + 1}`}
                 className="min-w-6 min-h-6 inline-flex items-center justify-center p-1 rounded-full cursor-pointer"
               >
                 <span
@@ -615,7 +587,7 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
         )}
       </div>
 
-      {/* SEO TOP 10 COMPARISON TABLE (Optional, disabled by default to keep layout ultra-clean) */}
+      {/* SEO TOP 10 COMPARISON TABLE */}
       {showTable && top10ComparisonList.length >= 4 && (
         <div
           className={`mt-8 rounded-3xl border overflow-hidden shadow-md ${
@@ -636,15 +608,14 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
               <div>
                 <div className="flex flex-wrap items-center gap-2 mb-0.5">
                   <span className="px-2 py-0.5 rounded-md bg-amber-400 text-slate-950 font-black text-[10px] uppercase tracking-wider whitespace-nowrap shadow-2xs">
-                    TOP {top10ComparisonList.length} RANKING
+                    TOP {top10ComparisonList.length}
                   </span>
                   <h3 className="text-sm sm:text-base font-black text-white leading-tight">
-                    Comparativa: Los {top10ComparisonList.length} Mejores Regalos y Productos{' '}
-                    {filterLabel ? `en ${filterLabel}` : 'de 2026'}
+                    {ui.podiumQuickTableTitle}{filterLabel ? ` · ${filterLabel}` : ''}
                   </h3>
                 </div>
                 <p className="text-[11px] text-slate-300">
-                  Tabla comparativa actualizada por valoración media, opiniones verificadas y relación calidad-precio
+                  {ui.podiumSubtitle}
                 </p>
               </div>
             </div>
@@ -654,7 +625,7 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
                 onClick={() => setShowFullTop10((prev) => !prev)}
                 className="px-3.5 py-1.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs transition-all cursor-pointer shrink-0 self-start sm:self-center"
               >
-                {showFullTop10 ? 'Compactar al Top 5' : `Ver los ${top10ComparisonList.length} mejores completos`}
+                {showFullTop10 ? ui.hideFilters : `${ui.viewAllLink} (${top10ComparisonList.length})`}
               </button>
             )}
           </div>
@@ -665,18 +636,21 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
               itemType="https://schema.org/Table"
               className="w-full text-left border-collapse text-xs"
             >
+              <caption className="sr-only">
+                {ui.podiumQuickTableTitle}{filterLabel ? ` · ${filterLabel}` : ''}
+              </caption>
               <thead>
                 <tr
                   className={`border-b text-[11px] uppercase tracking-wider font-extrabold ${
                     isDark ? 'bg-slate-800/70 border-slate-800 text-slate-300' : 'bg-slate-50 border-slate-200 text-slate-600'
                   }`}
                 >
-                  <th className="py-3 px-3 sm:px-4 w-16 text-center">Puesto</th>
-                  <th className="py-3 px-3 sm:px-4">Producto / Regalo Recomendado</th>
-                  <th className="py-3 px-3 sm:px-4 hidden md:table-cell">Premio en la Comparativa</th>
-                  <th className="py-3 px-3 sm:px-4 text-center">Valoración</th>
-                  <th className="py-3 px-3 sm:px-4 text-right">Precio</th>
-                  <th className="py-3 px-3 sm:px-4 text-right">Acción</th>
+                  <th scope="col" className="py-3 px-3 sm:px-4 w-16 text-center">{ui.podiumColRank}</th>
+                  <th scope="col" className="py-3 px-3 sm:px-4">{ui.podiumColProduct}</th>
+                  <th scope="col" className="py-3 px-3 sm:px-4 hidden md:table-cell">{ui.podiumScoreLabel}</th>
+                  <th scope="col" className="py-3 px-3 sm:px-4 text-center">{ui.podiumColRating}</th>
+                  <th scope="col" className="py-3 px-3 sm:px-4 text-right">{ui.podiumColPrice}</th>
+                  <th scope="col" className="py-3 px-3 sm:px-4 text-right">{ui.podiumColAction}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200/60 dark:divide-slate-800">
@@ -719,7 +693,7 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
                           {item.title}
                         </a>
                         <span className={`block md:hidden text-[10px] font-semibold mt-0.5 ${isDark ? 'text-amber-400' : 'text-amber-800'}`}>
-                          {COMPARISON_AWARDS[idx]}
+                          {awardForRank(idx)}
                         </span>
                       </td>
                       <td className="py-2.5 px-3 sm:px-4 hidden md:table-cell">
@@ -732,16 +706,16 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
                               : 'bg-slate-100 text-slate-700'
                           }`}
                         >
-                          {COMPARISON_AWARDS[idx]}
+                          {awardForRank(idx)}
                         </span>
                       </td>
                       <td className="py-2.5 px-3 sm:px-4 text-center font-bold whitespace-nowrap">
                         <span className="inline-flex items-center gap-1 text-amber-500">
-                          <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                          <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" aria-hidden="true" />
                           <span className={isDark ? 'text-white' : 'text-slate-900'}>{item.rating}</span>
                         </span>
                         <span className={`text-[10px] ml-1 hidden sm:inline ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
-                          ({item.reviewsCount?.toLocaleString('es-ES')})
+                          ({item.reviewsCount?.toLocaleString(langCode)})
                         </span>
                       </td>
                       <td className="py-2.5 px-3 sm:px-4 text-right font-black text-sm whitespace-nowrap">
@@ -752,8 +726,8 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
                           <button
                             type="button"
                             onClick={() => toggleItem(item)}
-                            title="Añadir a votación en grupo"
-                            aria-label={isItemInList(item.id) ? `Quitar ${item.title} de la votación` : `Añadir ${item.title} a la votación`}
+                            title={ui.addToVote}
+                            aria-label={`${isItemInList(item.id) ? ui.removeFromVote : ui.addToVote}: ${item.title}`}
                             className={`w-7 h-7 flex items-center justify-center rounded-lg border transition-colors cursor-pointer ${
                               isItemInList(item.id)
                                 ? 'bg-rose-50 border-rose-200 text-rose-600'
@@ -762,7 +736,7 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
                                 : 'bg-slate-50 border-slate-200 text-slate-600 hover:text-rose-600'
                             }`}
                           >
-                            <Heart className={`w-3.5 h-3.5 ${isItemInList(item.id) ? 'fill-rose-500 text-rose-600' : ''}`} />
+                            <Heart className={`w-3.5 h-3.5 ${isItemInList(item.id) ? 'fill-rose-500 text-rose-600' : ''}`} aria-hidden="true" />
                           </button>
                           <a
                             href={itemUrl}
@@ -770,8 +744,9 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
                             rel="nofollow sponsored noopener noreferrer"
                             className="px-3 py-1.5 rounded-lg bg-[#ffd814] hover:bg-[#f7ca00] text-slate-950 font-black text-[11px] inline-flex items-center gap-1 shadow-2xs transition-transform hover:scale-102"
                           >
-                            <span>Ver</span>
-                            <ExternalLink className="w-3 h-3" />
+                            <span>{ui.searchBuyBtn}</span>
+                            <span className="sr-only">: {item.title}</span>
+                            <ExternalLink className="w-3 h-3" aria-hidden="true" />
                           </a>
                         </div>
                       </td>
@@ -793,7 +768,7 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
                 onClick={() => setShowFullTop10(true)}
                 className="text-xs font-extrabold text-indigo-700 dark:text-amber-400 hover:underline cursor-pointer"
               >
-                ▼ Desplegar puestos #6 al #{top10ComparisonList.length} de la Tabla Comparativa
+                ▼ {ui.viewAllLink} ({top10ComparisonList.length})
               </button>
             </div>
           )}

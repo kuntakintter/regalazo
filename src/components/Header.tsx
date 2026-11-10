@@ -1,14 +1,14 @@
 'use client';
 
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import HeaderMobile from '@/components/HeaderMobile';
 import HeaderDesktop from '@/components/HeaderDesktop';
 import { Product } from '@/data/products';
 import { ALL_SITE_PRODUCTS } from '@/data/allCatalogProducts';
 import { matchesSearchQuery } from '@/utils/search';
 import { AmazonLiveItem } from '@/components/HeaderMobile';
-import { useCurrency } from '@/context/CurrencyContext';
+import { useActiveLocale } from '@/hooks/useActiveLocale';
 
 interface HeaderProps {
   currentTheme?: 'baby' | 'kids' | 'gamer' | 'emo' | 'tech' | 'classic';
@@ -22,8 +22,9 @@ export default function Header({
   searchQuery = '',
 }: HeaderProps) {
   const router = useRouter();
-  const pathname = usePathname();
-  const { amazonRegion } = useCurrency();
+  const { pathname, amazonRegion, localePath } = useActiveLocale();
+
+  const homePath = localePath('/');
 
   // Internal state ensures the search bar is always interactive on ANY page/filter
   const [internalQuery, setInternalQuery] = useState(searchQuery || '');
@@ -54,7 +55,7 @@ export default function Header({
     return ALL_SITE_PRODUCTS.filter((p) => matchesSearchQuery(p, q)).slice(0, 5);
   }, [internalQuery]);
 
-  // Live Amazon search with 300ms debounce
+  // Live Amazon search with 320ms debounce
   useEffect(() => {
     const q = internalQuery.trim();
     if (q.length < 2) {
@@ -79,8 +80,8 @@ export default function Header({
         } else {
           setAmazonResults([]);
         }
-      } catch (err: any) {
-        if (err.name !== 'AbortError') {
+      } catch (err: unknown) {
+        if ((err as { name?: string })?.name !== 'AbortError') {
           setAmazonResults([]);
         }
       } finally {
@@ -103,7 +104,7 @@ export default function Header({
 
       setIsFocused(false);
 
-      if (pathname === '/') {
+      if (pathname === homePath) {
         if (onSearchChange) {
           onSearchChange(q);
         }
@@ -115,10 +116,10 @@ export default function Header({
           target.scrollIntoView({ behavior: 'smooth' });
         }
       } else {
-        router.push(`/?q=${encodeURIComponent(q)}#catalogo-productos`);
+        router.push(`${homePath}?q=${encodeURIComponent(q)}`);
       }
     },
-    [internalQuery, pathname, onSearchChange, router]
+    [internalQuery, pathname, homePath, onSearchChange, router]
   );
 
   // Clear search input
@@ -139,7 +140,7 @@ export default function Header({
     (product: Product) => {
       setIsFocused(false);
       setInternalQuery(product.title);
-      if (pathname === '/') {
+      if (pathname === homePath) {
         if (onSearchChange) {
           onSearchChange(product.title);
         }
@@ -151,10 +152,10 @@ export default function Header({
           target.scrollIntoView({ behavior: 'smooth' });
         }
       } else {
-        router.push(`/?q=${encodeURIComponent(product.title)}#catalogo-productos`);
+        router.push(`${homePath}?q=${encodeURIComponent(product.title)}`);
       }
     },
-    [pathname, onSearchChange, router]
+    [pathname, homePath, onSearchChange, router]
   );
 
   return (

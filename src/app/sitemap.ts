@@ -1,171 +1,123 @@
 import { MetadataRoute } from 'next';
 import { SEO_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
-import { I18N_SEO_ROUTES, getHreflangAlternates } from '@/lib/i18nRoutes';
+import { I18N_SEO_ROUTES } from '@/lib/i18nRoutes';
+import {
+  ALL_STATIC_HUB_SLUGS,
+  BASE_SITE_URL,
+  SEO_FILTER_ROUTES,
+  getHreflangAlternatesForPath,
+} from '@/lib/filterRoutes';
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://www.unbuenregalo.es';
-  const hreflangLanguages = getHreflangAlternates();
-  const LAST_MODIFIED = new Date();
+interface BaseRouteSpec {
+  path: string;
+  changeFrequency: 'daily' | 'weekly' | 'monthly' | 'yearly';
+  priority: number;
+}
 
-  // 1. Root Homepage & Specialized Niche Hubs
-  const routes: MetadataRoute.Sitemap = [
-    {
-      url: baseUrl,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: 'daily',
-      priority: 1.0,
-      alternates: {
-        languages: hreflangLanguages,
-      },
-    },
-    {
-      url: `${baseUrl}/motoristas`,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: 'daily',
-      priority: 0.95,
-    },
-    {
-      url: `${baseUrl}/automovil`,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: 'daily',
-      priority: 0.95,
-    },
-    {
-      url: `${baseUrl}/ciclismo`,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: 'daily',
-      priority: 0.95,
-    },
-    {
-      url: `${baseUrl}/gaming`,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: 'daily',
-      priority: 0.95,
-    },
-    {
-      url: `${baseUrl}/amantes-del-cafe`,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: 'daily',
-      priority: 0.95,
-    },
-    {
-      url: `${baseUrl}/mascotas`,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: 'daily',
-      priority: 0.95,
-    },
-    {
-      url: `${baseUrl}/halloween`,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: 'yearly',
-      priority: 0.2,
-    },
-    {
-      url: `${baseUrl}/navidad`,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: 'daily',
-      priority: 0.95,
-    },
-    {
-      url: `${baseUrl}/carta-papa-noel`,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: 'daily',
-      priority: 0.95,
-    },
-    {
-      url: `${baseUrl}/regalos-gta-6`,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: 'daily',
-      priority: 0.95,
-    },
-    {
-      url: `${baseUrl}/que-regalar-a-un-hombre`,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: 'daily',
-      priority: 0.98,
-    },
-    {
-      url: `${baseUrl}/que-regalar-a-una-mujer`,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: 'daily',
-      priority: 0.98,
-    },
-    {
-      url: `${baseUrl}/que-regalar-a-mi-novio`,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: 'daily',
-      priority: 0.98,
-    },
-    {
-      url: `${baseUrl}/que-regalar-a-mi-novia`,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: 'daily',
-      priority: 0.98,
-    },
-    {
-      url: `${baseUrl}/regalos-para-los-que-tienen-de-todo`,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: 'daily',
-      priority: 0.95,
-    },
-    {
-      url: `${baseUrl}/regalos-menos-20-euros`,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: 'daily',
-      priority: 0.95,
-    },
-    {
-      url: `${baseUrl}/votar`,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-  ];
+const PERSONA_PRIORITY_SLUGS = new Set([
+  'que-regalar-a-un-hombre',
+  'que-regalar-a-una-mujer',
+  'que-regalar-a-mi-novio',
+  'que-regalar-a-mi-novia',
+]);
 
-  // 2. International Language & Currency Landing Pages (/en, /de, /fr, /it, /pt, /ru, /es-us, etc.)
-  for (const i18nRoute of Object.values(I18N_SEO_ROUTES)) {
-    routes.push({
-      url: `${baseUrl}/${i18nRoute.slug}`,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: 'daily',
-      priority: 0.95,
-      alternates: {
-        languages: hreflangLanguages,
-      },
+function buildBaseCanonicalRoutes(): BaseRouteSpec[] {
+  const baseRoutes: BaseRouteSpec[] = [];
+  const seenPaths = new Set<string>();
+
+  const pushRoute = (spec: BaseRouteSpec) => {
+    if (seenPaths.has(spec.path)) return;
+    seenPaths.add(spec.path);
+    baseRoutes.push(spec);
+  };
+
+  // 1. Homepage (1)
+  pushRoute({
+    path: '',
+    changeFrequency: 'daily',
+    priority: 1.0,
+  });
+
+  // 2. Specialized Niche & Interactive Hubs (17)
+  for (const hubSlug of ALL_STATIC_HUB_SLUGS) {
+    const priority =
+      hubSlug === 'halloween'
+        ? 0.7
+        : PERSONA_PRIORITY_SLUGS.has(hubSlug)
+        ? 0.98
+        : hubSlug === 'votar'
+        ? 0.9
+        : 0.95;
+
+    pushRoute({
+      path: `/${hubSlug}`,
+      changeFrequency: hubSlug === 'votar' ? 'weekly' : 'daily',
+      priority,
     });
   }
 
-  // 3. Age Landing Pages (e.g. /bebes-0-a-12-meses, /ninos-1-a-3-anos...)
-  for (const route of Object.values(SEO_AGE_ROUTES)) {
-    routes.push({
-      url: `${baseUrl}/${route.ageSlug}`,
-      lastModified: LAST_MODIFIED,
+  // 3. SEO Filter Landing Pages (44: categories, clothing, anime, wheels, budgets, gender)
+  for (const filterMeta of Object.values(SEO_FILTER_ROUTES)) {
+    pushRoute({
+      path: `/${filterMeta.slug}`,
+      changeFrequency: 'weekly',
+      priority: 0.85,
+    });
+  }
+
+  // 4. Age Stage Hubs (9) & Age Subcategory Landings (82)
+  for (const ageRoute of Object.values(SEO_AGE_ROUTES)) {
+    pushRoute({
+      path: `/${ageRoute.ageSlug}`,
       changeFrequency: 'daily',
       priority: 0.9,
     });
 
-    // 3. Subcategory Landing Pages (e.g. /bebes-0-a-12-meses/cochecitos-y-mobiliario-de-bebe)
-    const subcategories = getSubcategorySlugMap(route.ageId);
+    const subcategories = getSubcategorySlugMap(ageRoute.ageId);
     for (const sub of subcategories) {
-      routes.push({
-        url: `${baseUrl}/${route.ageSlug}/${sub.slug}`,
-        lastModified: LAST_MODIFIED,
+      pushRoute({
+        path: `/${ageRoute.ageSlug}/${sub.slug}`,
         changeFrequency: 'weekly',
         priority: 0.8,
       });
     }
   }
 
-  // 4. Mandatory Legal and Compliance Pages for Google & Amazon
-  const legalPages = ['aviso-legal', 'politica-de-privacidad', 'politica-de-cookies'];
-  for (const page of legalPages) {
-    routes.push({
-      url: `${baseUrl}/${page}`,
+  return baseRoutes;
+}
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const LAST_MODIFIED = new Date();
+  const baseRoutes = buildBaseCanonicalRoutes();
+  const i18nRoutes = Object.values(I18N_SEO_ROUTES);
+
+  const entries: MetadataRoute.Sitemap = [];
+
+  for (const base of baseRoutes) {
+    const alternates = {
+      languages: getHreflangAlternatesForPath(base.path),
+    };
+
+    // Root Spanish edition (153 routes)
+    entries.push({
+      url: `${BASE_SITE_URL}${base.path}`,
       lastModified: LAST_MODIFIED,
-      changeFrequency: 'monthly',
-      priority: 0.3,
+      changeFrequency: base.changeFrequency,
+      priority: base.priority,
+      alternates,
     });
+
+    // All 26 International Editions (26 × 153 = 3,978 routes -> 4,131 total)
+    for (const localeRoute of i18nRoutes) {
+      entries.push({
+        url: `${BASE_SITE_URL}/${localeRoute.slug}${base.path}`,
+        lastModified: LAST_MODIFIED,
+        changeFrequency: base.changeFrequency,
+        priority: Number(Math.max(0.5, base.priority - 0.05).toFixed(2)),
+        alternates,
+      });
+    }
   }
 
-  return routes;
+  return entries;
 }
