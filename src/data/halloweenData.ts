@@ -20,7 +20,7 @@ export const HALLOWEEN_PRICE_RANGES = [
 export const HALLOWEEN_PRODUCTS: HubProduct[] = [
   {
     id: 'hal-mascara-led-purga',
-    asin: 'B0BKGK9CX1',
+    asin: '',
     title: 'Máscara LED de Halloween La Purga con 3 Modos de Iluminación para Fiestas y Cosplay',
     category: 'mascaras',
     categoryLabel: 'Máscaras LED La Purga & Maquillaje FX',
@@ -42,7 +42,7 @@ export const HALLOWEEN_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'hal-set-arana-telarana-gigante',
-    asin: 'B0H74SJZHP',
+    asin: '',
     title: 'Set de Araña Gigante Peluda y Telaraña Triangular Exterior 5M con Estacas para Jardín',
     category: 'decoracion',
     categoryLabel: 'Decoración de Terror & Telarañas',
@@ -64,7 +64,7 @@ export const HALLOWEEN_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'hal-guirnalda-luces-calabaza-led',
-    asin: 'B0H4YFTBG6',
+    asin: '',
     title: 'Guirnalda de Luces Calabaza LED de Halloween 20 Bombillas con Efecto Cálido y Temporizador',
     category: 'luces-calabaza',
     categoryLabel: 'Calabazas LED & Iluminación',
@@ -86,8 +86,8 @@ export const HALLOWEEN_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'hal-disfraz-hinchable-gigante',
-    asin: 'B0HL8XLZXP',
-    title: 'Disfraz Hinchable Gigante para Adultos y Niños con Ventilador Automático Incorporado',
+    asin: '',
+    title: 'Disfraz Hinchable de Sumo Gigante para Adultos y Niños con Ventilador Automático',
     category: 'disfraces',
     categoryLabel: 'Disfraces Terror & Cosplay',
     brand: 'Party Fun',
@@ -97,13 +97,13 @@ export const HALLOWEEN_PRODUCTS: HubProduct[] = [
     reviewsCount: 14800,
     imageUrl: 'https://m.media-amazon.com/images/I/51cyA5X5WgL._AC_UL320_.jpg',
     badge: 'El Éxito de la Fiesta',
-    description: 'El disfraz más divertido y llamativo de la noche. Se infla en menos de 60 segundos gracias a su potente ventilador compacto integrado a batería y mantiene el volumen durante horas de fiesta.',
+    description: 'El disfraz hinchable de sumo más divertido y llamativo de la noche. Se infla en menos de 60 segundos gracias a su potente ventilador compacto integrado a batería y mantiene el volumen durante horas de fiesta.',
     pros: [
       'Inflado ultrarrápido y peso superligero gracias a su tejido antidesgarro',
       'Talla universal con cintura elástica de ajuste hermético',
       'Garantiza risas y fotos inolvidables en cualquier evento'
     ],
-    idealFor: 'Llegar a la fiesta de Halloween y ser el centro indiscutible de todas las miradas.',
-    searchQuery: 'disfraz hinchable gigante halloween fiesta risas'
+    idealFor: 'Llegar a la fiesta de Halloween o carnaval y ser el centro indiscutible de todas las miradas.',
+    searchQuery: 'disfraz hinchable sumo gigante halloween fiesta risas'
   }
 ];

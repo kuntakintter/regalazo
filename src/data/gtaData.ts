@@ -38,7 +38,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   {
     id: 'gta-poster-hwc-gta-6-a4',
     asin: 'B0HN5CL4PJ',
-    title: 'HWC Trading Grand Theft Auto VI Póster Enmarcado A4 Impreso',
+    title: 'HWC Trading Grand Theft Auto VI Póster Enmarcado A3 Impreso',
     category: 'setup',
     categoryLabel: 'Neón Vice City & Setup',
     priceText: '39,99 €',
@@ -46,10 +46,10 @@ export const GTA_PRODUCTS: GtaProduct[] = [
     rating: 4.8,
     reviewsCount: 310,
     imageUrl: 'https://m.media-amazon.com/images/I/716GcEOeCfL._AC_UL320_.jpg',
-    badge: 'Póster Exclusivo A4',
+    badge: 'Póster Exclusivo A3',
     description: 'Cuadro enmarcado de alta calidad con el arte promocional oficial de GTA VI (Lucia y Jason) y firmas serigrafiadas con acabado prémium listo para colgar.',
     pros: [
-      'Marco negro A4 de alta durabilidad con frontal transparente de seguridad',
+      'Marco negro A3 de alta durabilidad con frontal transparente de seguridad',
       'Acabado fotográfico nítido y firmas serigrafiadas de coleccionista',
       'El elemento de decoración de pared definitivo para la llegada de GTA 6'
     ],
@@ -59,7 +59,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   {
     id: 'gta-poster-hwc-vice-city-a4',
     asin: 'B0HN5945ZW',
-    title: 'HWC Trading Grand Theft Auto Vice City Póster Enmarcado A4',
+    title: 'HWC Trading Grand Theft Auto Vice City Póster Enmarcado Impreso',
     category: 'setup',
     categoryLabel: 'Neón Vice City & Setup',
     priceText: '39,99 €',
@@ -79,7 +79,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   },
   {
     id: 'gta-neon-palmera-horseneon',
-    asin: 'B0DK35J2QJ',
+    asin: '',
     title: 'Horseneon Lámpara de Neón LED Palmera Tropical Regulable USB',
     category: 'setup',
     categoryLabel: 'Neón Vice City & Setup',
@@ -100,7 +100,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   },
   {
     id: 'gta-lampara-sunset-atardecer',
-    asin: 'B09P8HS8CK',
+    asin: '',
     title: 'Sunset Lamp Lámpara de Atardecer LED USB con Rotación 360°',
     category: 'setup',
     categoryLabel: 'Neón Vice City & Setup',
@@ -121,7 +121,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   },
   {
     id: 'gta-tira-led-govee-rgbic-pro',
-    asin: 'B09BN2PSR8',
+    asin: '',
     title: 'Govee Tira LED 5M RGBIC Pro Wi-Fi Inteligente Segmentada',
     category: 'setup',
     categoryLabel: 'Neón Vice City & Setup',
@@ -142,30 +142,30 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   },
   {
     id: 'gta-alfombrilla-jialong-synthwave-xxl',
-    asin: 'B0CWRPZRQS',
-    title: 'JIALONG Alfombrilla Gaming XXL 900x400 mm Synthwave Retro Wave Neón',
+    asin: 'B0FBKKL88D',
+    title: 'Alfombrilla Gaming XXL 750x400 mm Neón Retro Synthwave',
     category: 'setup',
     categoryLabel: 'Neón Vice City & Setup',
-    priceText: '17,99 €',
-    priceNumeric: 17.99,
+    priceText: '25,77 €',
+    priceNumeric: 25.77,
     rating: 4.7,
     reviewsCount: 2310,
     imageUrl: 'https://m.media-amazon.com/images/I/71-YEIIU6gL._AC_UL320_.jpg',
     badge: 'Superficie XXL',
-    description: 'Alfombrilla gigante de 900 x 400 x 3 mm con ilustración de estilo retro wave synthwave con palmeras y sol ochentero. Base antideslizante de caucho natural.',
+    description: 'Alfombrilla extendida de 750 x 400 x 3 mm con diseño de neón retro Synthwave. Base antideslizante y bordes cosidos para juegos y oficina.',
     pros: [
       'Superficie microtexturizada de baja fricción para deslizamiento suave',
       'Costura perimetral reforzada antideshilachado de alta resistencia',
-      'Superficie impermeable resistente a salpicaduras de líquidos'
+      'Base de goma antideslizante pensada para escritorio y juegos'
     ],
     idealFor: 'Cubrir teclado y ratón con el look retro Vice City definitivo.',
-    searchQuery: 'JIALONG alfombrilla gaming xxl synthwave'
+    searchQuery: 'alfombrilla raton neon retro synthwave xxl'
   },
 
   // --- 2. MANDOS PS5 & PERIFÉRICOS ---
   {
     id: 'gta-mando-ps5-nova-pink',
-    asin: 'B09NMYBDZK',
+    asin: '',
     title: 'PlayStation 5 - Mando Inalámbrico DualSense Oficial Nova Pink',
     category: 'mandos',
     categoryLabel: 'Mandos PS5 & Periféricos',
@@ -186,7 +186,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   },
   {
     id: 'gta-mando-ps5-galactic-purple',
-    asin: 'B09NLJCVGB',
+    asin: '',
     title: 'PlayStation 5 - Mando Inalámbrico DualSense Oficial Galactic Purple',
     category: 'mandos',
     categoryLabel: 'Mandos PS5 & Periféricos',
@@ -207,7 +207,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   },
   {
     id: 'gta-auriculares-sony-pulse-3d',
-    asin: 'B0BF51VV1Y',
+    asin: '',
     title: 'PlayStation - Auriculares Inalámbricos Pulse 3D Oficiales PS5',
     category: 'mandos',
     categoryLabel: 'Mandos PS5 & Periféricos',
@@ -228,24 +228,24 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   },
   {
     id: 'gta-funda-silicona-playvital-neon',
-    asin: 'B0CPX9SJGJ',
-    title: 'PlayVital Funda de Silicona Antideslizante para Mando PS5 Neón',
+    asin: 'B08M3WY4RV',
+    title: 'PlayVital Funda de Silicona Antideslizante para Mando PS5',
     category: 'mandos',
     categoryLabel: 'Mandos PS5 & Periféricos',
-    priceText: '15,99 €',
-    priceNumeric: 15.99,
+    priceText: '13,99 €',
+    priceNumeric: 13.99,
     rating: 4.6,
     reviewsCount: 1850,
     imageUrl: 'https://m.media-amazon.com/images/I/71TdCZ6VENL._AC_UL320_.jpg',
     badge: 'Grip Antideslizante',
-    description: 'Funda protectora ergonómica de silicona suave en acabado degradado púrpura y magenta neón. Mejora el agarre y protege de caídas y sudor.',
+    description: 'Funda protectora ergonómica de silicona suave para el mando DualSense de PS5. Mejora el agarre y protege frente a golpes, arañazos y sudor.',
     pros: [
-      'Textura con partículas de agarre 3D que previene resbalones en partidas intensas',
+      'Textura antideslizante que previene resbalones en partidas intensas',
       'Cortes de precisión para todos los botones, puertos y altavoz',
-      'Incluye 8 pares de grips protectores para los joysticks analógicos'
+      'Silicona flexible ligera y fácil de colocar o retirar'
     ],
-    idealFor: 'Personalizar tu mando actual de PS5 con los colores de GTA VI por poco dinero.',
-    searchQuery: 'PlayVital funda silicona mando ps5 degradado'
+    idealFor: 'Personalizar y proteger tu mando actual de PS5 por poco dinero.',
+    searchQuery: 'PlayVital funda silicona mando ps5'
   },
   {
     id: 'gta-volante-logitech-g29',
@@ -270,7 +270,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   },
   {
     id: 'gta-soporte-base-carga-rgb-ps5',
-    asin: 'B0HCBTZKXR',
+    asin: '',
     title: 'Soporte Vertical Base PS5 con Carga Rápida Dual de Mandos e Iluminación RGB',
     category: 'mandos',
     categoryLabel: 'Mandos PS5 & Periféricos',
@@ -293,7 +293,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   // --- 3. ROPA & MERCH RETRO GTA ---
   {
     id: 'gta-camiseta-oficial-wanted',
-    asin: 'B0GJ7C3N8F',
+    asin: '',
     title: 'Camiseta Oficial Videojuego GTA Wanted Negra 100% Algodón',
     category: 'merch',
     categoryLabel: 'Ropa & Camisetas Retro',
@@ -314,7 +314,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   },
   {
     id: 'gta-sudadera-urbana-capucha',
-    asin: 'B0HJXYLK59',
+    asin: '',
     title: 'Sudadera con Capucha Estilo Videojuego Urbano GTA con Bolsillo Canguro',
     category: 'merch',
     categoryLabel: 'Ropa & Camisetas Retro',
@@ -335,7 +335,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   },
   {
     id: 'gta-gorra-securoserv-snapback',
-    asin: 'B0C4TM7MD8',
+    asin: '',
     title: 'Gorra de Béisbol SecuroServ GTA Estilo Urbano Hip Hop Ajustable',
     category: 'merch',
     categoryLabel: 'Ropa & Camisetas Retro',
@@ -356,7 +356,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   },
   {
     id: 'gta-taza-ceramica-franklin',
-    asin: 'B01ITHSCFU',
+    asin: '',
     title: 'Taza de Cerámica Oficial GTA Franklin & Los Santos 330 ml',
     category: 'merch',
     categoryLabel: 'Ropa & Camisetas Retro',
@@ -377,7 +377,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   },
   {
     id: 'gta-llavero-metalico-pyramid',
-    asin: 'B08LN4W6GQ',
+    asin: '',
     title: 'Llavero Metálico Oficial Pyramid International Grand Theft Auto V',
     category: 'merch',
     categoryLabel: 'Ropa & Camisetas Retro',
@@ -400,7 +400,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   // --- 4. COLECCIONISMO & SOPORTES ---
   {
     id: 'gta-coche-bburago-countach-124',
-    asin: 'B0CJJHRRN6',
+    asin: '',
     title: 'Bburago Model Kit 1:24 Coche Clásico Ochentero Lamborghini Countach',
     category: 'coleccion',
     categoryLabel: 'Coleccionismo & Soportes',
@@ -444,7 +444,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   // --- 5. JUEGOS, SALDO & CONSOLAS ---
   {
     id: 'gta-juego-gta-v-ps5',
-    asin: 'B09X5TX9CN',
+    asin: '',
     title: 'Grand Theft Auto V (PS5) Versión Oficial Remasterizada',
     category: 'juego',
     categoryLabel: 'Reserva & Tarjetas Saldo',
@@ -465,8 +465,8 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   },
   {
     id: 'gta-juego-trilogy-definitive-edition',
-    asin: 'B09L8TR9XK',
-    title: 'Grand Theft Auto: The Trilogy – The Definitive Edition (PS4 / PS5)',
+    asin: '',
+    title: 'Grand Theft Auto: The Trilogy – The Definitive Edition (PS4 / compatible PS5)',
     category: 'juego',
     categoryLabel: 'Reserva & Tarjetas Saldo',
     priceText: '29,99 €',
@@ -486,7 +486,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   },
   {
     id: 'gta-tarjeta-psn-50',
-    asin: 'B07JH7FMJM',
+    asin: '',
     title: 'PlayStation Store Tarjeta Regalo Digital 50 € (Código Inmediato)',
     category: 'juego',
     categoryLabel: 'Reserva & Tarjetas Saldo',
@@ -507,7 +507,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   },
   {
     id: 'gta-tarjeta-psn-100',
-    asin: 'B07SFNJ34Q',
+    asin: '',
     title: 'PlayStation Store Tarjeta Regalo Digital 100 € (Para Edición Deluxe GTA VI)',
     category: 'juego',
     categoryLabel: 'Reserva & Tarjetas Saldo',
@@ -528,7 +528,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   },
   {
     id: 'gta-tarjeta-xbox-50',
-    asin: 'B07VMB63CZ',
+    asin: '',
     title: 'Xbox Tarjeta Regalo Digital 50 € (Para Xbox Series X|S)',
     category: 'juego',
     categoryLabel: 'Reserva & Tarjetas Saldo',
@@ -549,7 +549,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   },
   {
     id: 'gta-consola-ps5-slim-1tb',
-    asin: 'B0CLTBHXWQ',
+    asin: '',
     title: 'Sony PlayStation 5 Consola Modelo Slim 1TB SSD Chasis D',
     category: 'juego',
     categoryLabel: 'Reserva & Tarjetas Saldo',

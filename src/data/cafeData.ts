@@ -31,7 +31,7 @@ export const CAFE_PRICE_RANGES = [
 export const CAFE_PRODUCTS: HubProduct[] = [
   {
     id: 'cafe-bialetti-moka-express',
-    asin: 'B008FOF86E',
+    asin: '',
     title: 'Bialetti Moka Express Cafetera Italiana Tradicional de Aluminio 3 Tazas',
     category: 'espresso',
     categoryLabel: 'Cafeteras Espresso & Moka',
@@ -54,7 +54,7 @@ export const CAFE_PRODUCTS: HubProduct[] = [
   {
     id: 'cafe-molinillo-timemore-c3',
     asin: 'B0CNG5JXLH',
-    title: 'TIMEMORE Chestnut C3 Molinillo de Café Manual con Muelas de Acero S2C',
+    title: 'TIMEMORE Chestnut C3 ESP Pro Molinillo de Café Manual con Muelas de Acero Inoxidable',
     category: 'molinillos',
     categoryLabel: 'Molinillos Manuales & Eléctricos',
     brand: 'Timemore',
@@ -71,17 +71,17 @@ export const CAFE_PRODUCTS: HubProduct[] = [
       'Tamaño compacto ideal para casa o llevar de viaje'
     ],
     idealFor: 'Quienes quieren dar el salto al café de especialidad recién molido.',
-    searchQuery: 'timemore c3 molinillo manual cafe muelas acero'
+    searchQuery: 'timemore chestnut c3 esp pro molinillo manual cafe'
   },
   {
     id: 'cafe-espumador-severin-induccion',
-    asin: 'B07XDT2Z6Y',
+    asin: 'B07XFP21FZ',
     title: 'Severin SM 3585 Espumador de Leche por Inducción Automático con Función Frío y Caliente',
     category: 'espumadores',
     categoryLabel: 'Espumadores de Leche & Jarras',
     brand: 'Otros',
-    priceText: '79,90 €',
-    priceNumeric: 79.9,
+    priceText: '95,60 €',
+    priceNumeric: 95.6,
     rating: 4.7,
     reviewsCount: 14500,
     imageUrl: 'https://m.media-amazon.com/images/I/6129yNaaq5L._AC_UL320_.jpg',
@@ -97,24 +97,24 @@ export const CAFE_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'cafe-termo-stanley-trigger-action',
-    asin: 'B0F5WZN97R',
-    title: 'Stanley Classic Trigger-Action Taza de Viaje Térmica de Acero Inoxidable 470ml',
+    asin: 'B0FZVP4JW8',
+    title: 'Stanley 1913 Transit Flip Top Taza Térmica de Viaje 470ml (Black 2.0)',
     category: 'termos',
     categoryLabel: 'Tazas Térmicas & Mugs (Stanley)',
     brand: 'Stanley',
-    priceText: '34,95 €',
-    priceNumeric: 34.95,
+    priceText: '33,95 €',
+    priceNumeric: 33.95,
     rating: 4.8,
     reviewsCount: 39000,
     imageUrl: 'https://m.media-amazon.com/images/I/51Jhz2zTiuL._AC_UL320_.jpg',
     badge: 'Conserva Caliente 7 Horas',
-    description: 'Aislamiento al vacío de doble pared que mantiene bebidas calientes 7h o heladas 30h. Botón de apertura con un solo dedo 100% a prueba de fugas.',
+    description: 'Aislamiento al vacío de doble pared que mantiene bebidas calientes o heladas durante horas. Tapa abatible Flip Top 100% a prueba de fugas.',
     pros: [
-      'Apertura con una sola mano mediante pulsador ergonómico',
+      'Tapa abatible Flip Top ergonómica para beber con comodidad sobre la marcha',
       'Cierre hermético total: no se derrama una sola gota en la mochila o coche',
       'Acero inoxidable 18/8 sin BPA apto para lavavajillas'
     ],
     idealFor: 'Llevar café caliente al trabajo, universidad o de viaje en coche.',
-    searchQuery: 'stanley classic trigger action taza termica viaje 470ml'
+    searchQuery: 'stanley 1913 transit flip top taza termica 0.47l'
   }
 ];

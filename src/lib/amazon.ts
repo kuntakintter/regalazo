@@ -96,8 +96,23 @@ export const DEAD_OR_INVALID_ASINS = new Set<string>([
   "B01NA0468M", "B09HYG88ZG", "B08HYG77ZE", "B0BN55M67T", "B01NA0468N",
   "B0793D953F", "B074WCNMYH", "B0855G6H7W", "B079D19K2K", "B006WZJA2Q",
   "B00TYD36Y2", "B08R92V7PH", "B002KCV7XA", "B0BN55M67U", "B0855G6H7X",
-  "B079D19K2L", "B00AQN697U", "B00TYD36Y3", "B075T7Z7Y8", "B00TYD36Y4"
+  "B079D19K2L", "B00AQN697U", "B00TYD36Y3", "B075T7Z7Y8", "B00TYD36Y4",
+  "B0D1PHR569"
 ]);
+
+/**
+ * Checks whether an ASIN string is syntactically valid (10 uppercase alphanumeric chars)
+ * and not listed as dead/placeholder.
+ */
+export function isValidActiveAsin(asin?: string): boolean {
+  const cleanAsin = asin?.trim() || '';
+  return (
+    cleanAsin.length === 10 &&
+    /^[A-Z0-9]{10}$/.test(cleanAsin) &&
+    !DEAD_OR_INVALID_ASINS.has(cleanAsin) &&
+    cleanAsin !== 'B0DLWK3LKH'
+  );
+}
 
 /**
  * Generates direct product link if ASIN is active and verified,
@@ -109,11 +124,7 @@ export function getAmazonProductUrl(asin?: string, searchQueryOrTitle?: string):
   const cleanAsin = asin?.trim() || '';
 
   // Valid, active, 10-character Amazon ASIN
-  if (
-    cleanAsin.length === 10 &&
-    !DEAD_OR_INVALID_ASINS.has(cleanAsin) &&
-    cleanAsin !== 'B0DLWK3LKH'
-  ) {
+  if (isValidActiveAsin(cleanAsin)) {
     return `${baseUrl}/dp/${encodeURIComponent(cleanAsin)}/?tag=${tag}&linkCode=ll1`;
   }
 

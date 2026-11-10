@@ -1,5 +1,5 @@
 import { Product } from '@/data/products';
-import { parsePrice, getAmazonProductUrl } from '@/lib/amazon';
+import { parsePrice, getAmazonProductUrl, isValidActiveAsin } from '@/lib/amazon';
 
 export function generateProductItemListSchema(products: Product[], listName?: string) {
   return {
@@ -9,6 +9,8 @@ export function generateProductItemListSchema(products: Product[], listName?: st
     numberOfItems: products.length,
     itemListElement: products.slice(0, 30).map((prod, idx) => {
       const priceNum = parsePrice(prod.priceText) || 25;
+      const cleanAsin = prod.asin?.trim();
+      const validAsin = cleanAsin && isValidActiveAsin(cleanAsin) ? cleanAsin : undefined;
       const directUrl = getAmazonProductUrl(prod.asin, prod.searchQuery || prod.title);
       return {
         '@type': 'ListItem',
@@ -20,7 +22,7 @@ export function generateProductItemListSchema(products: Product[], listName?: st
             ? prod.imageUrl
             : `https://www.unbuenregalo.es${prod.imageUrl}`,
           description: prod.description || prod.title,
-          ...(prod.asin ? { sku: prod.asin, mpn: prod.asin } : {}),
+          ...(validAsin ? { sku: validAsin, mpn: validAsin } : {}),
           brand: {
             '@type': 'Brand',
             name: prod.subcategory || prod.category || 'Un Buen Regalo',

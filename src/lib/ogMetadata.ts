@@ -67,6 +67,13 @@ export const HUB_OG_SNIPPETS: Record<string, SocialHubSnippet> = {
     imageUrl: 'https://images.unsplash.com/photo-1543258103-a62bdc069871?auto=format&fit=crop&w=1200&h=630&q=85',
     imageAlt: 'Árbol de Navidad decorado con luces cálidas y tren clásico navideño rodeando la base',
   },
+  halloween: {
+    title: 'Especial Halloween 2026: Disfraces, Decoración y Máscaras LED | Un Buen Regalo',
+    socialTitle: '🎃 Especial Halloween 2026: Disfraces, Telarañas Gigantes y Máscaras LED',
+    description: 'Todo para celebrar Halloween 2026: máscaras LED de La Purga, arañas y telarañas gigantes para exterior, disfraces hinchables y luces de calabaza en Amazon España.',
+    imageUrl: 'https://images.unsplash.com/photo-1508361001413-7a9dca21d08a?auto=format&fit=crop&w=1200&h=630&q=85',
+    imageAlt: 'Calabazas iluminadas y decoración nocturna especial Halloween',
+  },
 
   // Hubs por Rango de Edad
   'bebes-0-a-12-meses': {

@@ -33,7 +33,7 @@ export const GAMING_PRICE_RANGES = [
 export const GAMING_PRODUCTS: HubProduct[] = [
   {
     id: 'game-auriculares-hyperx-cloud-2',
-    asin: 'B076GT6XJ9',
+    asin: '',
     title: 'HyperX Cloud II Auriculares Gaming con Sonido Envolvente 7.1 Virtual',
     category: 'auriculares',
     categoryLabel: 'Auriculares & Audio',
@@ -77,13 +77,13 @@ export const GAMING_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'game-barra-luz-monitor-benq',
-    asin: 'B0CR1H394H',
-    title: 'Quntis Barra de Luz para Monitor de Ordenador con Control Táctil y Sin Reflejos',
+    asin: 'B0GL7M99NB',
+    title: 'Quntis 41 cm Barra de Luz para Monitor con Control Remoto y Sin Reflejos',
     category: 'iluminacion',
     categoryLabel: 'Iluminación RGB & Barras Monitor',
     brand: 'Otros',
-    priceText: '39,99 €',
-    priceNumeric: 39.99,
+    priceText: '37,99 €',
+    priceNumeric: 37.99,
     rating: 4.7,
     reviewsCount: 18400,
     imageUrl: '/images/products/game-barra-luz-monitor-benq-1.jpg',
@@ -99,7 +99,7 @@ export const GAMING_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'game-raton-razer-deathadder-essential',
-    asin: 'B092R5MCB3',
+    asin: '',
     title: 'Razer DeathAdder Essential Ratón Gaming con Sensor Óptico 6.400 DPI',
     category: 'ratones',
     categoryLabel: 'Ratones & Alfombrillas XXL',
@@ -122,28 +122,28 @@ export const GAMING_PRODUCTS: HubProduct[] = [
   {
     id: 'game-alfombrilla-steelseries-qck-xxl',
     asin: 'B00WAA2704',
-    title: 'SteelSeries QcK Heavy XXL Alfombrilla Gaming Gruesa de Tela Micro-Tejida (900 x 400 mm)',
+    title: 'SteelSeries QcK XXL Alfombrilla Gaming de Tela Micro-Tejida (900 x 400 mm)',
     category: 'ratones',
     categoryLabel: 'Ratones & Alfombrillas XXL',
     brand: 'SteelSeries',
-    priceText: '19,99 €',
-    priceNumeric: 19.99,
+    priceText: '44,99 €',
+    priceNumeric: 44.99,
     rating: 4.7,
     reviewsCount: 31000,
     imageUrl: '/images/products/game-alfombrilla-steelseries-qck-xxl-1.jpg',
-    badge: 'Indispensable Setup (<20€)',
+    badge: 'Indispensable Setup',
     description: 'Alfombrilla gigante de 900x400 mm con paño de microtejido exclusivo QcK optimizado para seguimiento con sensores láser y ópticos de bajo y alto CPI.',
     pros: [
-      'Base de goma antideslizante extra gruesa para máxima solidez en mesa',
+      'Base de goma antideslizante resistente para máxima solidez en mesa',
       'Superficie de tela micro-tejida legendaria con deslizamiento suave',
       'Tamaño extendido para cubrir teclado, ratón y reposamuñecas'
     ],
     idealFor: 'Gamers que quieren comodidad total en las muñecas y precisión de píxel en sus movimientos.',
-    searchQuery: 'steelseries qck heavy xxl alfombrilla gaming 900x400'
+    searchQuery: 'steelseries qck xxl alfombrilla gaming 900x400'
   },
   {
     id: 'game-lampara-playstation-paladone',
-    asin: 'B079CBP6P9',
+    asin: '',
     title: 'Paladone Lámpara Oficial Iconos PlayStation con 3 Modos de Iluminación y Reacción Sonora',
     category: 'iluminacion',
     categoryLabel: 'Iluminación RGB & Barras Monitor',
@@ -165,7 +165,7 @@ export const GAMING_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'game-soporte-auriculares-rgb-newbee',
-    asin: 'B09XQMFF1B',
+    asin: '',
     title: 'New Bee Soporte de Auriculares para Juegos con Iluminación RGB y 2 Puertos USB Hub',
     category: 'auriculares',
     categoryLabel: 'Auriculares & Audio',
@@ -187,7 +187,7 @@ export const GAMING_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'game-mando-inalambrico-8bitdo',
-    asin: 'B0C2V3QPN7',
+    asin: '',
     title: '8BitDo Ultimate C Mando Inalámbrico 2.4G para PC Windows 10/11, Steam Deck y Android',
     category: 'mandos',
     categoryLabel: 'Mandos Pro & Soporte',
@@ -209,7 +209,7 @@ export const GAMING_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'game-teclado-logitech-g213',
-    asin: 'B01L6L44NU',
+    asin: '',
     title: 'Logitech G213 Prodigy Teclado Gaming con Teclas Mech-Dome Resistente a Salpicaduras',
     category: 'teclados',
     categoryLabel: 'Teclados Mecánicos',
@@ -231,7 +231,7 @@ export const GAMING_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'game-teclado-steelseries-apex-3',
-    asin: 'B082YRCL4T',
+    asin: '',
     title: 'SteelSeries Apex 3 Teclado Gaming RGB con Reposamuñecas Magnético y Resistencia al Agua',
     category: 'teclados',
     categoryLabel: 'Teclados Mecánicos',
@@ -253,7 +253,7 @@ export const GAMING_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'game-auriculares-razer-blackshark-v2x',
-    asin: 'B0D4QVV1WV',
+    asin: 'B086PKMZ21',
     title: 'Razer BlackShark V2 X Auriculares Gaming Multiplataforma con Drivers TriForce 50mm',
     category: 'auriculares',
     categoryLabel: 'Auriculares & Audio',
@@ -275,13 +275,13 @@ export const GAMING_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'game-teclado-corsair-k55-rgb',
-    asin: 'B0H2WMGBPK',
+    asin: 'B08YDJ6DKN',
     title: 'Corsair K55 RGB PRO Teclado Gaming con 6 Teclas Macro Dedicadas y Software iCUE',
     category: 'teclados',
     categoryLabel: 'Teclados Mecánicos',
     brand: 'Corsair',
-    priceText: '59,99 €',
-    priceNumeric: 59.99,
+    priceText: '64,99 €',
+    priceNumeric: 64.99,
     rating: 4.5,
     reviewsCount: 12500,
     imageUrl: '/images/products/game-teclado-corsair-k55-rgb-1.jpg',

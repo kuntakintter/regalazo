@@ -50,7 +50,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   // CASCOS
   {
     id: 'moto-casco-ls2-modular',
-    asin: 'B0C7VX2L7Y',
+    asin: '',
     title: 'LS2 Strobe Casco Moto Modular Abatible con Doble Visera Solar',
     category: 'cascos',
     categoryLabel: 'Cascos de Moto',
@@ -73,7 +73,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   },
   {
     id: 'moto-casco-agv-k1s',
-    asin: 'B0FHKZMNV6',
+    asin: '',
     title: 'AGV K1 S Casco de Moto Integral Deportivo Homologado ECE 22.06',
     category: 'cascos',
     categoryLabel: 'Cascos de Moto',
@@ -96,14 +96,14 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   },
   {
     id: 'moto-casco-ls2-rapid',
-    asin: 'B0FXY5173Q',
-    title: 'LS2 Rapid II Casco Integral Urbano Ligero Antiarañazos',
+    asin: 'B0DFF7X5F6',
+    title: 'LS2 Rapid II Casco Integral Urbano Ligero Negro Brillo Antiarañazos (Talla XS)',
     category: 'cascos',
     categoryLabel: 'Cascos de Moto',
     style: 'integral',
     brand: 'LS2',
-    priceText: '69,90 €',
-    priceNumeric: 69.9,
+    priceText: '69,00 €',
+    priceNumeric: 69.0,
     rating: 4.5,
     reviewsCount: 2940,
     imageUrl: 'https://m.media-amazon.com/images/I/81pf7yGfy0L._AC_UL320_.jpg',
@@ -121,7 +121,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   // CHAQUETAS
   {
     id: 'moto-chaqueta-alpinestars-t-sps',
-    asin: 'B0F5BWQT1V',
+    asin: '',
     title: 'Alpinestars T-SPS Chaqueta de Moto Impermeable con Protecciones Nucleon Flex Plus',
     category: 'chaquetas',
     categoryLabel: 'Chaquetas y Protecciones',
@@ -144,7 +144,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   },
   {
     id: 'moto-chaqueta-dainese-sevilla',
-    asin: 'B094411SPK',
+    asin: '',
     title: 'Dainese Sevilla Air Tex Chaqueta de Moto de Verano Perforada Ultraligera',
     category: 'chaquetas',
     categoryLabel: 'Chaquetas y Protecciones',
@@ -169,7 +169,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   // GUANTES
   {
     id: 'moto-guantes-alpinestars-smx1',
-    asin: 'B078HH9N1F',
+    asin: '',
     title: 'Alpinestars SMX-1 Air V2 Guantes de Moto de Cuero y Malla con Nudillos de Carbono',
     category: 'guantes',
     categoryLabel: 'Guantes Homologados',
@@ -192,14 +192,14 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   },
   {
     id: 'moto-guantes-dainese-nembo',
-    asin: 'B0GSW197P4',
-    title: 'Dainese Nembo Gore-Tex Guantes de Invierno Térmicos 100% Impermeables',
+    asin: 'B07WPVTWY7',
+    title: 'Dainese Nembo Gore-Tex Guantes de Invierno Térmicos 100% Impermeables (Negro, Talla M)',
     category: 'guantes',
     categoryLabel: 'Guantes Homologados',
     style: 'invierno',
     brand: 'Dainese',
-    priceText: '149,00 €',
-    priceNumeric: 149.0,
+    priceText: '197,88 €',
+    priceNumeric: 197.88,
     rating: 4.8,
     reviewsCount: 750,
     imageUrl: 'https://m.media-amazon.com/images/I/51RIdrzJpHL._AC_UL320_.jpg',
@@ -217,7 +217,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   // INTERCOMUNICADORES
   {
     id: 'moto-intercom-cardo-spirit',
-    asin: 'B09MQ7R1D8',
+    asin: '',
     title: 'Cardo Spirit Intercomunicador de Moto Bluetooth HD con Altavoces de 32 mm',
     category: 'intercom',
     categoryLabel: 'Intercomunicadores & Audio',
@@ -239,7 +239,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   },
   {
     id: 'moto-soporte-quadlock-amortiguador',
-    asin: 'B0D9X94TSZ',
+    asin: '',
     title: 'Quad Lock Amortiguador de Vibraciones para Soporte de Móvil en Manillar de Moto',
     category: 'intercom',
     categoryLabel: 'Intercomunicadores & Audio',
@@ -263,7 +263,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   // ANTIRROBO
   {
     id: 'moto-antirrobo-alarma-disco',
-    asin: 'B09MW8RFSY',
+    asin: '',
     title: 'Antirrobo Disco de Moto con Alarma Sonora 110dB y Cable Recordatorio de Seguridad',
     category: 'antirrobo',
     categoryLabel: 'Antirrobos & Candados',
@@ -285,13 +285,13 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   },
   {
     id: 'moto-candado-oxford-boss',
-    asin: 'B0H1WF59M8',
+    asin: 'B00F0NHINO',
     title: 'Oxford Boss Candado de Disco Antirrobo Homologado Sold Secure Gold',
     category: 'antirrobo',
     categoryLabel: 'Antirrobos & Candados',
     brand: 'Oxford',
-    priceText: '74,90 €',
-    priceNumeric: 74.9,
+    priceText: '65,00 €',
+    priceNumeric: 65.0,
     rating: 4.7,
     reviewsCount: 1890,
     imageUrl: 'https://m.media-amazon.com/images/I/618jxcRJdmL._AC_UL320_.jpg',
@@ -309,7 +309,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   // ACCESORIOS Y MANTENIMIENTO
   {
     id: 'moto-mochila-pierna-impermeable',
-    asin: 'B0DZ6QQCRR',
+    asin: '',
     title: 'Bolsa de Pierna Táctica para Moto Impermeable con Múltiples Bolsillos',
     category: 'accesorios',
     categoryLabel: 'Accesorios & Mantenimiento',
@@ -331,13 +331,13 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   },
   {
     id: 'moto-kit-limpiador-cascos-motul',
-    asin: 'B075DDVT8C',
+    asin: 'B073RDF4NT',
     title: 'Motul MC Care M1 + M2 Kit Limpieza de Casco Exterior e Interior Desinfectante',
     category: 'accesorios',
     categoryLabel: 'Accesorios & Mantenimiento',
     brand: 'Otros',
-    priceText: '19,50 €',
-    priceNumeric: 19.5,
+    priceText: '23,90 €',
+    priceNumeric: 23.9,
     rating: 4.7,
     reviewsCount: 5120,
     imageUrl: 'https://m.media-amazon.com/images/I/51kQzJ5wiuL._AC_UL320_.jpg',

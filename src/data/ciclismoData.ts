@@ -31,13 +31,13 @@ export const CICLISMO_PRICE_RANGES = [
 export const CICLISMO_PRODUCTS: HubProduct[] = [
   {
     id: 'bici-radar-garmin-varia',
-    asin: 'B08GCNH9JC',
+    asin: 'B08923YLTD',
     title: 'Garmin Varia RTL515 Radar Trasero de Bicicleta con Luz Trasera Inteligente',
     category: 'luces',
     categoryLabel: 'Luces & Radares de Seguridad',
     brand: 'Garmin',
-    priceText: '169,99 €',
-    priceNumeric: 169.99,
+    priceText: '169,95 €',
+    priceNumeric: 169.95,
     rating: 4.8,
     reviewsCount: 12400,
     imageUrl: 'https://m.media-amazon.com/images/I/512uH7+gi+L._AC_UL320_.jpg',
@@ -54,28 +54,28 @@ export const CICLISMO_PRODUCTS: HubProduct[] = [
   {
     id: 'bici-gps-garmin-edge-530',
     asin: 'B0C2KMXRFV',
-    title: 'Garmin Edge 530 Ciclocomputador GPS con Mapa de Rutas Garmin Cycle Map',
+    title: 'Garmin Edge 540 Ciclocomputador GPS Compacto con Botones y Entrenamiento Adaptativo',
     category: 'gps',
     categoryLabel: 'Ciclocomputadores & GPS',
     brand: 'Garmin',
-    priceText: '199,00 €',
-    priceNumeric: 199.0,
+    priceText: '241,99 €',
+    priceNumeric: 241.99,
     rating: 4.7,
     reviewsCount: 11200,
     imageUrl: 'https://m.media-amazon.com/images/I/61-4nSEkgrL._AC_UL320_.jpg',
     badge: 'Referente Mundial en Navegación',
-    description: 'Control de rendimiento dinámico con información sobre VO2 máximo, recuperación, aclimatación al calor y altitud y función ClimbPro.',
+    description: 'Control de rendimiento dinámico con información sobre VO2 máximo, recuperación, entrenamiento adaptativo, aclimatación al calor y altitud y función ClimbPro.',
     pros: [
       'Función ClimbPro para ver pendientes y desnivel restante en subidas',
-      'Autonomía de hasta 20 horas con GPS de alta precisión',
+      'Botones físicos de alta fiabilidad con gran autonomía GPS',
       'Alertas de nutrición e hidratación personalizadas en ruta'
     ],
     idealFor: 'Ciclistas de carretera y montaña que quieren seguir rutas y medir su progreso.',
-    searchQuery: 'garmin edge 530 ciclocomputador gps bicicleta'
+    searchQuery: 'garmin edge 540 ciclocomputador gps bicicleta'
   },
   {
     id: 'bici-multiherramienta-topeak',
-    asin: 'B078NZMTMR',
+    asin: '',
     title: 'Topeak Hexus X Multiherramienta de Ciclismo 21 Funciones con Tronchacadenas',
     category: 'herramientas',
     categoryLabel: 'Herramientas & Bombas CO2',
@@ -97,7 +97,7 @@ export const CICLISMO_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'bici-lubricante-squirt-lube',
-    asin: 'B07VVDHMH1',
+    asin: '',
     title: 'Squirt Lube Lubricante de Cadena de Bicicleta con Cera Biodegradable 120ml',
     category: 'mantenimiento',
     categoryLabel: 'Cera de Cadena & Limpieza',
@@ -119,7 +119,7 @@ export const CICLISMO_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'bici-bolsa-cuadro-rockbros',
-    asin: 'B07WPH2W2W',
+    asin: '',
     title: 'Rockbros Bolsa de Cuadro Impermeable para Bicicleta con Soporte Táctil Móvil',
     category: 'bolsas',
     categoryLabel: 'Bolsas Cuadro & Hidratación',

@@ -48,7 +48,7 @@ export const AUTOMOVIL_PRICE_RANGES = [
 export const AUTOMOVIL_PRODUCTS: HubProduct[] = [
   {
     id: 'auto-arrancador-noco-gb40',
-    asin: 'B015TKUPIC',
+    asin: '',
     title: 'NOCO Boost Plus GB40 Arrancador de Batería de Coche Litio 1000A 12V',
     category: 'arrancadores',
     categoryLabel: 'Arrancadores & Baterías',
@@ -70,7 +70,7 @@ export const AUTOMOVIL_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'auto-dashcam-70mai-a500s',
-    asin: 'B07J376659',
+    asin: '',
     title: '70mai Dash Cam Pro Plus+ A500S Cámara para Coche 2.7K QHD con GPS y WiFi',
     category: 'dashcam',
     categoryLabel: 'Dashcams & Cámaras',
@@ -92,7 +92,7 @@ export const AUTOMOVIL_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'auto-compresor-xiaomi-2',
-    asin: 'B0CBBP8BQX',
+    asin: '',
     title: 'Xiaomi Portable Electric Air Compressor 2 Compresor de Aire Portátil Digital',
     category: 'compresores',
     categoryLabel: 'Compresores & Neumáticos',
@@ -114,7 +114,7 @@ export const AUTOMOVIL_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'auto-detailing-meguiars-kit',
-    asin: 'B08N1C99LS',
+    asin: '',
     title: 'Meguiar\'s Kit Limpieza y Cuidado Completo Coche con Champú, Cera y Toalla',
     category: 'detailing',
     categoryLabel: 'Detailing & Limpieza',
@@ -136,7 +136,7 @@ export const AUTOMOVIL_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'auto-soporte-baseus-magsafe',
-    asin: 'B0FH718YHX',
+    asin: '',
     title: 'Baseus Soporte de Coche Magnético MagSafe con Carga Rápida Inalámbrica 15W',
     category: 'gadgets',
     categoryLabel: 'Soportes & Gadgets Viaje',
@@ -158,8 +158,8 @@ export const AUTOMOVIL_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'auto-diagnosis-obd2-bluetooth',
-    asin: 'B0D4Y77CYX',
-    title: 'Vgate iCar Pro Bluetooth 4.0 Escáner de Diagnosis OBD2 para Coche y App Móvil',
+    asin: '',
+    title: 'Vgate iCar Pro 2S Bluetooth Escáner de Diagnosis OBD2 para iOS, Android y Windows',
     category: 'diagnostico',
     categoryLabel: 'Diagnosis OBD2 & Motor',
     brand: 'Otros',
@@ -176,6 +176,6 @@ export const AUTOMOVIL_PRODUCTS: HubProduct[] = [
       'Modo de suspensión automática que no gasta la batería del vehículo'
     ],
     idealFor: 'Conductores curiosos y amantes de la mecánica que quieren controlar su coche.',
-    searchQuery: 'vgate icar pro obd2 bluetooth scanner diagnosis coche'
+    searchQuery: 'vgate icar pro 2s obd2 bluetooth scanner diagnosis coche'
   }
 ];

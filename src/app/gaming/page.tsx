@@ -359,7 +359,7 @@ export default function GamingPage() {
                 </ul>
               </div>
               <a
-                href={getAmazonProductUrl('B076GT6XJ9', 'hyperx cloud ii auriculares gaming 7.1')}
+                href={getAmazonProductUrl('', 'hyperx cloud ii auriculares gaming 7.1')}
                 target="_blank"
                 rel="nofollow noopener noreferrer"
                 className="w-full py-2.5 px-4 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs text-center shadow-md transition-all flex items-center justify-center gap-1.5 cursor-pointer"
@@ -455,7 +455,7 @@ export default function GamingPage() {
                 </ul>
               </div>
               <a
-                href={getAmazonProductUrl('B092R5MCB3', 'razer deathadder essential raton gaming 6400 dpi')}
+                href={getAmazonProductUrl('', 'razer deathadder essential raton gaming 6400 dpi')}
                 target="_blank"
                 rel="nofollow noopener noreferrer"
                 className="w-full py-2.5 px-4 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-black text-xs text-center shadow-md transition-all flex items-center justify-center gap-1.5 cursor-pointer"

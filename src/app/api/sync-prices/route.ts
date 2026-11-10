@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { PRODUCTS } from '@/data/products';
-import { DEAD_OR_INVALID_ASINS } from '@/lib/amazon';
+import { isValidActiveAsin } from '@/lib/amazon';
 import https from 'https';
 
 export const dynamic = 'force-dynamic';
@@ -92,8 +92,8 @@ export async function GET(request: Request) {
 
     // Filter target ASIN or batch (skipping known dead/404 ASINs in batch mode)
     const itemsToProcess = targetAsin
-      ? PRODUCTS.filter((p) => p.asin === targetAsin)
-      : PRODUCTS.filter((p) => p.asin && !DEAD_OR_INVALID_ASINS.has(p.asin)).slice(0, Math.min(limit, 25));
+      ? PRODUCTS.filter((p) => p.asin === targetAsin && isValidActiveAsin(p.asin))
+      : PRODUCTS.filter((p) => isValidActiveAsin(p.asin)).slice(0, Math.min(limit, 25));
 
     // Try official Creators API token
     let apiToken: string | null = null;
@@ -135,7 +135,7 @@ export async function GET(request: Request) {
       let livePrice: string | null = null;
       let source: 'creators_api' | 'live_fetch' | 'cached' = 'cached';
 
-      if (!DEAD_OR_INVALID_ASINS.has(item.asin)) {
+      if (isValidActiveAsin(item.asin)) {
         // Fallback: direct live fetch (reliable & works without 30-day sales requirement)
         livePrice = await fetchLivePriceDirect(item.asin);
         if (livePrice) {

@@ -46,7 +46,7 @@ export const MASCOTAS_PRICE_RANGES = [
 export const MASCOTAS_PRODUCTS: MascotaProduct[] = [
   {
     id: 'pet-kong-classic-rellenable',
-    asin: 'B0002AR0I8',
+    asin: '',
     title: 'KONG Classic - Juguete de Caucho Natural Rellenable Antiansiedad para Perros',
     category: 'kong-ansiedad',
     categoryLabel: 'Juguetes KONG & Ansiedad al Comer',
@@ -69,7 +69,7 @@ export const MASCOTAS_PRODUCTS: MascotaProduct[] = [
   },
   {
     id: 'pet-lick-mat-alfombrilla-lamido',
-    asin: 'B0BBGM79PG',
+    asin: '',
     title: 'Lick Mat - Alfombrilla de Lamido Antiansiedad con Ventosas y Comedero Lento',
     category: 'kong-ansiedad',
     categoryLabel: 'Juguetes KONG & Ansiedad al Comer',
@@ -92,7 +92,7 @@ export const MASCOTAS_PRODUCTS: MascotaProduct[] = [
   },
   {
     id: 'pet-trixie-bola-heno-dispensador',
-    asin: 'B000V9H9R2',
+    asin: '',
     title: 'TRIXIE Bola Dispensadora de Heno y Golosinas Metálica para Conejos y Pequeños Roedores',
     category: 'kong-ansiedad',
     categoryLabel: 'Juguetes KONG & Ansiedad al Comer',
@@ -115,7 +115,7 @@ export const MASCOTAS_PRODUCTS: MascotaProduct[] = [
   },
   {
     id: 'pet-comedero-antivoracidad-lento',
-    asin: 'B0CNXMMKHY',
+    asin: '',
     title: 'Comedero Antivoracidad para Perros y Gatos - Plato de Alimentación Lenta Antiasfixia',
     category: 'kong-ansiedad',
     categoryLabel: 'Juguetes KONG & Ansiedad al Comer',
@@ -138,7 +138,7 @@ export const MASCOTAS_PRODUCTS: MascotaProduct[] = [
   },
   {
     id: 'pet-trixie-tunel-mimbre-conejos',
-    asin: 'B002TDV7AS',
+    asin: '',
     title: 'TRIXIE Túnel de Mimbre Natural para Conejos y Cobayas - Nido y Juguete Masticable',
     category: 'juguetes',
     categoryLabel: 'Juguetes Interactivos & Puzzles',
@@ -161,7 +161,7 @@ export const MASCOTAS_PRODUCTS: MascotaProduct[] = [
   },
   {
     id: 'pet-gps-tractive-perro',
-    asin: 'B0D6Z4L6BW',
+    asin: '',
     title: 'Tractive Localizador GPS para Perros 100% Resistente al Agua con Seguimiento en Vivo',
     category: 'gps',
     categoryLabel: 'Localizadores GPS & Seguridad',
@@ -184,7 +184,7 @@ export const MASCOTAS_PRODUCTS: MascotaProduct[] = [
   },
   {
     id: 'pet-fuente-catit-pixi',
-    asin: 'B096WB6PBD',
+    asin: '',
     title: 'Catit PIXI Fuente de Agua Inteligente para Gatos con Triple Filtro 2,5 Litros',
     category: 'comederos',
     categoryLabel: 'Comederos & Fuentes Inteligentes',
@@ -207,7 +207,7 @@ export const MASCOTAS_PRODUCTS: MascotaProduct[] = [
   },
   {
     id: 'pet-arnes-julius-k9',
-    asin: 'B0B2S44RFH',
+    asin: '',
     title: 'Julius-K9 IDC Power Arnés Ergonómico para Perros Antitirones de Alta Resistencia',
     category: 'viaje',
     categoryLabel: 'Transportines & Fundas de Coche',
@@ -230,7 +230,7 @@ export const MASCOTAS_PRODUCTS: MascotaProduct[] = [
   },
   {
     id: 'pet-cepillo-furminator-deslanador',
-    asin: 'B07NSL5MD8',
+    asin: '',
     title: 'FURminator Herramienta de Muda de Pelo para Perros y Gatos con Botón FURejector',
     category: 'gadgets',
     categoryLabel: 'Cámaras con Dispensador & Cepillos',
