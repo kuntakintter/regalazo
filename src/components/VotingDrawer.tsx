@@ -52,6 +52,7 @@ export default function VotingDrawer() {
     <div className="fixed inset-0 z-50 flex justify-end">
       {/* Backdrop */}
       <div
+        aria-hidden="true"
         className="fixed inset-0 bg-slate-950/60 backdrop-blur-xs transition-opacity animate-in fade-in duration-200"
         onClick={() => setIsDrawerOpen(false)}
       />
@@ -73,14 +74,15 @@ export default function VotingDrawer() {
               <h2 className="font-black text-slate-900 text-base leading-tight">
                 Votación en Grupo
               </h2>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-slate-600">
                 {voteItems.length} de 4 productos ideales
               </p>
             </div>
           </div>
           <button
+            type="button"
             onClick={() => setIsDrawerOpen(false)}
-            className="w-8 h-8 rounded-full hover:bg-slate-200 text-slate-500 hover:text-slate-900 flex items-center justify-center transition-colors cursor-pointer"
+            className="w-8 h-8 rounded-full hover:bg-slate-200 text-slate-600 hover:text-slate-900 flex items-center justify-center transition-colors cursor-pointer"
             aria-label="Cerrar panel"
           >
             <X className="w-5 h-5" />
@@ -99,11 +101,11 @@ export default function VotingDrawer() {
             <div className="grid grid-cols-3 gap-2 text-center">
               {/* Step 1 */}
               <div className="p-2 bg-white rounded-xl border border-amber-100/90 shadow-2xs flex flex-col items-center">
-                <span className="w-7 h-7 rounded-full bg-rose-100 text-rose-600 font-black text-xs flex items-center justify-center mb-1 shadow-2xs">
+                <span className="w-7 h-7 rounded-full bg-rose-100 text-rose-700 font-black text-xs flex items-center justify-center mb-1 shadow-2xs">
                   ❤️
                 </span>
                 <strong className="text-[11px] font-bold text-slate-900 leading-tight">1. Elige</strong>
-                <span className="text-[10px] text-slate-500 leading-tight mt-0.5">2 a 4 regalos con el corazón</span>
+                <span className="text-[10px] text-slate-600 leading-tight mt-0.5">2 a 4 regalos con el corazón</span>
               </div>
 
               {/* Step 2 */}
@@ -112,7 +114,7 @@ export default function VotingDrawer() {
                   📲
                 </span>
                 <strong className="text-[11px] font-bold text-slate-900 leading-tight">2. Comparte</strong>
-                <span className="text-[10px] text-slate-500 leading-tight mt-0.5">Envía el link al grupo de WhatsApp</span>
+                <span className="text-[10px] text-slate-600 leading-tight mt-0.5">Envía el link al grupo de WhatsApp</span>
               </div>
 
               {/* Step 3 */}
@@ -121,7 +123,7 @@ export default function VotingDrawer() {
                   🗳️
                 </span>
                 <strong className="text-[11px] font-bold text-slate-900 leading-tight">3. ¡Votan!</strong>
-                <span className="text-[10px] text-slate-500 leading-tight mt-0.5">Deciden el ganador en 1 clic</span>
+                <span className="text-[10px] text-slate-600 leading-tight mt-0.5">Deciden el ganador en 1 clic</span>
               </div>
             </div>
           </div>
@@ -137,7 +139,7 @@ export default function VotingDrawer() {
               value={recipientName}
               onChange={(e) => setRecipientName(e.target.value)}
               placeholder="Ej: Cumple de Carlos, Amigo Invisible, Laura..."
-              className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 text-sm text-slate-900 placeholder-slate-400 outline-none transition-all"
+              className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 text-sm text-slate-900 placeholder-slate-500 outline-none transition-all"
             />
           </div>
 
@@ -151,7 +153,7 @@ export default function VotingDrawer() {
                 <button
                   type="button"
                   onClick={clearList}
-                  className="text-[11px] text-rose-600 hover:text-rose-700 font-bold hover:underline cursor-pointer"
+                  className="text-[11px] text-rose-700 hover:text-rose-800 font-bold hover:underline cursor-pointer"
                 >
                   Vaciar lista
                 </button>
@@ -161,10 +163,10 @@ export default function VotingDrawer() {
             {voteItems.length === 0 ? (
               <div className="p-8 text-center bg-slate-50 rounded-2xl border-2 border-dashed border-slate-200">
                 <span className="text-3xl block mb-2">🎁</span>
-                <p className="text-sm font-bold text-slate-700 mb-1">
+                <p className="text-sm font-bold text-slate-800 mb-1">
                   Tu lista de votación está vacía
                 </p>
-                <p className="text-xs text-slate-500 mb-4">
+                <p className="text-xs text-slate-600 mb-4">
                   Navega por la web y pulsa el corazón ❤️ en los productos que más te gusten para añadirlos aquí.
                 </p>
                 <button
@@ -190,14 +192,15 @@ export default function VotingDrawer() {
                         src={item.imageUrl}
                         alt={item.title}
                         fill
+                        sizes="56px"
                         className="object-contain p-1"
                         unoptimized={item.imageUrl.startsWith('http')}
                       />
                     </div>
                     <div className="flex-1 min-w-0 pr-1">
-                      <h4 className="text-xs font-bold text-slate-900 line-clamp-1 leading-tight">
+                      <p className="text-xs font-bold text-slate-900 line-clamp-1 leading-tight">
                         {item.title}
-                      </h4>
+                      </p>
                       <div className="flex items-center gap-2 mt-0.5">
                         <span className="text-xs font-black text-slate-950">
                           {formatPrice(item.priceText)}
@@ -208,7 +211,7 @@ export default function VotingDrawer() {
                     <button
                       type="button"
                       onClick={() => removeItem(item.id)}
-                      className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer shrink-0"
+                      className="min-w-7 min-h-7 flex items-center justify-center p-1.5 rounded-lg text-slate-600 hover:text-rose-700 hover:bg-rose-50 transition-colors cursor-pointer shrink-0"
                       title="Eliminar de la votación"
                       aria-label={`Eliminar ${item.title} de la votación`}
                     >
@@ -228,7 +231,7 @@ export default function VotingDrawer() {
             <button
               type="button"
               onClick={handleShareWhatsApp}
-              className="w-full py-3 px-4 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-black text-sm flex items-center justify-center gap-2 shadow-md transition-transform hover:scale-102 active:scale-98 cursor-pointer"
+              className="w-full py-3 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-black text-sm flex items-center justify-center gap-2 shadow-md transition-transform hover:scale-102 active:scale-98 cursor-pointer"
             >
               <Share2 className="w-4 h-4" />
               <span>Compartir votación por WhatsApp</span>

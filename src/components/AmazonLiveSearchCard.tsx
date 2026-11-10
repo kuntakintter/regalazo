@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import { getAmazonSearchUrl } from '@/lib/amazon';
-import { Search, ExternalLink, ShoppingCart, ArrowRight } from 'lucide-react';
+import { useCurrency } from '@/context/CurrencyContext';
+import { Search, ExternalLink, ShoppingCart } from 'lucide-react';
 
 interface AmazonLiveSearchCardProps {
   currentTheme: string;
@@ -15,6 +16,7 @@ export default function AmazonLiveSearchCard({
   initialQuery = '',
   selectedPrice = 'all'
 }: AmazonLiveSearchCardProps) {
+  const { amazonRegion, amazonSiteName, currency } = useCurrency();
   const [customTerm, setCustomTerm] = useState(initialQuery);
   const [activeBudget, setActiveBudget] = useState(selectedPrice);
 
@@ -26,12 +28,28 @@ export default function AmazonLiveSearchCard({
   }, [initialQuery]);
 
   const queryToSearch = (customTerm.trim() || initialQuery.trim() || 'regalos originales ninos jovenes');
-  
-  // Construct destination URL with affiliate tag vapegadgets22-21
+
+  const budgetKeyword =
+    amazonRegion === 'intl'
+      ? activeBudget === '<20'
+        ? 'under 20 dollars'
+        : activeBudget === '20-50'
+        ? '20 to 50 dollars'
+        : activeBudget === '50-100'
+        ? '50 to 100 dollars'
+        : 'over 100 dollars'
+      : activeBudget === '<20'
+      ? 'menos de 20 euros'
+      : activeBudget === '20-50'
+      ? '20 a 50 euros'
+      : activeBudget === '50-100'
+      ? '50 a 100 euros'
+      : 'mas de 100 euros';
+
+  // Construct destination URL with regional affiliate tag (vapegadgets22-21 ES / vapegadgets22-20 INTL)
   const amazonSearchUrl = getAmazonSearchUrl(
-    activeBudget !== 'all' 
-      ? `${queryToSearch} ${activeBudget === '<20' ? 'menos de 20 euros' : activeBudget === '20-50' ? '20 a 50 euros' : activeBudget === '50-100' ? '50 a 100 euros' : 'mas de 100 euros'}`
-      : queryToSearch
+    activeBudget !== 'all' ? `${queryToSearch} ${budgetKeyword}` : queryToSearch,
+    amazonRegion
   );
 
   const isDark = currentTheme === 'emo' || currentTheme === 'gamer';
@@ -55,20 +73,20 @@ export default function AmazonLiveSearchCard({
         <div className="flex-1 text-center md:text-left">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black bg-amber-400 text-slate-950 shadow-xs mb-3 border border-amber-500/20">
             <ShoppingCart className="w-3.5 h-3.5" />
-            <span>Buscador Oficial de Amazon España</span>
+            <span>Buscador Oficial de {amazonSiteName}</span>
           </div>
 
-          <h3 className={`text-lg sm:text-2xl font-black tracking-tight leading-snug mb-1.5 ${
+          <h2 className={`text-lg sm:text-2xl font-black tracking-tight leading-snug mb-1.5 ${
             isDark ? 'text-white' : 'text-slate-900'
           }`}>
             {customTerm ? (
               <span>
-                ¿Buscas <span className="text-amber-400">&quot;{customTerm}&quot;</span> en Amazon?
+                ¿Buscas <span className={isDark ? 'text-amber-300' : 'text-amber-800'}>&quot;{customTerm}&quot;</span> en Amazon?
               </span>
             ) : (
               <span>¿Buscas un producto específico en Amazon?</span>
             )}
-          </h3>
+          </h2>
 
           <p className={`text-xs sm:text-sm leading-relaxed max-w-xl ${
             isDark ? 'text-slate-300' : 'text-slate-600'
@@ -79,21 +97,22 @@ export default function AmazonLiveSearchCard({
           {/* Quick budget pills */}
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-1.5 mt-3">
             <span className={`text-[11px] font-bold ${
-              isDark ? 'text-slate-400' : 'text-slate-500'
+              isDark ? 'text-slate-300' : 'text-slate-600'
             }`}>
               Filtrar por:
             </span>
             {[
               { id: 'all', label: 'Cualquier precio' },
-              { id: '<20', label: '< 20 €' },
-              { id: '20-50', label: '20 - 50 €' },
-              { id: '50-100', label: '50 - 100 €' },
-              { id: '>100', label: '> 100 €' }
+              { id: '<20', label: currency === 'USD' ? '< $20' : '< 20 €' },
+              { id: '20-50', label: currency === 'USD' ? '$20 - $50' : '20 - 50 €' },
+              { id: '50-100', label: currency === 'USD' ? '$50 - $100' : '50 - 100 €' },
+              { id: '>100', label: currency === 'USD' ? '> $100' : '> 100 €' }
             ].map(b => (
               <button
                 key={b.id}
+                type="button"
                 onClick={() => setActiveBudget(b.id)}
-                className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all border cursor-pointer ${
+                className={`px-2.5 py-1 min-h-7 rounded-lg text-[11px] font-bold transition-all border cursor-pointer ${
                   activeBudget === b.id
                     ? 'bg-amber-400 text-slate-950 border-amber-500 shadow-xs'
                     : isDark
@@ -118,11 +137,11 @@ export default function AmazonLiveSearchCard({
               placeholder="Ej. Colonia One Million, Scalextric..."
               className={`w-full py-2.5 pl-9 pr-3 rounded-xl text-xs sm:text-sm border outline-none font-medium transition-colors ${
                 isDark
-                  ? 'bg-neutral-800 border-neutral-700 text-white placeholder-neutral-500 focus:border-[#FF9900]'
-                  : 'bg-white border-slate-300 text-slate-900 placeholder-slate-400 focus:border-[#FF9900]'
+                  ? 'bg-neutral-800 border-neutral-700 text-white placeholder-neutral-400 focus:border-[#FF9900]'
+                  : 'bg-white border-slate-300 text-slate-900 placeholder-slate-500 focus:border-[#FF9900]'
               }`}
             />
-            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-3 pointer-events-none" />
+            <Search className="w-4 h-4 text-slate-500 absolute left-3 top-3 pointer-events-none" />
           </div>
 
           <a
@@ -131,14 +150,14 @@ export default function AmazonLiveSearchCard({
             rel="nofollow sponsored noopener noreferrer"
             className="w-full py-3 px-4 rounded-xl font-bold text-xs sm:text-sm bg-[#FF9900] hover:bg-[#ffad33] text-slate-950 shadow-md shadow-amber-500/20 flex items-center justify-center gap-2 transition-transform hover:scale-[1.02] active:scale-[0.98]"
           >
-            <span>Ver Resultados en Amazon.es</span>
+            <span>Ver Resultados en {amazonSiteName}</span>
             <ExternalLink className="w-4 h-4" />
           </a>
 
           <div className={`text-[10px] text-center font-medium ${
-            isDark ? 'text-slate-300' : 'text-slate-500'
+            isDark ? 'text-slate-300' : 'text-slate-600'
           }`}>
-            ✓ Compra segura con garantía oficial Amazon.es
+            ✓ Compra segura con garantía oficial {amazonSiteName}
           </div>
         </div>
 

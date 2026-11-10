@@ -1,3 +1,5 @@
+export type AmazonRegion = 'es' | 'intl';
+
 export const AMAZON_AFFILIATE_TAG = 'vapegadgets22-21';
 export const AMAZON_AFFILIATE_TAG_ES = 'vapegadgets22-21';
 export const AMAZON_AFFILIATE_TAG_INTL = 'vapegadgets22-20';
@@ -5,30 +7,71 @@ export const AMAZON_AFFILIATE_TAG_INTL = 'vapegadgets22-20';
 export const AMAZON_BASE_URL = 'https://www.amazon.es';
 export const AMAZON_INTL_URL = 'https://www.amazon.com';
 
+export const SPAIN_TIMEZONES = new Set(['Europe/Madrid', 'Atlantic/Canary', 'Africa/Ceuta']);
+
 /**
- * Detecta inteligentemente si el visitante está en el continente americano
- * (Sudamérica, Centroamérica o EE.UU.) para enrutarlo automáticamente a Amazon.com
- * con su StoreID internacional vapegadgets22-20 en dólares / moneda local.
- * En España y Europa mantiene Amazon.es con vapegadgets22-21.
+ * Detecta la tienda de Amazon adecuada para cualquier visitante del mundo:
+ * - España (Europe/Madrid, Atlantic/Canary, Africa/Ceuta o es-ES) -> Amazon.es (vapegadgets22-21)
+ * - Resto de países internacionales (EE. UU., LATAM, Europa, Asia, etc.) -> Amazon.com (vapegadgets22-20)
  */
-export function getRegionalAmazonConfig(): { baseUrl: string; tag: string } {
-  if (typeof window !== 'undefined') {
-    try {
-      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
-      if (tz.startsWith('America/')) {
-        return {
-          baseUrl: AMAZON_INTL_URL,
-          tag: AMAZON_AFFILIATE_TAG_INTL,
-        };
-      }
-    } catch {
-      // fallback silencioso
+export function detectClientAmazonRegion(): AmazonRegion {
+  if (typeof window === 'undefined') {
+    return 'es';
+  }
+  try {
+    const savedRegion = localStorage.getItem('site_amazon_region');
+    if (savedRegion === 'es' || savedRegion === 'intl') {
+      return savedRegion;
     }
+
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+    if (tz) {
+      return SPAIN_TIMEZONES.has(tz) ? 'es' : 'intl';
+    }
+
+    const browserLang = (navigator.language || '').toLowerCase();
+    if (
+      browserLang === 'es-es' ||
+      browserLang === 'ca-es' ||
+      browserLang === 'eu-es' ||
+      browserLang === 'gl-es'
+    ) {
+      return 'es';
+    }
+    if (browserLang) {
+      return 'intl';
+    }
+  } catch {
+    // fallback silencioso
+  }
+  return 'es';
+}
+
+export function getRegionalAmazonConfig(region?: AmazonRegion): {
+  region: AmazonRegion;
+  baseUrl: string;
+  tag: string;
+  siteName: string;
+} {
+  const resolvedRegion: AmazonRegion = region || detectClientAmazonRegion();
+  if (resolvedRegion === 'intl') {
+    return {
+      region: 'intl',
+      baseUrl: AMAZON_INTL_URL,
+      tag: AMAZON_AFFILIATE_TAG_INTL,
+      siteName: 'Amazon',
+    };
   }
   return {
+    region: 'es',
     baseUrl: AMAZON_BASE_URL,
     tag: AMAZON_AFFILIATE_TAG_ES,
+    siteName: 'Amazon.es',
   };
+}
+
+export function getAmazonSiteName(region?: AmazonRegion): string {
+  return region === 'intl' ? 'Amazon' : 'Amazon.es';
 }
 
 /**
@@ -101,6 +144,16 @@ export const DEAD_OR_INVALID_ASINS = new Set<string>([
 ]);
 
 /**
+ * ASINs verified active on Amazon.es (200) that return 404 on Amazon.com.
+ * For international visitors ('intl'), these safely route to Amazon.com search so 0% 404s occur worldwide.
+ */
+export const INTL_FALLBACK_ASINS = new Set<string>([
+  'B08NK2PRN2',
+  'B0DFF7X5F6',
+  'B0CWLC692C',
+]);
+
+/**
  * Checks whether an ASIN string is syntactically valid (10 uppercase alphanumeric chars)
  * and not listed as dead/placeholder.
  */
@@ -117,14 +170,21 @@ export function isValidActiveAsin(asin?: string): boolean {
 /**
  * Generates direct product link if ASIN is active and verified,
  * or safely falls back to exact Amazon search with the product title.
- * GUARANTEES 0% 404 ERRORS on Amazon.es.
+ * GUARANTEES 0% 404 ERRORS across Amazon.es and Amazon.com.
  */
-export function getAmazonProductUrl(asin?: string, searchQueryOrTitle?: string): string {
-  const { baseUrl, tag } = getRegionalAmazonConfig();
+export function getAmazonProductUrl(
+  asin?: string,
+  searchQueryOrTitle?: string,
+  region?: AmazonRegion
+): string {
+  const { region: resolvedRegion, baseUrl, tag } = getRegionalAmazonConfig(region);
   const cleanAsin = asin?.trim() || '';
 
-  // Valid, active, 10-character Amazon ASIN
-  if (isValidActiveAsin(cleanAsin)) {
+  // Valid, active, 10-character Amazon ASIN available in the target store
+  if (
+    isValidActiveAsin(cleanAsin) &&
+    !(resolvedRegion === 'intl' && INTL_FALLBACK_ASINS.has(cleanAsin))
+  ) {
     return `${baseUrl}/dp/${encodeURIComponent(cleanAsin)}/?tag=${tag}&linkCode=ll1`;
   }
 
@@ -136,27 +196,42 @@ export function getAmazonProductUrl(asin?: string, searchQueryOrTitle?: string):
 /**
  * Genera el enlace de búsqueda en Amazon con el tag de afiliado regional.
  */
-export function getAmazonSearchUrl(searchQuery: string): string {
-  const { baseUrl, tag } = getRegionalAmazonConfig();
+export function getAmazonSearchUrl(searchQuery: string, region?: AmazonRegion): string {
+  const { baseUrl, tag } = getRegionalAmazonConfig(region);
   return `${baseUrl}/s?k=${encodeURIComponent(searchQuery)}&tag=${tag}&linkCode=ll2`;
 }
 
 /**
  * Helper unificado para producto directo (ASIN) o búsqueda general.
  */
-export function getAmazonAffiliateUrl(searchQueryOrAsin: string, isAsin: boolean = false): string {
+export function getAmazonAffiliateUrl(
+  searchQueryOrAsin: string,
+  isAsin: boolean = false,
+  region?: AmazonRegion
+): string {
   if (isAsin) {
-    return getAmazonProductUrl(searchQueryOrAsin);
+    return getAmazonProductUrl(searchQueryOrAsin, undefined, region);
   }
-  return getAmazonSearchUrl(searchQueryOrAsin);
+  return getAmazonSearchUrl(searchQueryOrAsin, region);
 }
 
 /**
- * Parsea el precio numérico a partir de strings como "49,99 €", "55.73 €" o "<20 €".
+ * Parsea el precio numérico a partir de strings como "49,99 €", "$1,299.99" o "<20 €".
  */
 export function parsePrice(priceText?: string): number {
   if (!priceText) return 0;
-  const cleaned = priceText.replace(/[^0-9,.]/g, '').replace(',', '.');
+  let cleaned = priceText.replace(/[^0-9,.]/g, '');
+  const lastComma = cleaned.lastIndexOf(',');
+  const lastDot = cleaned.lastIndexOf('.');
+  if (lastComma !== -1 && lastDot !== -1) {
+    if (lastComma > lastDot) {
+      cleaned = cleaned.replace(/\./g, '').replace(',', '.');
+    } else {
+      cleaned = cleaned.replace(/,/g, '');
+    }
+  } else if (lastComma !== -1) {
+    cleaned = cleaned.replace(',', '.');
+  }
   const val = parseFloat(cleaned);
   return isNaN(val) ? 0 : val;
 }
@@ -164,5 +239,5 @@ export function parsePrice(priceText?: string): number {
 /**
  * Aviso legal obligatorio por la directiva de Amazon Associates
  */
-export const AMAZON_DISCLOSURE = 
-  'En calidad de Afiliado de Amazon, este sitio web obtiene ingresos por las compras adscritas que cumplen los requisitos aplicables. Los precios y disponibilidad de los productos son precisos a la fecha y hora indicadas y están sujetos a cambios.';
+export const AMAZON_DISCLOSURE =
+  'En calidad de Afiliado de Amazon, este sitio web obtiene ingresos por las compras adscritas que cumplen los requisitos aplicables en Amazon España (vapegadgets22-21) y tiendas internacionales de Amazon (vapegadgets22-20). Los precios y disponibilidad de los productos son precisos a la fecha y hora indicadas y están sujetos a cambios.';

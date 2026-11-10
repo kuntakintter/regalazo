@@ -143,8 +143,9 @@ export default function TienenDeTodoClient() {
           </div>
 
           <div className="flex items-center gap-2">
-            <ArrowUpDown className="w-4 h-4 text-slate-400" />
+            <ArrowUpDown className="w-4 h-4 text-slate-600" />
             <select
+              aria-label="Ordenar productos"
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
               className="text-xs font-bold bg-slate-50 border border-slate-200 rounded-xl px-3 py-1.5 focus:outline-hidden focus:ring-2 focus:ring-purple-500 cursor-pointer"
@@ -205,7 +206,7 @@ export default function TienenDeTodoClient() {
 
           <div className="pt-4 border-t border-slate-100">
             <h3 className="text-base font-extrabold text-slate-900 mb-4 flex items-center gap-2">
-              <HelpCircle className="w-4 h-4 text-purple-600" />
+              <HelpCircle className="w-4 h-4 text-purple-700" />
               <span>Preguntas Frecuentes sobre Regalos Difíciles</span>
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">

@@ -1,8 +1,15 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Globe, Check, ChevronDown, Search, X, Coins } from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import { Globe, Check, ChevronDown, Search, X, Coins, ShoppingBag } from 'lucide-react';
 import { useCurrency, Currency } from '@/context/CurrencyContext';
+import { I18N_SEO_ROUTES } from '@/lib/i18nRoutes';
+import {
+  ensureGoogleTranslateLoaded,
+  getGoogleTranslateCookieCode,
+  setGoogleTranslateCookie,
+} from '@/lib/googleTranslate';
 
 export interface LanguageOption {
   code: string;
@@ -140,26 +147,52 @@ export const LANGUAGES: LanguageOption[] = [
 ];
 
 export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [currentLang, setCurrentLang] = useState('es');
   const [searchFilter, setSearchFilter] = useState('');
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const { currency, setCurrency, currencySymbol } = useCurrency();
+  const { currency, setCurrency, amazonRegion, setAmazonRegion, currencySymbol } = useCurrency();
 
-  // Leer idioma actual al montar desde cookie o localStorage
+  // Sincronizar idioma activo desde preferencia explícita, ruta i18n o cookie
   useEffect(() => {
     try {
-      const match = document.cookie.match(/googtrans=\/es\/([a-zA-Z-]+)/);
       const savedLang = localStorage.getItem('site_language');
-      if (savedLang) {
-        setCurrentLang(savedLang);
-      } else if (match && match[1]) {
-        setCurrentLang(match[1]);
+      const routeSlug = (pathname || '/').replace(/^\//, '').split('/')[0];
+      const routeConfig = routeSlug ? I18N_SEO_ROUTES[routeSlug] : undefined;
+      const cookieCode = getGoogleTranslateCookieCode();
+
+      const resolvedCode =
+        savedLang ||
+        routeConfig?.langCode ||
+        (cookieCode && cookieCode !== 'es' ? cookieCode : 'es');
+
+      setCurrentLang(resolvedCode);
+
+      if (!routeConfig && savedLang) {
+        const savedOpt = LANGUAGES.find((l) => l.code === savedLang);
+        const targetGoogle = savedOpt?.googleCode || savedLang;
+        if (targetGoogle && targetGoogle !== 'es') {
+          ensureGoogleTranslateLoaded(targetGoogle);
+        }
+      } else if (!routeConfig && !savedLang && cookieCode && cookieCode !== 'es') {
+        ensureGoogleTranslateLoaded(cookieCode);
       }
     } catch {
       // ignore
     }
-  }, []);
+
+    const handleLangEvent = (e: Event) => {
+      const detail = (e as CustomEvent<string>).detail;
+      if (detail) {
+        setCurrentLang(detail);
+      }
+    };
+    window.addEventListener('siteLanguageChange', handleLangEvent);
+    return () => {
+      window.removeEventListener('siteLanguageChange', handleLangEvent);
+    };
+  }, [pathname]);
 
   // Cerrar al hacer clic fuera
   useEffect(() => {
@@ -184,39 +217,26 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
     setIsOpen(false);
     setSearchFilter('');
 
-    // Ajustar automáticamente la moneda si el idioma tiene una moneda asociada
     if (langObj.currency) {
-      setCurrency(langObj.currency);
+      setCurrency(langObj.currency, true);
     }
+    setAmazonRegion(langCode === 'es' ? 'es' : 'intl', true);
 
     try {
       localStorage.setItem('site_language', langCode);
-
-      const domain = window.location.hostname;
-      const rootDomain = domain.replace(/^www\./, '');
+      window.dispatchEvent(new CustomEvent('siteLanguageChange', { detail: langCode }));
 
       if (googleCode === 'es') {
-        // Borrar cookie para restaurar español nativo
-        const expirePast = 'expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-        document.cookie = `googtrans=; ${expirePast}`;
-        document.cookie = `googtrans=; domain=${domain}; ${expirePast}`;
-        document.cookie = `googtrans=; domain=.${rootDomain}; ${expirePast}`;
-        document.cookie = `googtrans=/es/es; path=/; max-age=31536000;`;
+        setGoogleTranslateCookie('es');
+        const wasTranslated =
+          document.documentElement.classList.contains('translated-ltr') ||
+          document.documentElement.classList.contains('translated-rtl') ||
+          Boolean(document.querySelector('.goog-te-combo'));
+        if (wasTranslated) {
+          window.location.reload();
+        }
       } else {
-        const transVal = `/es/${googleCode}`;
-        const maxAge = 'max-age=31536000; path=/;';
-        document.cookie = `googtrans=${transVal}; ${maxAge}`;
-        document.cookie = `googtrans=${transVal}; domain=${domain}; ${maxAge}`;
-        document.cookie = `googtrans=${transVal}; domain=.${rootDomain}; ${maxAge}`;
-      }
-
-      // Interactuar con el combo de Google Translate
-      const select = document.querySelector('.goog-te-combo') as HTMLSelectElement | null;
-      if (select) {
-        select.value = googleCode;
-        select.dispatchEvent(new Event('change'));
-      } else {
-        window.location.reload();
+        ensureGoogleTranslateLoaded(googleCode);
       }
     } catch (err) {
       console.error('Error switching language:', err);
@@ -225,6 +245,7 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
   };
 
   const activeLangObj = LANGUAGES.find((l) => l.code === currentLang) || LANGUAGES[0];
+  const activeCodeBadge = activeLangObj.code.split('-')[0].toUpperCase();
 
   const filteredLanguages = LANGUAGES.filter((l) => {
     const q = searchFilter.toLowerCase().trim();
@@ -241,7 +262,7 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
 
   return (
     <div ref={dropdownRef} className="relative inline-block text-left notranslate">
-      {/* Botón Principal del Selector con Bandera, Idioma y Símbolo de Moneda */}
+      {/* Botón Principal del Selector con Idioma y Símbolo de Moneda */}
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
@@ -250,12 +271,13 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
             ? 'bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 hover:border-slate-600'
             : 'bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200/90 hover:border-slate-300'
         }`}
-        aria-label="Cambiar idioma y moneda del sitio"
-        title="Cambiar idioma y moneda (Español €, Americano $, Alemán, Ruso y más)"
+        aria-expanded={isOpen}
+        title="Cambiar idioma, moneda (€/$) y tienda de Amazon"
       >
         <span className={`uppercase tracking-wider font-extrabold text-[11px] sm:text-xs leading-none ${dark ? 'text-slate-200' : 'text-slate-700'}`}>
-          {activeLangObj.code.split('-')[0]}
+          {activeCodeBadge}
         </span>
+        {' '}
         <span className={`text-[10px] sm:text-[11px] font-black px-1.5 py-0.5 rounded-md border shadow-2xs leading-none ${
           dark
             ? 'bg-slate-900 border-slate-700 text-amber-400'
@@ -263,10 +285,11 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
         }`}>
           {currencySymbol}
         </span>
-        <ChevronDown className={`w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0 transition-transform duration-200 ${dark ? 'text-slate-400' : 'text-slate-500'} ${isOpen ? 'rotate-180' : ''}`} />
+        <span className="sr-only"> — Cambiar idioma, moneda y tienda Amazon</span>
+        <ChevronDown className={`w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0 transition-transform duration-200 ${dark ? 'text-slate-300' : 'text-slate-600'} ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
-      {/* Menú Desplegable con Búsqueda, Selector de Moneda e Idiomas */}
+      {/* Menú Desplegable con Búsqueda, Selector de Moneda, Tienda e Idiomas */}
       {isOpen && (
         <div className="absolute right-0 mt-2 w-[calc(100vw-24px)] max-w-xs sm:w-84 rounded-2xl bg-white shadow-2xl border border-slate-200 z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-150">
           
@@ -276,17 +299,17 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
               <Globe className="w-4 h-4 text-indigo-600" />
               <div>
                 <span className="text-xs font-black text-slate-900 block leading-tight">
-                  Idioma y Moneda
+                  Idioma, Moneda y Tienda
                 </span>
-                <span className="text-[10px] text-slate-500">
-                  Selecciona tu país y formato de precio
+                <span className="text-[10px] text-slate-600">
+                  Adapta idioma, divisa y Amazon de tu país
                 </span>
               </div>
             </div>
             <button
               type="button"
               onClick={() => setIsOpen(false)}
-              className="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 transition-colors"
+              className="min-w-7 min-h-7 flex items-center justify-center p-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 transition-colors cursor-pointer"
               aria-label="Cerrar selector de idioma y moneda"
             >
               <X className="w-3.5 h-3.5" />
@@ -294,33 +317,65 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
           </div>
 
           {/* Toggle Rápido de Moneda Directa (EUR € / USD $) */}
-          <div className="px-3 py-2.5 bg-slate-50/90 border-b border-slate-100 flex items-center justify-between">
-            <span className="text-[11px] font-bold text-slate-600 flex items-center gap-1.5">
+          <div className="px-3 py-2 bg-slate-50/90 border-b border-slate-100 flex items-center justify-between">
+            <span className="text-[11px] font-bold text-slate-700 flex items-center gap-1.5">
               <Coins className="w-3.5 h-3.5 text-indigo-600" />
-              <span>Moneda de precios:</span>
+              <span>Moneda:</span>
             </span>
             <div className="flex items-center gap-1 bg-white p-0.5 rounded-xl border border-slate-200 shadow-2xs">
               <button
                 type="button"
-                onClick={() => setCurrency('EUR')}
-                className={`px-2.5 py-1 rounded-lg text-xs font-black transition-all cursor-pointer ${
+                onClick={() => setCurrency('EUR', true)}
+                className={`px-2.5 py-1 min-h-[28px] rounded-lg text-xs font-black transition-all cursor-pointer ${
                   currency === 'EUR'
                     ? 'bg-indigo-600 text-white shadow-2xs'
-                    : 'text-slate-600 hover:bg-slate-100'
+                    : 'text-slate-700 hover:bg-slate-100'
                 }`}
               >
-                € EUR
+                € EUR<span className="sr-only"> — Mostrar precios en Euros</span>
               </button>
               <button
                 type="button"
-                onClick={() => setCurrency('USD')}
-                className={`px-2.5 py-1 rounded-lg text-xs font-black transition-all cursor-pointer ${
+                onClick={() => setCurrency('USD', true)}
+                className={`px-2.5 py-1 min-h-[28px] rounded-lg text-xs font-black transition-all cursor-pointer ${
                   currency === 'USD'
-                    ? 'bg-emerald-600 text-white shadow-2xs'
-                    : 'text-slate-600 hover:bg-slate-100'
+                    ? 'bg-emerald-700 text-white shadow-2xs'
+                    : 'text-slate-700 hover:bg-slate-100'
                 }`}
               >
-                $ USD
+                $ USD<span className="sr-only"> — Mostrar precios en Dólares</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Toggle Rápido de Tienda Amazon (España .es / Global .com) */}
+          <div className="px-3 py-2 bg-slate-50/60 border-b border-slate-100 flex items-center justify-between">
+            <span className="text-[11px] font-bold text-slate-700 flex items-center gap-1.5">
+              <ShoppingBag className="w-3.5 h-3.5 text-amber-700" />
+              <span>Tienda Amazon:</span>
+            </span>
+            <div className="flex items-center gap-1 bg-white p-0.5 rounded-xl border border-slate-200 shadow-2xs">
+              <button
+                type="button"
+                onClick={() => setAmazonRegion('es', true)}
+                className={`px-2.5 py-1 min-h-[28px] rounded-lg text-xs font-black transition-all cursor-pointer ${
+                  amazonRegion === 'es'
+                    ? 'bg-slate-900 text-amber-300 shadow-2xs'
+                    : 'text-slate-700 hover:bg-slate-100'
+                }`}
+              >
+                <span aria-hidden="true">🇪🇸</span> .es<span className="sr-only"> — Comprar en Amazon España</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setAmazonRegion('intl', true)}
+                className={`px-2.5 py-1 min-h-[28px] rounded-lg text-xs font-black transition-all cursor-pointer ${
+                  amazonRegion === 'intl'
+                    ? 'bg-slate-900 text-amber-300 shadow-2xs'
+                    : 'text-slate-700 hover:bg-slate-100'
+                }`}
+              >
+                <span aria-hidden="true">🌎</span> .com<span className="sr-only"> — Comprar en Amazon Internacional</span>
               </button>
             </div>
           </div>
@@ -328,15 +383,14 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
           {/* Buscador de idioma rápido */}
           <div className="p-2.5 border-b border-slate-100 bg-white">
             <div className="relative flex items-center">
-              <Search className="w-3.5 h-3.5 absolute left-2.5 text-slate-400" />
+              <Search className="w-3.5 h-3.5 absolute left-2.5 text-slate-600" />
               <input
                 type="text"
                 value={searchFilter}
                 onChange={(e) => setSearchFilter(e.target.value)}
                 aria-label="Buscar idioma o país"
                 placeholder="Buscar idioma o país (americano, alemán, ruso)..."
-                className="w-full pl-8 pr-3 py-1.5 text-xs rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-indigo-500 focus:ring-1 focus:ring-indigo-200 outline-none transition-all placeholder:text-slate-400"
-                autoFocus
+                className="w-full pl-8 pr-3 py-1.5 text-xs rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-indigo-500 focus:ring-1 focus:ring-indigo-200 outline-none transition-all placeholder:text-slate-500 text-slate-900"
               />
             </div>
           </div>
@@ -347,7 +401,7 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
             {/* Idiomas Destacados */}
             {popularLanguages.length > 0 && (
               <div className="pb-2">
-                <span className="text-[10px] font-black uppercase tracking-wider text-slate-400 px-2 py-1 block">
+                <span className="text-[10px] font-black uppercase tracking-wider text-slate-600 px-2 py-1 block">
                   Idiomas y Monedas Principales
                 </span>
                 <div className="grid grid-cols-1 gap-1">
@@ -361,32 +415,32 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
                         className={`w-full flex items-center justify-between px-2.5 py-2 rounded-xl text-xs transition-all cursor-pointer ${
                           isSelected
                             ? 'bg-indigo-600 text-white font-bold shadow-xs'
-                            : 'hover:bg-indigo-50/70 text-slate-700'
+                            : 'hover:bg-indigo-50/70 text-slate-800'
                         }`}
                       >
-                        <div className="flex items-center gap-2.5">
+                        <span className="flex items-center gap-2.5">
                           <span className="text-lg leading-none">{lang.flag}</span>
-                          <div className="text-left">
+                          <span className="block text-left">
                             <span className={`block font-semibold ${isSelected ? 'text-white' : 'text-slate-900'}`}>
                               {lang.name}
                             </span>
-                            <span className={`text-[10px] ${isSelected ? 'text-indigo-200' : 'text-slate-400'}`}>
+                            <span className={`block text-[10px] ${isSelected ? 'text-indigo-100' : 'text-slate-600'}`}>
                               {lang.nativeName}
                             </span>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2">
+                          </span>
+                        </span>
+                        <span className="flex items-center gap-2">
                           {lang.currencySymbol && (
                             <span className={`text-[11px] font-black px-1.5 py-0.5 rounded ${
                               isSelected
                                 ? 'bg-white/20 text-white'
-                                : 'bg-slate-100 text-slate-600'
+                                : 'bg-slate-100 text-slate-700'
                             }`}>
                               {lang.currencySymbol} {lang.currency}
                             </span>
                           )}
                           {isSelected && <Check className="w-4 h-4 text-white shrink-0" />}
-                        </div>
+                        </span>
                       </button>
                     );
                   })}
@@ -397,7 +451,7 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
             {/* Otros Idiomas Disponibles */}
             {otherLanguages.length > 0 && (
               <div className="pt-2">
-                <span className="text-[10px] font-black uppercase tracking-wider text-slate-400 px-2 py-1 block">
+                <span className="text-[10px] font-black uppercase tracking-wider text-slate-600 px-2 py-1 block">
                   Más Idiomas Disponibles
                 </span>
                 <div className="grid grid-cols-1 gap-1">
@@ -411,32 +465,32 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
                         className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl text-xs transition-all cursor-pointer ${
                           isSelected
                             ? 'bg-indigo-600 text-white font-bold shadow-xs'
-                            : 'hover:bg-slate-100 text-slate-700'
+                            : 'hover:bg-slate-100 text-slate-800'
                         }`}
                       >
-                        <div className="flex items-center gap-2.5">
+                        <span className="flex items-center gap-2.5">
                           <span className="text-base leading-none">{lang.flag}</span>
-                          <div className="text-left">
-                            <span className={`block font-medium ${isSelected ? 'text-white' : 'text-slate-800'}`}>
+                          <span className="block text-left">
+                            <span className={`block font-medium ${isSelected ? 'text-white' : 'text-slate-900'}`}>
                               {lang.name}
                             </span>
-                            <span className={`text-[10px] ${isSelected ? 'text-indigo-200' : 'text-slate-400'}`}>
+                            <span className={`block text-[10px] ${isSelected ? 'text-indigo-100' : 'text-slate-600'}`}>
                               {lang.nativeName}
                             </span>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2">
+                          </span>
+                        </span>
+                        <span className="flex items-center gap-2">
                           {lang.currencySymbol && (
                             <span className={`text-[10px] font-black px-1.5 py-0.5 rounded ${
                               isSelected
                                 ? 'bg-white/20 text-white'
-                                : 'bg-slate-100 text-slate-600'
+                                : 'bg-slate-100 text-slate-700'
                             }`}>
                               {lang.currencySymbol} {lang.currency}
                             </span>
                           )}
                           {isSelected && <Check className="w-3.5 h-3.5 text-white shrink-0" />}
-                        </div>
+                        </span>
                       </button>
                     );
                   })}
@@ -445,7 +499,7 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
             )}
 
             {filteredLanguages.length === 0 && (
-              <div className="py-6 text-center text-xs text-slate-400">
+              <div className="py-6 text-center text-xs text-slate-600">
                 No se encontraron opciones para &quot;{searchFilter}&quot;
               </div>
             )}
@@ -453,8 +507,8 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
           </div>
 
           {/* Footer Informativo */}
-          <div className="p-2 bg-slate-50 border-t border-slate-100 text-[10px] text-center text-slate-400 flex items-center justify-center gap-1">
-            <span>Conversión automática de precios y traducción instantánea</span>
+          <div className="p-2 bg-slate-50 border-t border-slate-100 text-[10px] text-center text-slate-600 flex items-center justify-center gap-1">
+            <span>España (.es) y Global (.com + OneLink) activos</span>
           </div>
 
         </div>

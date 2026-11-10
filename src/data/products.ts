@@ -6715,7 +6715,7 @@ export const PRODUCTS: Product[] = [
     "rating": 4.8,
     "reviewsCount": 2900,
     "badge": "Mejor Cámara en su Gama",
-    "badgeColor": "bg-emerald-600",
+    "badgeColor": "bg-emerald-700",
     "description": "El teléfono inteligente más equilibrado del mercado. Equipado con el chip Google Tensor G3, ofrece la fotografía computacional más aclamada de la industria (Borrador Mágico, Mejor Toma y Zoom Alta Resolución) y 7 años completos de soporte de software.",
     "pros": [
       "Fotografía profesional insuperable gracias a los algoritmos de Google",

@@ -6,11 +6,13 @@ import Footer from '@/components/Footer';
 import ProductCard from '@/components/ProductCard';
 import { PRODUCTS, Product } from '@/data/products';
 import { parsePrice } from '@/lib/amazon';
+import { useCurrency } from '@/context/CurrencyContext';
 import { generateProductItemListSchema } from '@/lib/schemaProduct';
 import { HelpCircle, ShieldCheck, TrendingUp, Sparkles, SlidersHorizontal, ChevronRight, Compass } from 'lucide-react';
 import Link from 'next/link';
 
 export default function MujerClient() {
+  const { amazonSiteName } = useCurrency();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedPrice, setSelectedPrice] = useState<string>('all');
   const [sortBy, setSortBy] = useState<'featured' | 'price-asc' | 'price-desc' | 'rating'>('featured');
@@ -132,9 +134,9 @@ export default function MujerClient() {
 
       <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full">
         {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="mb-4 text-xs text-slate-500 flex items-center gap-1.5">
+        <nav aria-label="Breadcrumb" className="mb-4 text-xs text-slate-600 flex items-center gap-1.5">
           <Link href="/" className="hover:underline hover:text-slate-900">Inicio</Link>
-          <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+          <ChevronRight className="w-3.5 h-3.5 text-slate-500" />
           <span className="font-bold text-slate-900">Qué Regalar a una Mujer</span>
         </nav>
 
@@ -162,7 +164,7 @@ export default function MujerClient() {
             <div className="flex flex-wrap items-center gap-4 pt-2 text-xs text-slate-300 font-medium">
               <span className="flex items-center gap-1.5">
                 <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                Garantía y Envíos Prime en Amazon.es
+                Garantía y Envíos Prime en {amazonSiteName}
               </span>
               <span className="flex items-center gap-1.5">
                 <TrendingUp className="w-4 h-4 text-amber-400" />
@@ -179,7 +181,7 @@ export default function MujerClient() {
               <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-amber-500 text-slate-950 mb-2">
                 <span>🥇</span> Mejor Elección Global
               </span>
-              <h3 className="font-bold text-sm text-slate-900 mb-1">Sol de Janeiro 68 / Paula&apos;s Choice</h3>
+              <p className="font-bold text-sm text-slate-900 mb-1">Sol de Janeiro 68 / Paula&apos;s Choice</p>
               <p className="text-xs text-slate-600 leading-relaxed">
                 El aroma floral y el tratamiento facial más deseados y virales. Un regalo de culto con el que es imposible fallar.
               </p>
@@ -192,10 +194,10 @@ export default function MujerClient() {
 
           <div className="p-4 rounded-2xl bg-emerald-50/80 border-2 border-emerald-300/80 shadow-xs flex flex-col justify-between">
             <div>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-emerald-600 text-white mb-2">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-emerald-700 text-white mb-2">
                 <span>🥈</span> Mejor Calidad/Precio
               </span>
-              <h3 className="font-bold text-sm text-slate-900 mb-1">Joyero Terciopelo / Vela WoodWick</h3>
+              <p className="font-bold text-sm text-slate-900 mb-1">Joyero Terciopelo / Vela WoodWick</p>
               <p className="text-xs text-slate-600 leading-relaxed">
                 Detalles coquetos y muy útiles por menos de 25 €: organizador de joyas o velas que crepitan como chimenea.
               </p>
@@ -208,10 +210,10 @@ export default function MujerClient() {
 
           <div className="p-4 rounded-2xl bg-purple-50/80 border-2 border-purple-300/80 shadow-xs flex flex-col justify-between">
             <div>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-purple-600 text-white mb-2">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-purple-700 text-white mb-2">
                 <span>💎</span> Opción Prémium / Gran Detalle
               </span>
-              <h3 className="font-bold text-sm text-slate-900 mb-1">Smartbox Spa / YSL Libre</h3>
+              <p className="font-bold text-sm text-slate-900 mb-1">Smartbox Spa / YSL Libre</p>
               <p className="text-xs text-slate-600 leading-relaxed">
                 Experiencias de bienestar en más de 1.100 spas o alta perfumería parisina en frasco joya.
               </p>
@@ -255,14 +257,14 @@ export default function MujerClient() {
                   {sortedProducts.length} ideas
                 </span>
               </h2>
-              <p className="text-[11px] text-slate-500">
+              <p className="text-[11px] text-slate-600">
                 Filtra por presupuesto o estilo para dar en el clavo
               </p>
             </div>
 
             {/* Sorting */}
             <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1">
-              <span className="text-[11px] text-slate-500 font-bold">Ordenar:</span>
+              <span className="text-[11px] text-slate-600 font-bold">Ordenar:</span>
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as any)}
@@ -279,7 +281,7 @@ export default function MujerClient() {
 
           {/* Budget Quick Access Pills */}
           <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none text-xs pb-1">
-            <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider shrink-0 mr-1">
+            <span className="text-[11px] font-bold text-slate-600 uppercase tracking-wider shrink-0 mr-1">
               Presupuesto:
             </span>
             <button
@@ -298,7 +300,7 @@ export default function MujerClient() {
               onClick={() => setSelectedPrice('<20')}
               className={`px-3 py-1 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
                 selectedPrice === '<20'
-                  ? 'bg-emerald-600 text-white'
+                  ? 'bg-emerald-700 text-white'
                   : 'bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border border-emerald-200'
               }`}
             >
@@ -320,7 +322,7 @@ export default function MujerClient() {
               onClick={() => setSelectedPrice('50-100')}
               className={`px-3 py-1 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
                 selectedPrice === '50-100'
-                  ? 'bg-purple-600 text-white'
+                  ? 'bg-purple-700 text-white'
                   : 'bg-purple-50 text-purple-800 hover:bg-purple-100 border border-purple-200'
               }`}
             >
@@ -331,7 +333,7 @@ export default function MujerClient() {
               onClick={() => setSelectedPrice('>100')}
               className={`px-3 py-1 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
                 selectedPrice === '>100'
-                  ? 'bg-rose-600 text-white'
+                  ? 'bg-rose-700 text-white'
                   : 'bg-rose-50 text-rose-800 hover:bg-rose-100 border border-rose-200'
               }`}
             >
@@ -341,7 +343,7 @@ export default function MujerClient() {
 
           {/* Category Pills */}
           <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none text-xs pt-1 border-t border-slate-100">
-            <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider shrink-0 mr-1">
+            <span className="text-[11px] font-bold text-slate-600 uppercase tracking-wider shrink-0 mr-1">
               Categoría:
             </span>
             <button
@@ -350,7 +352,7 @@ export default function MujerClient() {
               className={`px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
                 selectedCategory === 'all'
                   ? 'bg-slate-800 text-white'
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
               }`}
             >
               Todas
@@ -362,8 +364,8 @@ export default function MujerClient() {
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
                   selectedCategory === cat
-                    ? 'bg-rose-600 text-white'
-                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                    ? 'bg-rose-700 text-white'
+                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                 }`}
               >
                 {cat}
@@ -388,12 +390,13 @@ export default function MujerClient() {
           <div className="text-center py-16 bg-white rounded-3xl border border-slate-200 p-8 mb-12">
             <p className="text-slate-600 text-sm mb-4">No se han encontrado regalos para mujeres con estos filtros.</p>
             <button
+              type="button"
               onClick={() => {
                 setSelectedCategory('all');
                 setSelectedPrice('all');
                 setSearchQuery('');
               }}
-              className="px-4 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold hover:bg-slate-800 transition-colors"
+              className="px-4 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold hover:bg-slate-800 transition-colors cursor-pointer"
             >
               Ver todos los regalos para mujeres
             </button>

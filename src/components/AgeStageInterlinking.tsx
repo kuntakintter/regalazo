@@ -32,9 +32,9 @@ export default function AgeStageInterlinking({ currentAgeSlug }: AgeStageInterli
     // If on a special page like revelacion-genero, show main gateway stages
     return (
       <div className="my-12 p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-xs">
-        <h3 className="text-lg font-black text-slate-900 mb-4 flex items-center gap-2">
+        <h2 className="text-lg font-black text-slate-900 mb-4 flex items-center gap-2">
           <span>Explorar otras etapas de edad recomendadas</span>
-        </h3>
+        </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {AGE_STAGES_ORDER.slice(0, 4).map((stage) => (
             <Link
@@ -44,8 +44,8 @@ export default function AgeStageInterlinking({ currentAgeSlug }: AgeStageInterli
             >
               <span className="text-2xl shrink-0 group-hover:scale-110 transition-transform">{stage.icon}</span>
               <div className="min-w-0">
-                <p className="text-xs font-bold text-slate-900 group-hover:text-amber-700 truncate">{stage.label}</p>
-                <p className="text-[11px] text-slate-500">{stage.range}</p>
+                <p className="text-xs font-bold text-slate-900 group-hover:text-amber-800 truncate">{stage.label}</p>
+                <p className="text-[11px] text-slate-600">{stage.range}</p>
               </div>
             </Link>
           ))}
@@ -61,12 +61,12 @@ export default function AgeStageInterlinking({ currentAgeSlug }: AgeStageInterli
     <div className="my-10 p-5 sm:p-7 rounded-3xl bg-white border border-slate-200 shadow-xs">
       <div className="flex items-center justify-between mb-4">
         <div>
-          <span className="text-[11px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200">
+          <span className="text-[11px] font-bold uppercase tracking-wider text-amber-800 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200">
             Navegación por Etapas
           </span>
-          <h3 className="text-base sm:text-lg font-black text-slate-900 mt-1">
+          <h2 className="text-base sm:text-lg font-black text-slate-900 mt-1">
             ¿Está cerca de cambiar de edad? Explora las etapas contiguas
-          </h3>
+          </h2>
         </div>
       </div>
 
@@ -80,13 +80,13 @@ export default function AgeStageInterlinking({ currentAgeSlug }: AgeStageInterli
               {prevStage.icon}
             </div>
             <div className="flex-1 min-w-0">
-              <span className="text-[10px] font-bold text-slate-500 uppercase flex items-center gap-1 group-hover:text-amber-800">
-                <ArrowLeft className="w-3 h-3 text-slate-400 group-hover:text-amber-700" /> Etapa anterior
+              <span className="text-[10px] font-bold text-slate-600 uppercase flex items-center gap-1 group-hover:text-amber-800">
+                <ArrowLeft className="w-3 h-3 text-slate-600 group-hover:text-amber-700" /> Etapa anterior
               </span>
               <p className="text-xs sm:text-sm font-extrabold text-slate-900 group-hover:text-amber-950 truncate">
                 {prevStage.label} ({prevStage.range})
               </p>
-              <p className="text-[11px] text-slate-500 truncate">{prevStage.subtitle}</p>
+              <p className="text-[11px] text-slate-600 truncate">{prevStage.subtitle}</p>
             </div>
           </Link>
         ) : (
@@ -98,11 +98,11 @@ export default function AgeStageInterlinking({ currentAgeSlug }: AgeStageInterli
               🎈
             </div>
             <div className="flex-1 min-w-0">
-              <span className="text-[10px] font-bold text-slate-500 uppercase">Previo al nacimiento</span>
+              <span className="text-[10px] font-bold text-slate-600 uppercase">Previo al nacimiento</span>
               <p className="text-xs sm:text-sm font-extrabold text-slate-900 group-hover:text-amber-950 truncate">
                 Fiesta Revelación de Género
               </p>
-              <p className="text-[11px] text-slate-500 truncate">Cañones de confeti, globos enigma y humo</p>
+              <p className="text-[11px] text-slate-600 truncate">Cañones de confeti, globos enigma y humo</p>
             </div>
           </Link>
         )}
@@ -113,13 +113,13 @@ export default function AgeStageInterlinking({ currentAgeSlug }: AgeStageInterli
             className="p-4 rounded-2xl border border-slate-200 bg-slate-50 hover:bg-amber-50/70 hover:border-amber-300 transition-all flex items-center gap-3.5 group"
           >
             <div className="flex-1 min-w-0 text-left sm:text-right">
-              <span className="text-[10px] font-bold text-slate-500 uppercase flex items-center gap-1 sm:justify-end group-hover:text-amber-800">
-                Siguiente etapa <ArrowRight className="w-3 h-3 text-slate-400 group-hover:text-amber-700" />
+              <span className="text-[10px] font-bold text-slate-600 uppercase flex items-center gap-1 sm:justify-end group-hover:text-amber-800">
+                Siguiente etapa <ArrowRight className="w-3 h-3 text-slate-600 group-hover:text-amber-700" />
               </span>
               <p className="text-xs sm:text-sm font-extrabold text-slate-900 group-hover:text-amber-950 truncate">
                 {nextStage.label} ({nextStage.range})
               </p>
-              <p className="text-[11px] text-slate-500 truncate">{nextStage.subtitle}</p>
+              <p className="text-[11px] text-slate-600 truncate">{nextStage.subtitle}</p>
             </div>
             <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center shrink-0 text-xl shadow-xs group-hover:scale-105 transition-transform order-first sm:order-last">
               {nextStage.icon}
@@ -131,13 +131,13 @@ export default function AgeStageInterlinking({ currentAgeSlug }: AgeStageInterli
             className="p-4 rounded-2xl border border-slate-200 bg-slate-50 hover:bg-amber-50/70 hover:border-amber-300 transition-all flex items-center gap-3.5 group"
           >
             <div className="flex-1 min-w-0 text-left sm:text-right">
-              <span className="text-[10px] font-bold text-slate-500 uppercase flex items-center gap-1 sm:justify-end">
-                Catálogo especializado <ArrowRight className="w-3 h-3 text-slate-400" />
+              <span className="text-[10px] font-bold text-slate-600 uppercase flex items-center gap-1 sm:justify-end">
+                Catálogo especializado <ArrowRight className="w-3 h-3 text-slate-600" />
               </span>
               <p className="text-xs sm:text-sm font-extrabold text-slate-950 group-hover:text-amber-950 truncate">
                 Hub Especial Gamers & Setup
               </p>
-              <p className="text-[11px] text-slate-500 truncate">Mandos PS5, periféricos pro e iluminación</p>
+              <p className="text-[11px] text-slate-600 truncate">Mandos PS5, periféricos pro e iluminación</p>
             </div>
             <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center shrink-0 text-xl shadow-xs order-first sm:order-last">
               🎮

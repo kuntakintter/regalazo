@@ -963,11 +963,18 @@ export default function GiftWizard({
   const selectedThemeObj = currentThemes.find((t) => t.id === selectedVibe) || currentThemes[0];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/75 backdrop-blur-md animate-in fade-in duration-200">
-      <div 
-        className="w-full max-w-2xl bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden relative flex flex-col max-h-[92vh]"
-        onClick={(e) => e.stopPropagation()}
-      >
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Asistente inteligente para elegir regalo"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 animate-in fade-in duration-200"
+    >
+      <div
+        aria-hidden="true"
+        onClick={onClose}
+        className="fixed inset-0 bg-slate-950/75 backdrop-blur-md"
+      />
+      <div className="w-full max-w-2xl bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden relative z-10 flex flex-col max-h-[92vh]">
         {/* Header */}
         <div className="p-4 sm:p-6 border-b border-slate-100 flex items-center justify-between bg-gradient-to-r from-indigo-50/90 via-white to-purple-50/50">
           <div className="flex items-center gap-3">
@@ -979,17 +986,18 @@ export default function GiftWizard({
                 <span className="text-[11px] font-black uppercase tracking-wider text-indigo-700 bg-indigo-100/80 px-2 py-0.5 rounded-full">
                   Asistente Inteligente IA
                 </span>
-                <span className="text-xs text-slate-400 font-bold">Paso {step} de 4</span>
+                <span className="text-xs text-slate-600 font-bold">Paso {step} de 4</span>
               </div>
-              <h3 className="text-base sm:text-lg font-black text-slate-900 leading-tight">
+              <h2 className="text-base sm:text-lg font-black text-slate-900 leading-tight">
                 Encuentra el regalo perfecto según sus gustos
-              </h3>
+              </h2>
             </div>
           </div>
           <button
+            type="button"
             onClick={onClose}
             aria-label="Cerrar asistente"
-            className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center transition-colors cursor-pointer"
+            className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 flex items-center justify-center transition-colors cursor-pointer"
           >
             <X className="w-4 h-4" />
           </button>
@@ -1002,13 +1010,13 @@ export default function GiftWizard({
           {step === 1 && (
             <div className="space-y-4">
               <div className="text-left">
-                <span className="text-xs font-black uppercase tracking-wider text-indigo-600 block mb-1">
+                <span className="text-xs font-black uppercase tracking-wider text-indigo-700 block mb-1">
                   Paso 1 · Edad del destinatario
                 </span>
-                <h4 className="text-base sm:text-lg font-black text-slate-900">
+                <h3 className="text-base sm:text-lg font-black text-slate-900">
                   ¿Para qué edad o etapa es el regalo?
-                </h4>
-                <p className="text-xs text-slate-500 mt-0.5">
+                </h3>
+                <p className="text-xs text-slate-600 mt-0.5">
                   Las preguntas, temáticas frikis, gaming y aficiones se adaptarán exclusivamente a esta edad.
                 </p>
               </div>
@@ -1020,6 +1028,7 @@ export default function GiftWizard({
                   return (
                     <button
                       key={opt.id}
+                      type="button"
                       onClick={() => handleSelectAge(opt.id)}
                       className={`p-3.5 rounded-2xl text-left border transition-all flex items-start gap-3 cursor-pointer ${
                         isSelected
@@ -1027,19 +1036,19 @@ export default function GiftWizard({
                           : 'border-slate-200 bg-slate-50/60 hover:bg-slate-100 text-slate-800'
                       }`}
                     >
-                      <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${isSelected ? 'bg-indigo-600 text-white' : 'bg-white border border-slate-200'}`}>
+                      <span className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${isSelected ? 'bg-indigo-600 text-white' : 'bg-white border border-slate-200'}`}>
                         <IconComp className={`w-4 h-4 ${isSelected ? 'text-white' : opt.iconColor}`} />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center justify-between gap-1 mb-0.5">
+                      </span>
+                      <span className="block flex-1 min-w-0">
+                        <span className="flex items-center justify-between gap-1 mb-0.5">
                           <span className="font-bold text-xs sm:text-sm text-slate-900 leading-tight">
                             {opt.label}
                           </span>
-                        </div>
-                        <p className="text-[11px] text-slate-500 leading-tight line-clamp-2">
+                        </span>
+                        <span className="block text-[11px] text-slate-600 leading-tight line-clamp-2">
                           {opt.desc}
-                        </p>
-                      </div>
+                        </span>
+                      </span>
                     </button>
                   );
                 })}
@@ -1051,13 +1060,13 @@ export default function GiftWizard({
           {step === 2 && (
             <div className="space-y-4">
               <div className="text-left">
-                <span className="text-xs font-black uppercase tracking-wider text-indigo-600 block mb-1">
+                <span className="text-xs font-black uppercase tracking-wider text-indigo-700 block mb-1">
                   Paso 2 · Temática & Aficiones
                 </span>
-                <h4 className="text-base sm:text-lg font-black text-slate-900">
+                <h3 className="text-base sm:text-lg font-black text-slate-900">
                   ¿Tiene alguna afición o temática en especial?
-                </h4>
-                <p className="text-xs text-slate-500 mt-0.5">
+                </h3>
+                <p className="text-xs text-slate-600 mt-0.5">
                   Si tu amigo es friki de los cómics, gamer, motero o le gusta la música, el asistente seleccionará los mejores regalos específicos para{' '}
                   <strong className="text-indigo-700">
                     {AGE_STEP_OPTIONS.find((a) => a.id === selectedAge)?.badge || selectedAge}
@@ -1073,6 +1082,7 @@ export default function GiftWizard({
                   return (
                     <button
                       key={item.id}
+                      type="button"
                       onClick={() => setSelectedVibe(item.id)}
                       className={`p-3.5 rounded-2xl text-left border transition-all flex flex-col gap-1 cursor-pointer ${
                         isSelected
@@ -1082,7 +1092,7 @@ export default function GiftWizard({
                           : 'border-slate-200 bg-slate-50/70 text-slate-800 hover:bg-slate-100'
                       }`}
                     >
-                      <div className="flex items-center justify-between gap-2">
+                      <span className="flex items-center justify-between gap-2">
                         <span className="font-bold text-xs sm:text-sm leading-tight">
                           {item.label}
                         </span>
@@ -1091,8 +1101,8 @@ export default function GiftWizard({
                             Infalible
                           </span>
                         )}
-                      </div>
-                      <span className={`text-[11px] leading-tight ${isSelected ? 'text-indigo-100' : 'text-slate-500'}`}>
+                      </span>
+                      <span className={`text-[11px] leading-tight ${isSelected ? 'text-indigo-100' : 'text-slate-600'}`}>
                         {item.desc}
                       </span>
                     </button>
@@ -1102,37 +1112,38 @@ export default function GiftWizard({
 
               {/* INPUT DE INTERÉS CONCRETO / PERSONAJE FAVORITO (OPCIONAL) */}
               <div className="mt-3 p-3.5 rounded-2xl bg-indigo-50/50 border border-indigo-100">
-                <label className="text-xs font-bold text-indigo-950 flex items-center justify-between mb-1.5">
-                  <span className="flex items-center gap-1.5">
+                <div className="text-xs font-bold text-indigo-950 flex items-center justify-between mb-1.5">
+                  <label htmlFor="gift-wizard-interest" className="flex items-center gap-1.5 cursor-pointer">
                     <Lightbulb className="w-3.5 h-3.5 text-indigo-600" />
                     <span>¿Le gusta algún personaje, saga o detalle concreto? (Opcional)</span>
-                  </span>
+                  </label>
                   {customInterest && (
                     <button
                       type="button"
                       onClick={() => setCustomInterest('')}
-                      className="text-[10px] text-slate-400 hover:text-slate-700 underline cursor-pointer"
+                      className="text-[11px] text-slate-700 hover:text-slate-950 underline cursor-pointer"
                     >
                       Limpiar
                     </button>
                   )}
-                </label>
+                </div>
                 <div className="relative">
-                  <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+                  <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-600 pointer-events-none" />
                   <input
+                    id="gift-wizard-interest"
                     type="text"
                     value={customInterest}
                     onChange={(e) => setCustomInterest(e.target.value)}
                     aria-label="Buscar o escribir interés personalizado"
                     placeholder="Ej: Cómics de Marvel, One Piece, Spider-Man, Batman, Harry Potter..."
-                    className="w-full pl-9 pr-3.5 py-2 text-xs rounded-xl border border-slate-200 bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none transition-all placeholder:text-slate-400 text-slate-800"
+                    className="w-full pl-9 pr-3.5 py-2 text-xs rounded-xl border border-slate-200 bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none transition-all placeholder:text-slate-500 text-slate-800"
                   />
                 </div>
 
                 {/* Chips rápidos de sugerencia */}
                 {selectedThemeObj?.quickChips && selectedThemeObj.quickChips.length > 0 && (
                   <div className="flex flex-wrap items-center gap-1.5 mt-2">
-                    <span className="text-[10px] font-bold text-slate-400">Sugerencias rápidas:</span>
+                    <span className="text-[10px] font-bold text-slate-600">Sugerencias rápidas:</span>
                     {selectedThemeObj.quickChips.map((chip) => (
                       <button
                         key={chip}
@@ -1157,10 +1168,10 @@ export default function GiftWizard({
           {step === 3 && (
             <div className="space-y-4">
               <div className="text-left">
-                <span className="text-xs font-black uppercase tracking-wider text-indigo-600 block mb-1">
+                <span className="text-xs font-black uppercase tracking-wider text-indigo-700 block mb-1">
                   Paso 3 · Destinatario
                 </span>
-                <h4 className="text-base sm:text-lg font-black text-slate-900">
+                <h3 className="text-base sm:text-lg font-black text-slate-900">
                   {selectedAge === '+18'
                     ? '¿Para quién es el regalo de adulto?'
                     : selectedAge === '0-12m'
@@ -1168,8 +1179,8 @@ export default function GiftWizard({
                     : isRevealMode
                     ? 'Ocasión de la Fiesta Revelación'
                     : '¿Para quién buscas el regalo?'}
-                </h4>
-                <p className="text-xs text-slate-500 mt-0.5">
+                </h3>
+                <p className="text-xs text-slate-600 mt-0.5">
                   Adaptado a la temática elegida:{' '}
                   <strong className="text-indigo-700">
                     {selectedThemeObj?.label || 'General'}
@@ -1181,6 +1192,7 @@ export default function GiftWizard({
                 {isRevealMode ? (
                   <>
                     <button
+                      type="button"
                       onClick={() => setSelectedGender('reveal')}
                       className={`p-4 rounded-2xl text-left border transition-all flex flex-col gap-1.5 cursor-pointer ${
                         selectedGender === 'reveal'
@@ -1190,12 +1202,13 @@ export default function GiftWizard({
                     >
                       <PartyPopper className="w-6 h-6 text-amber-500 mb-1" />
                       <span className="font-bold text-sm text-slate-900">Fiesta Revelación de Género & Baby Shower</span>
-                      <span className="text-xs text-slate-500 leading-relaxed">
+                      <span className="text-xs text-slate-600 leading-relaxed">
                         Kits enigma, cañones de humo holi, globos sorpresa para desvelar el sexo del bebé.
                       </span>
                     </button>
 
                     <button
+                      type="button"
                       onClick={() => setSelectedGender('all')}
                       className={`p-4 rounded-2xl text-left border transition-all flex flex-col gap-1.5 cursor-pointer ${
                         selectedGender === 'all'
@@ -1205,7 +1218,7 @@ export default function GiftWizard({
                     >
                       <Gift className="w-6 h-6 text-indigo-600 mb-1" />
                       <span className="font-bold text-sm text-slate-900">Regalo para los Futuros Papás</span>
-                      <span className="text-xs text-slate-500 leading-relaxed">
+                      <span className="text-xs text-slate-600 leading-relaxed">
                         Detalles para celebrar la dulce espera y artículos conmemorativos.
                       </span>
                     </button>
@@ -1213,6 +1226,7 @@ export default function GiftWizard({
                 ) : selectedAge === '+18' ? (
                   <>
                     <button
+                      type="button"
                       onClick={() => setSelectedGender('boy')}
                       className={`p-3.5 sm:p-4 rounded-2xl text-left border transition-all flex flex-col gap-1.5 cursor-pointer ${
                         selectedGender === 'boy'
@@ -1222,12 +1236,13 @@ export default function GiftWizard({
                     >
                       <User className="w-6 h-6 text-blue-600 mb-1" />
                       <span className="font-bold text-sm text-slate-900">Para Él (Hombre / Chico)</span>
-                      <span className="text-xs text-slate-500 leading-relaxed">
+                      <span className="text-xs text-slate-600 leading-relaxed">
                         Fragancias como Dior Sauvage, réplicas retro de cine, motos y tecnología.
                       </span>
                     </button>
 
                     <button
+                      type="button"
                       onClick={() => setSelectedGender('girl')}
                       className={`p-3.5 sm:p-4 rounded-2xl text-left border transition-all flex flex-col gap-1.5 cursor-pointer ${
                         selectedGender === 'girl'
@@ -1237,12 +1252,13 @@ export default function GiftWizard({
                     >
                       <Heart className="w-6 h-6 text-pink-600 mb-1" />
                       <span className="font-bold text-sm text-slate-900">Para Ella (Mujer / Chica)</span>
-                      <span className="text-xs text-slate-500 leading-relaxed">
+                      <span className="text-xs text-slate-600 leading-relaxed">
                         Armani Sì, sets botánicos LEGO Icons, spas y coctelería gourmet.
                       </span>
                     </button>
 
                     <button
+                      type="button"
                       onClick={() => setSelectedGender('all')}
                       className={`p-3.5 sm:p-4 rounded-2xl text-left border transition-all flex flex-col gap-1.5 cursor-pointer ${
                         selectedGender === 'all'
@@ -1252,7 +1268,7 @@ export default function GiftWizard({
                     >
                       <Users className="w-6 h-6 text-indigo-600 mb-1" />
                       <span className="font-bold text-sm text-slate-900">Todos / Unisex / Pareja</span>
-                      <span className="text-xs text-slate-500 leading-relaxed">
+                      <span className="text-xs text-slate-600 leading-relaxed">
                         Smartphones buque insignia, juegos de mesa expertos y escapadas.
                       </span>
                     </button>
@@ -1260,6 +1276,7 @@ export default function GiftWizard({
                 ) : (
                   <>
                     <button
+                      type="button"
                       onClick={() => setSelectedGender('boy')}
                       className={`p-3.5 sm:p-4 rounded-2xl text-left border transition-all flex flex-col gap-1.5 cursor-pointer ${
                         selectedGender === 'boy'
@@ -1269,12 +1286,13 @@ export default function GiftWizard({
                     >
                       <User className="w-6 h-6 text-blue-600 mb-1" />
                       <span className="font-bold text-sm text-slate-900">Para Chico / Amigo</span>
-                      <span className="text-xs text-slate-500 leading-relaxed">
+                      <span className="text-xs text-slate-600 leading-relaxed">
                         Cultura friki, gaming, cartas coleccionables, coches o ropa urbana.
                       </span>
                     </button>
 
                     <button
+                      type="button"
                       onClick={() => setSelectedGender('girl')}
                       className={`p-3.5 sm:p-4 rounded-2xl text-left border transition-all flex flex-col gap-1.5 cursor-pointer ${
                         selectedGender === 'girl'
@@ -1284,12 +1302,13 @@ export default function GiftWizard({
                     >
                       <Heart className="w-6 h-6 text-pink-600 mb-1" />
                       <span className="font-bold text-sm text-slate-900">Para Chica / Amiga</span>
-                      <span className="text-xs text-slate-500 leading-relaxed">
+                      <span className="text-xs text-slate-600 leading-relaxed">
                         Creatividad, manga, fotografía instantánea Instax, skincare y estilo.
                       </span>
                     </button>
 
                     <button
+                      type="button"
                       onClick={() => setSelectedGender('all')}
                       className={`p-3.5 sm:p-4 rounded-2xl text-left border transition-all flex flex-col gap-1.5 cursor-pointer ${
                         selectedGender === 'all'
@@ -1299,7 +1318,7 @@ export default function GiftWizard({
                     >
                       <Users className="w-6 h-6 text-indigo-600 mb-1" />
                       <span className="font-bold text-sm text-slate-900">Todos / Unisex</span>
-                      <span className="text-xs text-slate-500 leading-relaxed">
+                      <span className="text-xs text-slate-600 leading-relaxed">
                         Recomendaciones neutrales, cómic, manga, cartas Pokémon y superventas.
                       </span>
                     </button>
@@ -1313,14 +1332,14 @@ export default function GiftWizard({
           {step === 4 && (
             <div className="space-y-4">
               <div className="text-left">
-                <span className="text-xs font-black uppercase tracking-wider text-indigo-600 block mb-1">
+                <span className="text-xs font-black uppercase tracking-wider text-indigo-700 block mb-1">
                   Paso 4 · Presupuesto
                 </span>
-                <h4 className="text-base sm:text-lg font-black text-slate-900">
+                <h3 className="text-base sm:text-lg font-black text-slate-900">
                   ¿Cuál es tu rango de precio?
-                </h4>
-                <p className="text-xs text-slate-500 mt-0.5">
-                  Seleccionaremos las opciones con mejor puntuación y garantía oficial de Amazon España.
+                </h3>
+                <p className="text-xs text-slate-600 mt-0.5">
+                  Seleccionaremos las opciones con mejor puntuación y garantía oficial de Amazon.
                 </p>
               </div>
 
@@ -1337,6 +1356,7 @@ export default function GiftWizard({
                   return (
                     <button
                       key={item.id}
+                      type="button"
                       onClick={() => setSelectedBudget(item.id)}
                       className={`p-3.5 rounded-2xl text-left border transition-all flex items-start gap-3 cursor-pointer ${
                         isSelected
@@ -1344,17 +1364,17 @@ export default function GiftWizard({
                           : 'border-slate-200 bg-slate-50/70 text-slate-800 hover:bg-slate-100'
                       }`}
                     >
-                      <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${isSelected ? 'bg-indigo-600 text-white' : 'bg-white border border-slate-200'}`}>
+                      <span className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${isSelected ? 'bg-indigo-600 text-white' : 'bg-white border border-slate-200'}`}>
                         <IconComp className={`w-4 h-4 ${isSelected ? 'text-white' : item.iconColor}`} />
-                      </div>
-                      <div className="flex-1 min-w-0">
+                      </span>
+                      <span className="block flex-1 min-w-0">
                         <span className="font-bold text-xs sm:text-sm text-slate-900 block leading-tight">
                           {item.label}
                         </span>
-                        <span className="text-[11px] text-slate-500 leading-tight block mt-0.5">
+                        <span className="text-[11px] text-slate-600 leading-tight block mt-0.5">
                           {item.desc}
                         </span>
-                      </div>
+                      </span>
                     </button>
                   );
                 })}
@@ -1402,8 +1422,9 @@ export default function GiftWizard({
         <div className="p-4 sm:p-5 border-t border-slate-100 bg-slate-50/90 flex items-center justify-between">
           {step > 1 ? (
             <button
+              type="button"
               onClick={() => setStep(step - 1)}
-              className="text-xs font-bold text-slate-600 hover:text-slate-900 px-3 py-2 transition-colors cursor-pointer"
+              className="text-xs font-bold text-slate-700 hover:text-slate-950 px-3 py-2 transition-colors cursor-pointer"
             >
               ← Volver al paso {step - 1}
             </button>
@@ -1413,6 +1434,7 @@ export default function GiftWizard({
 
           {step < 4 ? (
             <button
+              type="button"
               onClick={() => setStep(step + 1)}
               className="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-bold flex items-center gap-2 shadow-sm transition-all cursor-pointer"
             >
@@ -1421,8 +1443,9 @@ export default function GiftWizard({
             </button>
           ) : (
             <button
+              type="button"
               onClick={handleFinish}
-              className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 hover:opacity-95 text-white text-xs sm:text-sm font-black flex items-center gap-2 shadow-md transition-all scale-102 cursor-pointer"
+              className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-indigo-700 via-purple-700 to-pink-700 hover:opacity-95 text-white text-xs sm:text-sm font-black flex items-center gap-2 shadow-md transition-all scale-102 cursor-pointer"
             >
               <Bot className="w-4 h-4 text-amber-300" />
               <span>Ver Recomendaciones IA</span>

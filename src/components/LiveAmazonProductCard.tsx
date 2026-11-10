@@ -18,10 +18,10 @@ interface LiveAmazonProductCardProps {
 
 export default function LiveAmazonProductCard({
   product,
-  categoryLabel = 'Amazon España',
+  categoryLabel = 'Amazon',
   badgeLabel = 'Oferta flash',
 }: LiveAmazonProductCardProps) {
-  const { formatPrice } = useCurrency();
+  const { formatPrice, amazonRegion, amazonSiteName } = useCurrency();
   const { toggleItem, isItemInList } = useVoting();
   const isInVote = isItemInList(product.asin);
   const [copied, setCopied] = useState(false);
@@ -58,7 +58,7 @@ export default function LiveAmazonProductCard({
 
   // Direct product URL with affiliate tag
   const directProductUrl = product.asin
-    ? getAmazonProductUrl(product.asin, product.title)
+    ? getAmazonProductUrl(product.asin, product.title, amazonRegion)
     : product.url;
 
   const handleShare = async (e: React.MouseEvent) => {
@@ -68,7 +68,7 @@ export default function LiveAmazonProductCard({
       try {
         await navigator.share({
           title: product.title,
-          text: `Mira este regalo en Amazon España: ${product.title}`,
+          text: `Mira este regalo en ${amazonSiteName}: ${product.title}`,
           url: directProductUrl,
         });
         trackShareEvent('Native Share', 'product_card', {
@@ -103,7 +103,7 @@ export default function LiveAmazonProductCard({
           href={directProductUrl}
           target="_blank"
           rel="nofollow sponsored noopener noreferrer"
-          aria-label={`Ver producto: ${product.title}`}
+          aria-label={`Ver foto de ${product.title}`}
           className="block w-full h-full cursor-pointer relative"
         >
           {product.imageUrl && !hasImgError ? (
@@ -117,18 +117,19 @@ export default function LiveAmazonProductCard({
               className="object-contain p-1 transition-transform duration-200 group-hover:scale-105"
             />
           ) : (
-            <div className="w-full h-full bg-slate-50 flex flex-col items-center justify-center text-slate-400 p-2 text-center">
-              <ShoppingBag className="w-6 h-6 mb-1 text-slate-400 opacity-60" />
-              <span className="text-[10px] font-bold text-slate-600 line-clamp-1">
+            <span className="w-full h-full bg-slate-50 flex flex-col items-center justify-center text-slate-600 p-2 text-center">
+              <ShoppingBag className="w-6 h-6 mb-1 text-slate-500 opacity-80" />
+              <span className="text-[10px] font-bold text-slate-700 line-clamp-1">
                 {product.title}
               </span>
-            </div>
+            </span>
           )}
         </a>
 
         {/* Action icons (Wishlist & Share) */}
         <div className="absolute top-1.5 right-1.5 flex items-center gap-1 z-10">
-          <button
+            <button
+            type="button"
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
@@ -136,18 +137,19 @@ export default function LiveAmazonProductCard({
             }}
             aria-label={isInVote ? 'Quitar de la lista de votación' : 'Añadir a la lista de votación'}
             title={isInVote ? 'En tu lista de votación en grupo' : 'Añadir a votación en grupo'}
-            className={`w-6 h-6 rounded-full backdrop-blur-xs flex items-center justify-center transition-transform shadow-2xs cursor-pointer border ${
+            className={`w-7 h-7 rounded-full backdrop-blur-xs flex items-center justify-center transition-transform shadow-2xs cursor-pointer border ${
               isInVote
-                ? 'bg-rose-50 border-rose-200 text-rose-500 scale-110'
-                : 'bg-white/90 border-slate-100 text-slate-400 hover:text-rose-500 hover:scale-110'
+                ? 'bg-rose-50 border-rose-200 text-rose-600 scale-105'
+                : 'bg-white/95 border-slate-200 text-slate-600 hover:text-rose-600 hover:scale-105'
             }`}
           >
-            <Heart className={`w-3.5 h-3.5 ${isInVote ? 'fill-rose-500 text-rose-500' : ''}`} />
+            <Heart className={`w-3.5 h-3.5 ${isInVote ? 'fill-rose-500 text-rose-600' : ''}`} />
           </button>
           <button
+            type="button"
             onClick={handleShare}
             aria-label="Compartir idea"
-            className="w-6 h-6 rounded-full bg-white/90 backdrop-blur-xs flex items-center justify-center text-slate-400 hover:text-slate-950 hover:scale-110 transition-transform shadow-2xs cursor-pointer border border-slate-100"
+            className="w-7 h-7 rounded-full bg-white/95 backdrop-blur-xs flex items-center justify-center text-slate-600 hover:text-slate-950 hover:scale-105 transition-transform shadow-2xs cursor-pointer border border-slate-200"
           >
             <Share2 className="w-3.5 h-3.5" />
           </button>
@@ -160,20 +162,19 @@ export default function LiveAmazonProductCard({
           {/* Subcategory Label */}
           {categoryLabel && (
             <div className="mb-1">
-              <span className="text-[11px] text-slate-500 font-medium truncate block">
+              <span className="text-[11px] text-slate-600 font-medium truncate block">
                 {categoryLabel}
               </span>
             </div>
           )}
 
           {/* Title */}
-          <p className="font-medium text-xs sm:text-[13px] leading-snug text-slate-900 line-clamp-2 group-hover:text-[#c45500] transition-colors mb-1 min-h-[2rem]">
+          <p className="font-medium text-xs sm:text-[13px] leading-snug text-slate-900 group-hover:text-[#c45500] transition-colors mb-1 min-h-[2rem]">
             <a
               href={directProductUrl}
               target="_blank"
               rel="nofollow sponsored noopener noreferrer"
-              aria-label={`Ver oferta de ${product.title} en Amazon`}
-              className="hover:underline"
+              className="block line-clamp-2 hover:underline"
             >
               {product.title}
             </a>
@@ -195,7 +196,7 @@ export default function LiveAmazonProductCard({
             </div>
             <span className="font-bold text-slate-900 text-xs ml-0.5">{product.rating}</span>
             <span className="text-[#007185] hover:underline font-medium text-[11px]">
-              ({(product.reviewsCount || 180).toLocaleString()})
+              ({(product.reviewsCount || 180).toLocaleString('es-ES')})
             </span>
           </div>
         </div>
@@ -220,16 +221,16 @@ export default function LiveAmazonProductCard({
             href={directProductUrl}
             target="_blank"
             rel="nofollow sponsored noopener noreferrer"
-            aria-label={`Ver oferta de ${product.title} en Amazon`}
             className="w-full py-2 px-3 rounded-xl text-xs font-black text-slate-950 bg-[#ffd814] hover:bg-[#f7ca00] active:bg-[#f0b800] border border-[#fcd200] shadow-xs text-center flex items-center justify-center gap-1.5 transition-all cursor-pointer hover:scale-101"
           >
             <span>Ver oferta en Amazon</span>
+            <span className="sr-only">: {product.title}</span>
             <ExternalLink className="w-3.5 h-3.5 text-slate-900" />
           </a>
 
           {/* Toast feedback when copied */}
           {copied && (
-            <div className="text-center text-[9px] text-emerald-600 font-bold mt-1">
+            <div className="text-center text-[9px] text-emerald-700 font-bold mt-1">
               ✓ ¡Enlace copiado!
             </div>
           )}

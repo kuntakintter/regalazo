@@ -35,6 +35,7 @@ import {
   ChevronDown,
 } from 'lucide-react';
 import { parsePrice, getAmazonProductUrl } from '@/lib/amazon';
+import { useCurrency } from '@/context/CurrencyContext';
 import { generateProductItemListSchema } from '@/lib/schemaProduct';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -59,6 +60,7 @@ const GAMING_FAQS = [
 ];
 
 export default function GamingPage() {
+  const { amazonRegion, amazonSiteName, formatPrice } = useCurrency();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedBrand, setSelectedBrand] = useState<string>('Todas las marcas');
   const [selectedPrice, setSelectedPrice] = useState<string>('all');
@@ -187,7 +189,7 @@ export default function GamingPage() {
       let isMounted = true;
       setIsLoadingLive(true);
       const timer = setTimeout(() => {
-        fetch(`/api/live-search?q=${encodeURIComponent(liveSearchQuery)}&limit=8`)
+        fetch(`/api/live-search?q=${encodeURIComponent(liveSearchQuery)}&limit=8&region=${amazonRegion}`)
           .then((res) => res.json())
           .then((data) => {
             if (isMounted && data.success && Array.isArray(data.results)) {
@@ -207,13 +209,13 @@ export default function GamingPage() {
     } else {
       setLiveAmazonProducts([]);
     }
-  }, [selectedCategory, selectedBrand, selectedPrice, liveSearchQuery]);
+  }, [selectedCategory, selectedBrand, selectedPrice, liveSearchQuery, amazonRegion]);
 
   const handleLoadLiveToGrid = useCallback(async () => {
     if (isLoadingLive) return;
     setIsLoadingLive(true);
     try {
-      const res = await fetch(`/api/live-search?q=${encodeURIComponent(liveSearchQuery)}&limit=12`);
+      const res = await fetch(`/api/live-search?q=${encodeURIComponent(liveSearchQuery)}&limit=12&region=${amazonRegion}`);
       const data = await res.json();
       if (data.success && Array.isArray(data.results)) {
         setLiveAmazonProducts((prev) => {
@@ -227,7 +229,7 @@ export default function GamingPage() {
     } finally {
       setIsLoadingLive(false);
     }
-  }, [isLoadingLive, liveSearchQuery]);
+  }, [isLoadingLive, liveSearchQuery, amazonRegion]);
 
   const handleResetFilters = () => {
     setSelectedCategory('all');
@@ -258,10 +260,10 @@ export default function GamingPage() {
       <Header currentTheme="gamer" />
 
       {/* Breadcrumb */}
-      <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 w-full text-xs text-slate-500 flex items-center gap-1.5">
-        <Link href="/" className="hover:text-indigo-600 font-medium">Inicio</Link>
-        <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-        <span className="font-bold text-slate-800">Especial Gaming & Setup</span>
+      <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 w-full text-xs text-slate-600 flex items-center gap-1.5">
+        <Link href="/" className="hover:text-indigo-700 font-medium py-1">Inicio</Link>
+        <ChevronRight className="w-3.5 h-3.5 text-slate-500" />
+        <span className="font-bold text-slate-900">Especial Gaming & Setup</span>
       </nav>
 
       {/* Main Content Area */}
@@ -285,17 +287,17 @@ export default function GamingPage() {
             ¿Buscas un buen regalo para un gamer barato o ideas originales para PC, PS5 y Switch? Auriculares con audio posicional 7.1, ratones de 25K DPI y accesorios recomendados por menos de 30 €.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs font-medium text-slate-500 mb-8">
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs font-medium text-slate-600 mb-8">
             <span className="flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-emerald-500" />
-              Garantía Oficial Amazon España
+              <ShieldCheck className="w-4 h-4 text-emerald-700" />
+              Garantía Oficial {amazonSiteName}
             </span>
             <span className="flex items-center gap-1.5">
-              <TrendingUp className="w-4 h-4 text-purple-600" />
+              <TrendingUp className="w-4 h-4 text-purple-700" />
               Marcas Competitivas: Logitech G, HyperX, Razer
             </span>
             <span className="flex items-center gap-1.5">
-              <BadgePercent className="w-4 h-4 text-amber-500" />
+              <BadgePercent className="w-4 h-4 text-amber-700" />
               Precios Mínimos Históricos Prime
             </span>
           </div>
@@ -338,7 +340,7 @@ export default function GamingPage() {
                 </div>
                 <div className="flex items-center justify-between gap-2 mb-1">
                   <span className="text-[11px] font-bold text-amber-400 uppercase">HyperX</span>
-                  <span className="text-base font-black text-white">74,99 €</span>
+                  <span className="text-base font-black text-white">{formatPrice('74,99 €')}</span>
                 </div>
                 <h3 className="text-sm font-bold text-white mb-2 line-clamp-2">
                   HyperX Cloud II Auriculares con Audio 7.1
@@ -359,7 +361,7 @@ export default function GamingPage() {
                 </ul>
               </div>
               <a
-                href={getAmazonProductUrl('', 'hyperx cloud ii auriculares gaming 7.1')}
+                href={getAmazonProductUrl('', 'hyperx cloud ii auriculares gaming 7.1', amazonRegion)}
                 target="_blank"
                 rel="nofollow noopener noreferrer"
                 className="w-full py-2.5 px-4 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs text-center shadow-md transition-all flex items-center justify-center gap-1.5 cursor-pointer"
@@ -386,7 +388,7 @@ export default function GamingPage() {
                 </div>
                 <div className="flex items-center justify-between gap-2 mb-1">
                   <span className="text-[11px] font-bold text-purple-300 uppercase">Logitech G</span>
-                  <span className="text-base font-black text-white">47,90 €</span>
+                  <span className="text-base font-black text-white">{formatPrice('47,90 €')}</span>
                 </div>
                 <h3 className="text-sm font-bold text-white mb-2 line-clamp-2">
                   Logitech G502 HERO Ratón 25.600 DPI
@@ -407,7 +409,7 @@ export default function GamingPage() {
                 </ul>
               </div>
               <a
-                href={getAmazonProductUrl('B07GS6ZB7T', 'logitech g502 hero raton gaming rgb 25k')}
+                href={getAmazonProductUrl('B07GS6ZB7T', 'logitech g502 hero raton gaming rgb 25k', amazonRegion)}
                 target="_blank"
                 rel="nofollow noopener noreferrer"
                 className="w-full py-2.5 px-4 rounded-xl bg-purple-400 hover:bg-purple-300 text-slate-950 font-black text-xs text-center shadow-md transition-all flex items-center justify-center gap-1.5 cursor-pointer"
@@ -434,7 +436,7 @@ export default function GamingPage() {
                 </div>
                 <div className="flex items-center justify-between gap-2 mb-1">
                   <span className="text-[11px] font-bold text-emerald-300 uppercase">Razer</span>
-                  <span className="text-base font-black text-white">24,99 €</span>
+                  <span className="text-base font-black text-white">{formatPrice('24,99 €')}</span>
                 </div>
                 <h3 className="text-sm font-bold text-white mb-2 line-clamp-2">
                   Razer DeathAdder Essential Óptico 6.400 DPI
@@ -455,7 +457,7 @@ export default function GamingPage() {
                 </ul>
               </div>
               <a
-                href={getAmazonProductUrl('', 'razer deathadder essential raton gaming 6400 dpi')}
+                href={getAmazonProductUrl('', 'razer deathadder essential raton gaming 6400 dpi', amazonRegion)}
                 target="_blank"
                 rel="nofollow noopener noreferrer"
                 className="w-full py-2.5 px-4 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-black text-xs text-center shadow-md transition-all flex items-center justify-center gap-1.5 cursor-pointer"
@@ -476,22 +478,22 @@ export default function GamingPage() {
             </div>
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <span className="px-2.5 py-0.5 rounded-full bg-pink-500/30 text-pink-300 font-black text-[10px] tracking-wide uppercase border border-pink-400/30">
+                <span className="px-2.5 py-0.5 rounded-full bg-pink-500/30 text-pink-200 font-black text-[10px] tracking-wide uppercase border border-pink-400/30">
                   Especial Lanzamiento
                 </span>
                 <span className="text-xs text-cyan-300 font-bold">Grand Theft Auto VI</span>
               </div>
-              <h3 className="text-base sm:text-lg font-black text-white">
+              <p className="text-base sm:text-lg font-black text-white">
                 ¿Buscando regalos para fans de GTA 6 y GTA VI?
-              </h3>
+              </p>
               <p className="text-xs sm:text-sm text-slate-300">
-                Descubre mandos PS5 Nova Pink, lámparas neón Vice City, camisetas retro y tarjetas de reserva en Amazon España.
+                Descubre mandos PS5 Nova Pink, lámparas neón Vice City, camisetas retro y tarjetas de reserva en {amazonSiteName}.
               </p>
             </div>
           </div>
           <Link
             href="/regalos-gta-6"
-            className="shrink-0 px-6 py-3 rounded-2xl bg-gradient-to-r from-pink-500 via-purple-600 to-cyan-500 hover:from-pink-600 hover:to-cyan-600 text-white font-black text-xs sm:text-sm shadow-lg hover:scale-105 transition-all flex items-center gap-2 cursor-pointer relative z-10"
+            className="shrink-0 px-6 py-3 rounded-2xl bg-gradient-to-r from-pink-600 via-purple-700 to-cyan-700 hover:from-pink-500 hover:to-cyan-600 text-white font-black text-xs sm:text-sm shadow-lg hover:scale-105 transition-all flex items-center gap-2 cursor-pointer relative z-10"
           >
             <span>Explorar Merch GTA 6</span>
             <ChevronRight className="w-4 h-4" />
@@ -502,11 +504,11 @@ export default function GamingPage() {
         <div className="bg-white rounded-3xl border border-slate-200 p-5 sm:p-6 mb-8 shadow-xs">
           <div className="mb-5">
             <div className="flex items-center justify-between mb-3">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
-                <Filter className="w-3.5 h-3.5 text-purple-600" />
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-600 flex items-center gap-1.5">
+                <Filter className="w-3.5 h-3.5 text-purple-700" />
                 <span>¿Qué periférico o gadget buscas?</span>
               </span>
-              <span className="text-xs font-semibold text-slate-400">
+              <span className="text-xs font-semibold text-slate-600">
                 {displayProducts.length + liveAmazonProducts.length} ideas
               </span>
             </div>
@@ -515,6 +517,7 @@ export default function GamingPage() {
               {GAMING_CATEGORIES.map((cat) => (
                 <button
                   key={cat.id}
+                  type="button"
                   onClick={() => {
                     setSelectedCategory(cat.id);
                     setLiveAmazonProducts([]);
@@ -534,11 +537,13 @@ export default function GamingPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-slate-100">
             <div>
-              <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+              <label htmlFor="gaming-brand" className="block text-[11px] font-bold text-slate-600 uppercase tracking-wider mb-1.5">
                 Marca gaming
               </label>
               <select
+                id="gaming-brand"
                 value={selectedBrand}
+                aria-label="Marca gaming"
                 onChange={(e) => {
                   setSelectedBrand(e.target.value);
                   setLiveAmazonProducts([]);
@@ -552,11 +557,13 @@ export default function GamingPage() {
             </div>
 
             <div>
-              <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+              <label htmlFor="gaming-price" className="block text-[11px] font-bold text-slate-600 uppercase tracking-wider mb-1.5">
                 Rango de precio
               </label>
               <select
+                id="gaming-price"
                 value={selectedPrice}
+                aria-label="Rango de precio"
                 onChange={(e) => {
                   setSelectedPrice(e.target.value);
                   setLiveAmazonProducts([]);
@@ -570,12 +577,14 @@ export default function GamingPage() {
             </div>
 
             <div>
-              <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
-                <ArrowUpDown className="w-3.5 h-3.5 text-purple-600" />
+              <label htmlFor="gaming-sort" className="flex items-center gap-1.5 text-[11px] font-bold text-slate-600 uppercase tracking-wider mb-1.5">
+                <ArrowUpDown className="w-3.5 h-3.5 text-purple-700" />
                 <span>Ordenar productos</span>
               </label>
               <select
+                id="gaming-sort"
                 value={sortBy}
+                aria-label="Ordenar productos"
                 onChange={(e) => setSortBy(e.target.value as any)}
                 className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 text-xs font-semibold focus:border-purple-500 focus:bg-white outline-none cursor-pointer"
               >
@@ -589,10 +598,11 @@ export default function GamingPage() {
 
           {(selectedCategory !== 'all' || selectedBrand !== 'Todas las marcas' || selectedPrice !== 'all' || sortBy !== 'featured') && (
             <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
-              <span className="text-xs text-slate-500">
+              <span className="text-xs text-slate-600">
                 Filtros activos en gaming {sortBy !== 'featured' && `• Orden: ${sortBy === 'price-asc' ? 'Menor a mayor precio' : sortBy === 'price-desc' ? 'Mayor a menor precio' : 'Mejor valorados'}`}
               </span>
               <button
+                type="button"
                 onClick={handleResetFilters}
                 className="text-xs font-bold text-purple-700 hover:text-purple-900 underline cursor-pointer"
               >
@@ -634,6 +644,7 @@ export default function GamingPage() {
 
             <div className="mb-12 flex justify-center">
               <button
+                type="button"
                 onClick={handleLoadLiveToGrid}
                 disabled={isLoadingLive}
                 className="px-7 py-4 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-sm shadow-md hover:shadow-lg hover:shadow-amber-500/20 transition-all flex items-center gap-2.5 cursor-pointer disabled:opacity-75 hover:scale-102"
@@ -641,7 +652,7 @@ export default function GamingPage() {
                 {isLoadingLive ? (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin text-slate-950" />
-                    <span>Cargando ofertas de Amazon España...</span>
+                    <span>Cargando ofertas de {amazonSiteName}...</span>
                   </>
                 ) : (
                   <>
@@ -661,14 +672,15 @@ export default function GamingPage() {
                 </span>
                 <div>
                   <p className="font-extrabold text-slate-900">
-                    Mostrando productos en directo de Amazon España para tu selección:
+                    Mostrando productos en directo de {amazonSiteName} para tu selección:
                   </p>
                   <p className="text-xs text-slate-600 font-normal">
-                    Precios, disponibilidad y valoraciones actualizadas al segundo desde Amazon.es
+                    Precios, disponibilidad y valoraciones actualizadas al segundo desde {amazonSiteName}
                   </p>
                 </div>
               </div>
               <button
+                type="button"
                 onClick={handleResetFilters}
                 className="text-xs bg-white text-purple-900 px-4 py-2 rounded-xl border border-purple-200 font-bold hover:bg-purple-100 transition-all shadow-xs cursor-pointer"
               >
@@ -697,6 +709,7 @@ export default function GamingPage() {
 
             <div className="mb-12 flex justify-center">
               <button
+                type="button"
                 onClick={handleLoadLiveToGrid}
                 disabled={isLoadingLive}
                 className="px-7 py-4 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-sm shadow-md hover:shadow-lg hover:shadow-amber-500/20 transition-all flex items-center gap-2.5 cursor-pointer disabled:opacity-75 hover:scale-102"
@@ -717,20 +730,21 @@ export default function GamingPage() {
           </div>
         ) : isLoadingLive ? (
           <div className="py-20 mb-16 text-center flex flex-col items-center justify-center gap-3 bg-white/80 rounded-3xl border border-purple-100 shadow-xs">
-            <Loader2 className="w-10 h-10 animate-spin text-purple-600" />
-            <h3 className="text-lg font-bold text-slate-900">Buscando productos disponibles en Amazon España...</h3>
-            <p className="text-xs text-slate-500 max-w-md">
+            <Loader2 className="w-10 h-10 animate-spin text-purple-700" />
+            <h2 className="text-lg font-bold text-slate-900">Buscando productos disponibles en {amazonSiteName}...</h2>
+            <p className="text-xs text-slate-600 max-w-md">
               Estamos consultando el catálogo en tiempo real con stock oficial y precios actualizados.
             </p>
           </div>
         ) : (
           <div className="py-12 mb-16 text-center bg-white/70 rounded-3xl border border-dashed border-slate-300 p-8">
-            <h3 className="text-xl font-bold mb-2 text-slate-900">No encontramos productos locales para este filtro exacto</h3>
+            <h2 className="text-xl font-bold mb-2 text-slate-900">No encontramos productos locales para este filtro exacto</h2>
             <p className="text-sm text-slate-600 mb-6 max-w-md mx-auto">
-              Puedes cargar las ofertas disponibles en Amazon España o restablecer los filtros para explorar otras opciones.
+              Puedes cargar las ofertas disponibles en {amazonSiteName} o restablecer los filtros para explorar otras opciones.
             </p>
             <div className="flex justify-center gap-3">
               <button
+                type="button"
                 onClick={handleLoadLiveToGrid}
                 className="px-6 py-3 rounded-2xl bg-[#FF9900] hover:bg-[#ffad33] text-slate-950 font-black text-sm flex items-center gap-2 shadow-md cursor-pointer transition-transform hover:scale-102"
               >
@@ -738,6 +752,7 @@ export default function GamingPage() {
                 <span>Buscar en Amazon en directo</span>
               </button>
               <button
+                type="button"
                 onClick={handleResetFilters}
                 className="px-5 py-3 rounded-2xl bg-slate-200 text-slate-800 font-bold text-sm hover:bg-slate-300 cursor-pointer transition-colors"
               >
@@ -792,7 +807,7 @@ export default function GamingPage() {
           </div>
 
           <div className="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="text-xs text-slate-500">
+            <div className="text-xs text-slate-600">
               ¿Te han gustado estas recomendaciones gamer? Compártelas con tus amigos o grupo de juego.
             </div>
             <SocialShareWidget
@@ -805,8 +820,8 @@ export default function GamingPage() {
         {/* FAQS SECTION (FAQPage SCHEMA COMPLIANT) */}
         <section className="rounded-3xl p-6 sm:p-10 mb-12 border border-slate-200 bg-white text-slate-900 shadow-xs">
           <div className="flex items-center gap-2 mb-3">
-            <HelpCircle className="w-5 h-5 text-purple-600" />
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
+            <HelpCircle className="w-5 h-5 text-purple-700" />
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-600">
               Preguntas Frecuentes de la Comunidad Gamer
             </span>
           </div>
@@ -828,13 +843,15 @@ export default function GamingPage() {
                   }`}
                 >
                   <button
+                    type="button"
+                    aria-expanded={isOpen}
                     onClick={() => toggleFaq(idx)}
                     className="w-full text-left px-5 py-4 flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-slate-900 cursor-pointer"
                   >
                     <span>{faq.question}</span>
                     <ChevronDown
-                      className={`w-5 h-5 text-slate-400 shrink-0 transition-transform duration-200 ${
-                        isOpen ? 'rotate-180 text-purple-600' : ''
+                      className={`w-5 h-5 text-slate-500 shrink-0 transition-transform duration-200 ${
+                        isOpen ? 'rotate-180 text-purple-700' : ''
                       }`}
                     />
                   </button>

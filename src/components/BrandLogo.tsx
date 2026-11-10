@@ -34,8 +34,7 @@ export default function BrandLogo({ size = 'normal', showSubtitle = true, varian
           src="/brand-icon.png"
           alt="Logo Un Buen Regalo"
           fill
-          priority
-          unoptimized
+          loading="eager"
           sizes="(max-width: 640px) 48px, 64px"
           className="object-contain"
         />
@@ -53,10 +52,10 @@ export default function BrandLogo({ size = 'normal', showSubtitle = true, varian
                 : 'text-xl sm:text-[23px] tracking-[-0.025em]'
             }`}
           >
-            <span className={isLight ? 'text-[#18b8d6]' : 'text-[#0aa2c0]'}>
+            <span className={isLight ? 'text-[#38bdf8]' : 'text-[#07687a]'}>
               UN BUEN
             </span>{' '}
-            <span className="text-[#f15950]">
+            <span className={isLight ? 'text-[#f87171]' : 'text-[#c42b22]'}>
               REGALO
             </span>
           </span>
@@ -67,15 +66,15 @@ export default function BrandLogo({ size = 'normal', showSubtitle = true, varian
           <div className="flex items-center gap-1.5 mt-1">
             <span
               className={`text-[10px] sm:text-[10.5px] font-black tracking-wide ${
-                isLight ? 'text-[#18b8d6]' : 'text-[#0aa2c0]'
+                isLight ? 'text-[#38bdf8]' : 'text-[#07687a]'
               }`}
             >
               unbuenregalo.es
             </span>
-            <span className={`text-[9px] font-bold ${isLight ? 'text-slate-500' : 'text-slate-300'}`}>•</span>
+            <span className={`text-[9px] font-bold ${isLight ? 'text-slate-400' : 'text-slate-600'}`}>•</span>
             <span
               className={`text-[9px] sm:text-[9.5px] uppercase tracking-[0.1em] font-extrabold ${
-                isLight ? 'text-slate-300 group-hover:text-white' : 'text-slate-500 group-hover:text-slate-800'
+                isLight ? 'text-slate-300 group-hover:text-white' : 'text-slate-600 group-hover:text-slate-900'
               } transition-colors`}
             >
               De 0 a +18 Años

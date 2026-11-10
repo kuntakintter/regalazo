@@ -56,7 +56,7 @@ export const HUB_OG_SNIPPETS: Record<string, SocialHubSnippet> = {
   'regalos-gta-6': {
     title: 'Un Buen Regalo GTA VI y Regalos GTA 6 【2026】 Merchandising Grand Theft Auto',
     socialTitle: '🌴 Un Buen Regalo GTA VI y GTA 6: Merch Oficial y Accesorios',
-    description: '¿Buscas un buen regalo de GTA VI o GTA 6? Descubre pósters enmarcados, mandos PS5 Nova Pink, luces neón Vice City y tarjetas de reserva en Amazon España.',
+    description: '¿Buscas un buen regalo de GTA VI o GTA 6? Descubre pósters enmarcados, mandos PS5 Nova Pink, luces neón Vice City y tarjetas de reserva disponibles en Amazon.',
     imageUrl: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1200&h=630&q=85',
     imageAlt: 'Setup gamer con luces de neón rosa y azul estilo retro Vice City de GTA 6',
   },
@@ -70,7 +70,7 @@ export const HUB_OG_SNIPPETS: Record<string, SocialHubSnippet> = {
   halloween: {
     title: 'Especial Halloween 2026: Disfraces, Decoración y Máscaras LED | Un Buen Regalo',
     socialTitle: '🎃 Especial Halloween 2026: Disfraces, Telarañas Gigantes y Máscaras LED',
-    description: 'Todo para celebrar Halloween 2026: máscaras LED de La Purga, arañas y telarañas gigantes para exterior, disfraces hinchables y luces de calabaza en Amazon España.',
+    description: 'Todo para celebrar Halloween 2026: máscaras LED de La Purga, arañas y telarañas gigantes para exterior, disfraces hinchables y luces de calabaza en Amazon.',
     imageUrl: 'https://images.unsplash.com/photo-1508361001413-7a9dca21d08a?auto=format&fit=crop&w=1200&h=630&q=85',
     imageAlt: 'Calabazas iluminadas y decoración nocturna especial Halloween',
   },

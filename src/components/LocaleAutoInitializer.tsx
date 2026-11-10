@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { useCurrency, Currency } from '@/context/CurrencyContext';
+import { ensureGoogleTranslateLoaded, setGoogleTranslateCookie } from '@/lib/googleTranslate';
 
 interface LocaleAutoInitializerProps {
   langCode: string;
@@ -14,45 +15,40 @@ export default function LocaleAutoInitializer({
   googleCode,
   currency,
 }: LocaleAutoInitializerProps) {
-  const { setCurrency } = useCurrency();
+  const { setCurrency, setAmazonRegion, resetLocaleToSavedOrBrowser } = useCurrency();
 
   useEffect(() => {
     try {
-      setCurrency(currency);
-      localStorage.setItem('site_language', langCode);
+      const hasExplicitCurrency = Boolean(localStorage.getItem('site_currency'));
+      const hasExplicitRegion = Boolean(localStorage.getItem('site_amazon_region'));
 
-      const domain = window.location.hostname;
-      const rootDomain = domain.replace(/^www\./, '');
+      if (!hasExplicitCurrency) {
+        setCurrency(currency, false);
+      }
+      if (!hasExplicitRegion) {
+        setAmazonRegion(langCode === 'es' ? 'es' : 'intl', false);
+      }
 
       if (googleCode === 'es') {
-        const expirePast = 'expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-        document.cookie = `googtrans=; ${expirePast}`;
-        document.cookie = `googtrans=; domain=${domain}; ${expirePast}`;
-        document.cookie = `googtrans=; domain=.${rootDomain}; ${expirePast}`;
-        document.cookie = `googtrans=/es/es; path=/; max-age=31536000;`;
+        setGoogleTranslateCookie('es');
       } else {
-        const transVal = `/es/${googleCode}`;
-        const maxAge = 'max-age=31536000; path=/;';
-        document.cookie = `googtrans=${transVal}; ${maxAge}`;
-        document.cookie = `googtrans=${transVal}; domain=${domain}; ${maxAge}`;
-        document.cookie = `googtrans=${transVal}; domain=.${rootDomain}; ${maxAge}`;
-
-        const applyGoogleCombo = () => {
-          const select = document.querySelector('.goog-te-combo') as HTMLSelectElement | null;
-          if (select && select.value !== googleCode) {
-            select.value = googleCode;
-            select.dispatchEvent(new Event('change'));
-          }
-        };
-
-        applyGoogleCombo();
-        const timer = setTimeout(applyGoogleCombo, 900);
-        return () => clearTimeout(timer);
+        ensureGoogleTranslateLoaded(googleCode);
       }
     } catch {
       // ignore cookie/storage errors in restricted contexts
     }
-  }, [langCode, googleCode, currency, setCurrency]);
+
+    return () => {
+      try {
+        resetLocaleToSavedOrBrowser();
+        if (!localStorage.getItem('site_language')) {
+          setGoogleTranslateCookie('es');
+        }
+      } catch {
+        // ignore
+      }
+    };
+  }, [langCode, googleCode, currency, setCurrency, setAmazonRegion, resetLocaleToSavedOrBrowser]);
 
   return null;
 }

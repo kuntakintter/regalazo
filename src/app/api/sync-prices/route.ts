@@ -1,6 +1,14 @@
 import { NextResponse } from 'next/server';
 import { PRODUCTS } from '@/data/products';
-import { isValidActiveAsin } from '@/lib/amazon';
+import {
+  isValidActiveAsin,
+  INTL_FALLBACK_ASINS,
+  AmazonRegion,
+  AMAZON_AFFILIATE_TAG_ES,
+  AMAZON_AFFILIATE_TAG_INTL,
+  AMAZON_BASE_URL,
+  AMAZON_INTL_URL,
+} from '@/lib/amazon';
 import https from 'https';
 
 export const dynamic = 'force-dynamic';
@@ -14,17 +22,34 @@ interface SyncItemResult {
   status: 'updated' | 'unchanged' | 'unavailable';
 }
 
-// 1. Helper: Fetch live price directly from Amazon.es HTML
-function fetchLivePriceDirect(asin: string): Promise<string | null> {
+function resolveRequestRegion(request: Request, regionParam: string | null): AmazonRegion {
+  if (regionParam === 'es' || regionParam === 'intl') {
+    return regionParam;
+  }
+  const countryHeader =
+    request.headers.get('x-vercel-ip-country') ||
+    request.headers.get('cf-ipcountry') ||
+    '';
+  if (countryHeader && countryHeader.toUpperCase() !== 'ES') {
+    return 'intl';
+  }
+  return 'es';
+}
+
+// 1. Helper: Fetch live price directly from Amazon regional HTML
+function fetchLivePriceDirect(asin: string, region: AmazonRegion = 'es'): Promise<string | null> {
   return new Promise((resolve) => {
-    const url = 'https://www.amazon.es/dp/' + asin;
+    const isIntl = region === 'intl';
+    const baseUrl = isIntl ? AMAZON_INTL_URL : AMAZON_BASE_URL;
+    const acceptLanguage = isIntl ? 'en-US,en;q=0.9' : 'es-ES,es;q=0.9';
+    const url = `${baseUrl}/dp/${asin}`;
     const req = https.get(
       url,
       {
         headers: {
           'User-Agent':
             'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-          'Accept-Language': 'es-ES,es;q=0.9',
+          'Accept-Language': acceptLanguage,
           Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
         },
       },
@@ -39,8 +64,13 @@ function fetchLivePriceDirect(asin: string): Promise<string | null> {
         res.on('end', () => {
           const priceWhole = data.match(/class="a-price-whole">([0-9.,]+)/);
           const priceFraction = data.match(/class="a-price-fraction">([0-9]+)/);
-          if (priceWhole) {
-            resolve(`${priceWhole[1]},${priceFraction ? priceFraction[1] : '00'} €`);
+          const cleanWhole = priceWhole ? priceWhole[1].replace(/[.,]+$/, '') : '';
+          if (cleanWhole) {
+            resolve(
+              isIntl
+                ? `$${cleanWhole}.${priceFraction ? priceFraction[1] : '00'}`
+                : `${cleanWhole},${priceFraction ? priceFraction[1] : '00'} €`
+            );
           } else {
             const offscreenPrice = data.match(/<span class="a-offscreen">([^<]+)<\/span>/);
             if (offscreenPrice) {
@@ -85,10 +115,15 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const targetAsin = searchParams.get('asin');
     const limit = parseInt(searchParams.get('limit') || '10', 10);
+    const region = resolveRequestRegion(request, searchParams.get('region'));
+    const marketplaceHost = region === 'intl' ? 'www.amazon.com' : 'www.amazon.es';
 
     const clientId = process.env.AMAZON_CLIENT_ID;
     const clientSecret = process.env.AMAZON_CLIENT_SECRET;
-    const partnerTag = process.env.AMAZON_PARTNER_TAG || 'vapegadgets22-21';
+    const partnerTag =
+      region === 'intl'
+        ? process.env.AMAZON_PARTNER_TAG_INTL || AMAZON_AFFILIATE_TAG_INTL
+        : process.env.AMAZON_PARTNER_TAG || AMAZON_AFFILIATE_TAG_ES;
 
     // Filter target ASIN or batch (skipping known dead/404 ASINs in batch mode)
     const itemsToProcess = targetAsin
@@ -109,12 +144,12 @@ export async function GET(request: Request) {
             headers: {
               Authorization: 'Bearer ' + apiToken,
               'Content-Type': 'application/json',
-              'x-marketplace': 'www.amazon.es',
+              'x-marketplace': marketplaceHost,
             },
             body: JSON.stringify({
               itemIds: [itemsToProcess[0].asin],
               itemIdType: 'ASIN',
-              marketplace: 'www.amazon.es',
+              marketplace: marketplaceHost,
               partnerTag,
               partnerType: 'Associates',
               resources: ['offersV2.listings.price'],
@@ -135,9 +170,12 @@ export async function GET(request: Request) {
       let livePrice: string | null = null;
       let source: 'creators_api' | 'live_fetch' | 'cached' = 'cached';
 
-      if (isValidActiveAsin(item.asin)) {
+      if (
+        isValidActiveAsin(item.asin) &&
+        !(region === 'intl' && INTL_FALLBACK_ASINS.has(item.asin))
+      ) {
         // Fallback: direct live fetch (reliable & works without 30-day sales requirement)
-        livePrice = await fetchLivePriceDirect(item.asin);
+        livePrice = await fetchLivePriceDirect(item.asin, region);
         if (livePrice) {
           source = 'live_fetch';
         }
@@ -159,7 +197,9 @@ export async function GET(request: Request) {
 
     return NextResponse.json({
       success: true,
-      message: 'Sincronizador inteligente de precios de Amazon España ejecutado',
+      region,
+      marketplace: marketplaceHost,
+      message: `Sincronizador inteligente de precios de ${region === 'intl' ? 'Amazon Global' : 'Amazon España'} ejecutado`,
       timestamp,
       partnerTag,
       credentialsConfigured: Boolean(clientId && clientSecret),

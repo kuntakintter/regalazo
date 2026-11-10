@@ -168,10 +168,10 @@ export default async function SubcategoryLandingPage({ params }: PageProps) {
       <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full z-10">
         
         {/* Breadcrumb Navigation */}
-        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-semibold text-slate-500 mb-6 flex-wrap">
-          <Link href="/" className="hover:text-indigo-600 transition-colors">Inicio</Link>
+        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-semibold text-slate-600 mb-6 flex-wrap">
+          <Link href="/" className="hover:text-indigo-700 transition-colors py-1">Inicio</Link>
           <ChevronRight className="w-3.5 h-3.5" />
-          <Link href={`/${ageSlug}`} className="hover:text-indigo-600 transition-colors">{ageMeta.h1}</Link>
+          <Link href={`/${ageSlug}`} className="hover:text-indigo-700 transition-colors py-1">{ageMeta.h1}</Link>
           <ChevronRight className="w-3.5 h-3.5" />
           <span className="text-slate-900 font-bold">{currentSub.label}</span>
         </nav>
@@ -234,7 +234,7 @@ export default async function SubcategoryLandingPage({ params }: PageProps) {
                             {sub.label}
                           </span>
                         </div>
-                        <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#febd69] group-hover:translate-x-1 transition-all shrink-0" />
+                        <ArrowRight className="w-3.5 h-3.5 text-slate-600 group-hover:text-[#febd69] group-hover:translate-x-1 transition-all shrink-0" />
                       </Link>
                     ))}
                 </div>
@@ -243,17 +243,17 @@ export default async function SubcategoryLandingPage({ params }: PageProps) {
           )}
 
           {/* Trust badges */}
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs font-medium text-slate-500">
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs font-medium text-slate-600">
             <span className="flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-emerald-500" />
+              <ShieldCheck className="w-4 h-4 text-emerald-600" />
               Devolución Gratuita 30 días
             </span>
             <span className="flex items-center gap-1.5">
-              <TrendingUp className="w-4 h-4 text-indigo-500" />
+              <TrendingUp className="w-4 h-4 text-indigo-600" />
               Top Valorados
             </span>
             <span className="flex items-center gap-1.5">
-              <ShoppingBag className="w-4 h-4 text-amber-500" />
+              <ShoppingBag className="w-4 h-4 text-amber-600" />
               Envío Rápido Prime
             </span>
           </div>

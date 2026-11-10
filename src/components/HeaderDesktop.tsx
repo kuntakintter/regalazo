@@ -38,7 +38,7 @@ export default function HeaderDesktop({
   amazonResults,
   isLoadingAmazon,
 }: HeaderDesktopProps) {
-  const { formatPrice } = useCurrency();
+  const { formatPrice, amazonRegion, amazonSiteName } = useCurrency();
   const { voteItems, setIsDrawerOpen } = useVoting();
   const [isAgesOpen, setIsAgesOpen] = useState(false);
   const [isPassionsOpen, setIsPassionsOpen] = useState(false);
@@ -62,7 +62,7 @@ export default function HeaderDesktop({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [setIsFocused]);
 
-  const amazonSearchUrl = getAmazonSearchUrl(searchQuery.trim() || 'regalos');
+  const amazonSearchUrl = getAmazonSearchUrl(searchQuery.trim() || 'regalos', amazonRegion);
 
   const hasAnyResults = liveMatches.length > 0 || amazonResults.length > 0;
 
@@ -82,7 +82,7 @@ export default function HeaderDesktop({
                 onSubmit={onSearchSubmit}
                 className="relative flex items-center rounded-xl overflow-hidden shadow-inner focus-within:ring-2 focus-within:ring-[#febd69] transition-all bg-white border border-slate-200"
               >
-                <Search className="w-4 h-4 text-slate-400 ml-3.5 shrink-0" />
+                <Search className="w-4 h-4 text-slate-600 ml-3.5 shrink-0" />
 
                 <input
                   type="text"
@@ -94,20 +94,20 @@ export default function HeaderDesktop({
                   }}
                   aria-label="Buscar regalo: Lego, zapatillas, perfumes, PS5..."
                   placeholder="Buscar regalo: Lego, zapatillas, perfumes, PS5..."
-                  className="w-full px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:outline-none bg-transparent"
+                  className="w-full px-3 py-2 text-sm text-slate-900 placeholder-slate-600 focus:outline-none bg-transparent"
                 />
 
                 {/* Action Buttons inside Input */}
                 <div className="flex items-center shrink-0">
                   {isLoadingAmazon && (
-                    <Loader2 className="w-4 h-4 text-slate-400 animate-spin mr-2" />
+                    <Loader2 className="w-4 h-4 text-slate-600 animate-spin mr-2" />
                   )}
                   {searchQuery.trim().length > 0 && (
                     <button
                       type="button"
                       onClick={clearSearch}
                       aria-label="Borrar búsqueda"
-                      className="p-1 mr-1 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-200 transition-colors cursor-pointer"
+                      className="min-w-7 min-h-7 flex items-center justify-center p-1 mr-1 rounded-full text-slate-600 hover:text-slate-900 hover:bg-slate-200 transition-colors cursor-pointer"
                       title="Borrar búsqueda"
                     >
                       <X className="w-4 h-4" />
@@ -130,15 +130,16 @@ export default function HeaderDesktop({
                   {/* Catálogo Recomendado */}
                   {liveMatches.length > 0 && (
                     <div>
-                      <div className="p-2.5 bg-slate-50 border-b border-slate-100 flex items-center justify-between text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                      <div className="p-2.5 bg-slate-50 border-b border-slate-100 flex items-center justify-between text-[11px] font-bold text-slate-700 uppercase tracking-wider">
                         <span>Catálogo Recomendado</span>
-                        <span className="text-indigo-600">{liveMatches.length} productos</span>
+                        <span className="text-indigo-700">{liveMatches.length} productos</span>
                       </div>
 
                       <div className="divide-y divide-slate-100">
                         {liveMatches.map((product) => (
-                          <div
+                          <button
                             key={product.id}
+                            type="button"
                             onClick={() => {
                               if (onSelectProduct) {
                                 onSelectProduct(product);
@@ -148,47 +149,48 @@ export default function HeaderDesktop({
                                 if (target) target.scrollIntoView({ behavior: 'smooth' });
                               }
                             }}
-                            className="p-3 hover:bg-indigo-50/60 transition-colors flex items-center gap-3 cursor-pointer group"
+                            className="w-full text-left p-3 hover:bg-indigo-50/60 transition-colors flex items-center gap-3 cursor-pointer group"
                           >
-                            <div className="relative w-12 h-12 rounded-lg bg-slate-50 shrink-0 overflow-hidden border border-slate-200">
+                            <span className="relative block w-12 h-12 rounded-lg bg-slate-50 shrink-0 overflow-hidden border border-slate-200">
                               <Image
                                 src={product.imageUrl}
                                 alt={product.title}
                                 fill
+                                sizes="48px"
                                 className="object-contain p-1 group-hover:scale-105 transition-transform"
                               />
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <h4 className="text-xs font-bold text-slate-900 truncate group-hover:text-indigo-600">
+                            </span>
+                            <span className="block flex-1 min-w-0">
+                              <span className="block text-xs font-bold text-slate-900 truncate group-hover:text-indigo-700">
                                 {product.title}
-                              </h4>
-                              <div className="flex items-center gap-2 mt-0.5">
-                                <span className="text-xs font-black text-indigo-600">{formatPrice(product.priceText)}</span>
-                                <span className="text-[11px] text-slate-400 flex items-center gap-0.5">
-                                  <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
+                              </span>
+                              <span className="flex items-center gap-2 mt-0.5">
+                                <span className="text-xs font-black text-indigo-700">{formatPrice(product.priceText)}</span>
+                                <span className="text-[11px] text-slate-600 flex items-center gap-0.5">
+                                  <Star className="w-3 h-3 text-amber-500 fill-amber-400" />
                                   {product.rating}
                                 </span>
-                                <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-medium truncate">
+                                <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium truncate">
                                   {product.category}
                                 </span>
-                              </div>
-                            </div>
-                            <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-indigo-600 group-hover:translate-x-0.5 transition-all shrink-0" />
-                          </div>
+                              </span>
+                            </span>
+                            <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-indigo-700 group-hover:translate-x-0.5 transition-all shrink-0" />
+                          </button>
                         ))}
                       </div>
                     </div>
                   )}
 
-                  {/* Productos en Vivo de Amazon.es */}
+                  {/* Productos en Vivo de Amazon */}
                   {amazonResults.length > 0 && (
                     <div className={liveMatches.length > 0 ? 'border-t-2 border-slate-100' : ''}>
-                      <div className="p-2.5 bg-gradient-to-r from-amber-50/80 to-orange-50/50 border-b border-amber-100 flex items-center justify-between text-[11px] font-bold text-amber-900 uppercase tracking-wider">
+                      <div className="p-2.5 bg-gradient-to-r from-amber-50/80 to-orange-50/50 border-b border-amber-100 flex items-center justify-between text-[11px] font-bold text-amber-950 uppercase tracking-wider">
                         <div className="flex items-center gap-1.5">
-                          <ShoppingBag className="w-3.5 h-3.5 text-amber-600" />
-                          <span>Productos en Vivo de Amazon.es</span>
+                          <ShoppingBag className="w-3.5 h-3.5 text-amber-700" />
+                          <span>Productos en Vivo de {amazonSiteName}</span>
                         </div>
-                        <span className="text-[10px] bg-amber-200 text-amber-900 px-2 py-0.5 rounded-full font-black">
+                        <span className="text-[10px] bg-amber-200 text-amber-950 px-2 py-0.5 rounded-full font-black">
                           Precios al minuto
                         </span>
                       </div>
@@ -209,31 +211,32 @@ export default function HeaderDesktop({
                                   src={item.imageUrl}
                                   alt={item.title}
                                   fill
+                                  sizes="48px"
                                   unoptimized
                                   className="object-contain p-1 group-hover:scale-105 transition-transform"
                                 />
                               ) : (
-                                <div className="w-full h-full flex items-center justify-center bg-slate-100 text-slate-400">
+                                <div className="w-full h-full flex items-center justify-center bg-slate-100 text-slate-500">
                                   <ShoppingBag className="w-5 h-5" />
                                 </div>
                               )}
                             </div>
                             <div className="flex-1 min-w-0">
-                              <h4 className="text-xs font-bold text-slate-900 line-clamp-1 group-hover:text-amber-700">
+                              <p className="text-xs font-bold text-slate-900 line-clamp-1 group-hover:text-amber-800">
                                 {item.title}
-                              </h4>
+                              </p>
                               <div className="flex items-center gap-2 mt-0.5">
-                                <span className="text-xs font-black text-amber-700">{formatPrice(item.priceText)}</span>
-                                <span className="text-[11px] text-slate-400 flex items-center gap-0.5">
-                                  <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
+                                <span className="text-xs font-black text-amber-800">{formatPrice(item.priceText)}</span>
+                                <span className="text-[11px] text-slate-600 flex items-center gap-0.5">
+                                  <Star className="w-3 h-3 text-amber-500 fill-amber-400" />
                                   {item.rating}
                                 </span>
-                                <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 font-bold border border-emerald-200/60">
+                                <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-800 font-bold border border-emerald-200/60">
                                   Prime &bull; Amazon
                                 </span>
                               </div>
                             </div>
-                            <div className="flex items-center gap-1 px-2 py-1 rounded-lg bg-amber-50 text-amber-800 text-[11px] font-bold shrink-0 group-hover:bg-amber-600 group-hover:text-white transition-colors">
+                            <div className="flex items-center gap-1 px-2 py-1 rounded-lg bg-amber-50 text-amber-900 text-[11px] font-bold shrink-0 group-hover:bg-amber-600 group-hover:text-white transition-colors">
                               <span>Comprar</span>
                               <ExternalLink className="w-3 h-3" />
                             </div>
@@ -245,17 +248,17 @@ export default function HeaderDesktop({
 
                   {/* Estado de carga */}
                   {isLoadingAmazon && amazonResults.length === 0 && (
-                    <div className="p-4 text-center text-xs text-slate-500 flex items-center justify-center gap-2">
-                      <Loader2 className="w-4 h-4 text-indigo-500 animate-spin" />
-                      <span>Buscando &quot;{searchQuery}&quot; en Amazon España...</span>
+                    <div className="p-4 text-center text-xs text-slate-600 flex items-center justify-center gap-2">
+                      <Loader2 className="w-4 h-4 text-indigo-600 animate-spin" />
+                      <span>Buscando &quot;{searchQuery}&quot; en {amazonSiteName}...</span>
                     </div>
                   )}
 
                   {/* Sin resultados */}
                   {!hasAnyResults && !isLoadingAmazon && (
                     <div className="p-5 text-center bg-gradient-to-b from-white to-amber-50/40">
-                      <p className="text-xs text-slate-600 mb-3">
-                        ¿Buscas &quot;<strong>{searchQuery}</strong>&quot;? Encuéntralo con envío rápido y garantía oficial en Amazon España.
+                      <p className="text-xs text-slate-700 mb-3">
+                        ¿Buscas &quot;<strong>{searchQuery}</strong>&quot;? Encuéntralo con envío rápido y garantía oficial en {amazonSiteName}.
                       </p>
                       <a
                         href={amazonSearchUrl}
@@ -263,7 +266,7 @@ export default function HeaderDesktop({
                         rel="noopener noreferrer sponsored"
                         className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-xs transition-transform hover:scale-102 shadow-md cursor-pointer"
                       >
-                        <span>Buscar &quot;{searchQuery}&quot; en Amazon España</span>
+                        <span>Buscar &quot;{searchQuery}&quot; en {amazonSiteName}</span>
                         <ExternalLink className="w-4 h-4" />
                       </a>
                     </div>
@@ -287,7 +290,7 @@ export default function HeaderDesktop({
                         rel="noopener noreferrer sponsored"
                         className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 text-xs font-black transition-colors shadow-xs"
                       >
-                        <span>Ver más en Amazon.es (+50.000)</span>
+                        <span>Ver más en {amazonSiteName} (+50.000)</span>
                         <ExternalLink className="w-3.5 h-3.5" />
                       </a>
                     </div>
@@ -306,12 +309,12 @@ export default function HeaderDesktop({
                   onClick={() => setIsDrawerOpen(true)}
                   className="flex items-center gap-2.5 px-5 h-11 rounded-xl bg-[#febd69] hover:bg-[#f3a847] active:bg-[#e47911] text-slate-950 font-black transition-all duration-150 shadow-sm hover:scale-102 active:scale-98 cursor-pointer shrink-0 border border-amber-400 group"
                   title="Votación de Regalos en Grupo para WhatsApp"
-                  aria-label="Abrir lista de votación de regalos"
                 >
-                  <span className="text-xl group-hover:scale-110 transition-transform leading-none">🗳️</span>
+                  <span className="text-xl group-hover:scale-110 transition-transform leading-none" aria-hidden="true">🗳️</span>
                   <span className="text-sm font-extrabold text-slate-950 tracking-normal whitespace-nowrap">
                     Votar en grupo
                   </span>
+                  {' '}
                   <span
                     className={`ml-1 px-2.5 py-0.5 rounded-full text-xs font-black leading-none transition-colors ${
                       voteItems.length > 0
@@ -321,6 +324,7 @@ export default function HeaderDesktop({
                   >
                     {voteItems.length}
                   </span>
+                  <span className="sr-only"> regalos — Abrir lista de votación de regalos</span>
                 </button>
 
                 {/* Smart Onboarding Tooltip with Cookie Persistence */}
@@ -350,10 +354,10 @@ export default function HeaderDesktop({
                     : 'bg-amber-400/15 hover:bg-amber-400/25 text-amber-300 hover:text-amber-100 border border-amber-400/30 hover:border-amber-400/50'
                 }`}
                 aria-expanded={isAgesOpen}
-                aria-label="Abrir catálogo por edades"
               >
-                <span>🎁</span>
+                <span aria-hidden="true">🎁</span>
                 <span>Por Edades</span>
+                <span className="sr-only"> — Abrir catálogo por edades</span>
                 <ChevronDown
                   className={`w-3.5 h-3.5 transition-transform duration-200 ${
                     isAgesOpen ? 'rotate-180 text-slate-950' : 'text-amber-300/80'
@@ -368,10 +372,10 @@ export default function HeaderDesktop({
                     <div className="flex items-center gap-2">
                       <span className="text-base">🎁</span>
                       <div>
-                        <h3 className="text-xs font-black text-slate-900 leading-tight">
+                        <p className="text-xs font-black text-slate-900 leading-tight">
                           Regalos por Rango de Edad
-                        </h3>
-                        <p className="text-[11px] text-slate-500">
+                        </p>
+                        <p className="text-[11px] text-slate-600">
                           Selecciona una etapa para ver ideas verificadas
                         </p>
                       </div>
@@ -379,7 +383,7 @@ export default function HeaderDesktop({
                     <button
                       type="button"
                       onClick={() => setIsAgesOpen(false)}
-                      className="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 transition-colors"
+                      className="min-w-7 min-h-7 flex items-center justify-center p-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 transition-colors cursor-pointer"
                       aria-label="Cerrar menú de edades"
                     >
                       <X className="w-4 h-4" />
@@ -403,11 +407,11 @@ export default function HeaderDesktop({
                             <span className="text-xs font-bold text-slate-900 group-hover:text-amber-900 truncate">
                               {item.label}
                             </span>
-                            <span className="text-[10px] font-black text-amber-700 bg-amber-100/80 px-1.5 py-0.5 rounded shrink-0">
+                            <span className="text-[10px] font-black text-amber-800 bg-amber-100/80 px-1.5 py-0.5 rounded shrink-0">
                               {item.range}
                             </span>
                           </div>
-                          <p className="text-[11px] text-slate-500 group-hover:text-slate-600 line-clamp-1 mt-0.5">
+                          <p className="text-[11px] text-slate-600 group-hover:text-slate-800 line-clamp-1 mt-0.5">
                             {item.desc}
                           </p>
                         </div>
@@ -417,13 +421,13 @@ export default function HeaderDesktop({
 
                   {/* Footer bar */}
                   <div className="p-2.5 bg-slate-50 border-t border-slate-100 flex items-center justify-between text-xs">
-                    <span className="text-[11px] text-slate-500 font-medium">
-                      Recomendados por valoraciones reales en Amazon.es
+                    <span className="text-[11px] text-slate-600 font-medium">
+                      Recomendados por valoraciones reales en {amazonSiteName}
                     </span>
                     <Link
                       href="/#catalogo-productos"
                       onClick={() => setIsAgesOpen(false)}
-                      className="text-xs font-bold text-amber-700 hover:text-amber-900 hover:underline flex items-center gap-1 ml-auto"
+                      className="text-xs font-bold text-amber-800 hover:text-amber-950 hover:underline flex items-center gap-1 ml-auto"
                     >
                       <span>Ver catálogo completo</span>
                       <span>→</span>
@@ -438,17 +442,19 @@ export default function HeaderDesktop({
               <button
                 type="button"
                 onClick={() => setIsPassionsOpen(!isPassionsOpen)}
+                aria-expanded={isPassionsOpen}
                 className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border text-xs tracking-wide transition-all shadow-2xs cursor-pointer select-none whitespace-nowrap shrink-0 hover:scale-102 active:scale-98 ${
                   isPassionsOpen
                     ? 'bg-purple-500/25 border-purple-400 text-white ring-1 ring-purple-400/50'
                     : 'bg-white/5 hover:bg-white/15 border-white/10 hover:border-white/25 text-slate-100 hover:text-white font-medium'
                 }`}
               >
-                <span>🎯</span>
+                <span aria-hidden="true">🎯</span>
                 <span className="font-semibold">Pasiones & Hobbies</span>
+                <span className="sr-only"> — Abrir catálogo de pasiones y hobbies</span>
                 <ChevronDown
                   className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                    isPassionsOpen ? 'rotate-180 text-purple-300' : 'text-slate-400'
+                    isPassionsOpen ? 'rotate-180 text-purple-300' : 'text-slate-300'
                   }`}
                 />
               </button>
@@ -459,14 +465,14 @@ export default function HeaderDesktop({
                     <div className="flex items-center gap-2">
                       <span className="text-xl">🎯</span>
                       <div>
-                        <h3 className="font-extrabold text-sm leading-none">Pasiones y Aficiones</h3>
-                        <p className="text-[10px] text-purple-200/80 mt-0.5">Encuentra el regalo según lo que más le gusta</p>
+                        <p className="font-extrabold text-sm leading-none">Pasiones y Aficiones</p>
+                        <p className="text-[10px] text-purple-100 mt-0.5">Encuentra el regalo según lo que más le gusta</p>
                       </div>
                     </div>
                     <button
                       type="button"
                       onClick={() => setIsPassionsOpen(false)}
-                      className="text-xs font-bold text-purple-200 hover:text-white p-1"
+                      className="min-w-7 min-h-7 flex items-center justify-center text-xs font-bold text-purple-100 hover:text-white p-1.5 cursor-pointer"
                       aria-label="Cerrar menú de pasiones y aficiones"
                     >
                       ✕
@@ -477,9 +483,14 @@ export default function HeaderDesktop({
                     {PASSION_DROPDOWN_ITEMS.map((item) => (
                       <Link
                         key={item.slug}
-                        href={item.slug.startsWith('?') ? `/${item.slug}` : `/${item.slug}`}
-                        rel={item.slug.startsWith('?') ? 'nofollow' : undefined}
-                        onClick={() => setIsPassionsOpen(false)}
+                        href={item.slug.startsWith('#') ? `/${item.slug}` : `/${item.slug}`}
+                        onClick={() => {
+                          setIsPassionsOpen(false);
+                          if (item.slug.startsWith('#categoria-') && typeof window !== 'undefined') {
+                            const cat = item.slug.replace('#categoria-', '');
+                            window.dispatchEvent(new CustomEvent('select-category', { detail: cat }));
+                          }
+                        }}
                         className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-purple-50/70 border border-slate-100 hover:border-purple-200 transition-all group cursor-pointer"
                       >
                         <span className="text-xl p-1.5 rounded-lg bg-slate-50 group-hover:bg-white group-hover:scale-110 transition-transform shrink-0 shadow-2xs">
@@ -489,7 +500,7 @@ export default function HeaderDesktop({
                           <span className="text-xs font-bold text-slate-900 group-hover:text-purple-950 truncate block">
                             {item.label}
                           </span>
-                          <p className="text-[10px] text-slate-500 group-hover:text-slate-600 line-clamp-1 mt-0.5">
+                          <p className="text-[10px] text-slate-600 group-hover:text-slate-800 line-clamp-1 mt-0.5">
                             {item.desc}
                           </p>
                         </div>
@@ -504,14 +515,16 @@ export default function HeaderDesktop({
             <button
               type="button"
               onClick={() => setIsDrawerOpen(true)}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-linear-to-r from-emerald-500/25 to-teal-500/25 hover:from-emerald-500/40 hover:to-teal-500/40 border border-emerald-400/50 hover:border-emerald-300 text-emerald-200 hover:text-white font-black text-xs tracking-wide transition-all shadow-md whitespace-nowrap shrink-0 hover:scale-105 active:scale-98 ring-1 ring-emerald-400/30 cursor-pointer"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-linear-to-r from-emerald-500/25 to-teal-500/25 hover:from-emerald-500/40 hover:to-teal-500/40 border border-emerald-400/50 hover:border-emerald-300 text-emerald-100 hover:text-white font-black text-xs tracking-wide transition-all shadow-md whitespace-nowrap shrink-0 hover:scale-105 active:scale-98 ring-1 ring-emerald-400/30 cursor-pointer"
               title="Votación de Regalos en Grupo para WhatsApp"
             >
-              <span>🗳️</span>
+              <span aria-hidden="true">🗳️</span>
               <span>Votar en Grupo</span>
+              {' '}
               <span className="text-[10px] font-black bg-emerald-400 text-slate-950 px-1.5 py-0.2 rounded-full ml-0.5">
                 {voteItems.length}
               </span>
+              <span className="sr-only"> regalos seleccionados — WhatsApp</span>
             </button>
 
             {/* 4. TENDENCIAS & GTA 6 */}

@@ -40,8 +40,8 @@ export const PASSION_DROPDOWN_ITEMS = [
   { label: 'Mascotas', slug: 'mascotas', icon: '🐾', desc: 'Juguetes interactivos, camas ortopédicas y fuentes' },
   { label: 'Automóvil y Conducción', slug: 'automovil', icon: '🚗', desc: 'Dash cams, compresores portátiles y detailing' },
   { label: 'Ciclismo y MTB', slug: 'ciclismo', icon: '🚴', desc: 'Luces potentes, maillots, cascos y herramientas' },
-  { label: 'Cartas Pokémon', slug: '?categoria=cartas-pokemon#catalogo-productos', icon: '⚡', desc: 'Sobres, cajas élite booster y carpetas' },
-  { label: 'Figuras Anime y Cine', slug: '?categoria=figuras-anime#catalogo-productos', icon: '🎎', desc: 'Banpresto, Funko Pop, Dragon Ball y One Piece' },
+  { label: 'Cartas Pokémon', slug: '#categoria-cartas-pokemon', icon: '⚡', desc: 'Sobres, cajas élite booster y carpetas' },
+  { label: 'Figuras Anime y Cine', slug: '#categoria-figuras-anime', icon: '🎎', desc: 'Banpresto, Funko Pop, Dragon Ball y One Piece' },
 ];
 
 interface HeaderMobileProps {
@@ -69,7 +69,7 @@ export default function HeaderMobile({
   amazonResults,
   isLoadingAmazon,
 }: HeaderMobileProps) {
-  const { formatPrice } = useCurrency();
+  const { formatPrice, amazonRegion, amazonSiteName } = useCurrency();
   const { voteItems, setIsDrawerOpen } = useVoting();
   const [isAgesOpen, setIsAgesOpen] = useState(false);
   const [isPassionsOpen, setIsPassionsOpen] = useState(false);
@@ -89,7 +89,7 @@ export default function HeaderMobile({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const amazonSearchUrl = getAmazonSearchUrl(searchQuery.trim() || 'regalos');
+  const amazonSearchUrl = getAmazonSearchUrl(searchQuery.trim() || 'regalos', amazonRegion);
 
   const hasAnyResults = liveMatches.length > 0 || amazonResults.length > 0;
 
@@ -112,10 +112,10 @@ export default function HeaderMobile({
               onClick={() => setIsDrawerOpen(true)}
               className="flex items-center gap-1.5 px-3 h-8.5 rounded-xl bg-[#febd69] hover:bg-[#f3a847] text-slate-950 font-black text-xs transition-all shadow-sm cursor-pointer group active:scale-95 shrink-0 border border-amber-400"
               title="Votación de Regalos en Grupo"
-              aria-label="Abrir lista de votación de regalos"
             >
-              <span className="text-base leading-none">🗳️</span>
+              <span className="text-base leading-none" aria-hidden="true">🗳️</span>
               <span className="font-extrabold text-xs tracking-normal text-slate-950">Votar</span>
+              {' '}
               <span
                 className={`px-1.5 py-0.5 rounded-full text-[10px] font-black leading-none transition-colors ${
                   voteItems.length > 0
@@ -125,6 +125,7 @@ export default function HeaderMobile({
               >
                 {voteItems.length}
               </span>
+              <span className="sr-only"> regalos — Abrir lista de votación de regalos</span>
             </button>
 
             {/* Selector de Idioma y Moneda */}
@@ -141,7 +142,7 @@ export default function HeaderMobile({
             onSubmit={onSearchSubmit}
             className="relative flex items-center rounded-xl overflow-hidden shadow-inner focus-within:ring-2 focus-within:ring-[#febd69] transition-all bg-white border border-slate-200"
           >
-            <Search className="w-4 h-4 text-slate-400 ml-3 shrink-0" />
+            <Search className="w-4 h-4 text-slate-600 ml-3 shrink-0" />
 
             <input
               type="text"
@@ -153,20 +154,20 @@ export default function HeaderMobile({
               }}
               aria-label="Buscar regalo: Lego, zapatillas, perfumes, PS5..."
               placeholder="Buscar regalo: Lego, zapatillas, perfumes, PS5..."
-              className="w-full px-2.5 py-2 text-xs text-slate-900 placeholder-slate-400 focus:outline-none bg-transparent"
+              className="w-full px-2.5 py-2 text-xs text-slate-900 placeholder-slate-600 focus:outline-none bg-transparent"
             />
 
             {/* Iconos de Limpiar y Botón Lupa */}
             <div className="flex items-center shrink-0">
               {isLoadingAmazon && (
-                <Loader2 className="w-3.5 h-3.5 text-slate-400 animate-spin mr-1.5" />
+                <Loader2 className="w-3.5 h-3.5 text-slate-600 animate-spin mr-1.5" />
               )}
               {searchQuery.trim().length > 0 && (
                 <button
                   type="button"
                   onClick={clearSearch}
                   aria-label="Borrar búsqueda"
-                  className="p-1 mr-1 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-200 transition-colors cursor-pointer"
+                  className="min-w-7 min-h-7 flex items-center justify-center p-1 mr-1 rounded-full text-slate-600 hover:text-slate-900 hover:bg-slate-200 transition-colors cursor-pointer"
                   title="Borrar búsqueda"
                 >
                   <X className="w-3.5 h-3.5" />
@@ -189,15 +190,16 @@ export default function HeaderMobile({
               {/* Catálogo Recomendado */}
               {liveMatches.length > 0 && (
                 <div>
-                  <div className="p-2.5 bg-slate-50 border-b border-slate-100 flex items-center justify-between text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                  <div className="p-2.5 bg-slate-50 border-b border-slate-100 flex items-center justify-between text-[11px] font-bold text-slate-700 uppercase tracking-wider">
                     <span>Catálogo Recomendado</span>
-                    <span className="text-indigo-600">{liveMatches.length} productos</span>
+                    <span className="text-indigo-700">{liveMatches.length} productos</span>
                   </div>
 
                   <div className="divide-y divide-slate-100">
                     {liveMatches.map((product) => (
-                      <div
+                      <button
                         key={product.id}
+                        type="button"
                         onClick={() => {
                           if (onSelectProduct) {
                             onSelectProduct(product);
@@ -207,44 +209,45 @@ export default function HeaderMobile({
                             if (target) target.scrollIntoView({ behavior: 'smooth' });
                           }
                         }}
-                        className="p-3 hover:bg-indigo-50/60 transition-colors flex items-center gap-2.5 cursor-pointer"
+                        className="w-full text-left p-3 hover:bg-indigo-50/60 transition-colors flex items-center gap-2.5 cursor-pointer"
                       >
-                        <div className="relative w-11 h-11 rounded-lg bg-slate-50 shrink-0 overflow-hidden border border-slate-200">
+                        <span className="relative block w-11 h-11 rounded-lg bg-slate-50 shrink-0 overflow-hidden border border-slate-200">
                           <Image
                             src={product.imageUrl}
                             alt={product.title}
                             fill
+                            sizes="44px"
                             className="object-contain p-1"
                           />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h4 className="text-xs font-bold text-slate-900 truncate">
+                        </span>
+                        <span className="block flex-1 min-w-0">
+                          <span className="block text-xs font-bold text-slate-900 truncate">
                             {product.title}
-                          </h4>
-                          <div className="flex items-center gap-2 mt-0.5">
-                            <span className="text-xs font-black text-indigo-600">{formatPrice(product.priceText)}</span>
-                            <span className="text-[10px] text-slate-400 flex items-center gap-0.5">
-                              <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
+                          </span>
+                          <span className="flex items-center gap-2 mt-0.5">
+                            <span className="text-xs font-black text-indigo-700">{formatPrice(product.priceText)}</span>
+                            <span className="text-[10px] text-slate-600 flex items-center gap-0.5">
+                              <Star className="w-3 h-3 text-amber-500 fill-amber-400" />
                               {product.rating}
                             </span>
-                          </div>
-                        </div>
-                        <ArrowRight className="w-4 h-4 text-slate-300 shrink-0" />
-                      </div>
+                          </span>
+                        </span>
+                        <ArrowRight className="w-4 h-4 text-slate-500 shrink-0" />
+                      </button>
                     ))}
                   </div>
                 </div>
               )}
 
-              {/* Productos en Vivo de Amazon.es */}
+              {/* Productos en Vivo de Amazon */}
               {amazonResults.length > 0 && (
                 <div className={liveMatches.length > 0 ? 'border-t-2 border-slate-100' : ''}>
                   <div className="p-2.5 bg-gradient-to-r from-amber-50/80 to-orange-50/50 border-b border-amber-100 flex items-center justify-between text-[11px] font-bold text-amber-900 uppercase tracking-wider">
                     <div className="flex items-center gap-1.5">
-                      <ShoppingBag className="w-3.5 h-3.5 text-amber-600" />
-                      <span>En Vivo Amazon.es</span>
+                      <ShoppingBag className="w-3.5 h-3.5 text-amber-700" />
+                      <span>En Vivo {amazonSiteName}</span>
                     </div>
-                    <span className="text-[9px] bg-amber-200 text-amber-900 px-1.5 py-0.5 rounded-full font-black">
+                    <span className="text-[9px] bg-amber-200 text-amber-950 px-1.5 py-0.5 rounded-full font-black">
                       Al minuto
                     </span>
                   </div>
@@ -265,27 +268,28 @@ export default function HeaderMobile({
                               src={item.imageUrl}
                               alt={item.title}
                               fill
+                              sizes="44px"
                               unoptimized
                               className="object-contain p-1"
                             />
                           ) : (
-                            <div className="w-full h-full flex items-center justify-center bg-slate-100 text-slate-400">
+                            <div className="w-full h-full flex items-center justify-center bg-slate-100 text-slate-500">
                               <ShoppingBag className="w-4 h-4" />
                             </div>
                           )}
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h4 className="text-xs font-bold text-slate-900 line-clamp-1">
+                          <p className="text-xs font-bold text-slate-900 line-clamp-1">
                             {item.title}
-                          </h4>
+                          </p>
                           <div className="flex items-center gap-2 mt-0.5">
-                            <span className="text-xs font-black text-amber-700">{formatPrice(item.priceText)}</span>
-                            <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 font-bold border border-emerald-200/60">
+                            <span className="text-xs font-black text-amber-800">{formatPrice(item.priceText)}</span>
+                            <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-800 font-bold border border-emerald-200/60">
                               Prime
                             </span>
                           </div>
                         </div>
-                        <div className="flex items-center gap-1 px-2 py-1 rounded-lg bg-amber-100 text-amber-900 text-[11px] font-bold shrink-0">
+                        <div className="flex items-center gap-1 px-2 py-1 rounded-lg bg-amber-100 text-amber-950 text-[11px] font-bold shrink-0">
                           <span>Ver</span>
                           <ExternalLink className="w-3 h-3" />
                         </div>
@@ -304,7 +308,7 @@ export default function HeaderMobile({
                     rel="noopener noreferrer sponsored"
                     className="w-full flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 text-xs font-black shadow-xs"
                   >
-                    <span>Ver más en Amazon.es</span>
+                    <span>Ver más en {amazonSiteName}</span>
                     <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                 </div>
@@ -322,17 +326,19 @@ export default function HeaderMobile({
             <button
               type="button"
               onClick={() => setIsAgesOpen((prev) => !prev)}
+              aria-expanded={isAgesOpen}
               className={`w-full h-10 flex items-center justify-center gap-1.5 px-2 rounded-xl text-xs font-black transition-all shadow-xs cursor-pointer ${
                 isAgesOpen
                   ? 'bg-[#febd69] text-slate-950 shadow-md ring-2 ring-amber-300/40'
-                  : 'bg-amber-400/15 text-amber-300 border border-amber-400/30 active:bg-amber-400/25'
+                  : 'bg-amber-400/15 text-amber-200 border border-amber-400/30 active:bg-amber-400/25'
               }`}
             >
-              <span className="text-sm shrink-0">🎁</span>
+              <span className="text-sm shrink-0" aria-hidden="true">🎁</span>
               <span className="truncate">Por Edades</span>
+              <span className="sr-only"> — Abrir catálogo de regalos por rango de edad</span>
               <ChevronDown
                 className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${
-                  isAgesOpen ? 'rotate-180 text-slate-950' : 'text-amber-300/80'
+                  isAgesOpen ? 'rotate-180 text-slate-950' : 'text-amber-200'
                 }`}
               />
             </button>
@@ -340,6 +346,7 @@ export default function HeaderMobile({
             {isAgesOpen && (
               <>
                 <div
+                  aria-hidden="true"
                   className="fixed inset-0 z-40 bg-black/40"
                   onClick={() => setIsAgesOpen(false)}
                 />
@@ -347,14 +354,14 @@ export default function HeaderMobile({
                   <div className="px-4 py-3 bg-gradient-to-r from-amber-500/10 via-amber-50 to-orange-50/50 border-b border-amber-100 flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <span className="text-base">🎁</span>
-                      <h3 className="text-xs font-black text-slate-900">
+                      <p className="text-xs font-black text-slate-900">
                         Regalos por Rango de Edad
-                      </h3>
+                      </p>
                     </div>
                     <button
                       type="button"
                       onClick={() => setIsAgesOpen(false)}
-                      className="p-1 rounded-lg text-slate-400 hover:text-slate-700"
+                      className="min-w-7 min-h-7 flex items-center justify-center p-1.5 rounded-lg text-slate-600 hover:text-slate-900 cursor-pointer"
                       aria-label="Cerrar catálogo por edades"
                     >
                       <X className="w-4 h-4" />
@@ -376,7 +383,7 @@ export default function HeaderMobile({
                           <span className="text-xs font-bold text-slate-900 truncate block">
                             {item.label}
                           </span>
-                          <span className="text-[10px] text-amber-700 font-bold">
+                          <span className="text-[10px] text-amber-800 font-bold">
                             {item.range}
                           </span>
                         </div>
@@ -393,20 +400,23 @@ export default function HeaderMobile({
             <button
               type="button"
               onClick={() => setIsPassionsOpen(!isPassionsOpen)}
+              aria-expanded={isPassionsOpen}
               className={`w-full h-10 flex items-center justify-center gap-1.5 px-2 rounded-xl border text-xs font-black transition-all shadow-xs cursor-pointer ${
                 isPassionsOpen
                   ? 'bg-purple-500/25 border-purple-400 text-white ring-1 ring-purple-400/50'
                   : 'bg-white/5 border-white/10 text-slate-100 hover:bg-white/10 active:bg-white/20'
               }`}
             >
-              <span className="text-sm shrink-0">🎯</span>
+              <span className="text-sm shrink-0" aria-hidden="true">🎯</span>
               <span className="truncate">Pasiones</span>
+              <span className="sr-only"> — Abrir catálogo de pasiones y aficiones</span>
               <ChevronDown className="w-3.5 h-3.5 shrink-0 transition-transform duration-200" />
             </button>
 
             {isPassionsOpen && (
               <>
                 <div
+                  aria-hidden="true"
                   className="fixed inset-0 z-40 bg-black/40 backdrop-blur-xs"
                   onClick={() => setIsPassionsOpen(false)}
                 />
@@ -415,14 +425,14 @@ export default function HeaderMobile({
                     <div className="flex items-center gap-2">
                       <span className="text-xl">🎯</span>
                       <div>
-                        <h3 className="font-extrabold text-sm leading-none">Pasiones y Aficiones</h3>
-                        <p className="text-[10px] text-purple-200/80 mt-0.5">Elige según sus gustos favoritos</p>
+                        <p className="font-extrabold text-sm leading-none">Pasiones y Aficiones</p>
+                        <p className="text-[10px] text-purple-100 mt-0.5">Elige según sus gustos favoritos</p>
                       </div>
                     </div>
                     <button
                       type="button"
                       onClick={() => setIsPassionsOpen(false)}
-                      className="p-1 rounded-lg bg-white/10 text-white hover:bg-white/20 text-xs px-2 font-bold"
+                      className="min-w-7 min-h-7 flex items-center justify-center p-1.5 rounded-lg bg-white/10 text-white hover:bg-white/20 text-xs px-2 font-bold cursor-pointer"
                       aria-label="Cerrar menú de pasiones y aficiones"
                     >
                       ✕
@@ -432,17 +442,22 @@ export default function HeaderMobile({
                     {PASSION_DROPDOWN_ITEMS.map((item) => (
                       <Link
                         key={item.slug}
-                        href={item.slug.startsWith('?') ? `/${item.slug}` : `/${item.slug}`}
-                        rel={item.slug.startsWith('?') ? 'nofollow' : undefined}
-                        onClick={() => setIsPassionsOpen(false)}
+                        href={item.slug.startsWith('#') ? `/${item.slug}` : `/${item.slug}`}
+                        onClick={() => {
+                          setIsPassionsOpen(false);
+                          if (item.slug.startsWith('#categoria-') && typeof window !== 'undefined') {
+                            const cat = item.slug.replace('#categoria-', '');
+                            window.dispatchEvent(new CustomEvent('select-category', { detail: cat }));
+                          }
+                        }}
                         className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-purple-50 border border-slate-100 transition-colors group"
                       >
                         <span className="text-xl p-1.5 rounded-lg bg-slate-50 group-hover:bg-white shadow-2xs shrink-0">
                           {item.icon}
                         </span>
                         <div className="min-w-0 flex-1">
-                          <p className="text-xs font-bold text-slate-900 group-hover:text-purple-950 truncate">{item.label}</p>
-                          <p className="text-[10px] text-slate-500 truncate">{item.desc}</p>
+                          <span className="block text-xs font-bold text-slate-900 group-hover:text-purple-950 truncate">{item.label}</span>
+                          <span className="block text-[10px] text-slate-600 truncate">{item.desc}</span>
                         </div>
                       </Link>
                     ))}

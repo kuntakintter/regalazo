@@ -15,7 +15,7 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, rankBadge }: ProductCardProps) {
-  const { formatPrice } = useCurrency();
+  const { formatPrice, amazonRegion } = useCurrency();
   const { toggleItem, isItemInList } = useVoting();
   const isInVote = isItemInList(product.id);
   const [copied, setCopied] = useState(false);
@@ -31,8 +31,8 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
     setHasImgError(false);
   }, [currentImgSrc]);
 
-  // Enlace directo al producto específico en Amazon España (con fallback seguro antierror 404)
-  const directProductUrl = getAmazonProductUrl(product.asin, product.searchQuery || product.title);
+  // Enlace directo al producto específico en Amazon (con fallback seguro antierror 404)
+  const directProductUrl = getAmazonProductUrl(product.asin, product.searchQuery || product.title, amazonRegion);
 
   const handleShare = async (e: React.MouseEvent) => {
     e.preventDefault();
@@ -113,7 +113,7 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
           href={directProductUrl}
           target="_blank"
           rel="nofollow sponsored noopener noreferrer"
-          aria-label={`Ver producto: ${product.title}`}
+          aria-label={`Ver foto de ${product.title}`}
           className="block w-full h-full cursor-pointer relative"
         >
           {currentImgSrc && !hasImgError ? (
@@ -121,19 +121,19 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
               src={currentImgSrc}
               alt={`${product.title} - Foto ${activeImgIndex + 1}`}
               fill
-              priority={rankBadge === 1 || rankBadge === 2}
+              loading={rankBadge === 1 || rankBadge === 2 ? 'eager' : 'lazy'}
               unoptimized={currentImgSrc.startsWith('http')}
               onError={() => setHasImgError(true)}
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 16vw"
               className="object-contain p-1 transition-transform duration-200 group-hover:scale-105"
             />
           ) : (
-            <div className="w-full h-full bg-slate-50 flex flex-col items-center justify-center text-slate-400 p-2 text-center">
-              <ShoppingBag className="w-6 h-6 mb-1 text-slate-400 opacity-60" />
-              <span className="text-[10px] font-bold text-slate-600 line-clamp-1">
+            <span className="w-full h-full bg-slate-50 flex flex-col items-center justify-center text-slate-600 p-2 text-center">
+              <ShoppingBag className="w-6 h-6 mb-1 text-slate-500 opacity-75" />
+              <span className="text-[10px] font-bold text-slate-700 line-clamp-1">
                 {product.title}
               </span>
-            </div>
+            </span>
           )}
         </a>
 
@@ -141,18 +141,20 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
         {imagesList.length > 1 && (
           <>
             <button
+              type="button"
               onClick={handlePrevImage}
               aria-label="Ver imagen anterior"
-              className="absolute left-1 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity z-20 cursor-pointer shadow-xs"
+              className="absolute left-1 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/70 hover:bg-black/85 text-white flex items-center justify-center backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity z-20 cursor-pointer shadow-xs"
             >
-              <ChevronLeft className="w-3 h-3" />
+              <ChevronLeft className="w-3.5 h-3.5" />
             </button>
             <button
+              type="button"
               onClick={handleNextImage}
               aria-label="Ver siguiente imagen"
-              className="absolute right-1 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity z-20 cursor-pointer shadow-xs"
+              className="absolute right-1 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/70 hover:bg-black/85 text-white flex items-center justify-center backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity z-20 cursor-pointer shadow-xs"
             >
-              <ChevronRight className="w-3 h-3" />
+              <ChevronRight className="w-3.5 h-3.5" />
             </button>
           </>
         )}
@@ -160,6 +162,7 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
         {/* Action icons (Wishlist & Share) */}
         <div className="absolute top-1.5 right-1.5 flex items-center gap-1 z-10">
           <button
+            type="button"
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
@@ -167,20 +170,21 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
             }}
             aria-label={isInVote ? 'Quitar de la lista de votación' : 'Añadir a la lista de votación'}
             title={isInVote ? 'En tu lista de votación en grupo' : 'Añadir a votación en grupo'}
-            className={`w-6 h-6 rounded-full backdrop-blur-xs flex items-center justify-center transition-transform shadow-2xs cursor-pointer border ${
+            className={`w-7 h-7 rounded-full backdrop-blur-xs flex items-center justify-center transition-transform shadow-2xs cursor-pointer border ${
               isInVote
-                ? 'bg-rose-50 border-rose-200 text-rose-500 scale-110'
-                : 'bg-white/90 border-slate-100 text-slate-400 hover:text-rose-500 hover:scale-110'
+                ? 'bg-rose-50 border-rose-200 text-rose-600 scale-105'
+                : 'bg-white/95 border-slate-200 text-slate-600 hover:text-rose-600 hover:scale-105'
             }`}
           >
-            <Heart className={`w-3 h-3 ${isInVote ? 'fill-rose-500 text-rose-500' : ''}`} />
+            <Heart className={`w-3.5 h-3.5 ${isInVote ? 'fill-rose-500 text-rose-600' : ''}`} />
           </button>
           <button
+            type="button"
             onClick={handleShare}
             aria-label="Compartir idea"
-            className="w-6 h-6 rounded-full bg-white/90 backdrop-blur-xs flex items-center justify-center text-slate-400 hover:text-slate-950 hover:scale-110 transition-transform shadow-2xs cursor-pointer border border-slate-100"
+            className="w-7 h-7 rounded-full bg-white/95 backdrop-blur-xs flex items-center justify-center text-slate-600 hover:text-slate-950 hover:scale-105 transition-transform shadow-2xs cursor-pointer border border-slate-200"
           >
-            <Share2 className="w-3 h-3" />
+            <Share2 className="w-3.5 h-3.5" />
           </button>
         </div>
       </div>
@@ -191,20 +195,19 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
           {/* Subcategory Label */}
           {product.subcategory && (
             <div className="mb-1">
-              <span className="text-[11px] text-slate-500 font-medium truncate block">
+              <span className="text-[11px] text-slate-600 font-medium truncate block">
                 {product.subcategory}
               </span>
             </div>
           )}
 
           {/* Title (Amazon clean style: text-slate-900, 2 lines, no heavy cards) */}
-          <p className="font-medium text-xs sm:text-[13px] leading-snug text-slate-900 line-clamp-2 group-hover:text-[#c45500] transition-colors mb-1 min-h-[2rem]">
+          <p className="font-medium text-xs sm:text-[13px] leading-snug text-slate-900 group-hover:text-[#c45500] transition-colors mb-1 min-h-[2rem]">
             <a
               href={directProductUrl}
               target="_blank"
               rel="nofollow sponsored noopener noreferrer"
-              aria-label={`Ver oferta de ${product.title} en Amazon`}
-              className="hover:underline"
+              className="block line-clamp-2 hover:underline"
             >
               {product.title}
             </a>
@@ -226,7 +229,7 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
             </div>
             <span className="font-bold text-slate-900 text-xs ml-0.5">{product.rating}</span>
             <span className="text-[#007185] hover:underline font-medium text-[11px]">
-              ({product.reviewsCount ? product.reviewsCount.toLocaleString() : '120'})
+              ({product.reviewsCount ? product.reviewsCount.toLocaleString('es-ES') : '120'})
             </span>
           </div>
 
@@ -240,7 +243,6 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
                 setShowVerdict((prev) => !prev);
               }}
               aria-expanded={showVerdict}
-              aria-label={showVerdict ? 'Ocultar veredicto de compradores' : 'Ver qué opinan los compradores'}
               className={`w-full flex items-center justify-between px-2 py-1.5 rounded-lg text-[11px] font-semibold transition-all border cursor-pointer select-none ${
                 showVerdict
                   ? 'bg-amber-50 border-amber-300 text-amber-900 shadow-2xs'
@@ -250,9 +252,10 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
               <span className="flex items-center gap-1.5 truncate">
                 <MessageSquare className="w-3.5 h-3.5 text-amber-600 shrink-0" />
                 <span className="truncate">¿Por qué gusta a los compradores?</span>
+                <span className="sr-only"> — {showVerdict ? 'Ocultar' : 'Ver'} opinión y reseñas</span>
               </span>
               <ChevronDown
-                className={`w-3 h-3 text-slate-400 transition-transform duration-200 shrink-0 ml-1 ${
+                className={`w-3 h-3 text-slate-600 transition-transform duration-200 shrink-0 ml-1 ${
                   showVerdict ? 'rotate-180 text-amber-600' : ''
                 }`}
               />
@@ -265,7 +268,7 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
                 <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-amber-200/60 gap-1.5">
                   <span className="text-[10px] font-bold uppercase tracking-wider text-slate-600 flex items-center gap-1 min-w-0">
                     <Users className="w-3 h-3 text-amber-600 shrink-0" />
-                    <span className="truncate">Consenso ({product.reviewsCount ? product.reviewsCount.toLocaleString() : '100+'} reseñas)</span>
+                    <span className="truncate">Consenso ({product.reviewsCount ? product.reviewsCount.toLocaleString('es-ES') : '100+'} reseñas)</span>
                   </span>
                   <span className="text-[10px] font-black text-emerald-700 bg-emerald-100/90 px-1.5 py-0.5 rounded whitespace-nowrap shrink-0">
                     ★ {product.rating} / 5
@@ -334,16 +337,16 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
             href={directProductUrl}
             target="_blank"
             rel="nofollow sponsored noopener noreferrer"
-            aria-label={`Ver oferta de ${product.title} en Amazon`}
             className="w-full py-2 px-3 rounded-xl text-xs font-black text-slate-950 bg-[#ffd814] hover:bg-[#f7ca00] active:bg-[#f0b800] border border-[#fcd200] shadow-xs text-center flex items-center justify-center gap-1.5 transition-all cursor-pointer hover:scale-101"
           >
             <span>Ver oferta en Amazon</span>
+            <span className="sr-only">: {product.title}</span>
             <ExternalLink className="w-3.5 h-3.5 text-slate-900" />
           </a>
 
           {/* Toast feedback when copied */}
           {copied && (
-            <div className="text-center text-[9px] text-emerald-600 font-bold mt-1">
+            <div className="text-center text-[9px] text-emerald-700 font-bold mt-1">
               ✓ ¡Enlace copiado!
             </div>
           )}

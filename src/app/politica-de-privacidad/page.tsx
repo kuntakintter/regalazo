@@ -23,13 +23,13 @@ export default function PoliticaPrivacidadPage() {
       <main className="flex-1 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 w-full z-10">
         
         {/* Breadcrumb */}
-        <nav className="mb-6 flex items-center gap-2 text-xs text-slate-500 font-medium">
-          <Link href="/" className="hover:text-indigo-600 flex items-center gap-1 transition-colors">
+        <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-xs text-slate-600 font-medium">
+          <Link href="/" className="hover:text-indigo-700 flex items-center gap-1 transition-colors">
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Volver al inicio</span>
           </Link>
           <span>/</span>
-          <span className="text-slate-800 font-bold">Política de Privacidad</span>
+          <span className="text-slate-900 font-bold">Política de Privacidad</span>
         </nav>
 
         <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/80 shadow-xs space-y-8">
@@ -100,7 +100,7 @@ export default function PoliticaPrivacidadPage() {
                 <strong>Preferencias de interfaz:</strong> Filtros de edad o temas guardados localmente en tu propio dispositivo (Local Storage) para mejorar tu experiencia de usuario.
               </li>
               <li>
-                <strong>Enlaces de Afiliación de Amazon:</strong> Cuando haces clic en un enlace de producto, eres redirigido a Amazon.es. En ese momento, Amazon puede colocar una cookie de seguimiento de afiliado para atribuir la comisión correspondiente de acuerdo a su propia política de privacidad.
+                <strong>Enlaces de Afiliación de Amazon:</strong> Cuando haces clic en un enlace de producto, eres redirigido a la tienda oficial de Amazon de tu región (Amazon.es o Amazon.com). En ese momento, Amazon puede colocar una cookie de seguimiento de afiliado para atribuir la comisión correspondiente de acuerdo a su propia política de privacidad.
               </li>
             </ul>
           </section>

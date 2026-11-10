@@ -34,8 +34,8 @@ const FAQS: FaqItem[] = [
     answer: 'La filosofía Montessori prioriza materiales nobles como la madera maciza sobre el plástico con luces. Elementos como torres de aprendizaje o bloques sensoriales impulsan la autonomía infantil. De este modo, el niño desarrolla su motricidad fina siendo el protagonista del juego.'
   },
   {
-    question: '¿Son seguros los enlaces de recomendación a Amazon y qué comisiones se aplican?',
-    answer: 'Todos los enlaces dirigen de forma oficial a Amazon España. Cuentas con la garantía total de compra, envíos rápidos con Prime y devoluciones gratuitas. El precio es exactamente el mismo para ti. La pequeña comisión nos permite mantener esta guía abierta y 100% gratuita.'
+    question: '¿Son seguros los enlaces de recomendación a Amazon y funcionan en otros países?',
+    answer: 'Todos los enlaces dirigen de forma oficial a la tienda de Amazon de tu región (Amazon.es en España y Amazon.com con envío internacional para EE. UU., Latinoamérica, Europa y el resto de países). Cuentas con la garantía total de compra, precios en € EUR o $ USD y devoluciones oficiales. El precio es exactamente el mismo para ti y la pequeña comisión nos permite mantener esta guía gratuita.'
   }
 ];
 
@@ -73,8 +73,8 @@ export default function SeoFaq({ currentTheme = 'classic' }: SeoFaqProps) {
       />
 
       <div className="flex items-center gap-2 mb-3">
-        <HelpCircle className="w-5 h-5 text-indigo-500" />
-        <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
+        <HelpCircle className="w-5 h-5 text-indigo-600" />
+        <span className="text-xs font-bold uppercase tracking-wider text-slate-600">
           Preguntas Frecuentes y Guía Experta
         </span>
       </div>
@@ -96,23 +96,24 @@ export default function SeoFaq({ currentTheme = 'classic' }: SeoFaqProps) {
               }`}
             >
               <button
+                type="button"
                 onClick={() => toggleFaq(index)}
                 className="w-full py-4 px-5 text-left flex items-center justify-between gap-4 cursor-pointer"
                 aria-expanded={isOpen}
               >
                 <span className={`text-sm sm:text-base font-bold transition-colors ${
-                  isOpen ? 'text-indigo-950' : 'text-slate-800'
+                  isOpen ? 'text-indigo-950' : 'text-slate-900'
                 }`}>
                   {faq.question}
                 </span>
                 <ChevronDown
                   className={`w-5 h-5 shrink-0 transition-transform duration-200 ${
-                    isOpen ? 'rotate-180 text-indigo-600' : 'text-slate-400'
+                    isOpen ? 'rotate-180 text-indigo-700' : 'text-slate-600'
                   }`}
                 />
               </button>
               {isOpen && (
-                <div className="px-5 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-indigo-100/80 pt-3">
+                <div className="px-5 pb-5 text-xs sm:text-sm text-slate-700 leading-relaxed border-t border-indigo-100/80 pt-3">
                   {faq.answer}
                 </div>
               )}

@@ -30,8 +30,10 @@ import {
   ShoppingBag,
 } from 'lucide-react';
 import { parsePrice } from '@/lib/amazon';
+import { useCurrency } from '@/context/CurrencyContext';
 
 export default function NavidadPage() {
+  const { amazonRegion, amazonSiteName } = useCurrency();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedPrice, setSelectedPrice] = useState<string>('all');
   const [sortBy, setSortBy] = useState<'featured' | 'price-asc' | 'price-desc' | 'rating'>('featured');
@@ -134,7 +136,7 @@ export default function NavidadPage() {
       let isMounted = true;
       setIsLoadingLive(true);
       const timer = setTimeout(() => {
-        fetch(`/api/live-search?q=${encodeURIComponent(liveSearchQuery)}&limit=8`)
+        fetch(`/api/live-search?q=${encodeURIComponent(liveSearchQuery)}&limit=8&region=${amazonRegion}`)
           .then((res) => res.json())
           .then((data) => {
             if (isMounted && data.success && Array.isArray(data.results)) {
@@ -154,7 +156,7 @@ export default function NavidadPage() {
     } else {
       setLiveAmazonProducts([]);
     }
-  }, [selectedCategory, selectedPrice, liveSearchQuery]);
+  }, [selectedCategory, selectedPrice, liveSearchQuery, amazonRegion]);
 
   // Schema.org Structured Data
   const jsonLd = {
@@ -166,7 +168,7 @@ export default function NavidadPage() {
         url: 'https://www.unbuenregalo.es/navidad',
         name: 'Top Regalos de Navidad y Reyes 2026 | Trenes de Árbol, Decoración y Novedades',
         description:
-          'Catálogo oficial de Navidad y Reyes Magos: trenes eléctricos para rodear el árbol, luces y decoración festiva, calendarios de adviento y regalos de amigo invisible en Amazon España.',
+          'Catálogo oficial de Navidad y Reyes Magos: trenes eléctricos para rodear el árbol, luces y decoración festiva, calendarios de adviento y regalos de amigo invisible en Amazon.',
         inLanguage: 'es-ES',
       },
       {
@@ -216,9 +218,9 @@ export default function NavidadPage() {
       <Header />
 
       {/* Breadcrumb Navigation */}
-      <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-2 w-full flex items-center gap-2 text-xs text-slate-500">
-        <Link href="/" className="hover:text-rose-600 transition-colors">Inicio</Link>
-        <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+      <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-2 w-full flex items-center gap-2 text-xs text-slate-600">
+        <Link href="/" className="hover:text-rose-700 transition-colors py-1">Inicio</Link>
+        <ChevronRight className="w-3.5 h-3.5 text-slate-500" />
         <span className="font-bold text-rose-700">Especial Navidad, Reyes & Decoración 2026</span>
       </nav>
 
@@ -250,17 +252,17 @@ export default function NavidadPage() {
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs font-medium text-slate-500 mb-8">
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs font-medium text-slate-600 mb-8">
             <span className="flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-emerald-600" />
+              <ShieldCheck className="w-4 h-4 text-emerald-700" />
               Garantía de Devolución Extendida hasta Enero
             </span>
             <span className="flex items-center gap-1.5">
-              <Gift className="w-4 h-4 text-rose-600" />
+              <Gift className="w-4 h-4 text-rose-700" />
               Empaquetado para Regalo Disponible
             </span>
             <span className="flex items-center gap-1.5">
-              <BadgePercent className="w-4 h-4 text-amber-500" />
+              <BadgePercent className="w-4 h-4 text-amber-700" />
               Envíos Rápidos Prime 24h
             </span>
           </div>
@@ -282,11 +284,11 @@ export default function NavidadPage() {
           {/* Categorías */}
           <div className="mb-5">
             <div className="flex items-center justify-between mb-3">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
-                <Filter className="w-3.5 h-3.5 text-rose-600" />
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-600 flex items-center gap-1.5">
+                <Filter className="w-3.5 h-3.5 text-rose-700" />
                 <span>¿Qué buscas para esta Navidad?</span>
               </span>
-              <span className="text-xs font-semibold text-slate-400">
+              <span className="text-xs font-semibold text-slate-600">
                 {displayProducts.length + liveAmazonProducts.length} ideas disponibles
               </span>
             </div>
@@ -295,10 +297,11 @@ export default function NavidadPage() {
               {NAVIDAD_CATEGORIES.map((cat) => (
                 <button
                   key={cat.id}
+                  type="button"
                   onClick={() => setSelectedCategory(cat.id)}
                   className={`px-3.5 py-2 rounded-2xl text-xs font-bold transition-all flex items-center gap-2 cursor-pointer ${
                     selectedCategory === cat.id
-                      ? 'bg-rose-600 text-white shadow-md shadow-rose-200 scale-102 ring-2 ring-rose-300'
+                      ? 'bg-rose-700 text-white shadow-md shadow-rose-200 scale-102 ring-2 ring-rose-300'
                       : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
                   }`}
                 >
@@ -312,15 +315,16 @@ export default function NavidadPage() {
           {/* Rango de Precios */}
           <div className="pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="text-xs font-bold text-slate-500 mr-1">Presupuesto:</span>
+              <span className="text-xs font-bold text-slate-600 mr-1">Presupuesto:</span>
               {NAVIDAD_PRICE_RANGES.map((range) => (
                 <button
                   key={range.id}
+                  type="button"
                   onClick={() => setSelectedPrice(range.id)}
                   className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
                     selectedPrice === range.id
                       ? 'bg-amber-500 text-slate-950 font-bold shadow-xs'
-                      : 'bg-slate-100 hover:bg-slate-200 text-slate-600'
+                      : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
                   }`}
                 >
                   {range.label}
@@ -330,9 +334,10 @@ export default function NavidadPage() {
 
             {/* Ordenación */}
             <div className="flex items-center gap-2">
-              <span className="text-xs text-slate-500">Ordenar por:</span>
+              <span className="text-xs text-slate-600">Ordenar por:</span>
               <select
                 value={sortBy}
+                aria-label="Ordenar productos"
                 onChange={(e) => setSortBy(e.target.value as any)}
                 className="text-xs font-semibold bg-slate-100 border-none rounded-xl px-3 py-1.5 text-slate-700 cursor-pointer focus:ring-2 focus:ring-rose-500"
               >
@@ -380,9 +385,9 @@ export default function NavidadPage() {
 
         {/* LOADING SPINNER FOR LIVE RESULTS */}
         {isLoadingLive && (
-          <div className="flex items-center justify-center gap-2 py-8 text-xs text-slate-500">
-            <Loader2 className="w-4 h-4 animate-spin text-rose-600" />
-            <span>Consultando novedades navideñas en Amazon España en tiempo real...</span>
+          <div className="flex items-center justify-center gap-2 py-8 text-xs text-slate-600">
+            <Loader2 className="w-4 h-4 animate-spin text-rose-700" />
+            <span>Consultando novedades navideñas en {amazonSiteName} en tiempo real...</span>
           </div>
         )}
 

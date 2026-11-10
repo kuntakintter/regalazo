@@ -220,8 +220,8 @@ export default async function AgeLandingPage({ params }: PageProps) {
       <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full z-10">
         
         {/* Breadcrumb Navigation */}
-        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-semibold text-slate-500 mb-6">
-          <Link href="/" className="hover:text-indigo-600 transition-colors">Inicio</Link>
+        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-semibold text-slate-600 mb-6">
+          <Link href="/" className="hover:text-indigo-700 transition-colors py-1">Inicio</Link>
           <ChevronRight className="w-3.5 h-3.5" />
           <span className="text-slate-900">{routeMeta.h1}</span>
         </nav>
@@ -279,16 +279,16 @@ export default async function AgeLandingPage({ params }: PageProps) {
                           {sub.label}
                         </span>
                       </div>
-                      <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#febd69] group-hover:translate-x-1 transition-all shrink-0" />
+                      <ArrowRight className="w-3.5 h-3.5 text-slate-600 group-hover:text-[#febd69] group-hover:translate-x-1 transition-all shrink-0" />
                     </Link>
                   ))}
                 </div>
               </div>
 
               {/* Informative Footer Bar */}
-              <div className="px-5 py-2.5 bg-slate-50 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-1 text-[11px] text-slate-500">
+              <div className="px-5 py-2.5 bg-slate-50 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-1 text-[11px] text-slate-600">
                 <span className="flex items-center gap-1.5 font-medium">
-                  <span className="text-amber-500 font-black">✓</span>
+                  <span className="text-amber-700 font-black">✓</span>
                   <span>Catálogo oficial con opiniones verificadas 4.5+ ★ y envío Prime</span>
                 </span>
                 <span className="font-bold text-slate-700">
@@ -299,17 +299,17 @@ export default async function AgeLandingPage({ params }: PageProps) {
           )}
 
           {/* Trust badges */}
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs font-medium text-slate-500">
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs font-medium text-slate-600">
             <span className="flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-emerald-500" />
-              Garantía Oficial Amazon.es
+              <ShieldCheck className="w-4 h-4 text-emerald-600" />
+              Garantía Oficial Amazon
             </span>
             <span className="flex items-center gap-1.5">
-              <TrendingUp className="w-4 h-4 text-indigo-500" />
+              <TrendingUp className="w-4 h-4 text-indigo-600" />
               Valoraciones 4.5+ Estrellas
             </span>
             <span className="flex items-center gap-1.5">
-              <ShoppingBag className="w-4 h-4 text-amber-500" />
+              <ShoppingBag className="w-4 h-4 text-amber-600" />
               Precios y Stock Actualizados
             </span>
           </div>
@@ -327,7 +327,7 @@ export default async function AgeLandingPage({ params }: PageProps) {
             </h2>
             <Link
               href="/"
-              className="text-xs font-bold text-indigo-600 hover:text-indigo-800 hover:underline"
+              className="text-xs font-bold text-indigo-700 hover:text-indigo-900 hover:underline py-1"
             >
               ← Ver todas las edades
             </Link>

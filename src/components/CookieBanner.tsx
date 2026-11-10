@@ -54,49 +54,55 @@ export default function CookieBanner() {
               <Cookie className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="text-sm font-black text-slate-900 leading-tight">
+              <p className="text-sm font-black text-slate-900 leading-tight">
                 Control de Privacidad y Cookies
-              </h3>
+              </p>
               <span className="text-[11px] text-slate-600 font-medium">Conforme a la AEPD y RGPD</span>
             </div>
           </div>
           <button
+            type="button"
             onClick={handleRejectNonEssential}
             aria-label="Cerrar aviso de cookies"
-            className="text-slate-500 hover:text-slate-800 p-1 rounded-lg transition-colors cursor-pointer"
+            className="min-w-7 min-h-7 flex items-center justify-center text-slate-600 hover:text-slate-900 p-1 rounded-lg transition-colors cursor-pointer"
             title="Cerrar aviso"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
 
-        <p className="text-xs text-slate-700 leading-relaxed">
-          Utilizamos cookies técnicas necesarias y herramientas de análisis para garantizar el correcto funcionamiento del sitio, recordar tus preferencias y optimizar tu experiencia de búsqueda. No recopilamos datos personales sensibles.{' '}
-          <Link
-            href="/politica-de-cookies"
-            className="text-indigo-700 underline font-semibold"
-          >
-            Leer Política de Cookies
-          </Link>
-          .
-        </p>
+        <div className="text-xs text-slate-700 leading-relaxed space-y-1">
+          <p>
+            Utilizamos cookies técnicas necesarias y herramientas de análisis para garantizar el correcto funcionamiento del sitio, recordar tus preferencias y optimizar tu experiencia de búsqueda. No recopilamos datos personales sensibles.
+          </p>
+          <div>
+            <Link
+              href="/politica-de-cookies"
+              className="text-indigo-700 underline font-semibold inline-block"
+            >
+              Leer Política de Cookies
+            </Link>
+          </div>
+        </div>
 
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 pt-1">
           <button
+            type="button"
             onClick={handleAcceptAll}
-            aria-label="Aceptar todas las cookies"
             className="flex-1 py-2 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-xs hover:shadow-indigo-500/20 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
           >
             <Check className="w-3.5 h-3.5" />
             <span>Aceptar todas</span>
+            <span className="sr-only"> las cookies</span>
           </button>
           
           <button
+            type="button"
             onClick={handleRejectNonEssential}
-            aria-label="Aceptar solo cookies esenciales"
             className="py-2 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs border border-slate-300 transition-colors cursor-pointer text-center"
           >
-            Solo esenciales
+            <span>Solo esenciales</span>
+            <span className="sr-only"> — Aceptar solo cookies esenciales</span>
           </button>
         </div>
 

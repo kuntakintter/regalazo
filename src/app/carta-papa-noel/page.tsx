@@ -25,9 +25,11 @@ import {
   Search
 } from 'lucide-react';
 import ChristmasCountdown from '@/components/ChristmasCountdown';
+import { useCurrency } from '@/context/CurrencyContext';
 
 function CartaPapaNoelContent() {
   const searchParams = useSearchParams();
+  const { amazonRegion, amazonTag, amazonSiteName } = useCurrency();
 
   // State
   const [childName, setChildName] = useState('');
@@ -165,11 +167,11 @@ function CartaPapaNoelContent() {
     window.open(waUrl, '_blank');
   };
 
-  // Amazon Remote Cart URL (All selected items straight to Amazon cart with affiliate tag)
+  // Amazon Remote Cart URL (All selected items straight to Amazon cart with regional affiliate tag)
   const handleOpenAmazonCart = () => {
     const asins = selectedToys.map((t) => t.asin);
     const fallbackTitles = selectedToys.map((t) => t.shortTitle || t.title);
-    const cartUrl = buildAmazonRemoteCartUrl(asins, 'vapegadgets22-21', fallbackTitles);
+    const cartUrl = buildAmazonRemoteCartUrl(asins, amazonTag, fallbackTitles, amazonRegion);
     window.open(cartUrl, '_blank');
   };
 
@@ -340,6 +342,7 @@ function CartaPapaNoelContent() {
 
               {/* Botón para volver a editar */}
               <button
+                type="button"
                 onClick={() => setIsDelivered(false)}
                 className="text-xs font-bold text-slate-600 hover:text-slate-900 underline transition-colors pt-2 cursor-pointer"
               >
@@ -364,14 +367,15 @@ function CartaPapaNoelContent() {
                   <button
                     type="button"
                     onClick={handleCopyLink}
-                    aria-label="Copiar enlace de la carta de Papá Noel"
                     className="py-2.5 px-3 rounded-xl bg-white hover:bg-slate-50 text-slate-900 font-bold text-xs border border-slate-300 shadow-xs flex items-center justify-center gap-2 transition-all cursor-pointer"
                   >
                     {copiedLink ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4 text-slate-600" />}
                     <span>{copiedLink ? '¡Enlace copiado!' : 'Copiar enlace de la carta'}</span>
+                    {!copiedLink && <span className="sr-only"> de Papá Noel</span>}
                   </button>
 
                   <button
+                    type="button"
                     onClick={handleShareWhatsApp}
                     className="py-2.5 px-3 rounded-xl bg-[#075E54] hover:bg-[#128C7E] text-white font-bold text-xs shadow-xs flex items-center justify-center gap-2 transition-all cursor-pointer"
                   >
@@ -380,15 +384,17 @@ function CartaPapaNoelContent() {
                   </button>
 
                   <button
+                    type="button"
                     onClick={handleOpenAmazonCart}
                     className="py-2.5 px-3 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-xs shadow-xs flex items-center justify-center gap-2 transition-all cursor-pointer"
-                    title="Añade automáticamente todos los deseos seleccionados a tu cesta de Amazon"
+                    title={`Añade automáticamente todos los deseos seleccionados a tu cesta de ${amazonSiteName}`}
                   >
                     <ShoppingBag className="w-4 h-4" />
-                    <span>Preparar cesta en Amazon 🛒</span>
+                    <span>Preparar cesta en {amazonSiteName} 🛒</span>
                   </button>
 
                   <button
+                    type="button"
                     onClick={() => window.print()}
                     className="py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-900 text-white font-bold text-xs shadow-xs flex items-center justify-center gap-2 transition-all cursor-pointer"
                   >
@@ -468,7 +474,7 @@ function CartaPapaNoelContent() {
                       onChange={(e) => setChildName(e.target.value)}
                       aria-label="Nombre del niño o niña"
                       placeholder="Escribe tu nombre..."
-                      className="border-b-2 border-dashed border-red-700 bg-transparent text-lg sm:text-xl font-bold font-serif text-red-950 focus:outline-hidden focus:border-red-900 px-2 py-0 inline-block w-48 sm:w-60 placeholder:text-slate-400 placeholder:font-normal placeholder:text-sm text-center"
+                      className="border-b-2 border-dashed border-red-700 bg-transparent text-lg sm:text-xl font-bold font-serif text-red-950 focus:outline-hidden focus:border-red-900 px-2 py-0 inline-block w-48 sm:w-60 placeholder:text-slate-600 placeholder:font-normal placeholder:text-sm text-center"
                       maxLength={30}
                     />
                     {' '}y tengo{' '}
@@ -489,6 +495,7 @@ function CartaPapaNoelContent() {
                     <select
                       value={behavior}
                       onChange={(e) => setBehavior(e.target.value)}
+                      aria-label="Cómo me he portado este año"
                       className="border-b-2 border-dashed border-red-700 bg-transparent text-base sm:text-lg font-bold font-serif text-red-950 focus:outline-hidden cursor-pointer px-1 py-0 inline-block"
                     >
                       <option value="🌟 súper bien">🌟 súper bien</option>
@@ -515,6 +522,7 @@ function CartaPapaNoelContent() {
                     </span>
                     {selectedToys.length > 0 && (
                       <button
+                        type="button"
                         onClick={() => setSelectedToys([])}
                         className="text-[11px] text-red-700 hover:text-red-900 font-bold underline cursor-pointer"
                       >
@@ -565,10 +573,11 @@ function CartaPapaNoelContent() {
                           </div>
 
                           <button
+                            type="button"
                             onClick={() => removeToy(t.id)}
-                            className="p-1.5 text-slate-400 hover:text-red-600 rounded-lg transition-colors cursor-pointer shrink-0"
+                            className="min-w-7 min-h-7 flex items-center justify-center p-1.5 text-slate-600 hover:text-red-700 rounded-lg transition-colors cursor-pointer shrink-0"
                             title="Quitar deseo de la carta"
-                            aria-label="Quitar deseo"
+                            aria-label={`Quitar ${t.shortTitle} de la carta`}
                           >
                             <X className="w-4 h-4" />
                           </button>
@@ -603,12 +612,13 @@ function CartaPapaNoelContent() {
                 <div className="pt-6 text-center font-sans">
                   <div className="p-3 bg-gradient-to-b from-[#b31b2c] to-[#7f111e] rounded-2xl shadow-xl border-2 border-amber-300">
                     <button
+                      type="button"
                       onClick={handleSendLetter}
                       disabled={selectedToys.length === 0}
                       className={`w-full py-4 px-6 rounded-xl font-black text-base sm:text-lg shadow-lg transition-all flex items-center justify-center gap-3 cursor-pointer ${
                         selectedToys.length > 0
                           ? 'bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 transform hover:scale-[1.01] active:scale-[0.99] ring-2 ring-white/50'
-                          : 'bg-slate-300 text-slate-500 cursor-not-allowed opacity-60'
+                          : 'bg-slate-300 text-slate-700 cursor-not-allowed opacity-80'
                       }`}
                     >
                       <span className="text-2xl animate-bounce">📮</span>
@@ -662,6 +672,7 @@ function CartaPapaNoelContent() {
                       return (
                         <button
                           key={age.id}
+                          type="button"
                           onClick={() => setActiveAge(age.id)}
                           className={`px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-bold transition-all duration-150 cursor-pointer flex items-center gap-1.5 ${
                             isAgeActive
@@ -691,6 +702,7 @@ function CartaPapaNoelContent() {
                       return (
                         <button
                           key={cat.id}
+                          type="button"
                           onClick={() => {
                             setActiveCategory(cat.id);
                             if (cat.id !== 'sobre-ruedas') {
@@ -784,9 +796,10 @@ function CartaPapaNoelContent() {
                     />
                     {searchToyQuery && (
                       <button
+                        type="button"
                         onClick={() => setSearchToyQuery('')}
                         aria-label="Borrar búsqueda de juguetes"
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-300 hover:text-white p-1"
+                        className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-200 hover:text-white min-w-7 min-h-7 flex items-center justify-center p-1 cursor-pointer"
                         title="Borrar búsqueda"
                       >
                         <X className="w-3.5 h-3.5" />
@@ -795,6 +808,7 @@ function CartaPapaNoelContent() {
                   </div>
                   {(activeCategory !== 'all' || activeWheelSub !== 'all' || activeAge !== 'all' || searchToyQuery) && (
                     <button
+                      type="button"
                       onClick={() => {
                         setActiveCategory('all');
                         setActiveWheelSub('all');
@@ -818,6 +832,7 @@ function CartaPapaNoelContent() {
                     No encontramos ningún juguete con esos filtros.
                   </p>
                   <button
+                    type="button"
                     onClick={() => {
                       setActiveCategory('all');
                       setActiveAge('all');
@@ -835,24 +850,26 @@ function CartaPapaNoelContent() {
                 {filteredToys.slice(0, visibleCount).map(toy => {
                   const isSelected = selectedToys.some(t => t.id === toy.id);
                   return (
-                    <div
+                    <button
                       key={toy.id}
+                      type="button"
                       onClick={() => toggleToy(toy)}
-                      className={`bg-white rounded-2xl p-3 sm:p-4 border-2 transition-all flex flex-col justify-between cursor-pointer group text-slate-900 relative ${
+                      aria-pressed={isSelected}
+                      className={`bg-white rounded-2xl p-3 sm:p-4 border-2 transition-all flex flex-col justify-between text-left cursor-pointer group text-slate-900 relative ${
                         isSelected
-                          ? 'border-emerald-500 ring-4 ring-emerald-400/30 shadow-xl shadow-emerald-500/10 scale-[1.02]'
+                          ? 'border-emerald-600 ring-4 ring-emerald-400/30 shadow-xl shadow-emerald-500/10 scale-[1.02]'
                           : 'border-slate-200 hover:border-amber-400 shadow-md hover:shadow-xl'
                       }`}
                     >
                       {/* Badge */}
                       {toy.badge && (
-                        <span className="absolute top-2 left-2 z-10 px-2 py-0.5 rounded-md bg-amber-500/90 text-slate-950 font-black text-[9px] uppercase tracking-wider shadow-xs">
+                        <span className="absolute top-2 left-2 z-10 px-2 py-0.5 rounded-md bg-amber-500/95 text-slate-950 font-black text-[9px] uppercase tracking-wider shadow-xs">
                           {toy.badge}
                         </span>
                       )}
 
                       {/* Imagen grande del juguete */}
-                      <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-slate-50 mb-3 group-hover:scale-105 transition-transform duration-300 flex items-center justify-center">
+                      <span className="relative aspect-square w-full rounded-xl overflow-hidden bg-slate-50 mb-3 group-hover:scale-105 transition-transform duration-300 flex items-center justify-center">
                         {!failedImgIds[toy.id] ? (
                           <Image
                             src={toy.imageUrl}
@@ -864,29 +881,28 @@ function CartaPapaNoelContent() {
                             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                           />
                         ) : (
-                          <div className="flex flex-col items-center justify-center p-3 text-center text-slate-500">
+                          <span className="flex flex-col items-center justify-center p-3 text-center text-slate-600">
                             <span className="text-3xl mb-1" aria-hidden="true">🎁</span>
                             <span className="text-[11px] font-bold text-slate-700 line-clamp-2">{toy.shortTitle}</span>
-                          </div>
+                          </span>
                         )}
-                      </div>
+                      </span>
 
                       {/* Título del juguete */}
-                      <div className="space-y-1 mb-3">
-                        <span className="text-[10px] font-bold text-slate-500 uppercase block tracking-wider">
+                      <span className="block space-y-1 mb-3 w-full">
+                        <span className="text-[10px] font-bold text-slate-600 uppercase block tracking-wider">
                           {toy.categoryLabel}
                         </span>
-                        <h3 className="text-xs sm:text-sm font-black text-slate-900 leading-snug line-clamp-2">
+                        <span className="block text-xs sm:text-sm font-black text-slate-900 leading-snug line-clamp-2">
                           {toy.shortTitle}
-                        </h3>
-                      </div>
+                        </span>
+                      </span>
 
-                      {/* Botón de acción */}
-                      <button
-                        type="button"
+                      {/* Indicador de acción (span visual dentro de tarjeta botón para evitar botones anidados) */}
+                      <span
                         className={`w-full py-2 px-2.5 rounded-xl text-xs font-black transition-all flex items-center justify-center gap-1.5 ${
                           isSelected
-                            ? 'bg-emerald-600 text-white shadow-xs'
+                            ? 'bg-emerald-700 text-white shadow-xs'
                             : 'bg-amber-400 group-hover:bg-amber-500 text-slate-950 shadow-xs'
                         }`}
                       >
@@ -901,8 +917,8 @@ function CartaPapaNoelContent() {
                             <span>¡Pedir deseo!</span>
                           </>
                         )}
-                      </button>
-                    </div>
+                      </span>
+                    </button>
                   );
                 })}
               </div>
@@ -911,12 +927,13 @@ function CartaPapaNoelContent() {
               {visibleCount < filteredToys.length && (
                 <div className="text-center pt-6 space-y-2">
                   <button
+                    type="button"
                     onClick={() => setVisibleCount(prev => prev + 24)}
                     className="py-3.5 px-8 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-sm shadow-xl hover:scale-105 transition-all cursor-pointer ring-4 ring-amber-300/30"
                   >
                     🎁 Ver más juguetes del catálogo (+{Math.min(24, filteredToys.length - visibleCount)} más)
                   </button>
-                  <span className="text-xs text-slate-400 block">
+                  <span className="text-xs text-slate-300 block">
                     Mostrando {Math.min(visibleCount, filteredToys.length)} de {filteredToys.length} juguetes disponibles
                   </span>
                 </div>
@@ -937,7 +954,7 @@ function CartaPapaNoelContent() {
             <h2 id="faq-navidad-title" className="text-xl sm:text-2xl font-black text-white font-serif">
               Preguntas Frecuentes sobre la Carta a Papá Noel 2026
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400 max-w-2xl mx-auto">
+            <p className="text-xs sm:text-sm text-slate-300 max-w-2xl mx-auto">
               Descubre cómo funciona el buzón mágico del Polo Norte, las novedades del catálogo de juguetes y cómo guardar la lista de deseos para Nochebuena.
             </p>
           </div>

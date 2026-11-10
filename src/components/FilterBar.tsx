@@ -153,7 +153,7 @@ export default function FilterBar({
               <SlidersHorizontal className="w-4 h-4" />
             </div>
             <div>
-              <span className="text-xs font-black uppercase tracking-wider text-slate-500 block">
+              <span className="text-xs font-black uppercase tracking-wider text-slate-600 block">
                 Presupuesto Máximo
               </span>
               <span className="text-sm sm:text-base font-black text-indigo-700">
@@ -167,10 +167,11 @@ export default function FilterBar({
               {totalResults} ideas recomendadas
             </span>
             {onSelectSort && (
-              <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-white text-slate-700 border border-indigo-200 shadow-xs">
+              <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-white text-slate-800 border border-indigo-200 shadow-xs">
                 <ArrowUpDown className="w-3.5 h-3.5 text-indigo-600 shrink-0" />
                 <select
                   value={sortBy}
+                  aria-label="Ordenar productos"
                   onChange={(e) => onSelectSort(e.target.value as any)}
                   className="bg-transparent text-slate-800 font-bold text-xs outline-none cursor-pointer"
                 >
@@ -183,8 +184,9 @@ export default function FilterBar({
             )}
             {hasActiveFilters && (
               <button
+                type="button"
                 onClick={resetFilters}
-                className="text-xs font-bold px-2.5 py-1.5 rounded-xl text-rose-600 hover:bg-rose-50 border border-transparent hover:border-rose-200 transition-colors flex items-center gap-1 cursor-pointer"
+                className="text-xs font-bold px-2.5 py-1.5 rounded-xl text-rose-700 hover:bg-rose-50 border border-transparent hover:border-rose-200 transition-colors flex items-center gap-1 cursor-pointer"
                 title="Restablecer filtros"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
@@ -207,7 +209,7 @@ export default function FilterBar({
             className="w-full h-2.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-indigo-600 transition-all focus:outline-none"
           />
           {/* Milestone markers below track */}
-          <div className="flex justify-between text-[11px] font-bold text-slate-400 mt-1.5 px-0.5">
+          <div className="flex justify-between text-[11px] font-bold text-slate-600 mt-1.5 px-0.5">
             <span>{currency === 'USD' ? '$16' : '15 €'}</span>
             <span>{currency === 'USD' ? '$32' : '30 €'}</span>
             <span>{currency === 'USD' ? '$55' : '50 €'}</span>
@@ -221,14 +223,15 @@ export default function FilterBar({
       {/* 2. SELECTOR DE EDAD */}
       <div>
         <div className="flex items-center justify-between mb-2.5">
-          <label className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-2">
+          <p className="text-xs font-black uppercase tracking-wider text-slate-600 flex items-center gap-2">
             <Calendar className="w-4 h-4 text-indigo-600" />
             <span>Selecciona la Edad:</span>
-          </label>
+          </p>
         </div>
 
         <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-thin flex-wrap">
           <button
+            type="button"
             onClick={() => {
               onSelectAge('all');
               onSelectCategory('all');
@@ -239,7 +242,7 @@ export default function FilterBar({
                 : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100'
             }`}
           >
-            <LayoutGrid className={`w-4 h-4 ${selectedAge === 'all' ? 'text-indigo-400' : 'text-slate-500'}`} />
+            <LayoutGrid className={`w-4 h-4 ${selectedAge === 'all' ? 'text-indigo-400' : 'text-slate-600'}`} />
             <span>Todas las Edades</span>
           </button>
 
@@ -252,6 +255,7 @@ export default function FilterBar({
             return (
               <button
                 key={cat.id}
+                type="button"
                 onClick={() => {
                   onSelectAge(cat.id);
                   onSelectCategory('all');
@@ -272,13 +276,14 @@ export default function FilterBar({
 
       {/* 3. SELECTOR DE DESTINATARIO: PARA ÉL / PARA ELLA / UNISEX */}
       <div className="pt-1">
-        <label className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-2 mb-2.5">
+        <p className="text-xs font-black uppercase tracking-wider text-slate-600 flex items-center gap-2 mb-2.5">
           <Target className="w-4 h-4 text-indigo-600" />
           <span>¿Para quién es el regalo?:</span>
-        </label>
+        </p>
 
         <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-thin">
           <button
+            type="button"
             onClick={() => onSelectGender('all')}
             className={`px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all border cursor-pointer flex items-center gap-2 ${
               selectedGender === 'all'
@@ -291,39 +296,42 @@ export default function FilterBar({
           </button>
 
           <button
+            type="button"
             onClick={() => onSelectGender('boy')}
             className={`px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all border cursor-pointer flex items-center gap-2 ${
               selectedGender === 'boy'
-                ? 'bg-blue-600 text-white border-blue-600 shadow-xs'
-                : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-blue-50 hover:text-blue-700'
+                ? 'bg-blue-700 text-white border-blue-700 shadow-xs'
+                : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-blue-50 hover:text-blue-800'
             }`}
           >
-            <User className={`w-4 h-4 ${selectedGender === 'boy' ? 'text-white' : 'text-blue-600'}`} />
+            <User className={`w-4 h-4 ${selectedGender === 'boy' ? 'text-white' : 'text-blue-700'}`} />
             <span>Para Él</span>
           </button>
 
           <button
+            type="button"
             onClick={() => onSelectGender('girl')}
             className={`px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all border cursor-pointer flex items-center gap-2 ${
               selectedGender === 'girl'
-                ? 'bg-pink-600 text-white border-pink-600 shadow-xs'
-                : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-pink-50 hover:text-pink-700'
+                ? 'bg-pink-700 text-white border-pink-700 shadow-xs'
+                : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-pink-50 hover:text-pink-800'
             }`}
           >
-            <Heart className={`w-4 h-4 ${selectedGender === 'girl' ? 'text-white' : 'text-pink-600'}`} />
+            <Heart className={`w-4 h-4 ${selectedGender === 'girl' ? 'text-white' : 'text-pink-700'}`} />
             <span>Para Ella</span>
           </button>
 
           {selectedAge === '0-12m' && (
             <button
+              type="button"
               onClick={() => onSelectGender('reveal')}
               className={`px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all border cursor-pointer flex items-center gap-2 ${
                 selectedGender === 'reveal'
-                  ? 'bg-amber-500 text-white border-amber-500 shadow-xs'
-                  : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-amber-50 hover:text-amber-700'
+                  ? 'bg-amber-700 text-white border-amber-700 shadow-xs'
+                  : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-amber-50 hover:text-amber-800'
               }`}
             >
-              <PartyPopper className={`w-4 h-4 ${selectedGender === 'reveal' ? 'text-white' : 'text-amber-500'}`} />
+              <PartyPopper className={`w-4 h-4 ${selectedGender === 'reveal' ? 'text-white' : 'text-amber-700'}`} />
               <span>Fiesta Revelación de Género</span>
             </button>
           )}
@@ -332,11 +340,12 @@ export default function FilterBar({
 
       {/* 3. TIPO DE REGALO (CATEGORÍAS Y SUBCATEGORÍAS) */}
       <div>
-        <label className="text-[11px] font-black uppercase tracking-wider text-slate-400 block mb-2">
+        <p className="text-[11px] font-black uppercase tracking-wider text-slate-600 block mb-2">
           Tipo de Regalo ({selectedAge === '0-12m' ? 'Exclusivo Bebés' : selectedAge === 'all' ? 'Populares' : 'Para esta edad'}):
-        </label>
+        </p>
         <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-thin flex-wrap">
           <button
+            type="button"
             onClick={() => {
               onSelectCategory('all');
               if (onSelectClothingSub) onSelectClothingSub('all');
@@ -359,6 +368,7 @@ export default function FilterBar({
             return (
               <button
                 key={subcat}
+                type="button"
                 onClick={() => {
                   onSelectCategory(subcat);
                   if (!isClothing && onSelectClothingSub) {
@@ -400,7 +410,7 @@ export default function FilterBar({
           <div className="mt-3.5 p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-emerald-50/90 via-teal-50/80 to-amber-50/70 border border-emerald-300/90 shadow-xs animate-fadeIn">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2.5">
               <div className="flex items-center gap-2">
-                <span className="w-6 h-6 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-xs font-bold shadow-xs">
+                <span className="w-6 h-6 rounded-lg bg-emerald-700 text-white flex items-center justify-center text-xs font-bold shadow-xs">
                   🏎️
                 </span>
                 <div>
@@ -416,7 +426,7 @@ export default function FilterBar({
                 <button
                   type="button"
                   onClick={() => onSelectWheelsSub('all')}
-                  className="text-xs font-bold text-emerald-700 hover:text-emerald-900 underline self-start sm:self-auto cursor-pointer"
+                  className="text-xs font-bold text-emerald-800 hover:text-emerald-950 underline self-start sm:self-auto cursor-pointer"
                 >
                   Ver todos los vehículos
                 </button>
@@ -433,7 +443,7 @@ export default function FilterBar({
                     onClick={() => onSelectWheelsSub && onSelectWheelsSub(sub.id)}
                     className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
                       isActive
-                        ? 'bg-emerald-600 text-white shadow-xs ring-2 ring-emerald-300'
+                        ? 'bg-emerald-700 text-white shadow-xs ring-2 ring-emerald-300'
                         : 'bg-white text-slate-700 border border-emerald-200/80 hover:bg-emerald-50 hover:border-emerald-400'
                     }`}
                   >

@@ -28,9 +28,11 @@ import {
   Ghost
 } from 'lucide-react';
 import { parsePrice } from '@/lib/amazon';
+import { useCurrency } from '@/context/CurrencyContext';
 import Link from 'next/link';
 
 export default function HalloweenPage() {
+  const { amazonRegion, amazonSiteName } = useCurrency();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedPrice, setSelectedPrice] = useState<string>('all');
   const [sortBy, setSortBy] = useState<'featured' | 'price-asc' | 'price-desc' | 'rating'>('featured');
@@ -132,7 +134,7 @@ export default function HalloweenPage() {
       let isMounted = true;
       setIsLoadingLive(true);
       const timer = setTimeout(() => {
-        fetch(`/api/live-search?q=${encodeURIComponent(liveSearchQuery)}&limit=8`)
+        fetch(`/api/live-search?q=${encodeURIComponent(liveSearchQuery)}&limit=8&region=${amazonRegion}`)
           .then((res) => res.json())
           .then((data) => {
             if (isMounted && data.success && Array.isArray(data.results)) {
@@ -152,7 +154,7 @@ export default function HalloweenPage() {
     } else {
       setLiveAmazonProducts([]);
     }
-  }, [selectedCategory, selectedPrice, liveSearchQuery]);
+  }, [selectedCategory, selectedPrice, liveSearchQuery, amazonRegion]);
 
   return (
     <div className="min-h-screen relative flex flex-col bg-slate-950 text-slate-100 selection:bg-orange-500 selection:text-white">
@@ -163,9 +165,9 @@ export default function HalloweenPage() {
       <Header />
 
       {/* Breadcrumb Navigation */}
-      <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-2 w-full flex items-center gap-2 text-xs text-slate-400">
-        <Link href="/" className="hover:text-orange-400 transition-colors">Inicio</Link>
-        <ChevronRight className="w-3.5 h-3.5 text-slate-600" />
+      <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-2 w-full flex items-center gap-2 text-xs text-slate-300">
+        <Link href="/" className="hover:text-orange-400 transition-colors py-1">Inicio</Link>
+        <ChevronRight className="w-3.5 h-3.5 text-slate-500" />
         <span className="font-bold text-orange-400">Especial Halloween 2026</span>
       </nav>
 
@@ -190,10 +192,10 @@ export default function HalloweenPage() {
             Todo lo necesario para triunfar la noche del 31 de octubre: máscaras LED de La Purga, telarañas gigantes de jardín, disfraces inflables y guirnaldas de calabazas con entrega urgente garantizada.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs font-medium text-slate-400 mb-8">
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs font-medium text-slate-300 mb-8">
             <span className="flex items-center gap-1.5">
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              Garantía Oficial Amazon España
+              Garantía Oficial {amazonSiteName}
             </span>
             <span className="flex items-center gap-1.5">
               <Ghost className="w-4 h-4 text-orange-400" />
@@ -223,7 +225,7 @@ export default function HalloweenPage() {
                 <Filter className="w-3.5 h-3.5 text-orange-400" />
                 <span>¿Qué buscas para este Halloween?</span>
               </span>
-              <span className="text-xs font-semibold text-slate-400">
+              <span className="text-xs font-semibold text-slate-300">
                 {displayProducts.length + liveAmazonProducts.length} ideas
               </span>
             </div>
@@ -232,6 +234,7 @@ export default function HalloweenPage() {
               {HALLOWEEN_CATEGORIES.map((cat) => (
                 <button
                   key={cat.id}
+                  type="button"
                   onClick={() => {
                     setSelectedCategory(cat.id);
                     setLiveAmazonProducts([]);
@@ -251,11 +254,13 @@ export default function HalloweenPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-slate-800">
             <div>
-              <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
+              <label htmlFor="halloween-price" className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1.5">
                 Presupuesto
               </label>
               <select
+                id="halloween-price"
                 value={selectedPrice}
+                aria-label="Presupuesto"
                 onChange={(e) => {
                   setSelectedPrice(e.target.value);
                   setLiveAmazonProducts([]);
@@ -269,12 +274,14 @@ export default function HalloweenPage() {
             </div>
 
             <div>
-              <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
+              <label htmlFor="halloween-sort" className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1.5">
                 Ordenar por
               </label>
               <div className="relative">
                 <select
+                  id="halloween-sort"
                   value={sortBy}
+                  aria-label="Ordenar productos"
                   onChange={(e) => setSortBy(e.target.value as any)}
                   className="w-full px-3.5 py-2.5 rounded-xl border border-slate-700 bg-slate-800 text-slate-200 text-xs font-semibold focus:border-orange-500 focus:bg-slate-900 outline-none cursor-pointer appearance-none"
                 >
@@ -283,7 +290,7 @@ export default function HalloweenPage() {
                   <option value="price-desc">💎 Precio: de mayor a menor</option>
                   <option value="rating">⭐ Mejor valoración</option>
                 </select>
-                <ArrowUpDown className="w-3.5 h-3.5 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                <ArrowUpDown className="w-3.5 h-3.5 text-slate-300 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
               </div>
             </div>
           </div>
@@ -332,14 +339,15 @@ export default function HalloweenPage() {
         ) : (
           <div className="text-center py-16 bg-slate-900 rounded-3xl border border-slate-800 p-8">
             <Ghost className="w-12 h-12 text-orange-500 mx-auto mb-3" />
-            <h3 className="text-lg font-bold text-white mb-1">No se encontraron productos con estos filtros</h3>
-            <p className="text-xs text-slate-400 mb-4">Prueba a seleccionar otra categoría o ampliar el presupuesto.</p>
+            <h2 className="text-lg font-bold text-white mb-1">No se encontraron productos con estos filtros</h2>
+            <p className="text-xs text-slate-300 mb-4">Prueba a seleccionar otra categoría o ampliar el presupuesto.</p>
             <button
+              type="button"
               onClick={() => {
                 setSelectedCategory('all');
                 setSelectedPrice('all');
               }}
-              className="px-4 py-2 bg-orange-500 text-slate-950 rounded-xl text-xs font-bold hover:bg-orange-400 transition-colors"
+              className="px-4 py-2 bg-orange-500 text-slate-950 rounded-xl text-xs font-bold hover:bg-orange-400 transition-colors cursor-pointer"
             >
               Restablecer filtros
             </button>

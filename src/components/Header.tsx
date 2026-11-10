@@ -8,6 +8,7 @@ import { Product } from '@/data/products';
 import { ALL_SITE_PRODUCTS } from '@/data/allCatalogProducts';
 import { matchesSearchQuery } from '@/utils/search';
 import { AmazonLiveItem } from '@/components/HeaderMobile';
+import { useCurrency } from '@/context/CurrencyContext';
 
 interface HeaderProps {
   currentTheme?: 'baby' | 'kids' | 'gamer' | 'emo' | 'tech' | 'classic';
@@ -22,6 +23,7 @@ export default function Header({
 }: HeaderProps) {
   const router = useRouter();
   const pathname = usePathname();
+  const { amazonRegion } = useCurrency();
 
   // Internal state ensures the search bar is always interactive on ANY page/filter
   const [internalQuery, setInternalQuery] = useState(searchQuery || '');
@@ -65,9 +67,12 @@ export default function Header({
     const controller = new AbortController();
     const timer = setTimeout(async () => {
       try {
-        const res = await fetch(`/api/live-search?q=${encodeURIComponent(q)}`, {
-          signal: controller.signal,
-        });
+        const res = await fetch(
+          `/api/live-search?q=${encodeURIComponent(q)}&region=${amazonRegion}`,
+          {
+            signal: controller.signal,
+          }
+        );
         const data = await res.json();
         if (data.success && Array.isArray(data.results)) {
           setAmazonResults(data.results);
@@ -87,7 +92,7 @@ export default function Header({
       clearTimeout(timer);
       controller.abort();
     };
-  }, [internalQuery]);
+  }, [internalQuery, amazonRegion]);
 
   // Submit search from header (works on ANY page or active filter)
   const handleSearchSubmit = useCallback(

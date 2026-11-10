@@ -5,11 +5,11 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ThemeAtmosphere from '@/components/ThemeAtmosphere';
 import { ShieldCheck, Scale, FileText, ArrowLeft, ExternalLink } from 'lucide-react';
-import { AMAZON_AFFILIATE_TAG } from '@/lib/amazon';
+import { AMAZON_AFFILIATE_TAG_ES, AMAZON_AFFILIATE_TAG_INTL } from '@/lib/amazon';
 
 export const metadata: Metadata = {
   title: 'Aviso Legal | Un Buen Regalo',
-  description: 'Información legal, condiciones de uso y divulgación obligatoria del programa de Afiliados de Amazon España para Un Buen Regalo.',
+  description: 'Información legal, condiciones de uso y divulgación obligatoria del programa de Afiliados de Amazon en España y tiendas internacionales para Un Buen Regalo.',
   alternates: {
     canonical: 'https://www.unbuenregalo.es/aviso-legal',
   },
@@ -24,13 +24,13 @@ export default function AvisoLegalPage() {
       <main className="flex-1 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 w-full z-10">
         
         {/* Breadcrumb */}
-        <nav className="mb-6 flex items-center gap-2 text-xs text-slate-500 font-medium">
-          <Link href="/" className="hover:text-indigo-600 flex items-center gap-1 transition-colors">
+        <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-xs text-slate-600 font-medium">
+          <Link href="/" className="hover:text-indigo-700 flex items-center gap-1 transition-colors">
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Volver al inicio</span>
           </Link>
           <span>/</span>
-          <span className="text-slate-800 font-bold">Aviso Legal</span>
+          <span className="text-slate-900 font-bold">Aviso Legal</span>
         </nav>
 
         <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/80 shadow-xs space-y-8">
@@ -55,10 +55,10 @@ export default function AvisoLegalPage() {
               <span>Divulgación Obligatoria del Programa de Afiliados de Amazon</span>
             </div>
             <p>
-              En calidad de Afiliado de Amazon, <strong>Un Buen Regalo</strong> (unbuenregalo.es) obtiene ingresos por las compras adscritas que cumplen los requisitos aplicables. El identificador oficial de asociado asignado es <strong>{AMAZON_AFFILIATE_TAG}</strong>.
+              En calidad de Afiliado de Amazon, <strong>Un Buen Regalo</strong> (unbuenregalo.es) obtiene ingresos por las compras adscritas que cumplen los requisitos aplicables. Los identificadores oficiales de asociado asignados son <strong>{AMAZON_AFFILIATE_TAG_ES}</strong> (Amazon España) y <strong>{AMAZON_AFFILIATE_TAG_INTL}</strong> (Amazon Global / Internacional).
             </p>
             <p className="text-xs opacity-90">
-              Esto significa que al hacer clic en los enlaces de compra de nuestra web y completar un pedido en Amazon.es, podemos recibir una pequeña comisión de recomendación. <strong>Esto no supone jamás un coste adicional para ti</strong>: el precio que pagas en Amazon es exactamente el mismo (o menor si hay ofertas activas).
+              Esto significa que al hacer clic en los enlaces de compra de nuestra web y completar un pedido en la tienda regional de Amazon correspondiente (Amazon.es o Amazon.com según tu país), podemos recibir una pequeña comisión de recomendación. <strong>Esto no supone jamás un coste adicional para ti</strong>: el precio que pagas en Amazon es exactamente el mismo (o menor si hay ofertas activas).
             </p>
           </section>
 
@@ -89,7 +89,7 @@ export default function AvisoLegalPage() {
               Un Buen Regalo no es una tienda online física ni almacena, vende, envía ni factura los productos mostrados. Nuestra labor es estrictamente <strong>editorial, comparativa y de recomendación</strong> de productos verificados.
             </p>
             <p>
-              Cualquier transacción de compra, garantía, envío o devolución se celebra y gestiona íntegramente en la plataforma de destino (<strong>Amazon.es</strong>) bajo sus propias condiciones de venta y políticas de protección al consumidor.
+              Cualquier transacción de compra, garantía, envío o devolución se celebra y gestiona íntegramente en la plataforma oficial de <strong>Amazon</strong> correspondiente al país del comprador (Amazon.es o Amazon.com) bajo sus propias condiciones de venta y políticas de protección al consumidor.
             </p>
           </section>
 
@@ -114,10 +114,10 @@ export default function AvisoLegalPage() {
               4. Exactitud de Precios y Disponibilidad de Stock
             </h2>
             <p>
-              Hacemos todo lo posible para mantener los precios y valoraciones sincronizados con Amazon España. No obstante, los precios y la disponibilidad de los productos están sujetos a continuas fluctuaciones por parte de los vendedores de Amazon.
+              Hacemos todo lo posible para mantener los precios y valoraciones sincronizados con Amazon. No obstante, los precios y la disponibilidad de los productos están sujetos a continuas fluctuaciones por parte de los vendedores de cada tienda regional de Amazon.
             </p>
             <p>
-              <strong>El precio vinculante y final será siempre el mostrado en la página de Amazon.es en el momento exacto de la compra.</strong>
+              <strong>El precio vinculante y final será siempre el mostrado en la página oficial de Amazon en el momento exacto de la compra.</strong>
             </p>
           </section>
 

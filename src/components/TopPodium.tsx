@@ -50,7 +50,7 @@ function getProductFamily(p: Product): string {
 }
 
 export default function TopPodium({ products, filterLabel, isDark = false, showTable = false }: TopPodiumProps) {
-  const { formatPrice } = useCurrency();
+  const { formatPrice, amazonRegion } = useCurrency();
   const { toggleItem, isItemInList } = useVoting();
   const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
   const [activeSetIndex, setActiveSetIndex] = useState(0);
@@ -331,12 +331,12 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
               <div className="flex items-center gap-2">
                 <span
                   className={`text-[11px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md ${
-                    isDark ? 'text-amber-300 bg-amber-950/80 border border-amber-500/40' : 'text-amber-700 bg-amber-100'
+                    isDark ? 'text-amber-300 bg-amber-950/80 border border-amber-500/40' : 'text-amber-800 bg-amber-100'
                   }`}
                 >
                   Ranking Oficial 2026
                 </span>
-                <span className={`text-xs font-bold hidden sm:inline ${isDark ? 'text-slate-300' : 'text-slate-500'}`}>
+                <span className={`text-xs font-bold hidden sm:inline ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
                   • Catálogo Verificado
                 </span>
               </div>
@@ -352,21 +352,21 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
               className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold shadow-2xs border ${
                 isDark
                   ? 'bg-rose-950/70 border-rose-500/40 text-rose-300'
-                  : 'bg-rose-50 border-rose-200 text-rose-700'
+                  : 'bg-rose-50 border-rose-200 text-rose-800'
               }`}
             >
-              <Clock className="w-3.5 h-3.5 text-rose-500 animate-pulse" />
+              <Clock className="w-3.5 h-3.5 text-rose-600 animate-pulse" />
               <span>
                 Envío exprés:{' '}
-                <strong className={`font-mono ${isDark ? 'text-rose-200' : 'text-rose-800'}`}>
+                <strong className={`font-mono ${isDark ? 'text-rose-200' : 'text-rose-900'}`}>
                   {String(timeLeft.hours).padStart(2, '0')}:{String(timeLeft.minutes).padStart(2, '0')}:
                   {String(timeLeft.seconds).padStart(2, '0')}
                 </strong>
               </span>
             </div>
 
-            <div className={`text-xs font-semibold flex items-center gap-1.5 ${isDark ? 'text-slate-300' : 'text-slate-500'}`}>
-              <Flame className="w-4 h-4 text-orange-500" />
+            <div className={`text-xs font-semibold flex items-center gap-1.5 ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+              <Flame className="w-4 h-4 text-orange-600" />
               <span>Revisado hoy</span>
             </div>
           </div>
@@ -378,6 +378,7 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
         {/* Left Arrow Navigation Button (Desktop only, hidden on mobile) */}
         {podiumSets.length > 1 && (
           <button
+            type="button"
             onClick={handlePrev}
             aria-label="Ver ranking anterior"
             title="Ver ranking anterior"
@@ -390,6 +391,7 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
         {/* Right Arrow Navigation Button (Desktop only, hidden on mobile) */}
         {podiumSets.length > 1 && (
           <button
+            type="button"
             onClick={handleNext}
             aria-label="Ver siguiente ranking"
             title="Ver siguiente ranking"
@@ -408,7 +410,8 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
           {podiumPicks.map((pick) => {
             const directUrl = getAmazonProductUrl(
               pick.product.asin,
-              pick.product.searchQuery || pick.product.title
+              pick.product.searchQuery || pick.product.title,
+              amazonRegion
             );
             const isGold = pick.rank === 1;
 
@@ -441,43 +444,45 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
                     <div className="flex items-center gap-0.5 sm:gap-1 text-amber-500 text-[10px] sm:text-xs font-bold shrink-0">
                       <Star className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 fill-amber-400 text-amber-400" />
                       <span className={isDark ? 'text-white' : 'text-slate-900'}>{pick.product.rating}</span>
-                      <span className={`text-[9px] sm:text-[10px] hidden md:inline ${isDark ? 'text-slate-400' : 'text-slate-400'}`}>
-                        ({pick.product.reviewsCount?.toLocaleString()})
+                      <span className={`text-[9px] sm:text-[10px] hidden md:inline ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+                        ({pick.product.reviewsCount?.toLocaleString('es-ES')})
                       </span>
                     </div>
                   </div>
 
-                  {/* Product Photo - Compact & Framed */}
-                  <a
-                    href={directUrl}
-                    target="_blank"
-                    rel="nofollow sponsored noopener noreferrer"
-                    className="relative w-full h-20 xs:h-24 sm:h-36 md:h-40 bg-white rounded-lg sm:rounded-xl p-1 sm:p-2 flex items-center justify-center overflow-hidden mb-1.5 sm:mb-2.5 border border-slate-200/80 group-hover:border-slate-300 transition-colors cursor-pointer"
-                  >
-                    {!failedImages[pick.product.id] ? (
-                      <Image
-                        src={pick.product.imageUrl}
-                        alt={pick.product.title}
-                        fill
-                        priority={pick.rank === 1}
-                        loading={pick.rank === 1 ? 'eager' : 'lazy'}
-                        sizes="(max-width: 640px) 33vw, 300px"
-                        className="object-contain p-1 group-hover:scale-105 transition-transform duration-300"
-                        unoptimized={pick.product.imageUrl.startsWith('http')}
-                        onError={() => setFailedImages((prev) => ({ ...prev, [pick.product.id]: true }))}
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-slate-50 flex flex-col items-center justify-center text-slate-400 p-1 text-center">
-                        <ShoppingBag className="w-5 h-5 sm:w-8 sm:h-8 mb-0.5 text-amber-500/70" />
-                        <span className="text-[9px] sm:text-[11px] font-bold text-slate-700 line-clamp-2">
-                          {pick.product.title}
+                  {/* Product Photo - Compact & Framed (Sibling button prevents nested interactive HTML) */}
+                  <div className="relative w-full h-20 xs:h-24 sm:h-36 md:h-40 bg-white rounded-lg sm:rounded-xl mb-1.5 sm:mb-2.5 border border-slate-200/80 group-hover:border-slate-300 transition-colors overflow-hidden">
+                    <a
+                      href={directUrl}
+                      target="_blank"
+                      rel="nofollow sponsored noopener noreferrer"
+                      className="w-full h-full p-1 sm:p-2 flex items-center justify-center cursor-pointer relative"
+                    >
+                      {!failedImages[pick.product.id] ? (
+                        <Image
+                          src={pick.product.imageUrl}
+                          alt={pick.product.title}
+                          fill
+                          loading={pick.rank === 1 ? 'eager' : 'lazy'}
+                          sizes="(max-width: 640px) 33vw, 300px"
+                          className="object-contain p-1 group-hover:scale-105 transition-transform duration-300"
+                          unoptimized={pick.product.imageUrl.startsWith('http')}
+                          onError={() => setFailedImages((prev) => ({ ...prev, [pick.product.id]: true }))}
+                        />
+                      ) : (
+                        <span className="w-full h-full bg-slate-50 flex flex-col items-center justify-center text-slate-600 p-1 text-center">
+                          <ShoppingBag className="w-5 h-5 sm:w-8 sm:h-8 mb-0.5 text-amber-600" />
+                          <span className="text-[9px] sm:text-[11px] font-bold text-slate-700 line-clamp-2">
+                            {pick.product.title}
+                          </span>
                         </span>
-                      </div>
-                    )}
-                    <span className="absolute bottom-1 right-1 text-[7.5px] sm:text-[9px] font-bold bg-slate-900/85 text-white px-1 sm:px-1.5 py-0.5 rounded backdrop-blur-xs flex items-center gap-0.5 z-10">
-                      <ShieldCheck className="w-2 h-2 sm:w-2.5 sm:h-2.5 text-emerald-400" />
-                      Prime
-                    </span>
+                      )}
+                      <span className="sr-only">Ver producto con envío </span>
+                      <span className="absolute bottom-1 right-1 text-[7.5px] sm:text-[9px] font-bold bg-slate-900/90 text-white px-1 sm:px-1.5 py-0.5 rounded backdrop-blur-xs flex items-center gap-0.5 z-10">
+                        <ShieldCheck className="w-2 h-2 sm:w-2.5 sm:h-2.5 text-emerald-400" />
+                        Prime
+                      </span>
+                    </a>
                     <button
                       type="button"
                       onClick={(e) => {
@@ -486,16 +491,16 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
                         toggleItem(pick.product);
                       }}
                       title="Añadir a votación en grupo"
-                      aria-label="Añadir o quitar de la votación"
-                      className={`absolute top-1 right-1 w-5 h-5 sm:w-6 sm:h-6 rounded-full backdrop-blur-xs flex items-center justify-center transition-transform shadow-2xs z-10 cursor-pointer border ${
+                      aria-label={isItemInList(pick.product.id) ? `Quitar ${pick.product.title} de la votación` : `Añadir ${pick.product.title} a la votación`}
+                      className={`absolute top-1 right-1 w-6 h-6 sm:w-7 sm:h-7 rounded-full backdrop-blur-xs flex items-center justify-center transition-transform shadow-2xs z-20 cursor-pointer border ${
                         isItemInList(pick.product.id)
-                          ? 'bg-rose-50 border-rose-200 text-rose-500 scale-110'
-                          : 'bg-white/90 border-slate-100 text-slate-400 hover:text-rose-500 hover:scale-110'
+                          ? 'bg-rose-50 border-rose-200 text-rose-600 scale-105'
+                          : 'bg-white/95 border-slate-200 text-slate-600 hover:text-rose-600 hover:scale-105'
                       }`}
                     >
-                      <Heart className={`w-2.5 h-2.5 sm:w-3 sm:h-3 ${isItemInList(pick.product.id) ? 'fill-rose-500 text-rose-500' : ''}`} />
+                      <Heart className={`w-3 h-3 sm:w-3.5 sm:h-3.5 ${isItemInList(pick.product.id) ? 'fill-rose-500 text-rose-600' : ''}`} />
                     </button>
-                  </a>
+                  </div>
 
                   {/* Title - Compact 2 lines */}
                   <a
@@ -527,7 +532,7 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
                     }`}
                   >
                     <div className="w-full sm:w-auto text-center sm:text-left">
-                      <span className="text-[7.5px] sm:text-[9px] uppercase font-bold text-slate-400 block leading-none hidden sm:block">Oferta</span>
+                      <span className={`text-[7.5px] sm:text-[9px] uppercase font-bold block leading-none hidden sm:block ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>Oferta</span>
                       <span
                         className={`text-xs sm:text-base md:text-lg font-black tracking-tight leading-none ${
                           isDark ? 'text-white' : 'text-slate-950'
@@ -568,10 +573,10 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
                   <span
                     className={`text-[7.5px] sm:text-[10px] font-black tracking-wider uppercase px-1.5 sm:px-2 py-0.5 rounded-full mt-1 sm:mt-1.5 backdrop-blur-xs whitespace-nowrap shrink-0 ${
                       pick.rank === 1
-                        ? 'bg-amber-950/20 text-amber-950 border border-amber-900/20'
+                        ? 'bg-amber-50/85 text-amber-950 border border-amber-900/20'
                         : pick.rank === 2
-                        ? 'bg-slate-900/20 text-slate-900 border border-slate-700/20'
-                        : 'bg-black/35 text-amber-100 border border-white/20'
+                        ? 'bg-white/85 text-slate-950 border border-slate-400/50'
+                        : 'bg-slate-950/60 text-white border border-white/25'
                     }`}
                   >
                     <span className="hidden sm:inline">{pick.podiumSubtitle}</span>
@@ -588,18 +593,23 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
 
         {/* Discrete Pagination Dots at Bottom */}
         {podiumSets.length > 1 && (
-          <div className="flex items-center justify-center gap-2 mt-4">
+          <div className="flex items-center justify-center gap-1 mt-4">
             {podiumSets.map((_, idx) => (
               <button
                 key={idx}
+                type="button"
                 onClick={() => switchSet(idx)}
                 aria-label={`Ver podio ${idx + 1}`}
-                className={`transition-all rounded-full cursor-pointer ${
-                  activeSetIndex === idx
-                    ? 'w-6 h-2 bg-amber-500 shadow-xs'
-                    : 'w-2 h-2 bg-slate-300 hover:bg-slate-400 dark:bg-slate-700'
-                }`}
-              />
+                className="min-w-6 min-h-6 inline-flex items-center justify-center p-1 rounded-full cursor-pointer"
+              >
+                <span
+                  className={`block transition-all rounded-full ${
+                    activeSetIndex === idx
+                      ? 'w-6 h-2 bg-amber-500 shadow-xs'
+                      : 'w-2 h-2 bg-slate-400 hover:bg-slate-500 dark:bg-slate-600'
+                  }`}
+                />
+              </button>
             ))}
           </div>
         )}
@@ -671,7 +681,7 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
               </thead>
               <tbody className="divide-y divide-slate-200/60 dark:divide-slate-800">
                 {top10ComparisonList.map((item, idx) => {
-                  const itemUrl = getAmazonProductUrl(item.asin, item.searchQuery || item.title);
+                  const itemUrl = getAmazonProductUrl(item.asin, item.searchQuery || item.title, amazonRegion);
                   const isHiddenRow = idx >= 5 && !showFullTop10;
                   return (
                     <tr
@@ -708,7 +718,7 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
                         >
                           {item.title}
                         </a>
-                        <span className="block md:hidden text-[10px] font-semibold text-amber-600 mt-0.5">
+                        <span className={`block md:hidden text-[10px] font-semibold mt-0.5 ${isDark ? 'text-amber-400' : 'text-amber-800'}`}>
                           {COMPARISON_AWARDS[idx]}
                         </span>
                       </td>
@@ -730,8 +740,8 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
                           <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
                           <span className={isDark ? 'text-white' : 'text-slate-900'}>{item.rating}</span>
                         </span>
-                        <span className="text-[10px] text-slate-400 ml-1 hidden sm:inline">
-                          ({item.reviewsCount?.toLocaleString()})
+                        <span className={`text-[10px] ml-1 hidden sm:inline ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+                          ({item.reviewsCount?.toLocaleString('es-ES')})
                         </span>
                       </td>
                       <td className="py-2.5 px-3 sm:px-4 text-right font-black text-sm whitespace-nowrap">
@@ -743,15 +753,16 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
                             type="button"
                             onClick={() => toggleItem(item)}
                             title="Añadir a votación en grupo"
-                            className={`p-1.5 rounded-lg border transition-colors cursor-pointer ${
+                            aria-label={isItemInList(item.id) ? `Quitar ${item.title} de la votación` : `Añadir ${item.title} a la votación`}
+                            className={`w-7 h-7 flex items-center justify-center rounded-lg border transition-colors cursor-pointer ${
                               isItemInList(item.id)
                                 ? 'bg-rose-50 border-rose-200 text-rose-600'
                                 : isDark
                                 ? 'bg-slate-800 border-slate-700 text-slate-300 hover:text-rose-400'
-                                : 'bg-slate-50 border-slate-200 text-slate-500 hover:text-rose-600'
+                                : 'bg-slate-50 border-slate-200 text-slate-600 hover:text-rose-600'
                             }`}
                           >
-                            <Heart className={`w-3.5 h-3.5 ${isItemInList(item.id) ? 'fill-rose-500 text-rose-500' : ''}`} />
+                            <Heart className={`w-3.5 h-3.5 ${isItemInList(item.id) ? 'fill-rose-500 text-rose-600' : ''}`} />
                           </button>
                           <a
                             href={itemUrl}
@@ -780,7 +791,7 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
               <button
                 type="button"
                 onClick={() => setShowFullTop10(true)}
-                className="text-xs font-extrabold text-indigo-600 dark:text-amber-400 hover:underline cursor-pointer"
+                className="text-xs font-extrabold text-indigo-700 dark:text-amber-400 hover:underline cursor-pointer"
               >
                 ▼ Desplegar puestos #6 al #{top10ComparisonList.length} de la Tabla Comparativa
               </button>

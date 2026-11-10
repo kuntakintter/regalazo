@@ -7,11 +7,13 @@ import ProductCard from '@/components/ProductCard';
 import TopPodium from '@/components/TopPodium';
 import { PRODUCTS, Product } from '@/data/products';
 import { parsePrice } from '@/lib/amazon';
+import { useCurrency } from '@/context/CurrencyContext';
 import { generateProductItemListSchema } from '@/lib/schemaProduct';
 import { Tag, Sparkles, HelpCircle, ShieldCheck, Heart, ArrowUpDown, CheckCircle2, Compass } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Under20Client() {
+  const { amazonSiteName } = useCurrency();
   const [selectedSubcat, setSelectedSubcat] = useState<string>('all');
   const [sortBy, setSortBy] = useState<'featured' | 'price-asc' | 'price-desc' | 'rating'>('featured');
   const [searchQuery, setSearchQuery] = useState('');
@@ -155,7 +157,7 @@ export default function Under20Client() {
               onClick={() => setSelectedSubcat('all')}
               className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
                 selectedSubcat === 'all'
-                  ? 'bg-emerald-600 text-white shadow-xs'
+                  ? 'bg-emerald-700 text-white shadow-xs'
                   : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
               }`}
             >
@@ -168,7 +170,7 @@ export default function Under20Client() {
                 onClick={() => setSelectedSubcat(cat)}
                 className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
                   selectedSubcat === cat
-                    ? 'bg-emerald-600 text-white shadow-xs'
+                    ? 'bg-emerald-700 text-white shadow-xs'
                     : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                 }`}
               >
@@ -179,8 +181,9 @@ export default function Under20Client() {
 
           {/* Sorting */}
           <div className="flex items-center gap-2 shrink-0">
-            <ArrowUpDown className="w-4 h-4 text-slate-400" />
+            <ArrowUpDown className="w-4 h-4 text-slate-600" />
             <select
+              aria-label="Ordenar productos"
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
               className="text-xs font-bold bg-slate-50 border border-slate-200 rounded-xl px-3 py-1.5 focus:outline-hidden focus:ring-2 focus:ring-emerald-500 cursor-pointer"
@@ -243,7 +246,7 @@ export default function Under20Client() {
           {/* Preguntas Frecuentes FAQ Rich Snippets */}
           <div className="pt-4 border-t border-slate-100">
             <h3 className="text-base font-extrabold text-slate-900 mb-4 flex items-center gap-2">
-              <HelpCircle className="w-4 h-4 text-emerald-600" />
+              <HelpCircle className="w-4 h-4 text-emerald-700" />
               <span>Preguntas Frecuentes sobre Regalos Económicos</span>
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
@@ -256,7 +259,7 @@ export default function Under20Client() {
               <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1">
                 <h4 className="font-bold text-slate-900">¿Se pueden devolver si a la persona no le gusta?</h4>
                 <p className="text-slate-600 leading-relaxed">
-                  Totalmente. Al tramitarse directamente en Amazon España, dispones del período oficial de devoluciones de 30 días con reembolso íntegro y sin complicaciones.
+                  Totalmente. Al tramitarse directamente en {amazonSiteName}, dispones del período oficial de devoluciones de 30 días con reembolso íntegro y sin complicaciones.
                 </p>
               </div>
             </div>

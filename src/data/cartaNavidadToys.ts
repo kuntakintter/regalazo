@@ -1,4 +1,10 @@
-import { isValidActiveAsin, getAmazonSearchUrl } from '@/lib/amazon';
+import {
+  isValidActiveAsin,
+  INTL_FALLBACK_ASINS,
+  getAmazonSearchUrl,
+  AmazonRegion,
+  getRegionalAmazonConfig,
+} from '@/lib/amazon';
 
 export interface ChristmasToy {
   id: string;
@@ -5293,27 +5299,39 @@ export const CHRISTMAS_TOYS: ChristmasToy[] = [
 
 export function buildAmazonRemoteCartUrl(
   asins: string[],
-  tag: string = 'vapegadgets22-21',
-  fallbackQueries?: string[]
+  tag?: string,
+  fallbackQueries?: string[],
+  region?: AmazonRegion
 ): string {
+  const { region: resolvedRegion, baseUrl, tag: regionalTag } = getRegionalAmazonConfig(region);
+  const effectiveTag = tag || regionalTag;
+
   if (!asins || asins.length === 0) {
     return fallbackQueries && fallbackQueries.length > 0
-      ? getAmazonSearchUrl(fallbackQueries[0])
-      : `https://www.amazon.es/?tag=${tag}`;
+      ? getAmazonSearchUrl(fallbackQueries[0], resolvedRegion)
+      : `${baseUrl}/?tag=${effectiveTag}`;
   }
   const validAsins = Array.from(
-    new Set(asins.map((a) => a?.trim() || '').filter((a) => isValidActiveAsin(a)))
+    new Set(
+      asins
+        .map((a) => a?.trim() || '')
+        .filter(
+          (a) =>
+            isValidActiveAsin(a) &&
+            !(resolvedRegion === 'intl' && INTL_FALLBACK_ASINS.has(a))
+        )
+    )
   ).slice(0, 10);
   if (validAsins.length === 0) {
     return fallbackQueries && fallbackQueries.length > 0
-      ? getAmazonSearchUrl(fallbackQueries[0])
-      : getAmazonSearchUrl('juguetes navidad recomendados');
+      ? getAmazonSearchUrl(fallbackQueries[0], resolvedRegion)
+      : getAmazonSearchUrl('juguetes navidad recomendados', resolvedRegion);
   }
   const params = new URLSearchParams();
-  params.set('tag', tag);
+  params.set('tag', effectiveTag);
   validAsins.forEach((asin, idx) => {
     params.set(`ASIN.${idx + 1}`, asin);
     params.set(`Quantity.${idx + 1}`, '1');
   });
-  return `https://www.amazon.es/gp/aws/cart/add.html?${params.toString()}`;
+  return `${baseUrl}/gp/aws/cart/add.html?${params.toString()}`;
 }

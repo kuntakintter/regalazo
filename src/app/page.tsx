@@ -85,7 +85,7 @@ export default function HomePage() {
 }
 
 export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }) {
-  const { formatPrice } = useCurrency();
+  const { formatPrice, amazonRegion, amazonSiteName } = useCurrency();
   const [selectedAge, setSelectedAge] = useState<string>('all');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedClothingSub, setSelectedClothingSub] = useState<string>('all');
@@ -560,7 +560,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
     if (isLoadingLive) return;
     setIsLoadingLive(true);
     try {
-      const res = await fetch(`/api/live-search?q=${encodeURIComponent(liveSearchQuery)}&limit=12`);
+      const res = await fetch(`/api/live-search?q=${encodeURIComponent(liveSearchQuery)}&limit=12&region=${amazonRegion}`);
       const data = await res.json();
       if (data.success && Array.isArray(data.results)) {
         setLiveAmazonProducts((prev) => {
@@ -574,7 +574,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
     } finally {
       setIsLoadingLive(false);
     }
-  }, [isLoadingLive, liveSearchQuery]);
+  }, [isLoadingLive, liveSearchQuery, amazonRegion]);
 
   // Auto-fetch live products whenever a filter is active so the grid ALWAYS displays an abundant, rich selection (8+ items)
   useEffect(() => {
@@ -589,7 +589,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
       setIsLoadingLive(true);
 
       const timer = setTimeout(() => {
-        fetch(`/api/live-search?q=${encodeURIComponent(liveSearchQuery)}&limit=8`)
+        fetch(`/api/live-search?q=${encodeURIComponent(liveSearchQuery)}&limit=8&region=${amazonRegion}`)
           .then((res) => res.json())
           .then((data) => {
             if (isMounted && data.success && Array.isArray(data.results)) {
@@ -609,12 +609,36 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
     } else {
       setLiveAmazonProducts([]);
     }
-  }, [selectedCategory, selectedAge, selectedGender, searchQuery, liveSearchQuery]);
+  }, [selectedCategory, selectedAge, selectedGender, searchQuery, liveSearchQuery, amazonRegion]);
 
-  // Handle URL params and custom navigation event for direct category shortcuts (e.g. Especiales: Cartas Pokémon / Figuras & Anime / Búsqueda Global)
+  // Handle URL params, hashes and custom navigation event for direct category shortcuts (e.g. Especiales: Cartas Pokémon / Figuras & Anime / Búsqueda Global)
   useEffect(() => {
     const applyCategoryFromUrl = () => {
       if (typeof window === 'undefined') return;
+      const hash = window.location.hash;
+      if (hash === '#categoria-cartas-pokemon') {
+        setSelectedCategory('Cartas y Sobres Pokémon');
+        setSelectedAge('all');
+        setSelectedClothingSub('all');
+        setSelectedAnimeSub('all');
+        setTimeout(() => {
+          const el = document.getElementById('catalogo-productos');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 60);
+        return;
+      }
+      if (hash === '#categoria-figuras-anime') {
+        setSelectedCategory('Figuras de Colección y Cine');
+        setSelectedAge('all');
+        setSelectedClothingSub('all');
+        setSelectedAnimeSub('all');
+        setTimeout(() => {
+          const el = document.getElementById('catalogo-productos');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 60);
+        return;
+      }
+
       const params = new URLSearchParams(window.location.search);
 
       // Support direct search param (e.g. /?q=lego o /?search=perfume desde cualquier página o filtro)
@@ -675,12 +699,14 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
     window.addEventListener('select-category', handleCategoryEvent);
     window.addEventListener('site-search', handleSearchEvent);
     window.addEventListener('popstate', applyCategoryFromUrl);
+    window.addEventListener('hashchange', applyCategoryFromUrl);
     window.addEventListener('open-ai-wizard', handleOpenWizard);
 
     return () => {
       window.removeEventListener('select-category', handleCategoryEvent);
       window.removeEventListener('site-search', handleSearchEvent);
       window.removeEventListener('popstate', applyCategoryFromUrl);
+      window.removeEventListener('hashchange', applyCategoryFromUrl);
       window.removeEventListener('open-ai-wizard', handleOpenWizard);
     };
   }, []);
@@ -742,9 +768,9 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                 </span>
                 <span className="text-xs text-amber-200">✨ Correo Oficial del Polo Norte</span>
               </div>
-              <h2 className="text-base sm:text-lg font-black text-white">
+              <p className="text-base sm:text-lg font-black text-white">
                 ¿Aún no has escrito la Carta a Papá Noel?
-              </h2>
+              </p>
               <p className="text-xs text-slate-200 max-w-xl">
                 Elige entre más de 370 juguetes oficiales (coches eléctricos, minimotos, quads, LEGO, patinetes, gaming) y envíala al buzón mágico.
               </p>
@@ -773,9 +799,9 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
               <span className="px-2 py-0.5 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 text-white font-black text-[10px] uppercase tracking-wider">
                 Fiebre GTA VI
               </span>
-              <h3 className="text-xs sm:text-sm font-black text-white">
+              <p className="text-xs sm:text-sm font-black text-white">
                 Especial Regalos GTA 6 y Merchandising Vice City:
-              </h3>
+              </p>
               <span className="text-xs text-slate-300 hidden md:inline">
                 mandos PS5 Nova Pink, neones de pared y tarjetas saldo reserva.
               </span>
@@ -804,10 +830,10 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                 {/* Header Banner - Amazon Navy Theme with Amber Highlight */}
                 <div className="bg-[#131921] -mx-5 -mt-5 px-4 py-3.5 border-b-2 border-amber-400/60 flex items-center justify-between mb-3 text-white">
                   <div>
-                    <h2 className="text-sm font-black text-[#febd69] flex items-center gap-1.5 uppercase tracking-wide">
+                    <p className="text-sm font-black text-[#febd69] flex items-center gap-1.5 uppercase tracking-wide">
                       <span>🔥</span>
                       <span>Más Regalados</span>
-                    </h2>
+                    </p>
                     <p className="text-[11px] text-amber-200/90 font-medium">Top ventas verificados</p>
                   </div>
                 </div>
@@ -821,7 +847,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                     {leftSlides.map((slideProducts, sIdx) => (
                       <div key={sIdx} className="w-full shrink-0 grid grid-cols-2 gap-2.5">
                         {slideProducts.map((item) => {
-                          const amazonUrl = getAmazonProductUrl(item.asin, item.searchQuery || item.title);
+                          const amazonUrl = getAmazonProductUrl(item.asin, item.searchQuery || item.title, amazonRegion);
                           const shortTitle = item.title.split(' - ')[0].trim();
                           return (
                             <a
@@ -840,14 +866,14 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                                   className="object-contain p-1 group-hover/item:scale-105 transition-transform"
                                 />
                               </div>
-                              <span className="text-[11px] font-bold text-slate-800 line-clamp-1 group-hover/item:text-amber-800 transition-colors">
+                              <span className="text-[11px] font-bold text-slate-800 line-clamp-1 group-hover/item:text-amber-900 transition-colors">
                                 {shortTitle}
                               </span>
                               <div className="flex items-center justify-between mt-0.5">
                                 <span className="text-xs font-black text-slate-950">
                                   {formatPrice(item.priceText)}
                                 </span>
-                                <span className="text-[10px] text-amber-600 font-bold flex items-center gap-0.5">
+                                <span className="text-[10px] text-amber-800 font-bold flex items-center gap-0.5">
                                   <Star className="w-2.5 h-2.5 fill-amber-500 text-amber-500" />
                                   {item.rating}
                                 </span>
@@ -861,17 +887,21 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                 </div>
 
                 {/* Dots indicator */}
-                <div className="flex items-center justify-center gap-1.5 mt-3">
+                <div className="flex items-center justify-center gap-1 mt-3">
                   {leftSlides.map((_, idx) => (
                     <button
                       key={idx}
                       type="button"
                       onClick={() => setLeftCarouselIndex(idx)}
-                      className={`h-1.5 rounded-full transition-all cursor-pointer ${
-                        leftCarouselIndex === idx ? 'w-5 bg-amber-500' : 'w-1.5 bg-slate-200 hover:bg-slate-300'
-                      }`}
-                      aria-label={`Ver página ${idx + 1}`}
-                    />
+                      className="min-w-6 min-h-6 inline-flex items-center justify-center p-1 rounded-full cursor-pointer"
+                      aria-label={`Ver página ${idx + 1} de Más Regalados`}
+                    >
+                      <span
+                        className={`block h-1.5 rounded-full transition-all ${
+                          leftCarouselIndex === idx ? 'w-5 bg-amber-500' : 'w-1.5 bg-slate-400 hover:bg-slate-500'
+                        }`}
+                      />
+                    </button>
                   ))}
                 </div>
               </div>
@@ -924,8 +954,8 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                 {/* MAIN PROMPT / SEARCH BAR ESTILO AMAZON */}
                 <form onSubmit={handleHeroSearchSubmit} className="relative max-w-2xl mx-auto mb-4">
                   <div className="relative flex items-center shadow-md rounded-2xl bg-white border-2 border-slate-300 hover:border-slate-400 focus-within:border-[#febd69] focus-within:ring-4 focus-within:ring-amber-100 transition-all p-1.5 sm:p-2">
-                    <div className="pl-3 pr-2 text-slate-400">
-                      <Search className="w-5 h-5 text-slate-400" />
+                    <div className="pl-3 pr-2 text-slate-500">
+                      <Search className="w-5 h-5 text-slate-500" />
                     </div>
                     <input
                       type="text"
@@ -936,14 +966,14 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                         i18nConfig?.searchPlaceholder ||
                         'Ej: Para mi novio friki de Star Wars, gamer, cafetera, niña 6 años...'
                       }
-                      className="w-full bg-transparent px-2 py-2 text-sm sm:text-base text-slate-800 placeholder-slate-400 focus:outline-none"
+                      className="w-full bg-transparent px-2 py-2 text-sm sm:text-base text-slate-800 placeholder-slate-500 focus:outline-none"
                     />
                     {searchQuery && (
                       <button
                         type="button"
                         onClick={() => handleSearchChange('')}
                         aria-label="Borrar búsqueda"
-                        className="p-1.5 text-slate-400 hover:text-slate-600 rounded-lg mr-1 cursor-pointer transition-colors"
+                        className="min-w-7 min-h-7 flex items-center justify-center p-1.5 text-slate-600 hover:text-slate-900 rounded-lg mr-1 cursor-pointer transition-colors"
                         title="Borrar búsqueda"
                       >
                         <X className="w-4 h-4" />
@@ -980,6 +1010,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                 {/* AI COPILOT POPUP TRIGGER BUTTON (ESTILO AMAZON RUFUS) */}
                 <div className="flex items-center justify-center gap-3 mb-3.5">
                   <button
+                    type="button"
                     onClick={() => setIsAiModalOpen(true)}
                     className="inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-[#232f3e] hover:bg-[#131921] text-amber-300 hover:text-white border border-slate-700 font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-102 active:scale-98 cursor-pointer"
                   >
@@ -991,17 +1022,17 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
               </div>
 
               {/* Quick Badges of Trust */}
-              <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs font-medium text-slate-500 pt-3 border-t border-slate-100">
+              <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs font-medium text-slate-600 pt-3 border-t border-slate-100">
                 <span className="flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4 text-emerald-500" />
-                  Garantía de Devolución Amazon.es
+                  <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                  Garantía de Devolución {amazonSiteName}
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <TrendingUp className="w-4 h-4 text-amber-500" />
+                  <TrendingUp className="w-4 h-4 text-amber-600" />
                   Basado en Valoraciones Reales 4.5+ ★
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <BadgePercent className="w-4 h-4 text-orange-500" />
+                  <BadgePercent className="w-4 h-4 text-orange-600" />
                   Precios y Ofertas al Día
                 </span>
               </div>
@@ -1017,10 +1048,10 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                 {/* Header Banner - Amazon Navy Theme with Emerald Highlight */}
                 <div className="bg-[#131921] -mx-5 -mt-5 px-4 py-3.5 border-b-2 border-emerald-400/60 flex items-center justify-between mb-3 text-white">
                   <div>
-                    <h2 className="text-sm font-black text-emerald-300 flex items-center gap-1.5 uppercase tracking-wide">
+                    <p className="text-sm font-black text-emerald-300 flex items-center gap-1.5 uppercase tracking-wide">
                       <span>⚡</span>
                       <span>Chollos &lt; 20 €</span>
-                    </h2>
+                    </p>
                     <p className="text-[11px] text-emerald-200/90 font-medium">Ideas para acertar sin gastar</p>
                   </div>
                 </div>
@@ -1034,7 +1065,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                     {rightSlides.map((slideProducts, sIdx) => (
                       <div key={sIdx} className="w-full shrink-0 grid grid-cols-2 gap-2.5">
                         {slideProducts.map((item) => {
-                          const amazonUrl = getAmazonProductUrl(item.asin, item.searchQuery || item.title);
+                          const amazonUrl = getAmazonProductUrl(item.asin, item.searchQuery || item.title, amazonRegion);
                           const shortTitle = item.title.split(' - ')[0].trim();
                           return (
                             <a
@@ -1053,14 +1084,14 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                                   className="object-contain p-1 group-hover/item:scale-105 transition-transform"
                                 />
                               </div>
-                              <span className="text-[11px] font-bold text-slate-800 line-clamp-1 group-hover/item:text-emerald-800 transition-colors">
+                              <span className="text-[11px] font-bold text-slate-800 line-clamp-1 group-hover/item:text-emerald-900 transition-colors">
                                 {shortTitle}
                               </span>
                               <div className="flex items-center justify-between mt-0.5">
-                                <span className="text-xs font-black text-emerald-700">
+                                <span className="text-xs font-black text-emerald-800">
                                   {formatPrice(item.priceText)}
                                 </span>
-                                <span className="text-[10px] text-slate-400 font-bold">
+                                <span className="text-[10px] text-slate-600 font-bold">
                                   Chollo
                                 </span>
                               </div>
@@ -1073,17 +1104,21 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                 </div>
 
                 {/* Dots indicator */}
-                <div className="flex items-center justify-center gap-1.5 mt-3">
+                <div className="flex items-center justify-center gap-1 mt-3">
                   {rightSlides.map((_, idx) => (
                     <button
                       key={idx}
                       type="button"
                       onClick={() => setRightCarouselIndex(idx)}
-                      className={`h-1.5 rounded-full transition-all cursor-pointer ${
-                        rightCarouselIndex === idx ? 'w-5 bg-emerald-500' : 'w-1.5 bg-slate-200 hover:bg-slate-300'
-                      }`}
-                      aria-label={`Ver página ${idx + 1}`}
-                    />
+                      className="min-w-6 min-h-6 inline-flex items-center justify-center p-1 rounded-full cursor-pointer"
+                      aria-label={`Ver página ${idx + 1} de Chollos`}
+                    >
+                      <span
+                        className={`block h-1.5 rounded-full transition-all ${
+                          rightCarouselIndex === idx ? 'w-5 bg-emerald-700' : 'w-1.5 bg-slate-400 hover:bg-slate-500'
+                        }`}
+                      />
+                    </button>
                   ))}
                 </div>
               </div>
@@ -1123,12 +1158,12 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                     <span>🔥</span> Black Friday 2026
                   </span>
                   <span className="text-xs text-amber-300 font-bold">
-                    Ofertas activas en Amazon España
+                    Ofertas activas en {amazonSiteName}
                   </span>
                 </div>
-                <h3 className="text-base sm:text-lg font-black text-white leading-tight">
+                <h2 className="text-base sm:text-lg font-black text-white leading-tight">
                   Regalos y Chollos con Descuentos de hasta el 50%
-                </h3>
+                </h2>
                 <p className="text-xs text-slate-300 leading-snug">
                   Filtrados con envío Prime gratis para mañana y garantía de devolución.
                 </p>
@@ -1184,7 +1219,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                       </span>
                     )}
                   </h2>
-                  <p className="text-[11px] text-slate-500">
+                  <p className="text-[11px] text-slate-600">
                     <strong className="text-slate-900 font-bold">{filteredProducts.length + liveAmazonProducts.length}</strong> regalos seleccionados por valoraciones en Amazon
                   </p>
                 </div>
@@ -1193,7 +1228,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
               {/* Sorting & Filter toggle */}
               <div className="flex items-center gap-2">
                 <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1">
-                  <span className="text-[11px] text-slate-500 font-bold">Ordenar:</span>
+                  <span className="text-[11px] text-slate-600 font-bold">Ordenar:</span>
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value as any)}
@@ -1210,13 +1245,15 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                 <button
                   type="button"
                   onClick={() => setShowAdvancedFilters((prev) => !prev)}
-                  className={`inline-flex items-center gap-1.5 px-3 py-1 text-xs font-bold rounded-xl border transition-all cursor-pointer ${
+                  aria-expanded={showAdvancedFilters}
+                  aria-label={showAdvancedFilters ? 'Ocultar filtros avanzados' : 'Mostrar más filtros'}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-xl border transition-all cursor-pointer ${
                     showAdvancedFilters
                       ? 'bg-amber-100 text-amber-950 border-amber-300'
                       : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'
                   }`}
                 >
-                  <SlidersHorizontal className="w-3.5 h-3.5 text-amber-600" />
+                  <SlidersHorizontal className="w-3.5 h-3.5 text-amber-700" />
                   <span className="hidden sm:inline">{showAdvancedFilters ? 'Ocultar filtros' : 'Más filtros'}</span>
                 </button>
               </div>
@@ -1226,7 +1263,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
             {!showAdvancedFilters && (
               <div className="pt-3 flex items-center justify-between gap-2 overflow-x-auto scrollbar-none">
                 <div className="flex items-center gap-1.5 text-xs shrink-0">
-                  <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mr-1">
+                  <span className="text-[11px] font-bold text-slate-600 uppercase tracking-wider mr-1">
                     Presupuesto:
                   </span>
                   <button
@@ -1245,7 +1282,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                     onClick={() => setSelectedPrice('<15')}
                     className={`px-2.5 py-1 rounded-lg text-xs font-bold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1 ${
                       selectedPrice === '<15'
-                        ? 'bg-emerald-600 text-white'
+                        ? 'bg-emerald-700 text-white'
                         : 'bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border border-emerald-200/80'
                     }`}
                   >
@@ -1346,12 +1383,12 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
               })()}
               <div>
                 <h2 className="text-base sm:text-lg font-black text-slate-900">{currentAgeMeta.label}</h2>
-                <p className="text-xs sm:text-sm text-slate-500 leading-snug">{currentAgeMeta.tagline}</p>
+                <p className="text-xs sm:text-sm text-slate-600 leading-snug">{currentAgeMeta.tagline}</p>
               </div>
             </div>
             {currentAgeMeta.seoKeywords.length > 0 && (
               <div className="flex flex-wrap items-center gap-1.5 pt-2 lg:pt-0 border-t lg:border-t-0 border-slate-100 w-full lg:w-auto">
-                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mr-1 shrink-0">
+                <span className="text-[11px] font-bold text-slate-600 uppercase tracking-wider mr-1 shrink-0">
                   Ideas destacadas:
                 </span>
                 {currentAgeMeta.seoKeywords.map((kw, idx) => (
@@ -1375,6 +1412,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
               <span>Resultados para la búsqueda: <mark className="bg-indigo-100 text-indigo-900 px-2 py-0.5 rounded font-black">&ldquo;{searchQuery}&rdquo;</mark></span>
             </div>
             <button
+              type="button"
               onClick={() => setSearchQuery('')}
               className="text-xs bg-white text-indigo-700 px-3.5 py-1.5 rounded-xl border border-indigo-200 font-bold hover:bg-indigo-100 hover:text-indigo-900 transition-all shadow-xs cursor-pointer flex items-center gap-1.5"
             >
@@ -1401,7 +1439,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                 <LiveAmazonProductCard
                   key={liveProd.asin}
                   product={liveProd}
-                  categoryLabel={selectedCategory !== 'all' ? selectedCategory : 'Amazon España'}
+                  categoryLabel={selectedCategory !== 'all' ? selectedCategory : amazonSiteName}
                   badgeLabel="En Directo Amazon"
                 />
               ))}
@@ -1421,6 +1459,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
             {sortedFilteredProducts.length > visibleCount && (
               <div className="mb-12 flex flex-col items-center justify-center gap-2">
                 <button
+                  type="button"
                   onClick={() => setVisibleCount((prev) => prev + 18)}
                   className="px-8 py-4 rounded-2xl bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white font-black text-sm shadow-md hover:shadow-lg hover:shadow-indigo-500/20 transition-all flex items-center gap-2.5 cursor-pointer hover:scale-102 active:scale-98"
                 >
@@ -1437,6 +1476,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
             {(selectedCategory !== 'all' || selectedAge !== 'all' || searchQuery.trim() !== '' || liveAmazonProducts.length > 0) && (
               <div className="mb-12 flex flex-col items-center justify-center gap-2">
                 <button
+                  type="button"
                   onClick={handleLoadLiveToGrid}
                   disabled={isLoadingLive}
                   className="px-7 py-4 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-sm shadow-md hover:shadow-lg hover:shadow-amber-500/25 transition-all flex items-center gap-2.5 cursor-pointer disabled:opacity-75 hover:scale-102 active:scale-98"
@@ -1453,8 +1493,8 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                     </>
                   )}
                 </button>
-                <span className="text-[11px] text-slate-400 font-medium">
-                  Precios, stock y valoraciones actualizadas en tiempo real desde Amazon.es
+                <span className="text-[11px] text-slate-600 font-medium">
+                  Precios, stock y valoraciones actualizadas en tiempo real desde {amazonSiteName}
                 </span>
               </div>
             )}
@@ -1478,14 +1518,15 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                     </span>
                     <div>
                       <p className="font-extrabold text-slate-900">
-                        Mostrando productos en directo de Amazon España para tu selección:
+                        Mostrando productos en directo de {amazonSiteName} para tu selección:
                       </p>
                       <p className="text-xs text-slate-600 font-normal">
-                        Precios, fotos y disponibilidad al día obtenidos en tiempo real de Amazon.es
+                        Precios, fotos y disponibilidad al día obtenidos en tiempo real de {amazonSiteName}
                       </p>
                     </div>
                   </div>
                   <button
+                    type="button"
                     onClick={() => {
                       setSelectedAge('all');
                       setSelectedCategory('all');
@@ -1506,7 +1547,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                     <LiveAmazonProductCard
                       key={liveProd.asin}
                       product={liveProd}
-                      categoryLabel={selectedCategory !== 'all' ? selectedCategory : 'Amazon España'}
+                      categoryLabel={selectedCategory !== 'all' ? selectedCategory : amazonSiteName}
                       badgeLabel="En Directo Amazon"
                     />
                   ))}
@@ -1523,20 +1564,21 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
             ) : isLoadingLive ? (
               <div className="py-20 text-center flex flex-col items-center justify-center gap-3">
                 <Loader2 className="w-10 h-10 animate-spin text-amber-500" />
-                <h3 className="text-lg font-bold text-slate-900">Buscando productos en directo en Amazon España...</h3>
-                <p className="text-xs text-slate-500 max-w-md">
+                <h2 className="text-lg font-bold text-slate-900">Buscando productos en directo en {amazonSiteName}...</h2>
+                <p className="text-xs text-slate-600 max-w-md">
                   Estamos consultando en tiempo real las mejores ofertas y disponibilidad para tus filtros activos.
                 </p>
               </div>
             ) : (
               <div className="py-12 mb-16">
                 <div className="text-center py-10 px-4 rounded-3xl border border-dashed border-slate-300 mb-8 bg-white/60">
-                  <Search className="w-12 h-12 mx-auto mb-3 text-slate-400" />
-                  <h3 className="text-xl font-bold mb-2 text-slate-900">¿Buscas un producto específico en Amazon?</h3>
+                  <Search className="w-12 h-12 mx-auto mb-3 text-slate-500" />
+                  <h2 className="text-xl font-bold mb-2 text-slate-900">¿Buscas un producto específico en Amazon?</h2>
                   <p className="text-sm text-slate-600 mb-5 max-w-xl mx-auto">
-                    No tenemos ese producto exacto en nuestro catálogo verificado local, pero puedes buscarlo directamente en <strong>Amazon España</strong> con un solo clic con las mejores ofertas y disponibilidad al momento.
+                    No tenemos ese producto exacto en nuestro catálogo verificado local, pero puedes buscarlo directamente en <strong>{amazonSiteName}</strong> con un solo clic con las mejores ofertas y disponibilidad al momento.
                   </p>
                   <button
+                    type="button"
                     onClick={() => {
                       setSelectedAge('all');
                       setSelectedCategory('all');
@@ -1572,33 +1614,33 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
               {i18nConfig ? (
                 <>
                   {i18nConfig.seoSectionBody}{' '}
-                  <Link href="/votar" className="text-indigo-600 font-bold hover:underline">
+                  <Link href="/votar" className="text-indigo-700 font-bold hover:underline">
                     WhatsApp Group Gift Voting
                   </Link>
                   {' · '}
-                  <Link href="/carta-papa-noel" className="text-indigo-600 font-bold hover:underline">
+                  <Link href="/carta-papa-noel" className="text-indigo-700 font-bold hover:underline">
                     Santa Claus Letter
                   </Link>
                   {' · '}
-                  <Link href="/regalos-gta-6" className="text-indigo-600 font-bold hover:underline">
+                  <Link href="/regalos-gta-6" className="text-indigo-700 font-bold hover:underline">
                     GTA 6 / GTA VI Gifts
                   </Link>
                   {' · '}
-                  <Link href="/gaming" className="text-indigo-600 font-bold hover:underline">
+                  <Link href="/gaming" className="text-indigo-700 font-bold hover:underline">
                     Gaming
                   </Link>
                   {' · '}
-                  <Link href="/motoristas" className="text-indigo-600 font-bold hover:underline">
+                  <Link href="/motoristas" className="text-indigo-700 font-bold hover:underline">
                     Bikers
                   </Link>
                   {' · '}
-                  <Link href="/amantes-del-cafe" className="text-indigo-600 font-bold hover:underline">
+                  <Link href="/amantes-del-cafe" className="text-indigo-700 font-bold hover:underline">
                     Barista Coffee
                   </Link>
                 </>
               ) : (
                 <>
-                  Elegir qué <strong>regalar</strong> en un cumpleaños, aniversario, amigo invisible o Navidad es mucho más sencillo al filtrar por edad y aficiones reales. En <strong>Un Buen Regalo</strong> seleccionamos los productos mejor valorados para que aciertes siempre. Descubre desde <Link href="/regalos-menos-20-euros" className="text-emerald-700 font-bold hover:underline">regalos por menos de 20 euros</Link> hasta detalles que sorprenden de verdad. Además, puedes utilizar nuestra <Link href="/votar" className="text-indigo-600 font-bold hover:underline">votación de regalos en grupo por WhatsApp</Link> o escribir la <Link href="/carta-papa-noel" className="text-indigo-600 font-bold hover:underline">Carta a Papá Noel online</Link>. Explora también nuestros catálogos temáticos de <Link href="/regalos-gta-6" className="text-indigo-600 font-bold hover:underline">GTA 6</Link>, <Link href="/motoristas" className="text-indigo-600 font-bold hover:underline">Motoristas</Link>, <Link href="/gaming" className="text-indigo-600 font-bold hover:underline">Gaming</Link> o <Link href="/amantes-del-cafe" className="text-indigo-600 font-bold hover:underline">Café Barista</Link>.
+                  Elegir qué <strong>regalar</strong> en un cumpleaños, aniversario, amigo invisible o Navidad es mucho más sencillo al filtrar por edad y aficiones reales. En <strong>Un Buen Regalo</strong> seleccionamos los productos mejor valorados para que aciertes siempre. Descubre desde <Link href="/regalos-menos-20-euros" className="text-emerald-800 font-bold hover:underline">regalos por menos de 20 euros</Link> hasta detalles que sorprenden de verdad. Además, puedes utilizar nuestra <Link href="/votar" className="text-indigo-700 font-bold hover:underline">votación de regalos en grupo por WhatsApp</Link> o escribir la <Link href="/carta-papa-noel" className="text-indigo-700 font-bold hover:underline">Carta a Papá Noel online</Link>. Explora también nuestros catálogos temáticos de <Link href="/regalos-gta-6" className="text-indigo-700 font-bold hover:underline">GTA 6</Link>, <Link href="/motoristas" className="text-indigo-700 font-bold hover:underline">Motoristas</Link>, <Link href="/gaming" className="text-indigo-700 font-bold hover:underline">Gaming</Link> o <Link href="/amantes-del-cafe" className="text-indigo-700 font-bold hover:underline">Café Barista</Link>.
                 </>
               )}
             </p>
@@ -1620,7 +1662,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
             )}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs sm:text-sm leading-relaxed text-slate-600">
               <div className="space-y-2">
-                <h3 className="font-bold text-base flex items-center gap-2 text-indigo-600">
+                <h3 className="font-bold text-base flex items-center gap-2 text-indigo-700">
                   <span>🧸</span> Recién Nacidos y 0 a 3 Años
                 </h3>
                 <p>
@@ -1628,7 +1670,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                 </p>
               </div>
               <div className="space-y-2">
-                <h3 className="font-bold text-base flex items-center gap-2 text-indigo-600">
+                <h3 className="font-bold text-base flex items-center gap-2 text-indigo-700">
                   <span>🎨</span> Niños de 4 a 12 Años
                 </h3>
                 <p>
@@ -1636,7 +1678,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                 </p>
               </div>
               <div className="space-y-2">
-                <h3 className="font-bold text-base flex items-center gap-2 text-indigo-600">
+                <h3 className="font-bold text-base flex items-center gap-2 text-indigo-700">
                   <span>🎧</span> Jóvenes, Adultos y Regalazos (+18)
                 </h3>
                 <p>

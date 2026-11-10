@@ -16,7 +16,7 @@ import Footer from '@/components/Footer';
 
 function VotingContent() {
   const searchParams = useSearchParams();
-  const { formatPrice } = useCurrency();
+  const { formatPrice, amazonRegion } = useCurrency();
   const { voteItems, setIsDrawerOpen } = useVoting();
 
   const idsParam = searchParams.get('ids') || '';
@@ -161,7 +161,7 @@ function VotingContent() {
             <button
               type="button"
               onClick={() => setIsDrawerOpen(true)}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-sm shadow-lg transition-all cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl bg-emerald-700 hover:bg-emerald-800 text-white font-black text-sm shadow-lg transition-all cursor-pointer"
             >
               <span>🗳️ Abrir mi lista actual ({voteItems.length} regalos)</span>
             </button>
@@ -203,7 +203,7 @@ function VotingContent() {
       {/* Voting Cards Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 mb-12 items-stretch">
         {matchedProducts.map((product) => {
-          const directUrl = getAmazonProductUrl(product.asin, product.searchQuery || product.title);
+          const directUrl = getAmazonProductUrl(product.asin, product.searchQuery || product.title, amazonRegion);
           const productVotes = votes[product.id] || 0;
           const percentage = totalVotes > 0 ? Math.round((productVotes / totalVotes) * 100) : 0;
           const isVoted = userVotedId === product.id;
@@ -213,13 +213,13 @@ function VotingContent() {
               key={product.id}
               className={`flex flex-col justify-between p-4 rounded-3xl bg-white border-2 transition-all relative ${
                 isVoted
-                  ? 'border-emerald-500 shadow-xl shadow-emerald-500/10 ring-4 ring-emerald-100'
+                  ? 'border-emerald-600 shadow-xl shadow-emerald-500/10 ring-4 ring-emerald-100'
                   : 'border-slate-300 hover:border-slate-400 shadow-md hover:shadow-lg'
               }`}
             >
               {/* Voted Badge */}
               {isVoted && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-600 text-white font-black text-[11px] px-3 py-0.5 rounded-full shadow-md flex items-center gap-1 uppercase tracking-wider z-20">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-700 text-white font-black text-[11px] px-3 py-0.5 rounded-full shadow-md flex items-center gap-1 uppercase tracking-wider z-20">
                   <Check className="w-3 h-3" />
                   <span>Tu Elección</span>
                 </div>
@@ -232,31 +232,32 @@ function VotingContent() {
                     src={product.imageUrl}
                     alt={product.title}
                     fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                     className="object-contain p-2"
                     unoptimized={product.imageUrl.startsWith('http')}
                   />
-                  <span className="absolute bottom-2 right-2 text-[10px] font-bold bg-slate-900/85 text-white px-2 py-0.5 rounded-md backdrop-blur-xs flex items-center gap-1">
+                  <span className="absolute bottom-2 right-2 text-[10px] font-bold bg-slate-900/90 text-white px-2 py-0.5 rounded-md backdrop-blur-xs flex items-center gap-1">
                     <ShieldCheck className="w-3 h-3 text-emerald-400" />
                     Prime
                   </span>
                 </div>
 
                 {/* Subcategory */}
-                <span className="text-[11px] text-slate-500 font-medium truncate block mb-1">
+                <span className="text-[11px] text-slate-600 font-medium truncate block mb-1">
                   {product.subcategory || product.category}
                 </span>
 
                 {/* Title */}
-                <h3 className="font-bold text-sm text-slate-900 line-clamp-2 leading-snug mb-2 min-h-[2.5rem]">
+                <h2 className="font-bold text-sm text-slate-900 line-clamp-2 leading-snug mb-2 min-h-[2.5rem]">
                   {product.title}
-                </h3>
+                </h2>
 
                 {/* Price */}
                 <div className="flex items-baseline justify-between mb-3">
                   <span className="text-xl font-black text-slate-950">
                     {formatPrice(product.priceText)}
                   </span>
-                  <span className="text-xs text-amber-500 font-bold">
+                  <span className="text-xs text-amber-800 font-bold">
                     ★ {product.rating}
                   </span>
                 </div>
@@ -272,7 +273,7 @@ function VotingContent() {
                   <div className="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
                     <div
                       className={`h-full transition-all duration-500 rounded-full ${
-                        isVoted ? 'bg-emerald-500' : 'bg-amber-500'
+                        isVoted ? 'bg-emerald-700' : 'bg-amber-500'
                       }`}
                       style={{ width: `${percentage}%` }}
                     />
@@ -286,7 +287,7 @@ function VotingContent() {
                     onClick={() => handleVote(product.id)}
                     className={`w-full py-2.5 px-3 rounded-full font-black text-xs flex items-center justify-center gap-1.5 transition-all shadow-xs cursor-pointer ${
                       isVoted
-                        ? 'bg-emerald-600 text-white shadow-emerald-500/25 ring-2 ring-emerald-300'
+                        ? 'bg-emerald-700 text-white shadow-emerald-500/25 ring-2 ring-emerald-300'
                         : 'bg-slate-900 hover:bg-slate-800 text-white hover:scale-102 active:scale-98'
                     }`}
                   >
@@ -323,7 +324,7 @@ function VotingContent() {
           <button
             type="button"
             onClick={handleShareWhatsApp}
-            className="w-full sm:w-auto px-6 py-3 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-black text-sm flex items-center justify-center gap-2 shadow-md hover:scale-102 active:scale-98 transition-all cursor-pointer"
+            className="w-full sm:w-auto px-6 py-3 rounded-2xl bg-emerald-700 hover:bg-emerald-800 text-white font-black text-sm flex items-center justify-center gap-2 shadow-md hover:scale-102 active:scale-98 transition-all cursor-pointer"
           >
             <Share2 className="w-4 h-4" />
             <span>Compartir por WhatsApp</span>
@@ -336,8 +337,8 @@ function VotingContent() {
           >
             {copied ? (
               <>
-                <Check className="w-3.5 h-3.5 text-emerald-600" />
-                <span className="text-emerald-700">¡Enlace copiado!</span>
+                <Check className="w-3.5 h-3.5 text-emerald-700" />
+                <span className="text-emerald-800">¡Enlace copiado!</span>
               </>
             ) : (
               <span>Copiar enlace directo</span>
@@ -348,12 +349,12 @@ function VotingContent() {
 
       {/* Bottom CTA to explore catalog */}
       <div className="text-center pt-4 border-t border-slate-200">
-        <p className="text-xs text-slate-500 mb-3">
+        <p className="text-xs text-slate-600 mb-3">
           ¿No os convence ninguno? Puedes buscar miles de ideas más clasificadas por edades y gustos.
         </p>
         <Link
           href="/"
-          className="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 hover:text-indigo-800 hover:underline"
+          className="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-700 hover:text-indigo-900 hover:underline py-1"
         >
           <span>Explorar el catálogo completo de Un Buen Regalo</span>
           <ArrowRight className="w-3.5 h-3.5" />
@@ -370,7 +371,7 @@ export default function VotarPage() {
       <main className="flex-1">
         <Suspense
           fallback={
-            <div className="py-20 text-center text-slate-400">
+            <div className="py-20 text-center text-slate-600">
               Cargando votación...
             </div>
           }

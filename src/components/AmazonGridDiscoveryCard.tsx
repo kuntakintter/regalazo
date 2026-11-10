@@ -1,8 +1,9 @@
 'use client';
 
 import React from 'react';
-import { ExternalLink, ShoppingBag, Star, Loader2, ArrowDown, ShieldCheck } from 'lucide-react';
+import { ExternalLink, ShoppingBag, Star, Loader2, ArrowDown } from 'lucide-react';
 import { getAmazonSearchUrl } from '@/lib/amazon';
+import { useCurrency } from '@/context/CurrencyContext';
 
 interface AmazonGridDiscoveryCardProps {
   searchQuery?: string;
@@ -21,6 +22,8 @@ export default function AmazonGridDiscoveryCard({
   isLoadingLive = false,
   hasLoadedLive = false,
 }: AmazonGridDiscoveryCardProps) {
+  const { amazonRegion, amazonSiteName } = useCurrency();
+
   // Determine contextual search term
   let displayTitle = '¿Buscas más opciones y regalos?';
   let searchTerm = 'regalos recomendados';
@@ -36,43 +39,47 @@ export default function AmazonGridDiscoveryCard({
     searchTerm = `regalos para ${selectedAge} anos`;
   }
 
-  const amazonSearchUrl = getAmazonSearchUrl(searchTerm);
+  const amazonSearchUrl = getAmazonSearchUrl(searchTerm, amazonRegion);
 
   return (
     <article className="group flex flex-col justify-between p-2.5 sm:p-3 rounded-2xl bg-gradient-to-b from-amber-50/70 via-white to-amber-50/30 border border-amber-300 hover:border-amber-400 shadow-xs hover:shadow-md transition-all duration-200 relative">
       {/* Visual Box - Exactly matches product photo aspect ratio */}
-      <div 
+      <button
+        type="button"
         onClick={onLoadLiveToGrid || (() => window.open(amazonSearchUrl, '_blank'))}
         className="relative aspect-square w-full mb-2 bg-gradient-to-br from-amber-100/90 via-amber-50 to-orange-100/80 rounded-xl overflow-hidden p-2.5 flex flex-col items-center justify-center text-center border border-amber-200/90 group-hover:border-amber-300 transition-colors cursor-pointer select-none"
       >
-        <div className="w-10 h-10 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center shadow-xs mb-1.5 group-hover:scale-110 transition-transform">
+        <span className="w-10 h-10 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center shadow-xs mb-1.5 group-hover:scale-110 transition-transform">
           <ShoppingBag className="w-5 h-5" />
-        </div>
+        </span>
         <span className="text-[10px] font-black uppercase tracking-wider text-amber-900 bg-amber-200/80 px-2 py-0.5 rounded-full mb-1">
           Catálogo Abierto
         </span>
+        {' '}
         <span className="text-[11px] font-extrabold text-slate-800 line-clamp-1 px-1">
           +50.000 Novedades
         </span>
-        <span className="text-[9px] text-amber-800/80 font-medium mt-0.5">
-          Amazon España
+        {' '}
+        <span className="text-[9px] text-amber-900 font-semibold mt-0.5">
+          {amazonSiteName}
         </span>
-      </div>
+        <span className="sr-only"> — {displayTitle}</span>
+      </button>
 
       {/* Content Viewport */}
       <div className="flex flex-col flex-1 justify-between">
         <div>
           {/* Subcategory Label */}
           <div className="mb-1">
-            <span className="text-[11px] text-amber-700 font-semibold truncate block">
+            <span className="text-[11px] text-amber-800 font-semibold truncate block">
               Catálogo en directo
             </span>
           </div>
 
           {/* Title */}
-          <h3 className="font-bold text-xs sm:text-[13px] leading-snug text-slate-900 line-clamp-2 group-hover:text-amber-700 transition-colors mb-1 min-h-[2rem]">
+          <p className="font-bold text-xs sm:text-[13px] leading-snug text-slate-900 line-clamp-2 group-hover:text-amber-800 transition-colors mb-1 min-h-[2rem]">
             {displayTitle}
-          </h3>
+          </p>
 
           {/* Rating Line */}
           <div className="flex items-center gap-1 text-[11px] mb-1.5">

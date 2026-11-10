@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Un Buen Regalo por Menos de 20€ 【2026】 Ideas de Regalos Baratos y Originales',
-    description: 'Selección de regalos originales y económicos con los que triunfar por menos de 20€ en Amazon España.',
+    description: 'Selección de regalos originales y económicos con los que triunfar por menos de 20€ en Amazon.',
     url: 'https://www.unbuenregalo.es/regalos-menos-20-euros',
     siteName: 'Un Buen Regalo',
     locale: 'es_ES',

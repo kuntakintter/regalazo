@@ -15,9 +15,9 @@ export default function ExpertBuyerTips({ ageTitle }: ExpertBuyerTipsProps) {
         </span>
       </div>
 
-      <h3 className="text-xl sm:text-2xl font-black text-slate-900 mb-4 tracking-tight">
+      <h2 className="text-xl sm:text-2xl font-black text-slate-900 mb-4 tracking-tight">
         Claves para elegir el regalo perfecto para {ageTitle}
-      </h3>
+      </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs">
@@ -46,7 +46,7 @@ export default function ExpertBuyerTips({ ageTitle }: ExpertBuyerTipsProps) {
             <span>Garantía Oficial y Devolución</span>
           </div>
           <p className="text-xs text-slate-600 leading-relaxed">
-            Todas nuestras selecciones enlazan directamente con vendedores certificados y catálogo oficial de Amazon España, asegurando envío rápido y 30 días de devolución.
+            Todas nuestras selecciones enlazan directamente con vendedores certificados y el catálogo oficial de Amazon en tu país (Amazon.es o Amazon.com), asegurando envío rápido y devolución garantizada.
           </p>
         </div>
       </div>

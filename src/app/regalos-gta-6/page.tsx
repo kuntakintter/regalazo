@@ -31,7 +31,7 @@ import {
 } from 'lucide-react';
 
 export default function RegalosGta6Page() {
-  const { formatPrice } = useCurrency();
+  const { formatPrice, amazonRegion, amazonSiteName } = useCurrency();
   const { toggleItem, isItemInList } = useVoting();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedPrice, setSelectedPrice] = useState<string>('all');
@@ -54,7 +54,7 @@ export default function RegalosGta6Page() {
   const handleShare = async (e: React.MouseEvent, prod: GtaProduct) => {
     e.preventDefault();
     e.stopPropagation();
-    const url = getAmazonProductUrl(prod.asin, prod.searchQuery || prod.title);
+    const url = getAmazonProductUrl(prod.asin, prod.searchQuery || prod.title, amazonRegion);
     if (navigator.share) {
       try {
         await navigator.share({
@@ -92,7 +92,7 @@ export default function RegalosGta6Page() {
           'Regalos GTA VI Vice City',
         ],
         description:
-          'Catálogo exclusivo de regalos para fans de GTA 6 (Grand Theft Auto VI): mandos PS5 Nova Pink, lámparas neón Vice City, ropa retro y accesorios setup en Amazon España.',
+          'Catálogo exclusivo de regalos para fans de GTA 6 (Grand Theft Auto VI): mandos PS5 Nova Pink, lámparas neón Vice City, ropa retro y accesorios setup en Amazon.',
         inLanguage: 'es-ES',
         isPartOf: {
           '@type': 'WebSite',
@@ -131,7 +131,7 @@ export default function RegalosGta6Page() {
           '@type': 'ListItem',
           position: index + 1,
           name: prod.title,
-          url: getAmazonProductUrl(prod.asin, prod.searchQuery || prod.title),
+          url: getAmazonProductUrl(prod.asin, prod.searchQuery || prod.title, amazonRegion),
           image: prod.imageUrl,
           offers: {
             '@type': 'Offer',
@@ -142,7 +142,7 @@ export default function RegalosGta6Page() {
             priceValidUntil: '2026-12-31',
             seller: {
               '@type': 'Organization',
-              name: 'Amazon España',
+              name: 'Amazon',
             },
             hasMerchantReturnPolicy: {
               '@type': 'MerchantReturnPolicy',
@@ -214,7 +214,7 @@ export default function RegalosGta6Page() {
             name: '¿Son seguros y oficiales los productos recomendados?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'Todos los productos mostrados en nuestra guía se compran directamente a través de Amazon España con garantía de devolución oficial de 30 días, envío rápido Prime y máxima seguridad en el pago.',
+              text: 'Todos los productos mostrados en nuestra guía se compran directamente a través de Amazon con garantía de devolución oficial de 30 días, envío rápido Prime y máxima seguridad en el pago.',
             },
           },
         ],
@@ -241,16 +241,16 @@ export default function RegalosGta6Page() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           {/* Breadcrumbs */}
-          <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-xs text-slate-400">
-            <Link href="/" className="hover:text-pink-400 transition-colors">
+          <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-xs text-slate-300">
+            <Link href="/" className="hover:text-pink-300 transition-colors">
               Inicio
             </Link>
-            <ChevronRight className="w-3.5 h-3.5 opacity-50" />
-            <Link href="/gaming" className="hover:text-pink-400 transition-colors">
+            <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+            <Link href="/gaming" className="hover:text-pink-300 transition-colors">
               Gaming & Setup
             </Link>
-            <ChevronRight className="w-3.5 h-3.5 opacity-50" />
-            <span className="text-pink-400 font-semibold">Regalos GTA 6 / GTA VI</span>
+            <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+            <span className="text-pink-300 font-semibold">Regalos GTA 6 / GTA VI</span>
           </nav>
 
           {/* Insignia Vice City */}
@@ -272,7 +272,7 @@ export default function RegalosGta6Page() {
           </h1>
 
           <p className="max-w-3xl text-sm sm:text-base text-slate-300 leading-relaxed mb-8">
-            Prepárate para el lanzamiento más esperado de la historia de los videojuegos en <strong>Amazon España</strong>. 
+            Prepárate para el lanzamiento más esperado de la historia de los videojuegos en <strong>{amazonSiteName}</strong>. 
             Hemos seleccionado los mandos de <strong>PS5 Nova Pink</strong>, luces de <strong>neón Vice City</strong> para tu setup gamer, 
             camisetas retro de los 80, figuras coleccionables y <strong>tarjetas de saldo</strong> para asegurar la reserva de <strong>Grand Theft Auto VI</strong> desde el primer minuto.
           </p>
@@ -306,21 +306,22 @@ export default function RegalosGta6Page() {
         {/* Banner Reserva Rápida */}
         <div className="mb-10 p-5 rounded-2xl bg-gradient-to-r from-purple-950/70 via-slate-900 to-pink-950/50 border border-pink-500/30 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl">
           <div className="flex items-center gap-3.5">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center shrink-0 shadow-lg text-xl">
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-600 to-purple-700 flex items-center justify-center shrink-0 shadow-lg text-xl">
               🎮
             </div>
             <div>
-              <h3 className="text-sm sm:text-base font-black text-white">
+              <p className="text-sm sm:text-base font-black text-white">
                 ¿Planeas reservar GTA VI el día que abran la preventa?
-              </h3>
+              </p>
               <p className="text-xs text-slate-300">
                 Consigue tarjetas de saldo de PlayStation Store y Xbox con código digital inmediato para tener la cartera lista.
               </p>
             </div>
           </div>
           <button
+            type="button"
             onClick={() => setSelectedCategory('juego')}
-            className="shrink-0 px-5 py-2.5 rounded-xl bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold text-xs shadow-md transition-all hover:scale-105 cursor-pointer whitespace-nowrap"
+            className="shrink-0 px-5 py-2.5 rounded-xl bg-gradient-to-r from-pink-600 to-purple-700 hover:from-pink-700 hover:to-purple-800 text-white font-bold text-xs shadow-md transition-all hover:scale-105 cursor-pointer whitespace-nowrap"
           >
             Ver Tarjetas de Saldo
           </button>
@@ -329,10 +330,10 @@ export default function RegalosGta6Page() {
         {/* Filtros por Categoría */}
         <div className="mb-6">
           <div className="flex items-center justify-between mb-3">
-            <h2 className="text-xs font-bold uppercase tracking-wider text-pink-400">
+            <h2 className="text-xs font-bold uppercase tracking-wider text-pink-300">
               Filtrar por Categoría de Regalo
             </h2>
-            <span className="text-xs text-slate-400">
+            <span className="text-xs text-slate-300">
               {filteredProducts.length} productos listos en Amazon
             </span>
           </div>
@@ -343,11 +344,12 @@ export default function RegalosGta6Page() {
               return (
                 <button
                   key={cat.id}
+                  type="button"
                   onClick={() => setSelectedCategory(cat.id)}
                   className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                     isActive
-                      ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-[0_0_15px_rgba(255,42,133,0.4)] border border-pink-400'
-                      : 'bg-slate-900/80 hover:bg-slate-800 text-slate-300 border border-slate-800 hover:border-slate-700'
+                      ? 'bg-gradient-to-r from-pink-600 to-purple-700 text-white shadow-[0_0_15px_rgba(255,42,133,0.4)] border border-pink-400'
+                      : 'bg-slate-900/80 hover:bg-slate-800 text-slate-200 border border-slate-800 hover:border-slate-700'
                   }`}
                 >
                   <span>{cat.icon}</span>
@@ -360,17 +362,18 @@ export default function RegalosGta6Page() {
 
         {/* Filtros por Precio */}
         <div className="mb-10 flex flex-wrap items-center gap-2 pb-6 border-b border-slate-800">
-          <span className="text-xs text-slate-400 font-medium mr-2">Presupuesto:</span>
+          <span className="text-xs text-slate-300 font-medium mr-2">Presupuesto:</span>
           {GTA_PRICE_RANGES.map((pr) => {
             const isActive = selectedPrice === pr.id;
             return (
               <button
                 key={pr.id}
+                type="button"
                 onClick={() => setSelectedPrice(pr.id)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                   isActive
-                    ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-400/50'
-                    : 'bg-slate-900/60 text-slate-400 hover:text-slate-200 border border-slate-800/80'
+                    ? 'bg-cyan-500/20 text-cyan-200 border border-cyan-400/50'
+                    : 'bg-slate-900/60 text-slate-300 hover:text-slate-100 border border-slate-800/80'
                 }`}
               >
                 {pr.label}
@@ -382,15 +385,16 @@ export default function RegalosGta6Page() {
         {/* Grid de Productos */}
         {filteredProducts.length === 0 ? (
           <div className="text-center py-16 bg-slate-900/40 rounded-2xl border border-slate-800">
-            <p className="text-slate-400 text-sm mb-4">
+            <p className="text-slate-300 text-sm mb-4">
               No hay productos con este rango de precio en esta categoría.
             </p>
             <button
+              type="button"
               onClick={() => {
                 setSelectedCategory('all');
                 setSelectedPrice('all');
               }}
-              className="px-4 py-2 rounded-xl bg-pink-500/20 text-pink-300 font-bold text-xs border border-pink-500/30 hover:bg-pink-500/30 transition-colors"
+              className="px-4 py-2 rounded-xl bg-pink-500/20 text-pink-200 font-bold text-xs border border-pink-500/30 hover:bg-pink-500/30 transition-colors cursor-pointer"
             >
               Restablecer Filtros
             </button>
@@ -398,7 +402,7 @@ export default function RegalosGta6Page() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredProducts.map((prod) => {
-              const amazonUrl = getAmazonProductUrl(prod.asin, prod.searchQuery || prod.title);
+              const amazonUrl = getAmazonProductUrl(prod.asin, prod.searchQuery || prod.title, amazonRegion);
               const isInVote = isItemInList(prod.id);
 
               return (
@@ -450,7 +454,7 @@ export default function RegalosGta6Page() {
               <h2 className="text-2xl sm:text-3xl font-black text-white mb-4">
                 Todo lo que debes saber sobre Regalos y Merchandising de Grand Theft Auto VI
               </h2>
-              <p className="text-sm text-slate-400">
+              <p className="text-sm text-slate-300">
                 Preguntas frecuentes resueltas para acertar con el regalo de un fanático de GTA 6 en cumpleaños, Navidad o lanzamiento.
               </p>
             </div>
@@ -483,10 +487,10 @@ export default function RegalosGta6Page() {
               <div className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800">
                 <h3 className="text-base font-bold text-pink-300 flex items-center gap-2.5 mb-2">
                   <HelpCircle className="w-4 h-4 text-pink-400 shrink-0" />
-                  <span>¿Por qué comprar a través de nuestros enlaces de Amazon España?</span>
+                  <span>¿Por qué comprar a través de nuestros enlaces de {amazonSiteName}?</span>
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-300 leading-relaxed pl-6.5">
-                  En <strong>Un Buen Regalo</strong> verificamos personalmente que cada producto pertenezca al catálogo activo de <strong>Amazon.es</strong> con envío rápido Prime y garantía legal europea de devolución de 30 días. Si un producto se agota o cambia su referencia, nuestro sistema redirige de forma inteligente a la búsqueda oficial en Amazon para que nunca encuentres un enlace roto.
+                  En <strong>Un Buen Regalo</strong> verificamos personalmente que cada producto pertenezca al catálogo activo de <strong>{amazonSiteName}</strong> con envío rápido Prime y garantía de devolución de 30 días. Si un producto se agota o cambia su referencia, nuestro sistema redirige de forma inteligente a la búsqueda oficial en Amazon para que nunca encuentres un enlace roto.
                 </p>
               </div>
 
@@ -548,10 +552,10 @@ function GtaProductCard({
             type="button"
             onClick={onToggleVote}
             aria-label={isInVote ? `Quitar ${prod.title} de la lista de votación` : `Añadir ${prod.title} a la lista de votación`}
-            className={`p-2 rounded-xl transition-all shadow-md cursor-pointer ${
+            className={`min-w-8 min-h-8 p-2 rounded-xl flex items-center justify-center transition-all shadow-md cursor-pointer ${
               isInVote
-                ? 'bg-pink-500 text-white shadow-pink-500/30'
-                : 'bg-slate-950/90 text-slate-300 hover:text-white hover:bg-slate-900 border border-slate-700/60'
+                ? 'bg-pink-600 text-white shadow-pink-500/30'
+                : 'bg-slate-950/90 text-slate-200 hover:text-white hover:bg-slate-900 border border-slate-700/60'
             }`}
             title={isInVote ? 'Quitar de mi lista' : 'Guardar / Votar'}
           >
@@ -562,7 +566,7 @@ function GtaProductCard({
             type="button"
             onClick={onShare}
             aria-label={`Compartir enlace de ${prod.title}`}
-            className="p-2 rounded-xl bg-slate-950/90 text-slate-300 hover:text-white hover:bg-slate-900 border border-slate-700/60 transition-all shadow-md cursor-pointer"
+            className="min-w-8 min-h-8 p-2 rounded-xl bg-slate-950/90 text-slate-200 hover:text-white hover:bg-slate-900 border border-slate-700/60 flex items-center justify-center transition-all shadow-md cursor-pointer"
             title="Compartir enlace de Amazon"
           >
             <Share2 className="w-3.5 h-3.5" />
@@ -611,7 +615,7 @@ function GtaProductCard({
             <div className="flex items-center gap-1 text-amber-400 font-bold text-xs">
               <Star className="w-3 h-3 fill-amber-400" />
               <span>{prod.rating}</span>
-              <span className="text-slate-500 text-[10px]">
+              <span className="text-slate-300 text-[10px]">
                 ({prod.reviewsCount > 1000 ? `${(prod.reviewsCount / 1000).toFixed(1)}k` : prod.reviewsCount})
               </span>
             </div>
@@ -623,13 +627,13 @@ function GtaProductCard({
             </a>
           </h3>
 
-          <p className="text-xs text-slate-400 line-clamp-2 mb-3 leading-relaxed">
+          <p className="text-xs text-slate-300 line-clamp-2 mb-3 leading-relaxed">
             {prod.description}
           </p>
 
           <ul className="space-y-1 mb-4">
             {prod.pros.slice(0, 2).map((pro, idx) => (
-              <li key={idx} className="flex items-start gap-1.5 text-[11px] text-slate-300">
+              <li key={idx} className="flex items-start gap-1.5 text-[11px] text-slate-200">
                 <CheckCircle2 className="w-3 h-3 text-cyan-400 shrink-0 mt-0.5" />
                 <span className="line-clamp-1">{pro}</span>
               </li>
@@ -639,7 +643,7 @@ function GtaProductCard({
 
         <div className="pt-3 border-t border-slate-800/80 flex items-center justify-between gap-3">
           <div>
-            <span className="text-[10px] text-slate-400 block">Precio en Amazon</span>
+            <span className="text-[10px] text-slate-300 block">Precio en Amazon</span>
             <span className="text-lg font-black text-white">
               {formatPrice(prod.priceText)}
             </span>
@@ -649,7 +653,7 @@ function GtaProductCard({
             href={amazonUrl}
             target="_blank"
             rel="noopener noreferrer sponsored"
-            className="flex-1 py-2.5 px-3 rounded-xl bg-gradient-to-r from-pink-500 via-purple-600 to-cyan-500 hover:from-pink-600 hover:to-cyan-600 text-white font-black text-xs text-center flex items-center justify-center gap-1.5 shadow-md hover:shadow-pink-500/25 transition-all cursor-pointer group/btn"
+            className="flex-1 py-2.5 px-3 rounded-xl bg-gradient-to-r from-pink-600 via-purple-700 to-cyan-700 hover:from-pink-700 hover:to-cyan-800 text-white font-black text-xs text-center flex items-center justify-center gap-1.5 shadow-md hover:shadow-pink-500/25 transition-all cursor-pointer group/btn"
           >
             <span>Ver en Amazon</span>
             <ExternalLink className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />

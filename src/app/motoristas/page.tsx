@@ -33,9 +33,11 @@ import {
   ArrowUpDown
 } from 'lucide-react';
 import { parsePrice } from '@/lib/amazon';
+import { useCurrency } from '@/context/CurrencyContext';
 import Link from 'next/link';
 
 export default function MotoristasPage() {
+  const { amazonRegion, amazonSiteName } = useCurrency();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedBrand, setSelectedBrand] = useState<string>('Todas las marcas');
   const [selectedPrice, setSelectedPrice] = useState<string>('all');
@@ -164,7 +166,7 @@ export default function MotoristasPage() {
     if (isLoadingLive) return;
     setIsLoadingLive(true);
     try {
-      const res = await fetch(`/api/live-search?q=${encodeURIComponent(liveSearchQuery)}&limit=6`);
+      const res = await fetch(`/api/live-search?q=${encodeURIComponent(liveSearchQuery)}&limit=6&region=${amazonRegion}`);
       const data = await res.json();
       if (data.success && Array.isArray(data.results)) {
         setLiveAmazonProducts((prev) => {
@@ -178,7 +180,7 @@ export default function MotoristasPage() {
     } finally {
       setIsLoadingLive(false);
     }
-  }, [isLoadingLive, liveSearchQuery]);
+  }, [isLoadingLive, liveSearchQuery, amazonRegion]);
 
   // Auto-fetch live products when filters are active to keep the grid abundant and full
   React.useEffect(() => {
@@ -192,7 +194,7 @@ export default function MotoristasPage() {
       let isMounted = true;
       setIsLoadingLive(true);
       const timer = setTimeout(() => {
-        fetch(`/api/live-search?q=${encodeURIComponent(liveSearchQuery)}&limit=8`)
+        fetch(`/api/live-search?q=${encodeURIComponent(liveSearchQuery)}&limit=8&region=${amazonRegion}`)
           .then((res) => res.json())
           .then((data) => {
             if (isMounted && data.success && Array.isArray(data.results)) {
@@ -212,7 +214,7 @@ export default function MotoristasPage() {
     } else {
       setLiveAmazonProducts([]);
     }
-  }, [selectedCategory, selectedBrand, selectedPrice, selectedStyle, liveSearchQuery]);
+  }, [selectedCategory, selectedBrand, selectedPrice, selectedStyle, liveSearchQuery, amazonRegion]);
 
   // Reset filters
   const handleResetFilters = () => {
@@ -232,9 +234,9 @@ export default function MotoristasPage() {
       <Header currentTheme="classic" />
 
       {/* Breadcrumb */}
-      <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 w-full text-xs text-slate-500 flex items-center gap-1.5">
-        <Link href="/" className="hover:text-indigo-600 font-medium">Inicio</Link>
-        <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+      <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 w-full text-xs text-slate-600 flex items-center gap-1.5">
+        <Link href="/" className="hover:text-indigo-700 font-medium">Inicio</Link>
+        <ChevronRight className="w-3.5 h-3.5 text-slate-500" />
         <span className="font-bold text-slate-800">Especial Motoristas</span>
       </nav>
 
@@ -244,13 +246,13 @@ export default function MotoristasPage() {
         {/* HERO SECTION MOTORISTAS */}
         <section className="text-center py-6 sm:py-10 max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-4 shadow-xs border border-amber-200 bg-amber-50 text-amber-900">
-            <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span className="flex h-2 w-2 rounded-full bg-emerald-700 animate-pulse"></span>
             <span>Edición Especial Moteros {new Date().getFullYear()} • Homologación ECE y Calidad Certificada</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] mb-5 text-slate-900">
             Un Buen Regalo para un Motero:{' '}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-500 via-orange-600 to-red-600">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-600 via-orange-600 to-red-700">
               Cascos, Gadgets e Ideas de Regalos 2026
             </span>
           </h1>
@@ -260,17 +262,17 @@ export default function MotoristasPage() {
           </p>
 
           {/* Quick Badges of Trust */}
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs font-medium text-slate-500 mb-8">
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs font-medium text-slate-600 mb-8">
             <span className="flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-emerald-500" />
+              <ShieldCheck className="w-4 h-4 text-emerald-700" />
               Normativa ECE 22.06 Oficial
             </span>
             <span className="flex items-center gap-1.5">
-              <TrendingUp className="w-4 h-4 text-amber-500" />
+              <TrendingUp className="w-4 h-4 text-amber-700" />
               Primeras Marcas: Alpinestars, Dainese, AGV
             </span>
             <span className="flex items-center gap-1.5">
-              <BadgePercent className="w-4 h-4 text-indigo-500" />
+              <BadgePercent className="w-4 h-4 text-indigo-700" />
               Precios y Envíos Prime al Día
             </span>
           </div>
@@ -282,11 +284,11 @@ export default function MotoristasPage() {
           {/* 1. Categoría de equipamiento */}
           <div className="mb-5">
             <div className="flex items-center justify-between mb-3">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
-                <Filter className="w-3.5 h-3.5 text-amber-600" />
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-600 flex items-center gap-1.5">
+                <Filter className="w-3.5 h-3.5 text-amber-700" />
                 <span>¿Qué tipo de regalo buscas?</span>
               </span>
-              <span className="text-xs font-semibold text-slate-400">
+              <span className="text-xs font-semibold text-slate-600">
                 {displayProducts.length + liveAmazonProducts.length} ideas
               </span>
             </div>
@@ -295,6 +297,7 @@ export default function MotoristasPage() {
               {MOTORISTA_CATEGORIES.map((cat) => (
                 <button
                   key={cat.id}
+                  type="button"
                   onClick={() => {
                     setSelectedCategory(cat.id);
                     setSelectedStyle('all');
@@ -318,10 +321,12 @@ export default function MotoristasPage() {
             
             {/* Filtro Marca */}
             <div>
-              <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+              <label htmlFor="motoristas-brand" className="block text-[11px] font-bold text-slate-600 uppercase tracking-wider mb-1.5">
                 Marca destacada
               </label>
               <select
+                id="motoristas-brand"
+                aria-label="Marca destacada"
                 value={selectedBrand}
                 onChange={(e) => {
                   setSelectedBrand(e.target.value);
@@ -337,10 +342,12 @@ export default function MotoristasPage() {
 
             {/* Filtro Presupuesto */}
             <div>
-              <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+              <label htmlFor="motoristas-price" className="block text-[11px] font-bold text-slate-600 uppercase tracking-wider mb-1.5">
                 Rango de precio
               </label>
               <select
+                id="motoristas-price"
+                aria-label="Rango de precio"
                 value={selectedPrice}
                 onChange={(e) => {
                   setSelectedPrice(e.target.value);
@@ -356,10 +363,12 @@ export default function MotoristasPage() {
 
             {/* Subfiltro específico de estilo en cascos o chaquetas */}
             <div>
-              <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">
-                Tipo / Estilo
+              <label htmlFor="motoristas-style" className="block text-[11px] font-bold text-slate-600 uppercase tracking-wider mb-1.5">
+                Tipo o estilo
               </label>
               <select
+                id="motoristas-style"
+                aria-label="Tipo o estilo"
                 value={selectedStyle}
                 onChange={(e) => {
                   setSelectedStyle(e.target.value);
@@ -391,11 +400,13 @@ export default function MotoristasPage() {
 
             {/* Ordenar productos */}
             <div>
-              <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
-                <ArrowUpDown className="w-3.5 h-3.5 text-amber-600" />
+              <label htmlFor="motoristas-sort" className="block text-[11px] font-bold text-slate-600 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                <ArrowUpDown className="w-3.5 h-3.5 text-amber-700" />
                 <span>Ordenar productos</span>
               </label>
               <select
+                id="motoristas-sort"
+                aria-label="Ordenar productos"
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as any)}
                 className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 text-xs font-semibold focus:border-amber-500 focus:bg-white outline-none cursor-pointer"
@@ -412,12 +423,13 @@ export default function MotoristasPage() {
           {/* Reset button if any filter is active */}
           {(selectedCategory !== 'all' || selectedBrand !== 'Todas las marcas' || selectedPrice !== 'all' || selectedStyle !== 'all' || sortBy !== 'featured') && (
             <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
-              <span className="text-xs text-slate-500">
+              <span className="text-xs text-slate-600">
                 Filtros activos aplicados a motoristas {sortBy !== 'featured' && `• Orden: ${sortBy === 'price-asc' ? 'Menor a mayor precio' : sortBy === 'price-desc' ? 'Mayor a menor precio' : 'Mejor valorados'}`}
               </span>
               <button
+                type="button"
                 onClick={handleResetFilters}
-                className="text-xs font-bold text-amber-700 hover:text-amber-900 underline cursor-pointer"
+                className="text-xs font-bold text-amber-800 hover:text-amber-950 underline cursor-pointer"
               >
                 Limpiar todos los filtros
               </button>
@@ -471,6 +483,7 @@ export default function MotoristasPage() {
             {/* Quick button to load more live motorista deals */}
             <div className="mb-12 flex justify-center">
               <button
+                type="button"
                 onClick={handleLoadLiveToGrid}
                 disabled={isLoadingLive}
                 className="px-6 py-3.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border border-amber-300 text-amber-950 font-bold text-sm shadow-xs hover:shadow-md transition-all flex items-center gap-2 cursor-pointer disabled:opacity-70"
@@ -482,7 +495,7 @@ export default function MotoristasPage() {
                   </>
                 ) : (
                   <>
-                    <ShoppingBag className="w-4 h-4 text-amber-600" />
+                    <ShoppingBag className="w-4 h-4 text-amber-700" />
                     <span>Cargar más ofertas en directo de Amazon para motoristas</span>
                   </>
                 )}
@@ -493,19 +506,20 @@ export default function MotoristasPage() {
           <div className="mb-16">
             <div className="mb-6 p-4 sm:p-5 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-3xl flex flex-wrap items-center justify-between gap-3 shadow-xs">
               <div className="flex items-center gap-3 text-amber-950 font-bold text-sm">
-                <span className="p-2 bg-amber-400/20 text-amber-700 rounded-xl">
+                <span className="p-2 bg-amber-400/20 text-amber-800 rounded-xl">
                   <ShoppingBag className="w-5 h-5" />
                 </span>
                 <div>
                   <p className="font-extrabold text-slate-900">
-                    Mostrando productos en directo de Amazon España para motoristas:
+                    Mostrando productos en directo de {amazonSiteName} para motoristas:
                   </p>
                   <p className="text-xs text-slate-600 font-normal">
-                    Precios, fotos y disponibilidad al día obtenidos en tiempo real de Amazon.es
+                    Precios, fotos y disponibilidad al día obtenidos en tiempo real de {amazonSiteName}
                   </p>
                 </div>
               </div>
               <button
+                type="button"
                 onClick={handleResetFilters}
                 className="text-xs bg-white text-slate-800 px-4 py-2 rounded-xl border border-amber-200 font-bold hover:bg-amber-100 transition-all shadow-xs cursor-pointer"
               >
@@ -534,6 +548,7 @@ export default function MotoristasPage() {
 
             <div className="mb-12 flex justify-center">
               <button
+                type="button"
                 onClick={handleLoadLiveToGrid}
                 disabled={isLoadingLive}
                 className="px-6 py-3.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border border-amber-300 text-amber-950 font-bold text-sm shadow-xs hover:shadow-md transition-all flex items-center gap-2 cursor-pointer disabled:opacity-70"
@@ -545,7 +560,7 @@ export default function MotoristasPage() {
                   </>
                 ) : (
                   <>
-                    <ShoppingBag className="w-4 h-4 text-amber-600" />
+                    <ShoppingBag className="w-4 h-4 text-amber-700" />
                     <span>Cargar más ofertas en directo (+8 opciones)</span>
                   </>
                 )}
@@ -554,20 +569,21 @@ export default function MotoristasPage() {
           </div>
         ) : isLoadingLive ? (
           <div className="py-20 mb-16 text-center flex flex-col items-center justify-center gap-3 bg-white/80 rounded-3xl border border-amber-200 shadow-xs">
-            <Loader2 className="w-10 h-10 animate-spin text-amber-600" />
-            <h3 className="text-lg font-bold text-slate-900">Buscando productos de motoristas en Amazon España...</h3>
-            <p className="text-xs text-slate-500 max-w-md">
+            <Loader2 className="w-10 h-10 animate-spin text-amber-700" />
+            <h2 className="text-lg font-bold text-slate-900">Buscando productos de motoristas en {amazonSiteName}...</h2>
+            <p className="text-xs text-slate-600 max-w-md">
               Estamos consultando el catálogo en tiempo real con stock oficial y precios actualizados.
             </p>
           </div>
         ) : (
           <div className="py-12 mb-16 text-center bg-white/70 rounded-3xl border border-dashed border-slate-300 p-8">
-            <h3 className="text-xl font-bold mb-2 text-slate-900">No encontramos productos locales para este filtro exacto</h3>
+            <h2 className="text-xl font-bold mb-2 text-slate-900">No encontramos productos locales para este filtro exacto</h2>
             <p className="text-sm text-slate-600 mb-6 max-w-md mx-auto">
-              Puedes cargar las ofertas disponibles en Amazon España o restablecer los filtros para explorar otras opciones.
+              Puedes cargar las ofertas disponibles en {amazonSiteName} o restablecer los filtros para explorar otras opciones.
             </p>
             <div className="flex justify-center gap-3">
               <button
+                type="button"
                 onClick={handleLoadLiveToGrid}
                 className="px-6 py-3 rounded-2xl bg-[#FF9900] hover:bg-[#ffad33] text-slate-950 font-black text-sm flex items-center gap-2 shadow-md cursor-pointer transition-transform hover:scale-102"
               >
@@ -575,6 +591,7 @@ export default function MotoristasPage() {
                 <span>Buscar en Amazon en directo</span>
               </button>
               <button
+                type="button"
                 onClick={handleResetFilters}
                 className="px-5 py-3 rounded-2xl bg-slate-200 text-slate-800 font-bold text-sm hover:bg-slate-300 cursor-pointer transition-colors"
               >

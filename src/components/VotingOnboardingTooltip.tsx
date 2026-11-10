@@ -89,16 +89,16 @@ export default function VotingOnboardingTooltip({ variant = 'desktop' }: VotingO
             type="button"
             onClick={handleDismiss}
             aria-label="Cerrar aviso de votación"
-            className="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+            className="min-w-7 min-h-7 flex items-center justify-center p-1 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Title */}
-        <h3 className="text-sm font-black text-slate-950 mb-1 leading-snug">
+        <p className="text-sm font-black text-slate-950 mb-1 leading-snug">
           ¿Hacéis un regalo entre varios?
-        </h3>
+        </p>
         <p className="text-[11px] text-slate-600 mb-3 leading-relaxed">
           Evitad discusiones eternas en el grupo. Ahora podéis elegir juntos en 3 pasos:
         </p>
@@ -106,19 +106,19 @@ export default function VotingOnboardingTooltip({ variant = 'desktop' }: VotingO
         {/* 3 Steps */}
         <div className="space-y-2 mb-3.5 bg-slate-50 p-2.5 rounded-xl border border-slate-100 text-xs">
           <div className="flex items-start gap-2">
-            <span className="font-black text-amber-600 shrink-0">1.</span>
+            <span className="font-black text-amber-800 shrink-0">1.</span>
             <span className="text-slate-700">
               Añade ideas con el botón <strong>«Votar»</strong> de cualquier producto.
             </span>
           </div>
           <div className="flex items-start gap-2">
-            <span className="font-black text-amber-600 shrink-0">2.</span>
+            <span className="font-black text-amber-800 shrink-0">2.</span>
             <span className="text-slate-700">
               Envía el enlace a tu grupo de <strong>WhatsApp</strong> con 1 clic.
             </span>
           </div>
           <div className="flex items-start gap-2">
-            <span className="font-black text-amber-600 shrink-0">3.</span>
+            <span className="font-black text-amber-800 shrink-0">3.</span>
             <span className="text-slate-700">
               Cada uno vota su favorito y sale el <strong>ganador directo</strong>.
             </span>
@@ -170,16 +170,16 @@ export default function VotingOnboardingTooltip({ variant = 'desktop' }: VotingO
           type="button"
           onClick={handleDismiss}
           aria-label="Cerrar explicación de votación"
-          className="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+          className="min-w-7 min-h-7 flex items-center justify-center p-1 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer"
         >
           <X className="w-4 h-4" />
         </button>
       </div>
 
       {/* Title */}
-      <h3 className="text-sm font-black text-slate-950 mb-1 leading-snug">
+      <p className="text-sm font-black text-slate-950 mb-1 leading-snug">
         ¿Hacéis un regalo conjunto con amigos o familia?
-      </h3>
+      </p>
       <p className="text-xs text-slate-600 mb-3 leading-relaxed">
         Olvídate de los líos en WhatsApp. Ahora podéis organizar la votación en 3 sencillos pasos:
       </p>
@@ -187,19 +187,19 @@ export default function VotingOnboardingTooltip({ variant = 'desktop' }: VotingO
       {/* 3 Steps */}
       <div className="space-y-2 mb-4 bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs">
         <div className="flex items-start gap-2">
-          <span className="font-black text-amber-600 shrink-0">1.</span>
+          <span className="font-black text-amber-800 shrink-0">1.</span>
           <span className="text-slate-700">
             Selecciona regalos con el botón <strong>«Votar»</strong> en el catálogo.
           </span>
         </div>
         <div className="flex items-start gap-2">
-          <span className="font-black text-amber-600 shrink-0">2.</span>
+          <span className="font-black text-amber-800 shrink-0">2.</span>
           <span className="text-slate-700">
             Comparte el enlace generado en tu grupo de <strong>WhatsApp</strong>.
           </span>
         </div>
         <div className="flex items-start gap-2">
-          <span className="font-black text-amber-600 shrink-0">3.</span>
+          <span className="font-black text-amber-800 shrink-0">3.</span>
           <span className="text-slate-700">
             Cada miembro vota su favorito y descubrís el <strong>regalo ganador</strong>.
           </span>

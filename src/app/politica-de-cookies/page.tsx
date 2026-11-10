@@ -5,7 +5,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ThemeAtmosphere from '@/components/ThemeAtmosphere';
 import { Cookie, ShieldCheck, Settings, ArrowLeft, Info } from 'lucide-react';
-import { AMAZON_AFFILIATE_TAG } from '@/lib/amazon';
+import { AMAZON_AFFILIATE_TAG_ES, AMAZON_AFFILIATE_TAG_INTL } from '@/lib/amazon';
 
 export const metadata: Metadata = {
   title: 'Política de Cookies | Un Buen Regalo',
@@ -24,13 +24,13 @@ export default function PoliticaCookiesPage() {
       <main className="flex-1 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 w-full z-10">
         
         {/* Breadcrumb */}
-        <nav className="mb-6 flex items-center gap-2 text-xs text-slate-500 font-medium">
-          <Link href="/" className="hover:text-indigo-600 flex items-center gap-1 transition-colors">
+        <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-xs text-slate-600 font-medium">
+          <Link href="/" className="hover:text-indigo-700 flex items-center gap-1 transition-colors">
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Volver al inicio</span>
           </Link>
           <span>/</span>
-          <span className="text-slate-800 font-bold">Política de Cookies</span>
+          <span className="text-slate-900 font-bold">Política de Cookies</span>
         </nav>
 
         <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/80 shadow-xs space-y-8">
@@ -81,9 +81,9 @@ export default function PoliticaCookiesPage() {
               </div>
 
               <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200">
-                <h3 className="font-bold text-slate-900 text-sm mb-1">B. Cookies de Afiliación de Amazon España (Terceros)</h3>
+                <h3 className="font-bold text-slate-900 text-sm mb-1">B. Cookies de Afiliación de Amazon (Terceros)</h3>
                 <p className="text-xs text-slate-600 mb-2">
-                  Al hacer clic en el botón de compra o ver oferta de cualquier producto, eres redirigido a Amazon.es a través de nuestro enlace de afiliado (con identificador oficial <code>{AMAZON_AFFILIATE_TAG}</code>).
+                  Al hacer clic en el botón de compra o ver oferta de cualquier producto, eres redirigido a la tienda regional de Amazon correspondiente (Amazon.es o Amazon.com) a través de nuestro enlace de afiliado (identificadores oficiales <code>{AMAZON_AFFILIATE_TAG_ES}</code> y <code>{AMAZON_AFFILIATE_TAG_INTL}</code>).
                 </p>
                 <p className="text-xs text-slate-600">
                   Amazon instala una cookie técnica de rastreo en tu navegador con una duración habitual de 24 horas para identificar que la visita provino de Un Buen Regalo y poder acreditar la comisión si decides realizar una compra. Esta cookie no recopila datos personales sensibles como tu nombre o tarjeta de crédito.
@@ -124,7 +124,7 @@ export default function PoliticaCookiesPage() {
                   </tr>
                   <tr>
                     <td className="p-3 font-mono font-semibold">session-id / ubid-acbes</td>
-                    <td className="p-3">Amazon.es</td>
+                    <td className="p-3">Amazon (.es / .com)</td>
                     <td className="p-3">Atribución de compras adscritas en el Programa de Afiliados</td>
                     <td className="p-3">24 horas / Sesión</td>
                   </tr>
