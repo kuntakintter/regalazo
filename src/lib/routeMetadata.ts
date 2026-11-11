@@ -6,10 +6,13 @@ import {
   SEO_FILTER_ROUTES,
 } from '@/lib/filterRoutes';
 import { SEO_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
+import { resolvePassionHubFilter } from '@/lib/passionHubFilters';
 import { delocalizeRouteSegments, localizeRoutePath } from '@/lib/localizedSlugs';
 import {
+  getLocalizedAgeFilterMeta,
   getLocalizedAgeMeta,
   getLocalizedFilterMeta,
+  getLocalizedPassionHubFilterMeta,
   getLocalizedStaticHubMeta,
   getLocalizedSubcategoryMeta,
 } from '@/lib/i18nContent';
@@ -156,35 +159,92 @@ export function getLocalizedNestedMetadata(
 
   if (normalizedSegments.length === 2) {
     const [ageSlug, categorySlug] = normalizedSegments;
+
+    const passionFilter = resolvePassionHubFilter(ageSlug, categorySlug);
+    if (passionFilter) {
+      const localized = getLocalizedPassionHubFilterMeta(
+        localeKey,
+        ageSlug,
+        passionFilter.label,
+        passionFilter.icon,
+        currency
+      );
+      const snippet = HUB_OG_SNIPPETS[ageSlug];
+      const fallback = STATIC_HUB_FALLBACK_IMAGES[ageSlug];
+      const routePath = `/${ageSlug}/${passionFilter.slug}`;
+      const canonicalUrl = `${BASE_SITE_URL}${localizeRoutePath(localeKey, routePath)}`;
+
+      return buildSocialMetadata({
+        title: localized.title,
+        socialTitle: localized.socialTitle,
+        description: localized.description,
+        canonicalUrl,
+        routePath,
+        ogLocale,
+        siteName,
+        imageUrl: snippet?.imageUrl || fallback?.url || `${BASE_SITE_URL}/og-cover.png`,
+        imageAlt: localized.h1 || snippet?.imageAlt || localized.title,
+        keywords: localized.keywords,
+      });
+    }
+
     const ageRoute = SEO_AGE_ROUTES[ageSlug];
     if (!ageRoute) return null;
 
     const subcategories = getSubcategorySlugMap(ageRoute.ageId);
     const currentSub = subcategories.find((s) => s.slug === categorySlug);
-    if (!currentSub) return null;
+    if (currentSub) {
+      const localized = getLocalizedSubcategoryMeta(
+        localeKey,
+        ageSlug,
+        currentSub.label,
+        currency
+      );
+      const ogImage = getCategoryOgImage(currentSub.label);
+      const routePath = `/${ageSlug}/${categorySlug}`;
+      const canonicalUrl = `${BASE_SITE_URL}${localizeRoutePath(localeKey, routePath)}`;
 
-    const localized = getLocalizedSubcategoryMeta(
-      localeKey,
-      ageSlug,
-      currentSub.label,
-      currency
-    );
-    const ogImage = getCategoryOgImage(currentSub.label);
-    const routePath = `/${ageSlug}/${categorySlug}`;
-    const canonicalUrl = `${BASE_SITE_URL}${localizeRoutePath(localeKey, routePath)}`;
+      return buildSocialMetadata({
+        title: localized.title,
+        socialTitle: localized.socialTitle,
+        description: localized.description,
+        canonicalUrl,
+        routePath,
+        ogLocale,
+        siteName,
+        imageUrl: ogImage.url,
+        imageAlt: localized.h1 || ogImage.alt,
+        keywords: localized.keywords,
+      });
+    }
 
-    return buildSocialMetadata({
-      title: localized.title,
-      socialTitle: localized.socialTitle,
-      description: localized.description,
-      canonicalUrl,
-      routePath,
-      ogLocale,
-      siteName,
-      imageUrl: ogImage.url,
-      imageAlt: localized.h1 || ogImage.alt,
-      keywords: localized.keywords,
-    });
+    const filterRoute = SEO_FILTER_ROUTES[categorySlug];
+    if (filterRoute) {
+      const localized = getLocalizedAgeFilterMeta(
+        localeKey,
+        ageSlug,
+        categorySlug,
+        currency
+      );
+      const ogImage = getCategoryOgImage(filterRoute.label);
+      const routePath = `/${ageSlug}/${categorySlug}`;
+      const canonicalUrl = `${BASE_SITE_URL}${localizeRoutePath(localeKey, routePath)}`;
+
+      return buildSocialMetadata({
+        title: localized.title,
+        socialTitle: localized.socialTitle,
+        description: localized.description,
+        canonicalUrl,
+        routePath,
+        ogLocale,
+        siteName,
+        imageUrl: ogImage.url,
+        imageAlt: localized.h1 || ogImage.alt,
+        keywords: localized.keywords,
+      });
+    }
+
+    return null;
   }
 
   return null;

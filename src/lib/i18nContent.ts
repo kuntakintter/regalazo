@@ -506,6 +506,95 @@ export function getLocalizedFilterMeta(
   };
 }
 
+export function getLocalizedAgeFilterMeta(
+  localeKey: string | null | undefined,
+  ageSlug: string,
+  filterSlug: string,
+  currency?: Currency
+): LocalizedMeta {
+  const key = normalizeLocaleKey(localeKey);
+  const { currency: defaultCur, currencySymbol } = getLocaleCurrency(key);
+  const targetCurrency = currency || defaultCur;
+  const targetSymbol = targetCurrency === 'USD' ? '$' : currencySymbol;
+  const ui = getUiStrings(key);
+
+  const routeMeta = SEO_FILTER_ROUTES[filterSlug];
+  const ageRoute = SEO_AGE_ROUTES[ageSlug];
+  if (!routeMeta || !ageRoute) {
+    return getLocalizedFilterMeta(key, filterSlug, targetCurrency);
+  }
+
+  const ageCat = AGE_CATEGORIES.find((c) => c.id === ageRoute.ageId);
+  const baseAgeLabel = ageRoute.specificYear
+    ? `${ageRoute.specificYear} ${ageRoute.specificYear === 1 ? 'Año' : 'Años'}`
+    : ageCat?.label ||
+      (ageSlug === 'fiesta-revelacion-genero' ? 'Fiesta Revelación de Género' : ageSlug);
+
+  const ageLabel = localizeTerm(key, baseAgeLabel, targetCurrency);
+  const filterLabel = localizeTerm(key, routeMeta.label, targetCurrency);
+  const year = '2026';
+
+  if (key === 'es' || key === 'es-us') {
+    const title = applyCurrencyDisplay(
+      `Un Buen Regalo: ${routeMeta.label} (${baseAgeLabel}) 【${year}】 Top Ideas`,
+      targetCurrency
+    );
+    const h1 = applyCurrencyDisplay(
+      `Regalo y Regalos de ${routeMeta.label} para ${baseAgeLabel}`,
+      targetCurrency
+    );
+    const description = applyCurrencyDisplay(
+      `${routeMeta.description} Selección específica para ${baseAgeLabel} verificada en Amazon.`,
+      targetCurrency
+    );
+    const tagline = applyCurrencyDisplay(
+      `${routeMeta.tagline} · ${baseAgeLabel}`,
+      targetCurrency
+    );
+    return {
+      title,
+      socialTitle: `${routeMeta.icon} ${routeMeta.label} (${baseAgeLabel}) | Un Buen Regalo`,
+      description,
+      h1,
+      subtitle: description,
+      tagline,
+      keywords: [
+        ...routeMeta.keywords.map((kw) => applyCurrencyDisplay(`${kw} ${baseAgeLabel.toLowerCase()}`, targetCurrency)),
+        applyCurrencyDisplay(`${routeMeta.label.toLowerCase()} ${baseAgeLabel.toLowerCase()}`, targetCurrency),
+      ],
+      currency: targetCurrency,
+      currencySymbol: targetSymbol,
+    };
+  }
+
+  const combinedLabel = `${filterLabel} (${ageLabel})`;
+  const tagline = `${combinedLabel} · ${ui.verifiedCatalogNote}`;
+  const title = applyCurrencyDisplay(
+    ui.subcatTitleTemplate.replace('{sub}', combinedLabel).replace('{year}', year),
+    targetCurrency
+  );
+  const h1 = applyCurrencyDisplay(
+    `${ui.filterH1Template.replace('{label}', filterLabel)} — ${ageLabel}`,
+    targetCurrency
+  );
+  const description = applyCurrencyDisplay(
+    ui.subcatDescTemplate.replace('{sub}', filterLabel).replace('{age}', ageLabel),
+    targetCurrency
+  );
+
+  return {
+    title,
+    socialTitle: `${routeMeta.icon} ${combinedLabel} | ${ui.brandName}`,
+    description,
+    h1,
+    subtitle: description,
+    tagline,
+    keywords: [filterLabel, ageLabel, `${filterLabel} ${ageLabel}`, `${combinedLabel} ${year}`, ui.brandName],
+    currency: targetCurrency,
+    currencySymbol: targetSymbol,
+  };
+}
+
 export function getHubStrings(localeKey: string | null | undefined, hubSlug: string): HubCopy {
   const key = normalizeLocaleKey(localeKey);
   const pack = getLangPack(key);
@@ -554,6 +643,83 @@ export function getLocalizedStaticHubMeta(
     subtitle: applyCurrencyDisplay(hub.subtitle, targetCurrency),
     breadcrumbLabel: applyCurrencyDisplay(hub.breadcrumbLabel, targetCurrency),
     tagline: applyCurrencyDisplay(hub.subtitle, targetCurrency),
+    currency: targetCurrency,
+    currencySymbol: targetSymbol,
+  };
+}
+
+export function getLocalizedPassionHubFilterMeta(
+  localeKey: string | null | undefined,
+  hubSlug: string,
+  filterLabelEs: string,
+  filterIcon: string = '🎯',
+  currency?: Currency
+): LocalizedMeta {
+  const key = normalizeLocaleKey(localeKey);
+  const { currency: defaultCur, currencySymbol } = getLocaleCurrency(key);
+  const targetCurrency = currency || defaultCur;
+  const targetSymbol = targetCurrency === 'USD' ? '$' : currencySymbol;
+  const ui = getUiStrings(key);
+
+  const hub = getHubStrings(key, hubSlug);
+  const filterTranslated = localizeTerm(key, filterLabelEs, targetCurrency);
+  const hubLabel = applyCurrencyDisplay(hub.breadcrumbLabel, targetCurrency);
+  const year = '2026';
+
+  if (key === 'es' || key === 'es-us') {
+    const cleanFilter = applyCurrencyDisplay(filterLabelEs, targetCurrency);
+    const title = applyCurrencyDisplay(
+      `Un Buen Regalo: ${cleanFilter} (${hubLabel}) 【${year}】 Top Ideas`,
+      targetCurrency
+    );
+    const h1 = applyCurrencyDisplay(
+      `Regalo y Regalos de ${cleanFilter} — ${hubLabel}`,
+      targetCurrency
+    );
+    const description = applyCurrencyDisplay(
+      `Selección verificada de ${cleanFilter} dentro de nuestra guía especializada de ${hubLabel}. Valoraciones 4.5+ estrellas y envío rápido en Amazon.`,
+      targetCurrency
+    );
+    return {
+      title,
+      socialTitle: `${filterIcon} ${cleanFilter} (${hubLabel}) | Un Buen Regalo`,
+      description,
+      h1,
+      subtitle: description,
+      tagline: `${cleanFilter} · ${hubLabel}`,
+      keywords: [
+        `regalo ${cleanFilter.toLowerCase()}`,
+        `regalos ${cleanFilter.toLowerCase()}`,
+        hubLabel.toLowerCase(),
+        `${cleanFilter.toLowerCase()} ${year}`,
+      ],
+      currency: targetCurrency,
+      currencySymbol: targetSymbol,
+    };
+  }
+
+  const combinedLabel = `${filterTranslated} (${hubLabel})`;
+  const title = applyCurrencyDisplay(
+    ui.subcatTitleTemplate.replace('{sub}', combinedLabel).replace('{year}', year),
+    targetCurrency
+  );
+  const h1 = applyCurrencyDisplay(
+    `${ui.filterH1Template.replace('{label}', filterTranslated)} — ${hubLabel}`,
+    targetCurrency
+  );
+  const description = applyCurrencyDisplay(
+    ui.subcatDescTemplate.replace('{sub}', filterTranslated).replace('{age}', hubLabel),
+    targetCurrency
+  );
+
+  return {
+    title,
+    socialTitle: `${filterIcon} ${combinedLabel} | ${ui.brandName}`,
+    description,
+    h1,
+    subtitle: description,
+    tagline: combinedLabel,
+    keywords: [filterTranslated, hubLabel, `${filterTranslated} ${hubLabel}`, `${combinedLabel} ${year}`, ui.brandName],
     currency: targetCurrency,
     currencySymbol: targetSymbol,
   };

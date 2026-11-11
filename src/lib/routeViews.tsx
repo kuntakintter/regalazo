@@ -6,6 +6,7 @@ import {
   SEO_FILTER_ROUTES,
 } from '@/lib/filterRoutes';
 import { SEO_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
+import { resolvePassionHubFilter } from '@/lib/passionHubFilters';
 import { delocalizeRouteSegments } from '@/lib/localizedSlugs';
 import LocaleAutoInitializer from '@/components/LocaleAutoInitializer';
 import HomeCatalogView from '@/components/HomeCatalogView';
@@ -77,28 +78,31 @@ export function renderLocalizedHomeView(localeKey: string): React.ReactNode | nu
   );
 }
 
-function renderStaticHubComponent(slug: string): React.ReactNode | null {
+function renderStaticHubComponent(
+  slug: string,
+  initialCategory?: string
+): React.ReactNode | null {
   switch (slug) {
     case 'motoristas':
-      return <MotoristasView omitSchema={false} />;
+      return <MotoristasView omitSchema={false} initialCategory={initialCategory} />;
     case 'automovil':
-      return <AutomovilView omitSchema={false} />;
+      return <AutomovilView omitSchema={false} initialCategory={initialCategory} />;
     case 'ciclismo':
-      return <CiclismoView omitSchema={false} />;
+      return <CiclismoView omitSchema={false} initialCategory={initialCategory} />;
     case 'gaming':
-      return <GamingView omitSchema={false} />;
+      return <GamingView omitSchema={false} initialCategory={initialCategory} />;
     case 'amantes-del-cafe':
-      return <CafeView omitSchema={false} />;
+      return <CafeView omitSchema={false} initialCategory={initialCategory} />;
     case 'mascotas':
-      return <MascotasView omitSchema={false} />;
+      return <MascotasView omitSchema={false} initialCategory={initialCategory} />;
     case 'halloween':
-      return <HalloweenView omitSchema={false} />;
+      return <HalloweenView omitSchema={false} initialCategory={initialCategory} />;
     case 'navidad':
-      return <NavidadView omitSchema={false} />;
+      return <NavidadView omitSchema={false} initialCategory={initialCategory} />;
     case 'carta-papa-noel':
       return <CartaPapaNoelView omitSchema={false} />;
     case 'regalos-gta-6':
-      return <RegalosGta6View omitSchema={false} />;
+      return <RegalosGta6View omitSchema={false} initialCategory={initialCategory} />;
     case 'votar':
       return <VotarView omitSchema={false} />;
     case 'que-regalar-a-un-hombre':
@@ -206,21 +210,40 @@ export function renderLocalizedRouteView(
 
   if (normalizedSegments.length === 2) {
     const [ageSlug, categorySlug] = normalizedSegments;
+
+    const passionFilter = resolvePassionHubFilter(ageSlug, categorySlug);
+    if (passionFilter) {
+      const hubNode = renderStaticHubComponent(ageSlug, passionFilter.id);
+      return hubNode ? wrap(hubNode) : null;
+    }
+
     const ageRoute = SEO_AGE_ROUTES[ageSlug];
     if (!ageRoute) return null;
 
     const validSub = getSubcategorySlugMap(ageRoute.ageId).some(
       (s) => s.slug === categorySlug
     );
-    if (!validSub) return null;
+    if (validSub) {
+      return wrap(
+        <SubcategoryLandingView
+          ageSlug={ageSlug}
+          categorySlug={categorySlug}
+          omitSchema={false}
+        />
+      );
+    }
 
-    return wrap(
-      <SubcategoryLandingView
-        ageSlug={ageSlug}
-        categorySlug={categorySlug}
-        omitSchema={false}
-      />
-    );
+    if (SEO_FILTER_ROUTES[categorySlug]) {
+      return wrap(
+        <FilterLandingView
+          filterSlug={categorySlug}
+          ageSlug={ageSlug}
+          omitSchema={false}
+        />
+      );
+    }
+
+    return null;
   }
 
   return null;

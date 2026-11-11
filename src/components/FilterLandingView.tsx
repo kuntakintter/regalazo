@@ -16,10 +16,15 @@ import {
   SEO_FILTER_ROUTES,
   BASE_SITE_URL,
   matchProductsForFilter,
+  matchProductsForAgeAndFilter,
 } from '@/lib/filterRoutes';
-import { SEO_AGE_ROUTES } from '@/lib/seoRoutes';
+import { PRIMARY_SEO_AGE_ROUTES, SEO_AGE_ROUTES } from '@/lib/seoRoutes';
 import { useActiveLocale } from '@/hooks/useActiveLocale';
-import { getLocalizedFilterMeta, getLocalizedAgeMeta } from '@/lib/i18nContent';
+import {
+  getLocalizedFilterMeta,
+  getLocalizedAgeMeta,
+  getLocalizedAgeFilterMeta,
+} from '@/lib/i18nContent';
 import { getHubLabels } from '@/lib/hubLabels';
 import { generateProductItemListSchema } from '@/lib/schemaProduct';
 import {
@@ -37,11 +42,13 @@ import {
 
 interface FilterLandingViewProps {
   filterSlug: string;
+  ageSlug?: string;
   omitSchema?: boolean;
 }
 
 export default function FilterLandingView({
   filterSlug,
+  ageSlug,
   omitSchema = false,
 }: FilterLandingViewProps) {
   const {
@@ -56,10 +63,22 @@ export default function FilterLandingView({
   } = useActiveLocale();
 
   const routeMeta = SEO_FILTER_ROUTES[filterSlug];
+  const ageRoute = ageSlug ? SEO_AGE_ROUTES[ageSlug] : undefined;
 
   const meta = useMemo(
-    () => getLocalizedFilterMeta(localeKey, filterSlug, activeCurrency),
-    [localeKey, filterSlug, activeCurrency]
+    () =>
+      ageSlug && ageRoute
+        ? getLocalizedAgeFilterMeta(localeKey, ageSlug, filterSlug, activeCurrency)
+        : getLocalizedFilterMeta(localeKey, filterSlug, activeCurrency),
+    [localeKey, ageSlug, ageRoute, filterSlug, activeCurrency]
+  );
+
+  const ageMeta = useMemo(
+    () =>
+      ageSlug && ageRoute
+        ? getLocalizedAgeMeta(localeKey, ageSlug, activeCurrency)
+        : null,
+    [localeKey, ageSlug, ageRoute, activeCurrency]
   );
 
   const labels = useMemo(
@@ -69,35 +88,52 @@ export default function FilterLandingView({
 
   const matchedProducts = useMemo(() => {
     if (!routeMeta) return [];
+    if (ageSlug && ageRoute) {
+      return matchProductsForAgeAndFilter(ageSlug, routeMeta, ALL_SITE_PRODUCTS, false);
+    }
     return matchProductsForFilter(routeMeta, ALL_SITE_PRODUCTS);
-  }, [routeMeta]);
+  }, [routeMeta, ageSlug, ageRoute]);
 
   const relatedFilters = useMemo(() => {
     if (!routeMeta) return [];
     const allFilters = Object.values(SEO_FILTER_ROUTES);
-    const sameKind = allFilters.filter(
-      (f) => f.filterKind === routeMeta.filterKind && f.slug !== routeMeta.slug
-    );
-    const otherFilters = allFilters.filter(
-      (f) => f.filterKind !== routeMeta.filterKind && f.slug !== routeMeta.slug
-    );
+    const pool =
+      ageSlug && ageRoute
+        ? allFilters.filter(
+            (f) =>
+              f.slug !== routeMeta.slug &&
+              matchProductsForAgeAndFilter(ageSlug, f, ALL_SITE_PRODUCTS, true).length > 0
+          )
+        : allFilters.filter((f) => f.slug !== routeMeta.slug);
+    const sameKind = pool.filter((f) => f.filterKind === routeMeta.filterKind);
+    const otherFilters = pool.filter((f) => f.filterKind !== routeMeta.filterKind);
     return [...sameKind, ...otherFilters].slice(0, 12);
-  }, [routeMeta]);
+  }, [routeMeta, ageSlug, ageRoute]);
 
-  const ageLinks = useMemo(
-    () =>
-      Object.values(SEO_AGE_ROUTES)
-        .slice(0, 8)
-        .map((ageRoute) => ({
-          slug: ageRoute.ageSlug,
-          label: getLocalizedAgeMeta(localeKey, ageRoute.ageSlug, activeCurrency).h1,
-        })),
-    [localeKey, activeCurrency]
-  );
+  const ageLinks = useMemo(() => {
+    return PRIMARY_SEO_AGE_ROUTES.filter((r) => r.ageId !== 'reveal').map((r) => {
+      const hasStrictForThisFilter = routeMeta
+        ? matchProductsForAgeAndFilter(r.ageSlug, routeMeta, ALL_SITE_PRODUCTS, true).length > 0
+        : false;
+      return {
+        slug: r.ageSlug,
+        href: hasStrictForThisFilter
+          ? `/${r.ageSlug}/${filterSlug}`
+          : `/${r.ageSlug}`,
+        isActiveAge: ageSlug === r.ageSlug,
+        label: getLocalizedAgeMeta(localeKey, r.ageSlug, activeCurrency).h1,
+      };
+    });
+  }, [localeKey, activeCurrency, routeMeta, filterSlug, ageSlug]);
 
   const homeUrl =
     localeKey === 'es' ? BASE_SITE_URL : `${BASE_SITE_URL}${localePath('/')}`;
-  const pageUrl = `${BASE_SITE_URL}${localePath(`/${filterSlug}`)}`;
+  const agePageUrl =
+    ageSlug && ageRoute ? `${BASE_SITE_URL}${localePath(`/${ageSlug}`)}` : null;
+  const pageUrl =
+    ageSlug && ageRoute
+      ? `${BASE_SITE_URL}${localePath(`/${ageSlug}/${filterSlug}`)}`
+      : `${BASE_SITE_URL}${localePath(`/${filterSlug}`)}`;
 
   const localizedLabel = routeMeta ? tTerm(routeMeta.label) : filterSlug;
 
@@ -105,22 +141,44 @@ export default function FilterLandingView({
     () => ({
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: ui.breadcrumbHome,
-          item: homeUrl,
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: localizedLabel,
-          item: pageUrl,
-        },
-      ],
+      itemListElement:
+        ageSlug && ageMeta && agePageUrl
+          ? [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: ui.breadcrumbHome,
+                item: homeUrl,
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: ageMeta.h1,
+                item: agePageUrl,
+              },
+              {
+                '@type': 'ListItem',
+                position: 3,
+                name: localizedLabel,
+                item: pageUrl,
+              },
+            ]
+          : [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: ui.breadcrumbHome,
+                item: homeUrl,
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: localizedLabel,
+                item: pageUrl,
+              },
+            ],
     }),
-    [ui.breadcrumbHome, homeUrl, localizedLabel, pageUrl]
+    [ui.breadcrumbHome, homeUrl, ageSlug, ageMeta, agePageUrl, localizedLabel, pageUrl]
   );
 
   const itemListSchema = useMemo(
@@ -176,6 +234,20 @@ export default function FilterLandingView({
           >
             {ui.breadcrumbHome}
           </Link>
+          {ageSlug && ageMeta && (
+            <>
+              <ChevronRight
+                className={`w-3.5 h-3.5 text-slate-500 ${isRtl ? 'rotate-180' : ''}`}
+                aria-hidden="true"
+              />
+              <Link
+                href={localePath(`/${ageSlug}`)}
+                className="hover:text-indigo-800 transition-colors py-1"
+              >
+                {ageMeta.h1}
+              </Link>
+            </>
+          )}
           <ChevronRight
             className={`w-3.5 h-3.5 text-slate-500 ${isRtl ? 'rotate-180' : ''}`}
             aria-hidden="true"
@@ -332,7 +404,9 @@ export default function FilterLandingView({
               {relatedFilters.map((other) => (
                 <Link
                   key={other.slug}
-                  href={localePath(`/${other.slug}`)}
+                  href={localePath(
+                    ageSlug && ageRoute ? `/${ageSlug}/${other.slug}` : `/${other.slug}`
+                  )}
                   className="group flex items-center justify-between p-3 rounded-2xl bg-slate-50 hover:bg-[#131921] border border-slate-200 hover:border-[#131921] text-slate-900 hover:text-white transition-all"
                 >
                   <span className="flex items-center gap-2 min-w-0 pr-2 text-xs font-bold truncate">
@@ -351,14 +425,18 @@ export default function FilterLandingView({
 
             <div className="pt-4 border-t border-slate-100">
               <h3 className="text-xs font-black uppercase tracking-wider text-slate-700 mb-3">
-                {ui.navAges}
+                {ui.navAges} — {localizedLabel}
               </h3>
               <div className="flex flex-wrap gap-2">
                 {ageLinks.map((age) => (
                   <Link
                     key={age.slug}
-                    href={localePath(`/${age.slug}`)}
-                    className="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-indigo-700 text-slate-800 hover:text-white text-xs font-semibold transition-colors"
+                    href={localePath(age.href)}
+                    className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-colors ${
+                      age.isActiveAge
+                        ? 'bg-indigo-700 text-white'
+                        : 'bg-slate-100 hover:bg-indigo-700 text-slate-800 hover:text-white'
+                    }`}
                   >
                     {age.label}
                   </Link>
@@ -368,7 +446,7 @@ export default function FilterLandingView({
           </div>
         </section>
 
-        <AgeStageInterlinking currentAgeSlug="" localeKey={localeKey} />
+        <AgeStageInterlinking currentAgeSlug={ageSlug || ''} localeKey={localeKey} />
 
         <SeoFaq currentTheme="classic" localeKey={localeKey} omitSchema={omitSchema} />
       </main>

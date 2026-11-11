@@ -207,6 +207,28 @@ export const CAFE_EXTRA_PRODUCTS: HubProduct[] = [
     ],
     idealFor: 'Disfrutar del café o té matutino con un toque estético y de calma.',
     searchQuery: 'juego tazas ceramica artesanal japonesa platillo bambu cafe capuchino'
+  },
+  {
+    id: 'cafe-balanza-timemore-black-mirror',
+    asin: 'B084M6P29B',
+    title: 'TIMEMORE Black Mirror Basic Pro Báscula de Café Digital de Precisión 0.1g con Cronómetro y Caudalímetro',
+    category: 'balanzas',
+    categoryLabel: 'Básculas de Precisión con Crono',
+    brand: 'Timemore',
+    priceText: '49,90 €',
+    priceNumeric: 49.9,
+    rating: 4.7,
+    reviewsCount: 9800,
+    imageUrl: 'https://m.media-amazon.com/images/I/51ztr9kI8HL._AC_UL320_.jpg',
+    badge: 'Precisión Barista 0.1g',
+    description: 'Balanza digital minimalista con precisión de 0,1 gramos, temporizador automático de vertido, medición de caudal en tiempo real y batería recargable USB-C.',
+    pros: [
+      'Sensor de alta precisión (0,1 g) con inicio automático del cronómetro al detectar el primer goteo',
+      'Pantalla LED oculta mate con almohadilla de silicona térmica impermeable',
+      'Batería de litio recargable por USB-C con semanas de autonomía'
+    ],
+    idealFor: 'Clavar recetas de espresso y café de filtro V60 o AeroPress como en una cafetería de especialidad.',
+    searchQuery: 'timemore black mirror bascula cafe digital cronometro 0.1g'
   }
 ];
 

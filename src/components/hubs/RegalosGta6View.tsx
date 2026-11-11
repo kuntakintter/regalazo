@@ -35,9 +35,13 @@ import {
 
 interface HubViewProps {
   omitSchema?: boolean;
+  initialCategory?: string;
 }
 
-export default function RegalosGta6View({ omitSchema = false }: HubViewProps) {
+export default function RegalosGta6View({
+  omitSchema = false,
+  initialCategory = 'all',
+}: HubViewProps) {
   const {
     localeKey,
     localePath,
@@ -53,7 +57,7 @@ export default function RegalosGta6View({ omitSchema = false }: HubViewProps) {
   } = useActiveLocale();
 
   const { toggleItem, isItemInList } = useVoting();
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [selectedCategory, setSelectedCategory] = useState<string>(initialCategory);
   const [selectedPrice, setSelectedPrice] = useState<string>('all');
   const [copiedId, setCopiedId] = useState<string | null>(null);
 

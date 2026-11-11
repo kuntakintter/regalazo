@@ -15,7 +15,11 @@ import ExpertBuyerTips from '@/components/ExpertBuyerTips';
 import { ALL_SITE_PRODUCTS } from '@/data/allCatalogProducts';
 import { Product } from '@/data/products';
 import { SEO_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
-import { BASE_SITE_URL } from '@/lib/filterRoutes';
+import {
+  BASE_SITE_URL,
+  SEO_FILTER_ROUTES,
+  matchProductsForAgeAndFilter,
+} from '@/lib/filterRoutes';
 import { matchProductsForSubcategory } from '@/lib/subcategoryMatcher';
 import { useActiveLocale } from '@/hooks/useActiveLocale';
 import { getLocalizedAgeMeta } from '@/lib/i18nContent';
@@ -62,6 +66,16 @@ export default function AgeLandingView({
     () => (routeMeta ? getSubcategorySlugMap(routeMeta.ageId) : []),
     [routeMeta]
   );
+
+  const activeAgeFilters = useMemo(() => {
+    if (!routeMeta) return [];
+    const subSlugs = new Set(subcategoryList.map((s) => s.slug));
+    return Object.values(SEO_FILTER_ROUTES).filter(
+      (flt) =>
+        !subSlugs.has(flt.slug) &&
+        matchProductsForAgeAndFilter(ageSlug, flt, ALL_SITE_PRODUCTS, true).length > 0
+    );
+  }, [routeMeta, subcategoryList, ageSlug]);
 
   const ageProducts: Product[] = useMemo(() => {
     if (!routeMeta) return [];
@@ -233,6 +247,26 @@ export default function AgeLandingView({
                     </Link>
                   ))}
                 </div>
+
+                {activeAgeFilters.length > 0 && (
+                  <div className="mt-4 pt-4 border-t border-slate-200/80">
+                    <h3 className="text-[11px] font-black uppercase tracking-wider text-slate-700 mb-2.5">
+                      {ui.directoryFiltersTitle}
+                    </h3>
+                    <div className="flex flex-wrap gap-1.5">
+                      {activeAgeFilters.map((flt) => (
+                        <Link
+                          key={flt.slug}
+                          href={localePath(`/${ageSlug}/${flt.slug}`)}
+                          className="px-2.5 py-1 rounded-xl text-[11px] font-semibold bg-white hover:bg-[#131921] text-slate-800 hover:text-amber-200 border border-slate-200 hover:border-[#131921] transition-colors"
+                        >
+                          <span aria-hidden="true">{flt.icon} </span>
+                          {tTerm(flt.label)}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
 
               <div className="px-5 py-2.5 bg-slate-50 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-1 text-[11px] text-slate-700">

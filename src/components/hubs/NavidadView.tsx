@@ -36,9 +36,13 @@ import {
 
 interface HubViewProps {
   omitSchema?: boolean;
+  initialCategory?: string;
 }
 
-export default function NavidadView({ omitSchema = false }: HubViewProps) {
+export default function NavidadView({
+  omitSchema = false,
+  initialCategory = 'all',
+}: HubViewProps) {
   const {
     localeKey,
     localePath,
@@ -51,7 +55,7 @@ export default function NavidadView({ omitSchema = false }: HubViewProps) {
     tTerm,
   } = useActiveLocale();
 
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [selectedCategory, setSelectedCategory] = useState<string>(initialCategory);
   const [selectedPrice, setSelectedPrice] = useState<string>('all');
   const [sortBy, setSortBy] = useState<'featured' | 'price-asc' | 'price-desc' | 'rating'>('featured');
   const [liveAmazonProducts, setLiveAmazonProducts] = useState<LiveSearchResult[]>([]);

@@ -15,12 +15,17 @@ import {
   BASE_SITE_URL,
   SEO_FILTER_ROUTES,
   matchProductsForFilter,
+  matchStrictProductsForFilter,
 } from '@/lib/filterRoutes';
 import {
   PRIMARY_SEO_AGE_ROUTES,
   SEO_AGE_ROUTES,
   getSubcategorySlugMap,
 } from '@/lib/seoRoutes';
+import {
+  PASSION_HUB_FILTERS_MAP,
+  getPassionHubFilterProducts,
+} from '@/lib/passionHubFilters';
 import { matchProductsForSubcategory } from '@/lib/subcategoryMatcher';
 import { localizeRoutePath } from '@/lib/localizedSlugs';
 
@@ -54,10 +59,13 @@ export interface CanonicalRouteSpec {
   category: SitemapCategory;
   priority: number;
   changefreq: 'daily' | 'weekly';
-  kind: 'home' | 'age' | 'subcategory' | 'filter' | 'hub';
+  kind: 'home' | 'age' | 'subcategory' | 'filter' | 'age-filter' | 'hub' | 'hub-filter';
   slug?: string;
   ageId?: string;
   subLabel?: string;
+  filterSlug?: string;
+  hubSlug?: string;
+  hubCategoryId?: string;
 }
 
 export interface SitemapUrlEntry {
@@ -170,6 +178,16 @@ export function getActiveStockForRoute(
       return matched.filter(isItemActiveInStock).length;
     }
 
+    case 'age-filter': {
+      if (!routeSpec.ageId || !routeSpec.filterSlug) return 0;
+      const filterMeta = SEO_FILTER_ROUTES[routeSpec.filterSlug];
+      if (!filterMeta) return 0;
+      const ageCatalog = activeCatalog.filter((p) => p.ageRange === routeSpec.ageId);
+      if (ageCatalog.length === 0) return 0;
+      const strictMatched = matchStrictProductsForFilter(filterMeta, ageCatalog);
+      return strictMatched.filter(isItemActiveInStock).length;
+    }
+
     case 'hub': {
       const slug = routeSpec.slug || '';
       if (HUB_COLLECTION_MAP[slug]) {
@@ -189,6 +207,15 @@ export function getActiveStockForRoute(
         ).length;
       }
       return activeCatalog.length;
+    }
+
+    case 'hub-filter': {
+      if (!routeSpec.hubSlug || !routeSpec.hubCategoryId) return 0;
+      const items = getPassionHubFilterProducts(
+        routeSpec.hubSlug,
+        routeSpec.hubCategoryId
+      );
+      return items.filter(isItemActiveInStock).length;
     }
 
     default:
@@ -224,6 +251,24 @@ export function getAllCanonicalRouteSpecs(): CanonicalRouteSpec[] {
       kind: 'hub',
       slug: hubSlug,
     });
+
+    const hubFilters = PASSION_HUB_FILTERS_MAP[hubSlug] || [];
+    for (const hf of hubFilters) {
+      specs.push({
+        id: `hub-filter:${hubSlug}/${hf.slug}`,
+        baseEsPath: `/${hubSlug}/${hf.slug}`,
+        category:
+          hubSlug === 'halloween' || hubSlug === 'navidad'
+            ? 'ocasiones'
+            : 'tematicas',
+        priority: 0.86,
+        changefreq: 'weekly',
+        kind: 'hub-filter',
+        slug: `${hubSlug}/${hf.slug}`,
+        hubSlug,
+        hubCategoryId: hf.id,
+      });
+    }
   }
 
   // 2. FILTERS: Temáticas (category/clothing/anime/wheels), Presupuestos (price), Ocasiones (gender)
@@ -262,6 +307,8 @@ export function getAllCanonicalRouteSpecs(): CanonicalRouteSpec[] {
 
   for (const primaryAge of PRIMARY_SEO_AGE_ROUTES) {
     const subcategories = getSubcategorySlugMap(primaryAge.ageId);
+    const subSlugs = new Set(subcategories.map((s) => s.slug));
+
     for (const sub of subcategories) {
       specs.push({
         id: `subcat:${primaryAge.ageSlug}/${sub.slug}`,
@@ -274,6 +321,32 @@ export function getAllCanonicalRouteSpecs(): CanonicalRouteSpec[] {
         ageId: primaryAge.ageId,
         subLabel: sub.label,
       });
+    }
+
+    // 4. MATRIZ CRUZADA EDAD × FILTRO (Temáticas, Pasiones, Anime, Vehículos, Moda, Presupuestos y Destinatario)
+    if (primaryAge.ageId !== 'reveal') {
+      for (const filterMeta of Object.values(SEO_FILTER_ROUTES)) {
+        if (subSlugs.has(filterMeta.slug)) continue;
+
+        let category: SitemapCategory = 'tematicas';
+        if (filterMeta.filterKind === 'price') {
+          category = 'presupuestos';
+        } else if (filterMeta.filterKind === 'gender') {
+          category = 'ocasiones';
+        }
+
+        specs.push({
+          id: `age-filter:${primaryAge.ageSlug}/${filterMeta.slug}`,
+          baseEsPath: `/${primaryAge.ageSlug}/${filterMeta.slug}`,
+          category,
+          priority: 0.84,
+          changefreq: 'weekly',
+          kind: 'age-filter',
+          slug: `${primaryAge.ageSlug}/${filterMeta.slug}`,
+          ageId: primaryAge.ageId,
+          filterSlug: filterMeta.slug,
+        });
+      }
     }
   }
 

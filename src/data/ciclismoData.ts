@@ -138,5 +138,27 @@ export const CICLISMO_PRODUCTS: HubProduct[] = [
     ],
     idealFor: 'Llevar el móvil con GPS a la vista y bien protegido de la lluvia.',
     searchQuery: 'rockbros bolsa cuadro bicicleta impermeable movil'
+  },
+  {
+    id: 'bici-casco-giro-fixture-mips',
+    asin: 'B075RW2H7W',
+    title: 'Giro Fixture MIPS Casco de Ciclismo MTB y Carretera con Sistema Roc Loc Sport',
+    category: 'cascos',
+    categoryLabel: 'Cascos MIPS & Gafas',
+    brand: 'Giro',
+    priceText: '54,95 €',
+    priceNumeric: 54.95,
+    rating: 4.8,
+    reviewsCount: 18900,
+    imageUrl: 'https://m.media-amazon.com/images/I/6102YVGkwsL._AC_UL320_.jpg',
+    badge: 'Protección Cerebral MIPS',
+    description: 'Carcasa In-Mold de policarbonato con tecnología de protección multidireccional MIPS, 18 conductos de ventilación y visera desmontable.',
+    pros: [
+      'Sistema MIPS integrado que reduce las fuerzas rotacionales en caso de impacto',
+      'Ajuste micrométrico con una sola mano mediante ruleta Roc Loc Sport',
+      'Almohadillas de secado rápido y bandas reflectantes traseras'
+    ],
+    idealFor: 'Ciclistas de montaña, gravel o ciudad que buscan seguridad prémium certificada.',
+    searchQuery: 'giro fixture mips casco bicicleta mtb adulto'
   }
 ];

@@ -13,8 +13,17 @@ import TopPodium from '@/components/TopPodium';
 import AgeStageInterlinking from '@/components/AgeStageInterlinking';
 import ExpertBuyerTips from '@/components/ExpertBuyerTips';
 import { ALL_SITE_PRODUCTS } from '@/data/allCatalogProducts';
+import {
+  isClothingCategory,
+  isFiguresCategory,
+  isWheelsMotorCategory,
+} from '@/data/products';
 import { SEO_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
-import { BASE_SITE_URL } from '@/lib/filterRoutes';
+import {
+  BASE_SITE_URL,
+  SEO_FILTER_ROUTES,
+  matchProductsForAgeAndFilter,
+} from '@/lib/filterRoutes';
 import { matchProductsForSubcategory } from '@/lib/subcategoryMatcher';
 import { useActiveLocale } from '@/hooks/useActiveLocale';
 import { getLocalizedAgeMeta, getLocalizedSubcategoryMeta } from '@/lib/i18nContent';
@@ -140,6 +149,20 @@ export default function SubcategoryLandingView({
 
   const siblingSubcategories = subcategories.filter((s) => s.slug !== categorySlug);
 
+  const sublabel = currentSub.label;
+  const specializedSubfilters = Object.values(SEO_FILTER_ROUTES).filter((flt) => {
+    if (isWheelsMotorCategory(sublabel)) return flt.filterKind === 'wheels';
+    if (isFiguresCategory(sublabel)) return flt.filterKind === 'anime';
+    if (isClothingCategory(sublabel)) return flt.filterKind === 'clothing';
+    return false;
+  });
+
+  const activeAgeBudgetsAndGender = Object.values(SEO_FILTER_ROUTES).filter(
+    (flt) =>
+      (flt.filterKind === 'price' || flt.filterKind === 'gender') &&
+      matchProductsForAgeAndFilter(ageSlug, flt, ALL_SITE_PRODUCTS, true).length > 0
+  );
+
   return (
     <div
       dir={isRtl ? 'rtl' : 'ltr'}
@@ -255,6 +278,50 @@ export default function SubcategoryLandingView({
                     </Link>
                   ))}
                 </div>
+
+                {specializedSubfilters.length > 0 && (
+                  <div className="mt-4 pt-4 border-t border-slate-200/80">
+                    <h3 className="text-[11px] font-black uppercase tracking-wider text-indigo-800 mb-2.5">
+                      {isWheelsMotorCategory(sublabel)
+                        ? ui.wheelsSubfilterLabel
+                        : isFiguresCategory(sublabel)
+                        ? ui.animeSubfilterLabel
+                        : ui.clothingSubfilterLabel}
+                    </h3>
+                    <div className="flex flex-wrap gap-1.5">
+                      {specializedSubfilters.map((flt) => (
+                        <Link
+                          key={flt.slug}
+                          href={localePath(`/${ageSlug}/${flt.slug}`)}
+                          className="px-3 py-1.5 rounded-xl text-xs font-bold bg-indigo-50 hover:bg-indigo-700 text-indigo-900 hover:text-white border border-indigo-200 hover:border-indigo-700 transition-colors"
+                        >
+                          <span aria-hidden="true">{flt.icon} </span>
+                          {tTerm(flt.label)}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {activeAgeBudgetsAndGender.length > 0 && (
+                  <div className="mt-4 pt-4 border-t border-slate-200/80">
+                    <h3 className="text-[11px] font-black uppercase tracking-wider text-slate-700 mb-2">
+                      {ui.maxBudgetLabel} · {ui.genderLabel}
+                    </h3>
+                    <div className="flex flex-wrap gap-1.5">
+                      {activeAgeBudgetsAndGender.map((flt) => (
+                        <Link
+                          key={flt.slug}
+                          href={localePath(`/${ageSlug}/${flt.slug}`)}
+                          className="px-2.5 py-1 rounded-xl text-[11px] font-semibold bg-white hover:bg-[#131921] text-slate-800 hover:text-amber-200 border border-slate-200 hover:border-[#131921] transition-colors"
+                        >
+                          <span aria-hidden="true">{flt.icon} </span>
+                          {tTerm(flt.label)}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           )}

@@ -250,5 +250,28 @@ export const MASCOTAS_PRODUCTS: MascotaProduct[] = [
     ],
     idealFor: 'Cualquier casa con perro o gato en época de muda de pelo.',
     searchQuery: 'furminator perro cepillo deslanador pelo muerto'
+  },
+  {
+    id: 'pet-cama-ortopedica-viscoelastica',
+    asin: 'B07WG9GJ6B',
+    title: 'Cama Ortopédica Viscoelástica para Perros y Gatos con Bordes Acolchados y Funda Lavable Impermeable',
+    category: 'camas',
+    categoryLabel: 'Camas Ortopédicas & Relax',
+    brand: 'Trixie',
+    petType: 'all',
+    priceText: '44,95 €',
+    priceNumeric: 44.95,
+    rating: 4.7,
+    reviewsCount: 27400,
+    imageUrl: 'https://m.media-amazon.com/images/I/51iltf8FdzL._AC_UL320_.jpg',
+    badge: 'Confort Articular Memory Foam',
+    description: 'Colchón ortopédico de espuma viscoelástica tipo huevo que alivia la presión en articulaciones y cadera, con cojín perimetral para apoyar la cabeza.',
+    pros: [
+      'Espuma de alta densidad que cuida las articulaciones de perros jóvenes y senior',
+      'Forro interior impermeable y funda exterior de felpa extraíble y lavable a máquina',
+      'Base con puntos de goma antideslizantes para suelos de parquet o baldosa'
+    ],
+    idealFor: 'Regalar un descanso reparador de hotel de 5 estrellas a perros y gatos.',
+    searchQuery: 'cama ortopedica perro viscoelastica funda lavable'
   }
 ];

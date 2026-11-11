@@ -1,6 +1,7 @@
 import { AGE_SUBCATEGORIES_MAP } from '@/data/products';
 import { SEO_AGE_ROUTES, slugify } from '@/lib/seoRoutes';
 import { ALL_STATIC_HUB_SLUGS, SEO_FILTER_ROUTES } from '@/lib/filterRoutes';
+import { PASSION_HUB_FILTERS_MAP } from '@/lib/passionHubFilters';
 import { EN_TERMS } from '@/lib/locales/en';
 import { WEST_EUROPE_PACKS } from '@/lib/locales/westEurope';
 import { NORTH_EAST_EUROPE_PACKS } from '@/lib/locales/northEastEurope';
@@ -464,6 +465,13 @@ function buildAllCanonicalEsSlugs(): {
       const s = slugify(labelEs);
       if (!subcatMap.has(s)) {
         subcatMap.set(s, labelEs);
+      }
+    }
+  }
+  for (const filterList of Object.values(PASSION_HUB_FILTERS_MAP)) {
+    for (const item of filterList) {
+      if (!subcatMap.has(item.slug)) {
+        subcatMap.set(item.slug, item.label);
       }
     }
   }

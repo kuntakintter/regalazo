@@ -294,5 +294,27 @@ export const GAMING_PRODUCTS: HubProduct[] = [
     ],
     idealFor: 'Streamers y creadores de contenido que quieren macros al vuelo para sus directos.',
     searchQuery: 'corsair k55 rgb pro teclado gaming macro'
+  },
+  {
+    id: 'game-silla-cojin-lumbar-ergonomico-setup',
+    asin: 'B0851B5S3R',
+    title: 'Set Cojín Lumbar y Cervical Viscoelástico Ergonómico para Silla Gaming y Setup Pro',
+    category: 'sillas',
+    categoryLabel: 'Cojines & Confort Setup',
+    brand: 'Corsair',
+    priceText: '34,99 €',
+    priceNumeric: 34.99,
+    rating: 4.6,
+    reviewsCount: 14200,
+    imageUrl: '/images/products/game-auriculares-hyperx-cloud-2-1.jpg',
+    badge: 'Ergonomía Maratón 8h+',
+    description: 'Espuma viscoelástica de alta densidad con gel refrescante y tejido de malla transpirable 3D diseñado para mantener la postura lumbar y cervical en sesiones largas.',
+    pros: [
+      'Memoria viscoelástica indeformable con correas ajustables a cualquier silla gaming',
+      'Funda transpirable extraíble y lavable a máquina con tacto suave',
+      'Alivia la tensión lumbar y cervical en jornadas de gaming y teletrabajo'
+    ],
+    idealFor: 'Mejorar al instante la comodidad de cualquier silla gaming o de escritorio.',
+    searchQuery: 'cojin lumbar cervical viscoelastico silla gaming ergonomico'
   }
 ];

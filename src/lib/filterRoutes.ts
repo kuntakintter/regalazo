@@ -1,5 +1,6 @@
 import { I18N_SEO_ROUTES } from '@/lib/i18nRoutes';
 import { localizeRoutePath } from '@/lib/localizedSlugs';
+import { SEO_AGE_ROUTES } from '@/lib/seoRoutes';
 import {
   Product,
   GENERAL_CATEGORY_MAPPING,
@@ -930,10 +931,11 @@ export function getHreflangAlternatesForPath(routePath: string = ''): Record<str
 }
 
 /**
- * Empareja productos reales y precisos para una ruta de filtro SEO,
- * reutilizando la lógica segura con límites de palabra y precios exactos.
+ * Devuelve únicamente los productos estrictamente coincidentes con el filtro SEO
+ * (sin relleno de productos relacionados). Se usa para el motor de Sitemaps Anti-Thin Content
+ * y para priorizar las coincidencias exactas en las combinaciones Edad × Filtro.
  */
-export function matchProductsForFilter(
+export function matchStrictProductsForFilter(
   meta: SeoFilterRouteMeta,
   catalog: Product[] = ALL_SITE_PRODUCTS
 ): Product[] {
@@ -1013,7 +1015,28 @@ export function matchProductsForFilter(
     return (b.reviewsCount || 0) * (b.rating || 1) - (a.reviewsCount || 0) * (a.rating || 1);
   };
 
-  const primary = [...matched].sort(sortScore);
+  return [...matched].sort(sortScore);
+}
+
+/**
+ * Empareja productos reales y precisos para una ruta de filtro SEO,
+ * reutilizando la lógica segura con límites de palabra y precios exactos.
+ */
+export function matchProductsForFilter(
+  meta: SeoFilterRouteMeta,
+  catalog: Product[] = ALL_SITE_PRODUCTS
+): Product[] {
+  const sortScore = (a: Product, b: Product) => {
+    if (meta.filterKind === 'gender') {
+      const target = meta.filterValue === 'girl' ? 'girl' : 'boy';
+      const aMatch = a.gender === target ? 1 : 0;
+      const bMatch = b.gender === target ? 1 : 0;
+      if (aMatch !== bMatch) return bMatch - aMatch;
+    }
+    return (b.reviewsCount || 0) * (b.rating || 1) - (a.reviewsCount || 0) * (a.rating || 1);
+  };
+
+  const primary = matchStrictProductsForFilter(meta, catalog);
   const MIN_FILTER_PRODUCTS = 6;
   if (primary.length >= MIN_FILTER_PRODUCTS) {
     return primary;
@@ -1104,4 +1127,41 @@ export function matchProductsForFilter(
   }
 
   return combined;
+}
+
+/**
+ * Empareja productos para la combinación cruzada Edad × Filtro (`/<ageSlug>/<filterSlug>`).
+ * - Con `strictOnly = true`, devuelve únicamente las coincidencias reales exactas en esa edad
+ *   (usado por el Sitemap Engine Anti-Thin Content para indexar solo combinaciones con stock > 0).
+ * - Con `strictOnly = false` (por defecto), prioriza las coincidencias exactas de esa edad y,
+ *   si hay menos de 6 resultados, completa con productos relevantes de la misma etapa de edad.
+ */
+export function matchProductsForAgeAndFilter(
+  ageSlugOrId: string,
+  meta: SeoFilterRouteMeta,
+  catalog: Product[] = ALL_SITE_PRODUCTS,
+  strictOnly: boolean = false
+): Product[] {
+  const ageRoute = SEO_AGE_ROUTES[ageSlugOrId];
+  const ageId = ageRoute ? ageRoute.ageId : ageSlugOrId;
+
+  const ageCatalog =
+    ageId === 'reveal'
+      ? catalog.filter(
+          (p) =>
+            p.subcategory === 'Fiestas y Revelación de Género' ||
+            p.title.toLowerCase().includes('revelación')
+        )
+      : catalog.filter((p) => p.ageRange === ageId);
+
+  const strictMatches = matchStrictProductsForFilter(meta, ageCatalog);
+  if (strictOnly) {
+    return strictMatches;
+  }
+
+  if (strictMatches.length >= 6) {
+    return strictMatches;
+  }
+
+  return matchProductsForFilter(meta, ageCatalog);
 }

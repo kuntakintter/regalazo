@@ -37,11 +37,15 @@ import {
 
 interface HubViewProps {
   omitSchema?: boolean;
+  initialCategory?: string;
 }
 
 const BRAND_OPTIONS = MOTORISTA_BRANDS.filter((b) => b !== 'Todas las marcas');
 
-export default function MotoristasView({ omitSchema = false }: HubViewProps) {
+export default function MotoristasView({
+  omitSchema = false,
+  initialCategory = 'all',
+}: HubViewProps) {
   const {
     localeKey,
     localePath,
@@ -54,7 +58,7 @@ export default function MotoristasView({ omitSchema = false }: HubViewProps) {
     tTerm,
   } = useActiveLocale();
 
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [selectedCategory, setSelectedCategory] = useState<string>(initialCategory);
   const [selectedBrand, setSelectedBrand] = useState<string>('all');
   const [selectedPrice, setSelectedPrice] = useState<string>('all');
   const [selectedStyle, setSelectedStyle] = useState<string>('all');

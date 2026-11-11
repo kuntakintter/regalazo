@@ -37,11 +37,15 @@ import {
 
 interface HubViewProps {
   omitSchema?: boolean;
+  initialCategory?: string;
 }
 
 const BRAND_OPTIONS = CAFE_BRANDS.filter((b) => b !== 'Todas las marcas');
 
-export default function CafeView({ omitSchema = false }: HubViewProps) {
+export default function CafeView({
+  omitSchema = false,
+  initialCategory = 'all',
+}: HubViewProps) {
   const {
     localeKey,
     localePath,
@@ -54,7 +58,7 @@ export default function CafeView({ omitSchema = false }: HubViewProps) {
     tTerm,
   } = useActiveLocale();
 
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [selectedCategory, setSelectedCategory] = useState<string>(initialCategory);
   const [selectedBrand, setSelectedBrand] = useState<string>('all');
   const [selectedPrice, setSelectedPrice] = useState<string>('all');
   const [sortBy, setSortBy] = useState<'featured' | 'price-asc' | 'price-desc' | 'rating'>('featured');
