@@ -424,10 +424,14 @@ const NATIVE_STAGE_AND_HUB_OVERRIDES: Record<string, Record<string, string>> = {
  * Legacy/alias Spanish slugs that should also resolve cleanly to their canonical Spanish slug.
  */
 const ES_SLUG_ALIASES: Record<string, string> = {
+  'adolescentes-13-a-15-anos': 'jovenes-13-a-15-anos',
+  'preadolescentes-10-a-12-anos': 'ninos-10-a-12-anos',
+  'adolescentes-16-a-18-anos': 'jovenes-16-a-18-anos',
   'regalos-para-ninos-de-1-ano': 'regalos-para-bebes-de-1-ano',
   'regalos-para-ninos-de-16-anos': 'regalos-para-jovenes-de-16-anos',
   'regalos-para-ninos-de-17-anos': 'regalos-para-jovenes-de-17-anos',
   'regalos-para-ninos-de-18-anos': 'regalos-para-jovenes-de-18-anos',
+  'creative-stationery-and-bullet-journal': 'papeleria-creativa-y-bullet-journal',
 };
 
 interface LocaleSlugTable {
