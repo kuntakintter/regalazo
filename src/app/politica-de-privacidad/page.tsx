@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: 'Política de Privacidad (RGPD) | Un Buen Regalo',
   description: 'Política de Privacidad y Protección de Datos personales conforme al Reglamento General de Protección de Datos (RGPD) y la LOPDGDD.',
   robots: {
-    index: false,
+    index: true,
     follow: true,
   },
   alternates: {

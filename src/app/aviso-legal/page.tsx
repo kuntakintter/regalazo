@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: 'Aviso Legal | Un Buen Regalo',
   description: 'Información legal, condiciones de uso y divulgación obligatoria del programa de Afiliados de Amazon en España y tiendas internacionales para Un Buen Regalo.',
   robots: {
-    index: false,
+    index: true,
     follow: true,
   },
   alternates: {
