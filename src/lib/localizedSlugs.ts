@@ -489,6 +489,30 @@ function getCanonicalEsSlugs() {
   return cachedCanonicalSlugs;
 }
 
+const STAGE_AND_HUB_TERM_KEYS: Record<string, string> = {
+  'bebes-0-a-12-meses': 'Bebés (0-12 meses)',
+  'ninos-1-a-3-anos': 'Niños (1-3 años)',
+  'ninos-4-a-6-anos': 'Niños (4-6 años)',
+  'ninos-7-a-9-anos': 'Niños (7-9 años)',
+  'ninos-10-a-12-anos': 'Preadolescentes (10-12 años)',
+  'jovenes-13-a-15-anos': 'Adolescentes (13-15 años)',
+  'jovenes-16-a-18-anos': 'Jóvenes (16-18 años)',
+  'adultos-mas-de-18-anos': 'Adultos (+18 años)',
+  'fiesta-revelacion-genero': 'Fiesta Revelación de Género',
+  'motoristas': 'Motoristas',
+  'automovil': 'Automóvil',
+  'ciclismo': 'Ciclismo y MTB',
+  'gaming': 'Gaming y Setup',
+  'amantes-del-cafe': 'Amantes del Café',
+  'mascotas': 'Mascotas',
+  'regalos-menos-20-euros': 'Regalos Menos de 20 Euros',
+  'que-regalar-a-un-hombre': 'Qué Regalar a un Hombre',
+  'que-regalar-a-una-mujer': 'Qué Regalar a una Mujer',
+  'que-regalar-a-mi-novio': 'Qué Regalar a mi Novio',
+  'que-regalar-a-mi-novia': 'Qué Regalar a mi Novia',
+  'regalos-para-los-que-tienen-de-todo': 'Regalos para los que Tienen de Todo',
+};
+
 function computeRawLocalizedTopSlug(lang: string, esSlug: string): string {
   if (lang === 'es') return esSlug;
   if (lang === 'en' || !LATIN_SCRIPT_LOCALES.has(lang)) {
@@ -511,11 +535,12 @@ function computeRawLocalizedTopSlug(lang: string, esSlug: string): string {
     }
   }
 
-  // 3. Check filter route label translation in TERM_TRANSLATIONS[lang]
+  // 3. Check stage/hub/filter label translation in TERM_TRANSLATIONS[lang]
   const filterMeta = SEO_FILTER_ROUTES[esSlug];
+  const termKey = filterMeta?.label || STAGE_AND_HUB_TERM_KEYS[esSlug];
   const dict = getTermTranslations()[lang];
-  if (filterMeta && dict && dict[filterMeta.label]) {
-    const candidate = asciiSlugify(dict[filterMeta.label]);
+  if (termKey && dict && dict[termKey]) {
+    const candidate = asciiSlugify(dict[termKey]);
     if (candidate.length >= 3) return candidate;
   }
 
