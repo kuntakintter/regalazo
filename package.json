@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "generate-sitemaps": "node scripts/generate-sitemaps.mjs",
     "sync-prices": "node scripts/sync-all-prices.mjs",
     "lint": "next lint"
   },

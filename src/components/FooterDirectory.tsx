@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { ChevronDown, FolderTree, Compass } from 'lucide-react';
-import { SEO_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
+import { SEO_AGE_ROUTES, SPECIFIC_YEAR_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
 import { ALL_STATIC_HUB_SLUGS, SEO_FILTER_ROUTES } from '@/lib/filterRoutes';
 import { getHubStrings, getLocalizedAgeMeta } from '@/lib/i18nContent';
 import { useActiveLocale } from '@/hooks/useActiveLocale';
@@ -12,7 +12,7 @@ export default function FooterDirectory({ isDark = false }: { isDark?: boolean }
   const { localeKey, activeCurrency, localePath, tTerm, ui } = useActiveLocale();
   const [isOpen, setIsOpen] = useState(true);
 
-  const ageEntries = Object.entries(SEO_AGE_ROUTES);
+  const ageEntries = Object.entries(SEO_AGE_ROUTES).filter(([, meta]) => !meta.specificYear);
   const filterEntries = Object.values(SEO_FILTER_ROUTES);
 
   return (
@@ -109,6 +109,28 @@ export default function FooterDirectory({ isDark = false }: { isDark?: boolean }
                 </div>
               );
             })}
+          </div>
+
+          {/* 1B. 18 Specific-Year Age Landing Pages (1 to 18 Years) */}
+          <div className={`border-t pt-5 ${isDark ? 'border-slate-800' : 'border-slate-200/80'}`}>
+            <div className="flex flex-wrap gap-1.5">
+              {SPECIFIC_YEAR_AGE_ROUTES.map((yrRoute) => {
+                const yrMeta = getLocalizedAgeMeta(localeKey, yrRoute.ageSlug, activeCurrency);
+                return (
+                  <Link
+                    key={yrRoute.ageSlug}
+                    href={localePath(`/${yrRoute.ageSlug}`)}
+                    className={`px-2.5 py-1 rounded-xl text-[11px] font-semibold border transition-colors ${
+                      isDark
+                        ? 'bg-slate-800/80 border-slate-700 text-slate-200 hover:bg-slate-700 hover:text-white'
+                        : 'bg-indigo-50/70 border-indigo-200 text-indigo-800 hover:bg-indigo-100 hover:border-indigo-300'
+                    }`}
+                  >
+                    🎂 {yrMeta.h1}
+                  </Link>
+                );
+              })}
+            </div>
           </div>
 
           {/* 2. All 17 Niche Hubs & Interactive Tools */}

@@ -1,8 +1,9 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { I18N_SEO_ROUTES } from '@/lib/i18nRoutes';
-import { SEO_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
+import { PRIMARY_SEO_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
 import { ALL_STATIC_HUB_SLUGS } from '@/lib/filterRoutes';
+import { toLocalizedSlug } from '@/lib/localizedSlugs';
 import { getLocalizedNestedMetadata } from '@/lib/routeMetadata';
 import { renderLocalizedRouteView } from '@/lib/routeViews';
 
@@ -19,7 +20,7 @@ interface PageProps {
 export async function generateStaticParams() {
   const params: { ageSlug: string; categorySlug: string }[] = [];
 
-  for (const route of Object.values(SEO_AGE_ROUTES)) {
+  for (const route of PRIMARY_SEO_AGE_ROUTES) {
     const subcategories = getSubcategorySlugMap(route.ageId);
     for (const sub of subcategories) {
       params.push({
@@ -33,7 +34,7 @@ export async function generateStaticParams() {
     for (const hubSlug of ALL_STATIC_HUB_SLUGS) {
       params.push({
         ageSlug: 'en',
-        categorySlug: hubSlug,
+        categorySlug: toLocalizedSlug('en', hubSlug),
       });
     }
   }

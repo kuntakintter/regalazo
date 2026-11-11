@@ -14,6 +14,7 @@ import {
   normalizeLocaleKey,
 } from '@/lib/i18nContent';
 import { LocaleKey } from '@/lib/i18nTypes';
+import { delocalizeRouteSegments } from '@/lib/localizedSlugs';
 import { useCurrency, Currency } from '@/context/CurrencyContext';
 
 export function resolveLocaleFromPathname(pathname?: string | null): {
@@ -26,17 +27,21 @@ export function resolveLocaleFromPathname(pathname?: string | null): {
   const firstSeg = segments[0]?.toLowerCase() || '';
 
   if (firstSeg && firstSeg in I18N_SEO_ROUTES) {
-    const rest = segments.slice(1).join('/');
+    const localeKey = normalizeLocaleKey(firstSeg);
+    const restSegments = delocalizeRouteSegments(localeKey, segments.slice(1));
+    const rest = restSegments.join('/');
     return {
-      localeKey: normalizeLocaleKey(firstSeg),
+      localeKey,
       basePath: rest ? `/${rest}` : '/',
       isLocaleRoute: true,
     };
   }
 
+  const esSegments = delocalizeRouteSegments('es', segments);
+  const esJoined = esSegments.join('/');
   return {
     localeKey: 'es',
-    basePath: cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`,
+    basePath: esJoined ? `/${esJoined}` : '/',
     isLocaleRoute: false,
   };
 }

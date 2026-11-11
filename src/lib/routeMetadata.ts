@@ -6,6 +6,7 @@ import {
   SEO_FILTER_ROUTES,
 } from '@/lib/filterRoutes';
 import { SEO_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
+import { delocalizeRouteSegments, localizeRoutePath } from '@/lib/localizedSlugs';
 import {
   getLocalizedAgeMeta,
   getLocalizedFilterMeta,
@@ -84,12 +85,12 @@ export function getLocalizedNestedMetadata(
   const currency = cfg ? cfg.currency : 'EUR';
   const ogLocale = cfg ? cfg.ogLocale : 'es_ES';
   const siteName = cfg ? `${cfg.brandTranslation} | Un Buen Regalo` : 'Un Buen Regalo';
-  const prefix = cfg ? `/${cfg.slug}` : '';
+  const normalizedSegments = delocalizeRouteSegments(localeKey, slugSegments);
 
-  if (slugSegments.length === 1) {
-    const slug = slugSegments[0];
+  if (normalizedSegments.length === 1) {
+    const slug = normalizedSegments[0];
     const routePath = `/${slug}`;
-    const canonicalUrl = `${BASE_SITE_URL}${prefix}${routePath}`;
+    const canonicalUrl = `${BASE_SITE_URL}${localizeRoutePath(localeKey, routePath)}`;
 
     if (ALL_STATIC_HUB_SLUGS.includes(slug)) {
       const hubMeta = getLocalizedStaticHubMeta(localeKey, slug, currency);
@@ -153,8 +154,8 @@ export function getLocalizedNestedMetadata(
     return null;
   }
 
-  if (slugSegments.length === 2) {
-    const [ageSlug, categorySlug] = slugSegments;
+  if (normalizedSegments.length === 2) {
+    const [ageSlug, categorySlug] = normalizedSegments;
     const ageRoute = SEO_AGE_ROUTES[ageSlug];
     if (!ageRoute) return null;
 
@@ -170,7 +171,7 @@ export function getLocalizedNestedMetadata(
     );
     const ogImage = getCategoryOgImage(currentSub.label);
     const routePath = `/${ageSlug}/${categorySlug}`;
-    const canonicalUrl = `${BASE_SITE_URL}${prefix}${routePath}`;
+    const canonicalUrl = `${BASE_SITE_URL}${localizeRoutePath(localeKey, routePath)}`;
 
     return buildSocialMetadata({
       title: localized.title,

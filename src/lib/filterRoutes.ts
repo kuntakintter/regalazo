@@ -1,4 +1,5 @@
 import { I18N_SEO_ROUTES } from '@/lib/i18nRoutes';
+import { localizeRoutePath } from '@/lib/localizedSlugs';
 import {
   Product,
   GENERAL_CATEGORY_MAPPING,
@@ -912,13 +913,17 @@ export function normalizeRoutePath(routePath: string = ''): string {
  */
 export function getHreflangAlternatesForPath(routePath: string = ''): Record<string, string> {
   const path = normalizeRoutePath(routePath);
+  const esPath = path ? localizeRoutePath('es', path) : '';
+  const enPath = path ? localizeRoutePath('en', path) : '/en';
+
   const languages: Record<string, string> = {
-    es: `${BASE_SITE_URL}${path}`,
-    'x-default': `${BASE_SITE_URL}/en${path}`,
+    es: `${BASE_SITE_URL}${esPath}`,
+    'x-default': `${BASE_SITE_URL}${enPath}`,
   };
 
   for (const route of Object.values(I18N_SEO_ROUTES)) {
-    languages[route.hreflang] = `${BASE_SITE_URL}/${route.slug}${path}`;
+    const locPath = path ? localizeRoutePath(route.slug, path) : `/${route.slug}`;
+    languages[route.hreflang] = `${BASE_SITE_URL}${locPath}`;
   }
 
   return languages;

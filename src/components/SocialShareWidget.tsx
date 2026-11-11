@@ -111,7 +111,6 @@ export default function SocialShareWidget({
           target="_blank"
           rel="noopener noreferrer nofollow"
           title={item.name}
-          aria-label={item.name}
           className={`inline-flex items-center justify-center gap-1.5 min-w-7 min-h-7 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all shadow-2xs hover:scale-105 active:scale-95 cursor-pointer ${item.bg}`}
         >
           {item.icon}
@@ -123,7 +122,6 @@ export default function SocialShareWidget({
         type="button"
         onClick={handleCopy}
         title={ui.shareBtnCopy}
-        aria-label={copied ? ui.shareBtnCopied : ui.shareBtnCopy}
         className="inline-flex items-center justify-center gap-1.5 min-w-7 min-h-7 px-2.5 py-1.5 rounded-xl text-xs font-bold bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 transition-all shadow-2xs hover:scale-105 active:scale-95 cursor-pointer"
       >
         {copied ? (

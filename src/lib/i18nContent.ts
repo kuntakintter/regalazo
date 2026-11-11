@@ -4,6 +4,7 @@ import { AGE_CATEGORIES } from '@/data/products';
 import { I18N_SEO_ROUTES, I18nFaqItem } from '@/lib/i18nRoutes';
 import { SEO_AGE_ROUTES } from '@/lib/seoRoutes';
 import { ALL_STATIC_HUB_SLUGS, SEO_FILTER_ROUTES } from '@/lib/filterRoutes';
+import { localizeRoutePath } from '@/lib/localizedSlugs';
 import { HubCopy, LangPack, LocaleKey, LocalizedMeta, UiStrings } from '@/lib/i18nTypes';
 import { ES_HUBS, ES_PACK, ES_UI, ES_US_HUB_OVERRIDES } from '@/lib/locales/es';
 import { EN_GB_UI_OVERRIDES, EN_HUBS, EN_PACK, EN_TERMS, EN_UI } from '@/lib/locales/en';
@@ -161,16 +162,6 @@ export function getLocaleHref(localeKey: string | null | undefined, path: string
   const withLeading = raw.startsWith('/') ? raw : `/${raw}`;
   const clean = withLeading.length > 1 && withLeading.endsWith('/') ? withLeading.slice(0, -1) : withLeading;
 
-  if (key === 'es') {
-    return clean;
-  }
-
-  // Evitar prefijado doble si ya contiene el prefijo del idioma
-  const prefix = `/${key}`;
-  if (clean === prefix || clean.startsWith(`${prefix}/`)) {
-    return clean;
-  }
-
   // Las páginas legales siempre son rutas españolas únicas (con noindex)
   if (
     clean === '/aviso-legal' ||
@@ -180,7 +171,20 @@ export function getLocaleHref(localeKey: string | null | undefined, path: string
     return clean;
   }
 
-  return clean === '/' ? prefix : `${prefix}${clean}`;
+  if (key === 'es') {
+    return localizeRoutePath('es', clean);
+  }
+
+  // Si ya viene con el prefijo del idioma, extraer el resto para localizar los segmentos limpiamente
+  const prefix = `/${key}`;
+  if (clean === prefix) {
+    return prefix;
+  }
+  if (clean.startsWith(`${prefix}/`)) {
+    return localizeRoutePath(key, clean.slice(prefix.length));
+  }
+
+  return localizeRoutePath(key, clean);
 }
 
 export function applyCurrencyDisplay(text: string, currency: Currency): string {
@@ -320,11 +324,20 @@ export function getLocalizedAgeMeta(
     };
   }
 
-  const label = localizeTerm(
+  const baseLabel = localizeTerm(
     key,
     ageCat?.label || (ageSlug === 'fiesta-revelacion-genero' ? 'Fiesta Revelación de Género' : ageSlug),
     targetCurrency
   );
+  const label = ageRoute?.specificYear
+    ? key === 'en' || key === 'en-gb'
+      ? ageRoute.specificYear === 1
+        ? 'Gifts for 1-Year-Old Babies & Toddlers'
+        : ageRoute.specificYear >= 16
+        ? `Gifts for ${ageRoute.specificYear}-Year-Old Teens & Youth`
+        : `Gifts for ${ageRoute.specificYear}-Year-Old Kids`
+      : `${baseLabel} · ${ageRoute.specificYear}`
+    : baseLabel;
   const tagline = `${ui.verifiedCatalogNote} · ${label}`;
   const title = `${label} ${ui.ageTitleSuffix}`;
   const description = applyCurrencyDisplay(

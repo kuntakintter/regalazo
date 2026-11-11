@@ -6,6 +6,7 @@ import {
   SEO_FILTER_ROUTES,
 } from '@/lib/filterRoutes';
 import { SEO_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
+import { delocalizeRouteSegments } from '@/lib/localizedSlugs';
 import LocaleAutoInitializer from '@/components/LocaleAutoInitializer';
 import HomeCatalogView from '@/components/HomeCatalogView';
 import AgeLandingView from '@/components/AgeLandingView';
@@ -182,8 +183,10 @@ export function renderLocalizedRouteView(
     </>
   );
 
-  if (slugSegments.length === 1) {
-    const slug = slugSegments[0];
+  const normalizedSegments = delocalizeRouteSegments(localeKey, slugSegments);
+
+  if (normalizedSegments.length === 1) {
+    const slug = normalizedSegments[0];
 
     if (ALL_STATIC_HUB_SLUGS.includes(slug)) {
       const hubNode = renderStaticHubComponent(slug);
@@ -201,8 +204,8 @@ export function renderLocalizedRouteView(
     return null;
   }
 
-  if (slugSegments.length === 2) {
-    const [ageSlug, categorySlug] = slugSegments;
+  if (normalizedSegments.length === 2) {
+    const [ageSlug, categorySlug] = normalizedSegments;
     const ageRoute = SEO_AGE_ROUTES[ageSlug];
     if (!ageRoute) return null;
 
