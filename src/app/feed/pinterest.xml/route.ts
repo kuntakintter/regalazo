@@ -210,9 +210,15 @@ function buildPinItemFromRouteSpec(
     })
     .join(' · ');
 
-  const heroImage =
-    matchedItems.find((p) => p.imageUrl && p.imageUrl.startsWith('http'))?.imageUrl ||
-    fallbackImage;
+  const firstWithImg = matchedItems.find(
+    (p) => p.imageUrl && (p.imageUrl.startsWith('http') || p.imageUrl.startsWith('/'))
+  );
+  const resolvedProductImg = firstWithImg?.imageUrl
+    ? firstWithImg.imageUrl.startsWith('http')
+      ? firstWithImg.imageUrl
+      : `${BASE_SITE_URL}${firstWithImg.imageUrl}`
+    : null;
+  const heroImage = resolvedProductImg || fallbackImage;
 
   return {
     title,
