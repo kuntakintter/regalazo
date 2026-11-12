@@ -217,7 +217,8 @@ export function buildSocialMetadata({
         : {}),
     },
     other: {
-      thumbnail: 'https://www.unbuenregalo.es/logo-square.png',
+      thumbnail: imageUrl || 'https://www.unbuenregalo.es/logo-square.png',
+      'pinterest-rich-pin': 'true',
     },
     openGraph: {
       title: displayTitle,

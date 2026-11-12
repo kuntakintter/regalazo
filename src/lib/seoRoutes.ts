@@ -115,10 +115,10 @@ export const SEO_AGE_ROUTES: Record<string, SeoRouteMeta> = {
     ageId: '4-6',
     ageSlug: 'regalos-para-ninos-de-4-anos',
     specificYear: 4,
-    title: 'Regalos para Niños y Niñas de 4 Años 【2026】 Top 10 Juguetes e Ideas | Un Buen Regalo',
-    h1: 'Regalos para Niños y Niñas de 4 Años: Creatividad, Construcción y Aventuras',
-    description: '¿Qué regalar a un niño o niña de 4 años? Bloques magnéticos de construcción, primeros circuitos de carreras, maletines de arte, muñecos y juegos de mesa infantiles.',
-    keywords: ['regalos para niños de 4 años', 'regalos para niñas de 4 años', 'que regalar a un niño de 4 años', 'juguetes 4 años', 'bloques magneticos niños']
+    title: 'Regalos para Niños y Niñas de 4 Años 【2026】 Qué Regalo Hacer | Un Buen Regalo',
+    h1: 'Regalo y Regalos para Hacer a un Niño o Niña de 4 Años: Top 10 Juguetes e Ideas',
+    description: '¿Qué regalo hacer a un niño o niña de 4 años? Bloques magnéticos de construcción, primeros circuitos de carreras, maletines de arte, muñecos y juegos de mesa infantiles.',
+    keywords: ['regalo para hacer a niño de 4 años', 'regalos para niños de 4 años', 'regalos para niñas de 4 años', 'que regalar a un niño de 4 años', 'juguetes 4 años', 'bloques magneticos niños']
   },
   'regalos-para-ninos-de-5-anos': {
     ageId: '4-6',

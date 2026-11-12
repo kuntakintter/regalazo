@@ -311,6 +311,16 @@ export function getLocalizedAgeMeta(
     const rawTitle = ageRoute?.title || ageCat?.h1 || 'Un Buen Regalo por Edad';
     const rawDesc = ageRoute?.description || ageCat?.description || '';
     const rawH1 = ageRoute?.h1 || ageCat?.h1 || '';
+    const baseKeywords = ageRoute?.keywords || ageCat?.seoKeywords || [];
+    const yr = ageRoute?.specificYear;
+    const extraYrKeywords = yr
+      ? [
+          `regalo para hacer a niño de ${yr} ${yr === 1 ? 'año' : 'años'}`,
+          `regalo para hacer a niña de ${yr} ${yr === 1 ? 'año' : 'años'}`,
+          `que regalo hacer a un niño de ${yr} ${yr === 1 ? 'año' : 'años'}`,
+          `un buen regalo para niño de ${yr} ${yr === 1 ? 'año' : 'años'}`,
+        ]
+      : [];
     return {
       title: applyCurrencyDisplay(rawTitle, targetCurrency),
       socialTitle: applyCurrencyDisplay(rawTitle, targetCurrency),
@@ -318,7 +328,7 @@ export function getLocalizedAgeMeta(
       h1: applyCurrencyDisplay(rawH1, targetCurrency),
       subtitle: applyCurrencyDisplay(ageCat?.tagline || rawDesc, targetCurrency),
       tagline: applyCurrencyDisplay(ageCat?.tagline || '', targetCurrency),
-      keywords: ageRoute?.keywords || ageCat?.seoKeywords || [],
+      keywords: [...extraYrKeywords, ...baseKeywords],
       currency: targetCurrency,
       currencySymbol: targetSymbol,
     };
