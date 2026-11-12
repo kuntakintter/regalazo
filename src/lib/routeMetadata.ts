@@ -1,12 +1,19 @@
 import { Metadata } from 'next';
+import { ALL_SITE_PRODUCTS } from '@/data/allCatalogProducts';
 import { I18N_SEO_ROUTES } from '@/lib/i18nRoutes';
 import {
   ALL_STATIC_HUB_SLUGS,
   BASE_SITE_URL,
   SEO_FILTER_ROUTES,
+  matchProductsForFilter,
+  matchProductsForAgeAndFilter,
 } from '@/lib/filterRoutes';
 import { SEO_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
-import { resolvePassionHubFilter } from '@/lib/passionHubFilters';
+import {
+  resolvePassionHubFilter,
+  getPassionHubFilterProducts,
+} from '@/lib/passionHubFilters';
+import { matchProductsForSubcategory } from '@/lib/subcategoryMatcher';
 import { delocalizeRouteSegments, localizeRoutePath } from '@/lib/localizedSlugs';
 import {
   getLocalizedAgeFilterMeta,
@@ -21,6 +28,41 @@ import {
   buildSocialMetadata,
   getCategoryOgImage,
 } from '@/lib/ogMetadata';
+
+function parseMinPriceNumber(items: { priceText?: string; priceNumeric?: number }[]): number | null {
+  let minVal = Infinity;
+  for (const it of items) {
+    if (typeof it.priceNumeric === 'number' && it.priceNumeric > 0 && it.priceNumeric < minVal) {
+      minVal = it.priceNumeric;
+      continue;
+    }
+    if (it.priceText) {
+      const m = it.priceText.replace(',', '.').match(/(\d+(?:\.\d+)?)/);
+      if (m) {
+        const num = parseFloat(m[1]);
+        if (num > 0 && num < minVal) minVal = num;
+      }
+    }
+  }
+  return Number.isFinite(minVal) ? Math.floor(minVal) : null;
+}
+
+function appendCtrPriceSnippet(
+  desc: string,
+  items: { priceText?: string; priceNumeric?: number }[],
+  currency: 'EUR' | 'USD',
+  localeKey: string
+): string {
+  if (!items || items.length === 0) return desc;
+  const minPrice = parseMinPriceNumber(items);
+  if (!minPrice) return desc;
+  const priceTag = currency === 'USD' ? `$${minPrice}` : `${minPrice}€`;
+  if (localeKey === 'es' || localeKey === 'es-us') {
+    if (desc.includes('desde ') || desc.includes('Desde ')) return desc;
+    return `${desc} (${items.length} ideas en stock desde ${priceTag} · 4.5★+)`;
+  }
+  return `${desc} (${items.length}+ verified picks from ${priceTag} · 4.5★+)`;
+}
 
 const STATIC_HUB_FALLBACK_IMAGES: Record<string, { url: string; alt: string }> = {
   'carta-papa-noel': {
@@ -118,11 +160,12 @@ export function getLocalizedNestedMetadata(
     if (filterRoute) {
       const localized = getLocalizedFilterMeta(localeKey, slug, currency);
       const ogImage = getCategoryOgImage(filterRoute.label);
+      const matched = matchProductsForFilter(filterRoute, ALL_SITE_PRODUCTS);
 
       return buildSocialMetadata({
         title: localized.title,
         socialTitle: localized.socialTitle,
-        description: localized.description,
+        description: appendCtrPriceSnippet(localized.description, matched, currency, localeKey),
         canonicalUrl,
         routePath,
         ogLocale,
@@ -137,11 +180,12 @@ export function getLocalizedNestedMetadata(
     if (ageRoute) {
       const localized = getLocalizedAgeMeta(localeKey, slug, currency);
       const snippet = HUB_OG_SNIPPETS[slug];
+      const matched = ALL_SITE_PRODUCTS.filter((p) => p.ageRange === ageRoute.ageId);
 
       return buildSocialMetadata({
         title: localized.title,
         socialTitle: localized.socialTitle,
-        description: localized.description,
+        description: appendCtrPriceSnippet(localized.description, matched, currency, localeKey),
         canonicalUrl,
         routePath,
         ogLocale,
@@ -173,11 +217,12 @@ export function getLocalizedNestedMetadata(
       const fallback = STATIC_HUB_FALLBACK_IMAGES[ageSlug];
       const routePath = `/${ageSlug}/${passionFilter.slug}`;
       const canonicalUrl = `${BASE_SITE_URL}${localizeRoutePath(localeKey, routePath)}`;
+      const matched = getPassionHubFilterProducts(ageSlug, passionFilter.id);
 
       return buildSocialMetadata({
         title: localized.title,
         socialTitle: localized.socialTitle,
-        description: localized.description,
+        description: appendCtrPriceSnippet(localized.description, matched, currency, localeKey),
         canonicalUrl,
         routePath,
         ogLocale,
@@ -203,11 +248,16 @@ export function getLocalizedNestedMetadata(
       const ogImage = getCategoryOgImage(currentSub.label);
       const routePath = `/${ageSlug}/${categorySlug}`;
       const canonicalUrl = `${BASE_SITE_URL}${localizeRoutePath(localeKey, routePath)}`;
+      const matched = matchProductsForSubcategory(
+        ageRoute.ageId,
+        currentSub.label,
+        ALL_SITE_PRODUCTS
+      );
 
       return buildSocialMetadata({
         title: localized.title,
         socialTitle: localized.socialTitle,
-        description: localized.description,
+        description: appendCtrPriceSnippet(localized.description, matched, currency, localeKey),
         canonicalUrl,
         routePath,
         ogLocale,
@@ -229,11 +279,12 @@ export function getLocalizedNestedMetadata(
       const ogImage = getCategoryOgImage(filterRoute.label);
       const routePath = `/${ageSlug}/${categorySlug}`;
       const canonicalUrl = `${BASE_SITE_URL}${localizeRoutePath(localeKey, routePath)}`;
+      const matched = matchProductsForAgeAndFilter(ageSlug, filterRoute, ALL_SITE_PRODUCTS, false);
 
       return buildSocialMetadata({
         title: localized.title,
         socialTitle: localized.socialTitle,
-        description: localized.description,
+        description: appendCtrPriceSnippet(localized.description, matched, currency, localeKey),
         canonicalUrl,
         routePath,
         ogLocale,

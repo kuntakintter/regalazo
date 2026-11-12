@@ -96,7 +96,7 @@ export default function FilterLandingView({
 
   const relatedFilters = useMemo(() => {
     if (!routeMeta) return [];
-    const allFilters = Object.values(SEO_FILTER_ROUTES);
+    const allFilters = Object.values(SEO_FILTER_ROUTES).slice(0, 44);
     const pool =
       ageSlug && ageRoute
         ? allFilters.filter(
@@ -448,7 +448,13 @@ export default function FilterLandingView({
 
         <AgeStageInterlinking currentAgeSlug={ageSlug || ''} localeKey={localeKey} />
 
-        <SeoFaq currentTheme="classic" localeKey={localeKey} omitSchema={omitSchema} />
+        <SeoFaq
+          currentTheme="classic"
+          localeKey={localeKey}
+          omitSchema={omitSchema}
+          schemaTopicLabel={meta.h1}
+          schemaTopProducts={matchedProducts.slice(0, 3)}
+        />
       </main>
 
       <Footer currentTheme="classic" />

@@ -19,6 +19,7 @@ import {
 } from '@/lib/filterRoutes';
 import {
   PRIMARY_SEO_AGE_ROUTES,
+  SPECIFIC_YEAR_AGE_ROUTES,
   SEO_AGE_ROUTES,
   getSubcategorySlugMap,
 } from '@/lib/seoRoutes';
@@ -271,13 +272,26 @@ export function getAllCanonicalRouteSpecs(): CanonicalRouteSpec[] {
     }
   }
 
-  // 2. FILTERS: Temáticas (category/clothing/anime/wheels), Presupuestos (price), Ocasiones (gender)
+  const OCCASION_FAMILY_SLUGS = new Set([
+    'regalos-amigo-invisible',
+    'regalos-cumpleanos-originales',
+    'regalos-primera-comunion',
+    'regalos-san-valentin-y-aniversario',
+    'regalos-dia-del-padre',
+    'regalos-dia-de-la-madre',
+    'regalos-para-padres',
+    'regalos-para-madres',
+    'regalos-para-abuelos',
+    'regalos-para-profesores',
+  ]);
+
+  // 2. FILTERS: Temáticas (category/clothing/anime/wheels), Presupuestos (price), Ocasiones (gender + occasion/family)
   for (const filterMeta of Object.values(SEO_FILTER_ROUTES)) {
     let category: SitemapCategory = 'tematicas';
-    if (filterMeta.filterKind === 'price') {
-      category = 'presupuestos';
-    } else if (filterMeta.filterKind === 'gender') {
+    if (OCCASION_FAMILY_SLUGS.has(filterMeta.slug) || filterMeta.filterKind === 'gender') {
       category = 'ocasiones';
+    } else if (filterMeta.filterKind === 'price') {
+      category = 'presupuestos';
     }
 
     specs.push({
@@ -327,6 +341,7 @@ export function getAllCanonicalRouteSpecs(): CanonicalRouteSpec[] {
     if (primaryAge.ageId !== 'reveal') {
       for (const filterMeta of Object.values(SEO_FILTER_ROUTES)) {
         if (subSlugs.has(filterMeta.slug)) continue;
+        if (OCCASION_FAMILY_SLUGS.has(filterMeta.slug)) continue;
 
         let category: SitemapCategory = 'tematicas';
         if (filterMeta.filterKind === 'price') {
@@ -347,6 +362,23 @@ export function getAllCanonicalRouteSpecs(): CanonicalRouteSpec[] {
           filterSlug: filterMeta.slug,
         });
       }
+    }
+  }
+
+  // 5. EDADES EXACTAS (1 a 18 años) × NIÑO / NIÑA (regalos-para-el / regalos-para-ella)
+  for (const yrRoute of SPECIFIC_YEAR_AGE_ROUTES) {
+    for (const genderSlug of ['regalos-para-el', 'regalos-para-ella'] as const) {
+      specs.push({
+        id: `age-filter:${yrRoute.ageSlug}/${genderSlug}`,
+        baseEsPath: `/${yrRoute.ageSlug}/${genderSlug}`,
+        category: 'edades',
+        priority: 0.86,
+        changefreq: 'weekly',
+        kind: 'age-filter',
+        slug: `${yrRoute.ageSlug}/${genderSlug}`,
+        ageId: yrRoute.ageId,
+        filterSlug: genderSlug,
+      });
     }
   }
 

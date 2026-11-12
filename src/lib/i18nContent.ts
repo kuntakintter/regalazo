@@ -438,6 +438,109 @@ export function getLocalizedSubcategoryMeta(
   };
 }
 
+const OCCASION_FILTER_LABELS: Record<string, Record<string, string>> = {
+  'regalos-amigo-invisible': {
+    en: 'Secret Santa Gifts (Under $15 & $20)',
+    'en-gb': 'Secret Santa Gifts (Under €15 & €20)',
+    fr: 'Cadeaux Secret Santa (Moins de 15 € et 20 €)',
+    de: 'Wichtelgeschenke (Unter 15 € & 20 €)',
+    it: 'Regali Amico Segreto (Sotto 15 € e 20 €)',
+    pt: 'Presentes Amigo Secreto (Menos de 15 € e 20 €)',
+    nl: 'Lootjes Trekken & Sinterklaas Cadeaus (<15 €)',
+    pl: 'Prezenty na Mikołajki i Secret Santa (<20 €)',
+  },
+  'regalos-cumpleanos-originales': {
+    en: 'Original Birthday Gifts',
+    'en-gb': 'Original Birthday Gifts',
+    fr: "Cadeaux d'Anniversaire Originaux",
+    de: 'Originelle Geburtstagsgeschenke',
+    it: 'Regali di Compleanno Originali',
+    pt: 'Presentes de Aniversário Originais',
+    nl: 'Originele Verjaardagscadeaus',
+    pl: 'Oryginalne Prezenty Urodzinowe',
+  },
+  'regalos-primera-comunion': {
+    en: 'First Communion Gifts for Boys & Girls',
+    'en-gb': 'First Holy Communion Gifts',
+    fr: 'Cadeaux de Première Communion',
+    de: 'Geschenke zur Ersten Heiligen Kommunion',
+    it: 'Regali Prima Comunione Bambino e Bambina',
+    pt: 'Presentes de Primeira Comunhão',
+    nl: 'Eerste Communie Cadeaus',
+    pl: 'Prezenty na Pierwszą Komunię Świętą',
+  },
+  'regalos-san-valentin-y-aniversario': {
+    en: "Valentine's Day & Anniversary Gifts for Couples",
+    'en-gb': "Valentine's Day & Anniversary Gifts",
+    fr: 'Cadeaux Saint-Valentin et Anniversaire de Couple',
+    de: 'Valentinstag & Jahrestag Geschenke für Paare',
+    it: 'Regali San Valentino e Anniversario di Coppia',
+    pt: 'Presentes Dia dos Namorados e Aniversário',
+    nl: 'Valentijnsdag & Jubileum Cadeaus',
+    pl: 'Prezenty na Walentynki i Rocznicę',
+  },
+  'regalos-dia-del-padre': {
+    en: "Father's Day Gifts for Dad",
+    'en-gb': "Father's Day Gifts for Dad",
+    fr: 'Cadeaux Fête des Pères pour Papa',
+    de: 'Vatertagsgeschenke für Papa',
+    it: 'Regali Festa del Papà',
+    pt: 'Presentes Dia dos Pais para Pai',
+    nl: 'Vaderdag Cadeaus voor Papa',
+    pl: 'Prezenty na Dzień Ojca dla Taty',
+  },
+  'regalos-dia-de-la-madre': {
+    en: "Mother's Day Gifts for Mom",
+    'en-gb': "Mother's Day Gifts for Mum",
+    fr: 'Cadeaux Fête des Mères pour Maman',
+    de: 'Muttertagsgeschenke für Mama',
+    it: 'Regali Festa della Mamma',
+    pt: 'Presentes Dia das Mães para Mãe',
+    nl: 'Moederdag Cadeaus voor Mama',
+    pl: 'Prezenty na Dzień Matki dla Mamy',
+  },
+  'regalos-para-padres': {
+    en: 'Gifts for Dad & Parents',
+    'en-gb': 'Gifts for Dad & Parents',
+    fr: 'Cadeaux pour Papa et Parents',
+    de: 'Geschenke für Väter & Eltern',
+    it: 'Regali per Papà e Genitori',
+    pt: 'Presentes para Pais',
+    nl: 'Cadeaus voor Vader & Ouders',
+    pl: 'Prezenty dla Taty i Rodziców',
+  },
+  'regalos-para-madres': {
+    en: 'Gifts for Mom',
+    'en-gb': 'Gifts for Mum',
+    fr: 'Cadeaux pour Maman',
+    de: 'Geschenke für Mütter & Mama',
+    it: 'Regali per la Mamma',
+    pt: 'Presentes para Mães',
+    nl: 'Cadeaus voor Moeder & Mama',
+    pl: 'Prezenty dla Mamy',
+  },
+  'regalos-para-abuelos': {
+    en: 'Gifts for Grandparents (Grandma & Grandpa)',
+    'en-gb': 'Gifts for Grandparents (Grandad & Grandma)',
+    fr: 'Cadeaux pour Grands-Parents (Papi et Mamie)',
+    de: 'Geschenke für Großeltern (Oma & Opa)',
+    it: 'Regali per i Nonni (Nonno e Nonna)',
+    pt: 'Presentes para Avós (Avô e Avó)',
+    nl: 'Cadeaus voor Grootouders (Opa & Oma)',
+    pl: 'Prezenty dla Dziadków (Babci i Dziadka)',
+  },
+  'regalos-para-profesores': {
+    en: 'Gifts for Teachers & Educators',
+    'en-gb': 'End of Term Gifts for Teachers',
+    fr: 'Cadeaux pour Professeurs, Maîtres et Maîtresses',
+    de: 'Geschenke für Lehrer & Erzieher',
+    it: 'Regali per Insegnanti e Maestre di Fine Anno',
+    pt: 'Presentes para Professores e Educadores',
+    nl: 'Cadeaus voor Meester en Juf',
+    pl: 'Prezenty na Dzień Nauczyciela i Koniec Roku',
+  },
+};
+
 export function getLocalizedFilterMeta(
   localeKey: string | null | undefined,
   filterSlug: string,
@@ -465,7 +568,6 @@ export function getLocalizedFilterMeta(
   }
 
   if (key === 'es' || key === 'es-us') {
-    const label = applyCurrencyDisplay(routeMeta.label, targetCurrency);
     return {
       title: applyCurrencyDisplay(routeMeta.title, targetCurrency),
       socialTitle: applyCurrencyDisplay(`${routeMeta.icon} ${routeMeta.title}`, targetCurrency),
@@ -479,7 +581,10 @@ export function getLocalizedFilterMeta(
     };
   }
 
-  const label = localizeTerm(key, routeMeta.label, targetCurrency);
+  const occasionOverride = OCCASION_FILTER_LABELS[filterSlug];
+  const label = occasionOverride
+    ? applyCurrencyDisplay(occasionOverride[key] || occasionOverride.en, targetCurrency)
+    : localizeTerm(key, routeMeta.label, targetCurrency);
   const tagline = `${label} · ${ui.verifiedCatalogNote}`;
   const year = '2026';
 
@@ -530,11 +635,68 @@ export function getLocalizedAgeFilterMeta(
     : ageCat?.label ||
       (ageSlug === 'fiesta-revelacion-genero' ? 'Fiesta Revelación de Género' : ageSlug);
 
-  const ageLabel = localizeTerm(key, baseAgeLabel, targetCurrency);
-  const filterLabel = localizeTerm(key, routeMeta.label, targetCurrency);
+  const ageLabel = ageRoute.specificYear
+    ? key === 'en' || key === 'en-gb'
+      ? `${ageRoute.specificYear}-Year-Old`
+      : `${localizeTerm(key, ageCat?.label || baseAgeLabel, targetCurrency)} (${ageRoute.specificYear})`
+    : localizeTerm(key, baseAgeLabel, targetCurrency);
+  const occasionOverride = OCCASION_FILTER_LABELS[filterSlug];
+  const filterLabel = occasionOverride
+    ? applyCurrencyDisplay(occasionOverride[key] || occasionOverride.en, targetCurrency)
+    : localizeTerm(key, routeMeta.label, targetCurrency);
   const year = '2026';
 
   if (key === 'es' || key === 'es-us') {
+    if (ageRoute.specificYear && (filterSlug === 'regalos-para-el' || filterSlug === 'regalos-para-ella')) {
+      const yr = ageRoute.specificYear;
+      const isBoy = filterSlug === 'regalos-para-el';
+      const personWord =
+        yr === 1
+          ? isBoy
+            ? 'Bebé Niño de 1 Año'
+            : 'Bebé Niña de 1 Año'
+          : yr >= 16
+          ? isBoy
+            ? `Chico Adolescente de ${yr} Años`
+            : `Chica Adolescente de ${yr} Años`
+          : isBoy
+          ? `Niño de ${yr} Años`
+          : `Niña de ${yr} Años`;
+      const altWord = isBoy ? 'niño y chico' : 'niña y chica';
+      const title = applyCurrencyDisplay(
+        `Un Buen Regalo para ${personWord} 【${year}】 Top 10 Ideas y Juguetes`,
+        targetCurrency
+      );
+      const h1 = applyCurrencyDisplay(
+        `Regalo y Regalos para ${personWord}: Top Ideas y Comparativa (${year})`,
+        targetCurrency
+      );
+      const description = applyCurrencyDisplay(
+        `¿Qué regalar a un${isBoy ? '' : 'a'} ${personWord.toLowerCase()}? Ranking verificado en Amazon con los mejores regalos, juguetes y detalles originales para ${altWord} de ${yr} ${yr === 1 ? 'año' : 'años'}.`,
+        targetCurrency
+      );
+      const tagline = applyCurrencyDisplay(
+        `Selección verificada para ${personWord} · Valoración 4.5+ estrellas`,
+        targetCurrency
+      );
+      return {
+        title,
+        socialTitle: `${routeMeta.icon} Regalos para ${personWord} | Un Buen Regalo`,
+        description,
+        h1,
+        subtitle: description,
+        tagline,
+        keywords: [
+          `regalo ${isBoy ? 'nino' : 'nina'} ${yr} ${yr === 1 ? 'ano' : 'anos'}`,
+          `regalos para ${isBoy ? 'nino' : 'nina'} de ${yr} ${yr === 1 ? 'ano' : 'anos'}`,
+          `que regalar a un${isBoy ? '' : 'a'} ${isBoy ? 'chico' : 'chica'} de ${yr} anos`,
+          `un buen regalo ${isBoy ? 'nino' : 'nina'} ${yr} anos`,
+        ],
+        currency: targetCurrency,
+        currencySymbol: targetSymbol,
+      };
+    }
+
     const title = applyCurrencyDisplay(
       `Un Buen Regalo: ${routeMeta.label} (${baseAgeLabel}) 【${year}】 Top Ideas`,
       targetCurrency
@@ -561,6 +723,48 @@ export function getLocalizedAgeFilterMeta(
       keywords: [
         ...routeMeta.keywords.map((kw) => applyCurrencyDisplay(`${kw} ${baseAgeLabel.toLowerCase()}`, targetCurrency)),
         applyCurrencyDisplay(`${routeMeta.label.toLowerCase()} ${baseAgeLabel.toLowerCase()}`, targetCurrency),
+      ],
+      currency: targetCurrency,
+      currencySymbol: targetSymbol,
+    };
+  }
+
+  if (
+    ageRoute.specificYear &&
+    (key === 'en' || key === 'en-gb') &&
+    (filterSlug === 'regalos-para-el' || filterSlug === 'regalos-para-ella')
+  ) {
+    const yr = ageRoute.specificYear;
+    const isBoy = filterSlug === 'regalos-para-el';
+    const targetNoun =
+      yr === 1
+        ? isBoy
+          ? '1-Year-Old Baby Boy'
+          : '1-Year-Old Baby Girl'
+        : yr >= 16
+        ? isBoy
+          ? `${yr}-Year-Old Teen Boy`
+          : `${yr}-Year-Old Teen Girl`
+        : isBoy
+        ? `${yr}-Year-Old Boy`
+        : `${yr}-Year-Old Girl`;
+    const combinedLabel = `Gifts for ${targetNoun}`;
+    const tagline = `${combinedLabel} · ${ui.verifiedCatalogNote}`;
+    const title = `${combinedLabel} 【${year}】 Top 10 Toys & Gift Ideas | ${ui.brandName}`;
+    const h1 = `Best ${combinedLabel} (${year}): Top-Rated Ideas & Comparison`;
+    const description = `Looking for the best gift for a ${targetNoun.toLowerCase()}? Verified Amazon ranking with 4.5+ star toys, games, and original presents.`;
+    return {
+      title,
+      socialTitle: `${routeMeta.icon} ${combinedLabel} | ${ui.brandName}`,
+      description,
+      h1,
+      subtitle: description,
+      tagline,
+      keywords: [
+        `gifts for ${yr} year old ${isBoy ? 'boy' : 'girl'}`,
+        `best gift for ${yr} year old ${isBoy ? 'boy' : 'girl'}`,
+        `${yr} year old ${isBoy ? 'boy' : 'girl'} birthday gift ideas`,
+        ui.brandName,
       ],
       currency: targetCurrency,
       currencySymbol: targetSymbol,

@@ -106,9 +106,19 @@ const EN_TOP_LEVEL_SLUGS: Record<string, string> = {
   'regalos-para-los-que-tienen-de-todo': 'gifts-for-people-who-have-everything',
   'votar': 'group-gift-voting',
 
-  // Recipient gender filters
+  // Recipient gender & family filters
   'regalos-para-el': 'gifts-for-him',
   'regalos-para-ella': 'gifts-for-her',
+  'regalos-amigo-invisible': 'secret-santa-gifts',
+  'regalos-cumpleanos-originales': 'original-birthday-gifts',
+  'regalos-primera-comunion': 'first-communion-gifts',
+  'regalos-san-valentin-y-aniversario': 'valentines-and-anniversary-gifts',
+  'regalos-dia-del-padre': 'fathers-day-gifts',
+  'regalos-dia-de-la-madre': 'mothers-day-gifts',
+  'regalos-para-padres': 'gifts-for-dad-and-parents',
+  'regalos-para-madres': 'gifts-for-mom',
+  'regalos-para-abuelos': 'gifts-for-grandparents',
+  'regalos-para-profesores': 'gifts-for-teachers',
 
   // Budget filters (presupuestos)
   'regalos-menos-15-euros': 'gifts-under-15',
@@ -521,6 +531,18 @@ const STAGE_AND_HUB_TERM_KEYS: Record<string, string> = {
   'regalos-para-los-que-tienen-de-todo': 'Regalos para los que Tienen de Todo',
 };
 
+const DEDICATED_OCCASION_SLUGS = new Set([
+  'regalos-cumpleanos-originales',
+  'regalos-primera-comunion',
+  'regalos-san-valentin-y-aniversario',
+  'regalos-dia-del-padre',
+  'regalos-dia-de-la-madre',
+  'regalos-para-padres',
+  'regalos-para-madres',
+  'regalos-para-abuelos',
+  'regalos-para-profesores',
+]);
+
 function computeRawLocalizedTopSlug(lang: string, esSlug: string): string {
   if (lang === 'es') return esSlug;
   if (lang === 'en' || !LATIN_SCRIPT_LOCALES.has(lang)) {
@@ -530,6 +552,10 @@ function computeRawLocalizedTopSlug(lang: string, esSlug: string): string {
   // 1. Check explicit stage/hub overrides for this language
   const override = NATIVE_STAGE_AND_HUB_OVERRIDES[lang]?.[esSlug];
   if (override) return override;
+
+  if (DEDICATED_OCCASION_SLUGS.has(esSlug)) {
+    return EN_TOP_LEVEL_SLUGS[esSlug] || esSlug;
+  }
 
   // 2. Check specific-year age routes (1 to 18 years)
   const ageRoute = SEO_AGE_ROUTES[esSlug];

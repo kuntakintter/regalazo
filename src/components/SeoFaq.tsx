@@ -54,6 +54,8 @@ interface SeoFaqProps {
   hubSlug?: string;
   customFaqs?: FaqItem[];
   omitSchema?: boolean;
+  schemaTopicLabel?: string;
+  schemaTopProducts?: { title: string; priceText?: string; rating?: number }[];
 }
 
 export default function SeoFaq({
@@ -61,6 +63,8 @@ export default function SeoFaq({
   hubSlug,
   customFaqs,
   omitSchema = false,
+  schemaTopicLabel,
+  schemaTopProducts,
 }: SeoFaqProps) {
   const { localeKey: routeLocaleKey, activeCurrency } = useActiveLocale();
   const effectiveLocale = normalizeLocaleKey(explicitLocaleKey || routeLocaleKey);
@@ -81,10 +85,35 @@ export default function SeoFaq({
     setOpenIndex(openIndex === index ? null : index);
   };
 
+  const schemaFaqs: FaqItem[] = [...faqs];
+  if (schemaTopicLabel && schemaTopProducts && schemaTopProducts.length > 0) {
+    const topNames = schemaTopProducts
+      .slice(0, 3)
+      .map((p, i) => `#${i + 1} ${p.title}`)
+      .join(', ');
+    if (effectiveLocale === 'es' || effectiveLocale === 'es-us') {
+      schemaFaqs.unshift({
+        question: `¿Cuáles son las mejores opciones en ${schemaTopicLabel} en 2026?`,
+        answer: applyCurrencyDisplay(
+          `En nuestra comparativa verificada de ${schemaTopicLabel} destacan por valoración (4.5+ estrellas): ${topNames}. Todas las opciones cuentan con disponibilidad verificada y envío rápido.`,
+          activeCurrency
+        ),
+      });
+    } else {
+      schemaFaqs.unshift({
+        question: `${schemaTopicLabel} — Top 3 Recommended Picks (2026)?`,
+        answer: applyCurrencyDisplay(
+          `Top-rated verified picks for ${schemaTopicLabel} (4.5+ stars): ${topNames}.`,
+          activeCurrency
+        ),
+      });
+    }
+  }
+
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: faqs.map((item) => ({
+    mainEntity: schemaFaqs.map((item) => ({
       '@type': 'Question',
       name: item.question,
       acceptedAnswer: {

@@ -3,14 +3,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { ChevronDown, FolderTree, Compass } from 'lucide-react';
-import { SEO_AGE_ROUTES, SPECIFIC_YEAR_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
-import {
-  ALL_STATIC_HUB_SLUGS,
-  SEO_FILTER_ROUTES,
-  matchProductsForAgeAndFilter,
-} from '@/lib/filterRoutes';
-import { PASSION_HUB_FILTERS_MAP } from '@/lib/passionHubFilters';
-import { ALL_SITE_PRODUCTS } from '@/data/allCatalogProducts';
+import { SEO_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
+import { ALL_STATIC_HUB_SLUGS, SEO_FILTER_ROUTES } from '@/lib/filterRoutes';
 import { getHubStrings, getLocalizedAgeMeta } from '@/lib/i18nContent';
 import { useActiveLocale } from '@/hooks/useActiveLocale';
 
@@ -83,16 +77,6 @@ export default function FooterDirectory({ isDark = false }: { isDark?: boolean }
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {ageEntries.map(([ageSlug, meta]) => {
               const subcategories = getSubcategorySlugMap(meta.ageId);
-              const subSlugs = new Set(subcategories.map((s) => s.slug));
-              const activeAgeFilters =
-                meta.ageId === 'reveal'
-                  ? []
-                  : filterEntries.filter(
-                      (flt) =>
-                        !subSlugs.has(flt.slug) &&
-                        matchProductsForAgeAndFilter(ageSlug, flt, ALL_SITE_PRODUCTS, true)
-                          .length > 0
-                    );
               const ageTitle = getLocalizedAgeMeta(localeKey, ageSlug, activeCurrency).h1;
               return (
                 <div key={ageSlug} className="space-y-2">
@@ -121,55 +105,18 @@ export default function FooterDirectory({ isDark = false }: { isDark?: boolean }
                         </Link>
                       </li>
                     ))}
-                    {activeAgeFilters.map((flt) => (
-                      <li key={`${ageSlug}-${flt.slug}`}>
-                        <Link
-                          href={localePath(`/${ageSlug}/${flt.slug}`)}
-                          className={`text-[11px] hover:underline line-clamp-1 transition-colors block py-0.5 ${
-                            isDark
-                              ? 'text-slate-300 hover:text-amber-300'
-                              : 'text-slate-600 hover:text-indigo-700'
-                          }`}
-                        >
-                          <span aria-hidden="true">{flt.icon} </span>
-                          {tTerm(flt.label)}
-                        </Link>
-                      </li>
-                    ))}
                   </ul>
                 </div>
               );
             })}
           </div>
 
-          {/* 1B. 18 Specific-Year Age Landing Pages (1 to 18 Years) */}
-          <div className={`border-t pt-5 ${isDark ? 'border-slate-800' : 'border-slate-200/80'}`}>
-            <div className="flex flex-wrap gap-1.5">
-              {SPECIFIC_YEAR_AGE_ROUTES.map((yrRoute) => {
-                const yrMeta = getLocalizedAgeMeta(localeKey, yrRoute.ageSlug, activeCurrency);
-                return (
-                  <Link
-                    key={yrRoute.ageSlug}
-                    href={localePath(`/${yrRoute.ageSlug}`)}
-                    className={`px-2.5 py-1 rounded-xl text-[11px] font-semibold border transition-colors ${
-                      isDark
-                        ? 'bg-slate-800/80 border-slate-700 text-slate-200 hover:bg-slate-700 hover:text-white'
-                        : 'bg-indigo-50/70 border-indigo-200 text-indigo-800 hover:bg-indigo-100 hover:border-indigo-300'
-                    }`}
-                  >
-                    🎂 {yrMeta.h1}
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* 2. All 17 Niche Hubs & Interactive Tools + Their Respective Filters */}
+          {/* 2. All 17 Niche Hubs & Interactive Tools */}
           <div className={`border-t pt-5 ${isDark ? 'border-slate-800' : 'border-slate-200/80'}`}>
             <h3 className={`text-xs font-extrabold uppercase tracking-wider mb-3 ${isDark ? 'text-amber-300' : 'text-indigo-700'}`}>
               {ui.directoryHubsTitle}
             </h3>
-            <div className="flex flex-wrap gap-1.5 mb-5">
+            <div className="flex flex-wrap gap-1.5">
               {ALL_STATIC_HUB_SLUGS.map((hubSlug) => {
                 const hub = getHubStrings(localeKey, hubSlug);
                 return (
@@ -187,43 +134,6 @@ export default function FooterDirectory({ isDark = false }: { isDark?: boolean }
                 );
               })}
             </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-              {Object.entries(PASSION_HUB_FILTERS_MAP).map(([hubSlug, hubFilters]) => {
-                const hub = getHubStrings(localeKey, hubSlug);
-                return (
-                  <div key={hubSlug} className="space-y-2">
-                    <Link
-                      href={localePath(`/${hubSlug}`)}
-                      className={`font-bold text-xs transition-colors flex items-center gap-1.5 group py-0.5 ${
-                        isDark ? 'text-white hover:text-amber-300' : 'text-slate-900 hover:text-indigo-700'
-                      }`}
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-amber-500 group-hover:scale-125 transition-transform shrink-0" />
-                      <span className="truncate">{hub.breadcrumbLabel}</span>
-                    </Link>
-
-                    <ul className={`space-y-1 pl-3 border-l-2 ${isDark ? 'border-slate-700' : 'border-slate-200'}`}>
-                      {hubFilters.map((hf) => (
-                        <li key={hf.slug}>
-                          <Link
-                            href={localePath(`/${hubSlug}/${hf.slug}`)}
-                            className={`text-[11px] hover:underline line-clamp-1 transition-colors block py-0.5 ${
-                              isDark
-                                ? 'text-slate-300 hover:text-amber-300'
-                                : 'text-slate-600 hover:text-indigo-700'
-                            }`}
-                          >
-                            <span aria-hidden="true">{hf.icon} </span>
-                            {tTerm(hf.label)}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                );
-              })}
-            </div>
           </div>
 
           {/* 3. All 44 Filter Landing Pages (Categories, Fashion, Anime, Vehicles, Budget, Gender) */}
@@ -232,7 +142,7 @@ export default function FooterDirectory({ isDark = false }: { isDark?: boolean }
               {ui.directoryFiltersTitle}
             </h3>
             <div className="flex flex-wrap gap-1.5">
-              {filterEntries.map((flt) => (
+              {filterEntries.slice(0, 44).map((flt) => (
                 <Link
                   key={flt.slug}
                   href={localePath(`/${flt.slug}`)}
