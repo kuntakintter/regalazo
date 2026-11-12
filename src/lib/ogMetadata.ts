@@ -219,6 +219,7 @@ export function buildSocialMetadata({
     other: {
       thumbnail: imageUrl || 'https://www.unbuenregalo.es/logo-square.png',
       'pinterest-rich-pin': 'true',
+      'p:domain_verify': '59f5c86d8219a56b73b7dd6ccedde7c1',
     },
     openGraph: {
       title: displayTitle,

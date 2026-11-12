@@ -115,6 +115,7 @@ export const metadata: Metadata = {
   },
   other: {
     thumbnail: 'https://www.unbuenregalo.es/logo-square.png',
+    'p:domain_verify': '59f5c86d8219a56b73b7dd6ccedde7c1',
   },
   alternates: {
     canonical: 'https://www.unbuenregalo.es',
@@ -242,6 +243,7 @@ export default function RootLayout({
         />
         <meta name="theme-color" content="#4f46e5" />
         <meta name="msvalidate.01" content="4AF0EBAFECCF6A3AA51203D44DE90AD6" />
+        <meta name="p:domain_verify" content="59f5c86d8219a56b73b7dd6ccedde7c1" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
         <link rel="icon" href="/icon.png" type="image/png" sizes="512x512" />
