@@ -1,25 +1,47 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ALL_SITE_PRODUCTS } from '@/data/allCatalogProducts';
+import { AUTOMOVIL_PRODUCTS } from '@/data/automovilData';
+import { CAFE_PRODUCTS } from '@/data/cafeData';
+import { CICLISMO_PRODUCTS } from '@/data/ciclismoData';
+import { GAMING_PRODUCTS } from '@/data/gamingData';
+import { GTA_PRODUCTS } from '@/data/gtaData';
+import { HALLOWEEN_PRODUCTS } from '@/data/halloweenData';
+import { MASCOTAS_PRODUCTS } from '@/data/mascotasData';
+import { MOTORISTA_PRODUCTS } from '@/data/motoristasData';
+import { NAVIDAD_PRODUCTS } from '@/data/navidadData';
 import {
-  ALL_STATIC_HUB_SLUGS,
   BASE_SITE_URL,
   SEO_FILTER_ROUTES,
   matchProductsForFilter,
+  matchProductsForAgeAndFilter,
 } from '@/lib/filterRoutes';
-import { SEO_AGE_ROUTES } from '@/lib/seoRoutes';
 import {
   PASSION_HUB_FILTERS_MAP,
   getPassionHubFilterProducts,
 } from '@/lib/passionHubFilters';
+import { matchProductsForSubcategory } from '@/lib/subcategoryMatcher';
 import { localizeRoutePath } from '@/lib/localizedSlugs';
 import {
+  applyCurrencyDisplay,
+  getLocaleCurrency,
+  getLocalizedAgeFilterMeta,
   getLocalizedAgeMeta,
   getLocalizedFilterMeta,
   getLocalizedPassionHubFilterMeta,
   getLocalizedStaticHubMeta,
+  getLocalizedSubcategoryMeta,
+  getUiStrings,
   normalizeLocaleKey,
 } from '@/lib/i18nContent';
 import { HUB_OG_SNIPPETS, getCategoryOgImage } from '@/lib/ogMetadata';
+import {
+  ALL_SITEMAP_LOCALES,
+  CanonicalRouteSpec,
+  SITEMAP_CATEGORIES,
+  SitemapCategory,
+  getActiveStockForRoute,
+  getAllCanonicalRouteSpecs,
+} from '@/lib/sitemapEngine';
 
 function escapeXml(unsafe: string): string {
   return (unsafe || '')
@@ -30,6 +52,38 @@ function escapeXml(unsafe: string): string {
     .replace(/'/g, '&apos;');
 }
 
+interface ProductSummaryLike {
+  title: string;
+  priceText?: string;
+  imageUrl?: string;
+}
+
+const HUB_ITEMS_MAP: Record<string, ProductSummaryLike[]> = {
+  motoristas: MOTORISTA_PRODUCTS,
+  automovil: AUTOMOVIL_PRODUCTS,
+  ciclismo: CICLISMO_PRODUCTS,
+  gaming: GAMING_PRODUCTS,
+  'amantes-del-cafe': CAFE_PRODUCTS,
+  mascotas: MASCOTAS_PRODUCTS,
+  halloween: HALLOWEEN_PRODUCTS,
+  navidad: NAVIDAD_PRODUCTS,
+  'carta-papa-noel': NAVIDAD_PRODUCTS,
+  'regalos-gta-6': GTA_PRODUCTS,
+};
+
+const LOCALIZED_HASHTAGS: Record<string, string> = {
+  es: '#Regalos #IdeasDeRegalo #UnBuenRegalo #QueRegalar',
+  'es-us': '#Regalos #IdeasDeRegalo #UnBuenRegalo #QueRegalar',
+  en: '#GiftIdeas #BestGifts #Gifts2026 #GiftGuide',
+  'en-gb': '#GiftIdeas #BestGifts #GiftsUK #GiftGuide',
+  fr: '#IdeeCadeau #Cadeaux #MeilleursCadeaux #GuideCadeaux',
+  de: '#Geschenkideen #Geschenke #BesteGeschenke #Geschenkefinder',
+  it: '#IdeeRegalo #Regali #MiglioriRegali #GuidaAiRegali',
+  pt: '#IdeiasDePresentes #Presentes #MelhoresPresentes #DicasDePresentes',
+  nl: '#CadeauIdeeen #Cadeaus #BesteCadeaus #Cadeautips',
+  pl: '#PomyslNaPrezent #Prezenty #NajlepszePrezenty #Prezentownik',
+};
+
 interface PinFeedItem {
   title: string;
   link: string;
@@ -39,189 +93,214 @@ interface PinFeedItem {
   pubDate: string;
 }
 
+function buildPinItemFromRouteSpec(
+  spec: CanonicalRouteSpec,
+  localeKey: string,
+  pubDate: string
+): PinFeedItem | null {
+  const { currency } = getLocaleCurrency(localeKey);
+  const ui = getUiStrings(localeKey);
+  const hashtags = LOCALIZED_HASHTAGS[localeKey] || LOCALIZED_HASHTAGS.en;
+  const link = `${BASE_SITE_URL}${localizeRoutePath(localeKey, spec.baseEsPath)}`;
+
+  let title = ui.brandName;
+  let description = ui.footerTagline;
+  let matchedItems: ProductSummaryLike[] = [];
+  let fallbackImage = `${BASE_SITE_URL}/og-cover.png`;
+
+  switch (spec.kind) {
+    case 'home': {
+      title = `${ui.brandName} 【2026】 ${ui.badgeUpdated2026}`;
+      description = ui.footerTagline;
+      matchedItems = ALL_SITE_PRODUCTS.slice(0, 6);
+      break;
+    }
+
+    case 'age': {
+      const ageSlug = spec.slug || '';
+      const meta = getLocalizedAgeMeta(localeKey, ageSlug, currency);
+      title = meta.socialTitle || meta.title;
+      description = meta.description;
+      matchedItems = ALL_SITE_PRODUCTS.filter((p) => p.ageRange === spec.ageId);
+      fallbackImage = HUB_OG_SNIPPETS[ageSlug]?.imageUrl || fallbackImage;
+      break;
+    }
+
+    case 'subcategory': {
+      const [ageSlug] = (spec.slug || '').split('/');
+      const subLabel = spec.subLabel || '';
+      const meta = getLocalizedSubcategoryMeta(localeKey, ageSlug, subLabel, currency);
+      title = meta.socialTitle || meta.title;
+      description = meta.description;
+      matchedItems = matchProductsForSubcategory(
+        spec.ageId || '',
+        subLabel,
+        ALL_SITE_PRODUCTS
+      );
+      fallbackImage = getCategoryOgImage(subLabel).url;
+      break;
+    }
+
+    case 'filter': {
+      const filterSlug = spec.slug || '';
+      const flt = SEO_FILTER_ROUTES[filterSlug];
+      if (!flt) return null;
+      const meta = getLocalizedFilterMeta(localeKey, filterSlug, currency);
+      title = meta.socialTitle || meta.title;
+      description = meta.description;
+      matchedItems = matchProductsForFilter(flt, ALL_SITE_PRODUCTS);
+      fallbackImage = getCategoryOgImage(flt.label).url;
+      break;
+    }
+
+    case 'age-filter': {
+      const [ageSlug] = (spec.slug || '').split('/');
+      const filterSlug = spec.filterSlug || '';
+      const flt = SEO_FILTER_ROUTES[filterSlug];
+      if (!flt) return null;
+      const meta = getLocalizedAgeFilterMeta(localeKey, ageSlug, filterSlug, currency);
+      title = meta.socialTitle || meta.title;
+      description = meta.description;
+      matchedItems = matchProductsForAgeAndFilter(ageSlug, flt, ALL_SITE_PRODUCTS, false);
+      fallbackImage =
+        HUB_OG_SNIPPETS[ageSlug]?.imageUrl || getCategoryOgImage(flt.label).url;
+      break;
+    }
+
+    case 'hub': {
+      const hubSlug = spec.slug || '';
+      const meta = getLocalizedStaticHubMeta(localeKey, hubSlug, currency);
+      title = meta.socialTitle || meta.title;
+      description = meta.description;
+      matchedItems = HUB_ITEMS_MAP[hubSlug] || ALL_SITE_PRODUCTS.slice(0, 6);
+      fallbackImage = HUB_OG_SNIPPETS[hubSlug]?.imageUrl || fallbackImage;
+      break;
+    }
+
+    case 'hub-filter': {
+      const hubSlug = spec.hubSlug || '';
+      const hubCategoryId = spec.hubCategoryId || '';
+      const hf = (PASSION_HUB_FILTERS_MAP[hubSlug] || []).find(
+        (f) => f.id === hubCategoryId
+      );
+      if (!hf) return null;
+      const meta = getLocalizedPassionHubFilterMeta(
+        localeKey,
+        hubSlug,
+        hf.label,
+        hf.icon,
+        currency
+      );
+      title = meta.socialTitle || meta.title;
+      description = meta.description;
+      matchedItems = getPassionHubFilterProducts(hubSlug, hubCategoryId);
+      fallbackImage = HUB_OG_SNIPPETS[hubSlug]?.imageUrl || fallbackImage;
+      break;
+    }
+
+    default:
+      return null;
+  }
+
+  const topThree = matchedItems
+    .slice(0, 3)
+    .map((p, idx) => {
+      const pr = p.priceText ? ` (${applyCurrencyDisplay(p.priceText, currency)})` : '';
+      return `${idx + 1}. ${p.title}${pr}`;
+    })
+    .join(' · ');
+
+  const heroImage =
+    matchedItems.find((p) => p.imageUrl && p.imageUrl.startsWith('http'))?.imageUrl ||
+    fallbackImage;
+
+  return {
+    title,
+    link,
+    description: `${description}${topThree ? ` | Top 3: ${topThree}` : ''} ${hashtags}`,
+    imageUrl: heroImage,
+    category: spec.category,
+    pubDate,
+  };
+}
+
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
+  const format = (searchParams.get('format') || 'rss').toLowerCase();
   const rawLang = searchParams.get('lang') || 'es';
   const localeKey = normalizeLocaleKey(rawLang);
-  const board = (searchParams.get('board') || 'all').toLowerCase();
+  const rawBoard = (searchParams.get('board') || 'all').toLowerCase();
 
-  const items: PinFeedItem[] = [];
+  // Map friendly alias 'pasiones' -> 'tematicas'
+  const normalizedBoard: SitemapCategory | 'all' =
+    rawBoard === 'pasiones' || rawBoard === 'tematicas'
+      ? 'tematicas'
+      : rawBoard === 'edades'
+      ? 'edades'
+      : rawBoard === 'ocasiones'
+      ? 'ocasiones'
+      : rawBoard === 'presupuestos'
+      ? 'presupuestos'
+      : 'all';
+
+  const allSpecs = getAllCanonicalRouteSpecs();
+
+  // JSON Directory Mode: lists all 108 (27 languages × 4 boards) RSS feeds & counts
+  if (format === 'json') {
+    const activeSpecsForEs = allSpecs.filter(
+      (s) => getActiveStockForRoute(s, 'es') > 0
+    );
+    const countsByBoard: Record<string, number> = {
+      edades: activeSpecsForEs.filter((s) => s.category === 'edades').length,
+      tematicas: activeSpecsForEs.filter((s) => s.category === 'tematicas').length,
+      ocasiones: activeSpecsForEs.filter((s) => s.category === 'ocasiones').length,
+      presupuestos: activeSpecsForEs.filter((s) => s.category === 'presupuestos').length,
+    };
+
+    const feeds = ALL_SITEMAP_LOCALES.flatMap((loc) =>
+      SITEMAP_CATEGORIES.map((cat) => ({
+        locale: loc.localeKey,
+        hreflang: loc.hreflang,
+        board: cat,
+        pinCount: countsByBoard[cat] || 0,
+        rssUrl: `${BASE_SITE_URL}/feed/pinterest.xml?lang=${loc.localeKey}&board=${cat}`,
+      }))
+    );
+
+    return NextResponse.json({
+      ok: true,
+      totalLocales: ALL_SITEMAP_LOCALES.length,
+      boardsPerLocale: SITEMAP_CATEGORIES.length,
+      totalRssFeeds: feeds.length,
+      routesPerLocale: activeSpecsForEs.length,
+      totalGlobalPins: activeSpecsForEs.length * ALL_SITEMAP_LOCALES.length,
+      countsByBoard,
+      feeds,
+    });
+  }
+
+  const filteredSpecs = allSpecs.filter((spec) => {
+    if (normalizedBoard !== 'all' && spec.category !== normalizedBoard) {
+      return false;
+    }
+    return getActiveStockForRoute(spec, localeKey) > 0;
+  });
+
   const nowMs = Date.now();
-  let indexOffset = 0;
+  const items: PinFeedItem[] = [];
 
-  const nextPubDate = () => {
-    const dt = new Date(nowMs - indexOffset * 3600 * 1000);
-    indexOffset += 1;
-    return dt.toUTCString();
-  };
-
-  // 1. TABLERO EDADES (9 etapas + 18 edades exactas 1-18 años)
-  if (board === 'all' || board === 'edades') {
-    for (const ageRoute of Object.values(SEO_AGE_ROUTES)) {
-      const meta = getLocalizedAgeMeta(localeKey, ageRoute.ageSlug);
-      const matched = ALL_SITE_PRODUCTS.filter((p) => p.ageRange === ageRoute.ageId);
-      const topThree = matched
-        .slice(0, 3)
-        .map((p, idx) => `${idx + 1}. ${p.title} (${p.priceText})`)
-        .join(' · ');
-      const snippet = HUB_OG_SNIPPETS[ageRoute.ageSlug];
-      const heroImage =
-        matched.find((p) => p.imageUrl && p.imageUrl.startsWith('http'))?.imageUrl ||
-        snippet?.imageUrl ||
-        `${BASE_SITE_URL}/og-cover.png`;
-      const link = `${BASE_SITE_URL}${localizeRoutePath(localeKey, `/${ageRoute.ageSlug}`)}`;
-
-      items.push({
-        title: meta.socialTitle || meta.h1,
-        link,
-        description: `${meta.description}${topThree ? ` | Top Recomendados: ${topThree}` : ''} #Regalos #IdeasDeRegalo #UnBuenRegalo`,
-        imageUrl: heroImage,
-        category: 'Regalos por Edad',
-        pubDate: nextPubDate(),
-      });
+  filteredSpecs.forEach((spec, idx) => {
+    const pubDate = new Date(nowMs - idx * 1800 * 1000).toUTCString();
+    const item = buildPinItemFromRouteSpec(spec, localeKey, pubDate);
+    if (item) {
+      items.push(item);
     }
-  }
+  });
 
-  // 2. TABLERO OCASIONES Y FAMILIA (Amigo Invisible, Cumpleaños, Día del Padre/Madre, Novio/Novia, etc.)
-  if (board === 'all' || board === 'ocasiones') {
-    for (const hubSlug of ALL_STATIC_HUB_SLUGS) {
-      const meta = getLocalizedStaticHubMeta(localeKey, hubSlug);
-      const snippet = HUB_OG_SNIPPETS[hubSlug];
-      const heroImage = snippet?.imageUrl || `${BASE_SITE_URL}/og-cover.png`;
-      const link = `${BASE_SITE_URL}${localizeRoutePath(localeKey, `/${hubSlug}`)}`;
-
-      items.push({
-        title: meta.socialTitle || meta.h1,
-        link,
-        description: `${meta.description} #RegalosOriginales #IdeasDeRegalo #UnBuenRegalo`,
-        imageUrl: heroImage,
-        category: 'Ocasiones Especiales',
-        pubDate: nextPubDate(),
-      });
-    }
-
-    const occasionSlugs = [
-      'regalos-amigo-invisible',
-      'regalos-cumpleanos-originales',
-      'regalos-primera-comunion',
-      'regalos-san-valentin-y-aniversario',
-      'regalos-dia-del-padre',
-      'regalos-dia-de-la-madre',
-      'regalos-para-padres',
-      'regalos-para-madres',
-      'regalos-para-abuelos',
-      'regalos-para-profesores',
-      'regalos-para-el',
-      'regalos-para-ella',
-    ];
-
-    for (const slug of occasionSlugs) {
-      const flt = SEO_FILTER_ROUTES[slug];
-      if (!flt) continue;
-      const meta = getLocalizedFilterMeta(localeKey, slug);
-      const matched = matchProductsForFilter(flt, ALL_SITE_PRODUCTS);
-      const topThree = matched
-        .slice(0, 3)
-        .map((p, idx) => `${idx + 1}. ${p.title} (${p.priceText})`)
-        .join(' · ');
-      const heroImage =
-        matched.find((p) => p.imageUrl && p.imageUrl.startsWith('http'))?.imageUrl ||
-        getCategoryOgImage(flt.label).url;
-      const link = `${BASE_SITE_URL}${localizeRoutePath(localeKey, `/${slug}`)}`;
-
-      items.push({
-        title: meta.socialTitle || meta.h1,
-        link,
-        description: `${meta.description}${topThree ? ` | Destacados: ${topThree}` : ''} #Regalos #AmigoInvisible #Cumpleaños`,
-        imageUrl: heroImage,
-        category: 'Ocasiones y Familia',
-        pubDate: nextPubDate(),
-      });
-    }
-  }
-
-  // 3. TABLERO PASIONES Y TEMÁTICAS (9 Hubs × 53 Filtros + Categorías y Anime)
-  if (board === 'all' || board === 'pasiones') {
-    for (const [hubSlug, filters] of Object.entries(PASSION_HUB_FILTERS_MAP)) {
-      for (const hf of filters) {
-        const meta = getLocalizedPassionHubFilterMeta(
-          localeKey,
-          hubSlug,
-          hf.label,
-          hf.icon
-        );
-        const matched = getPassionHubFilterProducts(hubSlug, hf.id);
-        const topThree = matched
-          .slice(0, 3)
-          .map((p, idx) => `${idx + 1}. ${p.title} (${p.priceText})`)
-          .join(' · ');
-        const heroImage =
-          matched.find((p) => p.imageUrl && p.imageUrl.startsWith('http'))?.imageUrl ||
-          HUB_OG_SNIPPETS[hubSlug]?.imageUrl ||
-          `${BASE_SITE_URL}/og-cover.png`;
-        const link = `${BASE_SITE_URL}${localizeRoutePath(localeKey, `/${hubSlug}/${hf.slug}`)}`;
-
-        items.push({
-          title: meta.socialTitle || meta.h1,
-          link,
-          description: `${meta.description}${topThree ? ` | Top Selección: ${topThree}` : ''} #Regalos #IdeasDeRegalo`,
-          imageUrl: heroImage,
-          category: 'Pasiones y Aficiones',
-          pubDate: nextPubDate(),
-        });
-      }
-    }
-
-    for (const flt of Object.values(SEO_FILTER_ROUTES)) {
-      if (flt.filterKind === 'price' || flt.filterKind === 'gender') continue;
-      const meta = getLocalizedFilterMeta(localeKey, flt.slug);
-      const matched = matchProductsForFilter(flt, ALL_SITE_PRODUCTS);
-      const heroImage =
-        matched.find((p) => p.imageUrl && p.imageUrl.startsWith('http'))?.imageUrl ||
-        getCategoryOgImage(flt.label).url;
-      const link = `${BASE_SITE_URL}${localizeRoutePath(localeKey, `/${flt.slug}`)}`;
-
-      items.push({
-        title: meta.socialTitle || meta.h1,
-        link,
-        description: `${meta.description} #Regalos #Top10 #UnBuenRegalo`,
-        imageUrl: heroImage,
-        category: 'Temáticas y Categorías',
-        pubDate: nextPubDate(),
-      });
-    }
-  }
-
-  // 4. TABLERO PRESUPUESTOS (Menos de 15€, 20€, 30€, etc.)
-  if (board === 'all' || board === 'presupuestos') {
-    for (const flt of Object.values(SEO_FILTER_ROUTES)) {
-      if (flt.filterKind !== 'price') continue;
-      const meta = getLocalizedFilterMeta(localeKey, flt.slug);
-      const matched = matchProductsForFilter(flt, ALL_SITE_PRODUCTS);
-      const topThree = matched
-        .slice(0, 3)
-        .map((p, idx) => `${idx + 1}. ${p.title} (${p.priceText})`)
-        .join(' · ');
-      const heroImage =
-        matched.find((p) => p.imageUrl && p.imageUrl.startsWith('http'))?.imageUrl ||
-        `${BASE_SITE_URL}/og-cover.png`;
-      const link = `${BASE_SITE_URL}${localizeRoutePath(localeKey, `/${flt.slug}`)}`;
-
-      items.push({
-        title: meta.socialTitle || meta.h1,
-        link,
-        description: `${meta.description}${topThree ? ` | Ideas: ${topThree}` : ''} #RegalosBaratos #AmigoInvisible`,
-        imageUrl: heroImage,
-        category: 'Regalos por Presupuesto',
-        pubDate: nextPubDate(),
-      });
-    }
-  }
-
-  const selfUrl = `${BASE_SITE_URL}/feed/pinterest.xml?lang=${encodeURIComponent(localeKey)}&board=${encodeURIComponent(board)}`;
+  const selfUrl = `${BASE_SITE_URL}/feed/pinterest.xml?lang=${encodeURIComponent(localeKey)}&board=${encodeURIComponent(normalizedBoard)}`;
+  const ui = getUiStrings(localeKey);
 
   const xmlItems = items
-    .slice(0, 150)
     .map(
       (item) => `    <item>
       <title>${escapeXml(item.title)}</title>
@@ -239,9 +318,9 @@ export async function GET(request: NextRequest) {
   const rssXml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Un Buen Regalo — Ideas de Regalo y Comparativas (${escapeXml(localeKey.toUpperCase())} · ${escapeXml(board.toUpperCase())})</title>
-    <link>${BASE_SITE_URL}</link>
-    <description>Guía verificada con los mejores regalos por edad, ocasión, afición y presupuesto en Amazon.</description>
+    <title>${escapeXml(ui.brandName)} — Pinterest Feed (${escapeXml(localeKey.toUpperCase())} · ${escapeXml(normalizedBoard.toUpperCase())} · ${items.length} Pins)</title>
+    <link>${BASE_SITE_URL}${escapeXml(localizeRoutePath(localeKey, '/'))}</link>
+    <description>${escapeXml(ui.footerTagline)}</description>
     <language>${escapeXml(localeKey)}</language>
     <atom:link href="${escapeXml(selfUrl)}" rel="self" type="application/rss+xml" />
 ${xmlItems}

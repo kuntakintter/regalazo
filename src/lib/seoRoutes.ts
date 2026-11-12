@@ -88,28 +88,28 @@ export const SEO_AGE_ROUTES: Record<string, SeoRouteMeta> = {
     ageId: '1-3',
     ageSlug: 'regalos-para-bebes-de-1-ano',
     specificYear: 1,
-    title: 'Regalos para Bebés y Niños de 1 Año 【2026】 Top 10 Juguetes Montessori | Un Buen Regalo',
-    h1: 'Regalos para Bebés y Niños de 1 Año: Ideas Originales y Juguetes Montessori',
-    description: '¿Qué regalar a un bebé o niño de 1 año en su primer cumpleaños? Correpasillos de madera, cubos de actividades Montessori, bloques sensoriales y triciclos evolutivos.',
-    keywords: ['regalos para bebes de 1 año', 'regalos para niños de 1 año', 'que regalar a un bebe de 1 año', 'regalo primer cumpleaños', 'juguetes 1 año montessori']
+    title: 'Regalos para Bebés y Niños de 1 Año 【2026】 Qué Regalo Hacer | Un Buen Regalo',
+    h1: 'Regalo y Regalos para Hacer a un Bebé o Niño de 1 Año: Top 10 Montessori',
+    description: '¿Qué regalo hacer a un bebé o niño de 1 año en su primer cumpleaños? Correpasillos de madera, cubos de actividades Montessori, bloques sensoriales y triciclos evolutivos.',
+    keywords: ['regalo para hacer a bebe de 1 año', 'regalos para bebes de 1 año', 'regalos para niños de 1 año', 'que regalar a un bebe de 1 año', 'regalo primer cumpleaños', 'juguetes 1 año montessori']
   },
   'regalos-para-ninos-de-2-anos': {
     ageId: '1-3',
     ageSlug: 'regalos-para-ninos-de-2-anos',
     specificYear: 2,
-    title: 'Regalos para Niños y Niñas de 2 Años 【2026】 Top 10 Juguetes Educativos | Un Buen Regalo',
-    h1: 'Regalos para Niños y Niñas de 2 Años: Juguetes Montessori y Creativos',
-    description: '¿Qué regalar a un niño o niña de 2 años? Bicicletas sin pedales de equilibrio, LEGO DUPLO, cocinitas de madera, pizarras magnéticas y cuentos interactivos.',
-    keywords: ['regalos para niños de 2 años', 'regalos para niñas de 2 años', 'que regalar a un niño de 2 años', 'juguetes niños 2 años', 'bicicleta sin pedales 2 años']
+    title: 'Regalos para Niños y Niñas de 2 Años 【2026】 Qué Regalo Hacer | Un Buen Regalo',
+    h1: 'Regalo y Regalos para Hacer a un Niño o Niña de 2 Años: Juguetes Montessori',
+    description: '¿Qué regalo hacer a un niño o niña de 2 años? Bicicletas sin pedales de equilibrio, LEGO DUPLO, cocinitas de madera, pizarras magnéticas y cuentos interactivos.',
+    keywords: ['regalo para hacer a niño de 2 años', 'regalos para niños de 2 años', 'regalos para niñas de 2 años', 'que regalar a un niño de 2 años', 'juguetes niños 2 años', 'bicicleta sin pedales 2 años']
   },
   'regalos-para-ninos-de-3-anos': {
     ageId: '1-3',
     ageSlug: 'regalos-para-ninos-de-3-anos',
     specificYear: 3,
-    title: 'Regalos para Niños y Niñas de 3 Años 【2026】 Top 10 Ideas Originales | Un Buen Regalo',
-    h1: 'Regalos para Niños y Niñas de 3 Años: Juegos Simbólicos y Primeros Pedales',
-    description: 'Selección verificada de regalos para niños y niñas de 3 años: patinetes de 3 ruedas LED, sets Playmobil y LEGO DUPLO, disfraces infantiles y juegos de memoria.',
-    keywords: ['regalos para niños de 3 años', 'regalos para niñas de 3 años', 'que regalar a un niño de 3 años', 'juguetes 3 años', 'patinete 3 años']
+    title: 'Regalos para Niños y Niñas de 3 Años 【2026】 Qué Regalo Hacer | Un Buen Regalo',
+    h1: 'Regalo y Regalos para Hacer a un Niño o Niña de 3 Años: Juegos y Primeros Pedales',
+    description: '¿Qué regalo hacer a un niño o niña de 3 años? Patinetes de 3 ruedas LED, sets Playmobil y LEGO DUPLO, disfraces infantiles y juegos de memoria.',
+    keywords: ['regalo para hacer a niño de 3 años', 'regalos para niños de 3 años', 'regalos para niñas de 3 años', 'que regalar a un niño de 3 años', 'juguetes 3 años', 'patinete 3 años']
   },
   'regalos-para-ninos-de-4-anos': {
     ageId: '4-6',
@@ -124,127 +124,127 @@ export const SEO_AGE_ROUTES: Record<string, SeoRouteMeta> = {
     ageId: '4-6',
     ageSlug: 'regalos-para-ninos-de-5-anos',
     specificYear: 5,
-    title: 'Regalos para Niños y Niñas de 5 Años 【2026】 Top 10 Ideas Originales | Un Buen Regalo',
-    h1: 'Regalos para Niños y Niñas de 5 Años: Juegos de Mesa, LEGO y Exterior',
-    description: 'Descubre los mejores regalos para niños y niñas de 5 años: sets LEGO City y Friends, patinetes plegables con luces LED, cámaras infantiles digitales y kits creativos.',
-    keywords: ['regalos para niños de 5 años', 'regalos para niñas de 5 años', 'que regalar a un niño de 5 años', 'juguetes 5 años', 'cámara fotos infantil']
+    title: 'Regalos para Niños y Niñas de 5 Años 【2026】 Qué Regalo Hacer | Un Buen Regalo',
+    h1: 'Regalo y Regalos para Hacer a un Niño o Niña de 5 Años: Juegos de Mesa y LEGO',
+    description: '¿Qué regalo hacer a un niño o niña de 5 años? Sets LEGO City y Friends, patinetes plegables con luces LED, cámaras infantiles digitales y kits creativos.',
+    keywords: ['regalo para hacer a niño de 5 años', 'regalos para niños de 5 años', 'regalos para niñas de 5 años', 'que regalar a un niño de 5 años', 'juguetes 5 años', 'cámara fotos infantil']
   },
   'regalos-para-ninos-de-6-anos': {
     ageId: '4-6',
     ageSlug: 'regalos-para-ninos-de-6-anos',
     specificYear: 6,
-    title: 'Regalos para Niños y Niñas de 6 Años 【2026】 Top 10 Juguetes y Juegos | Un Buen Regalo',
-    h1: 'Regalos para Niños y Niñas de 6 Años: Ciencia, Carreras y Juegos en Familia',
-    description: '¿Qué regalar a un niño o niña de 6 años? Pistas Mario Kart Carrera FIRST, primeros experimentos científicos, walkie-talkies recargables y juegos de lógica.',
-    keywords: ['regalos para niños de 6 años', 'regalos para niñas de 6 años', 'que regalar a un niño de 6 años', 'juguetes 6 años', 'walkie talkie niños']
+    title: 'Regalos para Niños y Niñas de 6 Años 【2026】 Qué Regalo Hacer | Un Buen Regalo',
+    h1: 'Regalo y Regalos para Hacer a un Niño o Niña de 6 Años: Ciencia y Carreras',
+    description: '¿Qué regalo hacer a un niño o niña de 6 años? Pistas Mario Kart Carrera FIRST, primeros experimentos científicos, walkie-talkies recargables y juegos de lógica.',
+    keywords: ['regalo para hacer a niño de 6 años', 'regalos para niños de 6 años', 'regalos para niñas de 6 años', 'que regalar a un niño de 6 años', 'juguetes 6 años', 'walkie talkie niños']
   },
   'regalos-para-ninos-de-7-anos': {
     ageId: '7-9',
     ageSlug: 'regalos-para-ninos-de-7-anos',
     specificYear: 7,
-    title: 'Regalos para Niños y Niñas de 7 Años 【2026】 Top 10 Ideas y Juguetes | Un Buen Regalo',
-    h1: 'Regalos para Niños y Niñas de 7 Años: LEGO, Robótica y Deportes',
-    description: 'Comparativa con los mejores regalos para niños y niñas de 7 años: coches teledirigidos acrobáticos, cajas de cartas Pokémon, sets LEGO Creator y magia educativa.',
-    keywords: ['regalos para niños de 7 años', 'regalos para niñas de 7 años', 'que regalar a un niño de 7 años', 'juguetes 7 años', 'cartas pokemon regalo']
+    title: 'Regalos para Niños y Niñas de 7 Años 【2026】 Qué Regalo Hacer | Un Buen Regalo',
+    h1: 'Regalo y Regalos para Hacer a un Niño o Niña de 7 Años: LEGO, Robótica y Deportes',
+    description: '¿Qué regalo hacer a un niño o niña de 7 años? Coches teledirigidos acrobáticos, cajas de cartas Pokémon, sets LEGO Creator y magia educativa.',
+    keywords: ['regalo para hacer a niño de 7 años', 'regalos para niños de 7 años', 'regalos para niñas de 7 años', 'que regalar a un niño de 7 años', 'juguetes 7 años', 'cartas pokemon regalo']
   },
   'regalos-para-ninos-de-8-anos': {
     ageId: '7-9',
     ageSlug: 'regalos-para-ninos-de-8-anos',
     specificYear: 8,
-    title: 'Regalos para Niños y Niñas de 8 Años 【2026】 Top 10 Ideas de Comunión y Cumpleaños',
-    h1: 'Regalos para Niños y Niñas de 8 Años: Scalextric, STEM y Aventura',
-    description: '¿Buscas un buen regalo para un niño o niña de 8 años? Circuitos Scalextric Compact, kits de robótica solar, patines en línea ajustables y juegos de estrategia.',
-    keywords: ['regalos para niños de 8 años', 'regalos para niñas de 8 años', 'que regalar a un niño de 8 años', 'juguetes 8 años', 'regalos comunion 8 años']
+    title: 'Regalos para Niños y Niñas de 8 Años 【2026】 Qué Regalo Hacer (Comunión y Cumpleaños)',
+    h1: 'Regalo y Regalos para Hacer a un Niño o Niña de 8 Años: Scalextric, STEM y Aventura',
+    description: '¿Qué regalo hacer a un niño o niña de 8 años? Circuitos Scalextric Compact, kits de robótica solar, patines en línea ajustables y juegos de estrategia.',
+    keywords: ['regalo para hacer a niño de 8 años', 'regalos para niños de 8 años', 'regalos para niñas de 8 años', 'que regalar a un niño de 8 años', 'juguetes 8 años', 'regalos comunion 8 años']
   },
   'regalos-para-ninos-de-9-anos': {
     ageId: '7-9',
     ageSlug: 'regalos-para-ninos-de-9-anos',
     specificYear: 9,
-    title: 'Regalos para Niños y Niñas de 9 Años 【2026】 Top 10 Ideas Originales | Un Buen Regalo',
-    h1: 'Regalos para Niños y Niñas de 9 Años: Tecnología, Construcción y Primera Comunión',
-    description: 'Ranking de regalos para niños y niñas de 9 años: relojes inteligentes infantiles, sets LEGO Ninjago y Harry Potter, telescopios astronómicos y juegos de mesa.',
-    keywords: ['regalos para niños de 9 años', 'regalos para niñas de 9 años', 'que regalar a un niño de 9 años', 'regalos primera comunion 9 años', 'juguetes 9 años']
+    title: 'Regalos para Niños y Niñas de 9 Años 【2026】 Qué Regalo Hacer | Un Buen Regalo',
+    h1: 'Regalo y Regalos para Hacer a un Niño o Niña de 9 Años: Tecnología y Comunión',
+    description: '¿Qué regalo hacer a un niño o niña de 9 años? Relojes inteligentes infantiles, sets LEGO Ninjago y Harry Potter, telescopios astronómicos y juegos de mesa.',
+    keywords: ['regalo para hacer a niño de 9 años', 'regalos para niños de 9 años', 'regalos para niñas de 9 años', 'que regalar a un niño de 9 años', 'regalos primera comunion 9 años', 'juguetes 9 años']
   },
   'regalos-para-ninos-de-10-anos': {
     ageId: '10-12',
     ageSlug: 'regalos-para-ninos-de-10-anos',
     specificYear: 10,
-    title: 'Regalos para Niños y Niñas de 10 Años 【2026】 Top 10 Ideas Preadolescentes',
-    h1: 'Regalos para Niños y Niñas de 10 Años: Drones, Escape Rooms y Creatividad',
-    description: '¿Qué regalar a un niño o niña de 10 años? Minidrones con cámara HD, juegos de mesa competitivos como Virus! y Dixit, cámaras instantáneas y kits de lettering.',
-    keywords: ['regalos para niños de 10 años', 'regalos para niñas de 10 años', 'que regalar a un niño de 10 años', 'juguetes 10 años', 'drones para niños 10 años']
+    title: 'Regalos para Niños y Niñas de 10 Años 【2026】 Qué Regalo Hacer | Un Buen Regalo',
+    h1: 'Regalo y Regalos para Hacer a un Niño o Niña de 10 Años: Drones y Escape Rooms',
+    description: '¿Qué regalo hacer a un niño o niña de 10 años? Minidrones con cámara HD, juegos de mesa competitivos como Virus! y Dixit, cámaras instantáneas y kits de lettering.',
+    keywords: ['regalo para hacer a niño de 10 años', 'regalos para niños de 10 años', 'regalos para niñas de 10 años', 'que regalar a un niño de 10 años', 'juguetes 10 años', 'drones para niños 10 años']
   },
   'regalos-para-ninos-de-11-anos': {
     ageId: '10-12',
     ageSlug: 'regalos-para-ninos-de-11-anos',
     specificYear: 11,
-    title: 'Regalos para Niños y Niñas de 11 Años 【2026】 Top 10 Ideas Originales | Un Buen Regalo',
-    h1: 'Regalos para Niños y Niñas de 11 Años: Gaming, Anime y Ciencia Avanzada',
-    description: 'Selección de regalos para chicos y chicas de 11 años: figuras coleccionables de anime, sets LEGO Technic, auriculares inalámbricos, juegos de rol y patinetes.',
-    keywords: ['regalos para niños de 11 años', 'regalos para niñas de 11 años', 'que regalar a un niño de 11 años', 'regalos preadolescentes 11 años']
+    title: 'Regalos para Niños y Niñas de 11 Años 【2026】 Qué Regalo Hacer | Un Buen Regalo',
+    h1: 'Regalo y Regalos para Hacer a un Niño o Niña de 11 Años: Gaming, Anime y Ciencia',
+    description: '¿Qué regalo hacer a chicos y chicas de 11 años? Figuras coleccionables de anime, sets LEGO Technic, auriculares inalámbricos, juegos de rol y patinetes.',
+    keywords: ['regalo para hacer a niño de 11 años', 'regalos para niños de 11 años', 'regalos para niñas de 11 años', 'que regalar a un niño de 11 años', 'regalos preadolescentes 11 años']
   },
   'regalos-para-ninos-de-12-anos': {
     ageId: '10-12',
     ageSlug: 'regalos-para-ninos-de-12-anos',
     specificYear: 12,
-    title: 'Regalos para Niños y Niñas de 12 Años 【2026】 Top 10 Ideas y Tendencias | Un Buen Regalo',
-    h1: 'Regalos para Chicos y Chicas de 12 Años: Tecnología, Deportes y Coleccionismo',
-    description: '¿Qué regalar a los 12 años? Altavoces Bluetooth impermeables, luces LED RGB para habitación, juegos de mesa estratégicos, mochilas urbanas y mangas.',
-    keywords: ['regalos para niños de 12 años', 'regalos para niñas de 12 años', 'que regalar a un niño de 12 años', 'regalos 12 años chico chica']
+    title: 'Regalos para Niños y Niñas de 12 Años 【2026】 Qué Regalo Hacer | Un Buen Regalo',
+    h1: 'Regalo y Regalos para Hacer a Chicos y Chicas de 12 Años: Tecnología y Deportes',
+    description: '¿Qué regalo hacer a los 12 años? Altavoces Bluetooth impermeables, luces LED RGB para habitación, juegos de mesa estratégicos, mochilas urbanas y mangas.',
+    keywords: ['regalo para hacer a niño de 12 años', 'regalos para niños de 12 años', 'regalos para niñas de 12 años', 'que regalar a un niño de 12 años', 'regalos 12 años chico chica']
   },
   'regalos-para-ninos-de-13-anos': {
     ageId: '13-15',
     ageSlug: 'regalos-para-ninos-de-13-anos',
     specificYear: 13,
-    title: 'Regalos para Niños y Adolescentes de 13 Años 【2026】 Top 10 Ideas Originales',
-    h1: 'Regalos para Niños, Niñas y Adolescentes de 13 Años: Tendencias 2026',
-    description: '¿Qué regalar a un chico o chica de 13 años? Cámaras Fujifilm Instax Mini, auriculares gaming y música JBL, juegos de mesa Catan, papelería creativa y lámparas 3D anime.',
-    keywords: ['regalos para niños de 13 años', 'regalos para niñas de 13 años', 'que regalar a un niño de 13 años', 'regalos adolescentes 13 años', 'gifts for 13 year old kids']
+    title: 'Regalos para Niños y Adolescentes de 13 Años 【2026】 Qué Regalo Hacer',
+    h1: 'Regalo y Regalos para Hacer a Chicos y Chicas de 13 Años: Tendencias 2026',
+    description: '¿Qué regalo hacer a un chico o chica de 13 años? Cámaras Fujifilm Instax Mini, auriculares gaming y música JBL, juegos de mesa Catan, papelería creativa y lámparas 3D anime.',
+    keywords: ['regalo para hacer a niño de 13 años', 'regalos para niños de 13 años', 'regalos para niñas de 13 años', 'que regalar a un niño de 13 años', 'regalos adolescentes 13 años', 'gifts for 13 year old kids']
   },
   'regalos-para-ninos-de-14-anos': {
     ageId: '13-15',
     ageSlug: 'regalos-para-ninos-de-14-anos',
     specificYear: 14,
-    title: 'Regalos para Adolescentes de 14 Años 【2026】 Top 10 Chicos y Chicas | Un Buen Regalo',
-    h1: 'Regalos para Adolescentes de 14 Años: Tecnología, Gaming y Estilo Juvenil',
-    description: 'Descubre qué regalar a un adolescente de 14 años: periféricos gaming RGB, sets de skincare juvenil, figuras One Piece y Dragon Ball, sudaderas y gadgets tech.',
-    keywords: ['regalos para niños de 14 años', 'regalos para niñas de 14 años', 'regalos adolescentes 14 años', 'que regalar a los 14 años']
+    title: 'Regalos para Adolescentes de 14 Años 【2026】 Qué Regalo Hacer | Un Buen Regalo',
+    h1: 'Regalo y Regalos para Hacer a Adolescentes de 14 Años: Gaming y Estilo Juvenil',
+    description: '¿Qué regalo hacer a un adolescente de 14 años? Periféricos gaming RGB, sets de skincare juvenil, figuras One Piece y Dragon Ball, sudaderas y gadgets tech.',
+    keywords: ['regalo para hacer a adolescente de 14 años', 'regalos para niños de 14 años', 'regalos para niñas de 14 años', 'regalos adolescentes 14 años', 'que regalar a los 14 años']
   },
   'regalos-para-ninos-de-15-anos': {
     ageId: '13-15',
     ageSlug: 'regalos-para-ninos-de-15-anos',
     specificYear: 15,
-    title: 'Regalos para Adolescentes de 15 Años 【2026】 Top 10 Ideas Originales | Un Buen Regalo',
-    h1: 'Regalos para Chicos y Chicas de 15 Años: Música, Fotografía y Habitación Gamer',
-    description: 'Las mejores ideas de regalo para cumplir 15 años: proyectores portátiles para cine en casa, tocadiscos vintage Bluetooth, auriculares con cancelación de ruido y moda.',
-    keywords: ['regalos para niños de 15 años', 'regalos para niñas de 15 años', 'regalos 15 años chica', 'regalos 15 años chico', 'que regalar a un adolescente de 15 años']
+    title: 'Regalos para Adolescentes de 15 Años 【2026】 Qué Regalo Hacer | Un Buen Regalo',
+    h1: 'Regalo y Regalos para Hacer a Chicos y Chicas de 15 Años: Música, Foto y Gaming',
+    description: '¿Qué regalo hacer para cumplir 15 años? Proyectores portátiles para cine en casa, tocadiscos vintage Bluetooth, auriculares con cancelación de ruido y moda.',
+    keywords: ['regalo para hacer a adolescente de 15 años', 'regalos para niños de 15 años', 'regalos para niñas de 15 años', 'regalos 15 años chica', 'regalos 15 años chico', 'que regalar a un adolescente de 15 años']
   },
   'regalos-para-jovenes-de-16-anos': {
     ageId: '16-18',
     ageSlug: 'regalos-para-jovenes-de-16-anos',
     specificYear: 16,
-    title: 'Regalos para Jóvenes de 16 Años 【2026】 Top 10 Gaming, Tech y Moda | Un Buen Regalo',
-    h1: 'Regalos para Jóvenes de 16 Años: Videojuegos, Audio Pro y Estilo Urbano',
-    description: '¿Qué regalar a un joven de 16 años? Mandos PS5 DualSense, teclados mecánicos custom, zapatillas y complementos de tendencia, perfumes juveniles y smartwatches.',
-    keywords: ['regalos para jovenes de 16 años', 'regalos 16 años chico', 'regalos 16 años chica', 'que regalar a los 16 años']
+    title: 'Regalos para Jóvenes de 16 Años 【2026】 Qué Regalo Hacer | Un Buen Regalo',
+    h1: 'Regalo y Regalos para Hacer a Jóvenes de 16 Años: Videojuegos, Audio y Estilo',
+    description: '¿Qué regalo hacer a un joven de 16 años? Mandos PS5 DualSense, teclados mecánicos custom, zapatillas y complementos de tendencia, perfumes juveniles y smartwatches.',
+    keywords: ['regalo para hacer a joven de 16 años', 'regalos para jovenes de 16 años', 'regalos 16 años chico', 'regalos 16 años chica', 'que regalar a los 16 años']
   },
   'regalos-para-jovenes-de-17-anos': {
     ageId: '16-18',
     ageSlug: 'regalos-para-jovenes-de-17-anos',
     specificYear: 17,
-    title: 'Regalos para Jóvenes de 17 Años 【2026】 Top 10 Ideas Originales | Un Buen Regalo',
-    h1: 'Regalos para Jóvenes de 17 Años: Tecnología, Experiencias y Coleccionismo',
-    description: 'Ranking de regalos originales para chicos y chicas de 17 años: monitores gaming de alta tasa de refresco, cámaras de acción 4K, mochilas antirrobo para portátil y fragancias.',
-    keywords: ['regalos para jovenes de 17 años', 'regalos 17 años chico', 'regalos 17 años chica', 'que regalar a los 17 años']
+    title: 'Regalos para Jóvenes de 17 Años 【2026】 Qué Regalo Hacer | Un Buen Regalo',
+    h1: 'Regalo y Regalos para Hacer a Jóvenes de 17 Años: Tecnología y Experiencias',
+    description: '¿Qué regalo hacer a chicos y chicas de 17 años? Monitores gaming de alta tasa de refresco, cámaras de acción 4K, mochilas antirrobo para portátil y fragancias.',
+    keywords: ['regalo para hacer a joven de 17 años', 'regalos para jovenes de 17 años', 'regalos 17 años chico', 'regalos 17 años chica', 'que regalar a los 17 años']
   },
   'regalos-para-jovenes-de-18-anos': {
     ageId: '16-18',
     ageSlug: 'regalos-para-jovenes-de-18-anos',
     specificYear: 18,
-    title: 'Regalos para Cumplir 18 Años 【2026】 Top 10 Mayoría de Edad | Un Buen Regalo',
-    h1: 'Regalos para Jóvenes de 18 Años: Ideas Inolvidables para la Mayoría de Edad',
-    description: '¿Qué regalar por los 18 años? Relojes automáticos y cronógrafos, cajas de experiencias y viajes, auriculares inalámbricos premium, cafeteras express y equipamiento tech.',
-    keywords: ['regalos para jovenes de 18 años', 'regalos 18 años hombre', 'regalos 18 años mujer', 'regalo mayoria de edad 18 años']
+    title: 'Regalos para Cumplir 18 Años 【2026】 Qué Regalo Hacer | Un Buen Regalo',
+    h1: 'Regalo y Regalos para Hacer a Jóvenes de 18 Años: Mayoría de Edad Inolvidable',
+    description: '¿Qué regalo hacer por los 18 años? Relojes automáticos y cronógrafos, cajas de experiencias y viajes, auriculares inalámbricos premium, cafeteras express y equipamiento tech.',
+    keywords: ['regalo para hacer a joven de 18 años', 'regalos para jovenes de 18 años', 'regalos 18 años hombre', 'regalos 18 años mujer', 'regalo mayoria de edad 18 años']
   }
 };
 
