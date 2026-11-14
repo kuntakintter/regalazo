@@ -6,6 +6,7 @@ import {
   parsePrice,
   AmazonRegion,
   SPAIN_TIMEZONES,
+  isSpainClient,
   detectClientAmazonRegion,
   getRegionalAmazonConfig,
   AMAZON_BASE_URL,
@@ -54,9 +55,8 @@ function getRouteDefaults(pathname?: string | null): {
 function detectClientDefaultCurrency(): Currency {
   if (typeof window === 'undefined') return 'EUR';
   try {
-    const savedCurrency = localStorage.getItem('site_currency') as Currency;
-    if (savedCurrency === 'EUR' || savedCurrency === 'USD') {
-      return savedCurrency;
+    if (isSpainClient()) {
+      return 'EUR';
     }
     const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
     if (tz && !tz.startsWith('Europe/') && !SPAIN_TIMEZONES.has(tz)) {
@@ -94,34 +94,23 @@ export function CurrencyProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     try {
-      const savedRegion = localStorage.getItem('site_amazon_region');
-      const savedCurrency = localStorage.getItem('site_currency');
+      // Limpiar preferencias heredadas de localStorage que forzaban USD/intl en España
+      localStorage.removeItem('site_amazon_region');
+      localStorage.removeItem('site_currency');
 
-      if (savedRegion === 'es' || savedRegion === 'intl') {
-        regionPersistedRef.current = true;
-        if (!regionAppliedRef.current) {
-          setAmazonRegionState(savedRegion);
-        }
-      } else if (!routeDefaults.isLocaleRoute && !regionAppliedRef.current) {
+      if (!routeDefaults.isLocaleRoute) {
+        // En rutas en español (/ , /votar, /carta-papa-noel, etc.), usar siempre EUR y región de cliente (es en España)
         setAmazonRegionState(detectClientAmazonRegion());
-      } else if (routeDefaults.isLocaleRoute && !regionAppliedRef.current) {
-        setAmazonRegionState(routeDefaults.defaultRegion);
-      }
-
-      if (savedCurrency === 'EUR' || savedCurrency === 'USD') {
-        currencyPersistedRef.current = true;
-        if (!currencyAppliedRef.current) {
-          setCurrencyState(savedCurrency);
-        }
-      } else if (!routeDefaults.isLocaleRoute && !currencyAppliedRef.current) {
         setCurrencyState(detectClientDefaultCurrency());
-      } else if (routeDefaults.isLocaleRoute && !currencyAppliedRef.current) {
+      } else {
+        // En rutas internacionales (/en/..., /fr/..., etc.): si el visitante está en España, mantener Amazon.es (vapegadgets22-21)
+        setAmazonRegionState(isSpainClient() ? 'es' : routeDefaults.defaultRegion);
         setCurrencyState(routeDefaults.defaultCurrency);
       }
     } catch {
       // ignore
     }
-  }, [routeDefaults.isLocaleRoute, routeDefaults.defaultCurrency, routeDefaults.defaultRegion]);
+  }, [pathname, routeDefaults.isLocaleRoute, routeDefaults.defaultCurrency, routeDefaults.defaultRegion]);
 
   useEffect(() => {
     // Escuchar eventos de cambio de idioma/moneda/región

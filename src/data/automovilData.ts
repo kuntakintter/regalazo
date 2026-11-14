@@ -48,7 +48,7 @@ export const AUTOMOVIL_PRICE_RANGES = [
 export const AUTOMOVIL_PRODUCTS: HubProduct[] = [
   {
     id: 'auto-arrancador-noco-gb40',
-    asin: '',
+    asin: 'B015TKUPIC',
     title: 'NOCO Boost Plus GB40 Arrancador de Batería de Coche Litio 1000A 12V',
     category: 'arrancadores',
     categoryLabel: 'Arrancadores & Baterías',
@@ -70,7 +70,7 @@ export const AUTOMOVIL_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'auto-dashcam-70mai-a500s',
-    asin: '',
+    asin: 'B0BNC6WV6G',
     title: '70mai Dash Cam Pro Plus+ A500S Cámara para Coche 2.7K QHD con GPS y WiFi',
     category: 'dashcam',
     categoryLabel: 'Dashcams & Cámaras',
@@ -92,7 +92,7 @@ export const AUTOMOVIL_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'auto-compresor-xiaomi-2',
-    asin: '',
+    asin: 'B0CBBP8BQX',
     title: 'Xiaomi Portable Electric Air Compressor 2 Compresor de Aire Portátil Digital',
     category: 'compresores',
     categoryLabel: 'Compresores & Neumáticos',
@@ -114,7 +114,7 @@ export const AUTOMOVIL_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'auto-detailing-meguiars-kit',
-    asin: '',
+    asin: 'B00353PWAW',
     title: 'Meguiar\'s Kit Limpieza y Cuidado Completo Coche con Champú, Cera y Toalla',
     category: 'detailing',
     categoryLabel: 'Detailing & Limpieza',
@@ -136,7 +136,7 @@ export const AUTOMOVIL_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'auto-soporte-baseus-magsafe',
-    asin: '',
+    asin: 'B0FH718YHX',
     title: 'Baseus Soporte de Coche Magnético MagSafe con Carga Rápida Inalámbrica 15W',
     category: 'gadgets',
     categoryLabel: 'Soportes & Gadgets Viaje',
@@ -158,7 +158,7 @@ export const AUTOMOVIL_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'auto-diagnosis-obd2-bluetooth',
-    asin: '',
+    asin: 'B0D8HYW5GG',
     title: 'Vgate iCar Pro 2S Bluetooth Escáner de Diagnosis OBD2 para iOS, Android y Windows',
     category: 'diagnostico',
     categoryLabel: 'Diagnosis OBD2 & Motor',

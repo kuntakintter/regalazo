@@ -75,7 +75,7 @@ export const CICLISMO_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'bici-multiherramienta-topeak',
-    asin: '',
+    asin: 'B078NZMTMR',
     title: 'Topeak Hexus X Multiherramienta de Ciclismo 21 Funciones con Tronchacadenas',
     category: 'herramientas',
     categoryLabel: 'Herramientas & Bombas CO2',
@@ -97,7 +97,7 @@ export const CICLISMO_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'bici-lubricante-squirt-lube',
-    asin: '',
+    asin: 'B0BXF7YH5Z',
     title: 'Squirt Lube Lubricante de Cadena de Bicicleta con Cera Biodegradable 120ml',
     category: 'mantenimiento',
     categoryLabel: 'Cera de Cadena & Limpieza',
@@ -119,7 +119,7 @@ export const CICLISMO_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'bici-bolsa-cuadro-rockbros',
-    asin: '',
+    asin: 'B08HVPKBSF',
     title: 'Rockbros Bolsa de Cuadro Impermeable para Bicicleta con Soporte Táctil Móvil',
     category: 'bolsas',
     categoryLabel: 'Bolsas Cuadro & Hidratación',

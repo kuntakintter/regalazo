@@ -20,7 +20,7 @@ export const HALLOWEEN_PRICE_RANGES = [
 export const HALLOWEEN_PRODUCTS: HubProduct[] = [
   {
     id: 'hal-mascara-led-purga',
-    asin: '',
+    asin: 'B0B7MZHGH9',
     title: 'Máscara LED de Halloween La Purga con 3 Modos de Iluminación para Fiestas y Cosplay',
     category: 'mascaras',
     categoryLabel: 'Máscaras LED La Purga & Maquillaje FX',
@@ -42,7 +42,7 @@ export const HALLOWEEN_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'hal-set-arana-telarana-gigante',
-    asin: '',
+    asin: 'B0C23TVTNY',
     title: 'Set de Araña Gigante Peluda y Telaraña Triangular Exterior 5M con Estacas para Jardín',
     category: 'decoracion',
     categoryLabel: 'Decoración de Terror & Telarañas',
@@ -64,7 +64,7 @@ export const HALLOWEEN_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'hal-guirnalda-luces-calabaza-led',
-    asin: '',
+    asin: 'B0D4YW8KD9',
     title: 'Guirnalda de Luces Calabaza LED de Halloween 20 Bombillas con Efecto Cálido y Temporizador',
     category: 'luces-calabaza',
     categoryLabel: 'Calabazas LED & Iluminación',
@@ -86,7 +86,7 @@ export const HALLOWEEN_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'hal-disfraz-hinchable-gigante',
-    asin: '',
+    asin: 'B09YY4PP8K',
     title: 'Disfraz Hinchable de Sumo Gigante para Adultos y Niños con Ventilador Automático',
     category: 'disfraces',
     categoryLabel: 'Disfraces Terror & Cosplay',
@@ -111,7 +111,7 @@ export const HALLOWEEN_PRODUCTS: HubProduct[] = [
 export const HALLOWEEN_EXTRA_PRODUCTS: HubProduct[] = [
   {
     id: '46-capa-mascara-superheroes',
-    asin: '',
+    asin: 'B09ZB2TV84',
     title: 'Pack de 5 Capas de Superhéroes de Satén con Máscaras de Fieltro y Muñequeras',
     category: 'disfraces',
     categoryLabel: 'Disfraces Terror & Cosplay',
@@ -133,7 +133,7 @@ export const HALLOWEEN_EXTRA_PRODUCTS: HubProduct[] = [
   },
   {
     id: '46-pijama-kigurumi-dinosaurio',
-    asin: '',
+    asin: 'B0D5R4WWJF',
     title: 'Pijama Entero Kigurumi de Forro Polar con Capucha de Dinosaurio y Cola Acolchada',
     category: 'disfraces',
     categoryLabel: 'Disfraces Terror & Cosplay',
@@ -155,7 +155,7 @@ export const HALLOWEEN_EXTRA_PRODUCTS: HubProduct[] = [
   },
   {
     id: '79-fantasma-blitz',
-    asin: '',
+    asin: 'B007XDQIOO',
     title: 'Devir - Fantasma Blitz: El Juego de Reflejos Mentales Rápidos con Figuras de Madera',
     category: 'chuches',
     categoryLabel: 'Caramelos Truco o Trato & Fiestas',

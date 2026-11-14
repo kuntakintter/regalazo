@@ -33,7 +33,7 @@ export const GAMING_PRICE_RANGES = [
 export const GAMING_PRODUCTS: HubProduct[] = [
   {
     id: 'game-auriculares-hyperx-cloud-2',
-    asin: '',
+    asin: 'B0F844LMG3',
     title: 'HyperX Cloud II Auriculares Gaming con Sonido Envolvente 7.1 Virtual',
     category: 'auriculares',
     categoryLabel: 'Auriculares & Audio',
@@ -99,7 +99,7 @@ export const GAMING_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'game-raton-razer-deathadder-essential',
-    asin: '',
+    asin: 'B092R5MCB3',
     title: 'Razer DeathAdder Essential Ratón Gaming con Sensor Óptico 6.400 DPI',
     category: 'ratones',
     categoryLabel: 'Ratones & Alfombrillas XXL',
@@ -143,7 +143,7 @@ export const GAMING_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'game-lampara-playstation-paladone',
-    asin: '',
+    asin: 'B079CBP6P9',
     title: 'Paladone Lámpara Oficial Iconos PlayStation con 3 Modos de Iluminación y Reacción Sonora',
     category: 'iluminacion',
     categoryLabel: 'Iluminación RGB & Barras Monitor',
@@ -165,7 +165,7 @@ export const GAMING_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'game-soporte-auriculares-rgb-newbee',
-    asin: '',
+    asin: 'B09XQ52SQX',
     title: 'New Bee Soporte de Auriculares para Juegos con Iluminación RGB y 2 Puertos USB Hub',
     category: 'auriculares',
     categoryLabel: 'Auriculares & Audio',
@@ -187,7 +187,7 @@ export const GAMING_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'game-mando-inalambrico-8bitdo',
-    asin: '',
+    asin: 'B0DNJLPPPM',
     title: '8BitDo Ultimate C Mando Inalámbrico 2.4G para PC Windows 10/11, Steam Deck y Android',
     category: 'mandos',
     categoryLabel: 'Mandos Pro & Soporte',
@@ -209,7 +209,7 @@ export const GAMING_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'game-teclado-logitech-g213',
-    asin: '',
+    asin: 'B0CR9P7YJF',
     title: 'Logitech G213 Prodigy Teclado Gaming con Teclas Mech-Dome Resistente a Salpicaduras',
     category: 'teclados',
     categoryLabel: 'Teclados Mecánicos',
@@ -231,7 +231,7 @@ export const GAMING_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'game-teclado-steelseries-apex-3',
-    asin: '',
+    asin: 'B082YRCL4T',
     title: 'SteelSeries Apex 3 Teclado Gaming RGB con Reposamuñecas Magnético y Resistencia al Agua',
     category: 'teclados',
     categoryLabel: 'Teclados Mecánicos',

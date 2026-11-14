@@ -79,7 +79,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   },
   {
     id: 'gta-neon-palmera-horseneon',
-    asin: '',
+    asin: 'B0DK35J2QJ',
     title: 'Horseneon Lámpara de Neón LED Palmera Tropical Regulable USB',
     category: 'setup',
     categoryLabel: 'Neón Vice City & Setup',
@@ -100,7 +100,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   },
   {
     id: 'gta-lampara-sunset-atardecer',
-    asin: '',
+    asin: 'B09P8HS8CK',
     title: 'Sunset Lamp Lámpara de Atardecer LED USB con Rotación 360°',
     category: 'setup',
     categoryLabel: 'Neón Vice City & Setup',
@@ -121,7 +121,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   },
   {
     id: 'gta-tira-led-govee-rgbic-pro',
-    asin: '',
+    asin: 'B09BN2PSR8',
     title: 'Govee Tira LED 5M RGBIC Pro Wi-Fi Inteligente Segmentada',
     category: 'setup',
     categoryLabel: 'Neón Vice City & Setup',
@@ -165,7 +165,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   // --- 2. MANDOS PS5 & PERIFÉRICOS ---
   {
     id: 'gta-mando-ps5-nova-pink',
-    asin: '',
+    asin: 'B09NLFPD4Q',
     title: 'PlayStation 5 - Mando Inalámbrico DualSense Oficial Nova Pink',
     category: 'mandos',
     categoryLabel: 'Mandos PS5 & Periféricos',
@@ -186,7 +186,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   },
   {
     id: 'gta-mando-ps5-galactic-purple',
-    asin: '',
+    asin: 'B09NLJCVGB',
     title: 'PlayStation 5 - Mando Inalámbrico DualSense Oficial Galactic Purple',
     category: 'mandos',
     categoryLabel: 'Mandos PS5 & Periféricos',
@@ -207,7 +207,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   },
   {
     id: 'gta-auriculares-sony-pulse-3d',
-    asin: '',
+    asin: 'B0C7KDM9H2',
     title: 'PlayStation - Auriculares Inalámbricos Pulse 3D Oficiales PS5',
     category: 'mandos',
     categoryLabel: 'Mandos PS5 & Periféricos',
@@ -270,7 +270,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   },
   {
     id: 'gta-soporte-base-carga-rgb-ps5',
-    asin: '',
+    asin: 'B0FDY36ZGB',
     title: 'Soporte Vertical Base PS5 con Carga Rápida Dual de Mandos e Iluminación RGB',
     category: 'mandos',
     categoryLabel: 'Mandos PS5 & Periféricos',
@@ -293,7 +293,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   // --- 3. ROPA & MERCH RETRO GTA ---
   {
     id: 'gta-camiseta-oficial-wanted',
-    asin: '',
+    asin: 'B07B296947',
     title: 'Camiseta Oficial Videojuego GTA Wanted Negra 100% Algodón',
     category: 'merch',
     categoryLabel: 'Ropa & Camisetas Retro',
@@ -314,7 +314,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   },
   {
     id: 'gta-sudadera-urbana-capucha',
-    asin: '',
+    asin: 'B0H9SPL595',
     title: 'Sudadera con Capucha Estilo Videojuego Urbano GTA con Bolsillo Canguro',
     category: 'merch',
     categoryLabel: 'Ropa & Camisetas Retro',
@@ -335,7 +335,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   },
   {
     id: 'gta-gorra-securoserv-snapback',
-    asin: '',
+    asin: 'B0C4TM7MD8',
     title: 'Gorra de Béisbol SecuroServ GTA Estilo Urbano Hip Hop Ajustable',
     category: 'merch',
     categoryLabel: 'Ropa & Camisetas Retro',
@@ -356,7 +356,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   },
   {
     id: 'gta-taza-ceramica-franklin',
-    asin: '',
+    asin: 'B09P47YKKJ',
     title: 'Taza de Cerámica Oficial GTA Franklin & Los Santos 330 ml',
     category: 'merch',
     categoryLabel: 'Ropa & Camisetas Retro',
@@ -377,7 +377,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   },
   {
     id: 'gta-llavero-metalico-pyramid',
-    asin: '',
+    asin: 'B08LN4W6GQ',
     title: 'Llavero Metálico Oficial Pyramid International Grand Theft Auto V',
     category: 'merch',
     categoryLabel: 'Ropa & Camisetas Retro',
@@ -400,7 +400,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   // --- 4. COLECCIONISMO & SOPORTES ---
   {
     id: 'gta-coche-bburago-countach-124',
-    asin: '',
+    asin: 'B0CJJHRRN6',
     title: 'Bburago Model Kit 1:24 Coche Clásico Ochentero Lamborghini Countach',
     category: 'coleccion',
     categoryLabel: 'Coleccionismo & Soportes',
@@ -444,7 +444,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   // --- 5. JUEGOS, SALDO & CONSOLAS ---
   {
     id: 'gta-juego-gta-v-ps5',
-    asin: '',
+    asin: '8889164484',
     title: 'Grand Theft Auto V (PS5) Versión Oficial Remasterizada',
     category: 'juego',
     categoryLabel: 'Reserva & Tarjetas Saldo',
@@ -465,7 +465,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   },
   {
     id: 'gta-juego-trilogy-definitive-edition',
-    asin: '',
+    asin: 'B09KTGP5C2',
     title: 'Grand Theft Auto: The Trilogy – The Definitive Edition (PS4 / compatible PS5)',
     category: 'juego',
     categoryLabel: 'Reserva & Tarjetas Saldo',
@@ -486,7 +486,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   },
   {
     id: 'gta-tarjeta-psn-50',
-    asin: '',
+    asin: 'B07JH7FMJM',
     title: 'PlayStation Store Tarjeta Regalo Digital 50 € (Código Inmediato)',
     category: 'juego',
     categoryLabel: 'Reserva & Tarjetas Saldo',
@@ -507,7 +507,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   },
   {
     id: 'gta-tarjeta-psn-100',
-    asin: '',
+    asin: 'B07SFNJ34Q',
     title: 'PlayStation Store Tarjeta Regalo Digital 100 € (Para Edición Deluxe GTA VI)',
     category: 'juego',
     categoryLabel: 'Reserva & Tarjetas Saldo',
@@ -528,7 +528,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   },
   {
     id: 'gta-tarjeta-xbox-50',
-    asin: '',
+    asin: 'B07VMB63CZ',
     title: 'Xbox Tarjeta Regalo Digital 50 € (Para Xbox Series X|S)',
     category: 'juego',
     categoryLabel: 'Reserva & Tarjetas Saldo',
@@ -549,7 +549,7 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   },
   {
     id: 'gta-consola-ps5-slim-1tb',
-    asin: '',
+    asin: 'B0CQPMYTVM',
     title: 'Sony PlayStation 5 Consola Modelo Slim 1TB SSD Chasis D',
     category: 'juego',
     categoryLabel: 'Reserva & Tarjetas Saldo',

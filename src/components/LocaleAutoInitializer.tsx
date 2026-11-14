@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { useCurrency, Currency } from '@/context/CurrencyContext';
 import { getDefaultAmazonRegion, isRtlLocale } from '@/lib/i18nContent';
+import { isSpainClient } from '@/lib/amazon';
 
 interface LocaleAutoInitializerProps {
   langCode: string;
@@ -23,15 +24,8 @@ export default function LocaleAutoInitializer({
     }
 
     try {
-      const hasExplicitCurrency = Boolean(localStorage.getItem('site_currency'));
-      const hasExplicitRegion = Boolean(localStorage.getItem('site_amazon_region'));
-
-      if (!hasExplicitCurrency) {
-        setCurrency(currency, false);
-      }
-      if (!hasExplicitRegion) {
-        setAmazonRegion(getDefaultAmazonRegion(langCode), false);
-      }
+      setCurrency(currency, false);
+      setAmazonRegion(isSpainClient() ? 'es' : getDefaultAmazonRegion(langCode), false);
     } catch {
       // ignore storage errors in restricted contexts
     }

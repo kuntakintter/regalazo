@@ -24,7 +24,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
   // =========================================================================
   {
     id: 'nav-tren-arbol-humo-sonido-luz',
-    asin: '',
+    asin: 'B0HDBXYP5P',
     title: 'Tren Eléctrico de Navidad para Árbol con Humo Real, Sonido Auténtico de Locomotora y Faro LED',
     category: 'trenes',
     categoryLabel: 'Trenes de Navidad para Árbol',
@@ -46,7 +46,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'nav-tren-arbol-suspendido-tronco',
-    asin: '',
+    asin: 'B0DDXHLWQ3',
     title: 'Tren de Navidad Suspendido para Montar en el Tronco del Árbol a Media Altura con Vía Elevada',
     category: 'trenes',
     categoryLabel: 'Trenes de Navidad para Árbol',
@@ -90,7 +90,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'nav-tren-control-remoto-expreso-polar',
-    asin: '',
+    asin: 'B0DDT84L63',
     title: 'Circuito Ferroviario Expreso Polar Navideño Gran Escala con Mando a Distancia y Luces Festivas',
     category: 'trenes',
     categoryLabel: 'Trenes de Navidad para Árbol',
@@ -112,7 +112,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'nav-tren-bloques-construccion-navidad',
-    asin: '',
+    asin: 'B0H69RXQDG',
     title: 'Set de Bloques de Construcción Tren de Navidad con Estación Nevada y Vías Circulares (780 Piezas)',
     category: 'trenes',
     categoryLabel: 'Trenes de Navidad para Árbol',
@@ -138,7 +138,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
   // =========================================================================
   {
     id: 'nav-villa-navidena-luces-musica-patinaje',
-    asin: '',
+    asin: 'B0FXBBW54C',
     title: 'Pueblo Navideño Iluminado con Escena de Patinadores en Movimiento, Luces LED y Música',
     category: 'decoracion',
     categoryLabel: 'Decoración & Luces Navideñas',
@@ -204,7 +204,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'nav-cortina-luces-led-blanco-calido',
-    asin: '',
+    asin: 'B0GZKW9QZ5',
     title: 'Cortina de Luces LED Navideñas 5M con Efecto Cascada Blanco Cálido 8 Modos de Luz',
     category: 'decoracion',
     categoryLabel: 'Decoración & Luces Navideñas',
@@ -270,7 +270,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'nav-corona-navidena-puerta-40cm',
-    asin: '',
+    asin: 'B0HNVVVZT5',
     title: 'Corona Navideña de Puerta 40 cm con Piñas Naturales, Bayas Rojas y Luces Micro-LED',
     category: 'decoracion',
     categoryLabel: 'Decoración & Luces Navideñas',
@@ -366,7 +366,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
   // =========================================================================
   {
     id: 'nav-taza-amigo-invisible-fisura',
-    asin: '',
+    asin: 'B0FCD7DXRC',
     title: 'Fisura - Taza Divertida Original de Cerámica para Regalo de Amigo Invisible',
     category: 'amigo-invisible',
     categoryLabel: 'Regalos Amigo Invisible (<15 €)',
@@ -388,7 +388,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'nav-calcetines-navidenos-caja-regalo',
-    asin: '',
+    asin: 'B082SQ9JJC',
     title: 'Set de 4 Pares de Calcetines Navideños Divertidos de Algodón en Caja de Regalo',
     category: 'amigo-invisible',
     categoryLabel: 'Regalos Amigo Invisible (<15 €)',
@@ -414,7 +414,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
   // =========================================================================
   {
     id: 'nav-jersey-navideno-luces-led',
-    asin: '',
+    asin: 'B07YZRPVNB',
     title: 'Ugly Christmas Sweater - Jersey Navideño con Luces LED Intermitentes de Colores',
     category: 'jerseis-luces',
     categoryLabel: 'Jerséis Navideños con Luces & Ropa',
@@ -440,7 +440,7 @@ export const NAVIDAD_PRODUCTS: HubProduct[] = [
   // =========================================================================
   {
     id: 'nav-lindt-bombones-creation-dessert',
-    asin: '',
+    asin: 'B0CKTPBZWK',
     title: 'Lindt Creation Dessert Ballotin - Caja de Bombones Surtidos de Chocolate de Lujo 200g',
     category: 'gourmet',
     categoryLabel: 'Bombones & Cestas Gourmet',

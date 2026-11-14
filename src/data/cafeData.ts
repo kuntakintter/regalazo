@@ -31,7 +31,7 @@ export const CAFE_PRICE_RANGES = [
 export const CAFE_PRODUCTS: HubProduct[] = [
   {
     id: 'cafe-bialetti-moka-express',
-    asin: '',
+    asin: 'B0000AN3QI',
     title: 'Bialetti Moka Express Cafetera Italiana Tradicional de Aluminio 3 Tazas',
     category: 'espresso',
     categoryLabel: 'Cafeteras Espresso & Moka',
@@ -122,7 +122,7 @@ export const CAFE_PRODUCTS: HubProduct[] = [
 export const CAFE_EXTRA_PRODUCTS: HubProduct[] = [
   {
     id: '18plus-cecotec-power-espresso-cafetera',
-    asin: '',
+    asin: 'B07MJ6S1MV',
     title: 'Cecotec Cafetera Express Power Espresso 20 Professionale - 20 Bares con Manómetro Tradicional y Vaporizador',
     category: 'espresso',
     categoryLabel: 'Cafeteras Espresso & Moka',
@@ -166,7 +166,7 @@ export const CAFE_EXTRA_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'hogar-bodum-cafetera-francesa-chambord-cobre',
-    asin: '',
+    asin: 'B003D3NBDY',
     title: 'Bodum Chambord - Cafetera Francesa de Émbolo en Acero Inoxidable y Cobre Brillante (8 Tazas, 1 Litro) con Vidrio Borosilicato',
     category: 'filtro',
     categoryLabel: 'Café de Especialidad & Filtro (V60)',
@@ -188,7 +188,7 @@ export const CAFE_EXTRA_PRODUCTS: HubProduct[] = [
   },
   {
     id: 'hogar-tazas-ceramica-artesanales-japonesas',
-    asin: '',
+    asin: 'B0FNWB36SB',
     title: 'Juego de 2 Tazas de Café Artesanales de Cerámica Japonesa con Textura Rústica Hecha a Mano y Platillos de Bambú Natural',
     category: 'termos',
     categoryLabel: 'Tazas Térmicas & Mugs (Stanley)',

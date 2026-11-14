@@ -9,19 +9,42 @@ export const AMAZON_INTL_URL = 'https://www.amazon.com';
 
 export const SPAIN_TIMEZONES = new Set(['Europe/Madrid', 'Atlantic/Canary', 'Africa/Ceuta']);
 
+export function isSpainClient(): boolean {
+  if (typeof window === 'undefined') return true;
+  try {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+    if (tz && SPAIN_TIMEZONES.has(tz)) {
+      return true;
+    }
+    const browserLang = (navigator.language || '').toLowerCase();
+    if (
+      browserLang === 'es-es' ||
+      browserLang === 'ca-es' ||
+      browserLang === 'eu-es' ||
+      browserLang === 'gl-es'
+    ) {
+      return true;
+    }
+  } catch {
+    // ignore
+  }
+  return false;
+}
+
 /**
  * Detecta la tienda de Amazon adecuada para cualquier visitante del mundo:
- * - España (Europe/Madrid, Atlantic/Canary, Africa/Ceuta o es-ES) -> Amazon.es (vapegadgets22-21)
- * - Resto de países internacionales (EE. UU., LATAM, Europa, Asia, etc.) -> Amazon.com (vapegadgets22-20)
+ * - España (Europe/Madrid, Atlantic/Canary, Africa/Ceuta o es-ES) -> SIEMPRE Amazon.es (vapegadgets22-21)
+ * - Resto de países internacionales (EE. UU., LATAM, UK, etc.) -> Amazon.com (vapegadgets22-20 con OneLink)
  */
 export function detectClientAmazonRegion(): AmazonRegion {
   if (typeof window === 'undefined') {
     return 'es';
   }
   try {
-    const savedRegion = localStorage.getItem('site_amazon_region');
-    if (savedRegion === 'es' || savedRegion === 'intl') {
-      return savedRegion;
+    // Si el visitante está físicamente en España, priorizar siempre Amazon.es (vapegadgets22-21)
+    // para garantizar el tag español directo sin redirecciones de OneLink.
+    if (isSpainClient()) {
+      return 'es';
     }
 
     const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
@@ -30,14 +53,6 @@ export function detectClientAmazonRegion(): AmazonRegion {
     }
 
     const browserLang = (navigator.language || '').toLowerCase();
-    if (
-      browserLang === 'es-es' ||
-      browserLang === 'ca-es' ||
-      browserLang === 'eu-es' ||
-      browserLang === 'gl-es'
-    ) {
-      return 'es';
-    }
     if (browserLang) {
       return 'intl';
     }

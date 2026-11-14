@@ -50,7 +50,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   // CASCOS
   {
     id: 'moto-casco-ls2-modular',
-    asin: '',
+    asin: 'B0C7VX2L7Y',
     title: 'LS2 Strobe Casco Moto Modular Abatible con Doble Visera Solar',
     category: 'cascos',
     categoryLabel: 'Cascos de Moto',
@@ -73,7 +73,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   },
   {
     id: 'moto-casco-agv-k1s',
-    asin: '',
+    asin: 'B0FHKZR9FG',
     title: 'AGV K1 S Casco de Moto Integral Deportivo Homologado ECE 22.06',
     category: 'cascos',
     categoryLabel: 'Cascos de Moto',
@@ -121,7 +121,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   // CHAQUETAS
   {
     id: 'moto-chaqueta-alpinestars-t-sps',
-    asin: '',
+    asin: 'B0DXZXW8GL',
     title: 'Alpinestars T-SPS Chaqueta de Moto Impermeable con Protecciones Nucleon Flex Plus',
     category: 'chaquetas',
     categoryLabel: 'Chaquetas y Protecciones',
@@ -144,7 +144,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   },
   {
     id: 'moto-chaqueta-dainese-sevilla',
-    asin: '',
+    asin: 'B09BQWK14S',
     title: 'Dainese Sevilla Air Tex Chaqueta de Moto de Verano Perforada Ultraligera',
     category: 'chaquetas',
     categoryLabel: 'Chaquetas y Protecciones',
@@ -169,7 +169,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   // GUANTES
   {
     id: 'moto-guantes-alpinestars-smx1',
-    asin: '',
+    asin: 'B0FTZYM9JJ',
     title: 'Alpinestars SMX-1 Air V2 Guantes de Moto de Cuero y Malla con Nudillos de Carbono',
     category: 'guantes',
     categoryLabel: 'Guantes Homologados',
@@ -217,7 +217,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   // INTERCOMUNICADORES
   {
     id: 'moto-intercom-cardo-spirit',
-    asin: '',
+    asin: 'B09MQ8HT1G',
     title: 'Cardo Spirit Intercomunicador de Moto Bluetooth HD con Altavoces de 32 mm',
     category: 'intercom',
     categoryLabel: 'Intercomunicadores & Audio',
@@ -239,7 +239,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   },
   {
     id: 'moto-soporte-quadlock-amortiguador',
-    asin: '',
+    asin: 'B0F8HF6FSS',
     title: 'Quad Lock Amortiguador de Vibraciones para Soporte de Móvil en Manillar de Moto',
     category: 'intercom',
     categoryLabel: 'Intercomunicadores & Audio',
@@ -263,7 +263,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   // ANTIRROBO
   {
     id: 'moto-antirrobo-alarma-disco',
-    asin: '',
+    asin: 'B0DK9MT9PX',
     title: 'Antirrobo Disco de Moto con Alarma Sonora 110dB y Cable Recordatorio de Seguridad',
     category: 'antirrobo',
     categoryLabel: 'Antirrobos & Candados',
@@ -309,7 +309,7 @@ export const MOTORISTA_PRODUCTS: MotoristaProduct[] = [
   // ACCESORIOS Y MANTENIMIENTO
   {
     id: 'moto-mochila-pierna-impermeable',
-    asin: '',
+    asin: 'B09Y1673HC',
     title: 'Bolsa de Pierna Táctica para Moto Impermeable con Múltiples Bolsillos',
     category: 'accesorios',
     categoryLabel: 'Accesorios & Mantenimiento',

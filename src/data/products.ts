@@ -37,7 +37,7 @@ export interface Product {
 export const PRODUCTS: Product[] = [
   {
     id: "wheels-mercedes-g63-amg-12v",
-    asin: "",
+    asin: "B0B2NBZBYM",
     title: "Coche Eléctrico para Niños Mercedes G63 AMG 12V Licencia Oficial con Mando a Distancia, 2 Motores, Suspensión, Luces LED y Música USB (Negro)",
     slug: "coche-electrico-ninos-mercedes-g63-amg-12v-mando",
     searchQuery: "coche electrico para ninos mercedes g63 amg 12v mando",
@@ -63,7 +63,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "wheels-litake-jeep-rosa-12v",
-    asin: "",
+    asin: "B0CQR7CL8D",
     title: "Litake Coche Eléctrico Todoterreno Jeep para Niños 3-6 Años 12V con Control Remoto Parental, Faros LED y Suspensión (Rosa)",
     slug: "coche-electrico-todoterreno-jeep-ninos-rosa-12v",
     searchQuery: "coche electrico todoterreno jeep rosa ninos 12v mando",
@@ -89,7 +89,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "wheels-aiyaplay-audi-r8-spyder-12v",
-    asin: "",
+    asin: "B0HH38ZHK9",
     title: "AIYAPLAY Coche Eléctrico para Niños Audi R8 Spyder 12V 2 Motores con Batería de Litio y Mando a Distancia",
     slug: "coche-electrico-ninos-audi-r8-spyder-12v-mando",
     searchQuery: "coche electrico ninos audi r8 spyder 12v mando",
@@ -115,7 +115,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "wheels-homcom-audi-ttrs-12v",
-    asin: "",
+    asin: "B07YB4MTYL",
     title: "HOMCOM Coche Eléctrico para Niños 3+ Audi TT RS 12V 102x60x44 cm con 2 Motores y Mando a Distancia (Negro)",
     slug: "homcom-coche-electrico-ninos-audi-tt-rs-12v-negro",
     searchQuery: "homcom coche electrico ninos audi tt rs 12v negro",
@@ -141,7 +141,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "wheels-aiyaplay-audi-q8-etron-12v",
-    asin: "",
+    asin: "B0DQPV9MDL",
     title: "AIYAPLAY Coche Eléctrico para Niños Audi Q8 e-tron Sportback 12V con Control Remoto 2.4G y Suspensión (Negro)",
     slug: "coche-electrico-ninos-audi-q8-etron-12v",
     searchQuery: "coche electrico ninos audi q8 etron 12v mando",
@@ -167,7 +167,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "wheels-lamborghini-veneno-24v-biplaza",
-    asin: "",
+    asin: "B09YYRVTRQ",
     title: "FINOOS Coche Eléctrico para Niños Lamborghini Veneno 24V 2 Plazas 4x4 con Asiento de Cuero, Ruedas de Goma y Mando",
     slug: "coche-electrico-ninos-lamborghini-veneno-24v-2-plazas",
     searchQuery: "coche electrico ninos lamborghini 24v 2 plazas 4x4",
@@ -245,7 +245,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "wheels-quad-electrico-12v-homcom",
-    asin: "",
+    asin: "B09LVNZXCG",
     title: "HOMCOM Quad Eléctrico para Niños 12V con 2 Motores, Ruedas Anchas con Suspensión, Faros LED y Música (Rojo)",
     slug: "homcom-quad-electrico-ninos-12v-2-motores",
     searchQuery: "homcom quad electrico ninos 12v bateria",
@@ -297,7 +297,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "wheels-moto-electrica-bmw-g310-12v",
-    asin: "",
+    asin: "B0HGMH8CXR",
     title: "AIYAPLAY Moto Eléctrica para Niños Licencia Oficial BMW G310 GS 12V con Ruedines, Faros LED y Música (Rojo)",
     slug: "moto-electrica-ninos-bmw-g310-gs-12v",
     searchQuery: "moto electrica ninos bmw 12v ruedines",
@@ -323,7 +323,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "wheels-patinete-electrico-xiaomi-serie6",
-    asin: "",
+    asin: "B0GMWKLPRL",
     title: "Xiaomi Patinete Eléctrico Serie 6 Plegable con Doble Sistema de Frenado, Pantalla LED y Gran Autonomía",
     slug: "xiaomi-patinete-electrico-serie-6-plegable",
     searchQuery: "xiaomi patinete electrico plegable homologado",
@@ -349,7 +349,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "wheels-patinete-electrico-cecotec-bongo",
-    asin: "",
+    asin: "B0BHJFV7DF",
     title: "Cecotec Patinete Eléctrico Homologado DGT Bongo D20E Connected 500W con App Móvil, Disco de Freno y E-ABS",
     slug: "cecotec-patinete-electrico-bongo-d20e-homologado",
     searchQuery: "cecotec patinete electrico bongo homologado dgt",
@@ -375,7 +375,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "wheels-patinete-electrico-segway-ninebot-c2",
-    asin: "",
+    asin: "B0B3RZDXLT",
     title: "Segway-Ninebot C2 Pro E - Patinete Eléctrico para Niños y Adolescentes con Luces RGB, Altavoz Bluetooth y 17 km Autonomía",
     slug: "segway-ninebot-c2-pro-patinete-electrico-ninos",
     searchQuery: "segway ninebot c2 pro patinete electrico ninos adolescentes",
@@ -427,7 +427,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "pokemon-etb-elite-trainer-box",
-    asin: "",
+    asin: "B0FTFFHYZH",
     title: "Pokémon TCG - Caja de Entrenador Élite (Elite Trainer Box) con 9 Sobres Booster, 65 Fundas y Dados",
     slug: "pokemon-tcg-elite-trainer-box-sobres-fundas-coleccion",
     searchQuery: "pokemon elite trainer box etb sobres cartas fundas dados",
@@ -453,7 +453,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "pokemon-lata-coleccion-sobres-tin",
-    asin: "",
+    asin: "B0H6XLC33S",
     title: "Pokémon TCG - Lata de Colección Metálica con Sobres de Mejora y Carta Holográfica Exclusiva",
     slug: "pokemon-tcg-lata-coleccion-metalica-4-sobres-carta-holografica",
     searchQuery: "pokemon lata coleccion tin sobres cartas metalica oficial",
@@ -479,7 +479,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "pokemon-album-archivador-400-cartas",
-    asin: "",
+    asin: "B0GR1K6W1M",
     title: "Álbum Archivador de Cartas Pokémon con 432 Bolsillos - Carpeta Impermeable con Cremallera y 24 Hojas",
     slug: "album-archivador-cartas-pokemon-400-bolsillos-cremallera",
     searchQuery: "album archivador cartas pokemon carpeta fundas 400 bolsillos cremallera",
@@ -687,7 +687,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "fig-goku-super-saiyan-banpresto",
-    asin: "",
+    asin: "B0GT9S7TLM",
     title: "Ichibansho Bandai Spirits Dragon Ball Z - Figura Son Goku Super Saiyan Oficial",
     slug: "figura-goku-super-saiyan-bandai-banpresto-oficial",
     searchQuery: "figura goku super saiyan banpresto oficial dragon ball z",
@@ -765,7 +765,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "fig-batman-tumbler-dark-knight",
-    asin: "",
+    asin: "B0FVVPQVT2",
     title: "Jada Toys Batman El Caballero Oscuro - Batmóvil Tumbler Metal Die-Cast Escala 1:24 Oficial",
     slug: "batmovil-tumbler-dark-knight-escala-1-24-diecast-batman",
     searchQuery: "batmovil tumbler dark knight jada toys batman diecast",
@@ -843,7 +843,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "fig-jurassic-park-jeep-wrangler",
-    asin: "",
+    asin: "B0FVVPN6KT",
     title: "Jada Toys Jurassic Park 1993 - Jeep Wrangler Sahara Escala 1:24 Die-Cast con Acabado de Película",
     slug: "jurassic-park-jeep-wrangler-1993-diecast",
     searchQuery: "jurassic park jeep wrangler jada toys coche metal coleccion",
@@ -869,7 +869,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "fig-jumanji-juego-mesa-madera",
-    asin: "",
+    asin: "B0BJ2C8Q8P",
     title: "Spin Master Games - Jumanji Réplica Juego de Mesa con Tablero Plegable y Cúpula Mágica de Mensajes",
     slug: "jumanji-juego-de-mesa-replica-oficial-madera",
     searchQuery: "jumanji juego de mesa replica madera cupula decodificador oficial",
@@ -921,7 +921,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "012-cochecito-chicco-london",
-    "asin": "",
+    "asin": "B0DLWX751Y",
     "title": "Chicco London Up - Silla de Paseo Ligera Plegable Tipo Paraguas Reclinable 4 Posiciones",
     "slug": "chicco-london-silla-paseo-ligera-plegable",
     "searchQuery": "chicco london silla paseo ligera compacta plegable paraguas",
@@ -951,7 +951,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "012-carrito-kinderkraft-grande",
-    "asin": "",
+    "asin": "B0B213Q1Z7",
     "title": "Kinderkraft GRANDE PLUS - Silla de Paseo Plegado con una Sola Mano y Ruedas Amortiguadas",
     "slug": "kinderkraft-grande-plus-silla-paseo-plegado-una-mano",
     "searchQuery": "kinderkraft grande plus silla paseo ligera amortiguacion bebe",
@@ -979,7 +979,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "012-hamaca-babybjorn-bliss",
-    "asin": "",
+    "asin": "B0CRV313V2",
     "title": "BabyBjörn Hamaca Bliss - Hamaca Ergonómica con Balanceo Natural de Algodón Suave",
     "slug": "babybjorn-hamaca-bliss-algodon-ergonomica",
     "searchQuery": "babybjorn hamaca bliss algodon ergonomica balanceo natural",
@@ -1007,7 +1007,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "012-cuna-chicco-next2me",
-    "asin": "",
+    "asin": "B08KFKJBL1",
     "title": "Chicco Next2Me Dream - Cuna de Colecho con Apertura Lateral con una Mano y Modo Balancín",
     "slug": "chicco-next2me-dream-cuna-colecho-balancin",
     "searchQuery": "chicco next2me dream cuna colecho apertura lateral balancin",
@@ -1035,7 +1035,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "012-nutria-fisher-price",
-    "asin": "",
+    "asin": "B07N1JP56L",
     "title": "Fisher-Price Nutria Dulces Sueños - Peluche Relajante con Movimiento de Respiración y Música",
     "slug": "fisher-price-nutria-dulces-suenos-respiracion",
     "searchQuery": "fisher price nutria dulces suenos peluche respiracion luz suave musica",
@@ -1063,7 +1063,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "012-saco-dormir-bebe-tog",
-    "asin": "",
+    "asin": "B09NDXKVBS",
     "title": "Tommee Tippee The Original Grobag - Saco de Dormir para Bebé de Algodón Orgánico 2.5 TOG",
     "slug": "tommee-tippee-grobag-saco-dormir-bebe-2-5-tog",
     "searchQuery": "saco de dormir bebe tommee tippee grobag algodon cremallera doble",
@@ -1091,7 +1091,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "012-banera-skip-hop-moby",
-    "asin": "",
+    "asin": "B0C53W4PZJ",
     "title": "Skip Hop Moby - Bañera Evolutiva 3 Etapas con Cojín de Malla Smart Sling en Forma de Ballena",
     "slug": "skip-hop-moby-banera-evolutiva-tres-etapas",
     "searchQuery": "skip hop moby banera evolutiva 3 etapas ballena cojin malla",
@@ -1119,7 +1119,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "012-neceser-cuidados-suavinex",
-    "asin": "",
+    "asin": "B0C438DBMS",
     "title": "Suavinex Baby Care - Neceser de Higiene para Bebé con Termómetro, Cepillo, Peine y Tijeritas",
     "slug": "suavinex-baby-care-neceser-higiene-bebe",
     "searchQuery": "suavinex neceser higiene bebe tijeras lima cortaunas cepillo termometro",
@@ -1147,7 +1147,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "012-termometro-bano-patito",
-    "asin": "",
+    "asin": "B07WKN8NQQ",
     "title": "Philips Avent - Termómetro Digital de Baño y Habitación Flotante con Forma de Flor / Patito",
     "slug": "philips-avent-termometro-digital-bano-habitacion",
     "searchQuery": "philips avent termometro digital bano y habitacion flotante flor bebe",
@@ -1175,7 +1175,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "012-tarta-panales-dodot",
-    "asin": "",
+    "asin": "B09HSWLTCP",
     "title": "Tarta de Pañales Dodot Sensitive 3 Pisos con Peluche Suave, Babero y Canastilla de Bienvenida",
     "slug": "tarta-panales-dodot-sensitive-3-pisos-peluche",
     "searchQuery": "tarta de panales dodot sensitive 3 pisos canastilla peluche regalo bautizo nacimiento",
@@ -1203,7 +1203,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "012-canastilla-mustela-bebe",
-    "asin": "",
+    "asin": "B00BN7XBRI",
     "title": "Mustela Canastilla Cuidado del Recién Nacido - Gel de Baño, Leche Corporal, Crema Balsámica y Colonia",
     "slug": "mustela-canastilla-cuidado-recien-nacido-bolso",
     "searchQuery": "mustela canastilla regalo bebe bolso maternidad gel crema colonia",
@@ -1231,7 +1231,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "012-cesta-bienvenida-bebe-madera",
-    "asin": "",
+    "asin": "B0GWLY1PFJ",
     "title": "Canastilla de Bienvenida para Bebé en Caja de Madera con Manta Sherpa, Cepillo Natural y Sonajero",
     "slug": "canastilla-bienvenida-bebe-madera-manta-sherpa",
     "searchQuery": "canastilla regalo bebe caja de madera manta muselina sonajero madera cepillo",
@@ -1259,7 +1259,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "012-sophie-la-girafe",
-    "asin": "",
+    "asin": "B00SDTH1ES",
     "title": "Sophie la Girafe - El Mordedor de Caucho Natural 100% que Estimula los 5 Sentidos del Bebé",
     "slug": "sophie-la-girafe-mordedor-caucho-natural",
     "searchQuery": "sophie la girafe mordedor caucho natural hevea bebe denticion",
@@ -1287,7 +1287,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "012-gimnasio-piano-fisher-price",
-    "asin": "",
+    "asin": "B0CQK6DNWF",
     "title": "Fisher-Price Gimnasio Piano Pataditas Superaprendizaje con Luces, Música y 5 Juguetes Colgantes",
     "slug": "fisher-price-gimnasio-piano-pataditas",
     "searchQuery": "fisher price gimnasio piano pataditas manta actividades bebe",
@@ -1343,7 +1343,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "012-libro-tela-alto-contraste",
-    "asin": "",
+    "asin": "B0CKSMTJKL",
     "title": "Beiens - Libro de Tela de Alto Contraste Blanco y Negro para Recién Nacidos con Espejo y Sonidos",
     "slug": "beiens-libro-tela-alto-contraste-blanco-negro-bebe",
     "searchQuery": "libro tela alto contraste blanco y negro bebe recien nacido espejo sensorial",
@@ -1371,7 +1371,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "012-libro-tela-colitas-animales",
-    "asin": "",
+    "asin": "8498257948",
     "title": "Libro de Tela Sensorial con Colas de Animales 3D Texturizadas y Sonidos de Papel Crujiente",
     "slug": "libro-tela-sensorial-colas-animales-3d-texturas",
     "searchQuery": "libro tela bebe colas de animales texturas tacto sonido crujiente mordedor",
@@ -1399,7 +1399,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "012-libro-bano-magico-cambia-color",
-    "asin": "",
+    "asin": "B076QHRBJ9",
     "title": "Libro de Baño Mágico Infantil que Cambia de Color con el Agua Caliente",
     "slug": "libro-bano-magico-cambia-color-agua",
     "searchQuery": "libro de bano magico cambia de color con agua caliente bebe impermeable",
@@ -1427,7 +1427,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "012-colonia-suavinex-baby",
-    "asin": "",
+    "asin": "B003WF3JPS",
     "title": "Suavinex Baby Cologne - Agua de Colonia Infantil Sin Alcohol con Vaporizador 100ml",
     "slug": "suavinex-baby-cologne-colonia-infantil-sin-alcohol",
     "searchQuery": "suavinex baby cologne colonia infantil sin alcohol frasco vaporizador 100ml",
@@ -1455,7 +1455,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "012-mustela-agua-colonia-sin-alcohol",
-    "asin": "",
+    "asin": "B00AAZPM6W",
     "title": "Mustela Agua de Colonia Refrescante Sin Alcohol para Bebé y Recién Nacido 200ml",
     "slug": "mustela-agua-colonia-refrescante-sin-alcohol-200ml",
     "searchQuery": "mustela agua de colonia sin alcohol 200ml refrescante bebe piel sensible",
@@ -1483,7 +1483,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "012-colonia-denenes-original",
-    "asin": "",
+    "asin": "B006A5HHF0",
     "title": "Denenes Colonia Muy Suave para Bebés y Pieles Sensibles con Aceites Esenciales 600ml",
     "slug": "denenes-colonia-muy-suave-bebe-600ml",
     "searchQuery": "denenes colonia muy suave bebe aceites esenciales formato ahorro 600ml",
@@ -1511,7 +1511,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "012-pack-bodies-carters",
-    "asin": "",
+    "asin": "B0GVMY4LFB",
     "title": "Simple Joys by Carter's - Pack de 5 Bodies de Manga Corta de Algodón 100% para Bebé",
     "slug": "simple-joys-carters-pack-5-bodies-algodon",
     "searchQuery": "carters pack 5 bodies manga corta algodon bebe cuello expandible",
@@ -1539,7 +1539,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "012-patucos-cuero-suave",
-    "asin": "",
+    "asin": "B0FFN12TMM",
     "title": "Zapatos Patucos de Bebé en Piel Auténtica Suave con Suela Antideslizante",
     "slug": "zapatos-patucos-cuero-suave-bebe-suela-antideslizante",
     "searchQuery": "patucos bebe cuero suave suela antideslizante primeros pasos mocasines",
@@ -1567,7 +1567,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "012-pack-baberos-bandana-algodon",
-    "asin": "",
+    "asin": "B081F3K64Y",
     "title": "Pack de 8 Baberos Bandana Absorbentes de Algodón Orgánico con Forro Polar Suave",
     "slug": "pack-8-baberos-bandana-algodon-organico-bebe",
     "searchQuery": "pack 8 baberos bandana algodon organico bebe denticion babas forro polar",
@@ -1623,7 +1623,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "012-globo-enigma-90cm",
-    "asin": "",
+    "asin": "B0BXB7YQ5Z",
     "title": "Globo Gigante Enigma 90 cm Revelación de Género Bebé (\"¿Niño o Niña?\") con Confeti Doble",
     "slug": "globo-gigante-enigma-90cm-revelacion-genero-bebe",
     "searchQuery": "globo gigante enigma revelacion genero bebe 90 cm nino nina",
@@ -1651,7 +1651,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "012-polvo-holi-humo-bebe",
-    "asin": "",
+    "asin": "B08K2WJK6D",
     "title": "PrimePure - Cañones de Humo de Polvo Holi y Confeti Metálico Gender Reveal",
     "slug": "primepure-canones-humo-polvo-holi-confeti-gender-reveal",
     "searchQuery": "canones humo polvo holi confeti fiesta revelacion genero",
@@ -1679,7 +1679,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "13-torre-aprendizaje-montessori",
-    "asin": "",
+    "asin": "B0DT8Z8BFX",
     "title": "Torre de Aprendizaje Montessori Evolutiva 2 en 1 Madera Natural de Pino Regulable con Pizarra",
     "slug": "torre-aprendizaje-montessori-madera-evolutiva",
     "searchQuery": "torre de aprendizaje montessori madera evolutiva segura taburete infantil cocina",
@@ -1707,7 +1707,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "13-hape-banco-martillo",
-    "asin": "",
+    "asin": "B00712O2D6",
     "title": "Hape - Banco de Martillo de Madera con Xilófono Extraíble y Bolas Sonoras",
     "slug": "hape-banco-martillo-madera-xilofono",
     "searchQuery": "hape banco martillo madera xilofono juguete musical motricidad fina ninos",
@@ -1735,7 +1735,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "13-cubo-multiactividades-madera",
-    "asin": "",
+    "asin": "B08P7MSWVG",
     "title": "Cubo Multiactividades 5 en 1 de Madera con Laberinto de Cuentas, Engranajes y Reloj",
     "slug": "cubo-multiactividades-5-en-1-madera-bebe",
     "searchQuery": "cubo multiactividades madera 5 en 1 laberinto cuentas motricidad fina centro actividades",
@@ -1763,7 +1763,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "13-lego-duplo-tren-numeros",
-    "asin": "",
+    "asin": "B01J41D4IU",
     "title": "LEGO DUPLO Mi Primer Tren de los Números - Aprende a Contar (18m a 3 Años)",
     "slug": "lego-duplo-mi-primer-tren-numeros",
     "searchQuery": "lego duplo mi primer tren de los numeros contar piezas grandes",
@@ -1791,7 +1791,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "13-lego-duplo-caja-ladrillos",
-    "asin": "",
+    "asin": "B07W4KVGJM",
     "title": "LEGO DUPLO Classic Caja de Ladrillos de Construcción con Caja de Almacenaje (65 Piezas)",
     "slug": "lego-duplo-classic-caja-ladrillos-65-piezas",
     "searchQuery": "lego duplo classic caja de ladrillos con caja almacenamiento 65 piezas",
@@ -1819,7 +1819,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "13-lego-duplo-camion-bomberos",
-    "asin": "",
+    "asin": "B09BNTZH9C",
     "title": "LEGO DUPLO Camión de Bomberos con Luz y Sonido de Sirena Realista y Gato Rescatable",
     "slug": "lego-duplo-camion-bomberos-luz-sonido",
     "searchQuery": "lego duplo camion de bomberos luz sirena sonido figuras ninos",
@@ -1847,7 +1847,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "13-chicco-first-bike",
-    "asin": "",
+    "asin": "B004MW55Z2",
     "title": "Chicco First Bike - Bicicleta sin Pedales para Niños de 2 a 5 Años Ultraligera con Ruedas EVA",
     "slug": "chicco-first-bike-bicicleta-sin-pedales",
     "searchQuery": "chicco first bike bicicleta sin pedales ultraligera aprendizaje equilibrio",
@@ -1875,7 +1875,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "13-besrey-triciclo-5en1",
-    "asin": "",
+    "asin": "B0B7DLP3XM",
     "title": "Besrey Triciclo 5 en 1 Evolutivo con Barra de Empuje Desmontable para Padres y Pedales",
     "slug": "besrey-triciclo-5-en-1-evolutivo-barra-empuje",
     "searchQuery": "besrey triciclo 5 en 1 evolutivo con barra empuje pedales plegable ninos",
@@ -1903,7 +1903,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "13-correpasillos-vintage-retro",
-    "asin": "",
+    "asin": "B09RSP4VCY",
     "title": "Correpasillos Clásico Vintage de Metal con Dirección Real y Asiento Acolchado",
     "slug": "correpasillos-clasico-vintage-metal-retro",
     "searchQuery": "correpasillos metal vintage retro coche antiguo nino ruedas goma silenciosas",
@@ -1931,7 +1931,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "13-libro-pollo-pepe",
-    "asin": "",
+    "asin": "8434856816",
     "title": "El Pollo Pepe - Nick Denchfield (Cuento Pop-Up Interactivo de Cartón Resistente)",
     "slug": "el-pollo-pepe-cuento-pop-up-infantil",
     "searchQuery": "el pollo pepe nick denchfield cuento pop up infantil desplegable sm",
@@ -1959,7 +1959,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "13-libro-puedo-mirar-panal",
-    "asin": "",
+    "asin": "8467530693",
     "title": "¿Puedo Mirar Tu Pañal? - Guido Van Genechten (Libro con Solapas para Dejar el Pañal)",
     "slug": "puedo-mirar-tu-panal-guido-van-genechten",
     "searchQuery": "puedo mirar tu panal guido van genechten cuento solapas dejar el panal orinal",
@@ -1987,7 +1987,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "13-libro-beso-antes-dormir",
-    "asin": "",
+    "asin": "B0HM659LBK",
     "title": "Un Beso Antes de Dormir - Cuento Infantil de Cartón con Texturas Afectivas",
     "slug": "un-beso-antes-de-dormir-cuento-infantil",
     "searchQuery": "un beso antes de dormir cuento infantil carton buenas noches apego",
@@ -2015,7 +2015,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "13-hape-cocinita-madera",
-    "asin": "",
+    "asin": "B00IEDUJE2",
     "title": "Hape - Cocinita Infantil de Madera con Luces LED en Fogones y Accesorios de Cocina",
     "slug": "hape-cocinita-madera-infantil-accesorios",
     "searchQuery": "cocinita infantil de madera juguetes de imitacion cocinero",
@@ -2043,7 +2043,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "13-alimentos-madera-velcro",
-    "asin": "",
+    "asin": "B0D576CKFL",
     "title": "Set de Alimentos y Frutas de Madera para Cortar con Cuchillo Seguro y Velcro Crujiente",
     "slug": "set-frutas-alimentos-madera-cortar-velcro",
     "searchQuery": "frutas y verduras de madera para cortar con cuchillo velcro juguete imitacion",
@@ -2071,7 +2071,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "13-maletin-medico-infantil",
-    "asin": "",
+    "asin": "B0C2V854FJ",
     "title": "Maletín Médico de Madera Infantil con Fonendoscopio con Latido, Jeringuilla y Termómetro",
     "slug": "maletin-medico-infantil-madera-fonendoscopio",
     "searchQuery": "maletin de medico infantil madera estetoscopio jeringa termometro doctor juguete",
@@ -2099,7 +2099,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "13-play-doh-dentista",
-    "asin": "",
+    "asin": "B08F2NJYRQ",
     "title": "Play-Doh - Maletín del Dentista Bromista con Plastilina No Tóxica y Herramientas",
     "slug": "play-doh-dentista-bromista-plastilina",
     "searchQuery": "play doh dentista bromista maletin plastilina moldes",
@@ -2127,7 +2127,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "13-crayola-pintura-dedos",
-    "asin": "",
+    "asin": "B00004UBH2",
     "title": "Crayola - Set de Pintura de Dedos Ultra Lavable con 4 Botes de Colores y Papel Especial",
     "slug": "crayola-pintura-dedos-ultra-lavable-infantil",
     "searchQuery": "crayola pintura de dedos ultra lavable agua jabon ninos segura",
@@ -2155,7 +2155,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "13-arena-magica-kinetic-sand",
-    "asin": "",
+    "asin": "B0BT223PMQ",
     "title": "Kinetic Sand - Caja Castillo de Arena Mágica 450g con Moldes y Bandeja Sensorial",
     "slug": "kinetic-sand-caja-castillo-arena-magica",
     "searchQuery": "kinetic sand arena magica castillo moldes bandeja sensorial no mancha",
@@ -2183,7 +2183,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "13-colonia-suavinex-kids",
-    "asin": "",
+    "asin": "B0DPKYQT9Z",
     "title": "Suavinex Colonia Infantil Kids - Fragancia Frutal Chispeante con Vaporizador 100ml",
     "slug": "suavinex-colonia-infantil-kids-frutal",
     "searchQuery": "suavinex colonia infantil kids frutal notas citricas pomelo vaporizador",
@@ -2211,7 +2211,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "13-colonia-denenes-felices-suenos",
-    "asin": "",
+    "asin": "B0DP4X9K8T",
     "title": "Denenes Felices Sueños - Agua de Colonia Relajante con Esencia de Lavanda y Manzanilla 500ml",
     "slug": "denenes-felices-suenos-colonia-lavanda-500ml",
     "searchQuery": "denenes felices suenos colonia relajante lavanda manzanilla bano nocturno",
@@ -2239,7 +2239,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "13-klorane-petit-brin",
-    "asin": "",
+    "asin": "B0DGQGJ4PP",
     "title": "Klorane Bébé Petit Brin - Agua Perfumada Sin Alcohol con Notas Afrutadas de Caléndula 50ml",
     "slug": "klorane-bebe-petit-brin-agua-perfumada-50ml",
     "searchQuery": "klorane bebe petit brin agua perfumada sin alcohol calendula farmacia",
@@ -2267,7 +2267,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "13-zapatillas-attipas-ergonomicas",
-    "asin": "",
+    "asin": "B0FPTKDRW3",
     "title": "Attipas - Zapatillas Ergonómicas para Primeros Pasos con Puntera Ancha y Suela Transpirable",
     "slug": "attipas-zapatillas-ergonomicas-primeros-pasos",
     "searchQuery": "attipas calzado respetuoso primeros pasos bebe puntera ancha suela flexible",
@@ -2295,7 +2295,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "13-chubasquero-infantil-animales",
-    "asin": "",
+    "asin": "B0F9X61PJZ",
     "title": "Chubasquero Infantil Impermeable con Capucha de Animales 3D y Bandas Reflectantes",
     "slug": "chubasquero-infantil-impermeable-capucha-animales-3d",
     "searchQuery": "chubasquero impermeable infantil ninos animales capucha reflectante lluvia",
@@ -2323,7 +2323,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "13-mochila-guarderia-arnes",
-    "asin": "",
+    "asin": "B01K9Z358Y",
     "title": "Skip Hop Zoo - Mochila Infantil de Guardería con Arnés de Seguridad y Etiqueta de Nombre",
     "slug": "skip-hop-zoo-mochila-infantil-guarderia-arnes",
     "searchQuery": "skip hop zoo mochila infantil guarderia animales arnes seguridad correa",
@@ -2351,7 +2351,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "46-carrera-first-mario-kart",
-    "asin": "",
+    "asin": "B07PRBZ4LK",
     "title": "Carrera First - Circuito de Carreras Nintendo Mario Kart con Mandos Ergonómicos Infantiles",
     "slug": "carrera-first-circuito-nintendo-mario-kart",
     "searchQuery": "carrera first nintendo mario kart circuito pistas coches infantil mandos ergonomicos",
@@ -2379,7 +2379,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "46-hot-wheels-choques-aereos",
-    "asin": "",
+    "asin": "B0GJG8NFM6",
     "title": "Hot Wheels - Pista de Carreras de Choques Aéreos Giratoria Motorizada con 1 Coche",
     "slug": "hot-wheels-pista-choques-aereos-motorizada",
     "searchQuery": "hot wheels pista choques aereos motorizada lanzador looping coches",
@@ -2407,7 +2407,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "46-hot-wheels-garaje-gigante",
-    "asin": "",
+    "asin": "B0G43R2F1C",
     "title": "Hot Wheels City - Megagaraje con Ascensor Manual y Capacidad para 35 Coches",
     "slug": "hot-wheels-city-megagaraje-ascensor-35-coches",
     "searchQuery": "hot wheels megagaraje garaje gigante parking ascensor coches",
@@ -2435,7 +2435,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "46-monstruo-de-colores-juego",
-    "asin": "",
+    "asin": "B0G3YBNL1Y",
     "title": "Devir - El Monstruo de Colores: El Juego de Mesa de las Emociones",
     "slug": "devir-el-monstruo-de-colores-juego-mesa",
     "searchQuery": "el monstruo de colores devir juego de mesa emociones cooperativo infantil",
@@ -2463,7 +2463,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "46-dobble-infantil-kids",
-    "asin": "",
+    "asin": "B00OM7VIC6",
     "title": "Asmodee - Dobble Kids: El Juego de Rapidez Visual y Reflejos en Lata Metálica",
     "slug": "asmodee-dobble-kids-juego-rapidez-visual",
     "searchQuery": "dobble kids asmodee juego cartas rapidez agilidad visual animales ninos lata",
@@ -2491,7 +2491,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "46-conecta-4-clasico",
-    "asin": "",
+    "asin": "B08483YST4",
     "title": "Hasbro Gaming - Conecta 4 Clásico: El Juego de Estrategia de Discos en Rejilla",
     "slug": "hasbro-gaming-conecta-4-clasico",
     "searchQuery": "conecta 4 clasico hasbro juego de mesa estrategia rejilla fichas amarillas rojas",
@@ -2519,7 +2519,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "46-patinete-3-ruedas-led",
-    "asin": "",
+    "asin": "B0DMTLB1G9",
     "title": "Patinete Infantil Plegable de 3 Ruedas con Luces LED Luminosas sin Pilas y Manillar Regulable",
     "slug": "patinete-infantil-plegable-3-ruedas-led",
     "searchQuery": "patinete infantil plegable 3 ruedas led luces manillar ajustable ninos ninas",
@@ -2547,7 +2547,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "46-micro-maxi-deluxe-led",
-    "asin": "",
+    "asin": "B08F34NNQ7",
     "title": "Micro Maxi Deluxe LED - Patinete Infantil de Fabricación Suiza con Ruedas Luminosas (5 a 12 Años)",
     "slug": "micro-maxi-deluxe-led-patinete-suizo",
     "searchQuery": "micro maxi deluxe led patinete infantil fabricacion suiza regulable",
@@ -2575,7 +2575,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "46-casco-infantil-luz-seguridad",
-    "asin": "",
+    "asin": "B0F1FTLRYV",
     "title": "Casco Infantil Homologado para Bicicleta y Patinete con Luz LED Trasera de Seguridad",
     "slug": "casco-infantil-bici-patinete-luz-led-trasera",
     "searchQuery": "casco infantil bicicleta patinete luz led trasera ajuste rueda visera homologado",
@@ -2603,7 +2603,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "46-monstruo-de-colores-libro",
-    "asin": "",
+    "asin": "8493987743",
     "title": "El Monstruo de Colores - Anna Llenas (Edición Álbum Ilustrado Tapa Dura Oficial)",
     "slug": "el-monstruo-de-colores-libro-album-ilustrado-anna-llenas",
     "searchQuery": "el monstruo de colores anna llenas libro tapa dura album ilustrado editorial flavia",
@@ -2631,7 +2631,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "46-de-mayor-quiero-ser-feliz",
-    "asin": "",
+    "asin": "8448850610",
     "title": "De Mayor Quiero Ser... Feliz - Anna Morató García (6 Cuentos para Cultivar la Autoestima Infantil)",
     "slug": "de-mayor-quiero-ser-feliz-anna-morato-libro",
     "searchQuery": "de mayor quiero ser feliz anna morato 6 cuentos positividad autoestima beascoa",
@@ -2659,7 +2659,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "46-yo-voy-conmigo-libro",
-    "asin": "",
+    "asin": "B0DYJFLJ23",
     "title": "Yo Voy Conmigo - Raquel Reguera (Cuento sobre la Autoaceptación y la Personalidad)",
     "slug": "yo-voy-conmigo-raquel-reguera-cuento",
     "searchQuery": "yo voy conmigo raquel reguera thule libro ilustrado autoaceptacion infantil",
@@ -2687,7 +2687,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "46-maletin-dibujo-madera-150",
-    "asin": "",
+    "asin": "B0FH3213LS",
     "title": "Maletín de Pintura y Dibujo de Madera Deluxe de 150 Piezas con Ceras, Lápices y Acuarelas",
     "slug": "maletin-pintura-dibujo-madera-150-piezas",
     "searchQuery": "maletin pintura dibujo madera 150 piezas lapices colores ceras acuarelas infantil",
@@ -2715,7 +2715,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "46-aquabeads-estuche-expert",
-    "asin": "",
+    "asin": "B08TT8H4ZH",
     "title": "Aquabeads - Maletín de Creación de Cuentas Mágicas que se Pegan con Agua Sin Planchar",
     "slug": "aquabeads-maletin-creacion-cuentas-magicas-agua",
     "searchQuery": "aquabeads maletin de creacion cuentas que se pegan con agua abalorios manualidades",
@@ -2743,7 +2743,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "46-crayola-rotuladores-lavables",
-    "asin": "",
+    "asin": "B000NIJ5SM",
     "title": "Crayola - Caja de 24 Rotuladores Supertips Lavables de Punta Cónica para Trazo Fino y Grueso",
     "slug": "crayola-24-rotuladores-supertips-lavables",
     "searchQuery": "crayola supertips 24 rotuladores lavables punta conica no traspasan",
@@ -2771,7 +2771,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "46-furby-interactivo-morado",
-    "asin": "",
+    "asin": "B0F4W9G8KX",
     "title": "Furby - Peluche Interactivo con Luces, Música, Movimiento y Más de 600 Respuestas por Voz",
     "slug": "furby-interactivo-peluche-luces-musica-voz",
     "searchQuery": "furby interactivo peluche robotico voz baila luces abrazos hasbro",
@@ -2799,7 +2799,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "46-bitzee-mascota-digital",
-    "asin": "",
+    "asin": "B0DTJ1D3TC",
     "title": "Bitzee - Mascota Digital Interactiva Holográfica que Puedes Tocar y Sentir de Verdad",
     "slug": "bitzee-mascota-digital-interactiva-que-se-toca",
     "searchQuery": "bitzee spin master mascota digital holografica que se toca pantalla pod virtual",
@@ -2827,7 +2827,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "46-perrito-interactivo-respira",
-    "asin": "",
+    "asin": "B0H1JBL4L6",
     "title": "Little Live Pets Sleepy Puppy - Perrito Interactivo que Respira, Abre los Ojos y Emite Sonidos",
     "slug": "little-live-pets-sleepy-puppy-perrito-interactivo",
     "searchQuery": "little live pets perrito interactivo respira mueve cabeza sonidos bebe perro",
@@ -2855,7 +2855,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "46-capa-mascara-superheroes",
-    "asin": "",
+    "asin": "B0GHN44WM6",
     "title": "Pack de 5 Capas de Superhéroes de Satén con Máscaras de Fieltro y Muñequeras",
     "slug": "pack-5-capas-superheroes-mascaras-infantiles",
     "searchQuery": "pack 5 capas superheroes ninos antifaces fieltro disfraces fiesta cumpleanos",
@@ -2883,7 +2883,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "46-vestido-princesa-accesorios",
-    "asin": "",
+    "asin": "B09FGRR1BM",
     "title": "Disfraz Vestido de Princesa de Cuento con Tul Brillante, Tiara con Pedrería y Varita Mágica",
     "slug": "disfraz-vestido-princesa-tul-tiara-varita",
     "searchQuery": "disfraz vestido princesa infantil tul purpurina corona tiara varita guantes",
@@ -2911,7 +2911,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "46-pijama-kigurumi-dinosaurio",
-    "asin": "",
+    "asin": "B0FBFM4NFD",
     "title": "Pijama Entero Kigurumi de Forro Polar con Capucha de Dinosaurio y Cola Acolchada",
     "slug": "pijama-entero-kigurumi-dinosaurio-forro-polar",
     "searchQuery": "pijama entero kigurumi dinosaurio infantil forro polar capucha cola cremallera",
@@ -2939,7 +2939,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "46-colonia-tous-kids-chico",
-    "asin": "",
+    "asin": "B0BTXTNNDN",
     "title": "Tous Kids Boy - Agua de Colonia Infantil con Vaporizador 100ml Notas de Trébol y Neroli",
     "slug": "tous-kids-boy-agua-colonia-infantil-100ml",
     "searchQuery": "tous kids boy agua de colonia infantil 100ml vaporizador perfume ninos",
@@ -2967,7 +2967,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "46-colonia-tous-kids-chica",
-    "asin": "",
+    "asin": "B0BTXTNNDN",
     "title": "Tous Kids Girl - Agua de Colonia Infantil con Vaporizador 100ml Notas de Limón y Caramelo",
     "slug": "tous-kids-girl-agua-colonia-infantil-100ml",
     "searchQuery": "tous kids girl agua de colonia infantil 100ml vaporizador perfume ninas",
@@ -2995,7 +2995,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "46-colonia-disney-frozen",
-    "asin": "",
+    "asin": "B0G2Y9ZD9D",
     "title": "Disney Frozen II - Set de Colonia Infantil Elsa y Anna 100ml con Pulsera con Brillos",
     "slug": "disney-frozen-set-colonia-infantil-pulsera",
     "searchQuery": "disney frozen colonia infantil elsa y anna pulsera regalo perfume ninas",
@@ -3023,7 +3023,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "79-scalextric-looping-f1",
-    "asin": "",
+    "asin": "B0DGGXGPC2",
     "title": "Scalextric Compact - Circuito de Carreras Fórmula 1 con Doble Looping 3D y Cuentavueltas",
     "slug": "scalextric-compact-circuito-f1-looping-3d",
     "searchQuery": "scalextric compact circuito f1 looping cuentavueltas coches escala 1 43",
@@ -3051,7 +3051,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "79-scalextric-rally-champions",
-    "asin": "",
+    "asin": "B0CNH7HHQ6",
     "title": "Scalextric Compact - Pista Rally Champions con Chicanes y Cruces de Carril Escala 1:43",
     "slug": "scalextric-compact-rally-champions-chicanes",
     "searchQuery": "scalextric compact rally champions coches wrc curva peraltada chicane",
@@ -3079,7 +3079,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "79-carrera-go-dtm-speed",
-    "asin": "",
+    "asin": "B0HMX2FNLG",
     "title": "Carrera GO!!! - Circuito de Carreras Eléctrico DTM Power Lap con Curvas Peraltadas 6 Metros",
     "slug": "carrera-go-circuito-dtm-power-lap-6-metros",
     "searchQuery": "carrera go circuito carreras electrico dtm coches touring looping mando turbo",
@@ -3107,7 +3107,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "79-coche-rc-4x4-alta-velocidad",
-    "asin": "",
+    "asin": "B0D9DPYG2S",
     "title": "Coche Teledirigido 4x4 Todo Terreno Alta Velocidad 40 km/h con 2 Baterías y Chasis Reforzado",
     "slug": "coche-teledirigido-4x4-alta-velocidad-40kmh",
     "searchQuery": "coche teledirigido 4x4 todo terreno alta velocidad 40 kmh bateria recargable amortiguacion",
@@ -3135,7 +3135,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "79-coche-acrobatico-360-led",
-    "asin": "",
+    "asin": "B0B3CWZ8KN",
     "title": "Coche Acrobático Teledirigido Giratorio 360° con Doble Cara, Luces LED y Música",
     "slug": "coche-acrobatico-teledirigido-giratorio-360-doble-cara",
     "searchQuery": "coche acrobatico teledirigido doble cara volteretas 360 grados luces led ninos",
@@ -3163,7 +3163,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "79-monster-truck-rc-gigante",
-    "asin": "",
+    "asin": "B0HBK12L5D",
     "title": "Monster Truck Teledirigido Gigante Escala 1:12 con Tracción 4WD y Ruedas Neumáticas de Válvula",
     "slug": "monster-truck-teledirigido-escala-1-12-4wd",
     "searchQuery": "monster truck teledirigido grande ruedas gigantes amortiguadores metalicos rc ninos",
@@ -3191,7 +3191,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "79-lego-creator-dinosaurio-trex",
-    "asin": "",
+    "asin": "B01J41DNWM",
     "title": "LEGO Creator 3 en 1 - Grandes Dinosaurios T-Rex Reconstruible en Triceratops y Pterodáctilo",
     "slug": "lego-creator-3en1-grandes-dinosaurios-trex",
     "searchQuery": "lego creator 3 en 1 grandes dinosaurios trex triceratops pterodactilo piezas",
@@ -3219,7 +3219,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "79-gravitrax-starter-set",
-    "asin": "",
+    "asin": "B0B299H5JD",
     "title": "Ravensburger GraviTrax - Circuito de Canicas Magnético Starter Set de Física y Gravedad",
     "slug": "ravensburger-gravitrax-circuito-canicas-starter-set",
     "searchQuery": "ravensburger gravitrax starter set circuito canicas magnetico stem fisica gravedad canones",
@@ -3247,7 +3247,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "79-lego-creator-castillo-medieval",
-    "asin": "",
+    "asin": "B0DWDT5BQ9",
     "title": "LEGO Creator 3 en 1 - Castillo Medieval con Dragón, Catapulta y 3 Minifiguras",
     "slug": "lego-creator-3en1-castillo-medieval-dragon",
     "searchQuery": "lego creator 3 en 1 castillo medieval dragon torre asedio mercado minifiguras",
@@ -3275,7 +3275,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "79-magia-borras-100-trucos",
-    "asin": "",
+    "asin": "B01DTP90Q2",
     "title": "Magia Borrás - Caja Clásica de 100 Trucos de Ilusionismo con Varita Mágica y Sombrero",
     "slug": "magia-borras-caja-clasica-100-trucos-varita",
     "searchQuery": "magia borras 100 trucos ilusionismo caja clasica varita cartas monedas educaborras",
@@ -3303,7 +3303,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "79-magia-borras-150-trucos",
-    "asin": "",
+    "asin": "B0716KVN4F",
     "title": "Magia Borrás - Edición Especial 150 Trucos con Accesorios de Mentalismo y Cartomagia",
     "slug": "magia-borras-edicion-especial-150-trucos",
     "searchQuery": "magia borras 150 trucos edicion especial mentalismo cartomagia ilusionismo avanzado",
@@ -3331,7 +3331,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "79-baraja-magia-bicycle-trucos",
-    "asin": "",
+    "asin": "B071XF5JFB",
     "title": "Set de Cartomagia con 2 Barajas Bicycle Rider Back Oficiales y Manual de 50 Trucos",
     "slug": "set-cartomagia-barajas-bicycle-rider-back",
     "searchQuery": "baraja bicycle rider back magia cartomagia trucos de cartas manual principiantes",
@@ -3359,7 +3359,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "79-catan-junior",
-    "asin": "",
+    "asin": "B006CZ0LGA",
     "title": "Devir - Catan Junior: El Clásico Juego de Estrategia Adaptado a Niños con Barcos y Piratas",
     "slug": "devir-catan-junior-juego-estrategia-pirata",
     "searchQuery": "catan junior devir juego de mesa piratas estrategia familiar barcos guaridas",
@@ -3387,7 +3387,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "79-dixit-juego-de-mesa",
-    "asin": "",
+    "asin": "B0D6GC21W1",
     "title": "Asmodee - Dixit: El Juego de Cartas e Imaginación Poética Premiado Juego del Año (Spiel des Jahres)",
     "slug": "asmodee-dixit-juego-de-mesa-imaginacion",
     "searchQuery": "dixit asmodee juego de mesa cartas ilustradas imaginacion pistas conejos puntos",
@@ -3415,7 +3415,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "79-fantasma-blitz",
-    "asin": "",
+    "asin": "B007XDQIOO",
     "title": "Devir - Fantasma Blitz: El Juego de Reflejos Mentales Rápidos con Figuras de Madera",
     "slug": "devir-fantasma-blitz-juego-reflejos-mentales",
     "searchQuery": "fantasma blitz devir juego de mesa figuras de madera rapidez mental reflejos ninos",
@@ -3443,7 +3443,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "79-los-compas-diamantito-legendario",
-    "asin": "",
+    "asin": "8427047940",
     "title": "Los Compas y el Diamantito Legendario - Mikecrack, El Trollino y Timba Vk (Cómic Tapa Dura)",
     "slug": "los-compas-y-el-diamantito-legendario-mikecrack",
     "searchQuery": "los compas y el diamantito legendario mikecrack trollino timba comic infantil mr ediciones",
@@ -3471,7 +3471,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "79-isadora-moon-va-al-colegio",
-    "asin": "",
+    "asin": "8420485187",
     "title": "Isadora Moon Va al Colegio - Harriet Muncaster (Mitad Hada, Mitad Vampiro con Purpurina)",
     "slug": "isadora-moon-va-al-colegio-harriet-muncaster",
     "searchQuery": "isadora moon va al colegio harriet muncaster alfaguara infantil purpurina",
@@ -3499,7 +3499,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "79-anna-kadabra-club-luna-llena",
-    "asin": "",
+    "asin": "8408223232",
     "title": "Anna Kadabra 1: El Club de la Luna Llena - Pedro Mañas y David Sierra Listón",
     "slug": "anna-kadabra-1-el-club-de-la-luna-llena",
     "searchQuery": "anna kadabra el club de la luna llena pedro manas david sierra destino infantil brujas",
@@ -3527,7 +3527,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "79-kit-pulseras-gomas-telar",
-    "asin": "",
+    "asin": "B0BQC84L2M",
     "title": "Mega Maletín de Telar con 11.000 Gomas Elásticas, Abalorios, Cierres y Telares para Pulseras",
     "slug": "mega-maletin-telar-11000-gomas-pulseras-abalorios",
     "searchQuery": "maletin gomitas pulseras telar loom bands 11000 gomas colgantes manualidades ninos",
@@ -3555,7 +3555,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "79-kit-costura-peluches-fieltro",
-    "asin": "",
+    "asin": "B0HC34C4QF",
     "title": "Kit de Primeros Pasos en Costura Infantil para Crear 6 Peluches de Fieltro con Agujas Seguras",
     "slug": "kit-primeros-pasos-costura-infantil-peluches-fieltro",
     "searchQuery": "kit costura infantil peluches fieltro agujas plastico seguras manualidades ninos",
@@ -3583,7 +3583,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "79-fabrica-slime-diy-sin-borax",
-    "asin": "",
+    "asin": "B0DR2JN11S",
     "title": "So Slime DIY - Fábrica de Slime sin Pegamento Ni Bórax con Purpurinas y Aromas Mágicos",
     "slug": "so-slime-diy-fabrica-slime-sin-borax-pegamento",
     "searchQuery": "so slime diy fabrica de slime sin pegamento sin borax purpurinas agitador figuras",
@@ -3611,7 +3611,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "79-colonia-lacoste-junior-fresca",
-    "asin": "",
+    "asin": "B0CXN1FBRP",
     "title": "Lacoste L.12.12 Pour Lui Blanc Eau de Toilette Fresca 50ml con Notas Cítricas y Amaderadas",
     "slug": "lacoste-l1212-blanc-eau-de-toilette-50ml",
     "searchQuery": "lacoste l1212 blanc eau de toilette 50ml perfume fresco juvenil masculino original",
@@ -3639,7 +3639,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "79-lip-smacker-balsamos-sabores",
-    "asin": "",
+    "asin": "B0C466CNT2",
     "title": "Lip Smacker - Lata Metálica Coleccionable con 8 Bálsamos Labiales con Sabores a Frutas y Refrescos",
     "slug": "lip-smacker-lata-metalica-8-balsamos-labiales",
     "searchQuery": "lip smacker lata metalica 8 balsamos labiales sabores coca cola fanta frutas hidratacion",
@@ -3667,7 +3667,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "79-tous-neceser-colonia-kids",
-    "asin": "",
+    "asin": "B0083T7FEY",
     "title": "Tous Kids - Estuche de Regalo con Agua de Colonia 100ml + Neceser Escolar Juvenil",
     "slug": "tous-kids-estuche-regalo-colonia-neceser",
     "searchQuery": "tous kids estuche regalo colonia 100ml neceser infantil ninos ninas perfume",
@@ -3695,7 +3695,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "79-reloj-digital-deportivo-50m",
-    "asin": "",
+    "asin": "B076MNN3Q6",
     "title": "Reloj Digital Deportivo Infantil Resistente al Agua 50M con Cronómetro, Alarma y Luz LED",
     "slug": "reloj-digital-deportivo-infantil-sumergible-50m",
     "searchQuery": "reloj digital deportivo infantil sumergible 50 metros luz alarma cronometro ninos",
@@ -3723,7 +3723,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "79-gorra-deportiva-ajustable-uv",
-    "asin": "",
+    "asin": "B0DB7YR2CR",
     "title": "Gorra Deportiva Infantil con Visera Curva y Protección Solar UPF 50+ Ajustable",
     "slug": "gorra-deportiva-infantil-proteccion-uv-ajustable",
     "searchQuery": "gorra deportiva infantil ninos beisbol transpirable proteccion solar uv algodon",
@@ -3751,7 +3751,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "79-mochila-escolar-juvenil-estuche",
-    "asin": "",
+    "asin": "B0GTLYX9JV",
     "title": "Mochila Escolar Infantil Ergonómica con Respaldo Acolchado Transpirable y Estuche a Juego",
     "slug": "mochila-escolar-infantil-ergonomica-estuche",
     "searchQuery": "mochila escolar infantil ergonomica acolchada estuche a juego primaria resistente agua",
@@ -3779,7 +3779,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1012-virus-juego-de-cartas",
-    "asin": "",
+    "asin": "B0HQFGVJ73",
     "title": "Tranjis Games - Virus!: El Juego de Cartas Más Contagioso y Adictivo",
     "slug": "tranjis-games-virus-juego-cartas",
     "searchQuery": "virus juego de cartas tranjis games oficial organos virus medicinas",
@@ -3809,7 +3809,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1012-virus-2-evolution",
-    "asin": "",
+    "asin": "B0HRFHYS6W",
     "title": "Tranjis Games - Virus! 2 Evolution: La Expansión con Virus Mutados y Órganos Biónicos",
     "slug": "tranjis-games-virus-2-evolution-expansion",
     "searchQuery": "virus 2 evolution tranjis games expansion cartas virus mutados organos bionicos",
@@ -3837,7 +3837,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1012-exploding-kittens-original",
-    "asin": "",
+    "asin": "B0B1VFB3QM",
     "title": "Exploding Kittens - Juego de Cartas de Ruleta Rusa con Gatos, Punteros Láser y Cabras Mágicas",
     "slug": "exploding-kittens-juego-cartas-ruleta-rusa-gatitos",
     "searchQuery": "exploding kittens juego de cartas espanol ruleta rusa gatitos explosivos asmodee",
@@ -3865,7 +3865,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1012-potensic-a20-dron",
-    "asin": "",
+    "asin": "B0BS9JSW7Y",
     "title": "Potensic A20 - Minidron Infantil con Protectores Integrados Anticolisión y Control de Altura",
     "slug": "potensic-a20-minidron-infantil-anticolision",
     "searchQuery": "potensic a20 dron infantil minidron facil volar helices protegidas interior",
@@ -3893,7 +3893,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1012-makeblock-mbot-robot",
-    "asin": "",
+    "asin": "B07KG4JHBH",
     "title": "Makeblock mBot - Robot Educativo Programable con Scratch y Bluetooth para Niños y Colegios",
     "slug": "makeblock-mbot-robot-educativo-programable",
     "searchQuery": "makeblock mbot robot programable scratch arduino bluetooth stem ninos colegios",
@@ -3921,7 +3921,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1012-telescopio-astronomico-movil",
-    "asin": "",
+    "asin": "B0BHX68T4C",
     "title": "Telescopio Astronómico Refractor 70mm con Trípode Ajustable, 2 Oculares y Adaptador de Móvil",
     "slug": "telescopio-astronomico-70mm-tripode-adaptador-movil",
     "searchQuery": "telescopio astronomico 70mm principiantes luna planetas tripode adaptador movil ninos",
@@ -3949,7 +3949,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1012-carcassonne-juego-mesa",
-    "asin": "",
+    "asin": "B00W5LCL8G",
     "title": "Devir - Carcassonne: El Mítico Juego de Estrategia Medieval de Losetas, Ciudades y Caminos",
     "slug": "devir-carcassonne-juego-mesa-medieval-losetas",
     "searchQuery": "carcassonne devir juego de mesa losetas meeples estrategia medieval spiel des jahres",
@@ -3977,7 +3977,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1012-escape-room-the-game-familiar",
-    "asin": "",
+    "asin": "B0C7ZZVZX6",
     "title": "Diset - Escape Room The Game: 4 Aventuras Temáticas con Decodificador Cronológico y Pistas",
     "slug": "diset-escape-room-the-game-4-aventuras-decodificador",
     "searchQuery": "diset escape room the game familiar decodificador crono pistas enigmas acertijos",
@@ -4005,7 +4005,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1012-7-wonders-architects",
-    "asin": "",
+    "asin": "B0CNDC97G5",
     "title": "Asmodee - 7 Wonders Architects: Construye una de las 7 Maravillas del Mundo Antiguo",
     "slug": "asmodee-7-wonders-architects-juego-estrategia",
     "searchQuery": "7 wonders architects asmodee juego de mesa maravillas civilizaciones cartas",
@@ -4033,7 +4033,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1012-diario-de-greg-1",
-    "asin": "",
+    "asin": "8427251920",
     "title": "Diario de Greg 1: Un Pringao Total - Jeff Kinney (El Bestseller Mundial Ilustrado Tapa Dura)",
     "slug": "diario-de-greg-1-un-pringao-total-jeff-kinney",
     "searchQuery": "diario de greg 1 un pringao total jeff kinney rba molino libro infantil novela",
@@ -4061,7 +4061,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1012-harry-potter-piedra-filosofal",
-    "asin": "",
+    "asin": "8831004166",
     "title": "Harry Potter y la Piedra Filosofal - J.K. Rowling (Edición Especial Salamandra Juvenil)",
     "slug": "harry-potter-y-la-piedra-filosofal-salamandra",
     "searchQuery": "harry potter y la piedra filosofal salamandra tapa dura novela magica hogwarts",
@@ -4089,7 +4089,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1012-invisible-eloy-moreno",
-    "asin": "",
+    "asin": "8416588430",
     "title": "Invisible - Eloy Moreno (La Emotiva Novela Juvenil Sobre Empatía y Amistad)",
     "slug": "invisible-eloy-moreno-novela-nube-de-tinta",
     "searchQuery": "invisible eloy moreno nube de tinta novela acoso escolar empatia institutos",
@@ -4117,7 +4117,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1012-kit-lettering-rotuladores-pincel",
-    "asin": "",
+    "asin": "B0B6QYM6KS",
     "title": "Kit Completo de Caligrafía y Lettering con 36 Rotuladores Punta Pincel Dual y Cuaderno de Prácticas",
     "slug": "kit-lettering-caligrafia-36-rotuladores-pincel-cuaderno",
     "searchQuery": "kit lettering principiantes 36 rotuladores doble punta pincel cuaderno plantillas caligrafia",
@@ -4145,7 +4145,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1012-posca-rotuladores-acrilicos-8",
-    "asin": "",
+    "asin": "B0FNP68BJK",
     "title": "Uni-Ball POSCA PC-3M - Estuche de 8 Rotuladores de Pintura Acrílica Multisuperficie de Punta Fina",
     "slug": "uniball-posca-pc3m-estuche-8-rotuladores-acrilicos",
     "searchQuery": "posca pc3m estuche 8 rotuladores pintura acrilica multisuperficie zapatillas madera piedra",
@@ -4173,7 +4173,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1012-diario-secreto-candado-huella",
-    "asin": "",
+    "asin": "B07WQY5HWP",
     "title": "Diario Secreto Infantil con Candado de Código de Seguridad Numérico y Bolígrafo con Tinta Invisible",
     "slug": "diario-secreto-candado-codigo-seguridad-boligrafo-invisible",
     "searchQuery": "diario secreto con candado codigo contrasena boligrafo luz ultravioleta tinta invisible ninos",
@@ -4201,7 +4201,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1012-magia-borras-app-luz",
-    "asin": "",
+    "asin": "B0716KVN4F",
     "title": "Magia Borrás Especial Tecnológica con Efectos de Luz LED en Dedos y App Móvil de Realidad Aumentada",
     "slug": "magia-borras-tecnologica-luces-led-app-movil",
     "searchQuery": "magia borras con luz y app movil realidad aumentada trucos tecnologicos educaborras",
@@ -4229,7 +4229,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1012-set-magia-mentalismo-closeup",
-    "asin": "",
+    "asin": "B0GHY91YWP",
     "title": "Set Profesional de Mentalismo y Cartomagia Close-Up con Caja Trucada de Madera y Monedas Scotch",
     "slug": "set-profesional-mentalismo-cartomagia-closeup",
     "searchQuery": "set magia mentalismo profesional close up cartas trucadas lectura de mente ninos",
@@ -4257,7 +4257,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1012-caja-misterio-escape-magia",
-    "asin": "",
+    "asin": "B095YR5P3T",
     "title": "Caja Secreta de Madera con Rompecabezas Japonés de Apertura Oculta (Caja Candado Escape)",
     "slug": "caja-secreta-rompecabezas-madera-apertura-oculta",
     "searchQuery": "caja secreta madera rompecabezas apertura oculta caja japonesa puzzle box compartimento",
@@ -4285,7 +4285,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1012-ck-one-50ml-juvenil",
-    "asin": "",
+    "asin": "B00S2WDIGG",
     "title": "Calvin Klein CK One - Eau de Toilette Unisex 50ml Fresca Cítrica con Vaporizador",
     "slug": "calvin-klein-ck-one-eau-de-toilette-50ml",
     "searchQuery": "calvin klein ck one 50ml eau de toilette perfume juvenil unisex fresco original",
@@ -4313,7 +4313,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1012-adidas-eau-de-toilette-juvenil",
-    "asin": "",
+    "asin": "B0B35964L4",
     "title": "Adidas Dynamic Pulse - Eau de Toilette Juvenil 100ml con Notas Cítricas y Amaderadas Dinámicas",
     "slug": "adidas-dynamic-pulse-eau-de-toilette-100ml",
     "searchQuery": "adidas dynamic pulse eau de toilette 100ml perfume juvenil deporte frescor diario",
@@ -4341,7 +4341,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1012-kit-primeros-cuidados-faciales",
-    "asin": "",
+    "asin": "B0FKXLS99K",
     "title": "Pack de Primeros Cuidados Faciales: Limpiador Suave en Espuma + Parches de Hidrocoloide para Granitos",
     "slug": "pack-primeros-cuidados-faciales-limpiador-parches",
     "searchQuery": "pack primeros cuidados faciales preadolescentes limpiador suave espuma parches granitos hidrocoloide",
@@ -4369,7 +4369,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1012-sudadera-hoodie-oversize",
-    "asin": "",
+    "asin": "B0FD9ZZ22T",
     "title": "Sudadera con Capucha Estilo Hoodie Oversize Streetwear de Algodón Pesado con Bolsillo Canguro",
     "slug": "sudadera-hoodie-oversize-streetwear-algodon",
     "searchQuery": "sudadera con capucha hoodie oversize preadolescente algodon bolsillo canguro streetwear",
@@ -4397,7 +4397,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1012-rinonera-cruzada-impermeable",
-    "asin": "",
+    "asin": "B0H14MCVTK",
     "title": "Riñonera Bandolera Cruzada al Pecho Impermeable con Varios Bolsillos y Salida de Auriculares",
     "slug": "rinonera-bandolera-cruzada-pecho-impermeable",
     "searchQuery": "rinonera cruzada pecho bandolera juvenil chico chica impermeable salidas auriculares",
@@ -4425,7 +4425,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1012-pack-calcetines-divertidos",
-    "asin": "",
+    "asin": "B0CF9SFXRQ",
     "title": "Pack de 5 Pares de Calcetines de Media Caña de Algodón con Diseños Gráficos Divertidos",
     "slug": "pack-5-calcetines-media-cana-algodon-disenos-divertidos",
     "searchQuery": "pack 5 calcetines divertidos algodon media cana preadolescentes estampados modernos",
@@ -4453,7 +4453,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1315-jbl-tune-510bt",
-    "asin": "",
+    "asin": "B0BYWMLVG1",
     "title": "JBL Tune 510BT - Auriculares Inalámbricos On-Ear con Sonido Pure Bass y 40 Horas de Batería",
     "slug": "jbl-tune-510bt-auriculares-inalambricos-bluetooth",
     "searchQuery": "jbl tune 510bt auriculares inalambricos bluetooth graves plegables",
@@ -4481,7 +4481,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1315-anker-soundcore-q30",
-    "asin": "",
+    "asin": "B0FNWCYLZN",
     "title": "Soundcore by Anker Life Q30 - Auriculares Diadema con Cancelación Activa de Ruido Híbrida (ANC)",
     "slug": "soundcore-life-q30-auriculares-cancelacion-ruido-anc",
     "searchQuery": "soundcore anker life q30 auriculares cancelacion activa ruido anc bluetooth estudio",
@@ -4509,7 +4509,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1315-jbl-go-3-altavoz-bluetooth",
-    "asin": "",
+    "asin": "B0DXKMXPXW",
     "title": "JBL GO 3 - Altavoz Bluetooth Portátil Resistente al Agua y Polvo IP67 con Asa Integrada",
     "slug": "jbl-go-3-altavoz-bluetooth-portatil-ip67",
     "searchQuery": "jbl go 3 altavoz bluetooth portatil resistente agua ip67 sonido graves bolsillo",
@@ -4537,7 +4537,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1315-fujifilm-instax-mini-12",
-    "asin": "",
+    "asin": "B015GOPCKW",
     "title": "Fujifilm Instax Mini 12 - Cámara Instantánea con Exposición Automática y Espejo Selfie",
     "slug": "fujifilm-instax-mini-12-camara-instantanea",
     "searchQuery": "fujifilm instax mini 12 camara instantanea fotos papel",
@@ -4565,7 +4565,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1315-aro-luz-tripode-tiktok",
-    "asin": "",
+    "asin": "B0F3X7THJL",
     "title": "Aro de Luz LED de 10 Pulgadas con Trípode Extensible de 160cm, Soporte de Móvil y Mando Bluetooth",
     "slug": "aro-luz-led-10-pulgadas-tripode-mando-bluetooth",
     "searchQuery": "aro de luz led 10 pulgadas tripode extensible mando bluetooth tiktok videos selfies",
@@ -4593,7 +4593,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1315-impresora-bolsillo-bluetooth",
-    "asin": "",
+    "asin": "B0CTFXRCC3",
     "title": "Xiaomi Mi Portable Photo Printer - Impresora Fotográfica de Bolsillo con Tecnología ZINK Sin Tinta",
     "slug": "xiaomi-impresora-fotografica-bolsillo-zink",
     "searchQuery": "xiaomi mi portable photo printer impresora bolsillo fotos zink sin tinta bluetooth",
@@ -4621,7 +4621,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1315-catan-el-juego",
-    "asin": "",
+    "asin": "B006CZ0LGA",
     "title": "Devir - Los Colonos de Catán: El Mítico Juego de Mesa de Estrategia, Comercio y Negociación",
     "slug": "devir-catan-el-juego-de-mesa-estrategia",
     "searchQuery": "catan devir juego de mesa oficial colonos de catan comercio negociacion madera",
@@ -4649,7 +4649,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1315-catan-ciudades-caballeros",
-    "asin": "",
+    "asin": "B008EK5SRI",
     "title": "Devir - Catan: Ciudades y Caballeros: La Expansión Definitiva con Bárbaros y Murallas",
     "slug": "devir-catan-ciudades-y-caballeros-expansion",
     "searchQuery": "catan ciudades y caballeros devir expansion barbaros murallas metropolis",
@@ -4677,7 +4677,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1315-exploding-kittens-good-evil",
-    "asin": "",
+    "asin": "B0CDLQ19P7",
     "title": "Exploding Kittens: Good vs Evil - Juego de Cartas con Nueva Mecánica de Apocalipsis",
     "slug": "exploding-kittens-good-vs-evil-juego-cartas",
     "searchQuery": "exploding kittens good vs evil asmodee juego cartas serie netflix apocalipsis",
@@ -4705,7 +4705,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1315-cerave-gel-limpiador",
-    "asin": "",
+    "asin": "B0B7RQ46LD",
     "title": "CeraVe - Gel Limpiador Control Imperfecciones con Ácido Salicílico 236ml",
     "slug": "cerave-gel-limpiador-control-imperfecciones-236ml",
     "searchQuery": "cerave limpiador espumoso control imperfecciones acido salicilico 236ml",
@@ -4733,7 +4733,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1315-parches-hidrocoloides-cosrx",
-    "asin": "",
+    "asin": "B08TMHW1RQ",
     "title": "COSRX Acne Pimple Master Patch - Pack de 24 Parches Invisibles Curativos de Hidrocoloide",
     "slug": "cosrx-parches-hidrocoloide-granos-acne",
     "searchQuery": "cosrx acne pimple master patch parches granos hidrocoloide espinillas invisibles noche",
@@ -4761,7 +4761,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1315-colonia-hollister-wave",
-    "asin": "",
+    "asin": "B01GONKCVS",
     "title": "Hollister Wave - Eau de Cologne Juvenil 100ml Fresca con Notas Marinas y Cítricas Californianas",
     "slug": "hollister-wave-eau-de-cologne-100ml",
     "searchQuery": "hollister wave colonia juvenil 100ml notas marinas frescas california perfume chico",
@@ -4789,7 +4789,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1315-heartstopper-tomo-1",
-    "asin": "",
+    "asin": "8408224220",
     "title": "Heartstopper 1: Dos Chicos Juntos - Alice Oseman (Novela Gráfica Superventas Internacional)",
     "slug": "heartstopper-1-dos-chicos-juntos-alice-oseman",
     "searchQuery": "heartstopper 1 dos chicos juntos alice oseman comic novela grafica destino",
@@ -4817,7 +4817,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1315-one-piece-tomo-1",
-    "asin": "",
+    "asin": "8468471526",
     "title": "One Piece Tomo 1: Romance Dawn - Eiichiro Oda (El Manga Más Vendido de la Historia en Español)",
     "slug": "one-piece-tomo-1-romance-dawn-manga",
     "searchQuery": "one piece tomo 1 romance dawn eiichiro oda planeta comic manga piratas luffy",
@@ -4845,7 +4845,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1315-juegos-del-hambre-novela",
-    "asin": "",
+    "asin": "9878121380",
     "title": "Los Juegos del Hambre - Suzanne Collins (Edición Especial 15º Aniversario Tapa Blanda)",
     "slug": "los-juegos-del-hambre-suzanne-collins-novela",
     "searchQuery": "los juegos del hambre suzanne collins rba molino novela juvenil distopica katniss",
@@ -4873,7 +4873,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1315-cuaderno-bullet-journal-a5",
-    "asin": "",
+    "asin": "B0FWQKT73L",
     "title": "Cuaderno Bullet Journal A5 Tapa Dura de Cuero Vegano con Hojas Punteadas Gruesas de 160 GSM",
     "slug": "cuaderno-bullet-journal-a5-160gsm-cuero-vegano",
     "searchQuery": "bullet journal a5 160 gsm papel grueso no traspasa hojas punteadas tapa dura",
@@ -4901,7 +4901,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1315-tombow-dual-brush-pastel",
-    "asin": "",
+    "asin": "B09F9TJNCY",
     "title": "Tombow Dual Brush - Set de 10 Rotuladores Acuarelables Punta Pincel Colores Pastel",
     "slug": "tombow-dual-brush-set-10-rotuladores-pastel",
     "searchQuery": "tombow dual brush rotuladores punta pincel colores pastel acuarelables caligrafia",
@@ -4929,7 +4929,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1315-estuche-gran-capacidad-tres-pisos",
-    "asin": "",
+    "asin": "B0G2BMM8FD",
     "title": "Estuche Organizador Escolar de Gran Capacidad de 3 Compartimentos con Capacidad para 90 Bolígrafos",
     "slug": "estuche-escolar-gran-capacidad-tres-compartimentos",
     "searchQuery": "estuche escolar gran capacidad tres cremalleras organizador juvenil boligrafos rotuladores",
@@ -4957,7 +4957,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1315-gorro-beanie-pescador",
-    "asin": "",
+    "asin": "B0B671CH42",
     "title": "Gorro Beanie de Punto Estilo Pescador Urbano de Algodón Acanalado Unisex",
     "slug": "gorro-beanie-pescador-urbano-algodon-punto",
     "searchQuery": "gorro beanie pescador urbano punto acanalado skater adolescente algodon calido",
@@ -4985,7 +4985,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1315-sudadera-hoodie-basica-premium",
-    "asin": "",
+    "asin": "B0F448CCF3",
     "title": "Sudadera con Capucha Básica de Algodón Prémium Corte Relajado con Bolsillo Frontal",
     "slug": "sudadera-con-capucha-basica-algodon-corte-relajado",
     "searchQuery": "sudadera con capucha basica algodon sin logo corte relajado juvenil moderna",
@@ -5013,7 +5013,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1315-bandolera-tactica-pequena",
-    "asin": "",
+    "asin": "B09J1YX1SH",
     "title": "Bandolera Táctica Pequeña Unisex con Cinchas Molle y Mosquetón Metálico",
     "slug": "bandolera-tactica-pequena-unisex-molle",
     "searchQuery": "bandolera tactica pequena unisex molle bolsillo movil auriculares urbana",
@@ -5041,7 +5041,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1315-mochila-antirrobo-puerto-usb",
-    "asin": "",
+    "asin": "B072ZXD8LD",
     "title": "Mochila Antirrobo Urbana con Cremallera Oculta, Puerto de Carga USB y Compartimento para Portátil",
     "slug": "mochila-antirrobo-urbana-cremallera-oculta-usb",
     "searchQuery": "mochila antirrobo cremallera oculta puerto usb portatil instituto impermeable",
@@ -5069,7 +5069,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1315-neceser-viaje-colgante-gancho",
-    "asin": "",
+    "asin": "B0DQPBNF45",
     "title": "Neceser de Viaje Colgante Plegable Impermeable con Gancho Giratorio 360° para Campamentos",
     "slug": "neceser-viaje-colgante-gancho-giratorio-campamentos",
     "searchQuery": "neceser viaje colgante organizador bano plegable gancho impermeable campamentos excursiones",
@@ -5097,7 +5097,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1315-bolsa-deporte-zapatero-independiente",
-    "asin": "",
+    "asin": "B0GQ3LGN25",
     "title": "Bolsa de Deporte y Viaje Plegable con Compartimento Ventilado Independiente para Zapatillas",
     "slug": "bolsa-deporte-compartimento-zapatillas-ventilado",
     "searchQuery": "bolsa de deporte viaje gimnasio compartimento zapatero independiente impermeable bolsillo humedo",
@@ -5125,7 +5125,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1618-dualsense-edge-pro",
-    "asin": "",
+    "asin": "B0BKGKMLH2",
     "title": "Sony PlayStation - Mando Inalámbrico DualSense Edge Pro para PS5 con Palancas Traseras y Topes Ajustables",
     "slug": "mando-dualsense-edge-pro-playstation-5",
     "searchQuery": "mando dualsense edge pro playstation 5 palancas traseras competitivo",
@@ -5183,7 +5183,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1618-estacion-carga-dualsense",
-    "asin": "",
+    "asin": "B08NJX63Z4",
     "title": "Sony PlayStation - Estación de Carga Rápida Doble Oficial para Mandos DualSense de PS5",
     "slug": "estacion-carga-doble-mandos-dualsense-ps5",
     "searchQuery": "estacion de carga doble oficial playstation 5 mandos dualsense base rapida click",
@@ -5239,7 +5239,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1618-logitech-g413-se",
-    "asin": "",
+    "asin": "B0CR9YTB46",
     "title": "Logitech G413 SE - Teclado Mecánico Gaming con Interruptores Táctiles y Chasis de Aluminio",
     "slug": "logitech-g413-se-teclado-mecanico-gaming",
     "searchQuery": "logitech g413 se teclado mecanico gaming switch tactil aluminio",
@@ -5267,7 +5267,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1618-steelseries-qck-prism-xl",
-    "asin": "",
+    "asin": "B07JQ2TK86",
     "title": "SteelSeries QcK Prism XL - Alfombrilla Gaming XXL con Iluminación RGB Dinámica en 2 Zonas",
     "slug": "steelseries-qck-prism-xl-alfombrilla-gaming-rgb",
     "searchQuery": "steelseries qck prism xl alfombrilla gaming xxl rgb luces mesa",
@@ -5295,7 +5295,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1618-meta-quest-3s",
-    "asin": "",
+    "asin": "B0F3P8MGBX",
     "title": "Meta Quest 3S - Gafas de Realidad Virtual Todo en Uno 128GB con Realidad Mixta en Color",
     "slug": "meta-quest-3s-gafas-realidad-virtual-128gb",
     "searchQuery": "meta quest 3s gafas realidad virtual todo en uno realidad mixta mandos touch plus",
@@ -5323,7 +5323,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1618-sony-wh1000xm4",
-    "asin": "",
+    "asin": "B0BTDX26B2",
     "title": "Sony WH-1000XM4 - Auriculares de Diadema Inalámbricos con Noise Cancelling Líder del Sector",
     "slug": "sony-wh1000xm4-auriculares-cancelacion-ruido-hifi",
     "searchQuery": "sony wh 1000xm4 auriculares diadema bluetooth noise cancelling hi res ldac",
@@ -5379,7 +5379,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1618-ck-one-100ml",
-    "asin": "",
+    "asin": "B00S2WDIGG",
     "title": "Calvin Klein CK One - Eau de Toilette 100ml Unisex Original",
     "slug": "calvin-klein-ck-one-eau-de-toilette-100ml",
     "searchQuery": "calvin klein ck one 100ml original eau de toilette perfume unisex",
@@ -5439,7 +5439,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1618-hugo-boss-bottled-eau-toilette",
-    "asin": "",
+    "asin": "B01F2LAUGU",
     "title": "Hugo Boss BOSS Bottled - Eau de Toilette para Hombre 50ml con Notas de Manzana, Canela y Madera",
     "slug": "hugo-boss-bottled-eau-de-toilette-50ml",
     "searchQuery": "hugo boss boss bottled eau de toilette 50ml perfume hombre original elegante",
@@ -5467,7 +5467,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1618-habitos-atomicos-james-clear",
-    "asin": "",
+    "asin": "B07Q47GXZM",
     "title": "Hábitos Atómicos - James Clear: Cambios Pequeños, Resultados Extraordinarios (Tapa Blanda)",
     "slug": "habitos-atomicos-james-clear-libro-autoayuda",
     "searchQuery": "habitos atomicos james clear diana libro productividad organizacion exito juvenil",
@@ -5495,7 +5495,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1618-el-sutil-arte-mark-manson",
-    "asin": "",
+    "asin": "8491392289",
     "title": "El Sutil Arte de que (Casi Todo) Te Importe una Mierda - Mark Manson (HarperCollins)",
     "slug": "el-sutil-arte-de-que-te-importe-una-mierda-mark-manson",
     "searchQuery": "el sutil arte de que casi todo te importe una mierda mark manson harpercollins libro",
@@ -5523,7 +5523,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1618-alas-de-sangre-rebecca-yarros",
-    "asin": "",
+    "asin": "8408327666",
     "title": "Alas de Sangre (Empíreo 1) - Rebecca Yarros (El Bestseller Mundial de Fantasía y Dragones)",
     "slug": "alas-de-sangre-rebecca-yarros-fourth-wing-novela",
     "searchQuery": "alas de sangre rebecca yarros fourth wing novela fantasia dragones planeta",
@@ -5581,7 +5581,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1618-pluma-estilografica-dryden",
-    "asin": "",
+    "asin": "B01N4KCHVH",
     "title": "Dryden Designs - Pluma Estilográfica de Lujo con Plumín Fino de Acero y Estuche de Regalo",
     "slug": "dryden-designs-pluma-estilografica-lujo-estuche",
     "searchQuery": "dryden designs pluma estilografica lujo plumin fino estuche regalo convertidor tinta",
@@ -5637,7 +5637,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1618-cartera-rfid-fibra-carbono",
-    "asin": "",
+    "asin": "B0FQBT1497",
     "title": "Cartera Billetera Minimalista con Bloqueo RFID en Fibra de Carbono con Clip para Billetes",
     "slug": "cartera-minimalista-fibra-carbono-bloqueo-rfid",
     "searchQuery": "cartera minimalista fibra carbono bloqueo rfid tarjetero fino clip billetes hombre",
@@ -5665,7 +5665,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1618-sudadera-grunge-vintage",
-    "asin": "",
+    "asin": "B0FKN29H87",
     "title": "Sudadera con Capucha Grunge Aesthetic de Algodón Lavado Vintage Corte Holgado",
     "slug": "sudadera-hoodie-grunge-aesthetic-lavado-vintage",
     "searchQuery": "sudadera con capucha grunge vintage lavado acido oversize aesthetic juvenil streetwear",
@@ -5693,7 +5693,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "1618-gafas-sol-polarizadas-retro",
-    "asin": "",
+    "asin": "B0FWMJD3VW",
     "title": "Gafas de Sol Polarizadas Estilo Retro con Montura de Acetato y Protección UV400 Unisex",
     "slug": "gafas-sol-polarizadas-retro-acetato-uv400",
     "searchQuery": "gafas de sol polarizadas estilo wayfarer retro acetato proteccion uv400 unisex estuche",
@@ -5745,7 +5745,7 @@ export const PRODUCTS: Product[] = [
     "images": [
       "https://m.media-amazon.com/images/I/51JrZp1Ro7L._AC_UL320_.jpg"
     ],
-    "asin": ""
+    "asin": "B073ZG98FV"
   },
   {
     "id": "1618-carolina-herrera-good-girl",
@@ -5773,7 +5773,7 @@ export const PRODUCTS: Product[] = [
     "images": [
       "https://m.media-amazon.com/images/I/6105I8y0O-L._AC_UL320_.jpg"
     ],
-    "asin": ""
+    "asin": "B0BZ8MBHLK"
   },
   {
     "id": "1618-jean-paul-gaultier-le-male",
@@ -5829,7 +5829,7 @@ export const PRODUCTS: Product[] = [
     "images": [
       "https://m.media-amazon.com/images/I/61RK2X2njQL._AC_UL320_.jpg"
     ],
-    "asin": ""
+    "asin": "B00B4TR3KG"
   },
   {
     "id": "1618-yves-saint-laurent-libre",
@@ -5857,7 +5857,7 @@ export const PRODUCTS: Product[] = [
     "images": [
       "https://m.media-amazon.com/images/I/81PnK8PykiL._AC_UL320_.jpg"
     ],
-    "asin": ""
+    "asin": "B0HN2R4WXR"
   },
   {
     "id": "1618-sol-de-janeiro-cheirosa-68",
@@ -5885,7 +5885,7 @@ export const PRODUCTS: Product[] = [
     "images": [
       "https://m.media-amazon.com/images/I/61eXe6NOAuL._AC_UL320_.jpg"
     ],
-    "asin": ""
+    "asin": "B0B1H2MDCX"
   },
   {
     "id": "1618-tous-loveme-eau-de-parfum",
@@ -5913,7 +5913,7 @@ export const PRODUCTS: Product[] = [
     "images": [
       "https://m.media-amazon.com/images/I/61RLatcxjeL._AC_UL320_.jpg"
     ],
-    "asin": ""
+    "asin": "B09NRRWC52"
   },
   {
     "id": "1618-victorias-secret-pure-seduction",
@@ -5969,7 +5969,7 @@ export const PRODUCTS: Product[] = [
     "images": [
       "https://m.media-amazon.com/images/I/71LXHUdDlzL._AC_UL320_.jpg"
     ],
-    "asin": ""
+    "asin": "B091SWJ1RG"
   },
   {
     "id": "1618-calvin-klein-ck-be",
@@ -5997,7 +5997,7 @@ export const PRODUCTS: Product[] = [
     "images": [
       "https://m.media-amazon.com/images/I/41EPcPx72GL._AC_UL320_.jpg"
     ],
-    "asin": ""
+    "asin": "B000Q6KKSA"
   },
   {
     "id": "1618-ea-sports-fc-25-ps5",
@@ -6081,11 +6081,11 @@ export const PRODUCTS: Product[] = [
     "images": [
       "https://m.media-amazon.com/images/I/714PoUvZbYL._AC_UL320_.jpg"
     ],
-    "asin": ""
+    "asin": "B0CMJYZ76W"
   },
   {
     "id": "18plus-smartbox-3-dias-con-encanto",
-    "asin": "",
+    "asin": "B07Z5LC8CB",
     "title": "Smartbox - Caja Regalo 3 Días con Encanto (2 Noches con Desayunos para 2 Personas)",
     "slug": "smartbox-3-dias-con-encanto-caja-regalo",
     "searchQuery": "smartbox 3 dias con encanto caja regalo 2 noches desayunos dos personas",
@@ -6113,7 +6113,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "18plus-smartbox-spa-relax-dos",
-    "asin": "",
+    "asin": "B07Z5LKT1Q",
     "title": "Smartbox - Caja Regalo Spa y Relax para Dos (Acceso a Circuito Termal, Balneario o Masaje)",
     "slug": "smartbox-spa-y-relax-para-dos-caja-regalo",
     "searchQuery": "smartbox spa y relax para dos personas circuito termal masaje balneario",
@@ -6141,7 +6141,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "18plus-wonderbox-cena-gourmet-dos",
-    "asin": "",
+    "asin": "B07DVFQTFY",
     "title": "Wonderbox - Caja Regalo Momentos Gourmet para Dos (Cena con Maridaje en Restaurantes Seleccionados)",
     "slug": "wonderbox-momentos-gourmet-cena-para-dos",
     "searchQuery": "wonderbox momentos gourmet caja regalo cena maridaje dos personas restaurantes",
@@ -6169,7 +6169,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "18plus-lego-icons-bonsai",
-    "asin": "",
+    "asin": "B08G4PCG8F",
     "title": "LEGO Icons Bonsái - Árbol Botánico de Construcción para Adultos con Flores de Cerezo y Maceta",
     "slug": "lego-icons-bonsai-arbol-botanico-10281",
     "searchQuery": "lego icons 10281 bonsai arbol botanico decoracion adultos flores cerezo",
@@ -6197,7 +6197,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "18plus-lego-icons-ramo-flores",
-    "asin": "",
+    "asin": "B0DHSDBVKV",
     "title": "LEGO Icons Ramo de Flores Silvestres - Set Botánico de Construcción Creativa para Adultos",
     "slug": "lego-icons-ramo-flores-silvestres-10313",
     "searchQuery": "lego icons 10313 ramo de flores silvestres botanic adultos decoracion",
@@ -6225,7 +6225,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "18plus-lego-star-wars-casco-vader",
-    "asin": "",
+    "asin": "B08G4GPS3Q",
     "title": "LEGO Star Wars - Casco de Darth Vader Modelo de Coleccionista para Adultos con Soporte de Exposición",
     "slug": "lego-star-wars-casco-darth-vader-75304",
     "searchQuery": "lego star wars 75304 casco darth vader exposicion soporte placa adultos",
@@ -6309,7 +6309,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "18plus-guatafac-juego-fiesta",
-    "asin": "",
+    "asin": "B08H13QHZR",
     "title": "Guatafac - ¿Unos Tragos? El Juego de Mesa de Cartas Divertido y Picante para Fiestas de Adultos",
     "slug": "guatafac-unos-tragos-juego-de-cartas-fiesta",
     "searchQuery": "guatafac juego de cartas adultos fiesta risas diversion preguntas 8 segundos",
@@ -6421,7 +6421,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "18plus-kindle-paperwhite-16gb",
-    "asin": "",
+    "asin": "B0GV5TP9KW",
     "title": "Kindle Paperwhite (16 GB) - Lector de eBooks con Pantalla de 6,8\", Luz Cálida Ajustable y Resistente al Agua",
     "slug": "kindle-paperwhite-16gb-luz-calida-regulable",
     "searchQuery": "kindle paperwhite 16gb luz calida regulable pantalla 6 8 pulgadas resistente agua",
@@ -6449,7 +6449,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "18plus-philips-hue-kit-bombillas-led",
-    "asin": "",
+    "asin": "B099NRLRG3",
     "title": "Philips Hue White & Color Ambiance - Pack de 2 Bombillas LED Inteligentes E27 con 16 Millones de Colores",
     "slug": "philips-hue-pack-2-bombillas-led-inteligentes-e27",
     "searchQuery": "philips hue white and color pack 2 bombillas inteligentes e27 alexa google home",
@@ -6477,7 +6477,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "18plus-bose-soundlink-flex-altavoz",
-    "asin": "",
+    "asin": "B0D6WD2QSQ",
     "title": "Bose SoundLink Flex - Altavoz Bluetooth Portátil Resistente al Agua IP67 con Graves Profundos y Nítidos",
     "slug": "bose-soundlink-flex-altavoz-bluetooth-portatil",
     "searchQuery": "bose soundlink flex altavoz bluetooth portatil exterior resistente agua ip67",
@@ -6505,7 +6505,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "18plus-cecotec-power-espresso-cafetera",
-    "asin": "",
+    "asin": "B07MJ6S1MV",
     "title": "Cecotec Cafetera Express Power Espresso 20 Professionale - 20 Bares con Manómetro Tradicional y Vaporizador",
     "slug": "cecotec-power-espresso-20-cafetera-express-manometro",
     "searchQuery": "cecotec cafetera express power espresso 20 bars manometro vaporizador leche cafe molido",
@@ -6533,7 +6533,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "18plus-kit-cocteleria-boston-acero",
-    "asin": "",
+    "asin": "B0FFGY91SL",
     "title": "Kit Profesional de Coctelería Boston en Acero Inoxidable con Coctelera, Medidor Jigger y Soporte de Bambú",
     "slug": "kit-cocteleria-profesional-boston-soporte-bambu",
     "searchQuery": "kit cocteleria profesional coctelera boston jigger colador cuchara soporte bambu barman",
@@ -6589,7 +6589,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "18plus-dior-sauvage-eau-de-toilette",
-    "asin": "",
+    "asin": "B000RO0NOW",
     "title": "Dior Sauvage - Eau de Toilette 100ml con Vaporizador Original para Hombre",
     "slug": "dior-sauvage-eau-de-toilette-100ml",
     "searchQuery": "dior sauvage eau de toilette 100ml perfume hombre original bergamota pimienta",
@@ -6645,7 +6645,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "18plus-tom-ford-black-orchid",
-    "asin": "",
+    "asin": "B00329HKI6",
     "title": "Tom Ford Black Orchid - Eau de Parfum 50ml Unisex de Lujo con Orquídea Negra y Especias Raras",
     "slug": "tom-ford-black-orchid-eau-de-parfum-50ml",
     "searchQuery": "tom ford black orchid eau de parfum 50ml perfume unisex lujo orquidea negra",
@@ -6673,7 +6673,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "phone-galaxy-a55-5g",
-    "asin": "",
+    "asin": "B0F1FRL5HX",
     "title": "Samsung Galaxy A55 5G - Smartphone Libre con Pantalla Super AMOLED 6,6\" 120Hz, Cámara 50MP y Batería 5000 mAh",
     "slug": "samsung-galaxy-a55-5g-smartphone-super-amoled-50mp",
     "searchQuery": "samsung galaxy a55 5g smartphone libre amoled 120hz camara 50mp",
@@ -6702,7 +6702,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "phone-pixel-8a",
-    "asin": "",
+    "asin": "B0CXJ7HRPT",
     "title": "Google Pixel 8a - Smartphone Android Libre con Chip Google Tensor G3, IA de Cámara Avanzada y 7 Años de Actualizaciones",
     "slug": "google-pixel-8a-smartphone-tensor-g3-camara-ia",
     "searchQuery": "google pixel 8a smartphone libre tensor g3 camara ia gemini",
@@ -6731,7 +6731,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "phone-redmi-note-13-pro-plus",
-    "asin": "",
+    "asin": "B0CQZ4BK6C",
     "title": "Xiaomi Redmi Note 13 Pro+ 5G - Pantalla Curva AMOLED 1.5K 120Hz, Cámara de 200 MP con OIS y Carga Ultrarrápida 120W HyperCharge",
     "slug": "xiaomi-redmi-note-13-pro-plus-5g-200mp-carga-120w",
     "searchQuery": "xiaomi redmi note 13 pro plus 5g camara 200mp carga 120w hypercharge",
@@ -6760,7 +6760,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "phone-iphone-15-base",
-    "asin": "",
+    "asin": "B0CVJ23L79",
     "title": "Apple iPhone 15 (128 GB) - Dynamic Island, Cámara de 48 MP, USB-C y Chip A16 Bionic",
     "slug": "apple-iphone-15-128gb-dynamic-island-camara-48mp-usb-c",
     "searchQuery": "apple iphone 15 128 gb dynamic island camara 48 mp usb-c chip a16",
@@ -6789,7 +6789,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "phone-iphone-16-base",
-    "asin": "",
+    "asin": "B0DGJJXBM5",
     "title": "Apple iPhone 16 (128 GB) - Nuevo Botón de Control de Cámara, Chip A18 y Preparado para Apple Intelligence",
     "slug": "apple-iphone-16-128gb-control-de-camara-chip-a18",
     "searchQuery": "apple iphone 16 128 gb control de camara chip a18 apple intelligence",
@@ -6818,7 +6818,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "phone-samsung-galaxy-s24",
-    "asin": "",
+    "asin": "B0CSVLP7F2",
     "title": "Samsung Galaxy S24 5G - Smartphone Libre con Pantalla Dynamic AMOLED 2X 6,2\" 120Hz, Galaxy AI y Triple Cámara 50MP",
     "slug": "samsung-galaxy-s24-5g-dynamic-amoled-galaxy-ai-50mp",
     "searchQuery": "samsung galaxy s24 5g dynamic amoled 2x galaxy ai triple camara 50mp",
@@ -6876,7 +6876,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "phone-oppo-reno-12-ia",
-    "asin": "",
+    "asin": "B0D5DC933P",
     "title": "OPPO Reno12 5G - Smartphone Libre con IA Generativa de Retrato, Pantalla Infinita Curva 3D 120Hz y Batería 5000 mAh 80W SUPERVOOC",
     "slug": "oppo-reno12-5g-smartphone-ia-retrato-curva-supervooc-80w",
     "searchQuery": "oppo reno12 5g smartphone libre ia generativa retrato amoled supervooc",
@@ -6934,7 +6934,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "phone-galaxy-s24-ultra",
-    "asin": "",
+    "asin": "B0CNQ85JWL",
     "title": "Samsung Galaxy S24 Ultra con Cargador 45W - Marco de Titanio, S-Pen Integrado, Cámara 200MP Zoom x100 y Pantalla Antirreflejos Gorilla Armor",
     "slug": "samsung-galaxy-s24-ultra-s-pen-titanio-camara-200mp-zoom-100x",
     "searchQuery": "samsung galaxy s24 ultra s-pen titanio camara 200mp zoom 100x galaxy ai cargador 45w",
@@ -6963,7 +6963,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "phone-google-pixel-9-pro",
-    "asin": "",
+    "asin": "B0FHJNDQBR",
     "title": "Google Pixel 9 - Smartphone Android Libre con IA Gemini Integrada, Pantalla Actua 6,3\" 120Hz y Sistema de Cámara Avanzada de 50 MP",
     "slug": "google-pixel-9-smartphone-gemini-ia-pantalla-actua-camara-50mp",
     "searchQuery": "google pixel 9 smartphone libre gemini ia pantalla actua 120hz camara 50mp",
@@ -6992,7 +6992,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "phone-honor-magic-6-pro",
-    "asin": "",
+    "asin": "B0CWPZLVYZ",
     "title": "HONOR Magic6 Pro 5G - Pantalla Curva LTPO 1-120Hz con Protección Ocular PWM 4320Hz, Teleobjetivo Periscópico 180MP y Batería de Silicio-Carbono 5600 mAh",
     "slug": "honor-magic6-pro-5g-teleobjetivo-180mp-bateria-silicio-carbono",
     "searchQuery": "honor magic6 pro 5g teleobjetivo 180mp bateria silicio carbono oled falcon",
@@ -7021,7 +7021,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     "id": "phone-huawei-pura-70-pro",
-    "asin": "",
+    "asin": "B0DDPSG8BD",
     "title": "HUAWEI Pura 70 Pro - Cámara XMAGE Ultra Lighting con Macro Teleobjetivo F2.1, Cristal Kunlun Glass 2 y Carga 100W HUAWEI SuperCharge",
     "slug": "huawei-pura-70-pro-camara-xmage-kunlun-glass-supercharge-100w",
     "searchQuery": "huawei pura 70 pro camara xmage ultra lighting macro kunlun glass supercharge 100w",
@@ -7079,7 +7079,7 @@ export const PRODUCTS: Product[] = [
 },
   {
   "id": "belleza-cosrx-snail-96-mucin-essence",
-  "asin": "",
+  "asin": "B00PBX3L7K",
   "title": "COSRX Advanced Snail 96 Mucin Power Essence (100ml) - Esencia Facial Coreana de Hidratación Profunda con 96% de Mucina de Caracol",
   "slug": "cosrx-advanced-snail-96-mucin-power-essence-coreana",
   "searchQuery": "cosrx advanced snail 96 mucin power essence cosmetica coreana",
@@ -7107,7 +7107,7 @@ export const PRODUCTS: Product[] = [
 },
   {
   "id": "belleza-beauty-of-joseon-relief-sun-spf50",
-  "asin": "",
+  "asin": "B0D458SM1G",
   "title": "Beauty of Joseon Relief Sun: Rice + Probiotics SPF50+ PA++++ (50ml) - Protector Solar Facial Orgánico Calmante e Hidratante",
   "slug": "beauty-of-joseon-relief-sun-rice-probiotics-spf50",
   "searchQuery": "beauty of joseon relief sun arroz probioticos protector solar coreano",
@@ -7135,7 +7135,7 @@ export const PRODUCTS: Product[] = [
 },
   {
   "id": "belleza-rituals-the-ritual-of-sakura-cofre",
-  "asin": "",
+  "asin": "B0FPCMK2WP",
   "title": "Rituals The Ritual of Sakura - Cofre de Regalo Medium con Gel de Ducha Espumoso, Exfoliante Corporal, Crema Corporal y Vela Aromática",
   "slug": "rituals-the-ritual-of-sakura-cofre-regalo-medium",
   "searchQuery": "rituals the ritual of sakura cofre regalo medium mujer",
@@ -7163,7 +7163,7 @@ export const PRODUCTS: Product[] = [
 },
   {
   "id": "belleza-sol-de-janeiro-cheirosa-68-mist",
-  "asin": "",
+  "asin": "B0B1HB719V",
   "title": "Sol de Janeiro Brazilian Crush Cheirosa 68 - Bruma Perfumada Beija Flor (240ml) con Notas de Jazmín Brasileño y Fruta del Dragón Rosa",
   "slug": "sol-de-janeiro-cheirosa-68-bruma-perfumada-240ml",
   "searchQuery": "sol de janeiro cheirosa 68 bruma perfumada beija flor 240ml",
@@ -7191,7 +7191,7 @@ export const PRODUCTS: Product[] = [
 },
   {
   "id": "belleza-sol-de-janeiro-cheirosa-62-mist",
-  "asin": "",
+  "asin": "B0H7WXCLJ8",
   "title": "Sol de Janeiro Brazilian Crush Cheirosa 62 - Bruma Perfumada Clásica (240ml) con Notas de Pistacho, Caramelo Salado y Vainilla",
   "slug": "sol-de-janeiro-cheirosa-62-bruma-perfumada-pistacho",
   "searchQuery": "sol de janeiro cheirosa 62 pistacho caramelo salado bruma 240ml",
@@ -7219,7 +7219,7 @@ export const PRODUCTS: Product[] = [
 },
   {
   "id": "belleza-ysl-libre-eau-de-parfum-50ml",
-  "asin": "",
+  "asin": "B0HN2R4WXR",
   "title": "Yves Saint Laurent Libre - Eau de Parfum para Mujer (50ml) con Frasco Joya de Alta Costura, Lavanda Francesa y Azahar Marroquí",
   "slug": "yves-saint-laurent-libre-eau-de-parfum-50ml",
   "searchQuery": "yves saint laurent libre eau de parfum 50ml mujer original",
@@ -7247,7 +7247,7 @@ export const PRODUCTS: Product[] = [
 },
   {
   "id": "belleza-smartbox-spa-y-relax-para-dos",
-  "asin": "",
+  "asin": "B07Z5LKT1Q",
   "title": "Smartbox - Caja Regalo Spa y Relax para Dos (Acceso a Circuito Termal, Balneario o Masaje Relajante)",
   "slug": "smartbox-caja-regalo-spa-y-relax-para-dos",
   "searchQuery": "smartbox spa y relax para dos circuito termal masajes balnearios",
@@ -7275,7 +7275,7 @@ export const PRODUCTS: Product[] = [
 },
   {
   "id": "belleza-difusor-aromas-ceramica-ultrasonico",
-  "asin": "",
+  "asin": "B0GZVGQZPQ",
   "title": "Difusor de Aromas Ultrasónico de Cerámica Artesanal con Luces LED Cálidas y Modo Silencioso para Aceites Esenciales",
   "slug": "difusor-aromas-ceramica-artesanal-ultrasonico-aceites-esenciales",
   "searchQuery": "difusor aromas ceramica ultrasonico aceites esenciales aromaterapia",
@@ -7303,7 +7303,7 @@ export const PRODUCTS: Product[] = [
 },
   {
   "id": "belleza-masajeador-cervical-shiatsu-calor",
-  "asin": "",
+  "asin": "B09KS1XRB7",
   "title": "RENPHO Masajeador Cervical y de Espalda Shiatsu con Calor Infrarrojo y 8 Nodos de Masaje Profundo 3D para Cuello, Hombros y Lumbares",
   "slug": "renpho-masajeador-cervical-espalda-shiatsu-calor-infrarrojo",
   "searchQuery": "renpho masajeador cervical shiatsu espalda cuello calor infrarrojo",
@@ -7331,7 +7331,7 @@ export const PRODUCTS: Product[] = [
 },
   {
   "id": "hogar-vela-aromatica-woodwick-lino",
-  "asin": "",
+  "asin": "B07DHCT8TC",
   "title": "WoodWick Vela Aromática en Tarro de Cristal con Mecha de Madera Crujiente Hearthwick (453g) - Aroma Linen & White Tea",
   "slug": "woodwick-vela-aromatica-mecha-madera-crujiente-linen",
   "searchQuery": "woodwick vela aromatica mecha madera crujiente linen white tea",
@@ -7359,7 +7359,7 @@ export const PRODUCTS: Product[] = [
 },
   {
   "id": "hogar-vela-yankee-candle-signature-vainilla",
-  "asin": "",
+  "asin": "B06XFXVDC4",
   "title": "Yankee Candle Vela Aromática en Tarro Signature Grande (567g) - Warm Vanilla & Soft Cashmere con 2 Mechas de Algodón 100%",
   "slug": "yankee-candle-signature-grande-warm-vanilla-cashmere",
   "searchQuery": "yankee candle vela grande signature vainilla cashmere 567g",
@@ -7387,7 +7387,7 @@ export const PRODUCTS: Product[] = [
 },
   {
   "id": "hogar-tazas-ceramica-artesanales-japonesas",
-  "asin": "",
+  "asin": "B0FNWB36SB",
   "title": "Juego de 2 Tazas de Café Artesanales de Cerámica Japonesa con Textura Rústica Hecha a Mano y Platillos de Bambú Natural",
   "slug": "juego-2-tazas-ceramica-artesanal-japonesa-platillos-bambu",
   "searchQuery": "juego tazas ceramica artesanal japonesa platillo bambu cafe capuchino",
@@ -7415,7 +7415,7 @@ export const PRODUCTS: Product[] = [
 },
   {
   "id": "hogar-manta-sherpa-borreguito-sofa-suave",
-  "asin": "",
+  "asin": "B077FZDNJ2",
   "title": "Bedsure Manta para Sofá y Cama de Franela y Borreguito Sherpa Ultra Suave (150x200 cm) - Manta Cálida y Ligera (Gris Perla)",
   "slug": "bedsure-manta-sofa-franela-borreguito-sherpa-150x200",
   "searchQuery": "bedsure manta sofa borreguito sherpa suave franela 150x200",
@@ -7443,7 +7443,7 @@ export const PRODUCTS: Product[] = [
 },
   {
   "id": "hogar-bodum-cafetera-francesa-chambord-cobre",
-  "asin": "",
+  "asin": "B003D3NBDY",
   "title": "Bodum Chambord - Cafetera Francesa de Émbolo en Acero Inoxidable y Cobre Brillante (8 Tazas, 1 Litro) con Vidrio Borosilicato",
   "slug": "bodum-chambord-cafetera-francesa-embolo-cobre",
   "searchQuery": "bodum chambord cafetera francesa embolo cobre acero 1 litro",
@@ -7471,7 +7471,7 @@ export const PRODUCTS: Product[] = [
 },
   {
   "id": "tech-sony-wh1000xm4-auriculares-plata",
-  "asin": "",
+  "asin": "B0HBXKGYS5",
   "title": "Sony WH-1000XM4 - Auriculares Inalámbricos Diadema con Cancelación de Ruido Activa Líder del Sector (Plata / Beige Perla Elegante)",
   "slug": "sony-wh-1000xm4-auriculares-diadema-cancelacion-ruido-plata",
   "searchQuery": "sony wh 1000xm4 auriculares diadema cancelacion ruido plata beige",
@@ -7499,7 +7499,7 @@ export const PRODUCTS: Product[] = [
 },
   {
   "id": "tech-cargador-inalambrico-plegable-3-en-1",
-  "asin": "",
+  "asin": "B0GVDK92SM",
   "title": "Estación de Carga Inalámbrica Magnética Plegable 3 en 1 para iPhone, Apple Watch y AirPods con Acabado en Aluminio y Almohadilla Suave",
   "slug": "estacion-carga-inalambrica-plegable-3-en-1-magnectica",
   "searchQuery": "estacion carga inalambrica magnetica 3 en 1 plegable iphone apple watch airpods",
@@ -7555,7 +7555,7 @@ export const PRODUCTS: Product[] = [
 },
   {
   "id": "ocio-five-minute-journal-diario-gratitud",
-  "asin": "",
+  "asin": "B09ZFCZ63N",
   "title": "The Five Minute Journal - Diario de Gratitud y Reflexión Guiada Diaria en Tapa Dura de Lino Natural con Cinta Marcapáginas",
   "slug": "the-five-minute-journal-diario-gratitud-lino",
   "searchQuery": "the five minute journal diario gratitud lino encuadernado",
@@ -7611,7 +7611,7 @@ export const PRODUCTS: Product[] = [
 },
   {
   "id": "moda-joyero-organizador-viaje-terciopelo",
-  "asin": "",
+  "asin": "B0DFQ3KKWQ",
   "title": "Joyero Organizador de Viaje en Terciopelo Suave con Espejo y Compartimentos para Pendientes, Anillos y Collares (Rosa Pastel / Esmeralda)",
   "slug": "joyero-organizador-viaje-terciopelo-espejo-anillos",
   "searchQuery": "joyero organizador viaje terciopelo cremallera espejo anillos collares",
@@ -7639,7 +7639,7 @@ export const PRODUCTS: Product[] = [
 },
   {
   "id": "moda-pendientes-aro-plata-925-bano-oro",
-  "asin": "",
+  "asin": "B0GZNQN4HT",
   "title": "Pendientes de Aro Huggie Minimalistas en Plata de Ley 925 con Baño de Oro de 18K e Incrustaciones de Circonita Brillante",
   "slug": "pendientes-aro-huggie-plata-925-bano-oro-18k",
   "searchQuery": "pendientes aro huggie minimalista plata ley 925 bano oro circonitas",
@@ -7667,7 +7667,7 @@ export const PRODUCTS: Product[] = [
 },
   {
   "id": "moda-bolso-bandolera-cuero-vegano-doble",
-  "asin": "",
+  "asin": "B0F912YDKY",
   "title": "Bolso Bandolera Mujer en Cuero Vegano Suave con Triple Compartimento de Cremallera y Correa Ancha Ajustable (Negro / Camel)",
   "slug": "bolso-bandolera-mujer-cuero-vegano-triple-cremallera",
   "searchQuery": "bolso bandolera mujer cuero vegano triple cremallera correa ancha",
@@ -7695,7 +7695,7 @@ export const PRODUCTS: Product[] = [
 },
   {
     id: "wheels-minimoto-cross-49cc-azul-roan",
-    asin: "",
+    asin: "B0FSKV77CM",
     title: "Minicross Infantil de Gasolina 49cc ROAN 709 con Ruedas 10 Pulgadas, Paro de Seguridad y Chasis Reforzado (Azul)",
     slug: "minicross-infantil-gasolina-49cc-roan-709-azul",
     searchQuery: "minicross infantil gasolina 49cc roan 709 azul minimoto",
@@ -7721,7 +7721,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "wheels-minimoto-cobra-49cc-roan",
-    asin: "",
+    asin: "B0HHS9DJC6",
     title: "ROAN Minimoto Infantil Cobra 49cc Motor 2 Tiempos con Frenos de Disco, Escape Deportivo y Chasis Reforzado",
     slug: "roan-minimoto-infantil-cobra-49cc-2-tiempos",
     searchQuery: "roan minimoto cobra 49cc 2 tiempos infantil frenos disco",
@@ -7773,7 +7773,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "wheels-moto-electrica-honda-cbr-12v",
-    asin: "",
+    asin: "B0B1JC5N6V",
     title: "Honda CBR1000RR Moto Eléctrica Infantil 12V Deportiva con Ruedines Desmontables, Sonidos de Motor y Luces",
     slug: "honda-cbr1000rr-moto-electrica-infantil-12v",
     searchQuery: "honda cbr1000rr moto electrica infantil 12v ruedines minimoto",
@@ -7799,7 +7799,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "wheels-moto-electrica-vespa-12v",
-    asin: "",
+    asin: "B0F23R518N",
     title: "COSTWAY Moto Eléctrica para Niños Vespa Clásica 12V con Licencia Piaggio, Asiento de Cuero, Ruedines, Faro LED y Música",
     slug: "vespa-clasica-12v-moto-electrica-ninos-piaggio",
     searchQuery: "vespa clasica 12v moto electrica ninos piaggio ruedines minimoto",
@@ -7825,7 +7825,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "fig-tanjiro-banpresto-16cm",
-    asin: "",
+    asin: "B0CNH85345",
     title: "Banpresto - Figura Demon Slayer Tanjiro Kamado Colección Oficial 16 cm",
     slug: "banpresto-figura-demon-slayer-tanjiro-kamado-16cm",
     searchQuery: "banpresto figura demon slayer tanjiro kamado kimetsu oficial",
@@ -7851,7 +7851,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "fig-kakashi-naruto-banpresto-chidori",
-    asin: "",
+    asin: "B0GQZFFVCS",
     title: "Banpresto - Figura Naruto Shippuden Kakashi Hatake con Técnica Chidori",
     slug: "banpresto-figura-naruto-kakashi-hatake-chidori",
     searchQuery: "banpresto figura naruto shippuden kakashi hatake chidori oficial",
@@ -7877,7 +7877,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "fig-saitama-goodsmile-popup",
-    asin: "",
+    asin: "B07RZ645HT",
     title: "Good Smile Company - Pop Up Parade Saitama One Punch Man Figura Colección",
     slug: "good-smile-pop-up-parade-saitama-one-punch-man",
     searchQuery: "good smile pop up parade saitama one punch man figura oficial",
@@ -7903,7 +7903,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "fig-luffy-banpresto-batalla-18cm",
-    asin: "",
+    asin: "B0G1VVKS87",
     title: "Banpresto - Figura One Piece Monkey D. Luffy Batalla con Sombrero de Paja 18cm",
     slug: "banpresto-figura-one-piece-luffy-batalla-18cm",
     searchQuery: "banpresto figura one piece monkey d luffy batalla sombrero paja",
@@ -7929,7 +7929,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "anime-naruto-manga-tomo-1",
-    asin: "",
+    asin: "8415821816",
     title: "Naruto Tomo 1 de Masashi Kishimoto - El Comienzo del Ninja Más Valiente",
     slug: "naruto-manga-tomo-1-masashi-kishimoto",
     searchQuery: "naruto tomo 1 manga masashi kishimoto planeta comic espanol",
@@ -7955,7 +7955,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "anime-demon-slayer-manga-tomo-1",
-    asin: "",
+    asin: "8467969164",
     title: "Guardianes de la Noche (Kimetsu no Yaiba / Demon Slayer) Tomo 1 de Koyoharu Gotouge",
     slug: "demon-slayer-guardianes-noche-kimetsu-tomo-1-manga",
     searchQuery: "guardianes de la noche kimetsu no yaiba demon slayer tomo 1 manga",
@@ -7981,7 +7981,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "anime-dragon-ball-super-tomo-1",
-    asin: "",
+    asin: "8491460004",
     title: "Dragon Ball Super Tomo 1 de Akira Toriyama y Toyotaro - Los Guerreros Z",
     slug: "dragon-ball-super-tomo-1-akira-toriyama-manga",
     searchQuery: "dragon ball super tomo 1 akira toriyama goku vegeta manga",
@@ -8007,7 +8007,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "fig-link-zelda-tears-kingdom",
-    asin: "",
+    asin: "B0FY3GSSSV",
     title: "First 4 Figures - Estatua Coleccionista Link The Legend of Zelda Tears of the Kingdom",
     slug: "first-4-figures-link-zelda-tears-of-the-kingdom",
     searchQuery: "first 4 figures link zelda tears of the kingdom estatua coleccion",
@@ -8033,7 +8033,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "fig-charizard-pokemon-batalla",
-    asin: "",
+    asin: "B0DP7WGPJG",
     title: "Pokémon - Figura de Batalla Interactiva Charizard con Llamas y Sonidos",
     slug: "pokemon-figura-batalla-interactiva-charizard",
     searchQuery: "pokemon figura batalla interactiva charizard oficial jazwares",
@@ -8059,7 +8059,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "1315-rotuladores-alcohol-ohuhu-80",
-    asin: "",
+    asin: "B0DHGD59YT",
     title: "Ohuhu - Set de 80 Rotuladores al Alcohol Doble Punta para Bullet Journal y Dibujo con Estuche",
     slug: "ohuhu-80-rotuladores-alcohol-doble-punta-bullet-journal",
     searchQuery: "ohuhu 80 rotuladores alcohol doble punta bullet journal dibujo estuche",
@@ -8085,7 +8085,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "1315-cuaderno-canson-xl-a4",
-    asin: "",
+    asin: "B00L8JFILS",
     title: "Canson XL Aquarelle - Bloc de Papel Grueso A4 300g para Acuarela, Lettering y Bullet Journal",
     slug: "canson-xl-aquarelle-bloc-a4-300g-papeleria",
     searchQuery: "canson xl aquarelle a4 300g bloc papel acuarela lettering",
@@ -8111,7 +8111,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "1315-pinceles-acuarela-recargables",
-    asin: "",
+    asin: "B0GT3LB3XY",
     title: "Set de 6 Pinceles con Depósito de Agua Recargable para Acuarela, Caligrafía y Lettering",
     slug: "set-6-pinceles-deposito-agua-recargables-lettering",
     searchQuery: "set 6 pinceles deposito agua recargable acuarela lettering caligrafia",
@@ -8137,7 +8137,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "79-ajedrez-madera-artesanal",
-    asin: "",
+    asin: "B0GVY87LPN",
     title: "Ajedrez de Madera Plegable Staunton con Tablero de 35x35 cm y Piezas Talladas para Estrategia Familiar",
     slug: "ajedrez-madera-plegable-staunton-35cm-estrategia",
     searchQuery: "ajedrez madera plegable tablero 35cm piezas talladas juego mesa estrategia",
@@ -8163,7 +8163,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "46-disfraz-hinchable-sumo-infantil",
-    asin: "",
+    asin: "B0DC6S6RDM",
     title: "Disfraz Hinchable Infantil Divertido para Fiestas, Carnaval y Cumpleaños con Ventilador Automático",
     slug: "disfraz-hinchable-infantil-divertido-fiestas-carnaval",
     searchQuery: "disfraz hinchable ninos fiesta carnaval ventilador automatico risas",

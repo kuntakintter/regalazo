@@ -181,8 +181,8 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
     setIsOpen(false);
     setSearchFilter('');
 
-    setCurrency(langObj.currency, true);
-    setAmazonRegion(langObj.localeKey === 'es' ? 'es' : 'intl', true);
+    setCurrency(langObj.currency, false);
+    setAmazonRegion(langObj.localeKey === 'es' ? 'es' : 'intl', false);
 
     try {
       localStorage.setItem('site_language', langObj.code);
