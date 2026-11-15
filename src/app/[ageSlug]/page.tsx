@@ -12,8 +12,6 @@ import {
   renderLocalizedRouteView,
 } from '@/lib/routeViews';
 
-export const dynamicParams = true;
-
 interface PageProps {
   params: Promise<{
     ageSlug: string;

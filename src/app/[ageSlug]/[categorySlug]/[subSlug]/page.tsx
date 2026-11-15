@@ -4,8 +4,6 @@ import { I18N_SEO_ROUTES } from '@/lib/i18nRoutes';
 import { getLocalizedNestedMetadata } from '@/lib/routeMetadata';
 import { renderLocalizedRouteView } from '@/lib/routeViews';
 
-export const dynamicParams = true;
-
 interface PageProps {
   params: Promise<{
     ageSlug: string;
@@ -15,7 +13,7 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  return [];
+  return [{ ageSlug: 'en', categorySlug: '13-to-15-years', subSlug: 'gaming' }];
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
