@@ -671,6 +671,23 @@ function CartaContent() {
                           ))}
                         </div>
                       )}
+
+                      {selectedToys.length > 0 && (
+                        <div className="pt-1">
+                          <button
+                            type="button"
+                            onClick={handleOpenAmazonCart}
+                            className="w-full py-2.5 px-4 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-xs sm:text-sm shadow-sm flex items-center justify-center gap-2 transition-all cursor-pointer border border-amber-600/40"
+                          >
+                            <ShoppingBag className="w-4 h-4 shrink-0" aria-hidden="true" />
+                            <span>
+                              {localeKey === 'es' || localeKey === 'es-us'
+                                ? `🛒 Añadir todos (${selectedToys.length}) a la cesta / lista de ${amazonSiteName}`
+                                : `🛒 Add all (${selectedToys.length}) to ${amazonSiteName} Cart / List`}
+                            </span>
+                          </button>
+                        </div>
+                      )}
                     </div>
 
                     <div className="font-sans">

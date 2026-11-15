@@ -3,9 +3,11 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { useVoting } from '@/context/VotingContext';
-import { trackShareEvent } from '@/lib/analytics';
+import { trackShareEvent, trackAffiliateClick } from '@/lib/analytics';
 import { useActiveLocale } from '@/hooks/useActiveLocale';
-import { X, Share2, Copy, Check, ArrowRight, Trash2 } from 'lucide-react';
+import { PRODUCTS } from '@/data/products';
+import { buildAmazonRemoteCartUrl, getAmazonProductUrl } from '@/lib/amazon';
+import { X, Share2, Copy, Check, ArrowRight, Trash2, ShoppingBag, ExternalLink } from 'lucide-react';
 
 export default function VotingDrawer() {
   const {
@@ -18,7 +20,7 @@ export default function VotingDrawer() {
     setIsDrawerOpen,
     generateShareUrl,
   } = useVoting();
-  const { localeKey, ui, formatPrice, isRtl } = useActiveLocale();
+  const { localeKey, ui, formatPrice, isRtl, amazonRegion, amazonTag, amazonSiteName } = useActiveLocale();
   const [copied, setCopied] = useState(false);
 
   if (!isDrawerOpen) return null;
@@ -26,6 +28,23 @@ export default function VotingDrawer() {
   const isEs = localeKey === 'es' || localeKey === 'es-us';
   const shareUrl = generateShareUrl();
   const displayName = recipientName.trim() || ui.brandName;
+
+  const handleOpenAmazonCart = () => {
+    const asins = voteItems.map(
+      (item) => item.asin || PRODUCTS.find((p) => p.id === item.id)?.asin
+    );
+    const fallbackTitles = voteItems.map((item) => item.searchQuery || item.title);
+    const cartUrl = buildAmazonRemoteCartUrl(asins, amazonTag, fallbackTitles, amazonRegion);
+    trackAffiliateClick({
+      productId: `wishlist-multi-${voteItems.length}`,
+      productTitle: `Wishlist Multi-Cart (${voteItems.length} items)`,
+      category: 'wishlist_drawer',
+      priceText: '',
+      destinationUrl: cartUrl,
+      placement: 'voting_drawer_multi_cart',
+    });
+    window.open(cartUrl, '_blank', 'noopener,noreferrer');
+  };
 
   const handleCopyLink = () => {
     if (!shareUrl) return;
@@ -185,99 +204,145 @@ export default function VotingDrawer() {
               </div>
             ) : (
               <div className="space-y-2.5">
-                {voteItems.map((item, idx) => (
-                  <div
-                    key={item.id}
-                    className="flex items-center gap-3 p-2.5 rounded-xl border border-slate-200 bg-white hover:border-slate-300 shadow-2xs transition-all relative group"
-                  >
-                    <span className="w-5 h-5 rounded-full bg-amber-100 text-amber-900 font-black text-xs flex items-center justify-center shrink-0">
-                      {idx + 1}
-                    </span>
-                    <div className="relative w-14 h-14 bg-slate-50 rounded-lg overflow-hidden shrink-0 border border-slate-100 p-1 flex items-center justify-center">
-                      <Image
-                        src={item.imageUrl}
-                        alt={item.title}
-                        fill
-                        sizes="56px"
-                        className="object-contain p-1"
-                        unoptimized={item.imageUrl.startsWith('http')}
-                      />
-                    </div>
-                    <div className="flex-1 min-w-0 pr-1">
-                      <p className="text-xs font-bold text-slate-900 line-clamp-1 leading-tight">
-                        {item.title}
-                      </p>
-                      <div className="flex items-center gap-2 mt-0.5">
-                        <span className="text-xs font-black text-slate-950">
-                          {formatPrice(item.priceText)}
-                        </span>
-                        <span className="text-[10px] text-[#007185] font-bold">✓ Prime</span>
-                      </div>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => removeItem(item.id)}
-                      className="min-w-7 min-h-7 flex items-center justify-center p-1.5 rounded-lg text-slate-600 hover:text-rose-700 hover:bg-rose-50 transition-colors cursor-pointer shrink-0"
-                      title={ui.removeFromVote}
-                      aria-label={`${ui.removeFromVote}: ${item.title}`}
+                {voteItems.map((item, idx) => {
+                  const resolvedAsin =
+                    item.asin || PRODUCTS.find((p) => p.id === item.id)?.asin;
+                  const itemAmazonUrl = getAmazonProductUrl(
+                    resolvedAsin,
+                    item.searchQuery || item.title,
+                    amazonRegion
+                  );
+                  return (
+                    <div
+                      key={item.id}
+                      className="flex items-center gap-3 p-2.5 rounded-xl border border-slate-200 bg-white hover:border-slate-300 shadow-2xs transition-all relative group"
                     >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-                  </div>
-                ))}
+                      <span className="w-5 h-5 rounded-full bg-amber-100 text-amber-900 font-black text-xs flex items-center justify-center shrink-0">
+                        {idx + 1}
+                      </span>
+                      <a
+                        href={itemAmazonUrl}
+                        target="_blank"
+                        rel="nofollow sponsored noopener noreferrer"
+                        className="relative w-14 h-14 bg-slate-50 rounded-lg overflow-hidden shrink-0 border border-slate-100 p-1 flex items-center justify-center"
+                      >
+                        <Image
+                          src={item.imageUrl}
+                          alt={item.title}
+                          fill
+                          sizes="56px"
+                          className="object-contain p-1"
+                          unoptimized={item.imageUrl.startsWith('http')}
+                        />
+                      </a>
+                      <div className="flex-1 min-w-0 pr-1">
+                        <a
+                          href={itemAmazonUrl}
+                          target="_blank"
+                          rel="nofollow sponsored noopener noreferrer"
+                          className="text-xs font-bold text-slate-900 hover:text-amber-700 line-clamp-1 leading-tight block"
+                        >
+                          {item.title}
+                        </a>
+                        <div className="flex items-center gap-2 mt-0.5">
+                          <span className="text-xs font-black text-slate-950">
+                            {formatPrice(item.priceText)}
+                          </span>
+                          <a
+                            href={itemAmazonUrl}
+                            target="_blank"
+                            rel="nofollow sponsored noopener noreferrer"
+                            className="text-[10px] text-[#007185] hover:underline font-bold inline-flex items-center gap-0.5"
+                          >
+                            <span>✓ {amazonSiteName}</span>
+                            <ExternalLink className="w-2.5 h-2.5" />
+                          </a>
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => removeItem(item.id)}
+                        className="min-w-7 min-h-7 flex items-center justify-center p-1.5 rounded-lg text-slate-600 hover:text-rose-700 hover:bg-rose-50 transition-colors cursor-pointer shrink-0"
+                        title={ui.removeFromVote}
+                        aria-label={`${ui.removeFromVote}: ${item.title}`}
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                  );
+                })}
               </div>
             )}
           </div>
         </div>
 
         {/* Footer Actions */}
-        {voteItems.length >= 2 ? (
+        {voteItems.length >= 1 ? (
           <div className="p-4 sm:p-5 border-t border-slate-200 bg-slate-50 space-y-2.5">
             <button
               type="button"
-              onClick={handleShareWhatsApp}
-              className="w-full py-3 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-black text-sm flex items-center justify-center gap-2 shadow-md transition-transform hover:scale-102 active:scale-98 cursor-pointer"
+              onClick={handleOpenAmazonCart}
+              className="w-full py-3 px-4 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md transition-transform hover:scale-102 active:scale-98 cursor-pointer border border-amber-600/30"
             >
-              <Share2 className="w-4 h-4" />
-              <span>{ui.votingWhatsAppBtn}</span>
+              <ShoppingBag className="w-4 h-4 shrink-0" />
+              <span>
+                {isEs
+                  ? voteItems.length > 1
+                    ? `🛒 Añadir los ${voteItems.length} regalos a la lista / cesta de ${amazonSiteName}`
+                    : `🛒 Añadir este regalo a la lista / cesta de ${amazonSiteName}`
+                  : voteItems.length > 1
+                    ? `🛒 Add all ${voteItems.length} gifts to ${amazonSiteName} Cart / List`
+                    : `🛒 Add this gift to ${amazonSiteName} Cart / List`}
+              </span>
             </button>
 
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={handleCopyLink}
-                className="flex-1 py-2.5 px-3 rounded-xl bg-white hover:bg-slate-100 border border-slate-300 text-slate-800 font-bold text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer shadow-2xs"
-              >
-                {copied ? (
-                  <>
-                    <Check className="w-3.5 h-3.5 text-emerald-600" />
-                    <span className="text-emerald-700">{ui.votingCopiedBtn}</span>
-                  </>
-                ) : (
-                  <>
-                    <Copy className="w-3.5 h-3.5" />
-                    <span>{ui.votingCopyBtn}</span>
-                  </>
-                )}
-              </button>
+            {voteItems.length >= 2 ? (
+              <>
+                <button
+                  type="button"
+                  onClick={handleShareWhatsApp}
+                  className="w-full py-3 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-black text-sm flex items-center justify-center gap-2 shadow-md transition-transform hover:scale-102 active:scale-98 cursor-pointer"
+                >
+                  <Share2 className="w-4 h-4" />
+                  <span>{ui.votingWhatsAppBtn}</span>
+                </button>
 
-              <a
-                href={shareUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="py-2.5 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs flex items-center justify-center gap-1 transition-colors cursor-pointer shadow-2xs"
-                title={ui.votingOpenPollBtn}
-              >
-                <span>{ui.votingOpenPollBtn}</span>
-                <ArrowRight className={`w-3.5 h-3.5 ${isRtl ? 'rotate-180' : ''}`} />
-              </a>
-            </div>
-          </div>
-        ) : voteItems.length === 1 ? (
-          <div className="p-4 border-t border-slate-200 bg-amber-50/50 text-center">
-            <p className="text-xs font-bold text-amber-900">
-              💡 {ui.votingDrawerEmptyHint}
-            </p>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={handleCopyLink}
+                    className="flex-1 py-2.5 px-3 rounded-xl bg-white hover:bg-slate-100 border border-slate-300 text-slate-800 font-bold text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer shadow-2xs"
+                  >
+                    {copied ? (
+                      <>
+                        <Check className="w-3.5 h-3.5 text-emerald-600" />
+                        <span className="text-emerald-700">{ui.votingCopiedBtn}</span>
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-3.5 h-3.5" />
+                        <span>{ui.votingCopyBtn}</span>
+                      </>
+                    )}
+                  </button>
+
+                  <a
+                    href={shareUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="py-2.5 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs flex items-center justify-center gap-1 transition-colors cursor-pointer shadow-2xs"
+                    title={ui.votingOpenPollBtn}
+                  >
+                    <span>{ui.votingOpenPollBtn}</span>
+                    <ArrowRight className={`w-3.5 h-3.5 ${isRtl ? 'rotate-180' : ''}`} />
+                  </a>
+                </div>
+              </>
+            ) : (
+              <p className="text-[11px] font-bold text-amber-900 text-center pt-0.5">
+                💡 {ui.votingDrawerEmptyHint}
+              </p>
+            )}
           </div>
         ) : null}
       </div>

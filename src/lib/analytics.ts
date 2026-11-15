@@ -30,3 +30,23 @@ export function trackShareEvent(
     });
   }
 }
+
+export function trackAffiliateClick(data: {
+  productId: string;
+  productTitle: string;
+  category?: string;
+  priceText?: string;
+  destinationUrl?: string;
+  placement?: string;
+}) {
+  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+    window.gtag('event', 'affiliate_click', {
+      product_id: data.productId,
+      product_title: data.productTitle,
+      category: data.category || 'general',
+      price_text: data.priceText || '',
+      destination_url: data.destinationUrl || '',
+      placement: data.placement || 'default',
+    });
+  }
+}

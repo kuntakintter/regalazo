@@ -231,6 +231,48 @@ export function getAmazonAffiliateUrl(
 }
 
 /**
+ * Construye una URL de carrito múltiple de Amazon (/gp/aws/cart/add.html)
+ * para añadir todos los productos seleccionados a la cesta / lista de Amazon en 1 clic
+ * con nuestro AssociateTag oficial.
+ */
+export function buildAmazonRemoteCartUrl(
+  asins: (string | undefined)[],
+  tag?: string,
+  fallbackQueries?: string[],
+  region?: AmazonRegion
+): string {
+  const { region: resolvedRegion, baseUrl, tag: regionalTag } = getRegionalAmazonConfig(region);
+  const effectiveTag = tag || regionalTag;
+
+  const validAsins = Array.from(
+    new Set(
+      (asins || [])
+        .map((a) => a?.trim() || '')
+        .filter(
+          (a) =>
+            isValidActiveAsin(a) &&
+            !(resolvedRegion === 'intl' && INTL_FALLBACK_ASINS.has(a))
+        )
+    )
+  ).slice(0, 10);
+
+  if (validAsins.length === 0) {
+    return fallbackQueries && fallbackQueries.length > 0 && fallbackQueries[0]
+      ? getAmazonSearchUrl(fallbackQueries[0], resolvedRegion)
+      : `${baseUrl}/?tag=${effectiveTag}`;
+  }
+
+  const params = new URLSearchParams();
+  params.set('AssociateTag', effectiveTag);
+  params.set('tag', effectiveTag);
+  validAsins.forEach((asin, idx) => {
+    params.set(`ASIN.${idx + 1}`, asin);
+    params.set(`Quantity.${idx + 1}`, '1');
+  });
+  return `${baseUrl}/gp/aws/cart/add.html?${params.toString()}`;
+}
+
+/**
  * Parsea el precio numérico a partir de strings como "49,99 €", "$1,299.99" o "<20 €".
  */
 export function parsePrice(priceText?: string): number {

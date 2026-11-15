@@ -8,12 +8,12 @@ import Footer from '@/components/Footer';
 import SeoFaq from '@/components/SeoFaq';
 import { Product } from '@/data/products';
 import { findProductById } from '@/data/allCatalogProducts';
-import { getAmazonProductUrl } from '@/lib/amazon';
+import { getAmazonProductUrl, buildAmazonRemoteCartUrl } from '@/lib/amazon';
 import { useVoting } from '@/context/VotingContext';
 import { useActiveLocale } from '@/hooks/useActiveLocale';
 import { getLocalizedStaticHubMeta } from '@/lib/i18nContent';
 import { getHubLabels } from '@/lib/hubLabels';
-import { trackShareEvent } from '@/lib/analytics';
+import { trackShareEvent, trackAffiliateClick } from '@/lib/analytics';
 import {
   ThumbsUp,
   Check,
@@ -26,6 +26,7 @@ import {
   Trophy,
   Copy,
   Vote,
+  ShoppingBag,
 } from 'lucide-react';
 
 interface HubViewProps {
@@ -39,6 +40,7 @@ function VotingContent() {
     ui,
     activeCurrency,
     amazonRegion,
+    amazonTag,
     amazonSiteName,
     formatPrice,
     tTerm,
@@ -155,6 +157,25 @@ function VotingContent() {
       source_page: matchedProducts.length > 0 ? 'voting_results' : 'voting_creator',
     });
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const isEs = localeKey === 'es' || localeKey === 'es-us';
+
+  const handleOpenAmazonCart = (items: Product[]) => {
+    const asins = items.map(
+      (item) => item.asin || findProductById(item.id)?.asin
+    );
+    const fallbackTitles = items.map((item) => item.searchQuery || item.title);
+    const cartUrl = buildAmazonRemoteCartUrl(asins, amazonTag, fallbackTitles, amazonRegion);
+    trackAffiliateClick({
+      productId: `votar-multi-${items.length}`,
+      productTitle: `Votar Multi-Cart (${items.length} items)`,
+      category: 'votar_hub',
+      priceText: '',
+      destinationUrl: cartUrl,
+      placement: 'votar_multi_cart',
+    });
+    window.open(cartUrl, '_blank', 'noopener,noreferrer');
   };
 
   // Mode 1: Active poll view (?ids=...)
@@ -311,7 +332,20 @@ function VotingContent() {
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 mb-5">{hubMeta.subtitle}</p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3">
+            <button
+              type="button"
+              onClick={() => handleOpenAmazonCart(matchedProducts)}
+              className="w-full sm:w-auto px-6 py-3 rounded-2xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer border border-amber-600/30"
+            >
+              <ShoppingBag className="w-4 h-4 shrink-0" aria-hidden="true" />
+              <span>
+                {isEs
+                  ? `🛒 Añadir los ${matchedProducts.length} regalos a la lista / cesta de ${amazonSiteName}`
+                  : `🛒 Add all ${matchedProducts.length} gifts to ${amazonSiteName} Cart / List`}
+              </span>
+            </button>
+
             <button
               type="button"
               onClick={handleShareWhatsApp}
@@ -388,37 +422,68 @@ function VotingContent() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {voteItems.map((item) => (
-              <div
-                key={item.id}
-                className="flex items-center justify-between gap-3 p-3 rounded-2xl bg-slate-50 border border-slate-200"
-              >
-                <div className="flex items-center gap-3 min-w-0">
-                  <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-white border border-slate-200 shrink-0">
-                    <Image
-                      src={item.imageUrl}
-                      alt={item.title}
-                      fill
-                      sizes="48px"
-                      className="object-contain p-1"
-                      unoptimized={item.imageUrl.startsWith('http')}
-                    />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-xs font-bold text-slate-900 truncate">{item.title}</p>
-                    <p className="text-xs font-black text-emerald-800">{formatPrice(item.priceText)}</p>
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => removeItem(item.id)}
-                  aria-label={`${ui.removeFromVote} — ${item.title}`}
-                  className="min-w-8 min-h-8 p-1.5 rounded-lg text-slate-600 hover:text-rose-700 hover:bg-rose-50 cursor-pointer"
+            {voteItems.map((item) => {
+              const resolvedAsin = item.asin || findProductById(item.id)?.asin;
+              const itemAmazonUrl = getAmazonProductUrl(
+                resolvedAsin,
+                item.searchQuery || item.title,
+                amazonRegion
+              );
+              return (
+                <div
+                  key={item.id}
+                  className="flex items-center justify-between gap-3 p-3 rounded-2xl bg-slate-50 border border-slate-200"
                 >
-                  <Trash2 className="w-4 h-4" aria-hidden="true" />
-                </button>
-              </div>
-            ))}
+                  <div className="flex items-center gap-3 min-w-0">
+                    <a
+                      href={itemAmazonUrl}
+                      target="_blank"
+                      rel="nofollow sponsored noopener noreferrer"
+                      className="relative w-12 h-12 rounded-xl overflow-hidden bg-white border border-slate-200 shrink-0"
+                    >
+                      <Image
+                        src={item.imageUrl}
+                        alt={item.title}
+                        fill
+                        sizes="48px"
+                        className="object-contain p-1"
+                        unoptimized={item.imageUrl.startsWith('http')}
+                      />
+                    </a>
+                    <div className="min-w-0">
+                      <a
+                        href={itemAmazonUrl}
+                        target="_blank"
+                        rel="nofollow sponsored noopener noreferrer"
+                        className="text-xs font-bold text-slate-900 hover:text-amber-700 truncate block"
+                      >
+                        {item.title}
+                      </a>
+                      <div className="flex items-center gap-2 mt-0.5">
+                        <p className="text-xs font-black text-emerald-800">{formatPrice(item.priceText)}</p>
+                        <a
+                          href={itemAmazonUrl}
+                          target="_blank"
+                          rel="nofollow sponsored noopener noreferrer"
+                          className="text-[10px] font-bold text-[#007185] hover:underline inline-flex items-center gap-0.5"
+                        >
+                          <span>{amazonSiteName}</span>
+                          <ExternalLink className="w-2.5 h-2.5" />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => removeItem(item.id)}
+                    aria-label={`${ui.removeFromVote} — ${item.title}`}
+                    className="min-w-8 min-h-8 p-1.5 rounded-lg text-slate-600 hover:text-rose-700 hover:bg-rose-50 cursor-pointer"
+                  >
+                    <Trash2 className="w-4 h-4" aria-hidden="true" />
+                  </button>
+                </div>
+              );
+            })}
           </div>
 
           {voteItems.length < 2 && (
@@ -429,6 +494,23 @@ function VotingContent() {
 
           <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
             <div className="flex flex-wrap items-center gap-3">
+              <button
+                type="button"
+                onClick={() => handleOpenAmazonCart(voteItems)}
+                className="px-5 py-3 rounded-2xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-xs sm:text-sm flex items-center gap-2 shadow-md cursor-pointer border border-amber-600/30"
+              >
+                <ShoppingBag className="w-4 h-4 shrink-0" aria-hidden="true" />
+                <span>
+                  {isEs
+                    ? voteItems.length > 1
+                      ? `🛒 Añadir los ${voteItems.length} regalos a la lista / cesta de ${amazonSiteName}`
+                      : `🛒 Añadir este regalo a la lista / cesta de ${amazonSiteName}`
+                    : voteItems.length > 1
+                      ? `🛒 Add all ${voteItems.length} gifts to ${amazonSiteName} Cart / List`
+                      : `🛒 Add this gift to ${amazonSiteName} Cart / List`}
+                </span>
+              </button>
+
               {voteItems.length >= 2 && (
                 <>
                   <button
@@ -456,7 +538,7 @@ function VotingContent() {
               )}
               <Link
                 href={localePath('/#catalogo-productos')}
-                className="px-4 py-3 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs flex items-center gap-1.5"
+                className="px-4 py-3 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-black text-xs flex items-center gap-1.5"
               >
                 <span>{niche.addFromCatalogBtn}</span>
               </Link>

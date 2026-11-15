@@ -5328,6 +5328,7 @@ export function buildAmazonRemoteCartUrl(
       : getAmazonSearchUrl('juguetes navidad recomendados', resolvedRegion);
   }
   const params = new URLSearchParams();
+  params.set('AssociateTag', effectiveTag);
   params.set('tag', effectiveTag);
   validAsins.forEach((asin, idx) => {
     params.set(`ASIN.${idx + 1}`, asin);
