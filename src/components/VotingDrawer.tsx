@@ -20,8 +20,6 @@ import {
   Trophy,
   Sparkles,
   Vote,
-  ChevronDown,
-  ChevronUp,
 } from 'lucide-react';
 
 export default function VotingDrawer() {
@@ -37,7 +35,6 @@ export default function VotingDrawer() {
   } = useVoting();
   const { localeKey, ui, formatPrice, isRtl, amazonRegion, amazonTag, amazonSiteName } = useActiveLocale();
   const [copied, setCopied] = useState(false);
-  const [isGuideOpen, setIsGuideOpen] = useState(true);
 
   if (!isDrawerOpen) return null;
 
@@ -133,96 +130,63 @@ export default function VotingDrawer() {
         {/* Content Body */}
         <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4">
           {isEs ? (
-            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-amber-500/10 via-white to-orange-500/10 border-2 border-amber-300/80 p-4 sm:p-5 shadow-sm transition-all">
-              {/* Header with Title and Collapse Toggle */}
-              <div className="flex items-center justify-between gap-2">
-                <div className="flex items-center gap-2.5 min-w-0">
-                  <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 text-slate-950 flex items-center justify-center font-black shadow-xs shrink-0">
-                    <Sparkles className="w-4 h-4 stroke-[2.5]" />
-                  </div>
-                  <div className="min-w-0">
-                    <h3 className="font-black text-slate-900 text-xs sm:text-sm tracking-wide uppercase truncate">
-                      ¿Cómo funciona la votación?
-                    </h3>
-                    <p className="text-[11px] font-bold text-amber-950 truncate">
-                      Elige regalos, comparte y votan en 1 clic
-                    </p>
-                  </div>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => setIsGuideOpen(!isGuideOpen)}
-                  className="px-2.5 py-1 rounded-xl bg-amber-100 hover:bg-amber-200 text-amber-950 font-bold text-xs flex items-center gap-1 transition-colors cursor-pointer shrink-0 border border-amber-300/60"
-                  aria-expanded={isGuideOpen}
-                >
-                  <span>{isGuideOpen ? 'Ocultar' : 'Ver 3 pasos'}</span>
-                  {isGuideOpen ? (
-                    <ChevronUp className="w-3.5 h-3.5 stroke-[2.5]" />
-                  ) : (
-                    <ChevronDown className="w-3.5 h-3.5 stroke-[2.5]" />
-                  )}
-                </button>
+            <div className="p-3 sm:p-3.5 bg-gradient-to-br from-slate-50 via-white to-amber-50/60 border-2 border-slate-200/90 rounded-2xl shadow-sm">
+              <div className="flex items-center gap-2 text-xs sm:text-sm font-black text-slate-900 uppercase tracking-wide mb-2.5">
+                <span className="inline-flex items-center justify-center w-6 h-6 rounded-lg bg-amber-500 text-slate-950 shadow-2xs">
+                  <Sparkles className="w-3.5 h-3.5 stroke-[2.5]" aria-hidden="true" />
+                </span>
+                <span>¿Cómo funciona? En 3 pasos:</span>
               </div>
 
-              {/* 3 Steps in full-width rows */}
-              {isGuideOpen && (
-                <div className="mt-3.5 pt-3 border-t border-amber-200/80 space-y-2.5 animate-in fade-in duration-200">
-                  {/* Step 1 */}
-                  <div className="flex items-center gap-3.5 p-3 rounded-2xl bg-white border border-rose-200 shadow-2xs hover:shadow-xs transition-all">
-                    <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-rose-500 to-pink-600 text-white flex items-center justify-center shrink-0 shadow-md ring-2 ring-rose-200">
-                      <Heart className="w-5 h-5 fill-white/20 stroke-[2.5]" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center gap-2">
-                        <span className="px-2 py-0.5 rounded-md bg-rose-100 text-rose-800 text-[10px] font-black uppercase tracking-wider">
-                          Paso 1
-                        </span>
-                        <h4 className="text-sm font-black text-slate-900">1. Elige los regalos</h4>
-                      </div>
-                      <p className="text-xs font-semibold text-slate-600 mt-0.5 leading-snug">
-                        Selecciona de 2 a 6 opciones finalistas del catálogo
-                      </p>
-                    </div>
+              <div className="grid grid-cols-3 gap-1.5 sm:gap-2 text-center">
+                {/* 1. Elige */}
+                <div className="p-2 sm:p-2.5 bg-gradient-to-b from-rose-50/90 to-white rounded-2xl border-2 border-rose-200/90 shadow-xs flex flex-col items-center justify-between min-w-0">
+                  <div
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-rose-500 to-pink-600 text-white flex items-center justify-center mb-1.5 shadow-md ring-2 ring-rose-200 shrink-0"
+                    aria-hidden="true"
+                  >
+                    <Heart className="w-4.5 h-4.5 fill-white/25 stroke-[2.5]" />
                   </div>
-
-                  {/* Step 2 */}
-                  <div className="flex items-center gap-3.5 p-3 rounded-2xl bg-white border border-emerald-200 shadow-2xs hover:shadow-xs transition-all">
-                    <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white flex items-center justify-center shrink-0 shadow-md ring-2 ring-emerald-200">
-                      <MessageCircle className="w-5 h-5 fill-white/20 stroke-[2.5]" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center gap-2">
-                        <span className="px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 text-[10px] font-black uppercase tracking-wider">
-                          Paso 2
-                        </span>
-                        <h4 className="text-sm font-black text-slate-900">2. Comparte el enlace</h4>
-                      </div>
-                      <p className="text-xs font-semibold text-slate-600 mt-0.5 leading-snug">
-                        Envía la encuesta a tu grupo de WhatsApp o familia
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Step 3 */}
-                  <div className="flex items-center gap-3.5 p-3 rounded-2xl bg-white border border-indigo-200 shadow-2xs hover:shadow-xs transition-all">
-                    <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white flex items-center justify-center shrink-0 shadow-md ring-2 ring-indigo-200">
-                      <Trophy className="w-5 h-5 stroke-[2.5]" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center gap-2">
-                        <span className="px-2 py-0.5 rounded-md bg-indigo-100 text-indigo-800 text-[10px] font-black uppercase tracking-wider">
-                          Paso 3
-                        </span>
-                        <h4 className="text-sm font-black text-slate-900">3. ¡Votan y deciden!</h4>
-                      </div>
-                      <p className="text-xs font-semibold text-slate-600 mt-0.5 leading-snug">
-                        Votan en 1 clic sin apps y sabrás cuál comprar
-                      </p>
-                    </div>
-                  </div>
+                  <strong className="text-xs sm:text-[13px] font-black text-slate-900 leading-tight whitespace-nowrap tracking-tight block">
+                    1. Elige
+                  </strong>
+                  <span className="text-[10px] sm:text-[11px] font-semibold text-slate-600 leading-tight mt-1">
+                    De 2 a 6 regalos
+                  </span>
                 </div>
-              )}
+
+                {/* 2. Comparte */}
+                <div className="p-2 sm:p-2.5 bg-gradient-to-b from-emerald-50/90 to-white rounded-2xl border-2 border-emerald-200/90 shadow-xs flex flex-col items-center justify-between min-w-0">
+                  <div
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white flex items-center justify-center mb-1.5 shadow-md ring-2 ring-emerald-200 shrink-0"
+                    aria-hidden="true"
+                  >
+                    <MessageCircle className="w-4.5 h-4.5 fill-white/25 stroke-[2.5]" />
+                  </div>
+                  <strong className="text-xs sm:text-[13px] font-black text-slate-900 leading-tight whitespace-nowrap tracking-tight block">
+                    2. Comparte
+                  </strong>
+                  <span className="text-[10px] sm:text-[11px] font-semibold text-slate-600 leading-tight mt-1">
+                    Por WhatsApp
+                  </span>
+                </div>
+
+                {/* 3. ¡Votan! */}
+                <div className="p-2 sm:p-2.5 bg-gradient-to-b from-indigo-50/90 to-white rounded-2xl border-2 border-indigo-200/90 shadow-xs flex flex-col items-center justify-between min-w-0">
+                  <div
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 text-white flex items-center justify-center mb-1.5 shadow-md ring-2 ring-indigo-200 shrink-0"
+                    aria-hidden="true"
+                  >
+                    <Trophy className="w-4.5 h-4.5 stroke-[2.5]" />
+                  </div>
+                  <strong className="text-xs sm:text-[13px] font-black text-slate-900 leading-tight whitespace-nowrap tracking-tight block">
+                    3. ¡Votan!
+                  </strong>
+                  <span className="text-[10px] sm:text-[11px] font-semibold text-slate-600 leading-tight mt-1">
+                    Eligen en 1 clic
+                  </span>
+                </div>
+              </div>
             </div>
           ) : (
             <div className="p-3.5 sm:p-4 bg-gradient-to-br from-slate-50 via-white to-amber-50/60 border-2 border-slate-200/90 rounded-2xl shadow-sm">
