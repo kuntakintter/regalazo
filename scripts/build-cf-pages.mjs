@@ -34,10 +34,20 @@ export async function GET() {
   );
 }
 
-for (const dir of ['src/app/api/cron', 'src/app/api/sync-prices', 'src/app/feed/pinterest.xml']) {
+for (const dir of ['src/app/api/cron', 'src/app/api/sync-prices']) {
   if (fs.existsSync(dir)) {
     fs.rmSync(dir, { recursive: true, force: true });
   }
+}
+
+const pinterestFeedPath = 'src/app/feed/pinterest.xml/route.ts';
+if (fs.existsSync(pinterestFeedPath)) {
+  let feedContent = fs.readFileSync(pinterestFeedPath, 'utf8');
+  feedContent = `export const dynamic = 'force-static';\n` + feedContent.replace(
+    'export async function GET(request: NextRequest) {',
+    `export async function GET() {\n  const request = { nextUrl: new URL('https://www.unbuenregalo.es/feed/pinterest.xml?lang=es&board=all') } as unknown as NextRequest;`
+  );
+  fs.writeFileSync(pinterestFeedPath, feedContent, 'utf8');
 }
 
 // 2. Set dynamicParams = false on 3-segment route with empty generateStaticParams
