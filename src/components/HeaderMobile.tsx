@@ -127,11 +127,15 @@ export default function HeaderMobile({
   const { voteItems, setIsDrawerOpen } = useVoting();
   const [isAgesOpen, setIsAgesOpen] = useState(false);
   const [isPassionsOpen, setIsPassionsOpen] = useState(false);
+  const searchDropdownRef = useRef<HTMLDivElement>(null);
   const agesDropdownRef = useRef<HTMLDivElement>(null);
   const passionsDropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
+      if (searchDropdownRef.current && !searchDropdownRef.current.contains(event.target as Node)) {
+        setIsFocused(false);
+      }
       if (agesDropdownRef.current && !agesDropdownRef.current.contains(event.target as Node)) {
         setIsAgesOpen(false);
       }
@@ -141,7 +145,7 @@ export default function HeaderMobile({
     }
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+  }, [setIsFocused]);
 
   const defaultQuery = localeKey === 'es' || localeKey === 'es-us' ? 'regalos' : 'gifts';
   const amazonSearchUrl = getAmazonSearchUrl(searchQuery.trim() || defaultQuery, amazonRegion);
@@ -149,9 +153,9 @@ export default function HeaderMobile({
   const hasAnyResults = liveMatches.length > 0 || amazonResults.length > 0;
 
   return (
-    <div className="w-full overflow-hidden select-none">
+    <div className="w-full relative select-none">
       {/* 1. BARRA PRINCIPAL MÓVIL */}
-      <div className="bg-[#131921] text-white px-3 py-2">
+      <div className="bg-[#131921] text-white px-3 py-2 relative z-30">
         <div className="flex items-center justify-between gap-2">
           <div className="shrink-0">
             <BrandLogo variant="light" size="compact" />
@@ -184,7 +188,7 @@ export default function HeaderMobile({
         </div>
 
         {/* BARRA DE BÚSQUEDA MÓVIL */}
-        <div className="mt-2 relative">
+        <div ref={searchDropdownRef} className="mt-2 relative z-40">
           <form
             onSubmit={onSearchSubmit}
             className="relative flex items-center rounded-xl overflow-hidden shadow-inner focus-within:ring-2 focus-within:ring-[#febd69] transition-all bg-white border border-slate-200"
@@ -230,7 +234,7 @@ export default function HeaderMobile({
           </form>
 
           {isFocused && searchQuery.trim().length >= 2 && (
-            <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-150 max-h-[75vh] overflow-y-auto">
+            <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden z-[80] animate-in fade-in slide-in-from-top-2 duration-150 max-h-[75vh] overflow-y-auto">
               {liveMatches.length > 0 && (
                 <div>
                   <div className="p-2.5 bg-slate-50 border-b border-slate-100 flex items-center justify-between text-[11px] font-bold text-slate-700 uppercase tracking-wider">

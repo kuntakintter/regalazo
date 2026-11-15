@@ -1,10 +1,10 @@
 'use client';
 
-import React, { useState, useMemo, useEffect, useCallback } from 'react';
+import React, { useState, useMemo, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { parsePrice, getAmazonProductUrl } from '@/lib/amazon';
+import { parsePrice, getAmazonProductUrl, getAmazonSearchUrl } from '@/lib/amazon';
 import { generateProductItemListSchema } from '@/lib/schemaProduct';
 import { matchesAnyKeywordWordSafe, matchesPriceFilter } from '@/lib/filterUtils';
 import { SEO_AGE_ROUTES } from '@/lib/seoRoutes';
@@ -66,6 +66,7 @@ import {
   ShoppingBag,
   SlidersHorizontal,
   ArrowRight,
+  ExternalLink,
   X,
 } from 'lucide-react';
 
@@ -176,7 +177,19 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
   const [sortBy, setSortBy] = useState<'featured' | 'price-asc' | 'price-desc' | 'rating'>('featured');
   const [visibleCount, setVisibleCount] = useState<number>(18);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
-  const [showAdvancedFilters, setShowAdvancedFilters] = useState<boolean>(false);
+  const [showAdvancedFilters, setShowAdvancedFilters] = useState<boolean>(true);
+  const [isHeroSearchFocused, setIsHeroSearchFocused] = useState<boolean>(false);
+  const heroSearchRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleHeroClickOutside(event: MouseEvent) {
+      if (heroSearchRef.current && !heroSearchRef.current.contains(event.target as Node)) {
+        setIsHeroSearchFocused(false);
+      }
+    }
+    document.addEventListener('mousedown', handleHeroClickOutside);
+    return () => document.removeEventListener('mousedown', handleHeroClickOutside);
+  }, []);
 
   const getPromptLabel = (prompt: QuickPromptConfig): string => {
     if (prompt.priceKey) {
@@ -1036,42 +1049,194 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                 </p>
 
                 {/* MAIN SEARCH BAR */}
-                <form onSubmit={handleHeroSearchSubmit} className="relative max-w-2xl mx-auto mb-4">
-                  <div className="relative flex items-center shadow-md rounded-2xl bg-white border-2 border-slate-300 hover:border-slate-400 focus-within:border-[#febd69] focus-within:ring-4 focus-within:ring-amber-100 transition-all p-1.5 sm:p-2">
-                    <div className="pl-3 pr-2 text-slate-500">
-                      <Search className="w-5 h-5 text-slate-500" aria-hidden="true" />
-                    </div>
-                    <input
-                      type="text"
-                      value={searchQuery}
-                      onChange={(e) => handleSearchChange(e.target.value)}
-                      aria-label={i18nConfig?.searchPlaceholder || ui.headerSearchPlaceholder}
-                      placeholder={
-                        i18nConfig?.searchPlaceholder || ui.headerSearchPlaceholder
-                      }
-                      className="w-full bg-transparent px-2 py-2 text-sm sm:text-base text-slate-800 placeholder-slate-500 focus:outline-none"
-                    />
-                    {searchQuery && (
+                <div ref={heroSearchRef} className="relative max-w-2xl mx-auto mb-4 z-40 text-left">
+                  <form
+                    onSubmit={(e) => {
+                      setIsHeroSearchFocused(false);
+                      handleHeroSearchSubmit(e);
+                    }}
+                  >
+                    <div className="relative flex items-center shadow-md rounded-2xl bg-white border-2 border-slate-300 hover:border-slate-400 focus-within:border-[#febd69] focus-within:ring-4 focus-within:ring-amber-100 transition-all p-1.5 sm:p-2">
+                      <div className="pl-3 pr-2 text-slate-500">
+                        <Search className="w-5 h-5 text-slate-500" aria-hidden="true" />
+                      </div>
+                      <input
+                        type="text"
+                        value={searchQuery}
+                        onFocus={() => setIsHeroSearchFocused(true)}
+                        onChange={(e) => {
+                          handleSearchChange(e.target.value);
+                          setIsHeroSearchFocused(true);
+                        }}
+                        aria-label={i18nConfig?.searchPlaceholder || ui.headerSearchPlaceholder}
+                        placeholder={
+                          i18nConfig?.searchPlaceholder || ui.headerSearchPlaceholder
+                        }
+                        className="w-full bg-transparent px-2 py-2 text-sm sm:text-base text-slate-800 placeholder-slate-500 focus:outline-none"
+                      />
+                      {isLoadingLive && searchQuery.trim().length >= 2 && (
+                        <Loader2 className="w-4 h-4 text-slate-500 animate-spin mr-1.5 shrink-0" />
+                      )}
+                      {searchQuery && (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            handleSearchChange('');
+                            setIsHeroSearchFocused(false);
+                          }}
+                          aria-label={ui.headerClearSearch}
+                          className="min-w-7 min-h-7 flex items-center justify-center p-1.5 text-slate-600 hover:text-slate-900 rounded-lg mr-1 cursor-pointer transition-colors"
+                          title={ui.headerClearSearch}
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                      )}
                       <button
-                        type="button"
-                        onClick={() => handleSearchChange('')}
-                        aria-label={ui.headerClearSearch}
-                        className="min-w-7 min-h-7 flex items-center justify-center p-1.5 text-slate-600 hover:text-slate-900 rounded-lg mr-1 cursor-pointer transition-colors"
-                        title={ui.headerClearSearch}
+                        type="submit"
+                        aria-label={ui.headerSearchButton}
+                        className="px-5 sm:px-6 py-2.5 bg-[#febd69] hover:bg-[#f3a847] active:bg-[#e47911] text-slate-950 font-black text-sm rounded-xl transition-colors shadow-xs shrink-0 flex items-center gap-1.5 cursor-pointer border border-[#febd69]"
                       >
-                        <X className="w-4 h-4" />
+                        <Search className="w-4 h-4 stroke-[2.5]" aria-hidden="true" />
+                        <span className="hidden sm:inline">{ui.headerSearchButton}</span>
                       </button>
-                    )}
-                    <button
-                      type="submit"
-                      aria-label={ui.headerSearchButton}
-                      className="px-5 sm:px-6 py-2.5 bg-[#febd69] hover:bg-[#f3a847] active:bg-[#e47911] text-slate-950 font-black text-sm rounded-xl transition-colors shadow-xs shrink-0 flex items-center gap-1.5 cursor-pointer border border-[#febd69]"
-                    >
-                      <Search className="w-4 h-4 stroke-[2.5]" aria-hidden="true" />
-                      <span className="hidden sm:inline">{ui.headerSearchButton}</span>
-                    </button>
-                  </div>
-                </form>
+                    </div>
+                  </form>
+
+                  {isHeroSearchFocused && searchQuery.trim().length >= 2 && (
+                    <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-150 max-h-[75vh] overflow-y-auto">
+                      {filteredProducts.length > 0 && (
+                        <div>
+                          <div className="p-2.5 bg-slate-50 border-b border-slate-100 flex items-center justify-between text-[11px] font-bold text-slate-700 uppercase tracking-wider">
+                            <span>{ui.searchRecommendedCatalog}</span>
+                            <span className="text-indigo-700">
+                              {filteredProducts.length} {ui.productsUnit}
+                            </span>
+                          </div>
+
+                          <div className="divide-y divide-slate-100">
+                            {filteredProducts.slice(0, 5).map((product) => (
+                              <button
+                                key={product.id}
+                                type="button"
+                                onClick={() => {
+                                  setIsHeroSearchFocused(false);
+                                  handleSearchChange(product.title);
+                                  const target = document.getElementById('catalogo-productos');
+                                  if (target) target.scrollIntoView({ behavior: 'smooth' });
+                                }}
+                                className="w-full text-left p-3 hover:bg-indigo-50/60 transition-colors flex items-center gap-2.5 cursor-pointer"
+                              >
+                                <span className="relative block w-11 h-11 rounded-lg bg-slate-50 shrink-0 overflow-hidden border border-slate-200">
+                                  <Image
+                                    src={product.imageUrl}
+                                    alt={product.title}
+                                    fill
+                                    sizes="44px"
+                                    className="object-contain p-1"
+                                  />
+                                </span>
+                                <span className="block flex-1 min-w-0">
+                                  <span className="block text-xs font-bold text-slate-900 truncate">
+                                    {product.title}
+                                  </span>
+                                  <span className="flex items-center gap-2 mt-0.5">
+                                    <span className="text-xs font-black text-indigo-700">
+                                      {formatPrice(product.priceText)}
+                                    </span>
+                                    <span className="text-[10px] text-slate-600 flex items-center gap-0.5">
+                                      <Star className="w-3 h-3 text-amber-500 fill-amber-400" />
+                                      {product.rating}
+                                    </span>
+                                  </span>
+                                </span>
+                                <ArrowRight className="w-4 h-4 text-slate-500 shrink-0" />
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {liveAmazonProducts.length > 0 && (
+                        <div className={filteredProducts.length > 0 ? 'border-t-2 border-slate-100' : ''}>
+                          <div className="p-2.5 bg-gradient-to-r from-amber-50/80 to-orange-50/50 border-b border-amber-100 flex items-center justify-between text-[11px] font-bold text-amber-900 uppercase tracking-wider">
+                            <div className="flex items-center gap-1.5">
+                              <ShoppingBag className="w-3.5 h-3.5 text-amber-700" />
+                              <span>
+                                {ui.searchLiveFrom} {amazonSiteName}
+                              </span>
+                            </div>
+                            <span className="text-[9px] bg-amber-200 text-amber-950 px-1.5 py-0.5 rounded-full font-black">
+                              {ui.searchLivePrices}
+                            </span>
+                          </div>
+
+                          <div className="divide-y divide-slate-100">
+                            {liveAmazonProducts.slice(0, 5).map((item) => (
+                              <a
+                                key={item.asin}
+                                href={item.url}
+                                target="_blank"
+                                rel="noopener noreferrer sponsored"
+                                onClick={() => setIsHeroSearchFocused(false)}
+                                className="p-3 hover:bg-amber-50/50 transition-colors flex items-center gap-2.5 cursor-pointer"
+                              >
+                                <div className="relative w-11 h-11 rounded-lg bg-white shrink-0 overflow-hidden border border-slate-200 shadow-2xs">
+                                  {item.imageUrl ? (
+                                    <Image
+                                      src={item.imageUrl}
+                                      alt={item.title}
+                                      fill
+                                      sizes="44px"
+                                      unoptimized
+                                      className="object-contain p-1"
+                                    />
+                                  ) : (
+                                    <div className="w-full h-full flex items-center justify-center bg-slate-100 text-slate-500">
+                                      <ShoppingBag className="w-4 h-4" />
+                                    </div>
+                                  )}
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                  <p className="text-xs font-bold text-slate-900 line-clamp-1">
+                                    {item.title}
+                                  </p>
+                                  <div className="flex items-center gap-2 mt-0.5">
+                                    <span className="text-xs font-black text-amber-800">
+                                      {formatPrice(item.priceText)}
+                                    </span>
+                                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-800 font-bold border border-emerald-200/60">
+                                      Prime
+                                    </span>
+                                  </div>
+                                </div>
+                                <div className="flex items-center gap-1 px-2 py-1 rounded-lg bg-amber-100 text-amber-950 text-[11px] font-bold shrink-0">
+                                  <span>{ui.searchBuyBtn}</span>
+                                  <ExternalLink className="w-3 h-3" />
+                                </div>
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {(filteredProducts.length > 0 || liveAmazonProducts.length > 0) && (
+                        <div className="p-2.5 bg-slate-50 border-t border-slate-100">
+                          <a
+                            href={getAmazonSearchUrl(searchQuery.trim(), amazonRegion)}
+                            target="_blank"
+                            rel="noopener noreferrer sponsored"
+                            className="w-full flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 text-xs font-black shadow-xs"
+                          >
+                            <span>
+                              {ui.searchDirectOn} {amazonSiteName}
+                            </span>
+                            <ExternalLink className="w-3.5 h-3.5" />
+                          </a>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
 
                 {/* QUICK INSPIRATION CHIPS */}
                 <div className="flex flex-wrap items-center justify-center gap-2 mb-6 max-w-3xl mx-auto">
@@ -1362,7 +1527,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                   }`}
                 >
                   <SlidersHorizontal className="w-3.5 h-3.5 text-amber-700" aria-hidden="true" />
-                  <span className="hidden sm:inline">
+                  <span>
                     {showAdvancedFilters ? ui.hideFilters : ui.showMoreFilters}
                   </span>
                 </button>

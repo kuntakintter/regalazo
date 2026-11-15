@@ -1,9 +1,13 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
+import Image from 'next/image';
 import { getAmazonSearchUrl } from '@/lib/amazon';
 import { useActiveLocale } from '@/hooks/useActiveLocale';
-import { Search, ExternalLink, ShoppingCart } from 'lucide-react';
+import { ALL_SITE_PRODUCTS } from '@/data/allCatalogProducts';
+import { matchesSearchQuery } from '@/utils/search';
+import { Search, ExternalLink, ShoppingCart, Star, ShoppingBag, ArrowRight, Loader2, X } from 'lucide-react';
+import { AmazonLiveItem } from '@/components/HeaderMobile';
 
 interface AmazonLiveSearchCardProps {
   currentTheme: string;
@@ -16,15 +20,72 @@ export default function AmazonLiveSearchCard({
   initialQuery = '',
   selectedPrice = 'all',
 }: AmazonLiveSearchCardProps) {
-  const { localeKey, amazonRegion, amazonSiteName, activeCurrency, ui } = useActiveLocale();
+  const { localeKey, amazonRegion, amazonSiteName, activeCurrency, formatPrice, ui } = useActiveLocale();
   const [customTerm, setCustomTerm] = useState(initialQuery);
   const [activeBudget, setActiveBudget] = useState(selectedPrice);
+  const [isFocused, setIsFocused] = useState(false);
+  const [amazonResults, setAmazonResults] = useState<AmazonLiveItem[]>([]);
+  const [isLoadingAmazon, setIsLoadingAmazon] = useState(false);
+  const cardSearchRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (cardSearchRef.current && !cardSearchRef.current.contains(event.target as Node)) {
+        setIsFocused(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   React.useEffect(() => {
     if (initialQuery) {
       setCustomTerm(initialQuery);
     }
   }, [initialQuery]);
+
+  const liveMatches = useMemo(() => {
+    const q = customTerm.trim();
+    if (q.length < 2) return [];
+    return ALL_SITE_PRODUCTS.filter((p) => matchesSearchQuery(p, q)).slice(0, 5);
+  }, [customTerm]);
+
+  useEffect(() => {
+    const q = customTerm.trim();
+    if (q.length < 2) {
+      setAmazonResults([]);
+      setIsLoadingAmazon(false);
+      return;
+    }
+
+    setIsLoadingAmazon(true);
+    const controller = new AbortController();
+    const timer = setTimeout(async () => {
+      try {
+        const res = await fetch(
+          `/api/live-search?q=${encodeURIComponent(q)}&region=${amazonRegion}`,
+          { signal: controller.signal }
+        );
+        const data = await res.json();
+        if (data.success && Array.isArray(data.results)) {
+          setAmazonResults(data.results);
+        } else {
+          setAmazonResults([]);
+        }
+      } catch (err: unknown) {
+        if ((err as { name?: string })?.name !== 'AbortError') {
+          setAmazonResults([]);
+        }
+      } finally {
+        setIsLoadingAmazon(false);
+      }
+    }, 320);
+
+    return () => {
+      clearTimeout(timer);
+      controller.abort();
+    };
+  }, [customTerm, amazonRegion]);
 
   const isEs = localeKey === 'es' || localeKey === 'es-us';
   const queryToSearch =
@@ -58,7 +119,7 @@ export default function AmazonLiveSearchCard({
 
   return (
     <div
-      className={`rounded-3xl p-6 sm:p-8 mb-10 border transition-all shadow-md relative overflow-hidden ${
+      className={`rounded-3xl p-6 sm:p-8 mb-10 border transition-all shadow-md relative ${
         currentTheme === 'emo'
           ? 'bg-gradient-to-br from-neutral-900 via-neutral-950 to-neutral-900 border-neutral-800 text-neutral-100 shadow-rose-950/20'
           : currentTheme === 'gamer'
@@ -68,8 +129,6 @@ export default function AmazonLiveSearchCard({
           : 'bg-gradient-to-br from-white via-slate-50 to-indigo-50/30 border-slate-200 text-slate-900 shadow-slate-100'
       }`}
     >
-      <div className="absolute top-0 right-0 -mt-10 -mr-10 w-48 h-48 rounded-full bg-[#FF9900]/10 blur-3xl pointer-events-none" />
-
       <div className="max-w-3xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
         {/* Left: Persuasive Text */}
         <div className="flex-1 text-center md:text-left">
@@ -136,22 +195,156 @@ export default function AmazonLiveSearchCard({
         </div>
 
         {/* Right: Interactive Search Box & Affiliate CTA Button */}
-        <div className="w-full md:w-80 flex flex-col gap-2.5 shrink-0">
-          <div className="relative">
+        <div ref={cardSearchRef} className="w-full md:w-80 flex flex-col gap-2.5 shrink-0 relative z-40">
+          <div className="relative flex items-center">
             <input
               type="text"
               value={customTerm}
-              onChange={(e) => setCustomTerm(e.target.value)}
+              onFocus={() => setIsFocused(true)}
+              onChange={(e) => {
+                setCustomTerm(e.target.value);
+                setIsFocused(true);
+              }}
               aria-label={ui.amazonLivePlaceholder}
               placeholder={ui.amazonLivePlaceholder}
-              className={`w-full py-2.5 pl-9 pr-3 rounded-xl text-xs sm:text-sm border outline-none font-medium transition-colors ${
+              className={`w-full py-2.5 pl-9 pr-16 rounded-xl text-xs sm:text-sm border outline-none font-medium transition-colors ${
                 isDark
                   ? 'bg-neutral-800 border-neutral-700 text-white placeholder-neutral-400 focus:border-[#FF9900]'
                   : 'bg-white border-slate-300 text-slate-900 placeholder-slate-500 focus:border-[#FF9900]'
               }`}
             />
             <Search className="w-4 h-4 text-slate-500 absolute left-3 top-3 pointer-events-none" />
+            <div className="absolute right-2 flex items-center gap-1">
+              {isLoadingAmazon && (
+                <Loader2 className="w-3.5 h-3.5 text-slate-500 animate-spin" />
+              )}
+              {customTerm.trim().length > 0 && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setCustomTerm('');
+                    setAmazonResults([]);
+                    setIsFocused(false);
+                  }}
+                  aria-label={ui.headerClearSearch}
+                  className="p-1 rounded-full text-slate-500 hover:text-slate-800 cursor-pointer"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              )}
+            </div>
           </div>
+
+          {isFocused && customTerm.trim().length >= 2 && (
+            <div className="absolute top-12 left-0 right-0 bg-white text-slate-900 rounded-2xl shadow-2xl border border-slate-200 overflow-hidden z-[80] max-h-[65vh] overflow-y-auto text-left">
+              {liveMatches.length > 0 && (
+                <div>
+                  <div className="p-2.5 bg-slate-50 border-b border-slate-100 flex items-center justify-between text-[11px] font-bold text-slate-700 uppercase tracking-wider">
+                    <span>{ui.searchRecommendedCatalog}</span>
+                    <span className="text-indigo-700">{liveMatches.length} {ui.productsUnit}</span>
+                  </div>
+
+                  <div className="divide-y divide-slate-100">
+                    {liveMatches.map((product) => (
+                      <button
+                        key={product.id}
+                        type="button"
+                        onClick={() => {
+                          setIsFocused(false);
+                          window.dispatchEvent(new CustomEvent('site-search', { detail: product.title }));
+                          const target = document.getElementById('catalogo-productos');
+                          if (target) target.scrollIntoView({ behavior: 'smooth' });
+                        }}
+                        className="w-full text-left p-3 hover:bg-indigo-50/60 transition-colors flex items-center gap-2.5 cursor-pointer"
+                      >
+                        <span className="relative block w-11 h-11 rounded-lg bg-slate-50 shrink-0 overflow-hidden border border-slate-200">
+                          <Image
+                            src={product.imageUrl}
+                            alt={product.title}
+                            fill
+                            sizes="44px"
+                            className="object-contain p-1"
+                          />
+                        </span>
+                        <span className="block flex-1 min-w-0">
+                          <span className="block text-xs font-bold text-slate-900 truncate">
+                            {product.title}
+                          </span>
+                          <span className="flex items-center gap-2 mt-0.5">
+                            <span className="text-xs font-black text-indigo-700">{formatPrice(product.priceText)}</span>
+                            <span className="text-[10px] text-slate-600 flex items-center gap-0.5">
+                              <Star className="w-3 h-3 text-amber-500 fill-amber-400" />
+                              {product.rating}
+                            </span>
+                          </span>
+                        </span>
+                        <ArrowRight className="w-4 h-4 text-slate-500 shrink-0" />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {amazonResults.length > 0 && (
+                <div className={liveMatches.length > 0 ? 'border-t-2 border-slate-100' : ''}>
+                  <div className="p-2.5 bg-gradient-to-r from-amber-50/80 to-orange-50/50 border-b border-amber-100 flex items-center justify-between text-[11px] font-bold text-amber-900 uppercase tracking-wider">
+                    <div className="flex items-center gap-1.5">
+                      <ShoppingBag className="w-3.5 h-3.5 text-amber-700" />
+                      <span>{ui.searchLiveFrom} {amazonSiteName}</span>
+                    </div>
+                    <span className="text-[9px] bg-amber-200 text-amber-950 px-1.5 py-0.5 rounded-full font-black">
+                      {ui.searchLivePrices}
+                    </span>
+                  </div>
+
+                  <div className="divide-y divide-slate-100">
+                    {amazonResults.map((item) => (
+                      <a
+                        key={item.asin}
+                        href={item.url}
+                        target="_blank"
+                        rel="noopener noreferrer sponsored"
+                        onClick={() => setIsFocused(false)}
+                        className="p-3 hover:bg-amber-50/50 transition-colors flex items-center gap-2.5 cursor-pointer"
+                      >
+                        <div className="relative w-11 h-11 rounded-lg bg-white shrink-0 overflow-hidden border border-slate-200 shadow-2xs">
+                          {item.imageUrl ? (
+                            <Image
+                              src={item.imageUrl}
+                              alt={item.title}
+                              fill
+                              sizes="44px"
+                              unoptimized
+                              className="object-contain p-1"
+                            />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center bg-slate-100 text-slate-500">
+                              <ShoppingBag className="w-4 h-4" />
+                            </div>
+                          )}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-xs font-bold text-slate-900 line-clamp-1">
+                            {item.title}
+                          </p>
+                          <div className="flex items-center gap-2 mt-0.5">
+                            <span className="text-xs font-black text-amber-800">{formatPrice(item.priceText)}</span>
+                            <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-800 font-bold border border-emerald-200/60">
+                              Prime
+                            </span>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-1 px-2 py-1 rounded-lg bg-amber-100 text-amber-950 text-[11px] font-bold shrink-0">
+                          <span>{ui.searchBuyBtn}</span>
+                          <ExternalLink className="w-3 h-3" />
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
 
           <a
             href={amazonSearchUrl}

@@ -159,7 +159,7 @@ export default function Header({
   );
 
   return (
-    <header className="sticky top-0 z-50 transition-colors duration-300 shadow-md w-full">
+    <header className="sticky top-0 z-[70] transition-colors duration-300 shadow-md w-full">
       {/* 1. PLANTILLA EXCLUSIVA MÓVIL (< md) */}
       <div className="block md:hidden">
         <HeaderMobile
