@@ -58,12 +58,32 @@ export async function generateStaticParams() {
     }
   }
 
-  if (I18N_SEO_ROUTES.en) {
+  const CORE_FILTER_LOCALES = new Set(['en', 'en-gb', 'es-us', 'de', 'fr', 'it', 'pt', 'nl', 'pl']);
+
+  for (const lang of Object.keys(I18N_SEO_ROUTES)) {
+    const seen = new Set<string>();
+    const addSlug = (s: string) => {
+      if (s && !seen.has(s)) {
+        seen.add(s);
+        params.push({ ageSlug: lang, categorySlug: s });
+      }
+    };
+
     for (const hubSlug of ALL_STATIC_HUB_SLUGS) {
-      params.push({
-        ageSlug: 'en',
-        categorySlug: toLocalizedSlug('en', hubSlug),
-      });
+      addSlug(hubSlug);
+      addSlug(toLocalizedSlug(lang, hubSlug));
+    }
+
+    for (const route of PRIMARY_SEO_AGE_ROUTES) {
+      addSlug(route.ageSlug);
+      addSlug(toLocalizedSlug(lang, route.ageSlug));
+    }
+
+    if (CORE_FILTER_LOCALES.has(lang)) {
+      for (const filterSlug of Object.keys(SEO_FILTER_ROUTES)) {
+        addSlug(filterSlug);
+        addSlug(toLocalizedSlug(lang, filterSlug));
+      }
     }
   }
 
