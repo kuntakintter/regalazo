@@ -3,6 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   htmlLimitedBots: /.*/,
   images: {
+    unoptimized: true,
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
