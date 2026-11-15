@@ -14,7 +14,6 @@ import { getLocalizedNestedMetadata } from '@/lib/routeMetadata';
 import { renderLocalizedRouteView } from '@/lib/routeViews';
 
 export const dynamicParams = true;
-export const revalidate = 86400;
 
 interface PageProps {
   params: Promise<{

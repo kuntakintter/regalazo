@@ -13,7 +13,6 @@ import {
 } from '@/lib/routeViews';
 
 export const dynamicParams = true;
-export const revalidate = 86400;
 
 interface PageProps {
   params: Promise<{

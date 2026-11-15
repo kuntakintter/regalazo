@@ -41,6 +41,10 @@ const nextConfig = {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=()', // Bloquea acceso a sensores innecesarios
           },
+          {
+            key: 'CDN-Cache-Control',
+            value: 'public, s-maxage=31536000, stale-while-revalidate=86400',
+          },
         ],
       },
     ];

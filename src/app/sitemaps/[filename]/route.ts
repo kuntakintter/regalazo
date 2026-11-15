@@ -2,7 +2,6 @@ import { NextResponse } from 'next/server';
 import { buildShardSitemapXml, generateAllSitemapShards } from '@/lib/sitemapEngine';
 
 export const dynamic = 'force-static';
-export const revalidate = 86400; // 24 hours
 
 export async function generateStaticParams() {
   const shards = generateAllSitemapShards();
