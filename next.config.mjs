@@ -1,5 +1,8 @@
+const isCfPages = process.env.CF_PAGES === '1';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  ...(isCfPages ? { output: 'export' } : {}),
   reactStrictMode: true,
   htmlLimitedBots: /.*/,
   images: {

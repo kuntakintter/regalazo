@@ -4,7 +4,7 @@
   "description": "Un Buen Regalo - El recomendador más potente de regalos para todas las edades (0 a +18 años) con enlaces de afiliado de Amazon España",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/build-cf-pages.mjs",
     "start": "next start",
     "generate-sitemaps": "node scripts/generate-sitemaps.mjs",
     "sync-prices": "node scripts/sync-all-prices.mjs",
