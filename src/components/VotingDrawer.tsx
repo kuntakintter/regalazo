@@ -140,49 +140,49 @@ export default function VotingDrawer() {
 
               <div className="grid grid-cols-3 gap-1.5 sm:gap-2 text-center">
                 {/* 1. Elige */}
-                <div className="p-2 sm:p-2.5 bg-gradient-to-b from-rose-50/90 to-white rounded-2xl border-2 border-rose-200/90 shadow-xs flex flex-col items-center justify-between min-w-0">
+                <div className="p-2 sm:p-2.5 bg-gradient-to-br from-rose-500 via-rose-600 to-pink-600 text-white rounded-2xl border-2 border-rose-400/80 shadow-md hover:shadow-lg transition-all flex flex-col items-center justify-between min-w-0">
                   <div
-                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-rose-500 to-pink-600 text-white flex items-center justify-center mb-1.5 shadow-md ring-2 ring-rose-200 shrink-0"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white text-rose-600 flex items-center justify-center mb-1.5 shadow-sm ring-2 ring-white/60 shrink-0"
                     aria-hidden="true"
                   >
-                    <Heart className="w-4.5 h-4.5 fill-white/25 stroke-[2.5]" />
+                    <Heart className="w-4.5 h-4.5 fill-rose-600 stroke-[2.5]" />
                   </div>
-                  <strong className="text-xs sm:text-[13px] font-black text-slate-900 leading-tight whitespace-nowrap tracking-tight block">
+                  <strong className="text-xs sm:text-[13px] font-black text-white leading-tight whitespace-nowrap tracking-tight block drop-shadow-xs">
                     1. Elige
                   </strong>
-                  <span className="text-[10px] sm:text-[11px] font-semibold text-slate-600 leading-tight mt-1">
+                  <span className="text-[10px] sm:text-[11px] font-bold text-rose-100 leading-tight mt-1">
                     De 2 a 6 regalos
                   </span>
                 </div>
 
                 {/* 2. Comparte */}
-                <div className="p-2 sm:p-2.5 bg-gradient-to-b from-emerald-50/90 to-white rounded-2xl border-2 border-emerald-200/90 shadow-xs flex flex-col items-center justify-between min-w-0">
+                <div className="p-2 sm:p-2.5 bg-gradient-to-br from-emerald-600 via-emerald-700 to-teal-700 text-white rounded-2xl border-2 border-emerald-400/80 shadow-md hover:shadow-lg transition-all flex flex-col items-center justify-between min-w-0">
                   <div
-                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white flex items-center justify-center mb-1.5 shadow-md ring-2 ring-emerald-200 shrink-0"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white text-emerald-700 flex items-center justify-center mb-1.5 shadow-sm ring-2 ring-white/60 shrink-0"
                     aria-hidden="true"
                   >
-                    <MessageCircle className="w-4.5 h-4.5 fill-white/25 stroke-[2.5]" />
+                    <MessageCircle className="w-4.5 h-4.5 fill-emerald-700 stroke-[2.5]" />
                   </div>
-                  <strong className="text-xs sm:text-[13px] font-black text-slate-900 leading-tight whitespace-nowrap tracking-tight block">
+                  <strong className="text-xs sm:text-[13px] font-black text-white leading-tight whitespace-nowrap tracking-tight block drop-shadow-xs">
                     2. Comparte
                   </strong>
-                  <span className="text-[10px] sm:text-[11px] font-semibold text-slate-600 leading-tight mt-1">
+                  <span className="text-[10px] sm:text-[11px] font-bold text-emerald-100 leading-tight mt-1">
                     Por WhatsApp
                   </span>
                 </div>
 
                 {/* 3. ¡Votan! */}
-                <div className="p-2 sm:p-2.5 bg-gradient-to-b from-indigo-50/90 to-white rounded-2xl border-2 border-indigo-200/90 shadow-xs flex flex-col items-center justify-between min-w-0">
+                <div className="p-2 sm:p-2.5 bg-gradient-to-br from-indigo-600 via-indigo-700 to-purple-700 text-white rounded-2xl border-2 border-indigo-400/80 shadow-md hover:shadow-lg transition-all flex flex-col items-center justify-between min-w-0">
                   <div
-                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 text-white flex items-center justify-center mb-1.5 shadow-md ring-2 ring-indigo-200 shrink-0"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white text-indigo-700 flex items-center justify-center mb-1.5 shadow-sm ring-2 ring-white/60 shrink-0"
                     aria-hidden="true"
                   >
                     <Trophy className="w-4.5 h-4.5 stroke-[2.5]" />
                   </div>
-                  <strong className="text-xs sm:text-[13px] font-black text-slate-900 leading-tight whitespace-nowrap tracking-tight block">
+                  <strong className="text-xs sm:text-[13px] font-black text-white leading-tight whitespace-nowrap tracking-tight block drop-shadow-xs">
                     3. ¡Votan!
                   </strong>
-                  <span className="text-[10px] sm:text-[11px] font-semibold text-slate-600 leading-tight mt-1">
+                  <span className="text-[10px] sm:text-[11px] font-bold text-indigo-100 leading-tight mt-1">
                     Eligen en 1 clic
                   </span>
                 </div>
