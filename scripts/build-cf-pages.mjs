@@ -45,7 +45,7 @@ if (fs.existsSync(pinterestFeedPath)) {
   let feedContent = fs.readFileSync(pinterestFeedPath, 'utf8');
   feedContent = `export const dynamic = 'force-static';\n` + feedContent.replace(
     'export async function GET(request: NextRequest) {',
-    `export async function GET() {\n  const request = { nextUrl: new URL('https://www.unbuenregalo.es/feed/pinterest.xml?lang=es&board=all') } as unknown as NextRequest;`
+    `export async function GET() {\n  const request = { url: 'https://www.unbuenregalo.es/feed/pinterest.xml?lang=es&board=all', nextUrl: new URL('https://www.unbuenregalo.es/feed/pinterest.xml?lang=es&board=all') } as unknown as NextRequest;`
   );
   fs.writeFileSync(pinterestFeedPath, feedContent, 'utf8');
 }
