@@ -19,12 +19,12 @@ export interface CompeticionProduct {
 
 export const COMPETICION_CATEGORIES = [
   { id: 'all', label: 'Todo Competición', icon: '🏁' },
+  { id: 'ropa-merch', label: 'Merchandising Oficial', icon: '👕' },
   { id: 'f1', label: 'Fórmula 1 & Escuderías', icon: '🏎️' },
   { id: 'motogp', label: 'MotoGP & Motociclismo', icon: '🏍️' },
   { id: 'scalextric', label: 'Scalextric & Circuitos', icon: '🚦' },
   { id: 'simracing', label: 'Simracing & Volantes', icon: '🎮' },
   { id: 'maquetas', label: 'Maquetas & Colección', icon: '🏆' },
-  { id: 'ropa-merch', label: 'Ropa, Gorras & Banderas', icon: '👕' },
   { id: 'garaje-lifestyle', label: 'Accesorios & Garaje', icon: '🛠️' },
 ];
 

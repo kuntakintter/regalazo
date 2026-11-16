@@ -355,9 +355,9 @@ export default function CompeticionView({
               </div>
             </div>
 
-            {/* CATEGORY TABS HORIZONTAL SCROLL */}
+            {/* CATEGORY TABS - WRAPPED SO NONE IS CUT OFF */}
             <div className="mt-8 pt-6 border-t border-slate-800/80">
-              <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
                 {COMPETICION_CATEGORIES.map((cat) => {
                   const isActive = selectedCategory === cat.id;
                   return (
