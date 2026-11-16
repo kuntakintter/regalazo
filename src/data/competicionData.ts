@@ -18,14 +18,14 @@ export interface CompeticionProduct {
 }
 
 export const COMPETICION_CATEGORIES = [
-  { id: 'all', label: 'Todo Competición', icon: '🏁' },
-  { id: 'ropa-merch', label: 'Merchandising Oficial', icon: '👕' },
-  { id: 'f1', label: 'Fórmula 1 & Escuderías', icon: '🏎️' },
-  { id: 'motogp', label: 'MotoGP & Motociclismo', icon: '🏍️' },
-  { id: 'scalextric', label: 'Scalextric & Circuitos', icon: '🚦' },
-  { id: 'simracing', label: 'Simracing & Volantes', icon: '🎮' },
-  { id: 'maquetas', label: 'Maquetas & Colección', icon: '🏆' },
-  { id: 'garaje-lifestyle', label: 'Accesorios & Garaje', icon: '🛠️' },
+  { id: 'all', label: 'Todo Competición', icon: '🏁', sublabel: '32+ Regalos' },
+  { id: 'ropa-merch', label: 'Merchandising', icon: '👕', sublabel: 'Ropa & Gorras' },
+  { id: 'f1', label: 'Fórmula 1', icon: '🏎️', sublabel: 'Alonso · Ferrari' },
+  { id: 'motogp', label: 'MotoGP', icon: '🏍️', sublabel: 'Márquez · Ducati' },
+  { id: 'scalextric', label: 'Scalextric', icon: '🚦', sublabel: 'Circuitos Slot' },
+  { id: 'simracing', label: 'Simracing', icon: '🎮', sublabel: 'Volantes & Pedales' },
+  { id: 'maquetas', label: 'Maquetas', icon: '🏆', sublabel: 'Die-cast & LEGO' },
+  { id: 'garaje-lifestyle', label: 'Garaje Racing', icon: '🛠️', sublabel: 'Llaveros & Detalles' },
 ];
 
 export const COMPETICION_BRANDS = [

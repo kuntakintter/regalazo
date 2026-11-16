@@ -340,9 +340,24 @@ export default function CompeticionView({
               </div>
             </div>
 
-            {/* CATEGORY TABS - CLEAN SOLID DARK BACKGROUND WITH LARGER READABLE FONTS */}
-            <div className="mt-8 pt-6 border-t border-slate-800/80 bg-slate-950/95 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-4 rounded-2xl relative z-20">
-              <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+            {/* CATEGORY TABS - RESPONSIVE MOTORSPORT GRID */}
+            <div className="mt-8 pt-6 border-t border-red-500/20 relative z-20">
+              <div className="flex items-center justify-between mb-3.5">
+                <div className="flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse shadow-sm shadow-red-500/80" />
+                  <span className="text-white uppercase tracking-wider font-black text-xs sm:text-sm">
+                    Categorías de Competición
+                  </span>
+                  <span className="hidden sm:inline-block text-slate-400 text-xs font-semibold">
+                    · Selecciona tu especialidad del motor
+                  </span>
+                </div>
+                <span className="text-red-400 text-xs font-bold bg-red-950/60 px-2.5 py-1 rounded-md border border-red-900/40">
+                  8 Especialidades
+                </span>
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-8 gap-2 sm:gap-2.5">
                 {COMPETICION_CATEGORIES.map((cat) => {
                   const isActive = selectedCategory === cat.id;
                   return (
@@ -350,14 +365,31 @@ export default function CompeticionView({
                       key={cat.id}
                       type="button"
                       onClick={() => setSelectedCategory(cat.id)}
-                      className={`flex items-center gap-2.5 px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm md:text-[15px] font-black transition-all shrink-0 cursor-pointer shadow-sm ${
+                      className={`group relative flex flex-row sm:flex-col items-center sm:justify-center p-2.5 sm:p-3 rounded-xl transition-all duration-200 cursor-pointer text-left sm:text-center w-full border ${
                         isActive
-                          ? 'bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-lg shadow-red-900/40 ring-2 ring-red-400'
-                          : 'bg-slate-900 hover:bg-slate-800 text-slate-200 hover:text-white border border-slate-800 hover:border-slate-700'
+                          ? 'bg-gradient-to-r sm:bg-gradient-to-b from-red-600 via-red-600 to-rose-700 text-white border-red-400 shadow-lg shadow-red-900/50 ring-2 ring-red-400/80 scale-[1.02]'
+                          : 'bg-slate-900/90 hover:bg-slate-800/95 text-slate-200 hover:text-white border-slate-800/90 hover:border-red-500/50 hover:shadow-md hover:shadow-red-950/40'
                       }`}
+                      aria-pressed={isActive}
+                      title={cat.label}
                     >
-                      <span className="text-base sm:text-lg">{cat.icon}</span>
-                      <span>{cat.label}</span>
+                      <div className="flex items-center gap-2.5 sm:flex-col sm:gap-1 w-full">
+                        <span className="text-2xl sm:text-3xl shrink-0 transition-transform group-hover:scale-110">
+                          {cat.icon}
+                        </span>
+                        <div className="min-w-0 flex-1 sm:w-full">
+                          <div className="font-black text-xs sm:text-sm tracking-tight leading-snug truncate">
+                            {cat.label}
+                          </div>
+                          <div
+                            className={`text-[10px] sm:text-[11px] font-semibold truncate ${
+                              isActive ? 'text-red-100' : 'text-slate-400 group-hover:text-red-300'
+                            }`}
+                          >
+                            {cat.sublabel}
+                          </div>
+                        </div>
+                      </div>
                     </button>
                   );
                 })}
