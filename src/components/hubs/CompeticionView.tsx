@@ -6,7 +6,6 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ProductCard from '@/components/ProductCard';
 import LiveAmazonProductCard from '@/components/LiveAmazonProductCard';
-import AmazonLiveSearchCard from '@/components/AmazonLiveSearchCard';
 import ThemeAtmosphere from '@/components/ThemeAtmosphere';
 import SeoFaq from '@/components/SeoFaq';
 import {
@@ -499,20 +498,8 @@ export default function CompeticionView({
           {sortedDisplayProducts.length > 0 ? (
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-                {sortedDisplayProducts.map((product, index) => (
-                  <React.Fragment key={product.id}>
-                    <ProductCard product={product} />
-
-                    {/* Intercalated Amazon Live Search Card */}
-                    {index === 3 && (
-                      <div className="col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4 my-2">
-                        <AmazonLiveSearchCard
-                          currentTheme="tech"
-                          initialQuery={liveSearchQuery || 'f1 alonso ferrari scalextric'}
-                        />
-                      </div>
-                    )}
-                  </React.Fragment>
+                {sortedDisplayProducts.map((product) => (
+                  <ProductCard key={product.id} product={product} />
                 ))}
 
                 {/* Appended Live Amazon Results when filtered */}
