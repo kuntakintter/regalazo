@@ -7,7 +7,6 @@ import Footer from '@/components/Footer';
 import ProductCard from '@/components/ProductCard';
 import LiveAmazonProductCard from '@/components/LiveAmazonProductCard';
 import AmazonLiveSearchCard from '@/components/AmazonLiveSearchCard';
-import AmazonGridDiscoveryCard from '@/components/AmazonGridDiscoveryCard';
 import ThemeAtmosphere from '@/components/ThemeAtmosphere';
 import SeoFaq from '@/components/SeoFaq';
 import {
@@ -503,17 +502,6 @@ export default function CompeticionView({
                     badgeLabel="Amazon Prime"
                   />
                 ))}
-
-                {/* Grid Discovery Card to fetch more from Amazon */}
-                <div className="col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4 mt-4">
-                  <AmazonGridDiscoveryCard
-                    searchQuery={liveSearchQuery}
-                    selectedCategory="Mundo de la Competición"
-                    onLoadLiveToGrid={handleLoadLiveToGrid}
-                    isLoadingLive={isLoadingLive}
-                    hasLoadedLive={liveAmazonProducts.length > 0}
-                  />
-                </div>
               </div>
 
               {/* BOTÓN PROMINENTE DE VER MÁS REGALOS DE COMPETICIÓN */}
