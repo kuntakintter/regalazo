@@ -50,16 +50,7 @@ if (fs.existsSync(pinterestFeedPath)) {
   fs.writeFileSync(pinterestFeedPath, feedContent, 'utf8');
 }
 
-// 2. Set dynamicParams = false on 3-segment route with empty generateStaticParams
-const subSlugPage = 'src/app/[ageSlug]/[categorySlug]/[subSlug]/page.tsx';
-if (fs.existsSync(subSlugPage)) {
-  let content = fs.readFileSync(subSlugPage, 'utf8');
-  content = content.replace(
-    'export async function generateStaticParams() {\n  return [];\n}',
-    `export async function generateStaticParams() {\n  return [{ ageSlug: 'en', categorySlug: '13-to-15-years', subSlug: 'gaming' }];\n}`
-  );
-  fs.writeFileSync(subSlugPage, content, 'utf8');
-}
+// 2. Pre-render all routes dynamically from sitemapEngine (handled directly in page.tsx generateStaticParams)
 
 // 3. Write Cloudflare Pages _redirects file into public/_redirects
 const redirects = [

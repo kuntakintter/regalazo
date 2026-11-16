@@ -519,6 +519,25 @@ export function generateAllSitemapShards(forceRefresh: boolean = false): Sitemap
   return shards;
 }
 
+/**
+ * Returns the unique path segments of EVERY URL published in the sitemaps,
+ * so `generateStaticParams` pre-renders exactly the same set of pages
+ * (guarantees 0 sitemap URLs returning 404 on the static Cloudflare export).
+ */
+export function getAllSitemapPathSegments(): string[][] {
+  const seen = new Set<string>();
+  const result: string[][] = [];
+  for (const shard of generateAllSitemapShards()) {
+    for (const entry of shard.entries) {
+      const path = entry.loc.replace(BASE_SITE_URL, '').replace(/^\/+|\/+$/g, '');
+      if (!path || seen.has(path)) continue;
+      seen.add(path);
+      result.push(path.split('/'));
+    }
+  }
+  return result;
+}
+
 export function escapeXml(unsafe: string): string {
   return unsafe
     .replace(/&/g, '&amp;')

@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { I18N_SEO_ROUTES } from '@/lib/i18nRoutes';
 import { getLocalizedNestedMetadata } from '@/lib/routeMetadata';
 import { renderLocalizedRouteView } from '@/lib/routeViews';
+import { getAllSitemapPathSegments } from '@/lib/sitemapEngine';
 
 interface PageProps {
   params: Promise<{
@@ -13,7 +14,12 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  return [{ ageSlug: 'en', categorySlug: '13-to-15-years', subSlug: 'gaming' }];
+  const params = getAllSitemapPathSegments()
+    .filter((segs) => segs.length === 3)
+    .map(([ageSlug, categorySlug, subSlug]) => ({ ageSlug, categorySlug, subSlug }));
+  return params.length > 0
+    ? params
+    : [{ ageSlug: 'en', categorySlug: '13-to-15-years', subSlug: 'gaming' }];
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

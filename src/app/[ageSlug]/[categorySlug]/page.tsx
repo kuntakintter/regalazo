@@ -12,6 +12,7 @@ import { ALL_SITE_PRODUCTS } from '@/data/allCatalogProducts';
 import { toLocalizedSlug } from '@/lib/localizedSlugs';
 import { getLocalizedNestedMetadata } from '@/lib/routeMetadata';
 import { renderLocalizedRouteView } from '@/lib/routeViews';
+import { getAllSitemapPathSegments } from '@/lib/sitemapEngine';
 
 interface PageProps {
   params: Promise<{
@@ -85,6 +86,16 @@ export async function generateStaticParams() {
         addSlug(toLocalizedSlug(lang, filterSlug));
       }
     }
+  }
+
+  // Every 2-segment URL published in the sitemaps (all 27 locales) must be pre-rendered
+  const existing = new Set(params.map((p) => `${p.ageSlug}/${p.categorySlug}`));
+  for (const segs of getAllSitemapPathSegments()) {
+    if (segs.length !== 2) continue;
+    const key = segs.join('/');
+    if (existing.has(key)) continue;
+    existing.add(key);
+    params.push({ ageSlug: segs[0], categorySlug: segs[1] });
   }
 
   return params;

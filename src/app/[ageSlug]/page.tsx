@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { I18N_SEO_ROUTES } from '@/lib/i18nRoutes';
 import { SEO_AGE_ROUTES } from '@/lib/seoRoutes';
-import { SEO_FILTER_ROUTES } from '@/lib/filterRoutes';
+import { SEO_FILTER_ROUTES, ALL_STATIC_HUB_SLUGS } from '@/lib/filterRoutes';
 import {
   getLocalizedHomeMetadata,
   getLocalizedNestedMetadata,
@@ -11,6 +11,7 @@ import {
   renderLocalizedHomeView,
   renderLocalizedRouteView,
 } from '@/lib/routeViews';
+import { getAllSitemapPathSegments } from '@/lib/sitemapEngine';
 
 interface PageProps {
   params: Promise<{
@@ -23,7 +24,13 @@ export async function generateStaticParams() {
   const ageSlugs = Object.keys(SEO_AGE_ROUTES);
   const filterSlugs = Object.keys(SEO_FILTER_ROUTES);
 
-  return [...i18nSlugs, ...ageSlugs, ...filterSlugs].map((ageSlug) => ({
+  const all = new Set([...i18nSlugs, ...ageSlugs, ...filterSlugs]);
+  const staticHubDirs = new Set(ALL_STATIC_HUB_SLUGS);
+  for (const segs of getAllSitemapPathSegments()) {
+    if (segs.length === 1 && !staticHubDirs.has(segs[0])) all.add(segs[0]);
+  }
+
+  return Array.from(all).map((ageSlug) => ({
     ageSlug,
   }));
 }
