@@ -285,9 +285,9 @@ export default function CompeticionView({
         <div className="relative overflow-hidden bg-gradient-to-b from-[#180a0a] via-[#12161f] to-slate-950 border-b border-red-500/20 pt-8 pb-10">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-red-600/15 via-transparent to-transparent pointer-events-none" />
           
-          {/* Bandera de cuadros (Finish Line) que ocupa todo el fondo del hueco */}
+          {/* Bandera de cuadros (Finish Line) SOLO en la cabecera superior del título, sin entrar en los botones de categorías */}
           <div
-            className="absolute inset-0 pointer-events-none select-none opacity-[0.09]"
+            className="absolute top-0 left-0 right-0 h-[220px] pointer-events-none select-none opacity-[0.08]"
             style={{
               backgroundImage: `
                 linear-gradient(45deg, #ffffff 25%, transparent 25%), 
@@ -297,23 +297,8 @@ export default function CompeticionView({
               `,
               backgroundSize: '36px 36px',
               backgroundPosition: '0 0, 0 18px, 18px -18px, -18px 0px',
-              maskImage: 'linear-gradient(to right, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.95) 50%, rgba(0,0,0,0.6) 100%)',
-              WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.95) 50%, rgba(0,0,0,0.6) 100%)',
-            }}
-          />
-
-          {/* Tira inferior de meta (Finish Line) */}
-          <div
-            className="absolute bottom-0 left-0 right-0 h-2 opacity-25 select-none pointer-events-none"
-            style={{
-              backgroundImage: `
-                linear-gradient(45deg, #ffffff 25%, transparent 25%), 
-                linear-gradient(-45deg, #ffffff 25%, transparent 25%), 
-                linear-gradient(45deg, transparent 75%, #ffffff 75%), 
-                linear-gradient(-45deg, transparent 75%, #ffffff 75%)
-              `,
-              backgroundSize: '16px 16px',
-              backgroundPosition: '0 0, 0 8px, 8px -8px, -8px 0px',
+              maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 65%, rgba(0,0,0,0) 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 65%, rgba(0,0,0,0) 100%)',
             }}
           />
 
