@@ -64,7 +64,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 16.4,
     rating: 4.6,
     reviewsCount: 1420,
-    imageUrl: 'https://m.media-amazon.com/images/I/51JZNf+GOML._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/51JZNf+GOML._AC_SX342_.jpg',
     badge: 'Top Ventas F1',
     description: 'Gorra oficial del equipo Aston Martin Aramco de Fórmula 1 con el dorsal 14 de Fernando Alonso bordado y visera curvada.',
     pros: [
@@ -86,7 +86,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 45.0,
     rating: 4.7,
     reviewsCount: 890,
-    imageUrl: 'https://m.media-amazon.com/images/I/61pVqdcIhZL._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/61pVqdcIhZL._AC_SX342_.jpg',
     badge: 'Oficial Paddock',
     description: 'Polo deportivo réplica de los mecánicos e ingenieros de Ferrari en el paddock de Fórmula 1, diseñado por PUMA.',
     pros: [
@@ -108,7 +108,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 54.95,
     rating: 4.8,
     reviewsCount: 1150,
-    imageUrl: 'https://m.media-amazon.com/images/I/71k7ac0HCzL._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/71lK6KhWZOL._AC_UL320_.jpg',
     badge: 'Campeón del Mundo',
     description: 'Sudadera premium con capucha, bolsillo canguro y logotipos oficiales de Red Bull Racing Oracle y patrocinadores de Fórmula 1.',
     pros: [
@@ -130,7 +130,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 21.59,
     rating: 4.8,
     reviewsCount: 2310,
-    imageUrl: 'https://m.media-amazon.com/images/I/717GupwNxQL._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/717GupwNxQL._AC_SY355_.jpg',
     badge: 'Recomendado Regalo',
     description: 'Kit de construcción LEGO del monoplaza Aston Martin AMR24 de F1 con alerones aerodinámicos, neumáticos slick y piloto con casco.',
     pros: [
@@ -152,7 +152,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 18.99,
     rating: 4.8,
     reviewsCount: 1980,
-    imageUrl: 'https://m.media-amazon.com/images/I/71SJzfPx9FL._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/71SJzfPx9FL._AC_SY355_.jpg',
     badge: 'Top Ventas LEGO',
     description: 'Monoplaza de Fórmula 1 Ferrari SF-24 construible a escala minifigura con halo protector, alerón trasero DRS y dorsal de la Scuderia.',
     pros: [
@@ -174,7 +174,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 29.95,
     rating: 4.6,
     reviewsCount: 1450,
-    imageUrl: 'https://m.media-amazon.com/images/I/71H58Ay4xnL._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/71H58Ay4xnL._AC_SY355_.jpg',
     badge: 'Radiocontrol Oficial',
     description: 'Bólido teledirigido de Fórmula 1 con licencia oficial de Ferrari, suspensión delantera independiente y mando ergonómico de gatillo.',
     pros: [
@@ -198,7 +198,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 19.99,
     rating: 4.7,
     reviewsCount: 780,
-    imageUrl: 'https://m.media-amazon.com/images/I/61FEpJlMJYL._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/61FEpJlMJYL._AC_SY355_.jpg',
     badge: 'Novedad Márquez',
     description: 'Réplica oficial en metal y plástico inyectado de la Ducati Desmosedici de Marc Márquez con el dorsal 93 y caballete de paddock.',
     pros: [
@@ -220,7 +220,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 35.0,
     rating: 4.6,
     reviewsCount: 620,
-    imageUrl: 'https://m.media-amazon.com/images/I/51Rbm5NZtgL._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/51Rbm5NZtgL._AC_SX342_.jpg',
     badge: 'Top Merchan Moto',
     description: 'Camiseta de algodón 100% de alto gramaje con el dorsal 93, grafismos de la hormiga y logotipos de competición.',
     pros: [
@@ -242,7 +242,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 14.95,
     rating: 4.8,
     reviewsCount: 410,
-    imageUrl: 'https://m.media-amazon.com/images/I/71tg5T+6YlL._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/71tg5T+6YlL._AC_SY355_.jpg',
     badge: 'Regalo Perfecto',
     description: 'Taza de desayuno con ilustración artística de Marc Márquez en plena tumbada a 65 grados y su dorsal 93.',
     pros: [
@@ -266,7 +266,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 69.99,
     rating: 4.6,
     reviewsCount: 3120,
-    imageUrl: 'https://m.media-amazon.com/images/I/71Pfw8HZmtL._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/714--DSesLL._AC_SX355_.jpg',
     badge: 'El Clásico Nº 1',
     description: 'Pista de carreras de slot a escala 1:43 con más de 5 metros de cuerda, puente peraltado, doble looping vertical y 2 monoplazas de F1 con luces.',
     pros: [
@@ -288,7 +288,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 59.95,
     rating: 4.5,
     reviewsCount: 2180,
-    imageUrl: 'https://m.media-amazon.com/images/I/71Pfw8HZmtL._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/71ak1XD6qDL._AC_SX355_.jpg',
     badge: 'Especial Rally',
     description: 'Circuito de slot inspirado en tramos del WRC Rally con pistas deslizantes, curvas cerradas de horquilla y 2 coches de rally con luces LED.',
     pros: [
@@ -310,7 +310,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 74.9,
     rating: 4.6,
     reviewsCount: 1840,
-    imageUrl: 'https://m.media-amazon.com/images/I/71kmHtTWR7L._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/716fOTxOWcL._AC_SX355_.jpg',
     badge: 'Máxima Velocidad',
     description: 'Circuito de carreras de slot de alta gama con más de 6 metros de desarrollo, recta de velocidad, chicane de adelantamiento y bólidos GT3.',
     pros: [
@@ -332,7 +332,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 39.99,
     rating: 4.7,
     reviewsCount: 940,
-    imageUrl: 'https://m.media-amazon.com/images/I/71Pfw8HZmtL._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/71Pfw8HZmtL._AC_SY355_.jpg',
     badge: 'Coche Individual F1',
     description: 'Coche de slot a escala 1:32 con la librea oficial verde de Aston Martin y el dorsal 14 de Fernando Alonso para circuitos Scalextric clásicos y analógicos.',
     pros: [
@@ -354,7 +354,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 79.99,
     rating: 4.7,
     reviewsCount: 1650,
-    imageUrl: 'https://m.media-amazon.com/images/I/71Pfw8HZmtL._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/71v0JRqHM8L._AC_UL320_.jpg',
     badge: 'Gran Turismo GT',
     description: 'Pista de slot a escala 1:43 de más de 6 metros con curvas peraltadas, puente elevado y 2 bólidos de GT con luces LED y efecto suelo magnético.',
     pros: [
@@ -376,7 +376,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 64.95,
     rating: 4.7,
     reviewsCount: 4210,
-    imageUrl: 'https://m.media-amazon.com/images/I/71kmHtTWR7L._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/8199Bv7wgxL._AC_UL320_.jpg',
     badge: 'Familiar Top',
     description: 'Circuito eléctrico de slot oficial Nintendo Mario Kart con looping de alta velocidad, cuentavueltas mecánico y mandos con botón turbo.',
     pros: [
@@ -398,7 +398,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 42.50,
     rating: 4.8,
     reviewsCount: 790,
-    imageUrl: 'https://m.media-amazon.com/images/I/71Pfw8HZmtL._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/61vGu2is0VL._AC_UL320_.jpg',
     badge: 'Ferrari Slot 1:32',
     description: 'Coche de slot analógico a escala 1:32 con guía basculante, tracción trasera con imán extraíble y decoración oficial de la Scuderia Ferrari de Carlos Sainz.',
     pros: [
@@ -420,7 +420,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 42.50,
     rating: 4.8,
     reviewsCount: 1120,
-    imageUrl: 'https://m.media-amazon.com/images/I/71Pfw8HZmtL._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/614K7jhh7+L._AC_UL320_.jpg',
     badge: 'Campeón del Mundo Slot',
     description: 'Monoplaza de slot a escala 1:32 del bólido campeón del mundo de Max Verstappen con detalles de pontones, alerón trasero y el dorsal 1.',
     pros: [
@@ -444,7 +444,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 189.0,
     rating: 4.7,
     reviewsCount: 16800,
-    imageUrl: 'https://m.media-amazon.com/images/I/61wBV8pnsFL._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/61wBV8pnsFL._AC_SY355_.jpg',
     badge: 'Rey del Simracing',
     description: 'El volante de carreras más popular del mundo: Force Feedback con dos motores, levas de acero inoxidable, volante cosido en cuero real y pedalera metálica con freno no lineal.',
     pros: [
@@ -466,7 +466,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 206.57,
     rating: 4.6,
     reviewsCount: 5400,
-    imageUrl: 'https://m.media-amazon.com/images/I/61Kou-EVZLL._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/61Kou-EVZLL._AC_SY355_.jpg',
     badge: 'Tecnología TRUEFORCE',
     description: 'Evolución del simulador con retroalimentación háptica TRUEFORCE de alta frecuencia que procesa a 4000 Hz las irregularidades de la pista y el régimen de motor.',
     pros: [
@@ -488,7 +488,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 93.99,
     rating: 4.4,
     reviewsCount: 820,
-    imageUrl: 'https://m.media-amazon.com/images/I/81RS8x8qemL._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/81RS8x8qemL._AC_SX342_.jpg',
     badge: 'Licencia Ferrari GT',
     description: 'Réplica oficial a escala 7:10 del volante del Ferrari 296 GTB con levas secuenciales metálicas, resistencia Bungee Cord y pedalera ajustable.',
     pros: [
@@ -510,7 +510,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 78.99,
     rating: 4.5,
     reviewsCount: 3890,
-    imageUrl: 'https://m.media-amazon.com/images/I/71RjLcPGDhL._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/71qtCCmpSdL._AC_UL320_.jpg',
     badge: 'Plegable en 10s',
     description: 'Estructura rígida de acero al carbono con altura, ángulo y distancia ajustables para montar volante, pedalera y palanca de cambios, plegable para guardar debajo de la cama.',
     pros: [
@@ -534,7 +534,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 14.45,
     rating: 4.6,
     reviewsCount: 2890,
-    imageUrl: 'https://m.media-amazon.com/images/I/81N4Rgls36L._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/81N4Rgls36L._AC_SY355_.jpg',
     badge: 'Top Colección F1',
     description: 'Maqueta de metal fundido (die-cast) con la decoración oficial verde del Aston Martin AMR23 con el que Alonso subió al podio en 8 Grandes Premios.',
     pros: [
@@ -556,7 +556,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 13.49,
     rating: 4.6,
     reviewsCount: 1720,
-    imageUrl: 'https://m.media-amazon.com/images/I/81f1QOJ4w0L._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/81f1QOJ4w0L._AC_SY355_.jpg',
     badge: 'Ferrari Oficial',
     description: 'Monoplaza oficial de la Scuderia Ferrari en escala coleccionista 1:43 fabricado en metal con todos los patrocinadores de carrera serigrafiados.',
     pros: [
@@ -578,7 +578,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 24.9,
     rating: 4.8,
     reviewsCount: 530,
-    imageUrl: 'https://m.media-amazon.com/images/I/61yljik2QfL._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/51UyPoXBVnL._AC_SX342_.jpg',
     badge: 'Decoración Racing',
     description: 'Escultura de pared cortada por láser con el trazado exacto del mítico circuito urbano de Montecarlo, incluyendo nombres de curvas como Sainte Dévote, Casino y Loews.',
     pros: [
@@ -600,7 +600,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 18.9,
     rating: 4.8,
     reviewsCount: 340,
-    imageUrl: 'https://m.media-amazon.com/images/I/71SJzfPx9FL._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/51nGD7WuAdL._AC_UL320_.jpg',
     badge: 'Campeón IndyCar',
     description: 'Monoplaza oficial de la NTT IndyCar Series del tricampeón español Alex Palou con decoración oficial de The American Legion y Chip Ganassi Racing.',
     pros: [
@@ -622,7 +622,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 44.99,
     rating: 4.8,
     reviewsCount: 3870,
-    imageUrl: 'https://m.media-amazon.com/images/I/81f1QOJ4w0L._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/81FzLjWqnWL._AC_UL320_.jpg',
     badge: 'NASCAR Oficial',
     description: 'Bólido de carreras de la NASCAR Cup Series para construir con dirección que funciona, capó abatible y motor V8 con pistones móviles.',
     pros: [
@@ -646,7 +646,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 15.99,
     rating: 4.8,
     reviewsCount: 680,
-    imageUrl: 'https://m.media-amazon.com/images/I/81+6RXRsZDL._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/81+6RXRsZDL._AC_SY355_.jpg',
     badge: 'Para Grada y Pared',
     description: 'Bandera gigante de poliéster de alta densidad con el dorsal 14, la cruz de la victoria de Asturias y el rayo emblemático de Fernando Alonso.',
     pros: [
@@ -668,7 +668,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 24.5,
     rating: 4.7,
     reviewsCount: 1120,
-    imageUrl: 'https://m.media-amazon.com/images/I/314LIZtrxpL._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/314LIZtrxpL._AC_SX342_.jpg',
     badge: 'Mito del Motorsport',
     description: 'La icónica combinación de franjas azul claro, azul marino y rojo de Martini Racing bordadas sobre algodón premium por el fabricante de competición Sparco.',
     pros: [
@@ -692,7 +692,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 6.99,
     rating: 4.6,
     reviewsCount: 1840,
-    imageUrl: 'https://m.media-amazon.com/images/I/51oBapBEpVL._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/51oBapBEpVL._AC_SY355_.jpg',
     badge: 'Detalle Top Ventas',
     description: 'Llavero mecanizado en aleación de zinc que reproduce un disco de freno ventilado y perforado cuya corona gira libremente dentro de la pinza de freno roja.',
     pros: [
@@ -714,7 +714,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 5.99,
     rating: 4.7,
     reviewsCount: 2210,
-    imageUrl: 'https://m.media-amazon.com/images/I/61yljik2QfL._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/61yljik2QfL._AC_SX342_.jpg',
     badge: 'Para Puristas Manuales',
     description: 'Palanca de cambios en miniatura que engrana de verdad las 6 marchas y la marcha atrás siguiendo el esquema en H clásico.',
     pros: [
@@ -736,7 +736,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 19.95,
     rating: 4.8,
     reviewsCount: 490,
-    imageUrl: 'https://m.media-amazon.com/images/I/51UyPoXBVnL._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/51UyPoXBVnL._AC_SX342_.jpg',
     badge: 'Hogar Racing',
     description: 'Felpudo de fibra de coco y goma antideslizante con la señalización de cajón de parrilla de salida de Fórmula 1 y bandera a cuadros.',
     pros: [
