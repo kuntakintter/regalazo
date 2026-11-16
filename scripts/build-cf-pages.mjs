@@ -1,4 +1,5 @@
 import fs from 'fs';
+import path from 'path';
 import { execSync } from 'child_process';
 
 const isCfPages = process.env.CF_PAGES === '1';
@@ -79,4 +80,24 @@ fs.writeFileSync('public/_redirects', redirects, 'utf8');
 
 // 4. Run Next.js static export build -> outputs to ./out
 execSync('npx next build', { stdio: 'inherit' });
+
+// 5. Prune internal RSC payload files (*.txt) to stay strictly within Cloudflare Pages 20,000 file limit.
+// Every static HTML page is 100% preserved for Googlebot, Search Console, and web visitors (13,118+ HTML pages).
+let prunedCount = 0;
+function pruneTxtFiles(dir) {
+  if (!fs.existsSync(dir)) return;
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      pruneTxtFiles(fullPath);
+    } else if (entry.name.endsWith('.txt') && entry.name !== 'robots.txt') {
+      try {
+        fs.unlinkSync(fullPath);
+        prunedCount++;
+      } catch {}
+    }
+  }
+}
+pruneTxtFiles('out');
+console.log(`🧹 Pruned ${prunedCount} internal RSC .txt files (keeps total deployment under Cloudflare Pages 20k limit).`);
 console.log('✅ Cloudflare Pages static export completed in ./out');
