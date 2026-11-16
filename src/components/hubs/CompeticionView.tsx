@@ -161,34 +161,9 @@ export default function CompeticionView({
   }, [selectedCategory, selectedBrand, isEs]);
 
   React.useEffect(() => {
-    const hasFilter =
-      selectedCategory !== 'all' || selectedBrand !== 'all' || selectedPrice !== 'all';
-
-    if (hasFilter && liveSearchQuery) {
-      let isMounted = true;
-      setIsLoadingLive(true);
-      const timer = setTimeout(() => {
-        fetch(`/api/live-search?q=${encodeURIComponent(liveSearchQuery)}&limit=8&region=${amazonRegion}`)
-          .then((res) => res.json())
-          .then((data) => {
-            if (isMounted && data.success && Array.isArray(data.results)) {
-              setLiveAmazonProducts(data.results);
-            }
-          })
-          .catch((err) => console.error(err))
-          .finally(() => {
-            if (isMounted) setIsLoadingLive(false);
-          });
-      }, 120);
-
-      return () => {
-        isMounted = false;
-        clearTimeout(timer);
-      };
-    } else {
-      setLiveAmazonProducts([]);
-    }
-  }, [selectedCategory, selectedBrand, selectedPrice, liveSearchQuery, amazonRegion]);
+    // Reset live Amazon products when user changes filters to keep curated categories clean and focused
+    setLiveAmazonProducts([]);
+  }, [selectedCategory, selectedBrand, selectedPrice]);
 
   const handleLoadLiveToGrid = useCallback(async () => {
     if (isLoadingLive) return;
@@ -344,7 +319,7 @@ export default function CompeticionView({
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-1 gap-2.5 shrink-0 text-xs">
                 <div className="flex items-center gap-2 p-2.5 rounded-xl bg-slate-900/80 border border-slate-800 shadow-sm">
                   <Trophy className="w-4 h-4 text-amber-400 shrink-0" />
-                  <span className="font-bold text-slate-200">100% Licencias Oficiales</span>
+                  <span className="font-bold text-slate-200">Selección Top del Motor</span>
                 </div>
                 <div className="flex items-center gap-2 p-2.5 rounded-xl bg-slate-900/80 border border-slate-800 shadow-sm">
                   <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
@@ -352,7 +327,7 @@ export default function CompeticionView({
                 </div>
                 <div className="flex items-center gap-2 p-2.5 rounded-xl bg-slate-900/80 border border-slate-800 shadow-sm">
                   <Flame className="w-4 h-4 text-rose-400 shrink-0" />
-                  <span className="font-bold text-slate-200">Alonso · Sainz · Márquez · F1</span>
+                  <span className="font-bold text-slate-200">F1 · MotoGP · IndyCar · NASCAR y ¡MÁS!</span>
                 </div>
               </div>
             </div>
