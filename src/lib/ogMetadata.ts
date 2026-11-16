@@ -13,6 +13,13 @@ export interface SocialHubSnippet {
 // Map of curated, high-CTR Open Graph visuals (1200x630, 1.91:1 aspect ratio)
 export const HUB_OG_SNIPPETS: Record<string, SocialHubSnippet> = {
   // Hubs Especiales por Pasión
+  competicion: {
+    title: 'Un Buen Regalo de Competición y Carreras 【2026】 F1, MotoGP, Scalextric & Simracing',
+    socialTitle: '🏁 Mundo de la Competición: F1, MotoGP, Scalextric y Volantes Simracing | Un Buen Regalo',
+    description: '¿Qué regalar a un fanático de las carreras y la competición? Gorras y camisetas de F1, merchandising de Alonso y Márquez, circuitos de Scalextric y volantes simracing.',
+    imageUrl: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1200&h=630&q=85',
+    imageAlt: 'Monoplaza de Fórmula 1 y coches de competición en plena carrera de circuito',
+  },
   motoristas: {
     title: 'Un Buen Regalo para un Motero 【2026】 Cascos, Gadgets e Ideas de Regalos',
     socialTitle: '🏍️ Un Buen Regalo para un Motero: Cascos, Chaquetas y Gadgets | Un Buen Regalo',

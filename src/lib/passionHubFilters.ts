@@ -1,5 +1,9 @@
 import { slugify } from '@/lib/seoRoutes';
 import {
+  COMPETICION_CATEGORIES,
+  COMPETICION_PRODUCTS,
+} from '@/data/competicionData';
+import {
   AUTOMOVIL_CATEGORIES,
   AUTOMOVIL_PRODUCTS,
 } from '@/data/automovilData';
@@ -33,6 +37,7 @@ const RAW_HUB_CATEGORIES: Record<
   string,
   { id: string; label: string; icon: string }[]
 > = {
+  'competicion': COMPETICION_CATEGORIES,
   'motoristas': MOTORISTA_CATEGORIES,
   'automovil': AUTOMOVIL_CATEGORIES,
   'ciclismo': CICLISMO_CATEGORIES,
@@ -45,6 +50,7 @@ const RAW_HUB_CATEGORIES: Record<
 };
 
 export const PASSION_HUB_PRODUCTS_MAP: Record<string, PassionProductItem[]> = {
+  'competicion': COMPETICION_PRODUCTS,
   'motoristas': MOTORISTA_PRODUCTS,
   'automovil': AUTOMOVIL_PRODUCTS,
   'ciclismo': CICLISMO_PRODUCTS,

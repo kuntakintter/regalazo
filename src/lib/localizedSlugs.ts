@@ -88,6 +88,7 @@ export function asciiSlugify(text: string): string {
  */
 const EN_TOP_LEVEL_SLUGS: Record<string, string> = {
   // Static hubs (ocasiones & herramientas)
+  'competicion': 'racing-and-motorsport-gifts',
   'motoristas': 'biker-gifts',
   'automovil': 'car-lover-gifts',
   'ciclismo': 'cycling-gifts',
@@ -301,6 +302,7 @@ const NATIVE_STAGE_AND_HUB_OVERRIDES: Record<string, Record<string, string>> = {
     'regalos-de-50-a-100-euros': 'cadeaux-de-50-a-100-euros',
     'regalos-mas-de-60-euros': 'cadeaux-plus-de-60-euros',
     'regalos-mas-de-100-euros': 'cadeaux-plus-de-100-euros',
+    'competicion': 'cadeaux-course-automobile',
     'motoristas': 'cadeaux-motards',
     'automovil': 'cadeaux-automobile',
     'ciclismo': 'cadeaux-cyclisme',
@@ -338,6 +340,7 @@ const NATIVE_STAGE_AND_HUB_OVERRIDES: Record<string, Record<string, string>> = {
     'regalos-de-50-a-100-euros': 'geschenke-50-bis-100-euro',
     'regalos-mas-de-60-euros': 'geschenke-ueber-60-euro',
     'regalos-mas-de-100-euros': 'geschenke-ueber-100-euro',
+    'competicion': 'motorsport-und-rennfahrer-geschenke',
     'motoristas': 'geschenke-fuer-motorradfahrer',
     'automovil': 'geschenke-fuer-autofans',
     'ciclismo': 'geschenke-fuer-radfahrer',
@@ -375,6 +378,7 @@ const NATIVE_STAGE_AND_HUB_OVERRIDES: Record<string, Record<string, string>> = {
     'regalos-de-50-a-100-euros': 'regali-da-50-a-100-euro',
     'regalos-mas-de-60-euros': 'regali-oltre-60-euro',
     'regalos-mas-de-100-euros': 'regali-oltre-100-euro',
+    'competicion': 'regali-motori-e-corse',
     'motoristas': 'regali-motociclisti',
     'automovil': 'regali-automobilisti',
     'ciclismo': 'regali-ciclismo',
@@ -412,6 +416,7 @@ const NATIVE_STAGE_AND_HUB_OVERRIDES: Record<string, Record<string, string>> = {
     'regalos-de-50-a-100-euros': 'presentes-de-50-a-100-euros',
     'regalos-mas-de-60-euros': 'presentes-mais-de-60-euros',
     'regalos-mas-de-100-euros': 'presentes-mais-de-100-euros',
+    'competicion': 'presentes-automobilismo-e-corridas',
     'motoristas': 'presentes-motociclistas',
     'automovil': 'presentes-automoveis',
     'ciclismo': 'presentes-ciclismo',
@@ -517,6 +522,7 @@ const STAGE_AND_HUB_TERM_KEYS: Record<string, string> = {
   'jovenes-16-a-18-anos': 'Jóvenes (16-18 años)',
   'adultos-mas-de-18-anos': 'Adultos (+18 años)',
   'fiesta-revelacion-genero': 'Fiesta Revelación de Género',
+  'competicion': 'Mundo de la Competición',
   'motoristas': 'Motoristas',
   'automovil': 'Automóvil',
   'ciclismo': 'Ciclismo y MTB',

@@ -1,4 +1,5 @@
 import { PRODUCTS, Product } from './products';
+import { COMPETICION_PRODUCTS } from './competicionData';
 import { AUTOMOVIL_PRODUCTS } from './automovilData';
 import { CAFE_PRODUCTS } from './cafeData';
 import { CICLISMO_PRODUCTS } from './ciclismoData';
@@ -77,6 +78,7 @@ const buildAllSiteProducts = (): Product[] => {
   };
 
   for (const p of PRODUCTS) pushUnique(p);
+  for (const p of COMPETICION_PRODUCTS) pushUnique(adaptNicheProduct(p, 'Competición & Motor'));
   for (const p of NAVIDAD_PRODUCTS) pushUnique(adaptNicheProduct(p, 'Navidad y Reyes'));
   for (const p of GTA_PRODUCTS) pushUnique(adaptNicheProduct(p, 'GTA 6 / GTA VI'));
   for (const p of MOTORISTA_PRODUCTS) pushUnique(adaptNicheProduct(p, 'Motoristas'));
@@ -96,6 +98,7 @@ export const ALL_SITE_PRODUCTS: Product[] = buildAllSiteProducts();
 const buildIdLookupMap = (): Map<string, Product> => {
   const map = new Map<string, Product>();
   for (const p of PRODUCTS) map.set(p.id, p);
+  for (const p of COMPETICION_PRODUCTS) if (!map.has(p.id)) map.set(p.id, adaptNicheProduct(p, 'Competición & Motor'));
   for (const p of NAVIDAD_PRODUCTS) if (!map.has(p.id)) map.set(p.id, adaptNicheProduct(p, 'Navidad y Reyes'));
   for (const p of GTA_PRODUCTS) if (!map.has(p.id)) map.set(p.id, adaptNicheProduct(p, 'GTA 6 / GTA VI'));
   for (const p of MOTORISTA_PRODUCTS) if (!map.has(p.id)) map.set(p.id, adaptNicheProduct(p, 'Motoristas'));

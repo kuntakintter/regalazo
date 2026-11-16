@@ -21,6 +21,7 @@ export const BASE_SITE_URL = 'https://www.unbuenregalo.es';
  * (excluye las 3 páginas legales con robots noindex).
  */
 export const ALL_STATIC_HUB_SLUGS: string[] = [
+  'competicion',
   'motoristas',
   'automovil',
   'ciclismo',

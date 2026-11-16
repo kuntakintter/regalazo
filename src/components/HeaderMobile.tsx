@@ -88,6 +88,7 @@ export const AGE_DROPDOWN_ITEMS = [
 ];
 
 export const PASSION_DROPDOWN_ITEMS = [
+  { termKey: 'Mundo de la Competición', descTermKey: 'Carreras, F1, MotoGP y Scalextric', slug: 'competicion', icon: '🏁' },
   { termKey: 'Motoristas', descTermKey: 'Motoristas', slug: 'motoristas', icon: '🏍️' },
   { termKey: 'Gaming', descTermKey: 'Videojuegos y Setup Gamer', slug: 'gaming', icon: '🎮' },
   { termKey: 'Amantes del Café', descTermKey: 'Gourmet, Café y Coctelería', slug: 'amantes-del-cafe', icon: '☕' },
@@ -365,6 +366,22 @@ export default function HeaderMobile({
 
       {/* 2. SUB-NAV MENÚ MÓVIL */}
       <nav aria-label={ui.navMenu} className="bg-[#1f2833] text-white border-t border-slate-700/60 shadow-inner px-3 py-2">
+        {/* Botón Destacado Móvil: Mundo de la Competición */}
+        <div className="mb-2">
+          <Link
+            href={localePath('/competicion')}
+            className="w-full h-9 flex items-center justify-between px-3 rounded-xl bg-gradient-to-r from-red-600 via-rose-700 to-amber-600 text-white text-xs font-black shadow-md border border-red-400/60 active:scale-98 transition-all"
+          >
+            <div className="flex items-center gap-2">
+              <span className="text-base" aria-hidden="true">🏁</span>
+              <span className="tracking-tight">Mundo de la Competición</span>
+            </div>
+            <span className="text-[10px] bg-white/20 px-2 py-0.5 rounded-full font-bold">
+              F1 · MotoGP · Scalextric
+            </span>
+          </Link>
+        </div>
+
         <div className="grid grid-cols-2 gap-2.5 w-full text-xs">
           {/* 1. Dropdown Edades */}
           <div ref={agesDropdownRef} className="relative w-full">

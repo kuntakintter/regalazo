@@ -329,6 +329,18 @@ export default function HeaderDesktop({
       <nav aria-label={ui.navMenu} className="bg-[#1f2833] text-white border-t border-slate-700/60 shadow-inner">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center gap-3 py-2 text-xs">
+            {/* Botón Destacado: Mundo de la Competición */}
+            <Link
+              href={localePath('/competicion')}
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-red-600/35 via-rose-700/25 to-amber-600/30 hover:from-red-600/60 hover:to-amber-500/50 border border-red-500/60 hover:border-red-400 text-white font-black text-xs tracking-wide transition-all shadow-md whitespace-nowrap shrink-0 hover:scale-105 active:scale-98 ring-1 ring-red-500/40 group"
+              title="Mundo de la Competición - Especial Carreras, F1, MotoGP y Scalextric"
+            >
+              <span className="text-sm group-hover:scale-115 transition-transform" aria-hidden="true">🏁</span>
+              <span className="font-black bg-gradient-to-r from-white via-red-100 to-amber-200 bg-clip-text text-transparent">
+                Mundo de la Competición
+              </span>
+            </Link>
+
             {/* Dropdown Edades */}
             <div ref={agesDropdownRef} className="relative shrink-0">
               <button

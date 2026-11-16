@@ -16,6 +16,7 @@ import FilterLandingView from '@/components/FilterLandingView';
 import PersonaHubView from '@/components/PersonaHubView';
 import AutomovilView from '@/components/hubs/AutomovilView';
 import CafeView from '@/components/hubs/CafeView';
+import CompeticionView from '@/components/hubs/CompeticionView';
 import CartaPapaNoelView from '@/components/hubs/CartaPapaNoelView';
 import CiclismoView from '@/components/hubs/CiclismoView';
 import GamingView from '@/components/hubs/GamingView';
@@ -83,6 +84,8 @@ function renderStaticHubComponent(
   initialCategory?: string
 ): React.ReactNode | null {
   switch (slug) {
+    case 'competicion':
+      return <CompeticionView omitSchema={false} initialCategory={initialCategory} />;
     case 'motoristas':
       return <MotoristasView omitSchema={false} initialCategory={initialCategory} />;
     case 'automovil':
