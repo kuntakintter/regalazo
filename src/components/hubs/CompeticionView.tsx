@@ -29,6 +29,7 @@ import {
   Loader2,
   Filter,
   ChevronRight,
+  ChevronDown,
   Flame,
   ArrowUpDown,
   Trophy,
@@ -475,44 +476,72 @@ export default function CompeticionView({
         {/* PRODUCTS GRID */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
           {sortedDisplayProducts.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-              {sortedDisplayProducts.map((product, index) => (
-                <React.Fragment key={product.id}>
-                  <ProductCard product={product} />
+            <>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+                {sortedDisplayProducts.map((product, index) => (
+                  <React.Fragment key={product.id}>
+                    <ProductCard product={product} />
 
-                  {/* Intercalated Amazon Live Search Card */}
-                  {index === 3 && (
-                    <div className="col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4 my-2">
-                      <AmazonLiveSearchCard
-                        currentTheme="tech"
-                        initialQuery={liveSearchQuery || 'f1 alonso ferrari scalextric'}
-                      />
-                    </div>
-                  )}
-                </React.Fragment>
-              ))}
+                    {/* Intercalated Amazon Live Search Card */}
+                    {index === 3 && (
+                      <div className="col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4 my-2">
+                        <AmazonLiveSearchCard
+                          currentTheme="tech"
+                          initialQuery={liveSearchQuery || 'f1 alonso ferrari scalextric'}
+                        />
+                      </div>
+                    )}
+                  </React.Fragment>
+                ))}
 
-              {/* Appended Live Amazon Results when filtered */}
-              {sortedLiveAmazonProducts.map((liveProd) => (
-                <LiveAmazonProductCard
-                  key={liveProd.asin}
-                  product={liveProd}
-                  categoryLabel="Competición"
-                  badgeLabel="Amazon Prime"
-                />
-              ))}
+                {/* Appended Live Amazon Results when filtered */}
+                {sortedLiveAmazonProducts.map((liveProd) => (
+                  <LiveAmazonProductCard
+                    key={liveProd.asin}
+                    product={liveProd}
+                    categoryLabel="Competición"
+                    badgeLabel="Amazon Prime"
+                  />
+                ))}
 
-              {/* Grid Discovery Card to fetch more from Amazon */}
-              <div className="col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4 mt-4">
-                <AmazonGridDiscoveryCard
-                  searchQuery={liveSearchQuery}
-                  selectedCategory="Mundo de la Competición"
-                  onLoadLiveToGrid={handleLoadLiveToGrid}
-                  isLoadingLive={isLoadingLive}
-                  hasLoadedLive={liveAmazonProducts.length > 0}
-                />
+                {/* Grid Discovery Card to fetch more from Amazon */}
+                <div className="col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4 mt-4">
+                  <AmazonGridDiscoveryCard
+                    searchQuery={liveSearchQuery}
+                    selectedCategory="Mundo de la Competición"
+                    onLoadLiveToGrid={handleLoadLiveToGrid}
+                    isLoadingLive={isLoadingLive}
+                    hasLoadedLive={liveAmazonProducts.length > 0}
+                  />
+                </div>
               </div>
-            </div>
+
+              {/* BOTÓN PROMINENTE DE VER MÁS REGALOS DE COMPETICIÓN */}
+              <div className="mt-10 mb-8 flex flex-col items-center justify-center gap-3">
+                <button
+                  type="button"
+                  onClick={handleLoadLiveToGrid}
+                  disabled={isLoadingLive}
+                  className="px-8 py-4 rounded-2xl bg-gradient-to-r from-red-600 via-rose-600 to-amber-500 hover:from-red-500 hover:to-amber-400 text-white font-black text-sm sm:text-base shadow-xl shadow-red-900/30 hover:shadow-red-600/40 transition-all flex items-center gap-3 cursor-pointer disabled:opacity-75 hover:scale-102"
+                >
+                  {isLoadingLive ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin text-white" aria-hidden="true" />
+                      <span>Buscando más regalos de carreras en Amazon...</span>
+                    </>
+                  ) : (
+                    <>
+                      <ShoppingBag className="w-5 h-5 text-white" aria-hidden="true" />
+                      <span>Ver más regalos de competición en Amazon</span>
+                      <ChevronDown className="w-4 h-4 text-white/80" />
+                    </>
+                  )}
+                </button>
+                <p className="text-xs text-slate-400 font-medium">
+                  Carga ofertas y novedades en tiempo real de Amazon Prime con compra directa
+                </p>
+              </div>
+            </>
           ) : (
             <div className="text-center py-16 px-4 bg-slate-900/50 rounded-2xl border border-slate-800">
               <span className="text-4xl">🏎️💨</span>
