@@ -40,7 +40,6 @@ interface HubViewProps {
   initialCategory?: string;
 }
 
-const BRAND_OPTIONS = COMPETICION_BRANDS.filter((b) => b !== 'Todas las marcas');
 
 export default function CompeticionView({
   omitSchema = false,
@@ -63,6 +62,21 @@ export default function CompeticionView({
   const [isLoadingLive, setIsLoadingLive] = useState(false);
 
   const isEs = localeKey === 'es' || localeKey === 'es-us';
+
+  // Brands dynamically scoped to the currently active category (no Scalextric/Logitech in Merchandising!)
+  const availableBrands = useMemo(() => {
+    const productsInScope =
+      selectedCategory === 'all'
+        ? COMPETICION_PRODUCTS
+        : COMPETICION_PRODUCTS.filter((p) => p.category === selectedCategory);
+    const brandsSet = new Set<string>();
+    productsInScope.forEach((p) => {
+      if (p.brand && p.brand !== 'Todas las marcas') {
+        brandsSet.add(p.brand);
+      }
+    });
+    return Array.from(brandsSet).sort((a, b) => a.localeCompare(b));
+  }, [selectedCategory]);
 
   const filteredProducts = useMemo(() => {
     return COMPETICION_PRODUCTS.filter((prod) => {
@@ -364,7 +378,11 @@ export default function CompeticionView({
                     <button
                       key={cat.id}
                       type="button"
-                      onClick={() => setSelectedCategory(cat.id)}
+                      onClick={() => {
+                        setSelectedCategory(cat.id);
+                        setSelectedBrand('all');
+                        setLiveAmazonProducts([]);
+                      }}
                       className={`group relative flex flex-row sm:flex-col items-center sm:justify-center p-2.5 sm:p-3 rounded-xl transition-all duration-200 cursor-pointer text-left sm:text-center w-full border ${
                         isActive
                           ? 'bg-gradient-to-r sm:bg-gradient-to-b from-red-600 via-red-600 to-rose-700 text-white border-red-400 shadow-lg shadow-red-900/50 ring-2 ring-red-400/80 scale-[1.02]'
@@ -408,15 +426,19 @@ export default function CompeticionView({
                 <span className="text-xs sm:text-sm">Filtrar:</span>
               </div>
 
-              {/* Brand Selector */}
+              {/* Brand Selector - Dynamically scoped to active category */}
               <select
                 value={selectedBrand}
                 onChange={(e) => setSelectedBrand(e.target.value)}
                 className="bg-slate-950 text-slate-200 border border-slate-800 rounded-xl px-3 py-2 text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-red-500 font-medium cursor-pointer"
                 aria-label="Filtrar por marca o escudería"
               >
-                <option value="all">Todas las escuderías y marcas</option>
-                {BRAND_OPTIONS.map((brand) => (
+                <option value="all">
+                  {selectedCategory === 'all'
+                    ? 'Todas las escuderías y marcas'
+                    : `Todas las marcas de esta categoría (${availableBrands.length})`}
+                </option>
+                {availableBrands.map((brand) => (
                   <option key={brand} value={brand}>
                     {brand}
                   </option>
