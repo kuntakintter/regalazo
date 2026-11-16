@@ -223,7 +223,7 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
           )}
 
           {/* Title */}
-          <p className="font-medium text-xs sm:text-[13px] leading-snug text-slate-900 group-hover:text-[#c45500] transition-colors mb-1 min-h-[2rem]">
+          <p className="font-semibold text-xs sm:text-sm md:text-[14px] leading-snug text-slate-900 group-hover:text-[#c45500] transition-colors mb-1 min-h-[2.2rem]">
             <a
               href={directProductUrl}
               target="_blank"
@@ -338,13 +338,13 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
         {/* Pricing, Prime & Amazon Button */}
         <div className="pt-1 mt-auto">
           <div className="flex items-baseline gap-1 mb-0.5">
-            <span className="text-base sm:text-lg font-black text-slate-950 tracking-tight">
+            <span className="text-lg sm:text-xl font-black text-slate-950 tracking-tight">
               {formatPrice(product.priceText)}
             </span>
           </div>
 
-          <div className="flex items-center gap-1 text-[10px] sm:text-[11px] text-slate-600 font-normal mb-2">
-            <span className="text-[#007185] font-black text-xs">✓prime</span>
+          <div className="flex items-center gap-1 text-[11px] sm:text-xs text-slate-600 font-normal mb-2">
+            <span className="text-[#007185] font-black text-xs sm:text-sm">✓prime</span>
             <span className="text-slate-700 font-medium">{ui.amazonPrimeFast}</span>
           </div>
 
@@ -352,11 +352,11 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
             href={directProductUrl}
             target="_blank"
             rel="nofollow sponsored noopener noreferrer"
-            className="w-full py-2 px-3 rounded-xl text-xs font-black text-slate-950 bg-[#ffd814] hover:bg-[#f7ca00] active:bg-[#f0b800] border border-[#fcd200] shadow-xs text-center flex items-center justify-center gap-1.5 transition-all cursor-pointer hover:scale-101"
+            className="w-full py-2.5 px-3 rounded-xl text-xs sm:text-sm font-black text-slate-950 bg-[#ffd814] hover:bg-[#f7ca00] active:bg-[#f0b800] border border-[#fcd200] shadow-xs text-center flex items-center justify-center gap-1.5 transition-all cursor-pointer hover:scale-101"
           >
             <span>{ui.viewOnAmazon}</span>
             <span className="sr-only">: {product.title}</span>
-            <ExternalLink className="w-3.5 h-3.5 text-slate-900" aria-hidden="true" />
+            <ExternalLink className="w-4 h-4 text-slate-900" aria-hidden="true" />
           </a>
 
           {copied && (

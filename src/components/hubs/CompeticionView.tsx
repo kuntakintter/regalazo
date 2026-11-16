@@ -318,31 +318,31 @@ export default function CompeticionView({
                 <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
                   Mundo de la <span className="bg-gradient-to-r from-red-500 via-rose-500 to-amber-400 bg-clip-text text-transparent">Competición</span>
                 </h1>
-                <p className="mt-3 text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
+                <p className="mt-3 text-sm sm:text-base md:text-[17px] text-slate-300 leading-relaxed font-normal">
                   La guía definitiva de regalos para apasionados del motor: ropa y gorras oficiales de <strong>Fórmula 1</strong> y <strong>MotoGP</strong>, circuitos míticos de <strong>Scalextric</strong>, simuladores de <strong>Simracing</strong>, maquetas de coleccionista y detalles de garaje con compra directa en Amazon.
                 </p>
               </div>
 
               {/* Badges Highlights */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-1 gap-2.5 shrink-0 text-xs">
-                <div className="flex items-center gap-2 p-2.5 rounded-xl bg-slate-900/80 border border-slate-800 shadow-sm">
-                  <Trophy className="w-4 h-4 text-amber-400 shrink-0" />
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-1 gap-2.5 shrink-0 text-xs sm:text-sm">
+                <div className="flex items-center gap-2 p-2.5 sm:p-3 rounded-xl bg-slate-900/80 border border-slate-800 shadow-sm">
+                  <Trophy className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400 shrink-0" />
                   <span className="font-bold text-slate-200">Selección Top del Motor</span>
                 </div>
-                <div className="flex items-center gap-2 p-2.5 rounded-xl bg-slate-900/80 border border-slate-800 shadow-sm">
-                  <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+                <div className="flex items-center gap-2 p-2.5 sm:p-3 rounded-xl bg-slate-900/80 border border-slate-800 shadow-sm">
+                  <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400 shrink-0" />
                   <span className="font-bold text-slate-200">Garantía Prime en {amazonSiteName}</span>
                 </div>
-                <div className="flex items-center gap-2 p-2.5 rounded-xl bg-slate-900/80 border border-slate-800 shadow-sm">
-                  <Flame className="w-4 h-4 text-rose-400 shrink-0" />
+                <div className="flex items-center gap-2 p-2.5 sm:p-3 rounded-xl bg-slate-900/80 border border-slate-800 shadow-sm">
+                  <Flame className="w-4 h-4 sm:w-5 sm:h-5 text-rose-400 shrink-0" />
                   <span className="font-bold text-slate-200">F1 · MotoGP · IndyCar · NASCAR y ¡MÁS!</span>
                 </div>
               </div>
             </div>
 
-            {/* CATEGORY TABS - WRAPPED SO NONE IS CUT OFF */}
-            <div className="mt-8 pt-6 border-t border-slate-800/80">
-              <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
+            {/* CATEGORY TABS - CLEAN SOLID DARK BACKGROUND WITH LARGER READABLE FONTS */}
+            <div className="mt-8 pt-6 border-t border-slate-800/80 bg-slate-950/95 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-4 rounded-2xl relative z-20">
+              <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
                 {COMPETICION_CATEGORIES.map((cat) => {
                   const isActive = selectedCategory === cat.id;
                   return (
@@ -350,13 +350,13 @@ export default function CompeticionView({
                       key={cat.id}
                       type="button"
                       onClick={() => setSelectedCategory(cat.id)}
-                      className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-black transition-all whitespace-nowrap shrink-0 cursor-pointer shadow-xs ${
+                      className={`flex items-center gap-2.5 px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm md:text-[15px] font-black transition-all shrink-0 cursor-pointer shadow-sm ${
                         isActive
                           ? 'bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-lg shadow-red-900/40 ring-2 ring-red-400'
-                          : 'bg-slate-900/90 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 hover:border-slate-700'
+                          : 'bg-slate-900 hover:bg-slate-800 text-slate-200 hover:text-white border border-slate-800 hover:border-slate-700'
                       }`}
                     >
-                      <span className="text-base">{cat.icon}</span>
+                      <span className="text-base sm:text-lg">{cat.icon}</span>
                       <span>{cat.label}</span>
                     </button>
                   );
@@ -368,19 +368,19 @@ export default function CompeticionView({
 
         {/* CONTROLS BAR: BRANDS, PRICE, SORT & COUNT */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
-          <div className="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800/90 shadow-md flex flex-wrap items-center justify-between gap-3 text-xs">
+          <div className="p-3.5 sm:p-4 rounded-2xl bg-slate-900/80 border border-slate-800/90 shadow-md flex flex-wrap items-center justify-between gap-3 text-xs sm:text-sm">
             {/* Left Filter Selectors */}
             <div className="flex flex-wrap items-center gap-2.5">
               <div className="flex items-center gap-1.5 text-slate-400 font-bold mr-1">
-                <Filter className="w-3.5 h-3.5 text-red-400" />
-                <span>Filtrar:</span>
+                <Filter className="w-4 h-4 text-red-400" />
+                <span className="text-xs sm:text-sm">Filtrar:</span>
               </div>
 
               {/* Brand Selector */}
               <select
                 value={selectedBrand}
                 onChange={(e) => setSelectedBrand(e.target.value)}
-                className="bg-slate-950 text-slate-200 border border-slate-800 rounded-lg px-2.5 py-1.5 focus:outline-none focus:ring-1 focus:ring-red-500 font-medium cursor-pointer"
+                className="bg-slate-950 text-slate-200 border border-slate-800 rounded-xl px-3 py-2 text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-red-500 font-medium cursor-pointer"
                 aria-label="Filtrar por marca o escudería"
               >
                 <option value="all">Todas las escuderías y marcas</option>
@@ -395,7 +395,7 @@ export default function CompeticionView({
               <select
                 value={selectedPrice}
                 onChange={(e) => setSelectedPrice(e.target.value)}
-                className="bg-slate-950 text-slate-200 border border-slate-800 rounded-lg px-2.5 py-1.5 focus:outline-none focus:ring-1 focus:ring-red-500 font-medium cursor-pointer"
+                className="bg-slate-950 text-slate-200 border border-slate-800 rounded-xl px-3 py-2 text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-red-500 font-medium cursor-pointer"
                 aria-label="Filtrar por rango de precio"
               >
                 {COMPETICION_PRICE_RANGES.map((pr) => (
@@ -409,7 +409,7 @@ export default function CompeticionView({
                 <button
                   type="button"
                   onClick={handleResetFilters}
-                  className="text-red-400 hover:text-red-300 font-bold underline ml-1 cursor-pointer"
+                  className="text-red-400 hover:text-red-300 font-bold underline ml-1 cursor-pointer text-xs sm:text-sm"
                 >
                   Limpiar filtros
                 </button>
@@ -417,17 +417,17 @@ export default function CompeticionView({
             </div>
 
             {/* Right Sort & Counters */}
-            <div className="flex items-center gap-3 ml-auto">
+            <div className="flex items-center gap-3 ml-auto text-xs sm:text-sm">
               <span className="text-slate-400 font-medium">
                 <strong className="text-white font-bold">{sortedDisplayProducts.length}</strong> regalos seleccionados
               </span>
 
               <div className="flex items-center gap-1.5">
-                <ArrowUpDown className="w-3.5 h-3.5 text-slate-500" />
+                <ArrowUpDown className="w-4 h-4 text-slate-500" />
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value as 'featured' | 'price-asc' | 'price-desc' | 'rating')}
-                  className="bg-slate-950 text-slate-200 border border-slate-800 rounded-lg px-2.5 py-1.5 focus:outline-none focus:ring-1 focus:ring-red-500 font-medium cursor-pointer"
+                  className="bg-slate-950 text-slate-200 border border-slate-800 rounded-xl px-3 py-2 text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-red-500 font-medium cursor-pointer"
                   aria-label="Ordenar productos"
                 >
                   <option value="featured">Destacados</option>
