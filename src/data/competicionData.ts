@@ -102,8 +102,8 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
   },
   {
     id: 'f1-sudadera-redbull-verstappen',
-    asin: 'B0CHY5M88R',
-    title: 'Sudadera con Capucha Red Bull Racing F1 Team Max Verstappen 1 Azul Noche',
+    asin: 'B0DT2CR4MX',
+    title: 'Castore Red Bull Racing F1 Team Sudadera Oficial con Capucha y Dorsal',
     category: 'f1',
     categoryLabel: 'Fórmula 1 & Escuderías',
     brand: 'Red Bull Racing',
@@ -1010,8 +1010,8 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
   },
   {
     id: 'scalextric-compact-max-speed-gt',
-    asin: 'B08HMR734K',
-    title: 'Scalextric Compact Circuito Max Speed Escala 1:43 con Mercedes AMG y Porsche 911 GT3',
+    asin: 'B07PRBZ4LK',
+    title: 'Carrera FIRST Circuito Nintendo Mario Kart 2.9 Metros con Mario y Yoshi Escala 1:50',
     category: 'scalextric',
     categoryLabel: 'Scalextric & Circuitos',
     brand: 'Scalextric',
@@ -1019,7 +1019,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 79.99,
     rating: 4.7,
     reviewsCount: 1650,
-    imageUrl: 'https://m.media-amazon.com/images/I/71v0JRqHM8L._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/81iNoz7gNsL._AC_UL320_.jpg',
     badge: 'Gran Turismo GT',
     description: 'Pista de slot a escala 1:43 de más de 6 metros con curvas peraltadas, puente elevado y 2 bólidos de GT con luces LED y efecto suelo magnético.',
     pros: [
@@ -1032,8 +1032,8 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
   },
   {
     id: 'carrera-go-mario-kart-slot',
-    asin: 'B07D38J36Z',
-    title: 'Carrera GO!!! Circuito de Carreras Mario Kart con Mario y Luigi Mach 8',
+    asin: 'B07PP9BPVN',
+    title: 'Carrera GO!!! Circuito Nintendo Mario Kart 8 de 4.9 Metros con Looping y Mandos Turbo',
     category: 'scalextric',
     categoryLabel: 'Scalextric & Circuitos',
     brand: 'Carrera',
@@ -1054,8 +1054,8 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
   },
   {
     id: 'scalextric-coche-ferrari-f1-132',
-    asin: 'B0CX8G1Y76',
-    title: 'Scalextric Original Coche Slot Escala 1:32 Scuderia Ferrari F1 Carlos Sainz 55',
+    asin: 'B0FKTHHHKH',
+    title: 'Scalextric Original Coche Slot Escala 1:32 Mercedes AMG GT3 Bilstein',
     category: 'scalextric',
     categoryLabel: 'Scalextric & Circuitos',
     brand: 'Scalextric',
@@ -1063,7 +1063,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 42.50,
     rating: 4.8,
     reviewsCount: 790,
-    imageUrl: 'https://m.media-amazon.com/images/I/61vGu2is0VL._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/71Y8KzH6-rL._AC_UL320_.jpg',
     badge: 'Ferrari Slot 1:32',
     description: 'Coche de slot analógico a escala 1:32 con guía basculante, tracción trasera con imán extraíble y decoración oficial de la Scuderia Ferrari de Carlos Sainz.',
     pros: [
@@ -1076,8 +1076,8 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
   },
   {
     id: 'scalextric-coche-redbull-f1-132',
-    asin: 'B0D8X5ZLLQ',
-    title: 'Scalextric Original Coche Slot Escala 1:32 Red Bull Racing F1 Max Verstappen 1',
+    asin: 'B0FKTLCWWW',
+    title: 'Scalextric Original Coche Slot Escala 1:32 Williams F1 Franco Colapinto 2024',
     category: 'scalextric',
     categoryLabel: 'Scalextric & Circuitos',
     brand: 'Scalextric',
@@ -1085,7 +1085,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 42.50,
     rating: 4.8,
     reviewsCount: 1120,
-    imageUrl: 'https://m.media-amazon.com/images/I/614K7jhh7+L._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/71fL97Bmz6L._AC_UL320_.jpg',
     badge: 'Campeón del Mundo Slot',
     description: 'Monoplaza de slot a escala 1:32 del bólido campeón del mundo de Max Verstappen con detalles de pontones, alerón trasero y el dorsal 1.',
     pros: [
@@ -1431,7 +1431,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
   },
   {
     id: 'simracing-soporte-cockpit-plegable',
-    asin: 'B077P3W8M1',
+    asin: 'B07VQYHRBR',
     title: 'VEVOR Soporte Plegable de Volante y Pedales Simracing Cockpit Universal de Acero',
     category: 'simracing',
     categoryLabel: 'Simracing & Volantes',
@@ -1896,8 +1896,8 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
   },
   {
     id: 'indycar-palou-chip-ganassi-maqueta',
-    asin: 'B0CLL2X331',
-    title: 'Greenlight IndyCar Alex Palou 10 Chip Ganassi Racing Campeón Escala 1:64 Metal',
+    asin: 'B0G45SD2W8',
+    title: 'Bburago - McLaren F1 MCL39 2025 Lando Norris 4 Maqueta Escala 1:43 Licencia Oficial',
     category: 'maquetas',
     categoryLabel: 'Maquetas & Colección',
     brand: 'Bburago',
@@ -1905,7 +1905,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 18.9,
     rating: 4.8,
     reviewsCount: 340,
-    imageUrl: 'https://m.media-amazon.com/images/I/51nGD7WuAdL._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/61WUHW2rnTL._AC_UL320_.jpg',
     badge: 'Campeón IndyCar',
     description: 'Monoplaza oficial de la NTT IndyCar Series del tricampeón español Alex Palou con decoración oficial de The American Legion y Chip Ganassi Racing.',
     pros: [
@@ -1918,8 +1918,8 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
   },
   {
     id: 'nascar-lego-chevrolet-camaro-zl1',
-    asin: 'B0BBRW8QLQ',
-    title: 'LEGO Technic NASCAR Next Gen Chevrolet Camaro ZL1 Bólido de Carreras (42153)',
+    asin: 'B0DHSCYDL2',
+    title: 'LEGO Technic Monoplaza Ferrari SF-24 F1 Bólido de Carreras Escala 1:8 (42207)',
     category: 'maquetas',
     categoryLabel: 'Maquetas & Colección',
     brand: 'LEGO Speed Champions',
@@ -1927,7 +1927,7 @@ export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
     priceNumeric: 44.99,
     rating: 4.8,
     reviewsCount: 3870,
-    imageUrl: 'https://m.media-amazon.com/images/I/81FzLjWqnWL._AC_UL320_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/71N1uJ2hYqL._AC_UL320_.jpg',
     badge: 'NASCAR Oficial',
     description: 'Bólido de carreras de la NASCAR Cup Series para construir con dirección que funciona, capó abatible y motor V8 con pistones móviles.',
     pros: [
