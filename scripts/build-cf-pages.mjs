@@ -100,4 +100,24 @@ function pruneTxtFiles(dir) {
 }
 pruneTxtFiles('out');
 console.log(`🧹 Pruned ${prunedCount} internal RSC .txt files (keeps total deployment under Cloudflare Pages 20k limit).`);
+
+// 6. Ensure every directory has an index.html so Cloudflare Pages serves clean URLs without 404
+let normalizedCount = 0;
+function normalizeDirectoryIndex(dir) {
+  if (!fs.existsSync(dir)) return;
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (entry.isDirectory()) {
+      const subDir = path.join(dir, entry.name);
+      normalizeDirectoryIndex(subDir);
+      const siblingHtml = subDir + '.html';
+      const targetIndex = path.join(subDir, 'index.html');
+      if (fs.existsSync(siblingHtml) && !fs.existsSync(targetIndex)) {
+        fs.renameSync(siblingHtml, targetIndex);
+        normalizedCount++;
+      }
+    }
+  }
+}
+normalizeDirectoryIndex('out');
+console.log(`📁 Normalized ${normalizedCount} directory index.html files for Cloudflare Pages clean URLs.`);
 console.log('✅ Cloudflare Pages static export completed in ./out');
