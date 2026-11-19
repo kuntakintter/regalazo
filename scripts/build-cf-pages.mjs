@@ -81,15 +81,30 @@ fs.writeFileSync('public/_redirects', redirects, 'utf8');
 // 4. Run Next.js static export build -> outputs to ./out
 execSync('npx next build', { stdio: 'inherit' });
 
-// 5. Prune internal RSC payload files (*.txt) to stay strictly within Cloudflare Pages 20,000 file limit.
-// Every static HTML page is 100% preserved for Googlebot, Search Console, and web visitors (13,118+ HTML pages).
+// 5. Prune internal RSC payload files (*.txt) and __next.* segment folders to stay strictly within
+// Cloudflare Pages 20,000 file limit AND keep clean *.html files (so Cloudflare Pages serves /ruta
+// directly with 200 OK instead of 308-redirecting /ruta -> /ruta/ which conflicts with canonical URLs).
 let prunedCount = 0;
-function pruneTxtFiles(dir) {
+let prunedDirs = 0;
+function pruneTxtAndRscDirs(dir) {
   if (!fs.existsSync(dir)) return;
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
-      pruneTxtFiles(fullPath);
+      if (entry.name.startsWith('__next.')) {
+        try {
+          fs.rmSync(fullPath, { recursive: true, force: true });
+          prunedDirs++;
+        } catch {}
+        continue;
+      }
+      pruneTxtAndRscDirs(fullPath);
+      try {
+        if (fs.readdirSync(fullPath).length === 0) {
+          fs.rmdirSync(fullPath);
+          prunedDirs++;
+        }
+      } catch {}
     } else if (entry.name.endsWith('.txt') && entry.name !== 'robots.txt') {
       try {
         fs.unlinkSync(fullPath);
@@ -98,26 +113,51 @@ function pruneTxtFiles(dir) {
     }
   }
 }
-pruneTxtFiles('out');
-console.log(`🧹 Pruned ${prunedCount} internal RSC .txt files (keeps total deployment under Cloudflare Pages 20k limit).`);
+pruneTxtAndRscDirs('out');
+console.log(
+  `🧹 Pruned ${prunedCount} internal RSC .txt files and ${prunedDirs} RSC/empty directories (preserves clean *.html files without trailing-slash 308 redirects).`
+);
 
-// 6. Ensure every directory has an index.html so Cloudflare Pages serves clean URLs without 404
-let normalizedCount = 0;
-function normalizeDirectoryIndex(dir) {
-  if (!fs.existsSync(dir)) return;
-  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (entry.isDirectory()) {
-      const subDir = path.join(dir, entry.name);
-      normalizeDirectoryIndex(subDir);
-      const siblingHtml = subDir + '.html';
-      const targetIndex = path.join(subDir, 'index.html');
-      if (fs.existsSync(siblingHtml) && !fs.existsSync(targetIndex)) {
-        fs.renameSync(siblingHtml, targetIndex);
-        normalizedCount++;
+// 6. Append 301 redirects for legacy English age-stage slugs under localized Latin-script prefixes
+// (nl, pl, sv, no, da, fi, tr, ro, cs, hu) to resolve all legacy 404 & alternate-canonical URLs in GSC.
+const enEdadesSitemapPath = path.join('out', 'sitemaps', 'sitemap-en-edades.xml');
+if (fs.existsSync(enEdadesSitemapPath)) {
+  const xml = fs.readFileSync(enEdadesSitemapPath, 'utf8');
+  const targetLangs = new Set(['nl', 'pl', 'sv', 'no', 'da', 'fi', 'tr', 'ro', 'cs', 'hu']);
+  const enStages = new Set([
+    'babies-0-to-12-months',
+    'toddlers-1-to-3-years',
+    'kids-4-to-6-years',
+    'kids-7-to-9-years',
+    'tweens-10-to-12-years',
+    'teens-13-to-15-years',
+    'youth-16-to-18-years',
+    'adults-over-18-years',
+    'gender-reveal-party-gifts',
+  ]);
+  const dynRules = new Set();
+  const statRules = new Set();
+  const blocks = xml.match(/<url>[\s\S]*?<\/url>/g) || [];
+  for (const b of blocks) {
+    const m = b.match(/<loc>https:\/\/www\.unbuenregalo\.es\/en\/([^/<]+)(?:\/[^<]+)?<\/loc>/);
+    if (!m || !enStages.has(m[1])) continue;
+    const enSlug = m[1];
+    const altRe = /href="https:\/\/www\.unbuenregalo\.es\/([^/"<]+)\/([^/"<]+)(?:\/[^"<]+)?"/g;
+    let am;
+    while ((am = altRe.exec(b)) !== null) {
+      const lang = am[1];
+      const locSlug = am[2];
+      if (targetLangs.has(lang) && locSlug !== enSlug) {
+        dynRules.add(`/${lang}/${enSlug}/* /${lang}/${locSlug}/:splat 301`);
+        statRules.add(`/${lang}/${enSlug} /${lang}/${locSlug} 301`);
       }
     }
   }
+  const extraRedirects = [...statRules, ...dynRules].join('\n') + '\n';
+  fs.appendFileSync(path.join('out', '_redirects'), extraRedirects, 'utf8');
+  console.log(
+    `🔀 Added ${statRules.size} static + ${dynRules.size} dynamic legacy age-stage 301 rules to out/_redirects.`
+  );
 }
-normalizeDirectoryIndex('out');
-console.log(`📁 Normalized ${normalizedCount} directory index.html files for Cloudflare Pages clean URLs.`);
+
 console.log('✅ Cloudflare Pages static export completed in ./out');

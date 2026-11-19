@@ -826,14 +826,54 @@ export function getHubStrings(localeKey: string | null | undefined, hubSlug: str
       keywords: [pack.ui.brandName],
     };
   }
+
+  let title = applyCurrencyDisplay(fallbackHub.title, targetCurrency);
+  let socialTitle = applyCurrencyDisplay(fallbackHub.socialTitle, targetCurrency);
+  let description = applyCurrencyDisplay(fallbackHub.description, targetCurrency);
+  let h1 = applyCurrencyDisplay(fallbackHub.h1, targetCurrency);
+  let subtitle = applyCurrencyDisplay(fallbackHub.subtitle, targetCurrency);
+  const breadcrumbLabel = applyCurrencyDisplay(fallbackHub.breadcrumbLabel, targetCurrency);
+
+  if (key === 'es-us') {
+    if (hubSlug === 'carta-papa-noel') {
+      title =
+        'Carta a Santa Claus y Papá Noel 2026 Online (EE. UU. y Latinoamérica · $ USD): Escribir e Imprimir Gratis';
+      socialTitle = '🎅 Carta a Santa Claus y Papá Noel 2026 Online | Edición EE. UU. y América ($ USD)';
+      description =
+        'Escribe y envía gratis la carta interactiva a Santa Claus y Papá Noel desde Estados Unidos y Latinoamérica con más de 370 juguetes verificados en Amazon (.com) en dólares ($ USD).';
+      h1 = 'Carta Mágica a Santa Claus y Papá Noel 2026 Online (Edición EE. UU. y Latinoamérica)';
+      subtitle =
+        'Buzón mágico al Polo Norte con catálogo interactivo de juguetes en dólares ($ USD) para niños y familias en EE. UU. y América.';
+    } else if (!title.includes('EE. UU.') && !title.includes('USD')) {
+      title = `${title} · Edición EE. UU. y América ($ USD)`;
+      description = `${description} Selección verificada en dólares ($ USD) para Estados Unidos y Latinoamérica.`;
+      h1 = `${h1} (EE. UU. y Latinoamérica · $ USD)`;
+    }
+  } else if (key === 'en-gb') {
+    if (hubSlug === 'carta-papa-noel') {
+      title =
+        'Letter to Father Christmas & Santa 2026 Online (UK & Europe Edition): Free Printable Wishlist';
+      socialTitle = '🎅 Free Online Letter to Father Christmas & Santa 2026 (UK & Europe Edition)';
+      description =
+        'Write, customise, and send your child’s magical letter to Father Christmas & Santa Claus online across the UK and Europe, complete with 370+ verified toys and North Pole postbox.';
+      h1 = 'Magical Letter to Father Christmas & Santa 2026 Online (UK & Europe Edition)';
+      subtitle =
+        'Interactive North Pole airmail letter creator and 370+ toy catalogue tailored for families in the United Kingdom and Europe.';
+    } else if (!title.includes('UK')) {
+      title = `${title} (UK & Europe Edition)`;
+      description = `${description} Curated edition for shoppers in the United Kingdom and Europe.`;
+      h1 = `${h1} — UK & Europe Edition`;
+    }
+  }
+
   return {
     ...fallbackHub,
-    title: applyCurrencyDisplay(fallbackHub.title, targetCurrency),
-    socialTitle: applyCurrencyDisplay(fallbackHub.socialTitle, targetCurrency),
-    description: applyCurrencyDisplay(fallbackHub.description, targetCurrency),
-    h1: applyCurrencyDisplay(fallbackHub.h1, targetCurrency),
-    subtitle: applyCurrencyDisplay(fallbackHub.subtitle, targetCurrency),
-    breadcrumbLabel: applyCurrencyDisplay(fallbackHub.breadcrumbLabel, targetCurrency),
+    title,
+    socialTitle,
+    description,
+    h1,
+    subtitle,
+    breadcrumbLabel,
   };
 }
 
