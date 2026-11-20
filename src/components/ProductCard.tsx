@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { Product } from '@/data/products';
 import { getAmazonProductUrl } from '@/lib/amazon';
@@ -19,6 +19,7 @@ import {
   Users,
   CheckCircle2,
   Target,
+  X,
 } from 'lucide-react';
 
 interface ProductCardProps {
@@ -34,6 +35,31 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
   const [copied, setCopied] = useState(false);
   const [activeImgIndex, setActiveImgIndex] = useState(0);
   const [showVerdict, setShowVerdict] = useState(false);
+  const verdictContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!showVerdict) return;
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (
+        verdictContainerRef.current &&
+        !verdictContainerRef.current.contains(event.target as Node)
+      ) {
+        setShowVerdict(false);
+      }
+    };
+    const handleCloseOthers = (event: Event) => {
+      const customEvent = event as CustomEvent<string>;
+      if (customEvent.detail !== product.id) {
+        setShowVerdict(false);
+      }
+    };
+    document.addEventListener('mousedown', handleOutsideClick);
+    window.addEventListener('ubr:verdict-open', handleCloseOthers);
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+      window.removeEventListener('ubr:verdict-open', handleCloseOthers);
+    };
+  }, [showVerdict, product.id]);
 
   const imagesList =
     product.images && product.images.length > 0
@@ -95,6 +121,8 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
   return (
     <article
       className={`group flex flex-col justify-between p-2.5 sm:p-3 rounded-2xl bg-white transition-all duration-200 relative ${
+        showVerdict ? 'z-30' : 'z-0'
+      } ${
         isGold
           ? 'border-2 border-amber-400 shadow-md ring-2 ring-amber-400/20 hover:border-amber-500'
           : isSilver
@@ -254,20 +282,28 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
             </span>
           </div>
 
-          {/* Buyer Verdict Toggle */}
-          <div className="my-1.5">
+          {/* Buyer Verdict Toggle (Floating Popover so it never stretches adjacent cards in the CSS grid row) */}
+          <div ref={verdictContainerRef} className="my-1.5 relative">
             <button
               type="button"
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                setShowVerdict((prev) => !prev);
+                setShowVerdict((prev) => {
+                  const next = !prev;
+                  if (next && typeof window !== 'undefined') {
+                    window.dispatchEvent(
+                      new CustomEvent('ubr:verdict-open', { detail: product.id })
+                    );
+                  }
+                  return next;
+                });
               }}
               aria-expanded={showVerdict}
-              className={`w-full flex items-center justify-between px-2 py-1.5 rounded-lg text-[11px] font-semibold transition-all border cursor-pointer select-none ${
+              className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-[11px] font-semibold transition-all border cursor-pointer select-none ${
                 showVerdict
-                  ? 'bg-amber-50 border-amber-300 text-amber-900 shadow-2xs'
-                  : 'bg-slate-50/80 hover:bg-amber-50/60 border-slate-200/90 hover:border-amber-200 text-slate-700 hover:text-amber-900'
+                  ? 'bg-amber-50 border-amber-400 text-amber-950 shadow-2xs ring-2 ring-amber-200/60'
+                  : 'bg-slate-50/90 hover:bg-amber-50/60 border-slate-200 hover:border-amber-300 text-slate-700 hover:text-amber-900'
               }`}
             >
               <span className="flex items-center gap-1.5 truncate">
@@ -282,17 +318,31 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
             </button>
 
             {showVerdict && (
-              <div className="mt-1.5 p-2.5 rounded-xl bg-amber-50/40 border border-amber-200/80 text-left text-xs transition-all animate-in fade-in duration-150">
-                <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-amber-200/60 gap-1.5">
+              <div className="absolute left-0 right-0 top-full mt-1.5 z-40 p-3 rounded-xl bg-white border-2 border-amber-300 text-left text-xs shadow-xl shadow-slate-900/15 ring-1 ring-amber-400/20 transition-all animate-in fade-in zoom-in-95 duration-150">
+                <div className="flex items-center justify-between pb-1.5 mb-2 border-b border-amber-100 gap-1.5">
                   <span className="text-[10px] font-bold uppercase tracking-wider text-slate-600 flex items-center gap-1 min-w-0">
                     <Users className="w-3 h-3 text-amber-600 shrink-0" />
                     <span className="truncate">
                       {product.reviewsCount ? product.reviewsCount.toLocaleString(langCode) : '100+'} {ui.verifiedReviews}
                     </span>
                   </span>
-                  <span className="text-[10px] font-black text-emerald-700 bg-emerald-100/90 px-1.5 py-0.5 rounded whitespace-nowrap shrink-0">
-                    ★ {product.rating} / 5
-                  </span>
+                  <div className="flex items-center gap-1 shrink-0">
+                    <span className="text-[10px] font-black text-emerald-800 bg-emerald-100 px-1.5 py-0.5 rounded whitespace-nowrap">
+                      ★ {product.rating} / 5
+                    </span>
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setShowVerdict(false);
+                      }}
+                      aria-label="Cerrar"
+                      className="p-0.5 rounded-md text-slate-400 hover:text-slate-700 hover:bg-slate-100 cursor-pointer"
+                    >
+                      <X className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
                 </div>
 
                 {product.pros && product.pros.length > 0 ? (
@@ -320,7 +370,7 @@ export default function ProductCard({ product, rankBadge }: ProductCardProps) {
                 )}
 
                 {product.idealFor && (
-                  <div className="pt-1.5 border-t border-amber-200/50">
+                  <div className="pt-1.5 border-t border-amber-100">
                     <p className="text-[10px] font-extrabold text-slate-800 mb-0.5 flex items-center gap-1">
                       <Target className="w-3 h-3 text-amber-700 shrink-0" />
                       <span>{ui.idealForLabel}:</span>
