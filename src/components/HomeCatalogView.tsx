@@ -1420,7 +1420,9 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
               <div className="space-y-1">
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="px-2.5 py-0.5 rounded-full bg-gradient-to-r from-rose-600 to-amber-500 text-white font-black text-[11px] uppercase tracking-wider flex items-center gap-1 shadow-xs animate-pulse">
-                    <span aria-hidden="true">⚡</span>
+                    <span className="inline-flex items-center justify-center px-1 py-0.2 rounded bg-white/20 text-white font-black text-[11px] leading-none" aria-hidden="true">
+                      %
+                    </span>
                     <span>{isEs ? 'BLACK FRIDAY · OFERTAS ACTIVAS' : 'BLACK FRIDAY DEALS'}</span>
                   </span>
                   <span className="px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950 font-black text-[11px] uppercase tracking-wider flex items-center gap-1 shadow-xs">
