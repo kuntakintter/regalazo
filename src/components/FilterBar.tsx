@@ -256,11 +256,11 @@ export default function FilterBar({
             }}
             className={`px-3.5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all flex items-center gap-2 border cursor-pointer ${
               selectedAge === 'all'
-                ? 'bg-slate-900 text-white border-slate-900 shadow-sm'
-                : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100'
+                ? 'bg-slate-900 text-white border-slate-900 shadow-sm ring-2 ring-slate-900/15'
+                : 'border-indigo-200/85 bg-gradient-to-b from-white to-slate-50/90 text-slate-800 shadow-2xs hover:border-indigo-400 hover:from-indigo-50/60 hover:to-indigo-100/40 hover:text-indigo-950'
             }`}
           >
-            <LayoutGrid className={`w-4 h-4 ${selectedAge === 'all' ? 'text-indigo-400' : 'text-slate-600'}`} />
+            <LayoutGrid className={`w-4 h-4 ${selectedAge === 'all' ? 'text-indigo-400' : 'text-indigo-600'}`} />
             <span>{ui.ageAllLabel}</span>
           </button>
 
@@ -280,8 +280,8 @@ export default function FilterBar({
                 }}
                 className={`px-3.5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all flex items-center gap-2 border cursor-pointer ${
                   isActive
-                    ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm'
-                    : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100'
+                    ? 'bg-gradient-to-r from-indigo-600 to-violet-600 text-white border-indigo-600 shadow-sm ring-2 ring-indigo-200'
+                    : 'border-indigo-200/85 bg-gradient-to-b from-white to-slate-50/90 text-slate-800 shadow-2xs hover:border-indigo-400 hover:from-indigo-50/60 hover:to-indigo-100/40 hover:text-indigo-950'
                 }`}
               >
                 <IconComp className={`w-4 h-4 ${isActive ? 'text-white' : iconColor}`} />
@@ -305,8 +305,8 @@ export default function FilterBar({
             onClick={() => onSelectGender('all')}
             className={`px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all border cursor-pointer flex items-center gap-2 ${
               selectedGender === 'all'
-                ? 'bg-indigo-600 text-white border-indigo-600 shadow-xs'
-                : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100'
+                ? 'bg-gradient-to-r from-indigo-600 to-violet-600 text-white border-indigo-600 shadow-sm ring-2 ring-indigo-200'
+                : 'border-indigo-200/85 bg-gradient-to-b from-white to-slate-50/90 text-slate-800 shadow-2xs hover:border-indigo-400 hover:bg-indigo-50/70'
             }`}
           >
             <Users className={`w-4 h-4 ${selectedGender === 'all' ? 'text-white' : 'text-indigo-600'}`} />
@@ -318,8 +318,8 @@ export default function FilterBar({
             onClick={() => onSelectGender('boy')}
             className={`px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all border cursor-pointer flex items-center gap-2 ${
               selectedGender === 'boy'
-                ? 'bg-blue-700 text-white border-blue-700 shadow-xs'
-                : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-blue-50 hover:text-blue-800'
+                ? 'bg-blue-700 text-white border-blue-700 shadow-sm ring-2 ring-blue-200'
+                : 'border-blue-200/90 bg-gradient-to-b from-white to-blue-50/30 text-slate-800 shadow-2xs hover:border-blue-400 hover:bg-blue-50 hover:text-blue-900'
             }`}
           >
             <User className={`w-4 h-4 ${selectedGender === 'boy' ? 'text-white' : 'text-blue-700'}`} />
@@ -331,8 +331,8 @@ export default function FilterBar({
             onClick={() => onSelectGender('girl')}
             className={`px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all border cursor-pointer flex items-center gap-2 ${
               selectedGender === 'girl'
-                ? 'bg-pink-700 text-white border-pink-700 shadow-xs'
-                : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-pink-50 hover:text-pink-800'
+                ? 'bg-pink-700 text-white border-pink-700 shadow-sm ring-2 ring-pink-200'
+                : 'border-pink-200/90 bg-gradient-to-b from-white to-pink-50/30 text-slate-800 shadow-2xs hover:border-pink-400 hover:bg-pink-50 hover:text-pink-900'
             }`}
           >
             <Heart className={`w-4 h-4 ${selectedGender === 'girl' ? 'text-white' : 'text-pink-700'}`} />
@@ -345,8 +345,8 @@ export default function FilterBar({
               onClick={() => onSelectGender('reveal')}
               className={`px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all border cursor-pointer flex items-center gap-2 ${
                 selectedGender === 'reveal'
-                  ? 'bg-amber-700 text-white border-amber-700 shadow-xs'
-                  : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-amber-50 hover:text-amber-800'
+                  ? 'bg-amber-700 text-white border-amber-700 shadow-sm ring-2 ring-amber-200'
+                  : 'border-amber-200/90 bg-gradient-to-b from-white to-amber-50/30 text-slate-800 shadow-2xs hover:border-amber-400 hover:bg-amber-50 hover:text-amber-900'
               }`}
             >
               <PartyPopper className={`w-4 h-4 ${selectedGender === 'reveal' ? 'text-white' : 'text-amber-700'}`} />
@@ -358,20 +358,20 @@ export default function FilterBar({
 
       {/* 4. CATEGORÍAS Y SUBCATEGORÍAS */}
       <div>
-        <p className="text-[11px] font-black uppercase tracking-wider text-slate-600 block mb-2">
+        <p className="text-[11px] font-black uppercase tracking-wider text-slate-600 block mb-2.5">
           {ui.categoryLabel}
         </p>
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-thin flex-wrap">
+        <div className="flex items-center gap-2 overflow-x-auto pb-1.5 scrollbar-thin flex-wrap">
           <button
             type="button"
             onClick={() => {
               onSelectCategory('all');
               if (onSelectClothingSub) onSelectClothingSub('all');
             }}
-            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+            className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer border ${
               selectedCategory === 'all'
-                ? 'bg-slate-900 text-white shadow-xs'
-                : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                ? 'bg-slate-900 text-white border-slate-900 shadow-sm ring-2 ring-slate-900/15'
+                : 'bg-gradient-to-b from-white to-slate-50/90 text-slate-800 border-indigo-200/85 shadow-2xs hover:border-indigo-400 hover:from-indigo-50/60 hover:to-indigo-100/40 hover:text-indigo-950'
             }`}
           >
             {ui.categoryAll}
@@ -396,20 +396,20 @@ export default function FilterBar({
                     onSelectWheelsSub('all');
                   }
                 }}
-                className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+                className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 border ${
                   isSelected
-                    ? 'bg-indigo-600 text-white font-bold shadow-xs'
+                    ? 'bg-gradient-to-r from-indigo-600 to-violet-600 text-white border-indigo-600 font-bold shadow-sm ring-2 ring-indigo-200'
                     : isWheels
-                    ? 'bg-emerald-50 text-emerald-950 border border-emerald-300 hover:bg-emerald-100 font-bold'
+                    ? 'bg-gradient-to-b from-white to-emerald-50/70 text-emerald-950 border-emerald-300/90 shadow-2xs hover:border-emerald-400 hover:bg-emerald-50 font-bold'
                     : isPokemon
-                    ? 'bg-yellow-50 text-yellow-950 border border-yellow-300 hover:bg-yellow-100 font-bold'
+                    ? 'bg-gradient-to-b from-white to-amber-50/70 text-amber-950 border-amber-300/90 shadow-2xs hover:border-amber-400 hover:bg-amber-50 font-bold'
                     : isFigures
-                    ? 'bg-amber-50 text-amber-800 border border-amber-300 hover:bg-amber-100 font-bold'
+                    ? 'bg-gradient-to-b from-white to-amber-50/60 text-amber-900 border-amber-300/85 shadow-2xs hover:border-amber-400 hover:bg-amber-50 font-bold'
                     : isSmartphone
-                    ? 'bg-indigo-50 text-indigo-700 border border-indigo-200/80 hover:bg-indigo-100 font-bold'
+                    ? 'bg-gradient-to-b from-white to-indigo-50/70 text-indigo-800 border-indigo-300/85 shadow-2xs hover:border-indigo-400 hover:bg-indigo-50 font-bold'
                     : isClothing
-                    ? 'bg-purple-50 text-purple-700 border border-purple-200/80 hover:bg-purple-100 font-semibold'
-                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                    ? 'bg-gradient-to-b from-white to-purple-50/70 text-purple-800 border-purple-300/85 shadow-2xs hover:border-purple-400 hover:bg-purple-50 font-semibold'
+                    : 'bg-gradient-to-b from-white to-indigo-50/35 text-slate-800 border-indigo-200/85 shadow-2xs hover:border-indigo-400 hover:from-indigo-50/70 hover:to-indigo-100/50 hover:text-indigo-950'
                 }`}
               >
                 {isWheels && <span>🏎️</span>}

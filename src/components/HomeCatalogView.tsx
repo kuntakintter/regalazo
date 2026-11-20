@@ -1543,10 +1543,10 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                   <button
                     type="button"
                     onClick={() => setSelectedPrice('all')}
-                    className={`px-2.5 py-1 rounded-lg text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
+                    className={`px-2.5 py-1 rounded-lg text-xs font-bold whitespace-nowrap transition-all cursor-pointer border ${
                       selectedPrice === 'all'
-                        ? 'bg-slate-900 text-white'
-                        : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                        ? 'bg-slate-900 text-white border-slate-900'
+                        : 'bg-gradient-to-b from-white to-indigo-50/35 text-slate-800 border-indigo-200/85 hover:border-indigo-400 hover:bg-indigo-50/70'
                     }`}
                   >
                     {ui.ageAllShort}
