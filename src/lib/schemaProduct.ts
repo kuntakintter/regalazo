@@ -23,6 +23,7 @@ export function generateProductItemListSchema(
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     ...(listName ? { name: listName } : {}),
+    dateModified: new Date().toISOString().split('T')[0],
     numberOfItems: products.length,
     itemListElement: products.slice(0, 30).map((prod, idx) => {
       const basePrice = parsePrice(prod.priceText) || 25;

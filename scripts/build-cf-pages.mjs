@@ -84,6 +84,11 @@ execSync('npx next build', { stdio: 'inherit' });
 // 5. Prune internal RSC payload files (*.txt) and __next.* segment folders to stay strictly within
 // Cloudflare Pages 20,000 file limit AND keep clean *.html files (so Cloudflare Pages serves /ruta
 // directly with 200 OK instead of 308-redirecting /ruta -> /ruta/ which conflicts with canonical URLs).
+const KEEP_TXT_FILES = new Set([
+  'robots.txt',
+  'llms.txt',
+  '4af0ebafeccf6a3aa51203d44de90ad6.txt',
+]);
 let prunedCount = 0;
 let prunedDirs = 0;
 function pruneTxtAndRscDirs(dir) {
@@ -105,7 +110,7 @@ function pruneTxtAndRscDirs(dir) {
           prunedDirs++;
         }
       } catch {}
-    } else if (entry.name.endsWith('.txt') && entry.name !== 'robots.txt') {
+    } else if (entry.name.endsWith('.txt') && !KEEP_TXT_FILES.has(entry.name)) {
       try {
         fs.unlinkSync(fullPath);
         prunedCount++;
@@ -158,6 +163,60 @@ if (fs.existsSync(enEdadesSitemapPath)) {
   console.log(
     `🔀 Added ${statRules.size} static + ${dynRules.size} dynamic legacy age-stage 301 rules to out/_redirects.`
   );
+}
+
+// 7. Notify IndexNow (Bing, Yandex, DuckDuckGo, Seznam & ChatGPT Search index)
+try {
+  const indexNowPayload = JSON.stringify({
+    host: 'www.unbuenregalo.es',
+    key: '4af0ebafeccf6a3aa51203d44de90ad6',
+    keyLocation: 'https://www.unbuenregalo.es/4af0ebafeccf6a3aa51203d44de90ad6.txt',
+    urlList: [
+      'https://www.unbuenregalo.es/',
+      'https://www.unbuenregalo.es/competicion',
+      'https://www.unbuenregalo.es/competicion/formula-1',
+      'https://www.unbuenregalo.es/competicion/motogp',
+      'https://www.unbuenregalo.es/competicion/scalextric',
+      'https://www.unbuenregalo.es/competicion/simracing',
+      'https://www.unbuenregalo.es/competicion/maquetas',
+      'https://www.unbuenregalo.es/regalos-menos-20-euros',
+      'https://www.unbuenregalo.es/regalos-para-los-que-tienen-de-todo',
+      'https://www.unbuenregalo.es/navidad',
+      'https://www.unbuenregalo.es/carta-papa-noel',
+      'https://www.unbuenregalo.es/votar',
+      'https://www.unbuenregalo.es/motoristas',
+      'https://www.unbuenregalo.es/gaming',
+      'https://www.unbuenregalo.es/amantes-del-cafe',
+      'https://www.unbuenregalo.es/automovil',
+      'https://www.unbuenregalo.es/ciclismo',
+      'https://www.unbuenregalo.es/mascotas',
+      'https://www.unbuenregalo.es/que-regalar-a-un-hombre',
+      'https://www.unbuenregalo.es/que-regalar-a-una-mujer',
+      'https://www.unbuenregalo.es/que-regalar-a-mi-novio',
+      'https://www.unbuenregalo.es/que-regalar-a-mi-novia',
+      'https://www.unbuenregalo.es/bebes-0-a-12-meses',
+      'https://www.unbuenregalo.es/ninos-1-a-3-anos',
+      'https://www.unbuenregalo.es/ninos-4-a-6-anos',
+      'https://www.unbuenregalo.es/ninos-7-a-9-anos',
+      'https://www.unbuenregalo.es/ninos-10-a-12-anos',
+      'https://www.unbuenregalo.es/jovenes-13-a-15-anos',
+      'https://www.unbuenregalo.es/jovenes-16-a-18-anos',
+      'https://www.unbuenregalo.es/adultos-mas-de-18-anos',
+      'https://www.unbuenregalo.es/en',
+      'https://www.unbuenregalo.es/en-gb/letter-to-santa',
+      'https://www.unbuenregalo.es/es-us/carta-papa-noel',
+      'https://www.unbuenregalo.es/llms.txt',
+      'https://www.unbuenregalo.es/sitemap.xml',
+    ],
+  });
+  await fetch('https://api.indexnow.org/indexnow', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json; charset=utf-8' },
+    body: indexNowPayload,
+  });
+  console.log('🚀 IndexNow instant indexing notification sent successfully.');
+} catch (err) {
+  console.log('ℹ️ IndexNow notification skipped:', err?.message || err);
 }
 
 console.log('✅ Cloudflare Pages static export completed in ./out');

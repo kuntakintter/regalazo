@@ -6,6 +6,7 @@ import { CurrencyProvider } from '@/context/CurrencyContext';
 import { VotingProvider } from '@/context/VotingContext';
 import VotingDrawer from '@/components/VotingDrawer';
 import FloatingVotingBar from '@/components/FloatingVotingBar';
+import AnalyticsAndSeoBooster from '@/components/AnalyticsAndSeoBooster';
 import { getHreflangAlternates, I18N_SEO_ROUTES } from '@/lib/i18nRoutes';
 
 export const metadata: Metadata = {
@@ -155,6 +156,7 @@ export default function RootLayout({
           'Best Gift Ideas & Group Gift Voting',
         ],
         url: 'https://www.unbuenregalo.es',
+        dateModified: new Date().toISOString().split('T')[0],
         inLanguage: ['es', ...Object.values(I18N_SEO_ROUTES).map((r) => r.hreflang)],
         description:
           '¿No sabes qué regalar? Descubre en Un Buen Regalo (A Good Gift) ideas de regalo originales para bebés, niños, jóvenes y adultos en todo el mundo (€ EUR / $ USD).',
@@ -181,6 +183,12 @@ export default function RootLayout({
           'https://www.unbuenregalo.es/og-cover.png',
           'https://www.unbuenregalo.es/icon.png',
         ],
+        sameAs: [
+          'https://www.instagram.com/un_buen_regalo/',
+          'https://www.youtube.com/@CosascuriosasXIII',
+          'https://es.pinterest.com/unbuenregalo/',
+          'https://www.tiktok.com/@unbuenregalo',
+        ],
       },
       {
         '@type': 'SiteNavigationElement',
@@ -198,38 +206,67 @@ export default function RootLayout({
       },
       {
         '@type': 'SiteNavigationElement',
-        '@id': 'https://www.unbuenregalo.es/#nav-gta6',
+        '@id': 'https://www.unbuenregalo.es/#nav-competicion',
         position: 3,
+        name: 'Mundo de la Competición: F1, MotoGP y Simracing',
+        url: 'https://www.unbuenregalo.es/competicion',
+      },
+      {
+        '@type': 'SiteNavigationElement',
+        '@id': 'https://www.unbuenregalo.es/#nav-gta6',
+        position: 4,
         name: 'Regalos GTA 6 / GTA VI',
         url: 'https://www.unbuenregalo.es/regalos-gta-6',
       },
       {
         '@type': 'SiteNavigationElement',
         '@id': 'https://www.unbuenregalo.es/#nav-votar',
-        position: 4,
+        position: 5,
         name: 'Votación de Regalos en Grupo',
         url: 'https://www.unbuenregalo.es/votar',
       },
       {
         '@type': 'SiteNavigationElement',
         '@id': 'https://www.unbuenregalo.es/#nav-motoristas',
-        position: 5,
+        position: 6,
         name: 'Regalos para Motoristas',
         url: 'https://www.unbuenregalo.es/motoristas',
       },
       {
         '@type': 'SiteNavigationElement',
         '@id': 'https://www.unbuenregalo.es/#nav-gaming',
-        position: 6,
+        position: 7,
         name: 'Regalos Gaming y Streamers',
         url: 'https://www.unbuenregalo.es/gaming',
       },
       {
         '@type': 'SiteNavigationElement',
         '@id': 'https://www.unbuenregalo.es/#nav-cafe',
-        position: 7,
+        position: 8,
         name: 'Amantes del Café Barista',
         url: 'https://www.unbuenregalo.es/amantes-del-cafe',
+      },
+      {
+        '@type': 'SiteNavigationElement',
+        '@id': 'https://www.unbuenregalo.es/#nav-menos20',
+        position: 9,
+        name: 'Regalos Originales por Menos de 20 Euros',
+        url: 'https://www.unbuenregalo.es/regalos-menos-20-euros',
+      },
+    ],
+  };
+
+  const speculationRulesJson = {
+    prefetch: [
+      {
+        where: {
+          and: [
+            { href_matches: '/*' },
+            { not: { href_matches: '/api/*' } },
+            { not: { href_matches: '/feed/*' } },
+          ],
+        },
+        eagerness: 'moderate',
       },
     ],
   };
@@ -237,9 +274,17 @@ export default function RootLayout({
   return (
     <html lang="es" className="scroll-smooth">
       <head>
+        <link rel="preconnect" href="https://m.media-amazon.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://m.media-amazon.com" />
+        <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema) }}
+        />
+        <script
+          type="speculationrules"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(speculationRulesJson) }}
         />
         <meta name="theme-color" content="#4f46e5" />
         <meta name="msvalidate.01" content="4AF0EBAFECCF6A3AA51203D44DE90AD6" />
@@ -267,6 +312,7 @@ export default function RootLayout({
           `}
         </Script>
 
+        <AnalyticsAndSeoBooster />
         <CurrencyProvider>
           <VotingProvider>
             {children}
