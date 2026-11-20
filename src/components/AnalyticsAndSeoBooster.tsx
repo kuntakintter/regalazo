@@ -9,8 +9,23 @@ declare global {
   }
 }
 
+function isAutomatedVisitor(): boolean {
+  if (typeof navigator === 'undefined') return true;
+  if (navigator.webdriver === true) return true;
+  const ua = navigator.userAgent || '';
+  return /bot|crawl|spider|slurp|headless|lighthouse|pagespeed|inspect|gptbot|chatgpt|claudebot|perplexity|facebookexternalhit|pinterest|whatsapp|telegrambot|discordbot|twitterbot|Applebot|bingpreview/i.test(
+    ua
+  );
+}
+
 function sendGaEvent(eventName: string, params: Record<string, unknown>) {
-  if (typeof window === 'undefined' || typeof window.gtag !== 'function') return;
+  if (
+    typeof window === 'undefined' ||
+    typeof window.gtag !== 'function' ||
+    isAutomatedVisitor()
+  ) {
+    return;
+  }
   try {
     window.gtag('event', eventName, {
       ...params,

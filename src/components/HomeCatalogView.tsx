@@ -1411,14 +1411,18 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
           onApplyRecommendation={handleApplyRecommendation}
         />
 
-        {/* TRENDING DEALS & QUICK BUDGET ACTION BAR */}
+        {/* TRENDING DEALS & QUICK BUDGET ACTION BAR (BLACK FRIDAY & CYBER WEEK EDITION) */}
         <section aria-label={ui.rightWingTitle} className="my-6">
           <div className="bg-gradient-to-r from-slate-950 via-[#131921] to-slate-950 text-white rounded-3xl p-4 sm:p-5 border-2 border-amber-400 shadow-xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
 
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 relative z-10">
               <div className="space-y-1">
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="px-2.5 py-0.5 rounded-full bg-gradient-to-r from-rose-600 to-amber-500 text-white font-black text-[11px] uppercase tracking-wider flex items-center gap-1 shadow-xs animate-pulse">
+                    <span aria-hidden="true">⚡</span>
+                    <span>{isEs ? 'BLACK FRIDAY · OFERTAS ACTIVAS' : 'BLACK FRIDAY DEALS'}</span>
+                  </span>
                   <span className="px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950 font-black text-[11px] uppercase tracking-wider flex items-center gap-1 shadow-xs">
                     <span aria-hidden="true">🔥</span> {ui.rightWingTitle}
                   </span>
@@ -1428,12 +1432,12 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                 </div>
                 <h2 className="text-base sm:text-lg font-black text-white leading-tight">
                   {isEs
-                    ? 'Regalos y Chollos Top Valorados con Descuentos Activos'
+                    ? 'Especial Black Friday y Navidad: Regalos Top Valorados con Descuentos en Directo'
                     : `${ui.leftWingTitle} · ${ui.verifiedCatalogNote}`}
                 </h2>
                 <p className="text-xs text-slate-200 leading-snug">
                   {isEs
-                    ? 'Filtrados con envío rápido Prime y garantía oficial de devolución.'
+                    ? 'Precios actualizados hoy en Amazon con envío rápido Prime y plazo de devolución ampliado para Navidad.'
                     : `${ui.trustPrimeShipping} · ${ui.trustFreeReturns}`}
                 </p>
               </div>

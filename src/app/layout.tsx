@@ -295,7 +295,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </head>
       <body className="antialiased font-sans selection:bg-indigo-500 selection:text-white">
-        {/* Google Analytics 4 (gtag.js) */}
+        {/* Google Analytics 4 (gtag.js) — Automated crawlers, headless browsers and preview bots are excluded so GA4 metrics reflect real human visitors only */}
         <Script
           strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=G-YVZTK194QQ"
@@ -305,10 +305,21 @@ export default function RootLayout({
           strategy="afterInteractive"
         >
           {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-YVZTK194QQ');
+            (function() {
+              var ua = (typeof navigator !== 'undefined' && navigator.userAgent) ? navigator.userAgent : '';
+              var isAutomatedBot =
+                (typeof navigator !== 'undefined' && navigator.webdriver === true) ||
+                /bot|crawl|spider|slurp|headless|lighthouse|pagespeed|inspect|gptbot|chatgpt|claudebot|perplexity|facebookexternalhit|pinterest|whatsapp|telegrambot|discordbot|twitterbot|Applebot|bingpreview/i.test(ua);
+              if (isAutomatedBot) {
+                window['ga-disable-G-YVZTK194QQ'] = true;
+                return;
+              }
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              window.gtag = gtag;
+              gtag('js', new Date());
+              gtag('config', 'G-YVZTK194QQ');
+            })();
           `}
         </Script>
 
