@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { X, ArrowRight, Clock, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import BlackFridayCountdown from '@/components/BlackFridayCountdown';
@@ -25,6 +25,15 @@ export default function BlackFridayPopup() {
     return () => clearTimeout(timer);
   }, []);
 
+  const handleClose = useCallback(() => {
+    setIsOpen(false);
+    try {
+      sessionStorage.setItem(SESSION_DISMISS_KEY, '1');
+    } catch {
+      // ignore storage errors
+    }
+  }, []);
+
   useEffect(() => {
     if (!isOpen) return;
     const onKeyDown = (e: KeyboardEvent) => {
@@ -32,16 +41,7 @@ export default function BlackFridayPopup() {
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [isOpen]);
-
-  const handleClose = () => {
-    setIsOpen(false);
-    try {
-      sessionStorage.setItem(SESSION_DISMISS_KEY, '1');
-    } catch {
-      // ignore storage errors
-    }
-  };
+  }, [isOpen, handleClose]);
 
   if (!isOpen) return null;
 
