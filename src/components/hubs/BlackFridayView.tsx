@@ -564,16 +564,17 @@ export default function BlackFridayView() {
               </p>
             </div>
 
-            <div className="flex flex-col items-start lg:items-end gap-2 shrink-0">
-              <span className="text-[11px] font-black uppercase tracking-widest text-amber-300">
-                Cuenta atrás Black Friday
+            <div className="flex flex-col items-start lg:items-end gap-2 shrink-0 bg-rose-950/50 border border-rose-500/40 rounded-2xl p-3.5 shadow-lg">
+              <span className="text-[11px] font-black uppercase tracking-widest text-rose-300 flex items-center gap-1.5">
+                <Clock className="w-3.5 h-3.5 text-amber-300 animate-pulse" />
+                <span>¡El Black Friday termina en:</span>
               </span>
               <BlackFridayCountdown />
-              {liveDiscountStats.maxDiscount > 0 && (
-                <span className="text-xs font-bold text-rose-300 mt-1">
-                  🔥 Descuentos reales activos ahora hasta -{liveDiscountStats.maxDiscount}%
-                </span>
-              )}
+              <span className="text-[11px] font-bold text-amber-200 mt-0.5">
+                {liveDiscountStats.maxDiscount > 0
+                  ? `🔥 Ofertas activas hasta -${liveDiscountStats.maxDiscount}% antes de que suban los precios`
+                  : '⏳ Aprovecha los descuentos antes de que vuelvan a subir'}
+              </span>
             </div>
           </div>
 

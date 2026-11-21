@@ -29,6 +29,7 @@ import ThemeAtmosphere from '@/components/ThemeAtmosphere';
 import AmazonLiveSearchCard from '@/components/AmazonLiveSearchCard';
 import AmazonGridDiscoveryCard from '@/components/AmazonGridDiscoveryCard';
 import ChristmasCountdown from '@/components/ChristmasCountdown';
+import BlackFridayCountdown from '@/components/BlackFridayCountdown';
 import {
   PRODUCTS,
   AGE_CATEGORIES,
@@ -1428,6 +1429,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                   <span className="px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950 font-black text-[11px] uppercase tracking-wider flex items-center gap-1 shadow-xs">
                     <span aria-hidden="true">🔥</span> {ui.rightWingTitle}
                   </span>
+                  <BlackFridayCountdown compact />
                   <span className="text-xs text-amber-300 font-bold">
                     {amazonSiteName} · {activeCurrency}
                   </span>
