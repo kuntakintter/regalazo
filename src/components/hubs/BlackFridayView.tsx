@@ -646,7 +646,7 @@ export default function BlackFridayView() {
           <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4 pb-4 border-b border-slate-100">
             <div className="flex flex-wrap items-center gap-2.5">
               <div className="flex items-center gap-2 bg-slate-50 border border-indigo-200/85 rounded-xl px-3 py-2 shadow-2xs">
-                <ArrowDownWideNarrow className="w-4 h-4 text-rose-600 shrink-0" />
+                <ArrowDownWideNarrow className="w-4 h-4 text-amber-600 shrink-0" />
                 <span className="text-xs font-black text-slate-700">Ordenar:</span>
                 <select
                   value={sortBy}
@@ -670,13 +670,13 @@ export default function BlackFridayView() {
                 type="button"
                 onClick={() => setDealsOnly((prev) => !prev)}
                 aria-pressed={dealsOnly}
-                className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold border transition-all cursor-pointer ${
+                className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold border-2 transition-all cursor-pointer ${
                   dealsOnly
-                    ? 'bg-rose-600 text-white border-rose-600 shadow-sm ring-2 ring-rose-200'
-                    : 'bg-gradient-to-b from-white to-rose-50/40 text-rose-900 border-rose-200 hover:border-rose-400'
+                    ? 'bg-black text-amber-300 border-amber-400 shadow-sm ring-2 ring-amber-300/40'
+                    : 'bg-black/90 hover:bg-black text-amber-300 border-amber-400/80 hover:border-amber-400'
                 }`}
               >
-                <Percent className="w-3.5 h-3.5" />
+                <Percent className="w-3.5 h-3.5 text-amber-300" />
                 <span>Solo con descuento verificado (%)</span>
               </button>
             </div>
@@ -826,7 +826,7 @@ export default function BlackFridayView() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
             <div>
               <h2 className="text-xl sm:text-2xl font-black text-slate-950 flex items-center gap-2">
-                <span className="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-rose-600 text-white text-sm font-black">
+                <span className="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-black border-2 border-amber-400 text-amber-300 text-sm font-black">
                   %
                 </span>
                 <span>
@@ -973,8 +973,10 @@ export default function BlackFridayView() {
         <section className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-xs space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-1.5">
-              <div className="flex items-center gap-2 text-rose-600 font-black text-sm">
-                <Percent className="w-4 h-4" />
+              <div className="flex items-center gap-2 text-slate-950 font-black text-sm">
+                <span className="inline-flex items-center justify-center w-5 h-5 rounded bg-black border border-amber-400 text-amber-300 text-[11px] font-black">
+                  %
+                </span>
                 <span>Descuentos Reales Verificados</span>
               </div>
               <p className="text-xs text-slate-600 leading-relaxed">

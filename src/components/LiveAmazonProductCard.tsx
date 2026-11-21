@@ -100,7 +100,7 @@ export default function LiveAmazonProductCard({
     <article
       className={`group flex flex-col justify-between p-2.5 sm:p-3 rounded-2xl bg-white transition-all duration-200 relative ${
         product.discountPercent && product.discountPercent >= 25
-          ? 'border-2 border-rose-400/80 hover:border-rose-500 shadow-sm hover:shadow-md'
+          ? 'border-2 border-amber-400 hover:border-amber-500 shadow-sm hover:shadow-md'
           : 'border border-slate-300 hover:border-slate-400 shadow-xs hover:shadow-md'
       }`}
     >
@@ -108,12 +108,12 @@ export default function LiveAmazonProductCard({
       {(product.discountPercent || product.dealBadge) && (
         <div className="absolute top-2.5 left-2.5 z-20 flex flex-col items-start gap-1 pointer-events-none">
           {product.discountPercent && product.discountPercent > 0 && (
-            <span className="inline-flex items-center px-2 py-0.5 rounded-lg bg-rose-600 text-white font-black text-[11px] tracking-tight shadow-md">
+            <span className="inline-flex items-center px-2 py-0.5 rounded-lg bg-black border border-amber-400 text-amber-300 font-black text-[11px] tracking-tight shadow-md">
               -{product.discountPercent}%
             </span>
           )}
           {product.dealBadge && (
-            <span className="inline-flex items-center px-1.5 py-0.5 rounded-md bg-slate-950/90 text-amber-300 font-bold text-[9px] uppercase tracking-wider shadow-sm max-w-[130px] truncate">
+            <span className="inline-flex items-center px-1.5 py-0.5 rounded-md bg-black/95 border border-amber-400/70 text-amber-300 font-bold text-[9px] uppercase tracking-wider shadow-sm max-w-[130px] truncate">
               {product.dealBadge}
             </span>
           )}
