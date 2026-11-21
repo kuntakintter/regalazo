@@ -30,6 +30,7 @@ import AmazonLiveSearchCard from '@/components/AmazonLiveSearchCard';
 import AmazonGridDiscoveryCard from '@/components/AmazonGridDiscoveryCard';
 import ChristmasCountdown from '@/components/ChristmasCountdown';
 import BlackFridayCountdown from '@/components/BlackFridayCountdown';
+import BlackFridayPopup from '@/components/BlackFridayPopup';
 import {
   PRODUCTS,
   AGE_CATEGORIES,
@@ -832,6 +833,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
       />
 
       <ThemeAtmosphere />
+      <BlackFridayPopup />
 
       <Header
         currentTheme="classic"
@@ -841,8 +843,58 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
       />
 
       <main className="flex-1 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 w-full z-10">
+        {/* BLACK FRIDAY SEASON BANNER + LIVE END COUNTDOWN */}
+        <div className="mb-4 bg-gradient-to-r from-[#090b10] via-[#1c1020] to-[#3b0a18] text-white rounded-3xl p-4 sm:p-5 shadow-xl border-2 border-amber-400/95 flex flex-col lg:flex-row items-center justify-between gap-4 relative overflow-hidden">
+          <div className="flex items-center gap-3.5 text-center lg:text-left relative z-10">
+            <span
+              className="w-12 h-12 rounded-2xl bg-gradient-to-br from-rose-600 to-amber-500 text-white font-black text-2xl flex items-center justify-center shadow-lg border border-amber-300/70 shrink-0 select-none"
+              aria-hidden="true"
+            >
+              %
+            </span>
+            <div>
+              <div className="flex items-center justify-center lg:justify-start gap-2 mb-0.5 flex-wrap">
+                <span className="px-2 py-0.5 rounded-full bg-gradient-to-r from-rose-600 to-amber-500 text-white font-black text-[10px] uppercase tracking-wider">
+                  {isEs ? '% BLACK FRIDAY 2026' : '% BLACK FRIDAY 2026'}
+                </span>
+                <span className="text-xs text-amber-200 font-semibold">
+                  {isEs ? 'Descuentos Reales en Directo · Precios más bajos' : 'Live Real Discounts · Lowest Seller Prices'}
+                </span>
+              </div>
+              <p className="text-base sm:text-lg font-black text-white">
+                {isEs
+                  ? '¡Bazar Black Friday con Miles de Productos Rebajados!'
+                  : 'Black Friday Bazaar with Thousands of Real Deals!'}
+              </p>
+              <p className="text-xs text-slate-200 max-w-xl">
+                {isEs
+                  ? 'Ordenados de mayor a menor % de descuento real, con buscador propio, rango de precios, edades y enlaces directos verificados.'
+                  : 'Sorted by biggest real % discount, with custom price range, age & category filters and verified links.'}
+              </p>
+            </div>
+          </div>
+
+          <div className="shrink-0 my-1 lg:my-0 flex flex-col items-center gap-1 relative z-10">
+            <span className="text-[10px] font-black uppercase tracking-widest text-amber-300">
+              {isEs ? 'EL BLACK FRIDAY TERMINA EN' : 'BLACK FRIDAY ENDS IN'}
+            </span>
+            <BlackFridayCountdown />
+          </div>
+
+          <Link
+            href="/black-friday"
+            className="shrink-0 px-5 py-2.5 rounded-2xl bg-gradient-to-r from-rose-600 via-rose-500 to-amber-500 hover:from-rose-500 hover:to-amber-400 text-white font-black text-xs sm:text-sm shadow-md border border-amber-300/70 hover:scale-105 transition-all flex items-center gap-2 cursor-pointer relative z-10"
+          >
+            <span className="inline-flex items-center justify-center px-1.5 py-0.5 rounded bg-white/20 font-black text-[11px]">
+              %
+            </span>
+            <span>{isEs ? 'Ver Bazar Black Friday' : 'Open Black Friday Bazaar'}</span>
+            <ArrowRight className="w-4 h-4" aria-hidden="true" />
+          </Link>
+        </div>
+
         {/* CHRISTMAS SANTA LETTER BANNER + COUNTDOWN */}
-        <div className="mb-4 bg-gradient-to-r from-[#8a1420] via-[#5c0f18] to-[#0c2217] text-white rounded-3xl p-4 sm:p-5 shadow-xl border-2 border-amber-400/90 flex flex-col lg:flex-row items-center justify-between gap-4">
+        <div className="mb-6 bg-gradient-to-r from-[#8a1420] via-[#5c0f18] to-[#0c2217] text-white rounded-3xl p-4 sm:p-5 shadow-xl border-2 border-amber-400/90 flex flex-col lg:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3.5 text-center lg:text-left">
             <span className="text-4xl animate-bounce select-none shrink-0" aria-hidden="true">
               🎅
@@ -875,29 +927,6 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
           >
             <span>✉️ {ui.navLetter}</span>
             <ArrowRight className="w-4 h-4" aria-hidden="true" />
-          </Link>
-        </div>
-
-        {/* GTA 6 & GTA VI PROMO BANNER */}
-        <div className="mb-6 bg-gradient-to-r from-[#190a28] via-[#0f0e24] to-[#061822] text-white rounded-2xl px-4 py-2.5 sm:px-5 sm:py-3 shadow-lg border border-pink-500/50 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div className="flex items-center gap-3 text-center sm:text-left">
-            <span className="text-2xl select-none shrink-0" aria-hidden="true">
-              🌴
-            </span>
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="px-2 py-0.5 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 text-white font-black text-[10px] uppercase tracking-wider">
-                {ui.bannerGtaBadge}
-              </span>
-              <p className="text-xs sm:text-sm font-black text-white">{ui.bannerGtaTitle}</p>
-              <span className="text-xs text-slate-200 hidden md:inline">{ui.bannerGtaDesc}</span>
-            </div>
-          </div>
-          <Link
-            href={localePath('/regalos-gta-6')}
-            className="shrink-0 px-4 py-1.5 rounded-xl bg-gradient-to-r from-pink-500 via-purple-600 to-cyan-500 hover:from-pink-600 hover:to-cyan-600 text-white font-black text-xs shadow-md hover:scale-105 transition-all flex items-center gap-1.5 cursor-pointer"
-          >
-            <span>{ui.bannerGtaCta}</span>
-            <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
           </Link>
         </div>
 

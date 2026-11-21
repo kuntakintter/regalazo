@@ -79,6 +79,7 @@ const redirects = [
   '/regalos-20-a-50-euros /regalos-de-20-a-50-euros 301',
   '/regalos-50-a-100-euros /regalos-de-50-a-100-euros 301',
   '/coches-electricos-infantiles /coches-electricos-para-ninos 301',
+  '/blackfriday /black-friday 301',
 ].join('\n') + '\n';
 fs.writeFileSync('public/_redirects', redirects, 'utf8');
 
