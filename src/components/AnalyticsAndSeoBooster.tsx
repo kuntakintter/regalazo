@@ -42,6 +42,19 @@ export default function AnalyticsAndSeoBooster() {
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
+    // Track session start time in sessionStorage across SPA navigations
+    let sessionStartTime = Number(sessionStorage.getItem('ubr_session_start'));
+    if (!sessionStartTime || Number.isNaN(sessionStartTime)) {
+      sessionStartTime = Date.now();
+      try {
+        sessionStorage.setItem('ubr_session_start', String(sessionStartTime));
+      } catch {
+        // storage disabled or private mode
+      }
+    }
+
+    const getSessionDurationSec = () => Math.max(1, Math.round((Date.now() - sessionStartTime) / 1000));
+
     let pageEnterTime = performance.now();
     let firedScroll50 = false;
     let firedScroll85 = false;
@@ -51,11 +64,45 @@ export default function AnalyticsAndSeoBooster() {
     firedScroll50 = false;
     firedScroll85 = false;
 
+    // 1. Periodic Heartbeat to guarantee GA4 records exact session duration even if user doesn't click
+    const heartbeatMilestones = [10, 25, 45, 60, 90, 120, 180, 240, 300];
+    const heartbeatTimeouts: NodeJS.Timeout[] = [];
+
+    heartbeatMilestones.forEach((sec) => {
+      const timer = setTimeout(() => {
+        if (document.visibilityState === 'visible') {
+          const currentElapsedSec = Math.round((performance.now() - pageEnterTime) / 1000);
+          sendGaEvent('session_heartbeat', {
+            event_category: 'session_engagement',
+            page_path: window.location.pathname,
+            session_duration_sec: getSessionDurationSec(),
+            time_on_page_sec: currentElapsedSec,
+            engagement_time_msec: currentElapsedSec * 1000,
+          });
+        }
+      }, sec * 1000);
+      heartbeatTimeouts.push(timer);
+    });
+
+    // Steady heartbeat every 60s after 5 minutes
+    const longInterval = setInterval(() => {
+      if (document.visibilityState === 'visible') {
+        const currentElapsedSec = Math.round((performance.now() - pageEnterTime) / 1000);
+        sendGaEvent('session_heartbeat', {
+          event_category: 'session_engagement',
+          page_path: window.location.pathname,
+          session_duration_sec: getSessionDurationSec(),
+          time_on_page_sec: currentElapsedSec,
+          engagement_time_msec: currentElapsedSec * 1000,
+        });
+      }
+    }, 60000);
+
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement | null;
       if (!target) return;
 
-      // 1. Outbound Amazon Affiliate Click -> flush elapsed engagement time immediately via beacon
+      // 2. Outbound Amazon Affiliate Click -> flush elapsed engagement and session time immediately via beacon
       const anchor = target.closest('a');
       if (anchor && anchor.href) {
         const href = anchor.href;
@@ -72,6 +119,7 @@ export default function AnalyticsAndSeoBooster() {
             event_label: label,
             link_url: href,
             page_path: window.location.pathname,
+            session_duration_sec: getSessionDurationSec(),
             time_on_page_sec: elapsedSec,
             engagement_time_msec: Math.max(100, Math.round(performance.now() - pageEnterTime)),
           });
@@ -79,7 +127,7 @@ export default function AnalyticsAndSeoBooster() {
         }
       }
 
-      // 2. Interactive Filter / Category Pill / Sort Button Click -> record micro-interaction
+      // 3. Interactive Filter / Category Pill / Sort Button Click -> record micro-interaction
       const button = target.closest('button');
       if (button) {
         const now = performance.now();
@@ -95,6 +143,7 @@ export default function AnalyticsAndSeoBooster() {
           event_category: 'ui_filter',
           event_label: btnText,
           page_path: window.location.pathname,
+          session_duration_sec: getSessionDurationSec(),
           engagement_time_msec: Math.max(100, Math.round(now - pageEnterTime)),
         });
       }
@@ -112,6 +161,7 @@ export default function AnalyticsAndSeoBooster() {
           event_category: 'engagement',
           percent_scrolled: 50,
           page_path: window.location.pathname,
+          session_duration_sec: getSessionDurationSec(),
           engagement_time_msec: Math.max(100, Math.round(performance.now() - pageEnterTime)),
         });
       } else if (!firedScroll85 && ratio >= 0.85) {
@@ -120,6 +170,7 @@ export default function AnalyticsAndSeoBooster() {
           event_category: 'engagement',
           percent_scrolled: 85,
           page_path: window.location.pathname,
+          session_duration_sec: getSessionDurationSec(),
           engagement_time_msec: Math.max(100, Math.round(performance.now() - pageEnterTime)),
         });
       }
@@ -128,10 +179,11 @@ export default function AnalyticsAndSeoBooster() {
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'hidden') {
         const elapsedMs = Math.round(performance.now() - pageEnterTime);
-        if (elapsedMs >= 5000) {
+        if (elapsedMs >= 3000) {
           sendGaEvent('page_active_time_flush', {
             event_category: 'engagement',
             page_path: window.location.pathname,
+            session_duration_sec: getSessionDurationSec(),
             active_seconds: Math.round(elapsedMs / 1000),
             engagement_time_msec: elapsedMs,
           });
@@ -142,14 +194,31 @@ export default function AnalyticsAndSeoBooster() {
       }
     };
 
+    const handleBeforeUnload = () => {
+      const elapsedMs = Math.round(performance.now() - pageEnterTime);
+      if (elapsedMs >= 2000) {
+        sendGaEvent('page_active_time_flush', {
+          event_category: 'engagement',
+          page_path: window.location.pathname,
+          session_duration_sec: getSessionDurationSec(),
+          active_seconds: Math.round(elapsedMs / 1000),
+          engagement_time_msec: elapsedMs,
+        });
+      }
+    };
+
     document.addEventListener('click', handleClick, { capture: true, passive: true });
     window.addEventListener('scroll', handleScroll, { passive: true });
     document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('beforeunload', handleBeforeUnload);
 
     return () => {
+      heartbeatTimeouts.forEach((t) => clearTimeout(t));
+      clearInterval(longInterval);
       document.removeEventListener('click', handleClick, { capture: true });
       window.removeEventListener('scroll', handleScroll);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('beforeunload', handleBeforeUnload);
     };
   }, [pathname]);
 
