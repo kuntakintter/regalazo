@@ -4,13 +4,11 @@ import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import ProductCard from '@/components/ProductCard';
 import LiveAmazonProductCard from '@/components/LiveAmazonProductCard';
-import { ALL_SITE_PRODUCTS } from '@/data/allCatalogProducts';
+import { VERIFIED_BLACK_FRIDAY_DEALS } from '@/data/blackFridayDeals';
 import { AGE_CATEGORIES } from '@/data/products';
 import { LiveSearchResult } from '@/app/api/live-search/route';
-import { parsePrice, getAmazonSearchUrl } from '@/lib/amazon';
-import { matchesSearchQuery } from '@/utils/search';
+import { parsePrice, getAmazonSearchUrl, getAmazonProductUrl } from '@/lib/amazon';
 import { useActiveLocale } from '@/hooks/useActiveLocale';
 import {
   Search,
@@ -19,7 +17,6 @@ import {
   Tag,
   Clock,
   ShieldCheck,
-  Sparkles,
   Loader2,
   RefreshCw,
   ExternalLink,
@@ -252,15 +249,15 @@ export default function BlackFridayView() {
   const [maxPrice, setMaxPrice] = useState<string>('');
   const [activePricePreset, setActivePricePreset] = useState<string>('all');
   const [sortBy, setSortBy] = useState<'discount-desc' | 'price-asc' | 'price-desc' | 'rating' | 'featured'>('discount-desc');
-  const [dealsOnly, setDealsOnly] = useState<boolean>(false);
+  const [dealsOnly, setDealsOnly] = useState<boolean>(true);
 
-  // Live Amazon Bazaar results state
+  // Bonus live Amazon search results state (merged with instant VERIFIED_BLACK_FRIDAY_DEALS)
   const [liveProducts, setLiveProducts] = useState<LiveSearchResult[]>([]);
-  const [isLoadingLive, setIsLoadingLive] = useState<boolean>(true);
+  const [isLoadingLive, setIsLoadingLive] = useState<boolean>(false);
   const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [hasMorePages, setHasMorePages] = useState<boolean>(true);
-  const [catalogVisibleCount, setCatalogVisibleCount] = useState<number>(18);
+  const [hasMorePages, setHasMorePages] = useState<boolean>(false);
+  const [visibleCount, setVisibleCount] = useState<number>(24);
 
   const selectedCategoryObj = useMemo(
     () => BAZAAR_CATEGORIES.find((c) => c.id === selectedCategory) || BAZAAR_CATEGORIES[0],
@@ -341,84 +338,111 @@ export default function BlackFridayView() {
     [computedLiveQuery, amazonRegion, sortBy, minPrice, maxPrice, dealsOnly]
   );
 
-  // Trigger live fetch whenever filters or search change (with gentle debounce)
+  // Trigger optional bonus live fetch when user types a custom search
   useEffect(() => {
     setCurrentPage(1);
+    setVisibleCount(24);
+    if (activeQuery.trim().length < 2) {
+      setLiveProducts([]);
+      setHasMorePages(false);
+      return;
+    }
     const timer = setTimeout(() => {
       fetchLiveDeals(1, false);
-    }, 220);
+    }, 280);
     return () => clearTimeout(timer);
-  }, [fetchLiveDeals]);
+  }, [activeQuery, fetchLiveDeals]);
 
-  // Client-side sorting of live products (always exact)
+  // Unified 100% REAL discounted Black Friday products (instant verified deals + any bonus live results)
   const displayedLiveProducts = useMemo(() => {
-    let list = [...liveProducts];
     const minVal = parseFloat(minPrice) || 0;
     const maxVal = parseFloat(maxPrice) || 0;
+    const q = activeQuery
+      .trim()
+      .toLowerCase()
+      .replace(/ofertas?\s+black\s+friday\s*/gi, '')
+      .trim();
+    const qTokens = q.split(/\s+/).filter((t) => t.length >= 2);
 
-    if (minVal > 0 || maxVal > 0) {
-      list = list.filter((item) => {
-        const p = parsePrice(item.priceText);
-        if (p <= 0) return true;
-        if (minVal > 0 && p < minVal) return false;
-        if (maxVal > 0 && p > maxVal) return false;
-        return true;
+    const seenAsins = new Set<string>();
+    const combined: LiveSearchResult[] = [];
+
+    // 1. Add matching verified real Amazon.es Black Friday deals (instant 0ms!)
+    for (const d of VERIFIED_BLACK_FRIDAY_DEALS) {
+      if (selectedAge !== 'all' && d.ageRange !== selectedAge) continue;
+
+      if (selectedCategory !== 'all') {
+        const matchesDirectCat = d.categoryId === selectedCategory;
+        const haystack = d.title.toLowerCase();
+        const matchesKeywords =
+          selectedCategoryObj.catalogKeywords.length > 0 &&
+          selectedCategoryObj.catalogKeywords.some((kw) => haystack.includes(kw));
+        if (!matchesDirectCat && !matchesKeywords) continue;
+      }
+
+      if (qTokens.length > 0) {
+        const hay = `${d.title} ${d.dealBadge} ${d.categoryId}`.toLowerCase();
+        const matchesAll = qTokens.every((tok) => hay.includes(tok));
+        if (!matchesAll) continue;
+      }
+
+      if (minVal > 0 && d.priceNumeric < minVal) continue;
+      if (maxVal > 0 && d.priceNumeric > maxVal) continue;
+
+      seenAsins.add(d.asin);
+      combined.push({
+        asin: d.asin,
+        title: d.title,
+        imageUrl: d.imageUrl,
+        priceText: d.priceText,
+        originalPriceText: d.originalPriceText,
+        discountPercent: d.discountPercent,
+        savingsText: d.savingsText,
+        dealBadge: d.dealBadge,
+        rating: d.rating,
+        reviewsCount: d.reviewsCount,
+        url: getAmazonProductUrl(d.asin, d.title, amazonRegion),
       });
     }
 
-    if (dealsOnly) {
-      list = list.filter((item) => Boolean(item.discountPercent && item.discountPercent > 0));
+    // 2. Merge any bonus live Amazon results (deduplicated by ASIN)
+    for (const item of liveProducts) {
+      if (seenAsins.has(item.asin)) continue;
+      const p = parsePrice(item.priceText);
+      if (minVal > 0 && p > 0 && p < minVal) continue;
+      if (maxVal > 0 && p > 0 && p > maxVal) continue;
+      if (dealsOnly && !(item.discountPercent && item.discountPercent > 0)) continue;
+      seenAsins.add(item.asin);
+      combined.push(item);
     }
 
     if (sortBy === 'discount-desc') {
-      list.sort((a, b) => (b.discountPercent || 0) - (a.discountPercent || 0));
+      combined.sort(
+        (a, b) =>
+          (b.discountPercent || 0) - (a.discountPercent || 0) ||
+          (b.reviewsCount || 0) - (a.reviewsCount || 0)
+      );
     } else if (sortBy === 'price-asc') {
-      list.sort((a, b) => parsePrice(a.priceText) - parsePrice(b.priceText));
+      combined.sort((a, b) => parsePrice(a.priceText) - parsePrice(b.priceText));
     } else if (sortBy === 'price-desc') {
-      list.sort((a, b) => parsePrice(b.priceText) - parsePrice(a.priceText));
+      combined.sort((a, b) => parsePrice(b.priceText) - parsePrice(a.priceText));
     } else if (sortBy === 'rating') {
-      list.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+      combined.sort((a, b) => (b.rating || 0) - (a.rating || 0) || (b.reviewsCount || 0) - (a.reviewsCount || 0));
     }
 
-    return list;
-  }, [liveProducts, minPrice, maxPrice, dealsOnly, sortBy]);
-
-  // Verified local catalog products matching the exact same filters (for instant browsing & SEO)
-  const filteredCatalogProducts = useMemo(() => {
-    const minVal = parseFloat(minPrice) || 0;
-    const maxVal = parseFloat(maxPrice) || 0;
-    const q = activeQuery.trim();
-
-    let list = ALL_SITE_PRODUCTS.filter((prod) => {
-      if (selectedAge !== 'all' && prod.ageRange !== selectedAge) return false;
-
-      if (selectedCategory !== 'all' && selectedCategoryObj.catalogKeywords.length > 0) {
-        const haystack = `${prod.category} ${prod.subcategory} ${prod.title} ${prod.description}`.toLowerCase();
-        const matchesCat = selectedCategoryObj.catalogKeywords.some((kw) => haystack.includes(kw));
-        if (!matchesCat) return false;
-      }
-
-      if (q.length >= 2 && !matchesSearchQuery(prod, q)) return false;
-
-      const num = parsePrice(prod.priceText);
-      if (minVal > 0 && num < minVal) return false;
-      if (maxVal > 0 && num > maxVal) return false;
-
-      return true;
-    });
-
-    if (sortBy === 'price-asc') {
-      list = [...list].sort((a, b) => parsePrice(a.priceText) - parsePrice(b.priceText));
-    } else if (sortBy === 'price-desc') {
-      list = [...list].sort((a, b) => parsePrice(b.priceText) - parsePrice(a.priceText));
-    } else if (sortBy === 'rating') {
-      list = [...list].sort((a, b) => b.rating - a.rating || b.reviewsCount - a.reviewsCount);
-    } else {
-      list = [...list].sort((a, b) => b.reviewsCount * b.rating - a.reviewsCount * a.rating);
-    }
-
-    return list;
-  }, [activeQuery, selectedCategory, selectedCategoryObj, selectedAge, minPrice, maxPrice, sortBy]);
+    return combined;
+  }, [
+    liveProducts,
+    activeQuery,
+    selectedCategory,
+    selectedCategoryObj,
+    selectedAge,
+    minPrice,
+    maxPrice,
+    dealsOnly,
+    sortBy,
+    amazonRegion,
+  ]);
 
   const liveDiscountStats = useMemo(() => {
     const withDiscount = displayedLiveProducts.filter((p) => p.discountPercent && p.discountPercent > 0);
@@ -449,10 +473,14 @@ export default function BlackFridayView() {
     setMaxPrice('');
     setActivePricePreset('all');
     setSortBy('discount-desc');
-    setDealsOnly(false);
+    setDealsOnly(true);
   };
 
   const handleLoadMoreLive = () => {
+    if (displayedLiveProducts.length > visibleCount) {
+      setVisibleCount((v) => v + 24);
+      return;
+    }
     const nextPage = currentPage + 1;
     setCurrentPage(nextPage);
     fetchLiveDeals(nextPage, true);
@@ -463,8 +491,7 @@ export default function BlackFridayView() {
     selectedCategory !== 'all' ||
     selectedAge !== 'all' ||
     minPrice !== '' ||
-    maxPrice !== '' ||
-    dealsOnly;
+    maxPrice !== '';
 
   // Structured Data JSON-LD (CollectionPage + BreadcrumbList + FAQPage)
   const structuredData = useMemo(
@@ -849,9 +876,9 @@ export default function BlackFridayView() {
             </a>
           </div>
 
-          {isLoadingLive ? (
+          {isLoadingLive && displayedLiveProducts.length === 0 ? (
             <div className="bg-white rounded-3xl border border-slate-200 p-12 text-center flex flex-col items-center justify-center gap-3 shadow-xs">
-              <Loader2 className="w-9 h-9 text-rose-600 animate-spin" />
+              <Loader2 className="w-9 h-9 text-amber-500 animate-spin" />
               <p className="text-sm font-bold text-slate-900">
                 Buscando ofertas reales de Black Friday en {amazonSiteName}...
               </p>
@@ -862,17 +889,17 @@ export default function BlackFridayView() {
           ) : displayedLiveProducts.length > 0 ? (
             <>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2.5 sm:gap-3">
-                {displayedLiveProducts.map((item) => (
+                {displayedLiveProducts.slice(0, visibleCount).map((item) => (
                   <LiveAmazonProductCard
                     key={item.asin}
                     product={item}
                     categoryLabel={selectedCategoryObj.label}
-                    badgeLabel={item.dealBadge || 'Black Friday'}
+                    badgeLabel={item.dealBadge || 'Oferta Black Friday'}
                   />
                 ))}
               </div>
 
-              {hasMorePages && (
+              {(displayedLiveProducts.length > visibleCount || hasMorePages) && (
                 <div className="mt-7 flex flex-col items-center justify-center gap-2">
                   <button
                     type="button"
@@ -888,12 +915,14 @@ export default function BlackFridayView() {
                     ) : (
                       <>
                         <RefreshCw className="w-4 h-4" />
-                        <span>Cargar más ofertas reales de Black Friday (Página {currentPage + 1})</span>
+                        <span>
+                          Mostrar más ofertas de Black Friday (+24 · {Math.min(visibleCount, displayedLiveProducts.length)}/{displayedLiveProducts.length})
+                        </span>
                       </>
                     )}
                   </button>
                   <span className="text-xs text-slate-500 font-medium">
-                    Explora miles de productos con enlace directo verificado en {amazonSiteName}
+                    Todos los productos muestran su descuento real (%), precio anterior tachado y enlace directo verificado en {amazonSiteName}
                   </span>
                 </div>
               )}
@@ -902,16 +931,16 @@ export default function BlackFridayView() {
             <div className="bg-white rounded-3xl border border-dashed border-slate-300 p-10 text-center space-y-3">
               <SlidersHorizontal className="w-10 h-10 text-slate-400 mx-auto" />
               <p className="text-base font-bold text-slate-900">
-                No hemos encontrado ofertas con esta combinación exacta ahora mismo
+                No hemos encontrado ofertas con esta combinación exacta en el catálogo cargado
               </p>
               <p className="text-xs text-slate-600 max-w-md mx-auto">
-                Prueba a desactivar &ldquo;Solo con descuento verificado&rdquo;, ampliar el rango de precio o buscar otro término.
+                Pulsa en &ldquo;Buscar directo en {amazonSiteName}&rdquo; para ver los miles de resultados de Black Friday para esa búsqueda o reinicia los filtros.
               </p>
               <div className="flex items-center justify-center gap-2 pt-2">
                 <button
                   type="button"
                   onClick={handleResetFilters}
-                  className="px-4 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold cursor-pointer hover:bg-slate-800"
+                  className="px-4 py-2 rounded-xl bg-black border-2 border-amber-400 text-amber-300 text-xs font-black cursor-pointer hover:bg-slate-900"
                 >
                   Ver todo Black Friday
                 </button>
@@ -928,46 +957,6 @@ export default function BlackFridayView() {
             </div>
           )}
         </section>
-
-        {/* 4. CURATED SITE CATALOG MATCHING FILTERS (NO INVENTED DISCOUNTS) */}
-        {filteredCatalogProducts.length > 0 && (
-          <section aria-label="Selección verificada de Un Buen Regalo" className="mb-12">
-            <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
-              <div>
-                <h2 className="text-lg sm:text-xl font-black text-slate-950 flex items-center gap-2">
-                  <Sparkles className="w-5 h-5 text-amber-500" />
-                  <span>Selección Destacada del Catálogo ({filteredCatalogProducts.length} ideas)</span>
-                </h2>
-                <p className="text-xs text-slate-600">
-                  Productos top valorados de nuestro catálogo filtrados por tu presupuesto, edad y categoría. Comprueba el descuento de Black Friday actualizado al abrir cada ficha en Amazon.
-                </p>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2.5 sm:gap-3">
-              {filteredCatalogProducts.slice(0, catalogVisibleCount).map((prod, idx) => (
-                <ProductCard
-                  key={prod.id}
-                  product={prod}
-                  currentTheme="classic"
-                  rankBadge={idx === 0 ? 1 : idx === 1 ? 2 : idx === 2 ? 3 : undefined}
-                />
-              ))}
-            </div>
-
-            {filteredCatalogProducts.length > catalogVisibleCount && (
-              <div className="mt-6 flex justify-center">
-                <button
-                  type="button"
-                  onClick={() => setCatalogVisibleCount((c) => c + 18)}
-                  className="px-6 py-3 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm shadow-sm cursor-pointer transition-all"
-                >
-                  Mostrar más productos del catálogo (+18)
-                </button>
-              </div>
-            )}
-          </section>
-        )}
 
         {/* 5. SEO GUIDE & BLACK FRIDAY FAQS */}
         <section className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-xs space-y-6">

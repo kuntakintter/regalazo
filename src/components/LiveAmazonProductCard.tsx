@@ -225,23 +225,39 @@ export default function LiveAmazonProductCard({
           )}
         </div>
 
-        <div className="pt-1 mt-auto">
+        <div className="pt-1.5 mt-auto">
+          {product.dealBadge && (
+            <div className="mb-1">
+              <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-black border border-amber-400 text-amber-300 font-black text-[10px] uppercase tracking-wider shadow-2xs">
+                {product.dealBadge}
+              </span>
+            </div>
+          )}
+
           <div className="flex flex-wrap items-baseline gap-1.5 mb-0.5">
+            {product.discountPercent && product.discountPercent > 0 && (
+              <span className="text-base sm:text-lg font-black text-rose-600 tracking-tight">
+                -{product.discountPercent}%
+              </span>
+            )}
             <span className="text-base sm:text-lg font-black text-slate-950 tracking-tight">
               {formatPrice(product.priceText)}
             </span>
-            {product.originalPriceText && (
-              <span className="text-xs font-semibold text-slate-400 line-through">
-                {formatPrice(product.originalPriceText)}
-              </span>
-            )}
           </div>
 
-          {product.savingsText && (
-            <div className="mb-1">
-              <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-emerald-50 border border-emerald-200 text-emerald-800 font-bold text-[10px]">
-                Ahorras {formatPrice(product.savingsText)}
+          {product.originalPriceText && (
+            <div className="flex flex-wrap items-center gap-1.5 mb-1">
+              <span className="text-[11px] font-medium text-slate-500">
+                Antes:{' '}
+                <span className="line-through font-semibold text-slate-500">
+                  {formatPrice(product.originalPriceText)}
+                </span>
               </span>
+              {product.savingsText && (
+                <span className="inline-flex items-center px-1.5 py-0.5 rounded-md bg-emerald-50 border border-emerald-200 text-emerald-800 font-bold text-[10px]">
+                  Ahorras {formatPrice(product.savingsText)}
+                </span>
+              )}
             </div>
           )}
 
