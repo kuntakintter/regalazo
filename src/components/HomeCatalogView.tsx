@@ -1445,6 +1445,14 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
               </div>
 
               <div className="flex flex-wrap items-center gap-2">
+                <Link
+                  href="/black-friday"
+                  className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-rose-600 via-rose-500 to-amber-500 hover:from-rose-500 hover:to-amber-400 text-white font-black text-xs flex items-center gap-1.5 transition-all shadow-md hover:scale-102 active:scale-98 cursor-pointer border border-amber-300/60"
+                >
+                  <span className="inline-flex items-center justify-center px-1 rounded bg-white/20 font-black">%</span>
+                  <span>{isEs ? 'Entrar al Bazar Black Friday' : 'Black Friday Bazaar'}</span>
+                  <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+                </Link>
                 <button
                   type="button"
                   onClick={() => handleQuickPrompt({ query: 'ofertas', sort: 'rating' })}

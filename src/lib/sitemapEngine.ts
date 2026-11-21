@@ -191,6 +191,9 @@ export function getActiveStockForRoute(
 
     case 'hub': {
       const slug = routeSpec.slug || '';
+      if (slug === 'black-friday') {
+        return activeCatalog.length;
+      }
       if (HUB_COLLECTION_MAP[slug]) {
         return HUB_COLLECTION_MAP[slug].filter(isItemActiveInStock).length;
       }
@@ -231,7 +234,7 @@ export function getActiveStockForRoute(
 export function getAllCanonicalRouteSpecs(): CanonicalRouteSpec[] {
   const specs: CanonicalRouteSpec[] = [];
 
-  // 1. OCASIONES & HERRAMIENTAS: Home + Static Hubs (excluding budget hub) + Gender Filters
+  // 1. OCASIONES & HERRAMIENTAS: Home + Black Friday Bazaar + Static Hubs (excluding budget hub) + Gender Filters
   specs.push({
     id: 'home',
     baseEsPath: '/',
@@ -239,6 +242,16 @@ export function getAllCanonicalRouteSpecs(): CanonicalRouteSpec[] {
     priority: 1.0,
     changefreq: 'daily',
     kind: 'home',
+  });
+
+  specs.push({
+    id: 'hub:black-friday',
+    baseEsPath: '/black-friday',
+    category: 'ocasiones',
+    priority: 0.95,
+    changefreq: 'daily',
+    kind: 'hub',
+    slug: 'black-friday',
   });
 
   for (const hubSlug of ALL_STATIC_HUB_SLUGS) {

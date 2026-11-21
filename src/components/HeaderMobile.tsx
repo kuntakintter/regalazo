@@ -367,18 +367,22 @@ export default function HeaderMobile({
       {/* 2. SUB-NAV MENÚ MÓVIL */}
       <nav aria-label={ui.navMenu} className="bg-[#1f2833] text-white border-t border-slate-700/60 shadow-inner px-3 py-2">
         {/* Botón Destacado Móvil: Mundo de la Competición */}
-        <div className="mb-2">
+        <div className="mb-2 grid grid-cols-2 gap-2">
+          <Link
+            href="/black-friday"
+            className="w-full h-9 flex items-center justify-center gap-1.5 px-2.5 rounded-xl bg-gradient-to-r from-rose-600 via-rose-500 to-amber-500 text-white text-xs font-black shadow-md border border-amber-300/80 active:scale-98 transition-all"
+          >
+            <span className="inline-flex items-center justify-center px-1 rounded bg-white/20 text-white font-black text-[11px] leading-none" aria-hidden="true">
+              %
+            </span>
+            <span className="tracking-tight truncate">Bazar Black Friday</span>
+          </Link>
           <Link
             href={localePath('/competicion')}
-            className="w-full h-9 flex items-center justify-between px-3 rounded-xl bg-gradient-to-r from-red-600 via-rose-700 to-amber-600 text-white text-xs font-black shadow-md border border-red-400/60 active:scale-98 transition-all"
+            className="w-full h-9 flex items-center justify-center gap-1.5 px-2.5 rounded-xl bg-gradient-to-r from-red-600 via-rose-700 to-amber-600 text-white text-xs font-black shadow-md border border-red-400/60 active:scale-98 transition-all"
           >
-            <div className="flex items-center gap-2">
-              <span className="text-base" aria-hidden="true">🏁</span>
-              <span className="tracking-tight">Mundo de la Competición</span>
-            </div>
-            <span className="text-[10px] bg-white/20 px-2 py-0.5 rounded-full font-bold">
-              F1 · MotoGP · Scalextric
-            </span>
+            <span className="text-sm" aria-hidden="true">🏁</span>
+            <span className="tracking-tight truncate">Competición</span>
           </Link>
         </div>
 

@@ -97,7 +97,29 @@ export default function LiveAmazonProductCard({
   };
 
   return (
-    <article className="group flex flex-col justify-between p-2.5 sm:p-3 rounded-2xl bg-white border border-slate-300 hover:border-slate-400 shadow-xs hover:shadow-md transition-all duration-200 relative">
+    <article
+      className={`group flex flex-col justify-between p-2.5 sm:p-3 rounded-2xl bg-white transition-all duration-200 relative ${
+        product.discountPercent && product.discountPercent >= 25
+          ? 'border-2 border-rose-400/80 hover:border-rose-500 shadow-sm hover:shadow-md'
+          : 'border border-slate-300 hover:border-slate-400 shadow-xs hover:shadow-md'
+      }`}
+    >
+      {/* Real Discount & Black Friday Badges (only rendered when Amazon returns real deal data) */}
+      {(product.discountPercent || product.dealBadge) && (
+        <div className="absolute top-2.5 left-2.5 z-20 flex flex-col items-start gap-1 pointer-events-none">
+          {product.discountPercent && product.discountPercent > 0 && (
+            <span className="inline-flex items-center px-2 py-0.5 rounded-lg bg-rose-600 text-white font-black text-[11px] tracking-tight shadow-md">
+              -{product.discountPercent}%
+            </span>
+          )}
+          {product.dealBadge && (
+            <span className="inline-flex items-center px-1.5 py-0.5 rounded-md bg-slate-950/90 text-amber-300 font-bold text-[9px] uppercase tracking-wider shadow-sm max-w-[130px] truncate">
+              {product.dealBadge}
+            </span>
+          )}
+        </div>
+      )}
+
       {/* Product Image Viewport */}
       <div className="relative aspect-square w-full mb-2 bg-slate-50/80 rounded-xl overflow-hidden p-2 flex items-center justify-center border border-slate-100">
         <a
@@ -179,32 +201,49 @@ export default function LiveAmazonProductCard({
             </a>
           </p>
 
-          <div className="flex items-center gap-1 text-[11px] mb-1.5">
-            <div className="flex items-center text-amber-500">
-              {[...Array(5)].map((_, i) => (
-                <Star
-                  key={i}
-                  className={`w-3.5 h-3.5 ${
-                    i < Math.floor(product.rating)
-                      ? 'fill-amber-400 text-amber-400'
-                      : 'fill-slate-200 text-slate-200'
-                  }`}
-                />
-              ))}
+          {product.rating > 0 && (
+            <div className="flex items-center gap-1 text-[11px] mb-1.5">
+              <div className="flex items-center text-amber-500">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    className={`w-3.5 h-3.5 ${
+                      i < Math.floor(product.rating)
+                        ? 'fill-amber-400 text-amber-400'
+                        : 'fill-slate-200 text-slate-200'
+                    }`}
+                  />
+                ))}
+              </div>
+              <span className="font-bold text-slate-900 text-xs ml-0.5">{product.rating}</span>
+              {product.reviewsCount > 0 && (
+                <span className="text-[#007185] hover:underline font-medium text-[11px]">
+                  ({product.reviewsCount.toLocaleString(langCode)})
+                </span>
+              )}
             </div>
-            <span className="font-bold text-slate-900 text-xs ml-0.5">{product.rating}</span>
-            <span className="text-[#007185] hover:underline font-medium text-[11px]">
-              ({(product.reviewsCount || 180).toLocaleString(langCode)})
-            </span>
-          </div>
+          )}
         </div>
 
         <div className="pt-1 mt-auto">
-          <div className="flex items-baseline gap-1 mb-0.5">
+          <div className="flex flex-wrap items-baseline gap-1.5 mb-0.5">
             <span className="text-base sm:text-lg font-black text-slate-950 tracking-tight">
               {formatPrice(product.priceText)}
             </span>
+            {product.originalPriceText && (
+              <span className="text-xs font-semibold text-slate-400 line-through">
+                {formatPrice(product.originalPriceText)}
+              </span>
+            )}
           </div>
+
+          {product.savingsText && (
+            <div className="mb-1">
+              <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-emerald-50 border border-emerald-200 text-emerald-800 font-bold text-[10px]">
+                Ahorras {formatPrice(product.savingsText)}
+              </span>
+            </div>
+          )}
 
           <div className="flex items-center gap-1 text-[10px] sm:text-[11px] text-slate-600 font-normal mb-2">
             <span className="text-[#007185] font-black text-xs">✓prime</span>

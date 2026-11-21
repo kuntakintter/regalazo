@@ -15,6 +15,10 @@ export interface LiveSearchResult {
   title: string;
   imageUrl: string;
   priceText: string;
+  originalPriceText?: string;
+  discountPercent?: number;
+  savingsText?: string;
+  dealBadge?: string;
   rating: number;
   reviewsCount: number;
   url: string;

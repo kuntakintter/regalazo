@@ -192,8 +192,15 @@ export default function RootLayout({
       },
       {
         '@type': 'SiteNavigationElement',
-        '@id': 'https://www.unbuenregalo.es/#nav-navidad',
+        '@id': 'https://www.unbuenregalo.es/#nav-black-friday',
         position: 1,
+        name: 'Bazar Black Friday 2026: Mayores Descuentos Reales',
+        url: 'https://www.unbuenregalo.es/black-friday',
+      },
+      {
+        '@type': 'SiteNavigationElement',
+        '@id': 'https://www.unbuenregalo.es/#nav-navidad',
+        position: 2,
         name: 'Navidad y Reyes 2026',
         url: 'https://www.unbuenregalo.es/navidad',
       },

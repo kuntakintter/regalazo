@@ -24,6 +24,7 @@ import HalloweenView from '@/components/hubs/HalloweenView';
 import MascotasView from '@/components/hubs/MascotasView';
 import MotoristasView from '@/components/hubs/MotoristasView';
 import NavidadView from '@/components/hubs/NavidadView';
+import BlackFridayView from '@/components/hubs/BlackFridayView';
 import RegalosGta6View from '@/components/hubs/RegalosGta6View';
 import VotarView from '@/components/hubs/VotarView';
 
@@ -100,6 +101,8 @@ function renderStaticHubComponent(
       return <MascotasView omitSchema={false} initialCategory={initialCategory} />;
     case 'halloween':
       return <HalloweenView omitSchema={false} initialCategory={initialCategory} />;
+    case 'black-friday':
+      return <BlackFridayView />;
     case 'navidad':
       return <NavidadView omitSchema={false} initialCategory={initialCategory} />;
     case 'carta-papa-noel':
@@ -195,7 +198,7 @@ export function renderLocalizedRouteView(
   if (normalizedSegments.length === 1) {
     const slug = normalizedSegments[0];
 
-    if (ALL_STATIC_HUB_SLUGS.includes(slug)) {
+    if (slug === 'black-friday' || ALL_STATIC_HUB_SLUGS.includes(slug)) {
       const hubNode = renderStaticHubComponent(slug);
       return hubNode ? wrap(hubNode) : null;
     }
