@@ -370,12 +370,12 @@ export default function HeaderMobile({
         <div className="mb-2 grid grid-cols-2 gap-2">
           <Link
             href="/black-friday"
-            className="w-full h-9 flex items-center justify-center gap-1.5 px-2.5 rounded-xl bg-gradient-to-r from-rose-600 via-rose-500 to-amber-500 text-white text-xs font-black shadow-md border border-amber-300/80 active:scale-98 transition-all"
+            className="w-full h-9 flex items-center justify-center gap-1.5 px-2.5 rounded-xl bg-black hover:bg-slate-900 text-amber-300 text-xs font-black shadow-md border-2 border-amber-400 active:scale-98 transition-all"
           >
-            <span className="inline-flex items-center justify-center px-1 rounded bg-white/20 text-white font-black text-[11px] leading-none" aria-hidden="true">
+            <span className="inline-flex items-center justify-center px-1 rounded bg-amber-400/20 text-amber-300 font-black text-[11px] leading-none" aria-hidden="true">
               %
             </span>
-            <span className="tracking-tight truncate">Bazar Black Friday</span>
+            <span className="tracking-tight truncate">Ver Black Friday</span>
           </Link>
           <Link
             href={localePath('/competicion')}

@@ -31,9 +31,9 @@ export default function BlackFridayCountdown({ compact = false }: { compact?: bo
 
   if (compact) {
     return (
-      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-rose-950/80 border border-rose-500/60 text-white shadow-sm">
+      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-black border border-amber-400 text-white shadow-sm">
         <Clock className="w-3.5 h-3.5 text-amber-300 animate-pulse shrink-0" aria-hidden="true" />
-        <span className="text-[11px] font-bold text-rose-200 uppercase tracking-wide whitespace-nowrap">
+        <span className="text-[11px] font-bold text-slate-200 uppercase tracking-wide whitespace-nowrap">
           Termina en:
         </span>
         <span className="text-xs font-black text-amber-300 tabular-nums whitespace-nowrap">

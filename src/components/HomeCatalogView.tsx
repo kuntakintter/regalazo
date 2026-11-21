@@ -844,18 +844,18 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
 
       <main className="flex-1 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 w-full z-10">
         {/* BLACK FRIDAY SEASON BANNER + LIVE END COUNTDOWN */}
-        <div className="mb-4 bg-gradient-to-r from-[#090b10] via-[#1c1020] to-[#3b0a18] text-white rounded-3xl p-4 sm:p-5 shadow-xl border-2 border-amber-400/95 flex flex-col lg:flex-row items-center justify-between gap-4 relative overflow-hidden">
+        <div className="mb-4 bg-gradient-to-r from-black via-slate-950 to-black text-white rounded-3xl p-4 sm:p-5 shadow-xl border-2 border-amber-400 flex flex-col lg:flex-row items-center justify-between gap-4 relative overflow-hidden">
           <div className="flex items-center gap-3.5 text-center lg:text-left relative z-10">
             <span
-              className="w-12 h-12 rounded-2xl bg-gradient-to-br from-rose-600 to-amber-500 text-white font-black text-2xl flex items-center justify-center shadow-lg border border-amber-300/70 shrink-0 select-none"
+              className="w-12 h-12 rounded-2xl bg-black text-amber-300 font-black text-2xl flex items-center justify-center shadow-lg border-2 border-amber-400 shrink-0 select-none"
               aria-hidden="true"
             >
               %
             </span>
             <div>
               <div className="flex items-center justify-center lg:justify-start gap-2 mb-0.5 flex-wrap">
-                <span className="px-2 py-0.5 rounded-full bg-gradient-to-r from-rose-600 to-amber-500 text-white font-black text-[10px] uppercase tracking-wider">
-                  {isEs ? '% BLACK FRIDAY 2026' : '% BLACK FRIDAY 2026'}
+                <span className="px-2.5 py-0.5 rounded-full bg-black border border-amber-400 text-amber-300 font-black text-[10px] uppercase tracking-wider">
+                  % BLACK FRIDAY 2026
                 </span>
                 <span className="text-xs text-amber-200 font-semibold">
                   {isEs ? 'Descuentos Reales en Directo · Precios más bajos' : 'Live Real Discounts · Lowest Seller Prices'}
@@ -863,8 +863,8 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
               </div>
               <p className="text-base sm:text-lg font-black text-white">
                 {isEs
-                  ? '¡Bazar Black Friday con Miles de Productos Rebajados!'
-                  : 'Black Friday Bazaar with Thousands of Real Deals!'}
+                  ? '¡Black Friday con Miles de Productos Rebajados!'
+                  : 'Black Friday with Thousands of Real Deals!'}
               </p>
               <p className="text-xs text-slate-200 max-w-xl">
                 {isEs
@@ -883,12 +883,12 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
 
           <Link
             href="/black-friday"
-            className="shrink-0 px-5 py-2.5 rounded-2xl bg-gradient-to-r from-rose-600 via-rose-500 to-amber-500 hover:from-rose-500 hover:to-amber-400 text-white font-black text-xs sm:text-sm shadow-md border border-amber-300/70 hover:scale-105 transition-all flex items-center gap-2 cursor-pointer relative z-10"
+            className="shrink-0 px-5 py-2.5 rounded-2xl bg-black hover:bg-slate-900 text-amber-300 hover:text-amber-200 font-black text-xs sm:text-sm shadow-md border-2 border-amber-400 hover:scale-105 transition-all flex items-center gap-2 cursor-pointer relative z-10"
           >
-            <span className="inline-flex items-center justify-center px-1.5 py-0.5 rounded bg-white/20 font-black text-[11px]">
+            <span className="inline-flex items-center justify-center px-1.5 py-0.5 rounded bg-amber-400/20 text-amber-300 font-black text-[11px]">
               %
             </span>
-            <span>{isEs ? 'Ver Bazar Black Friday' : 'Open Black Friday Bazaar'}</span>
+            <span>{isEs ? 'Ver Black Friday' : 'View Black Friday'}</span>
             <ArrowRight className="w-4 h-4" aria-hidden="true" />
           </Link>
         </div>
@@ -1449,8 +1449,8 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 relative z-10">
               <div className="space-y-1">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="px-2.5 py-0.5 rounded-full bg-gradient-to-r from-rose-600 to-amber-500 text-white font-black text-[11px] uppercase tracking-wider flex items-center gap-1 shadow-xs animate-pulse">
-                    <span className="inline-flex items-center justify-center px-1 py-0.2 rounded bg-white/20 text-white font-black text-[11px] leading-none" aria-hidden="true">
+                  <span className="px-2.5 py-0.5 rounded-full bg-black border border-amber-400 text-amber-300 font-black text-[11px] uppercase tracking-wider flex items-center gap-1 shadow-xs animate-pulse">
+                    <span className="inline-flex items-center justify-center px-1 py-0.2 rounded bg-amber-400/20 text-amber-300 font-black text-[11px] leading-none" aria-hidden="true">
                       %
                     </span>
                     <span>{isEs ? 'BLACK FRIDAY · OFERTAS ACTIVAS' : 'BLACK FRIDAY DEALS'}</span>
@@ -1478,10 +1478,10 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
               <div className="flex flex-wrap items-center gap-2">
                 <Link
                   href="/black-friday"
-                  className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-rose-600 via-rose-500 to-amber-500 hover:from-rose-500 hover:to-amber-400 text-white font-black text-xs flex items-center gap-1.5 transition-all shadow-md hover:scale-102 active:scale-98 cursor-pointer border border-amber-300/60"
+                  className="px-4 py-2.5 rounded-xl bg-black hover:bg-slate-900 text-amber-300 hover:text-amber-200 font-black text-xs flex items-center gap-1.5 transition-all shadow-md hover:scale-102 active:scale-98 cursor-pointer border-2 border-amber-400"
                 >
-                  <span className="inline-flex items-center justify-center px-1 rounded bg-white/20 font-black">%</span>
-                  <span>{isEs ? 'Entrar al Bazar Black Friday' : 'Black Friday Bazaar'}</span>
+                  <span className="inline-flex items-center justify-center px-1 rounded bg-amber-400/20 text-amber-300 font-black">%</span>
+                  <span>{isEs ? 'Ver Black Friday' : 'View Black Friday'}</span>
                   <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
                 </Link>
                 <button

@@ -42,7 +42,7 @@ interface BazaarCategory {
 const BAZAAR_CATEGORIES: BazaarCategory[] = [
   {
     id: 'all',
-    label: 'Todo el Bazar',
+    label: 'Todas las categorías',
     emoji: '🛍️',
     amazonQueryEs: 'ofertas black friday',
     amazonQueryEn: 'black friday deals',
@@ -165,12 +165,12 @@ const AGE_QUERY_MAP: Record<string, { es: string; en: string }> = {
 
 const BF_FAQS = [
   {
-    q: '¿Son reales los precios y descuentos que aparecen en el Bazar Black Friday?',
+    q: '¿Son reales los precios y descuentos que aparecen en Black Friday?',
     a: 'Sí. Nuestro buscador consulta en tiempo real las fichas activas de Amazon y únicamente muestra el precio tachado, el porcentaje de descuento (-%) y el ahorro en euros cuando Amazon publica oficialmente un precio anterior superior al precio en oferta. Nunca inventamos precios ni imágenes.',
   },
   {
     q: '¿Cómo encontrar los mayores descuentos primero?',
-    a: 'Por defecto el bazar ordena las ofertas en directo de mayor a menor porcentaje de descuento real (%). Además, puedes activar el filtro "Solo con descuento verificado (%)" para ver exclusivamente productos con rebaja confirmada y combinarlo con tu rango de precio mínimo y máximo.',
+    a: 'Por defecto ordenamos las ofertas en directo de mayor a menor porcentaje de descuento real (%). Además, puedes activar el filtro "Solo con descuento verificado (%)" para ver exclusivamente productos con rebaja confirmada y combinarlo con tu rango de precio mínimo y máximo.',
   },
   {
     q: '¿Los enlaces de cada producto funcionan y tienen garantía oficial?',
@@ -178,7 +178,7 @@ const BF_FAQS = [
   },
   {
     q: '¿Puedo buscar cualquier producto específico que no salga en la primera página?',
-    a: 'Sí. Usa el buscador propio del bazar para escribir cualquier marca, modelo o idea (por ejemplo "freidora Cosori", "LEGO Star Wars", "Sony WH-1000XM4" o "perfume mujer") y verás al instante las ofertas reales disponibles con su foto original y ahorro aplicado.',
+    a: 'Sí. Usa el buscador propio de Black Friday para escribir cualquier marca, modelo o idea (por ejemplo "freidora Cosori", "LEGO Star Wars", "Sony WH-1000XM4" o "perfume mujer") y verás al instante las ofertas reales disponibles con su foto original y ahorro aplicado.',
   },
 ];
 
@@ -473,7 +473,7 @@ export default function BlackFridayView() {
       '@graph': [
         {
           '@type': 'CollectionPage',
-          name: 'Bazar Black Friday 2026: Ofertas Reales y Mayores Descuentos en Directo',
+          name: 'Black Friday 2026: Ofertas Reales y Mayores Descuentos en Directo',
           url: 'https://www.unbuenregalo.es/black-friday',
           description:
             'Explora miles de ofertas reales de Black Friday ordenadas por mayor descuento (%), con filtro por precio exacto, edades, categorías y buscador en directo en Amazon.',
@@ -491,7 +491,7 @@ export default function BlackFridayView() {
             {
               '@type': 'ListItem',
               position: 2,
-              name: 'Bazar Black Friday 2026',
+              name: 'Black Friday 2026',
               item: 'https://www.unbuenregalo.es/black-friday',
             },
           ],
@@ -521,10 +521,10 @@ export default function BlackFridayView() {
 
       <Header currentTheme="classic" />
 
-      {/* 1. BLACK FRIDAY BAZAAR HERO */}
-      <section className="relative bg-gradient-to-br from-[#090b10] via-[#131824] to-[#1a0b14] text-white border-b-4 border-amber-400 overflow-hidden">
-        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-rose-600/20 blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-amber-500/15 blur-3xl pointer-events-none" />
+      {/* 1. BLACK FRIDAY HERO */}
+      <section className="relative bg-gradient-to-br from-black via-slate-950 to-black text-white border-b-4 border-amber-400 overflow-hidden">
+        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-amber-500/10 blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-amber-400/10 blur-3xl pointer-events-none" />
 
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-7 sm:py-10 relative z-10">
           {/* Breadcrumbs */}
@@ -533,15 +533,15 @@ export default function BlackFridayView() {
               Inicio
             </Link>
             <ChevronRight className="w-3.5 h-3.5 text-slate-500" />
-            <span className="text-amber-300 font-bold">Bazar Black Friday 2026</span>
+            <span className="text-amber-300 font-bold">Black Friday 2026</span>
           </nav>
 
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-6">
             <div className="max-w-3xl">
               <div className="flex flex-wrap items-center gap-2 mb-3">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-rose-600 to-amber-500 text-white font-black text-xs uppercase tracking-wider shadow-md">
-                  <span className="inline-flex items-center justify-center px-1 rounded bg-white/20 font-black">%</span>
-                  <span>BAZAR BLACK FRIDAY 2026</span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black border-2 border-amber-400 text-amber-300 font-black text-xs uppercase tracking-wider shadow-md">
+                  <span className="inline-flex items-center justify-center px-1 rounded bg-amber-400/20 text-amber-300 font-black">%</span>
+                  <span>BLACK FRIDAY 2026</span>
                 </span>
                 <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-200 font-bold text-[11px]">
                   <CheckCircle2 className="w-3.5 h-3.5" />
@@ -550,8 +550,8 @@ export default function BlackFridayView() {
               </div>
 
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight mb-3">
-                Bazar de Ofertas{' '}
-                <span className="bg-gradient-to-r from-amber-300 via-yellow-400 to-rose-400 bg-clip-text text-transparent">
+                Ofertas{' '}
+                <span className="bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-200 bg-clip-text text-transparent">
                   Black Friday
                 </span>{' '}
                 con Descuento Real
@@ -564,8 +564,8 @@ export default function BlackFridayView() {
               </p>
             </div>
 
-            <div className="flex flex-col items-start lg:items-end gap-2 shrink-0 bg-rose-950/50 border border-rose-500/40 rounded-2xl p-3.5 shadow-lg">
-              <span className="text-[11px] font-black uppercase tracking-widest text-rose-300 flex items-center gap-1.5">
+            <div className="flex flex-col items-start lg:items-end gap-2 shrink-0 bg-black border-2 border-amber-400 rounded-2xl p-3.5 shadow-lg">
+              <span className="text-[11px] font-black uppercase tracking-widest text-amber-300 flex items-center gap-1.5">
                 <Clock className="w-3.5 h-3.5 text-amber-300 animate-pulse" />
                 <span>¡El Black Friday termina en:</span>
               </span>
@@ -578,7 +578,7 @@ export default function BlackFridayView() {
             </div>
           </div>
 
-          {/* DEDICATED BLACK FRIDAY BAZAAR SEARCH BAR */}
+          {/* DEDICATED BLACK FRIDAY SEARCH BAR */}
           <div className="max-w-4xl">
             <form onSubmit={handleSearchSubmit} className="relative flex items-center bg-white rounded-2xl p-1.5 shadow-2xl border-2 border-amber-400/90 focus-within:ring-4 focus-within:ring-amber-400/30 transition-all">
               <Search className="w-5 h-5 text-slate-500 ml-3 mr-2 shrink-0" />
@@ -586,7 +586,7 @@ export default function BlackFridayView() {
                 type="text"
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
-                placeholder="Busca cualquier chollo en el bazar... (ej: AirPods, freidora aire, LEGO, PS5, perfume, reloj)"
+                placeholder="Busca cualquier oferta de Black Friday... (ej: AirPods, freidora aire, LEGO, PS5, perfume, reloj)"
                 aria-label="Buscar ofertas Black Friday"
                 className="w-full py-2.5 px-1 text-sm sm:text-base text-slate-900 placeholder-slate-500 focus:outline-none bg-transparent font-medium"
               />
@@ -637,9 +637,9 @@ export default function BlackFridayView() {
 
       {/* 2. MAIN BAZAAR WORKSPACE */}
       <main className="flex-1 max-w-[1600px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-        {/* COMPLETE BAZAAR FILTER PANEL */}
+        {/* COMPLETE FILTER PANEL */}
         <section
-          aria-label="Filtros del Bazar Black Friday"
+          aria-label="Filtros de Black Friday"
           className="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-4 sm:p-6 mb-7 space-y-5"
         >
           {/* Row 1: Sort + Deals Only Toggle + Exact Price Min/Max */}
@@ -756,10 +756,10 @@ export default function BlackFridayView() {
             </div>
           </div>
 
-          {/* Row 3: Bazaar Categories */}
+          {/* Row 3: Categories */}
           <div>
             <p className="text-[11px] font-black uppercase tracking-wider text-slate-600 mb-2">
-              Departamentos del Bazar:
+              Categorías Black Friday:
             </p>
             <div className="flex items-center gap-2 flex-wrap">
               {BAZAAR_CATEGORIES.map((cat) => {
@@ -878,7 +878,7 @@ export default function BlackFridayView() {
                     type="button"
                     onClick={handleLoadMoreLive}
                     disabled={isLoadingMore}
-                    className="px-7 py-3.5 rounded-2xl bg-gradient-to-r from-rose-600 via-rose-500 to-amber-500 hover:from-rose-700 hover:to-amber-600 text-white font-black text-sm shadow-lg hover:shadow-xl transition-all flex items-center gap-2 cursor-pointer disabled:opacity-70"
+                    className="px-7 py-3.5 rounded-2xl bg-black hover:bg-slate-900 text-amber-300 hover:text-amber-200 border-2 border-amber-400 font-black text-sm shadow-lg hover:shadow-xl transition-all flex items-center gap-2 cursor-pointer disabled:opacity-70"
                   >
                     {isLoadingMore ? (
                       <>
@@ -913,7 +913,7 @@ export default function BlackFridayView() {
                   onClick={handleResetFilters}
                   className="px-4 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold cursor-pointer hover:bg-slate-800"
                 >
-                  Ver todo el Bazar Black Friday
+                  Ver todo Black Friday
                 </button>
                 <a
                   href={getAmazonSearchUrl(computedLiveQuery, amazonRegion)}
@@ -978,7 +978,7 @@ export default function BlackFridayView() {
                 <span>Descuentos Reales Verificados</span>
               </div>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Cada producto en el bazar muestra la diferencia exacta entre el precio anterior recomendado y el precio de oferta actual en Amazon. Sin trucos ni rebajas inventadas.
+                Cada producto muestra la diferencia exacta entre el precio anterior recomendado y el precio de oferta actual en Amazon. Sin trucos ni rebajas inventadas.
               </p>
             </div>
             <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-1.5">
@@ -993,7 +993,7 @@ export default function BlackFridayView() {
             <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-1.5">
               <div className="flex items-center gap-2 text-indigo-700 font-black text-sm">
                 <Search className="w-4 h-4" />
-                <span>Buscador Bazar Ilimitado</span>
+                <span>Buscador Black Friday Ilimitado</span>
               </div>
               <p className="text-xs text-slate-600 leading-relaxed">
                 Filtra por precio mínimo y máximo, ordena por mayor porcentaje de ahorro o busca cualquier marca específica para comparar al instante con foto original y enlace directo.
@@ -1003,7 +1003,7 @@ export default function BlackFridayView() {
 
           <div className="pt-4 border-t border-slate-100">
             <h2 className="text-lg sm:text-xl font-black text-slate-900 mb-4">
-              Preguntas frecuentes sobre el Bazar Black Friday 2026
+              Preguntas frecuentes sobre Black Friday 2026
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {BF_FAQS.map((faq, idx) => (

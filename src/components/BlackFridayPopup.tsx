@@ -54,12 +54,12 @@ export default function BlackFridayPopup() {
       onClick={handleClose}
     >
       <div
-        className="relative w-full max-w-lg rounded-3xl bg-gradient-to-br from-[#0b0e17] via-[#151928] to-[#230b16] text-white border-2 border-amber-400/90 shadow-2xl shadow-black/60 overflow-hidden p-6 sm:p-8 animate-in zoom-in-95 duration-200"
+        className="relative w-full max-w-lg rounded-3xl bg-gradient-to-br from-black via-slate-950 to-neutral-950 text-white border-2 border-amber-400 shadow-2xl shadow-black/75 overflow-hidden p-6 sm:p-8 animate-in zoom-in-95 duration-200"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Glows */}
-        <div className="absolute -top-20 -right-20 w-56 h-56 rounded-full bg-rose-600/25 blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-20 -left-20 w-56 h-56 rounded-full bg-amber-500/20 blur-3xl pointer-events-none" />
+        {/* Subtle Gold Glows */}
+        <div className="absolute -top-20 -right-20 w-56 h-56 rounded-full bg-amber-500/15 blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-20 -left-20 w-56 h-56 rounded-full bg-amber-400/10 blur-3xl pointer-events-none" />
 
         {/* Close Button */}
         <button
@@ -73,11 +73,11 @@ export default function BlackFridayPopup() {
 
         <div className="relative z-10 text-center flex flex-col items-center">
           {/* Top Badge */}
-          <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-gradient-to-r from-rose-600 to-amber-500 text-white font-black text-xs uppercase tracking-wider shadow-md mb-4">
-            <span className="inline-flex items-center justify-center px-1 rounded bg-white/20 font-black">
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-black border-2 border-amber-400 text-amber-300 font-black text-xs uppercase tracking-wider shadow-md mb-4">
+            <span className="inline-flex items-center justify-center px-1 rounded bg-amber-400/20 text-amber-300 font-black">
               %
             </span>
-            <span>BAZAR BLACK FRIDAY 2026 ACTIVO</span>
+            <span>BLACK FRIDAY 2026 ACTIVO</span>
           </span>
 
           <h2
@@ -85,21 +85,21 @@ export default function BlackFridayPopup() {
             className="text-2xl sm:text-3xl font-black tracking-tight leading-tight mb-2.5"
           >
             ¡Miles de productos con{' '}
-            <span className="bg-gradient-to-r from-amber-300 via-yellow-400 to-rose-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-200 bg-clip-text text-transparent">
               descuento real
             </span>{' '}
             en Black Friday!
           </h2>
 
           <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-md mb-5">
-            Hemos abierto el <strong>Bazar Black Friday</strong> ordenado de mayor a menor{' '}
+            Hemos abierto el especial <strong>Black Friday</strong> ordenado de mayor a menor{' '}
             <strong>% de ahorro real</strong>, con filtro por precio exacto, edades, categorías y los
             precios más bajos de vendedores verificados.
           </p>
 
           {/* Urgency Countdown Box */}
-          <div className="w-full rounded-2xl bg-rose-950/60 border border-rose-500/50 p-4 mb-5 flex flex-col items-center gap-2.5">
-            <span className="text-[11px] font-black uppercase tracking-widest text-rose-200 flex items-center gap-1.5">
+          <div className="w-full rounded-2xl bg-black/90 border border-amber-400/60 p-4 mb-5 flex flex-col items-center gap-2.5">
+            <span className="text-[11px] font-black uppercase tracking-widest text-amber-300 flex items-center gap-1.5">
               <Clock className="w-3.5 h-3.5 text-amber-300 animate-pulse" aria-hidden="true" />
               <span>¡El Black Friday termina en:</span>
             </span>
@@ -122,12 +122,12 @@ export default function BlackFridayPopup() {
           <Link
             href="/black-friday"
             onClick={handleClose}
-            className="w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-black text-sm sm:text-base shadow-lg shadow-amber-500/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full py-3.5 px-6 rounded-2xl bg-black hover:bg-slate-900 text-amber-300 hover:text-amber-200 border-2 border-amber-400 font-black text-sm sm:text-base shadow-lg shadow-amber-500/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer"
           >
-            <span className="inline-flex items-center justify-center px-1.5 py-0.5 rounded bg-slate-950/15 font-black text-xs">
+            <span className="inline-flex items-center justify-center px-1.5 py-0.5 rounded bg-amber-400/20 text-amber-300 font-black text-xs">
               %
             </span>
-            <span>Ver Ofertas del Bazar Black Friday</span>
+            <span>Ver Black Friday</span>
             <ArrowRight className="w-4 h-4 stroke-[2.5]" aria-hidden="true" />
           </Link>
 

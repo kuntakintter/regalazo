@@ -13,7 +13,7 @@ export const metadata: Metadata = buildSocialMetadata({
   keywords: [
     'ofertas black friday 2026',
     'chollos black friday amazon',
-    'bazar black friday descuentos reales',
+    'ofertas black friday descuentos reales',
     'regalos black friday 2026',
     'mayores descuentos black friday',
     'black friday tecnologia hogar juguetes',

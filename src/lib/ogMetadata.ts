@@ -70,13 +70,13 @@ export const HUB_OG_SNIPPETS: Record<string, SocialHubSnippet> = {
     imageAlt: 'Setup gamer con luces de neón rosa y azul estilo retro Vice City de GTA 6',
   },
   'black-friday': {
-    title: 'Bazar Black Friday 2026: Mayores Descuentos Reales (%) en Directo | Un Buen Regalo',
-    socialTitle: '% Bazar Black Friday 2026: Ofertas Reales Ordenadas por Mayor Descuento | Un Buen Regalo',
+    title: 'Black Friday 2026: Mayores Descuentos Reales (%) en Directo | Un Buen Regalo',
+    socialTitle: '% Black Friday 2026: Ofertas Reales Ordenadas por Mayor Descuento | Un Buen Regalo',
     description:
-      'Explora el Bazar Black Friday 2026 de Un Buen Regalo: miles de ofertas reales en Amazon ordenadas de mayor a menor descuento (%), con filtro por precio exacto, edades, categorías y buscador en directo.',
+      'Explora el Black Friday 2026 de Un Buen Regalo: miles de ofertas reales en Amazon ordenadas de mayor a menor descuento (%), con filtro por precio exacto, edades, categorías y buscador en directo.',
     imageUrl:
       'https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?auto=format&fit=crop&w=1200&h=630&q=85',
-    imageAlt: 'Bazar Black Friday 2026 con descuentos reales y ofertas verificadas en Amazon',
+    imageAlt: 'Black Friday 2026 con descuentos reales y ofertas verificadas en Amazon',
   },
   navidad: {
     title: 'Un Buen Regalo de Navidad y Reyes 2026: Ideas de Regalos y Decoración',
