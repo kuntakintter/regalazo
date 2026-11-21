@@ -88,7 +88,7 @@ export default function BlackFridayPopup() {
             <span className="bg-gradient-to-r from-amber-300 via-yellow-400 to-rose-400 bg-clip-text text-transparent">
               descuento real
             </span>{' '}
-            en directo!
+            en Black Friday!
           </h2>
 
           <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-md mb-5">
