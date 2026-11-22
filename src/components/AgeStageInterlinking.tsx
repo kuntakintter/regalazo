@@ -69,6 +69,40 @@ export default function AgeStageInterlinking({
             </Link>
           ))}
         </div>
+
+        {/* High-Authority Seasonal & Refurbished Internal Links Cluster */}
+        <div className="mt-4 pt-4 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+          <Link
+            href={lPath('/black-friday')}
+            className="p-3 rounded-2xl bg-black hover:bg-slate-900 border-2 border-amber-400 text-amber-300 flex items-center justify-between gap-2 transition-all group"
+          >
+            <span className="flex items-center gap-2 text-xs font-black truncate">
+              <span className="px-1.5 py-0.5 rounded bg-amber-400/20 text-amber-300">%</span>
+              <span className="truncate">Ofertas Black Friday 2026</span>
+            </span>
+            <ArrowRight className="w-3.5 h-3.5 shrink-0" />
+          </Link>
+          <Link
+            href={lPath('/reacondicionados')}
+            className="p-3 rounded-2xl bg-emerald-950 hover:bg-emerald-900 border-2 border-emerald-400 text-emerald-200 flex items-center justify-between gap-2 transition-all group"
+          >
+            <span className="flex items-center gap-2 text-xs font-black truncate">
+              <span>♻️</span>
+              <span className="truncate">Reacondicionados Amazon (1 Año Garantía)</span>
+            </span>
+            <ArrowRight className="w-3.5 h-3.5 shrink-0" />
+          </Link>
+          <Link
+            href={lPath('/carta-papa-noel')}
+            className="p-3 rounded-2xl bg-amber-50 hover:bg-amber-100 border border-amber-300 text-slate-950 flex items-center justify-between gap-2 transition-all group"
+          >
+            <span className="flex items-center gap-2 text-xs font-black truncate">
+              <span>🎅</span>
+              <span className="truncate">Carta Oficial a Papá Noel</span>
+            </span>
+            <ArrowRight className="w-3.5 h-3.5 shrink-0" />
+          </Link>
+        </div>
       </div>
     );
   }
@@ -168,6 +202,40 @@ export default function AgeStageInterlinking({
             </div>
           </Link>
         )}
+      </div>
+
+      {/* High-Authority Seasonal & Refurbished Internal Links Cluster */}
+      <div className="mt-4 pt-4 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+        <Link
+          href={lPath('/black-friday')}
+          className="p-3 rounded-2xl bg-black hover:bg-slate-900 border-2 border-amber-400 text-amber-300 flex items-center justify-between gap-2 transition-all group"
+        >
+          <span className="flex items-center gap-2 text-xs font-black truncate">
+            <span className="px-1.5 py-0.5 rounded bg-amber-400/20 text-amber-300">%</span>
+            <span className="truncate">Ofertas Black Friday 2026</span>
+          </span>
+          <ArrowRight className="w-3.5 h-3.5 shrink-0" />
+        </Link>
+        <Link
+          href={lPath('/reacondicionados')}
+          className="p-3 rounded-2xl bg-emerald-950 hover:bg-emerald-900 border-2 border-emerald-400 text-emerald-200 flex items-center justify-between gap-2 transition-all group"
+        >
+          <span className="flex items-center gap-2 text-xs font-black truncate">
+            <span>♻️</span>
+            <span className="truncate">Reacondicionados Amazon (1 Año Garantía)</span>
+          </span>
+          <ArrowRight className="w-3.5 h-3.5 shrink-0" />
+        </Link>
+        <Link
+          href={lPath('/carta-papa-noel')}
+          className="p-3 rounded-2xl bg-amber-50 hover:bg-amber-100 border border-amber-300 text-slate-950 flex items-center justify-between gap-2 transition-all group"
+        >
+          <span className="flex items-center gap-2 text-xs font-black truncate">
+            <span>🎅</span>
+            <span className="truncate">Carta Oficial a Papá Noel</span>
+          </span>
+          <ArrowRight className="w-3.5 h-3.5 shrink-0" />
+        </Link>
       </div>
     </div>
   );
