@@ -307,23 +307,23 @@ export default function HalloweenView({
       </nav>
 
       {/* Main Content */}
-      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full z-10">
+      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-6 w-full z-10">
         {/* HERO SECTION */}
-        <section className="text-center py-6 sm:py-10 max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-4 shadow-sm border border-orange-500/40 bg-orange-950/60 text-orange-200">
+        <section className="text-center py-2 sm:py-10 max-w-4xl mx-auto">
+          <div className="hidden sm:inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-4 shadow-sm border border-orange-500/40 bg-orange-950/60 text-orange-200">
             <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" aria-hidden="true" />
             <span>{hubMeta.eyebrow}</span>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] mb-5 text-white">
+          <h1 className="text-2xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] mb-2 sm:mb-5 text-white">
             {hubMeta.h1}
           </h1>
 
-          <p className="text-sm sm:text-base lg:text-lg text-slate-300 leading-relaxed mb-6 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base lg:text-lg text-slate-300 leading-relaxed mb-3 sm:mb-6 max-w-2xl mx-auto line-clamp-2 sm:line-clamp-none">
             {hubMeta.subtitle}
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs font-medium text-slate-200 mb-8">
+          <div className="hidden sm:flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs font-medium text-slate-200 mb-8">
             <span className="flex items-center gap-1.5">
               <Ghost className="w-4 h-4 text-orange-400" aria-hidden="true" />
               <span>{niche.trustBadges[0]}</span>
@@ -352,7 +352,7 @@ export default function HalloweenView({
         )}
 
         {/* FILTER BAR */}
-        <div className="bg-slate-900/90 rounded-3xl border border-orange-500/30 p-5 sm:p-6 mb-8 shadow-xl">
+        <div className="bg-slate-900/90 rounded-2xl sm:rounded-3xl border border-orange-500/30 p-3 sm:p-6 mb-4 sm:mb-8 shadow-xl">
           <div className="mb-5">
             <div className="flex items-center justify-between mb-3">
               <span className="text-xs font-bold uppercase tracking-wider text-orange-300 flex items-center gap-1.5">
@@ -364,7 +364,7 @@ export default function HalloweenView({
               </span>
             </div>
 
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="flex flex-nowrap sm:flex-wrap items-center gap-2 overflow-x-auto sm:overflow-visible pb-1 sm:pb-0 [&>*]:shrink-0 [&>*]:whitespace-nowrap">
               {HALLOWEEN_CATEGORIES.map((cat) => (
                 <button
                   key={cat.id}
@@ -386,7 +386,7 @@ export default function HalloweenView({
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-slate-800">
+          <div className="grid grid-cols-2 gap-1.5 sm:gap-4 pt-3 sm:pt-4 border-t border-slate-800">
             <div>
               <label
                 htmlFor="halloween-price"
@@ -402,7 +402,7 @@ export default function HalloweenView({
                   setSelectedPrice(e.target.value);
                   setLiveAmazonProducts([]);
                 }}
-                className="w-full px-3.5 py-2.5 rounded-xl border border-slate-700 bg-slate-800 text-slate-100 text-xs font-semibold focus:border-orange-400 focus:bg-slate-900 outline-none cursor-pointer"
+                className="w-full px-2 sm:px-3.5 py-2 sm:py-2.5 rounded-xl border border-slate-700 bg-slate-800 text-slate-100 text-xs font-semibold focus:border-orange-400 focus:bg-slate-900 outline-none cursor-pointer"
               >
                 {HALLOWEEN_PRICE_RANGES.map((pr) => (
                   <option key={pr.id} value={pr.id}>
@@ -427,7 +427,7 @@ export default function HalloweenView({
                   onChange={(e) =>
                     setSortBy(e.target.value as 'featured' | 'price-asc' | 'price-desc' | 'rating')
                   }
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-700 bg-slate-800 text-slate-100 text-xs font-semibold focus:border-orange-400 focus:bg-slate-900 outline-none cursor-pointer appearance-none"
+                  className="w-full px-2 sm:px-3.5 py-2 sm:py-2.5 rounded-xl border border-slate-700 bg-slate-800 text-slate-100 text-xs font-semibold focus:border-orange-400 focus:bg-slate-900 outline-none cursor-pointer appearance-none"
                 >
                   <option value="featured">{labels.common.sortFeatured}</option>
                   <option value="price-asc">{labels.common.sortPriceAsc}</option>

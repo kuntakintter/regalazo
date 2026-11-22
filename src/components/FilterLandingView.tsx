@@ -222,11 +222,11 @@ export default function FilterLandingView({
 
       <Header currentTheme="classic" />
 
-      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full z-10">
+      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-8 w-full z-10">
         {/* Breadcrumb Navigation */}
         <nav
           aria-label="Breadcrumb"
-          className="flex items-center gap-2 text-xs font-semibold text-slate-700 mb-6 flex-wrap"
+          className="flex items-center gap-2 text-xs font-semibold text-slate-700 mb-2 sm:mb-6 flex-nowrap sm:flex-wrap overflow-x-auto whitespace-nowrap"
         >
           <Link
             href={localePath('/')}
@@ -256,22 +256,22 @@ export default function FilterLandingView({
         </nav>
 
         {/* HERO */}
-        <section className="text-center py-6 sm:py-8 max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-4 shadow-xs border border-slate-200 bg-white/95 backdrop-blur-md text-slate-800">
+        <section className="text-center py-1 sm:py-8 max-w-4xl mx-auto">
+          <div className="hidden sm:inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-4 shadow-xs border border-slate-200 bg-white/95 backdrop-blur-md text-slate-800">
             <span aria-hidden="true">{routeMeta.icon}</span>
             <span>{ui.updatedBadge2026}</span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.15] mb-4 text-slate-900">
+          <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.15] mb-2 sm:mb-4 text-slate-900">
             {meta.h1}
           </h1>
 
-          <p className="text-sm sm:text-base text-slate-700 leading-relaxed mb-6 max-w-3xl mx-auto">
+          <p className="text-sm sm:text-base text-slate-700 leading-relaxed mb-3 sm:mb-6 max-w-3xl mx-auto line-clamp-2 sm:line-clamp-none">
             {meta.description}
           </p>
 
           {/* Trust badges */}
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs font-medium text-slate-700">
+          <div className="hidden sm:flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs font-medium text-slate-700">
             <span className="flex items-center gap-1.5">
               <ShieldCheck className="w-4 h-4 text-emerald-700" aria-hidden="true" />
               {ui.trustGuarantee}
@@ -288,7 +288,7 @@ export default function FilterLandingView({
         </section>
 
         {/* PODIUM & FILTERED PRODUCTS */}
-        <section className="mb-14">
+        <section className="mb-8 sm:mb-14">
           {matchedProducts.length >= 3 && (
             <TopPodium
               products={matchedProducts}

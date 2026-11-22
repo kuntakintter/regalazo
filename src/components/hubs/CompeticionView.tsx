@@ -328,10 +328,10 @@ export default function CompeticionView({
             {/* Title & Tagline */}
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
               <div className="max-w-3xl">
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
+                <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
                   Mundo de la <span className="bg-gradient-to-r from-red-500 via-rose-500 to-amber-400 bg-clip-text text-transparent">Competición</span>
                 </h1>
-                <p className="mt-3 text-sm sm:text-base md:text-[17px] text-slate-300 leading-relaxed font-normal">
+                <p className="mt-2 sm:mt-3 text-sm sm:text-base md:text-[17px] text-slate-300 leading-relaxed font-normal line-clamp-2 sm:line-clamp-none">
                   La guía definitiva de regalos para apasionados del motor: ropa y gorras oficiales de <strong>Fórmula 1</strong> y <strong>MotoGP</strong>, circuitos míticos de <strong>Scalextric</strong>, simuladores de <strong>Simracing</strong>, maquetas de coleccionista y detalles de garaje con compra directa en Amazon.
                 </p>
               </div>

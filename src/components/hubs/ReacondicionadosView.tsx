@@ -491,8 +491,8 @@ export default function ReacondicionadosView() {
 
       {/* 1. HERO & OFFICIAL AMAZON RENEWED WARRANTY EXPLANATION */}
       <section className="relative bg-gradient-to-br from-[#062019] via-[#0a2e23] to-[#0f172a] text-white border-b-4 border-emerald-400 overflow-hidden">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 relative z-10">
-          <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-emerald-200 mb-4">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-10 relative z-10">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-emerald-200 mb-2 sm:mb-4 flex-nowrap overflow-x-auto whitespace-nowrap">
             <Link href={localePath('/')} className="hover:text-white transition-colors font-medium">
               Inicio
             </Link>
@@ -500,9 +500,9 @@ export default function ReacondicionadosView() {
             <span className="text-emerald-300 font-bold">Reacondicionados Certificados Amazon</span>
           </nav>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center mb-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-6 items-center mb-3 sm:mb-6">
             <div className="lg:col-span-7">
-              <div className="flex flex-wrap items-center gap-2 mb-3">
+              <div className="hidden sm:flex flex-wrap items-center gap-2 mb-3">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500 text-slate-950 font-black text-xs uppercase tracking-wider shadow-md">
                   <span>♻️</span>
                   <span>AMAZON RENEWED · CERTIFICADOS</span>
@@ -513,7 +513,7 @@ export default function ReacondicionadosView() {
                 </span>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight mb-3">
+              <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight mb-2 sm:mb-3">
                 Productos{' '}
                 <span className="bg-gradient-to-r from-emerald-300 via-teal-200 to-amber-300 bg-clip-text text-transparent">
                   Reacondicionados de Amazon
@@ -521,15 +521,19 @@ export default function ReacondicionadosView() {
                 Como Nuevos
               </h1>
 
-              <p className="text-sm sm:text-base text-slate-200 leading-relaxed max-w-2xl">
+              <p className="text-sm sm:text-base text-slate-200 leading-relaxed max-w-2xl line-clamp-2 sm:line-clamp-none">
                 Ahorra hasta un 50% en tecnología de primeras marcas (Apple iPhone, iPad, Samsung, portátiles,
                 consolas, relojes y cafeteras). Cada dispositivo ha sido <strong>probado, limpiado y certificado como 100% funcional</strong> y
                 cuenta con <strong>1 año completo de Garantía Oficial Amazon Renewed</strong> tras tu compra.
               </p>
+              <p className="sm:hidden mt-2 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-400/50 text-[11px] font-bold text-emerald-200">
+                <ShieldCheck className="w-3.5 h-3.5 text-emerald-300" aria-hidden="true" />
+                <span>1 año de garantía Amazon · 100% funcionales</span>
+              </p>
             </div>
 
             {/* 4 Official Amazon Renewed Guarantee Pillars */}
-            <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="hidden sm:grid lg:col-span-5 grid-cols-1 sm:grid-cols-2 gap-3">
               <div className="p-3.5 rounded-2xl bg-white/10 border border-emerald-400/35 backdrop-blur-xs">
                 <div className="flex items-center gap-2 text-emerald-300 font-black text-xs uppercase mb-1">
                   <ShieldCheck className="w-4 h-4 shrink-0" />
@@ -609,11 +613,11 @@ export default function ReacondicionadosView() {
       </section>
 
       {/* 2. MAIN WORKSPACE */}
-      <main className="flex-1 max-w-[1600px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+      <main className="flex-1 max-w-[1600px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-8">
         {/* FILTERS */}
         <section
           aria-label="Filtros de productos reacondicionados"
-          className="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-4 sm:p-6 mb-7 space-y-5"
+          className="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-3 sm:p-6 mb-4 sm:mb-7 space-y-3 sm:space-y-5"
         >
           <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4 pb-4 border-b border-slate-100">
             <div className="flex flex-wrap items-center gap-2.5">
@@ -682,7 +686,7 @@ export default function ReacondicionadosView() {
             <p className="text-[11px] font-black uppercase tracking-wider text-slate-600 mb-2">
               Categorías de Reacondicionados Certificados:
             </p>
-            <div className="flex items-center gap-2 flex-wrap">
+            <div className="flex items-center gap-2 flex-nowrap sm:flex-wrap overflow-x-auto [&>*]:shrink-0 [&>*]:whitespace-nowrap">
               {REACONDICIONADOS_CATEGORIES.map((cat) => {
                 const isActive = selectedCategory === cat.id;
                 return (
@@ -709,7 +713,7 @@ export default function ReacondicionadosView() {
             <p className="text-[11px] font-black uppercase tracking-wider text-slate-600 mb-2">
               Presupuesto:
             </p>
-            <div className="flex items-center gap-2 flex-wrap">
+            <div className="flex items-center gap-2 flex-nowrap sm:flex-wrap overflow-x-auto [&>*]:shrink-0 [&>*]:whitespace-nowrap">
               {PRICE_PRESETS.map((preset) => {
                 const isActive = activePricePreset === preset.id;
                 return (

@@ -163,7 +163,7 @@ export default function FilterBar({
   };
 
   return (
-    <div className="rounded-3xl p-5 sm:p-7 mb-8 border border-slate-200 bg-white text-slate-900 shadow-sm transition-all space-y-6">
+    <div className="rounded-2xl sm:rounded-3xl p-3 sm:p-7 mb-4 sm:mb-8 border border-slate-200 bg-white text-slate-900 shadow-sm transition-all space-y-3 sm:space-y-6">
       {/* 1. BARRA DE PRESUPUESTO MÁXIMO (SLIDER INTERACTIVO) */}
       <div className="bg-gradient-to-r from-slate-50 via-indigo-50/30 to-purple-50/30 rounded-2xl p-4 sm:p-5 border border-indigo-100/70">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
@@ -247,7 +247,7 @@ export default function FilterBar({
           </p>
         </div>
 
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-thin flex-wrap">
+        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-thin flex-nowrap sm:flex-wrap [&>*]:shrink-0 [&>*]:whitespace-nowrap">
           <button
             type="button"
             onClick={() => {
@@ -299,7 +299,7 @@ export default function FilterBar({
           <span>{ui.genderLabel}</span>
         </p>
 
-        <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-thin">
+        <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-thin [&>*]:shrink-0">
           <button
             type="button"
             onClick={() => onSelectGender('all')}
@@ -361,7 +361,7 @@ export default function FilterBar({
         <p className="text-[11px] font-black uppercase tracking-wider text-slate-600 block mb-2.5">
           {ui.categoryLabel}
         </p>
-        <div className="flex items-center gap-2 overflow-x-auto pb-1.5 scrollbar-thin flex-wrap">
+        <div className="flex items-center gap-2 overflow-x-auto pb-1.5 scrollbar-thin flex-nowrap sm:flex-wrap [&>*]:shrink-0 [&>*]:whitespace-nowrap">
           <button
             type="button"
             onClick={() => {

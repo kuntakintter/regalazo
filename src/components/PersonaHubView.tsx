@@ -454,9 +454,9 @@ export default function PersonaHubView({
         onSearchChange={setSearchQuery}
       />
 
-      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full">
+      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-6 w-full">
         {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="mb-4 text-xs text-slate-600 flex flex-wrap items-center gap-1.5">
+        <nav aria-label="Breadcrumb" className="mb-2 sm:mb-4 text-xs text-slate-600 flex flex-nowrap sm:flex-wrap items-center gap-1.5 overflow-x-auto whitespace-nowrap">
           <Link href={localePath('/')} className="hover:underline hover:text-slate-900">
             {ui.breadcrumbHome}
           </Link>
@@ -474,12 +474,12 @@ export default function PersonaHubView({
 
         {/* HERO BANNER */}
         <section
-          className={`${styles.heroSection} text-white rounded-3xl p-6 sm:p-10 mb-8 shadow-xl relative overflow-hidden border`}
+          className={`${styles.heroSection} text-white rounded-2xl sm:rounded-3xl p-4 sm:p-10 mb-4 sm:mb-8 shadow-xl relative overflow-hidden border`}
         >
           <div className={`absolute top-0 right-0 w-80 h-80 ${styles.heroGlow} rounded-full blur-3xl pointer-events-none`} />
 
           <div className="max-w-3xl relative z-10 space-y-3">
-            <div className={`inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold border ${styles.badgePill}`}>
+            <div className={`hidden sm:inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold border ${styles.badgePill}`}>
               <HeroIcon className="w-3.5 h-3.5" />
               <span>{hubMeta.eyebrow}</span>
             </div>
@@ -488,11 +488,11 @@ export default function PersonaHubView({
               {hubMeta.h1}
             </h1>
 
-            <p className="text-xs sm:text-sm text-slate-200 leading-relaxed max-w-2xl">
+            <p className="text-xs sm:text-sm text-slate-200 leading-relaxed max-w-2xl line-clamp-2 sm:line-clamp-none">
               {hubMeta.subtitle}
             </p>
 
-            <div className="flex flex-wrap items-center gap-4 pt-2 text-xs text-slate-200 font-medium">
+            <div className="hidden sm:flex flex-wrap items-center gap-4 pt-2 text-xs text-slate-200 font-medium">
               <span className="flex items-center gap-1.5">
                 <ShieldCheck className="w-4 h-4 text-emerald-400" />
                 {personaLabels.trustBadges[1]} · {amazonSiteName}
@@ -510,7 +510,7 @@ export default function PersonaHubView({
         </section>
 
         {/* TOP 3 PODIUM (localized natively, omitSchema=true since ItemList is emitted above) */}
-        <div className="mb-8">
+        <div className="mb-4 sm:mb-8">
           <TopPodium
             products={poolProducts}
             filterLabel={personaLabels.podiumLabel}

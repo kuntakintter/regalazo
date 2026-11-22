@@ -180,6 +180,11 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
   const [visibleCount, setVisibleCount] = useState<number>(18);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [showAdvancedFilters, setShowAdvancedFilters] = useState<boolean>(true);
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.matchMedia('(max-width: 639px)').matches) {
+      setShowAdvancedFilters(false);
+    }
+  }, []);
   const [isHeroSearchFocused, setIsHeroSearchFocused] = useState<boolean>(false);
   const heroSearchRef = useRef<HTMLDivElement>(null);
 
@@ -842,18 +847,18 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
         onSearchChange={handleSearchChange}
       />
 
-      <main className="flex-1 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 w-full z-10">
+      <main className="flex-1 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-8 w-full z-10">
         {/* BLACK FRIDAY SEASON BANNER + LIVE END COUNTDOWN */}
-        <div className="mb-4 bg-gradient-to-r from-black via-slate-950 to-black text-white rounded-3xl p-4 sm:p-5 shadow-xl border-2 border-amber-400 flex flex-col lg:flex-row items-center justify-between gap-4 relative overflow-hidden">
+        <div className="mb-2 sm:mb-4 bg-gradient-to-r from-black via-slate-950 to-black text-white rounded-2xl sm:rounded-3xl p-2.5 sm:p-5 shadow-xl border-2 border-amber-400 flex flex-row flex-wrap lg:flex-nowrap items-center justify-between gap-2 sm:gap-4 relative overflow-hidden">
           <div className="flex items-center gap-3.5 text-center lg:text-left relative z-10">
             <span
-              className="w-12 h-12 rounded-2xl bg-black text-amber-300 font-black text-2xl flex items-center justify-center shadow-lg border-2 border-amber-400 shrink-0 select-none"
+              className="hidden sm:flex w-12 h-12 rounded-2xl bg-black text-amber-300 font-black text-2xl items-center justify-center shadow-lg border-2 border-amber-400 shrink-0 select-none"
               aria-hidden="true"
             >
               %
             </span>
             <div>
-              <div className="flex items-center justify-center lg:justify-start gap-2 mb-0.5 flex-wrap">
+              <div className="hidden sm:flex items-center justify-center lg:justify-start gap-2 mb-0.5 flex-wrap">
                 <span className="px-2.5 py-0.5 rounded-full bg-black border border-amber-400 text-amber-300 font-black text-[10px] uppercase tracking-wider">
                   % BLACK FRIDAY 2026
                 </span>
@@ -861,12 +866,12 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                   {isEs ? 'Descuentos Reales en Directo · Precios más bajos' : 'Live Real Discounts · Lowest Seller Prices'}
                 </span>
               </div>
-              <p className="text-base sm:text-lg font-black text-white">
+              <p className="text-sm sm:text-lg font-black text-white">
                 {isEs
                   ? '¡Black Friday con Miles de Productos Rebajados!'
                   : 'Black Friday with Thousands of Real Deals!'}
               </p>
-              <p className="text-xs text-slate-200 max-w-xl">
+              <p className="hidden sm:block text-xs text-slate-200 max-w-xl">
                 {isEs
                   ? 'Ordenados de mayor a menor % de descuento real, con buscador propio, rango de precios, edades y enlaces directos verificados.'
                   : 'Sorted by biggest real % discount, with custom price range, age & category filters and verified links.'}
@@ -874,7 +879,10 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
             </div>
           </div>
 
-          <div className="shrink-0 my-1 lg:my-0 flex flex-col items-center gap-1 relative z-10">
+          <div className="sm:hidden relative z-10 order-last w-full flex justify-center">
+            <BlackFridayCountdown compact />
+          </div>
+          <div className="hidden sm:flex shrink-0 my-1 lg:my-0 flex-col items-center gap-1 relative z-10">
             <span className="text-[10px] font-black uppercase tracking-widest text-amber-300">
               {isEs ? 'EL BLACK FRIDAY TERMINA EN' : 'BLACK FRIDAY ENDS IN'}
             </span>
@@ -883,7 +891,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
 
           <Link
             href="/black-friday"
-            className="shrink-0 px-5 py-2.5 rounded-2xl bg-black hover:bg-slate-900 text-amber-300 hover:text-amber-200 font-black text-xs sm:text-sm shadow-md border-2 border-amber-400 hover:scale-105 transition-all flex items-center gap-2 cursor-pointer relative z-10"
+            className="shrink-0 px-3 sm:px-5 py-1.5 sm:py-2.5 rounded-xl sm:rounded-2xl bg-black hover:bg-slate-900 text-amber-300 hover:text-amber-200 font-black text-xs sm:text-sm shadow-md border-2 border-amber-400 hover:scale-105 transition-all flex items-center gap-1.5 sm:gap-2 cursor-pointer relative z-10"
           >
             <span className="inline-flex items-center justify-center px-1.5 py-0.5 rounded bg-amber-400/20 text-amber-300 font-black text-[11px]">
               %
@@ -894,22 +902,22 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
         </div>
 
         {/* CHRISTMAS SANTA LETTER BANNER + COUNTDOWN */}
-        <div className="mb-6 bg-gradient-to-r from-[#8a1420] via-[#5c0f18] to-[#0c2217] text-white rounded-3xl p-4 sm:p-5 shadow-xl border-2 border-amber-400/90 flex flex-col lg:flex-row items-center justify-between gap-4">
+        <div className="mb-3 sm:mb-6 bg-gradient-to-r from-[#8a1420] via-[#5c0f18] to-[#0c2217] text-white rounded-2xl sm:rounded-3xl p-2.5 sm:p-5 shadow-xl border-2 border-amber-400/90 flex flex-row lg:flex-row items-center justify-between gap-2 sm:gap-4">
           <div className="flex items-center gap-3.5 text-center lg:text-left">
-            <span className="text-4xl animate-bounce select-none shrink-0" aria-hidden="true">
+            <span className="hidden sm:inline text-4xl animate-bounce select-none shrink-0" aria-hidden="true">
               🎅
             </span>
             <div>
-              <div className="flex items-center justify-center lg:justify-start gap-2 mb-0.5">
+              <div className="hidden sm:flex items-center justify-center lg:justify-start gap-2 mb-0.5">
                 <span className="px-2 py-0.5 rounded-full bg-amber-400 text-slate-950 font-black text-[10px] uppercase tracking-wider">
                   {ui.badgeUpdated2026}
                 </span>
                 <span className="text-xs text-amber-200">{santaHub.eyebrow}</span>
               </div>
-              <p className="text-base sm:text-lg font-black text-white">
-                {isEs ? '¿Aún no has escrito la Carta a Papá Noel?' : santaHub.breadcrumbLabel}
+              <p className="text-sm sm:text-lg font-black text-white">
+                {isEs ? '🎅 ¿Aún no has escrito la Carta a Papá Noel?' : santaHub.breadcrumbLabel}
               </p>
-              <p className="text-xs text-slate-100 max-w-xl">
+              <p className="hidden sm:block text-xs text-slate-100 max-w-xl">
                 {isEs
                   ? 'Elige entre más de 370 juguetes oficiales (coches eléctricos, minimotos, quads, LEGO, patinetes, gaming) y envíala al buzón mágico.'
                   : santaHub.subtitle}
@@ -917,13 +925,13 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
             </div>
           </div>
 
-          <div className="shrink-0 my-1 lg:my-0">
+          <div className="hidden sm:block shrink-0 my-1 lg:my-0">
             <ChristmasCountdown />
           </div>
 
           <Link
             href={localePath('/carta-papa-noel')}
-            className="shrink-0 px-5 py-2.5 rounded-2xl bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-black text-xs sm:text-sm shadow-md hover:scale-105 transition-all flex items-center gap-2 cursor-pointer"
+            className="shrink-0 px-3 sm:px-5 py-1.5 sm:py-2.5 rounded-xl sm:rounded-2xl bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-black text-xs sm:text-sm shadow-md hover:scale-105 transition-all flex items-center gap-1.5 sm:gap-2 cursor-pointer"
           >
             <span>✉️ {ui.navLetter}</span>
             <ArrowRight className="w-4 h-4" aria-hidden="true" />
@@ -931,7 +939,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
         </div>
 
         {/* HERO SECTION: LEFT WING + CENTER SEARCH ENGINE + RIGHT WING */}
-        <section className="mb-8">
+        <section className="mb-4 sm:mb-8">
           <div className="flex flex-col xl:flex-row items-start justify-center gap-5">
             {/* LEFT SHOWCASE WING */}
             <aside
@@ -1044,9 +1052,9 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
             </aside>
 
             {/* CENTER SEARCH ENGINE */}
-            <div className="flex-1 max-w-3xl 2xl:max-w-4xl text-center py-6 sm:py-8 px-4 sm:px-8 bg-white rounded-3xl shadow-md border-2 border-slate-300 flex flex-col justify-between">
+            <div className="flex-1 w-full max-w-3xl 2xl:max-w-4xl text-center py-3 sm:py-8 px-3 sm:px-8 bg-white rounded-2xl sm:rounded-3xl shadow-md border-2 border-slate-300 flex flex-col justify-between">
               <div>
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-3 shadow-2xs border border-amber-200 bg-amber-50/80 text-amber-950">
+                <div className="hidden sm:inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-3 shadow-2xs border border-amber-200 bg-amber-50/80 text-amber-950">
                   <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
                   <span>
                     {i18nConfig
@@ -1055,7 +1063,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                   </span>
                 </div>
 
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.15] mb-3 text-slate-900">
+                <h1 className="text-xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.15] mb-2 sm:mb-3 text-slate-900">
                   {localizedAgeMeta ? (
                     <span>{localizedAgeMeta.h1}</span>
                   ) : i18nConfig ? (
@@ -1070,7 +1078,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                   )}
                 </h1>
 
-                <p className="text-xs sm:text-sm lg:text-base text-slate-600 leading-relaxed mb-4 max-w-2xl mx-auto">
+                <p className="hidden sm:block text-xs sm:text-sm lg:text-base text-slate-600 leading-relaxed mb-4 max-w-2xl mx-auto">
                   {localizedAgeMeta
                     ? localizedAgeMeta.description
                     : i18nConfig
@@ -1079,7 +1087,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                 </p>
 
                 {/* MAIN SEARCH BAR */}
-                <div ref={heroSearchRef} className="relative max-w-2xl mx-auto mb-4 z-40 text-left">
+                <div ref={heroSearchRef} className="relative max-w-2xl mx-auto mb-2 sm:mb-4 z-40 text-left">
                   <form
                     onSubmit={(e) => {
                       setIsHeroSearchFocused(false);
@@ -1269,7 +1277,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                 </div>
 
                 {/* QUICK INSPIRATION CHIPS */}
-                <div className="flex flex-wrap items-center justify-center gap-2 mb-6 max-w-3xl mx-auto">
+                <div className="flex flex-nowrap sm:flex-wrap items-center sm:justify-center gap-2 mb-2 sm:mb-6 max-w-3xl mx-auto overflow-x-auto sm:overflow-visible pb-1 sm:pb-0 [&>*]:shrink-0 [&>*]:whitespace-nowrap">
                   <span className="text-xs font-semibold text-slate-600 mr-1 flex items-center gap-1">
                     {ui.navFilters}:
                   </span>
@@ -1289,7 +1297,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                 </div>
 
                 {/* AI GIFT FINDER POPUP TRIGGER */}
-                <div className="flex items-center justify-center gap-3 mb-3.5">
+                <div className="flex items-center justify-center gap-3 mb-1 sm:mb-3.5">
                   <button
                     type="button"
                     onClick={() => setIsAiModalOpen(true)}
@@ -1303,7 +1311,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
               </div>
 
               {/* Trust Badges */}
-              <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs font-medium text-slate-600 pt-3 border-t border-slate-100">
+              <div className="hidden sm:flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs font-medium text-slate-600 pt-3 border-t border-slate-100">
                 <span className="flex items-center gap-1.5">
                   <ShieldCheck className="w-4 h-4 text-emerald-700" aria-hidden="true" />
                   {ui.trustGuarantee} ({amazonSiteName})
@@ -1442,7 +1450,7 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
         />
 
         {/* TRENDING DEALS & QUICK BUDGET ACTION BAR (BLACK FRIDAY & CYBER WEEK EDITION) */}
-        <section aria-label={ui.rightWingTitle} className="my-6">
+        <section aria-label={ui.rightWingTitle} className="hidden sm:block my-6">
           <div className="bg-gradient-to-r from-slate-950 via-[#131921] to-slate-950 text-white rounded-3xl p-4 sm:p-5 border-2 border-amber-400 shadow-xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -1511,8 +1519,8 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
         </section>
 
         {/* CATALOG SECTION */}
-        <div id="catalogo-productos" className="pt-2">
-          <div className="bg-white border border-slate-200/90 rounded-2xl p-3.5 sm:p-4 shadow-xs mb-6">
+        <div id="catalogo-productos" className="pt-0 sm:pt-2">
+          <div className="bg-white border border-slate-200/90 rounded-2xl p-2.5 sm:p-4 shadow-xs mb-3 sm:mb-6">
             <div
               className={`flex flex-wrap items-center justify-between gap-3 ${
                 !showAdvancedFilters ? 'pb-3 border-b border-slate-100' : ''

@@ -376,23 +376,23 @@ export default function MascotasView({
         <span className="font-bold text-slate-900">{hubMeta.breadcrumbLabel}</span>
       </nav>
 
-      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full z-10">
+      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-6 w-full z-10">
         {/* HERO SECTION */}
-        <section className="text-center py-6 sm:py-10 max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-4 shadow-xs border border-rose-200 bg-rose-50 text-rose-900">
+        <section className="text-center py-2 sm:py-10 max-w-4xl mx-auto">
+          <div className="hidden sm:inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-4 shadow-xs border border-rose-200 bg-rose-50 text-rose-900">
             <span className="flex h-2 w-2 rounded-full bg-emerald-700 animate-pulse" aria-hidden="true" />
             <span>{hubMeta.eyebrow}</span>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] mb-5 text-slate-900">
+          <h1 className="text-2xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] mb-2 sm:mb-5 text-slate-900">
             {hubMeta.h1}
           </h1>
 
-          <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed mb-6 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed mb-3 sm:mb-6 max-w-2xl mx-auto line-clamp-2 sm:line-clamp-none">
             {hubMeta.subtitle}
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs font-medium text-slate-700 mb-8">
+          <div className="hidden sm:flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs font-medium text-slate-700 mb-8">
             <span className="flex items-center gap-1.5">
               <ShieldCheck className="w-4 h-4 text-emerald-700" aria-hidden="true" />
               <span>
@@ -411,7 +411,7 @@ export default function MascotasView({
         </section>
 
         {/* FILTER BAR */}
-        <div className="bg-white rounded-3xl border border-slate-200 p-5 sm:p-6 mb-8 shadow-xs">
+        <div className="bg-white rounded-3xl border border-slate-200 p-3 sm:p-6 mb-4 sm:mb-8 shadow-xs">
           {/* Animal Type Selector */}
           <div className="mb-6 pb-6 border-b border-slate-100">
             <div className="flex items-center justify-between mb-3">
@@ -462,7 +462,7 @@ export default function MascotasView({
               </span>
             </div>
 
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="flex flex-nowrap sm:flex-wrap items-center gap-2 overflow-x-auto sm:overflow-visible pb-1 sm:pb-0 [&>*]:shrink-0 [&>*]:whitespace-nowrap">
               {MASCOTAS_CATEGORIES.map((cat) => (
                 <button
                   key={cat.id}
@@ -484,11 +484,11 @@ export default function MascotasView({
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-slate-100">
+          <div className="grid grid-cols-3 gap-1.5 sm:gap-4 pt-3 sm:pt-4 border-t border-slate-100">
             <div>
               <label
                 htmlFor="mascotas-brand"
-                className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1.5"
+                className="sr-only sm:not-sr-only sm:block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1.5"
               >
                 {labels.common.brandLabel}
               </label>
@@ -500,7 +500,7 @@ export default function MascotasView({
                   setSelectedBrand(e.target.value);
                   setLiveAmazonProducts([]);
                 }}
-                className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 text-xs font-semibold focus:border-rose-600 focus:bg-white outline-none cursor-pointer"
+                className="w-full px-2 sm:px-3.5 py-2 sm:py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 text-xs font-semibold focus:border-rose-600 focus:bg-white outline-none cursor-pointer"
               >
                 <option value="all">{labels.common.allBrands}</option>
                 {BRAND_OPTIONS.map((brand) => (
@@ -514,7 +514,7 @@ export default function MascotasView({
             <div>
               <label
                 htmlFor="mascotas-price"
-                className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1.5"
+                className="sr-only sm:not-sr-only sm:block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1.5"
               >
                 {labels.common.priceRangeLabel}
               </label>
@@ -526,7 +526,7 @@ export default function MascotasView({
                   setSelectedPrice(e.target.value);
                   setLiveAmazonProducts([]);
                 }}
-                className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 text-xs font-semibold focus:border-rose-600 focus:bg-white outline-none cursor-pointer"
+                className="w-full px-2 sm:px-3.5 py-2 sm:py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 text-xs font-semibold focus:border-rose-600 focus:bg-white outline-none cursor-pointer"
               >
                 {MASCOTAS_PRICE_RANGES.map((pr) => (
                   <option key={pr.id} value={pr.id}>
@@ -539,7 +539,7 @@ export default function MascotasView({
             <div>
               <label
                 htmlFor="mascotas-sort"
-                className="flex items-center gap-1.5 text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1.5"
+                className="sr-only sm:not-sr-only sm:flex items-center gap-1.5 text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1.5"
               >
                 <ArrowUpDown className="w-3.5 h-3.5 text-rose-700" aria-hidden="true" />
                 <span>{labels.common.sortLabel}</span>
@@ -551,7 +551,7 @@ export default function MascotasView({
                 onChange={(e) =>
                   setSortBy(e.target.value as 'featured' | 'price-asc' | 'price-desc' | 'rating')
                 }
-                className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 text-xs font-semibold focus:border-rose-600 focus:bg-white outline-none cursor-pointer"
+                className="w-full px-2 sm:px-3.5 py-2 sm:py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 text-xs font-semibold focus:border-rose-600 focus:bg-white outline-none cursor-pointer"
               >
                 <option value="featured">{labels.common.sortFeatured}</option>
                 <option value="price-asc">{labels.common.sortPriceAsc}</option>

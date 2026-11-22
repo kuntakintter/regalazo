@@ -162,11 +162,11 @@ export default function SubcategoryLandingView({
 
       <Header currentTheme="classic" />
 
-      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full z-10">
+      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-8 w-full z-10">
         {/* Breadcrumb Navigation */}
         <nav
           aria-label="Breadcrumb"
-          className="flex items-center gap-2 text-xs font-semibold text-slate-700 mb-6 flex-wrap"
+          className="flex items-center gap-2 text-xs font-semibold text-slate-700 mb-2 sm:mb-6 flex-nowrap sm:flex-wrap overflow-x-auto whitespace-nowrap"
         >
           <Link
             href={localePath('/')}
@@ -192,24 +192,24 @@ export default function SubcategoryLandingView({
         </nav>
 
         {/* HERO */}
-        <section className="text-center py-6 sm:py-8 max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-4 shadow-xs border border-slate-200 bg-white/95 backdrop-blur-md text-slate-800">
+        <section className="text-center py-1 sm:py-8 max-w-4xl mx-auto">
+          <div className="hidden sm:inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-4 shadow-xs border border-slate-200 bg-white/95 backdrop-blur-md text-slate-800">
             <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" aria-hidden="true" />
             <span>{ui.updatedBadge2026}</span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.15] mb-4 text-slate-900">
+          <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.15] mb-2 sm:mb-4 text-slate-900">
             {subMeta.h1}
           </h1>
 
-          <p className="text-sm sm:text-base text-slate-700 leading-relaxed mb-6 max-w-3xl mx-auto">
+          <p className="text-sm sm:text-base text-slate-700 leading-relaxed mb-3 sm:mb-6 max-w-3xl mx-auto line-clamp-2 sm:line-clamp-none">
             {subMeta.description}
           </p>
 
           {/* THEMATIC EXPLORATION BOX (SIBLING CATEGORIES) */}
           {siblingSubcategories.length > 0 && (
-            <div className="max-w-4xl mx-auto mb-10 text-left rounded-3xl overflow-hidden border-2 border-slate-300 bg-white shadow-lg">
-              <div className="bg-[#131921] px-5 py-3.5 border-b-2 border-amber-400/60 flex items-center justify-between text-white gap-3">
+            <div className="max-w-4xl mx-auto mb-3 sm:mb-10 text-left rounded-2xl sm:rounded-3xl overflow-hidden border-2 border-slate-300 bg-white shadow-lg">
+              <div className="bg-[#131921] px-3 sm:px-5 py-2 sm:py-3.5 border-b-2 border-amber-400/60 flex items-center justify-between text-white gap-3">
                 <div className="flex items-center gap-2.5 min-w-0">
                   <div className="w-8 h-8 rounded-xl bg-[#febd69] text-slate-950 flex items-center justify-center font-black shadow-xs shrink-0">
                     <Compass className="w-4 h-4 stroke-[2.5]" aria-hidden="true" />
@@ -232,8 +232,8 @@ export default function SubcategoryLandingView({
                 </Link>
               </div>
 
-              <div className="p-4 sm:p-5 bg-gradient-to-b from-slate-50/80 via-white to-amber-50/30">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5">
+              <div className="p-2.5 sm:p-5 bg-gradient-to-b from-slate-50/80 via-white to-amber-50/30">
+                <div className="flex flex-nowrap overflow-x-auto sm:grid sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-2.5 pb-1 sm:pb-0 [&>*]:shrink-0 sm:[&>*]:shrink [&>*]:whitespace-nowrap sm:[&>*]:whitespace-normal">
                   {siblingSubcategories.map((sub) => (
                     <Link
                       key={sub.slug}
@@ -260,7 +260,7 @@ export default function SubcategoryLandingView({
           )}
 
           {/* Trust badges */}
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs font-medium text-slate-700">
+          <div className="hidden sm:flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs font-medium text-slate-700">
             <span className="flex items-center gap-1.5">
               <ShieldCheck className="w-4 h-4 text-emerald-700" aria-hidden="true" />
               {ui.trustFreeReturns}
@@ -277,7 +277,7 @@ export default function SubcategoryLandingView({
         </section>
 
         {/* PRODUCTS GRID */}
-        <section className="mb-14">
+        <section className="mb-8 sm:mb-14">
           {matchedProducts.length >= 3 && (
             <TopPodium
               products={matchedProducts}

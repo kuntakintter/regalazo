@@ -325,19 +325,19 @@ export default function NavidadView({
       </nav>
 
       {/* Main Content */}
-      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full z-10">
+      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-6 w-full z-10">
         {/* HERO SECTION */}
-        <section className="text-center py-6 sm:py-10 max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-4 shadow-xs border border-rose-200 bg-rose-50 text-rose-900">
+        <section className="text-center py-2 sm:py-10 max-w-4xl mx-auto">
+          <div className="hidden sm:inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-4 shadow-xs border border-rose-200 bg-rose-50 text-rose-900">
             <span className="flex h-2 w-2 rounded-full bg-emerald-700 animate-pulse" aria-hidden="true" />
             <span>{hubMeta.eyebrow}</span>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] mb-5 text-slate-900">
+          <h1 className="text-2xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] mb-2 sm:mb-5 text-slate-900">
             {hubMeta.h1}
           </h1>
 
-          <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed mb-6 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed mb-3 sm:mb-6 max-w-2xl mx-auto line-clamp-2 sm:line-clamp-none">
             {hubMeta.subtitle}
           </p>
 
@@ -348,7 +348,7 @@ export default function NavidadView({
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs font-medium text-slate-700 mb-8">
+          <div className="hidden sm:flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs font-medium text-slate-700 mb-8">
             <span className="flex items-center gap-1.5">
               <ShieldCheck className="w-4 h-4 text-emerald-700" aria-hidden="true" />
               <span>{niche.trustBadges[0]}</span>
@@ -368,20 +368,20 @@ export default function NavidadView({
 
         {/* SANTA LETTER PROMO BANNER */}
         {niche.extraBannerTitle && (
-          <div className="mb-8 p-5 sm:p-6 rounded-3xl bg-gradient-to-r from-[#7f1d1d] via-[#450a0a] to-[#064e3b] border-2 border-amber-400/70 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="mb-3 sm:mb-8 p-3 sm:p-6 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-[#7f1d1d] via-[#450a0a] to-[#064e3b] border-2 border-amber-400/70 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-2xl bg-amber-400/20 border border-amber-300/40 flex items-center justify-center shrink-0 text-2xl" aria-hidden="true">
                 🎅
               </div>
               <div>
                 {niche.extraBannerBadge && (
-                  <span className="inline-block px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950 font-black text-[10px] uppercase tracking-wider mb-1">
+                  <span className="hidden sm:inline-block px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950 font-black text-[10px] uppercase tracking-wider mb-1">
                     {niche.extraBannerBadge}
                   </span>
                 )}
                 <p className="text-base sm:text-lg font-black text-white">{niche.extraBannerTitle}</p>
                 {niche.extraBannerDesc && (
-                  <p className="text-xs sm:text-sm text-amber-100">{niche.extraBannerDesc}</p>
+                  <p className="hidden sm:block text-xs sm:text-sm text-amber-100">{niche.extraBannerDesc}</p>
                 )}
               </div>
             </div>
@@ -397,7 +397,7 @@ export default function NavidadView({
 
         {/* TOP PODIUM */}
         {sortedDisplayProducts.length >= 3 && (
-          <div className="bg-gradient-to-b from-rose-50/70 to-emerald-50/30 rounded-3xl p-4 sm:p-6 mb-8 border border-rose-200 shadow-xs">
+          <div className="bg-gradient-to-b from-rose-50/70 to-emerald-50/30 rounded-2xl sm:rounded-3xl p-2 sm:p-6 mb-3 sm:mb-8 border border-rose-200 shadow-xs">
             <TopPodium
               products={sortedDisplayProducts}
               filterLabel={podiumLabel}
@@ -407,7 +407,7 @@ export default function NavidadView({
         )}
 
         {/* FILTER BAR */}
-        <div className="bg-white rounded-3xl border border-slate-200 p-5 sm:p-6 mb-8 shadow-xs">
+        <div className="bg-white rounded-3xl border border-slate-200 p-3 sm:p-6 mb-4 sm:mb-8 shadow-xs">
           <div className="mb-5">
             <div className="flex items-center justify-between mb-3">
               <span className="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
@@ -419,7 +419,7 @@ export default function NavidadView({
               </span>
             </div>
 
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="flex flex-nowrap sm:flex-wrap items-center gap-2 overflow-x-auto sm:overflow-visible pb-1 sm:pb-0 [&>*]:shrink-0 [&>*]:whitespace-nowrap">
               {NAVIDAD_CATEGORIES.map((cat) => (
                 <button
                   key={cat.id}

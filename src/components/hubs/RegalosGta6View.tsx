@@ -287,7 +287,7 @@ export default function RegalosGta6View({
             {hubMeta.h1}
           </h1>
 
-          <p className="max-w-3xl text-sm sm:text-base text-slate-200 leading-relaxed mb-8">
+          <p className="max-w-3xl text-sm sm:text-base text-slate-200 leading-relaxed mb-4 sm:mb-8 line-clamp-2 sm:line-clamp-none">
             {hubMeta.subtitle}
           </p>
 

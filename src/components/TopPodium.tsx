@@ -281,7 +281,7 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
 
   return (
     <section
-      className="mb-14 pt-2 relative overflow-x-clip"
+      className="mb-6 sm:mb-14 pt-0 sm:pt-2 relative overflow-x-clip"
       aria-label={ui.podiumEyebrow}
       onMouseEnter={() => {
         if (typeof window !== 'undefined' && window.matchMedia('(hover: hover)').matches) {
@@ -303,7 +303,7 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
 
       {/* Header Banner */}
       <div
-        className={`relative mb-6 p-4 sm:p-5 rounded-3xl border backdrop-blur-md ${
+        className={`relative mb-3 sm:mb-6 p-2.5 sm:p-5 rounded-2xl sm:rounded-3xl border backdrop-blur-md ${
           isDark
             ? 'bg-gradient-to-r from-amber-500/15 via-orange-500/10 to-purple-500/20 border-orange-500/30'
             : 'bg-gradient-to-r from-amber-500/10 via-indigo-500/10 to-purple-500/10 border-amber-300/60'
@@ -311,11 +311,11 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
       >
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-amber-500 text-slate-950 flex items-center justify-center shadow-lg shadow-amber-500/30 shrink-0">
+            <div className="hidden sm:flex w-10 h-10 rounded-2xl bg-amber-500 text-slate-950 items-center justify-center shadow-lg shadow-amber-500/30 shrink-0">
               <Trophy className="w-5 h-5" />
             </div>
             <div>
-              <div className="flex items-center gap-2">
+              <div className="hidden sm:flex items-center gap-2">
                 <span
                   className={`text-[11px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md ${
                     isDark ? 'text-amber-300 bg-amber-950/80 border border-amber-500/40' : 'text-amber-800 bg-amber-100'
@@ -327,13 +327,13 @@ export default function TopPodium({ products, filterLabel, isDark = false, showT
                   • {ui.amazonStoreBadge}
                 </span>
               </div>
-              <h2 className={`text-lg sm:text-xl font-black leading-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
+              <h2 className={`text-sm sm:text-xl font-black leading-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
                 🏆 {ui.podiumTitlePrefix}{filterLabel ? ` · ${filterLabel}` : ''}
               </h2>
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-end sm:items-center gap-2 self-end sm:self-center">
+          <div className="hidden sm:flex flex-col sm:flex-row items-end sm:items-center gap-2 self-end sm:self-center">
             <div
               className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold shadow-2xs border ${
                 isDark

@@ -553,9 +553,9 @@ export default function BlackFridayView() {
         <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-amber-500/10 blur-3xl pointer-events-none" />
         <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-amber-400/10 blur-3xl pointer-events-none" />
 
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-7 sm:py-10 relative z-10">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-10 relative z-10">
           {/* Breadcrumbs */}
-          <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-slate-300 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-slate-300 mb-2 sm:mb-4 flex-nowrap overflow-x-auto whitespace-nowrap">
             <Link href={localePath('/')} className="hover:text-amber-300 transition-colors font-medium">
               Inicio
             </Link>
@@ -563,9 +563,9 @@ export default function BlackFridayView() {
             <span className="text-amber-300 font-bold">Black Friday 2026</span>
           </nav>
 
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-6">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-6 mb-3 sm:mb-6">
             <div className="max-w-3xl">
-              <div className="flex flex-wrap items-center gap-2 mb-3">
+              <div className="hidden sm:flex flex-wrap items-center gap-2 mb-3">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black border-2 border-amber-400 text-amber-300 font-black text-xs uppercase tracking-wider shadow-md">
                   <span className="inline-flex items-center justify-center px-1 rounded bg-amber-400/20 text-amber-300 font-black">%</span>
                   <span>BLACK FRIDAY 2026</span>
@@ -576,7 +576,7 @@ export default function BlackFridayView() {
                 </span>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight mb-3">
+              <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight mb-2 sm:mb-3">
                 Ofertas{' '}
                 <span className="bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-200 bg-clip-text text-transparent">
                   Black Friday
@@ -584,20 +584,20 @@ export default function BlackFridayView() {
                 con Descuento Real
               </h1>
 
-              <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl">
+              <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl line-clamp-2 sm:line-clamp-none">
                 Filtra miles de productos por <strong>mayor porcentaje de descuento (%)</strong>, rango exacto de precio,
                 edad o categoría. Comprueba la <strong>diferencia de precio real</strong> sobre el precio anterior y compra
                 directamente en {amazonSiteName} con envío rápido Prime.
               </p>
             </div>
 
-            <div className="flex flex-col items-start lg:items-end gap-2 shrink-0 bg-black border-2 border-amber-400 rounded-2xl p-3.5 shadow-lg">
+            <div className="flex flex-col items-start lg:items-end gap-2 shrink-0 bg-black border-2 border-amber-400 rounded-2xl p-2.5 sm:p-3.5 shadow-lg">
               <span className="text-[11px] font-black uppercase tracking-widest text-amber-300 flex items-center gap-1.5">
                 <Clock className="w-3.5 h-3.5 text-amber-300 animate-pulse" />
                 <span>¡El Black Friday termina en:</span>
               </span>
               <BlackFridayCountdown />
-              <span className="text-[11px] font-bold text-amber-200 mt-0.5">
+              <span className="hidden sm:block text-[11px] font-bold text-amber-200 mt-0.5">
                 {liveDiscountStats.maxDiscount > 0
                   ? `🔥 Ofertas activas hasta -${liveDiscountStats.maxDiscount}% antes de que suban los precios`
                   : '⏳ Aprovecha los descuentos antes de que vuelvan a subir'}
@@ -640,7 +640,7 @@ export default function BlackFridayView() {
             </form>
 
             {/* Quick Trending Black Friday Search Chips */}
-            <div className="flex items-center gap-2 flex-wrap mt-3">
+            <div className="flex items-center gap-2 flex-nowrap sm:flex-wrap overflow-x-auto mt-2 sm:mt-3 [&>*]:shrink-0 [&>*]:whitespace-nowrap">
               <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
                 Más buscado hoy:
               </span>
@@ -663,11 +663,11 @@ export default function BlackFridayView() {
       </section>
 
       {/* 2. MAIN BAZAAR WORKSPACE */}
-      <main className="flex-1 max-w-[1600px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+      <main className="flex-1 max-w-[1600px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-8">
         {/* COMPLETE FILTER PANEL */}
         <section
           aria-label="Filtros de Black Friday"
-          className="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-4 sm:p-6 mb-7 space-y-5"
+          className="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-3 sm:p-6 mb-4 sm:mb-7 space-y-3 sm:space-y-5"
         >
           {/* Row 1: Sort + Deals Only Toggle + Exact Price Min/Max */}
           <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4 pb-4 border-b border-slate-100">
@@ -762,7 +762,7 @@ export default function BlackFridayView() {
             <p className="text-[11px] font-black uppercase tracking-wider text-slate-600 mb-2">
               Presupuesto rápido:
             </p>
-            <div className="flex items-center gap-2 flex-wrap">
+            <div className="flex items-center gap-2 flex-nowrap sm:flex-wrap overflow-x-auto [&>*]:shrink-0 [&>*]:whitespace-nowrap">
               {QUICK_PRICE_PRESETS.map((preset) => {
                 const isActive = activePricePreset === preset.id;
                 return (
@@ -788,7 +788,7 @@ export default function BlackFridayView() {
             <p className="text-[11px] font-black uppercase tracking-wider text-slate-600 mb-2">
               Categorías Black Friday:
             </p>
-            <div className="flex items-center gap-2 flex-wrap">
+            <div className="flex items-center gap-2 flex-nowrap sm:flex-wrap overflow-x-auto [&>*]:shrink-0 [&>*]:whitespace-nowrap">
               {BAZAAR_CATEGORIES.map((cat) => {
                 const isActive = selectedCategory === cat.id;
                 return (
@@ -815,7 +815,7 @@ export default function BlackFridayView() {
             <p className="text-[11px] font-black uppercase tracking-wider text-slate-600 mb-2">
               Filtrar por edad del destinatario:
             </p>
-            <div className="flex items-center gap-2 flex-wrap">
+            <div className="flex items-center gap-2 flex-nowrap sm:flex-wrap overflow-x-auto [&>*]:shrink-0 [&>*]:whitespace-nowrap">
               <button
                 type="button"
                 onClick={() => setSelectedAge('all')}
