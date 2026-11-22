@@ -329,6 +329,16 @@ export default function HeaderDesktop({
       <nav aria-label={ui.navMenu} className="bg-[#1f2833] text-white border-t border-slate-700/60 shadow-inner">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center gap-3 py-2 text-xs">
+            {/* Botón Destacado: Reacondicionados Certificados Amazon (a la izquierda de Black Friday) */}
+            <Link
+              href="/reacondicionados"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-950/90 hover:bg-emerald-900 border-2 border-emerald-400 hover:border-emerald-300 text-emerald-200 hover:text-white font-black text-xs tracking-wide transition-all shadow-md shadow-emerald-500/15 whitespace-nowrap shrink-0 hover:scale-105 active:scale-98"
+              title="Productos Reacondicionados Certificados de Amazon - 100% Funcionales con 1 Año de Garantía"
+            >
+              <span className="text-sm leading-none" aria-hidden="true">♻️</span>
+              <span>Reacondicionados</span>
+            </Link>
+
             {/* Botón Destacado: Black Friday */}
             <Link
               href="/black-friday"

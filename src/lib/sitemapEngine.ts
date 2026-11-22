@@ -191,7 +191,7 @@ export function getActiveStockForRoute(
 
     case 'hub': {
       const slug = routeSpec.slug || '';
-      if (slug === 'black-friday') {
+      if (slug === 'black-friday' || slug === 'reacondicionados') {
         return activeCatalog.length;
       }
       if (HUB_COLLECTION_MAP[slug]) {
@@ -242,6 +242,16 @@ export function getAllCanonicalRouteSpecs(): CanonicalRouteSpec[] {
     priority: 1.0,
     changefreq: 'daily',
     kind: 'home',
+  });
+
+  specs.push({
+    id: 'hub:reacondicionados',
+    baseEsPath: '/reacondicionados',
+    category: 'ocasiones',
+    priority: 0.94,
+    changefreq: 'daily',
+    kind: 'hub',
+    slug: 'reacondicionados',
   });
 
   specs.push({

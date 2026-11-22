@@ -97,6 +97,7 @@ export default function Footer({ currentTheme }: FooterProps) {
               {ui.footerColOccasions}
             </span>
             <ul className={`space-y-1.5 text-xs ${isDark ? 'text-slate-200' : 'text-slate-700'}`}>
+              <li><Link href="/reacondicionados" className={`inline-block py-0.5 hover:underline font-black ${isDark ? 'text-emerald-300' : 'text-emerald-800'}`}>♻️ Reacondicionados Amazon (1 Año Garantía)</Link></li>
               <li><Link href="/black-friday" className={`inline-block py-0.5 hover:underline font-black ${isDark ? 'text-amber-300' : 'text-slate-950'}`}>% Black Friday 2026</Link></li>
               <li><Link href={localePath('/que-regalar-a-mi-novio')} className={`inline-block py-0.5 hover:underline font-bold ${isDark ? 'text-indigo-300' : 'text-indigo-700'}`}>❤️ {hubLabel('que-regalar-a-mi-novio')}</Link></li>
               <li><Link href={localePath('/que-regalar-a-mi-novia')} className={`inline-block py-0.5 hover:underline font-bold ${isDark ? 'text-pink-300' : 'text-pink-700'}`}>💕 {hubLabel('que-regalar-a-mi-novia')}</Link></li>

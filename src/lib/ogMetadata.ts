@@ -69,6 +69,15 @@ export const HUB_OG_SNIPPETS: Record<string, SocialHubSnippet> = {
     imageUrl: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1200&h=630&q=85',
     imageAlt: 'Setup gamer con luces de neón rosa y azul estilo retro Vice City de GTA 6',
   },
+  reacondicionados: {
+    title: 'Reacondicionados Certificados de Amazon (Amazon Renewed) con 1 Año de Garantía | Un Buen Regalo',
+    socialTitle: '♻️ Reacondicionados de Amazon: 100% Funcionales + 1 Año de Garantía Oficial | Un Buen Regalo',
+    description:
+      'Descubre los mejores productos reacondicionados certificados de Amazon (iPhone, iPad, Samsung, portátiles, smartwatches y cafeteras) 100% funcionales, con estado verificado y 1 año de Garantía Oficial Amazon Renewed.',
+    imageUrl:
+      'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1200&h=630&q=85',
+    imageAlt: 'Dispositivos reacondicionados certificados de Amazon Renewed con 1 año de garantía oficial',
+  },
   'black-friday': {
     title: 'Black Friday 2026: Mayores Descuentos Reales (%) en Directo | Un Buen Regalo',
     socialTitle: '% Black Friday 2026: Ofertas Reales Ordenadas por Mayor Descuento | Un Buen Regalo',

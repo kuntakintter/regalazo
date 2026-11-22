@@ -192,8 +192,15 @@ export default function RootLayout({
       },
       {
         '@type': 'SiteNavigationElement',
-        '@id': 'https://www.unbuenregalo.es/#nav-black-friday',
+        '@id': 'https://www.unbuenregalo.es/#nav-reacondicionados',
         position: 1,
+        name: 'Reacondicionados Certificados de Amazon (1 Año de Garantía)',
+        url: 'https://www.unbuenregalo.es/reacondicionados',
+      },
+      {
+        '@type': 'SiteNavigationElement',
+        '@id': 'https://www.unbuenregalo.es/#nav-black-friday',
+        position: 2,
         name: 'Black Friday 2026: Mayores Descuentos Reales',
         url: 'https://www.unbuenregalo.es/black-friday',
       },

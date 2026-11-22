@@ -367,21 +367,28 @@ export default function HeaderMobile({
       {/* 2. SUB-NAV MENÚ MÓVIL */}
       <nav aria-label={ui.navMenu} className="bg-[#1f2833] text-white border-t border-slate-700/60 shadow-inner px-3 py-2">
         {/* Botón Destacado Móvil: Mundo de la Competición */}
-        <div className="mb-2 grid grid-cols-2 gap-2">
+        <div className="mb-2 grid grid-cols-3 gap-1.5">
+          <Link
+            href="/reacondicionados"
+            className="w-full h-9 flex items-center justify-center gap-1 px-2 rounded-xl bg-emerald-950/90 hover:bg-emerald-900 text-emerald-200 text-[11px] font-black shadow-md border-2 border-emerald-400 active:scale-98 transition-all"
+          >
+            <span className="text-xs leading-none" aria-hidden="true">♻️</span>
+            <span className="tracking-tight truncate">Reacondicionados</span>
+          </Link>
           <Link
             href="/black-friday"
-            className="w-full h-9 flex items-center justify-center gap-1.5 px-2.5 rounded-xl bg-black hover:bg-slate-900 text-amber-300 text-xs font-black shadow-md border-2 border-amber-400 active:scale-98 transition-all"
+            className="w-full h-9 flex items-center justify-center gap-1 px-2 rounded-xl bg-black hover:bg-slate-900 text-amber-300 text-[11px] font-black shadow-md border-2 border-amber-400 active:scale-98 transition-all"
           >
-            <span className="inline-flex items-center justify-center px-1 rounded bg-amber-400/20 text-amber-300 font-black text-[11px] leading-none" aria-hidden="true">
+            <span className="inline-flex items-center justify-center px-1 rounded bg-amber-400/20 text-amber-300 font-black text-[10px] leading-none" aria-hidden="true">
               %
             </span>
             <span className="tracking-tight truncate">Ver Black Friday</span>
           </Link>
           <Link
             href={localePath('/competicion')}
-            className="w-full h-9 flex items-center justify-center gap-1.5 px-2.5 rounded-xl bg-gradient-to-r from-red-600 via-rose-700 to-amber-600 text-white text-xs font-black shadow-md border border-red-400/60 active:scale-98 transition-all"
+            className="w-full h-9 flex items-center justify-center gap-1 px-2 rounded-xl bg-gradient-to-r from-red-600 via-rose-700 to-amber-600 text-white text-[11px] font-black shadow-md border border-red-400/60 active:scale-98 transition-all"
           >
-            <span className="text-sm" aria-hidden="true">🏁</span>
+            <span className="text-xs" aria-hidden="true">🏁</span>
             <span className="tracking-tight truncate">Competición</span>
           </Link>
         </div>
