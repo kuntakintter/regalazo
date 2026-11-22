@@ -9,6 +9,8 @@ import { MASCOTAS_PRODUCTS } from './mascotasData';
 import { MOTORISTA_PRODUCTS } from './motoristasData';
 import { NAVIDAD_PRODUCTS } from './navidadData';
 import { HALLOWEEN_PRODUCTS } from './halloweenData';
+import { REACONDICIONADOS_PRODUCTS } from './reacondicionadosData';
+import { VERIFIED_BLACK_FRIDAY_DEALS } from './blackFridayDeals';
 
 interface NicheItemLike {
   id: string;
@@ -108,6 +110,60 @@ const buildIdLookupMap = (): Map<string, Product> => {
   for (const p of AUTOMOVIL_PRODUCTS) if (!map.has(p.id)) map.set(p.id, adaptNicheProduct(p, 'Automóvil'));
   for (const p of CICLISMO_PRODUCTS) if (!map.has(p.id)) map.set(p.id, adaptNicheProduct(p, 'Ciclismo'));
   for (const p of HALLOWEEN_PRODUCTS) if (!map.has(p.id)) map.set(p.id, adaptNicheProduct(p, 'Halloween'));
+  for (const r of REACONDICIONADOS_PRODUCTS) {
+    if (!map.has(r.id)) {
+      map.set(
+        r.id,
+        adaptNicheProduct(
+          {
+            id: r.id,
+            asin: r.asin,
+            title: r.title,
+            category: r.category,
+            categoryLabel: r.categoryLabel,
+            priceText: r.priceText,
+            priceNumeric: r.priceNumeric,
+            rating: r.rating,
+            reviewsCount: r.reviewsCount,
+            imageUrl: r.imageUrl,
+            badge: r.warrantyBadge,
+            description: r.description,
+            pros: r.pros,
+            idealFor: r.idealFor,
+            searchQuery: r.title,
+          },
+          'Reacondicionados'
+        )
+      );
+    }
+  }
+  for (const bf of VERIFIED_BLACK_FRIDAY_DEALS) {
+    if (!map.has(bf.asin)) {
+      map.set(
+        bf.asin,
+        adaptNicheProduct(
+          {
+            id: bf.asin,
+            asin: bf.asin,
+            title: bf.title,
+            category: bf.categoryId,
+            categoryLabel: 'Black Friday',
+            priceText: bf.priceText,
+            priceNumeric: bf.priceNumeric,
+            rating: bf.rating,
+            reviewsCount: bf.reviewsCount,
+            imageUrl: bf.imageUrl,
+            badge: bf.dealBadge,
+            description: bf.title,
+            pros: [`-${bf.discountPercent}% Descuento Real`, `Antes ${bf.originalPriceText}`],
+            idealFor: `Ahorras ${bf.savingsText} en Black Friday`,
+            searchQuery: bf.title,
+          },
+          'Black Friday'
+        )
+      );
+    }
+  }
   return map;
 };
 

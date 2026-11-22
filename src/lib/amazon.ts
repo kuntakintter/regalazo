@@ -195,7 +195,19 @@ export function getAmazonProductUrl(
   const { region: resolvedRegion, baseUrl, tag } = getRegionalAmazonConfig(region);
   const cleanAsin = asin?.trim() || '';
 
-  // Valid, active, 10-character Amazon ASIN available in the target store
+  // For Spain ('es'), link directly to the verified Amazon.es product ficha (/dp/<ASIN>/?tag=vapegadgets22-21&linkCode=ll1)
+  if (resolvedRegion === 'es' && isValidActiveAsin(cleanAsin)) {
+    return `${baseUrl}/dp/${encodeURIComponent(cleanAsin)}/?tag=${tag}&linkCode=ll1`;
+  }
+
+  // For International ('intl' -> Amazon.com with vapegadgets22-20 & OneLink):
+  // If we have the product title/query, route to Amazon.com search with our tag so international
+  // buyers NEVER hit an Amazon.com 404 on Spain-specific ASINs and the 24h affiliate cookie is always set!
+  if (resolvedRegion === 'intl' && searchQueryOrTitle && searchQueryOrTitle.trim().length > 2) {
+    const cleanQuery = searchQueryOrTitle.split(' - ')[0].split(' | ')[0].trim();
+    return `${baseUrl}/s?k=${encodeURIComponent(cleanQuery)}&tag=${tag}&linkCode=ll2`;
+  }
+
   if (
     isValidActiveAsin(cleanAsin) &&
     !(resolvedRegion === 'intl' && INTL_FALLBACK_ASINS.has(cleanAsin))
