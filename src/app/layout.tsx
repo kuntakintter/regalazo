@@ -288,9 +288,9 @@ export default function RootLayout({
   return (
     <html lang="es" className="scroll-smooth">
       <head>
-        <link rel="preconnect" href="https://m.media-amazon.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.google-analytics.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://m.media-amazon.com" />
-        <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
         <script
           type="application/ld+json"

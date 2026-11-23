@@ -80,6 +80,10 @@ const redirects = [
   '/regalos-50-a-100-euros /regalos-de-50-a-100-euros 301',
   '/coches-electricos-infantiles /coches-electricos-para-ninos 301',
   '/blackfriday /black-friday 301',
+  '/__next._tree.txt /4af0ebafeccf6a3aa51203d44de90ad6.txt 200',
+  '/*/__next._tree.txt /4af0ebafeccf6a3aa51203d44de90ad6.txt 200',
+  '/*/*/__next._tree.txt /4af0ebafeccf6a3aa51203d44de90ad6.txt 200',
+  '/*/*/*/__next._tree.txt /4af0ebafeccf6a3aa51203d44de90ad6.txt 200',
 ].join('\n') + '\n';
 fs.writeFileSync('public/_redirects', redirects, 'utf8');
 
