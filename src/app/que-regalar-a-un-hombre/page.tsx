@@ -4,17 +4,20 @@ import { getHreflangAlternatesForPath } from '@/lib/filterRoutes';
 import HombreClient from './HombreClient';
 
 export const metadata: Metadata = {
-  title: 'Un Buen Regalo para un Hombre: ¿Qué Regalar? 【2026】 Ideas de Regalos Originales',
-  description: '¿Buscas un buen regalo para un hombre? Descubre qué regalar con ideas de regalo y detalles para novio, padre, hermano o amigo: tecnología, gadgets, estilo y motor.',
+  title: 'Regalos para Hombres 【2026】 ¿Qué Regalar a un Hombre? +60 Ideas Originales (Desde 12€)',
+  description: '¿Qué regalar a un hombre que tiene de todo? Ranking con +60 regalos originales para hombres (novio, padre o amigo) desde 12€: gadgets, motor, café, Black Friday y reacondicionados Amazon 4.5★+.',
   keywords: [
-    'un buen regalo para un hombre',
-    'regalo para un hombre',
-    'que regalar a un hombre',
     'regalos para hombres',
+    'regalos para hombre',
+    'regalos hombre',
+    'regalos hombres',
     'ideas de regalos para hombres',
-    'que regalar a mi novio',
-    'regalos para novio originales',
-    'regalos de cumpleanos para hombre',
+    'ideas de regalos de hombre',
+    'regalos originales para hombres',
+    'que regalar a un hombre',
+    'que regalar a un hombre que tiene de todo',
+    'un buen regalo para un hombre',
+    'regalo para hombre',
     'regalo hombre original 2026',
     'detalles para hombres'
   ],
@@ -23,8 +26,8 @@ export const metadata: Metadata = {
     languages: getHreflangAlternatesForPath('/que-regalar-a-un-hombre'),
   },
   openGraph: {
-    title: 'Un Buen Regalo para un Hombre: ¿Qué Regalar? 【2026】 Ideas de Regalos Originales',
-    description: 'Guía definitiva de ideas de regalo para hombres: gadgets virales, tecnología, motor, gaming y detalles con los que acertar seguro.',
+    title: 'Regalos para Hombres 【2026】 ¿Qué Regalar a un Hombre? +60 Ideas Originales (Desde 12€)',
+    description: 'Guía definitiva de regalos para hombres: gadgets virales, tecnología, motor, gaming y chollos desde 12€ con valoración 4.5★+ en Amazon.',
     url: 'https://www.unbuenregalo.es/que-regalar-a-un-hombre',
     siteName: 'Un Buen Regalo',
     locale: 'es_ES',
@@ -34,14 +37,14 @@ export const metadata: Metadata = {
         url: 'https://www.unbuenregalo.es/og-cover.png',
         width: 1200,
         height: 630,
-        alt: 'Qué Regalar a un Hombre - Un Buen Regalo',
+        alt: 'Regalos para Hombres - Qué Regalar a un Hombre - Un Buen Regalo',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Un Buen Regalo para un Hombre: ¿Qué Regalar? 【2026】',
-    description: 'Ideas de regalos para hombres: novio, padre, hermano o amigos. Comparativa de precios y valoraciones Amazon.',
+    title: 'Regalos para Hombres 【2026】 ¿Qué Regalar a un Hombre? +60 Ideas Originales',
+    description: 'Ideas de regalos originales para hombres: novio, padre, hermano o amigos desde 12€. Comparativa de precios y valoraciones Amazon.',
     images: ['https://www.unbuenregalo.es/og-cover.png'],
   },
 };

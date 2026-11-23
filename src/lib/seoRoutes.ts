@@ -88,10 +88,10 @@ export const SEO_AGE_ROUTES: Record<string, SeoRouteMeta> = {
     ageId: '1-3',
     ageSlug: 'regalos-para-bebes-de-1-ano',
     specificYear: 1,
-    title: 'Regalos para Bebés y Niños de 1 Año 【2026】 Qué Regalo Hacer | Un Buen Regalo',
-    h1: 'Regalo y Regalos para Hacer a un Bebé o Niño de 1 Año: Top 10 Montessori',
-    description: '¿Qué regalo hacer a un bebé o niño de 1 año en su primer cumpleaños? Correpasillos de madera, cubos de actividades Montessori, bloques sensoriales y triciclos evolutivos.',
-    keywords: ['regalo para hacer a bebe de 1 año', 'regalos para bebes de 1 año', 'regalos para niños de 1 año', 'que regalar a un bebe de 1 año', 'regalo primer cumpleaños', 'juguetes 1 año montessori']
+    title: 'Regalos Bebé 1 Año y Primer Cumpleaños 【2026】 Top 15 Ideas Montessori (Desde 11€)',
+    h1: 'Regalos para Bebés y Niños de 1 Año: Top 15 Juguetes Montessori y 1.er Cumpleaños',
+    description: '¿Qué regalar a un bebé de 1 año en su primer cumpleaños? Top 15 juguetes Montessori de madera, correpasillos, cubos de actividades y triciclos evolutivos desde 11€ en Amazon (4.6★+).',
+    keywords: ['regalos bebe 1 año', 'regalos para bebes de 1 año', 'regalos para niños de 1 año', 'que regalar a un bebe de 1 año', 'regalo primer cumpleaños', 'juguetes 1 año montessori', 'regalo para hacer a bebe de 1 año']
   },
   'regalos-para-ninos-de-2-anos': {
     ageId: '1-3',
@@ -187,64 +187,64 @@ export const SEO_AGE_ROUTES: Record<string, SeoRouteMeta> = {
     ageId: '10-12',
     ageSlug: 'regalos-para-ninos-de-12-anos',
     specificYear: 12,
-    title: 'Regalos para Niños y Niñas de 12 Años 【2026】 Qué Regalo Hacer | Un Buen Regalo',
-    h1: 'Regalo y Regalos para Hacer a Chicos y Chicas de 12 Años: Tecnología y Deportes',
-    description: '¿Qué regalo hacer a los 12 años? Altavoces Bluetooth impermeables, luces LED RGB para habitación, juegos de mesa estratégicos, mochilas urbanas y mangas.',
-    keywords: ['regalo para hacer a niño de 12 años', 'regalos para niños de 12 años', 'regalos para niñas de 12 años', 'que regalar a un niño de 12 años', 'regalos 12 años chico chica']
+    title: 'Regalos para Niños y Niñas de 12 Años 【2026】 Top 20 Ideas Originales (Desde 12€)',
+    h1: 'Regalos para Chicos y Chicas de 12 Años: Tecnología, Deportes y Juegos Top',
+    description: '¿Qué regalar a un niño o niña de 12 años? Top 20 ideas originales desde 12€: altavoces Bluetooth, luces LED RGB, juegos de mesa estratégicos, mochilas urbanas y mangas (4.6★+).',
+    keywords: ['regalos niña 12 años', 'regalo niña 12 años', 'regalos para niños de 12 años', 'regalos para niñas de 12 años', 'que regalar a un niño de 12 años', 'regalos 12 años chico chica']
   },
   'regalos-para-ninos-de-13-anos': {
     ageId: '13-15',
     ageSlug: 'regalos-para-ninos-de-13-anos',
     specificYear: 13,
-    title: 'Regalos para Niños y Adolescentes de 13 Años 【2026】 Qué Regalo Hacer',
-    h1: 'Regalo y Regalos para Hacer a Chicos y Chicas de 13 Años: Tendencias 2026',
-    description: '¿Qué regalo hacer a un chico o chica de 13 años? Cámaras Fujifilm Instax Mini, auriculares gaming y música JBL, juegos de mesa Catan, papelería creativa y lámparas 3D anime.',
-    keywords: ['regalo para hacer a niño de 13 años', 'regalos para niños de 13 años', 'regalos para niñas de 13 años', 'que regalar a un niño de 13 años', 'regalos adolescentes 13 años', 'gifts for 13 year old kids']
+    title: 'Regalos para Adolescentes de 13 Años (Chicos y Chicas) 【2026】 Top 20 Ideas',
+    h1: 'Regalos para Chicos y Chicas de 13 Años: Tendencias y Gadgets 2026',
+    description: '¿Qué regalar a un chico o chica de 13 años? Cámaras Fujifilm Instax Mini, auriculares gaming y música JBL, juegos de mesa Catan, papelería creativa y lámparas 3D anime.',
+    keywords: ['regalos para niños de 13 años', 'regalos para niñas de 13 años', 'que regalar a un niño de 13 años', 'regalos adolescentes 13 años', 'gifts for 13 year old kids']
   },
   'regalos-para-ninos-de-14-anos': {
     ageId: '13-15',
     ageSlug: 'regalos-para-ninos-de-14-anos',
     specificYear: 14,
-    title: 'Regalos para Adolescentes de 14 Años 【2026】 Qué Regalo Hacer | Un Buen Regalo',
-    h1: 'Regalo y Regalos para Hacer a Adolescentes de 14 Años: Gaming y Estilo Juvenil',
-    description: '¿Qué regalo hacer a un adolescente de 14 años? Periféricos gaming RGB, sets de skincare juvenil, figuras One Piece y Dragon Ball, sudaderas y gadgets tech.',
-    keywords: ['regalo para hacer a adolescente de 14 años', 'regalos para niños de 14 años', 'regalos para niñas de 14 años', 'regalos adolescentes 14 años', 'que regalar a los 14 años']
+    title: 'Regalos para Adolescentes de 14 Años 【2026】 ¿Qué Regalar? Top 20 Ideas (Desde 14€)',
+    h1: 'Regalos para Adolescentes de 14 Años (Chicos y Chicas): Gaming, Tech y Estilo',
+    description: '¿Qué regalar a un adolescente de 14 años? Top 20 ideas originales para chicos y chicas desde 14€: periféricos gaming RGB, auriculares JBL, skincare juvenil, anime y gadgets Amazon 4.6★+.',
+    keywords: ['que regalar a un adolescente de 14 años', 'regalos para niños de 14 años', 'regalos para niñas de 14 años', 'regalos adolescentes 14 años', 'que regalar a los 14 años', 'regalo 14 años']
   },
   'regalos-para-ninos-de-15-anos': {
     ageId: '13-15',
     ageSlug: 'regalos-para-ninos-de-15-anos',
     specificYear: 15,
-    title: 'Regalos para Adolescentes de 15 Años 【2026】 Qué Regalo Hacer | Un Buen Regalo',
-    h1: 'Regalo y Regalos para Hacer a Chicos y Chicas de 15 Años: Música, Foto y Gaming',
-    description: '¿Qué regalo hacer para cumplir 15 años? Proyectores portátiles para cine en casa, tocadiscos vintage Bluetooth, auriculares con cancelación de ruido y moda.',
-    keywords: ['regalo para hacer a adolescente de 15 años', 'regalos para niños de 15 años', 'regalos para niñas de 15 años', 'regalos 15 años chica', 'regalos 15 años chico', 'que regalar a un adolescente de 15 años']
+    title: 'Regalos para Adolescentes de 15 Años 【2026】 ¿Qué Regalar? Top 20 Ideas (Desde 15€)',
+    h1: 'Regalos para Chicos y Chicas de 15 Años: Música, Foto, Gaming y Moda',
+    description: '¿Qué regalar por los 15 años? Top 20 ideas para chicos y chicas desde 15€: proyectores portátiles, cámaras Instax, tocadiscos Bluetooth, auriculares inalámbricos y tendencias 4.6★+.',
+    keywords: ['regalos 15 años', 'regalos para niños de 15 años', 'regalos para niñas de 15 años', 'regalos 15 años chica', 'regalos 15 años chico', 'que regalar a un adolescente de 15 años']
   },
   'regalos-para-jovenes-de-16-anos': {
     ageId: '16-18',
     ageSlug: 'regalos-para-jovenes-de-16-anos',
     specificYear: 16,
-    title: 'Regalos para Jóvenes de 16 Años 【2026】 Qué Regalo Hacer | Un Buen Regalo',
-    h1: 'Regalo y Regalos para Hacer a Jóvenes de 16 Años: Videojuegos, Audio y Estilo',
-    description: '¿Qué regalo hacer a un joven de 16 años? Mandos PS5 DualSense, teclados mecánicos custom, zapatillas y complementos de tendencia, perfumes juveniles y smartwatches.',
-    keywords: ['regalo para hacer a joven de 16 años', 'regalos para jovenes de 16 años', 'regalos 16 años chico', 'regalos 16 años chica', 'que regalar a los 16 años']
+    title: 'Regalos para Jóvenes de 16 Años 【2026】 ¿Qué Regalar? Top 20 Ideas (Desde 15€)',
+    h1: 'Regalos para Jóvenes de 16 Años (Chicos y Chicas): Gaming, Audio y Estilo',
+    description: '¿Qué regalar a un joven de 16 años? Mandos PS5 DualSense, teclados mecánicos custom, zapatillas y complementos de tendencia, perfumes juveniles y smartwatches verificados en Amazon.',
+    keywords: ['regalos 16 años', 'regalos para jovenes de 16 años', 'regalos 16 años chico', 'regalos 16 años chica', 'que regalar a los 16 años']
   },
   'regalos-para-jovenes-de-17-anos': {
     ageId: '16-18',
     ageSlug: 'regalos-para-jovenes-de-17-anos',
     specificYear: 17,
-    title: 'Regalos para Jóvenes de 17 Años 【2026】 Qué Regalo Hacer | Un Buen Regalo',
-    h1: 'Regalo y Regalos para Hacer a Jóvenes de 17 Años: Tecnología y Experiencias',
-    description: '¿Qué regalo hacer a chicos y chicas de 17 años? Monitores gaming de alta tasa de refresco, cámaras de acción 4K, mochilas antirrobo para portátil y fragancias.',
-    keywords: ['regalo para hacer a joven de 17 años', 'regalos para jovenes de 17 años', 'regalos 17 años chico', 'regalos 17 años chica', 'que regalar a los 17 años']
+    title: 'Regalos 17 Años (Chicos y Chicas) 【2026】 ¿Qué Regalar a un Joven? Top 20 Ideas',
+    h1: 'Regalos para Jóvenes de 17 Años: Tecnología, Gaming, Estilo y Experiencias',
+    description: '¿Qué regalar a un chico o chica de 17 años? Top 20 ideas originales desde 15€: auriculares inalámbricos, monitores gaming, cámaras 4K, mochilas urbanas, perfumes y chollos Amazon 4.6★+.',
+    keywords: ['regalos 17 años', 'regalos para jovenes de 17 años', 'regalos 17 años chico', 'regalos 17 años chica', 'que regalar a los 17 años']
   },
   'regalos-para-jovenes-de-18-anos': {
     ageId: '16-18',
     ageSlug: 'regalos-para-jovenes-de-18-anos',
     specificYear: 18,
-    title: 'Regalos para Cumplir 18 Años 【2026】 Qué Regalo Hacer | Un Buen Regalo',
-    h1: 'Regalo y Regalos para Hacer a Jóvenes de 18 Años: Mayoría de Edad Inolvidable',
-    description: '¿Qué regalo hacer por los 18 años? Relojes automáticos y cronógrafos, cajas de experiencias y viajes, auriculares inalámbricos premium, cafeteras express y equipamiento tech.',
-    keywords: ['regalo para hacer a joven de 18 años', 'regalos para jovenes de 18 años', 'regalos 18 años hombre', 'regalos 18 años mujer', 'regalo mayoria de edad 18 años']
+    title: 'Regalos 18 Años (Hombre y Mujer) 【2026】 Top 25 Ideas Mayoría de Edad (Desde 15€)',
+    h1: 'Regalos para Cumplir 18 Años: Top 25 Ideas para una Mayoría de Edad Inolvidable',
+    description: '¿Qué regalar por los 18 años a un chico o chica? Top 25 regalos originales desde 15€: relojes automáticos, cajas de experiencias y viajes, auriculares premium, cafeteras y tecnología 4.6★+.',
+    keywords: ['regalos 18 años', 'regalos para jovenes de 18 años', 'regalos 18 años hombre', 'regalos 18 años mujer', 'regalo mayoria de edad 18 años', 'que regalar por los 18 años']
   }
 };
 

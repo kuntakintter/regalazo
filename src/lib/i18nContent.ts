@@ -393,15 +393,15 @@ export function getLocalizedSubcategoryMeta(
 
   if (key === 'es' || key === 'es-us') {
     const title = applyCurrencyDisplay(
-      `Un Buen Regalo: ${subLabel} 【${year}】 Comparativa y Top 10`,
+      `Regalos de ${subLabel} (${ageLabel}) 【${year}】 Top 10 y Comparativa`,
       targetCurrency
     );
     const h1 = applyCurrencyDisplay(
-      `Regalo y Regalos de ${subLabel}: Top 10 y Comparativa ${year}`,
+      `Regalos de ${subLabel} (${ageLabel}): Top 10 y Comparativa ${year}`,
       targetCurrency
     );
     const description = applyCurrencyDisplay(
-      `¿Buscas un buen regalo de ${subLabel}? Ranking y comparativa con los mejores regalos (${ageLabel}) verificados en Amazon con envío rápido.`,
+      `¿Buscas el mejor regalo de ${subLabel.toLowerCase()} para ${ageLabel.toLowerCase()}? Ranking y comparativa Top 10 verificada en Amazon con precios reales, ofertas y envío rápido Prime.`,
       targetCurrency
     );
     return {
@@ -674,11 +674,11 @@ export function getLocalizedAgeFilterMeta(
           : `Niña de ${yr} Años`;
       const altWord = isBoy ? 'niño y chico' : 'niña y chica';
       const title = applyCurrencyDisplay(
-        `Un Buen Regalo para ${personWord} 【${year}】 Top 10 Ideas y Juguetes`,
+        `Regalos para ${personWord} 【${year}】 Top 15 Ideas y Juguetes Originales`,
         targetCurrency
       );
       const h1 = applyCurrencyDisplay(
-        `Regalo y Regalos para ${personWord}: Top Ideas y Comparativa (${year})`,
+        `Regalos para ${personWord}: Top Ideas y Comparativa (${year})`,
         targetCurrency
       );
       const description = applyCurrencyDisplay(
@@ -760,19 +760,30 @@ export function getLocalizedAgeFilterMeta(
         : `${yr}-Year-Old Girl`;
     const combinedLabel = `Gifts for ${targetNoun}`;
     const tagline = `${combinedLabel} · ${ui.verifiedCatalogNote}`;
-    const title = `${combinedLabel} 【${year}】 Top 10 Toys & Gift Ideas | ${ui.brandName}`;
-    const h1 = `Best ${combinedLabel} (${year}): Top-Rated Ideas & Comparison`;
-    const description = `Looking for the best gift for a ${targetNoun.toLowerCase()}? Verified Amazon ranking with 4.5+ star toys, games, and original presents.`;
+    const title =
+      yr === 1
+        ? `Best Gifts for 1 Year Old (${isBoy ? 'Baby Boys' : 'Baby Girls'} & 1st Birthday ${year}) — TopMontessori & Toys`
+        : `Best Gifts for a ${targetNoun} 【${year}】 Top 10 Toys & Gift Ideas | ${ui.brandName}`;
+    const h1 =
+      yr === 1
+        ? `Best Gifts for 1-Year-Old ${isBoy ? 'Baby Boys' : 'Baby Girls'} & 1st Birthday (${year})`
+        : `Best ${combinedLabel} (${year}): Top-Rated Ideas & Comparison`;
+    const description =
+      yr === 1
+        ? `What are the best gifts for a 1 year old? Compare 25+ top-rated 1st birthday gifts & Montessori toys for 1-year-old ${isBoy ? 'baby boys' : 'baby girls'} with 4.5★+ verified Amazon reviews.`
+        : `Looking for the best gift Ideas for a ${targetNoun.toLowerCase()}? Compare top-rated ${year} toys, tech, games & birthday presents with 4.5★+ verified Amazon reviews.`;
     return {
-      title,
+      title: yr === 1 ? `Best Gifts for 1 Year Old (${isBoy ? 'Baby Boys' : 'Baby Girls'} & 1st Birthday ${year}) | Top Montessori & Toys` : title,
       socialTitle: `${routeMeta.icon} ${combinedLabel} | ${ui.brandName}`,
       description,
       h1,
       subtitle: description,
       tagline,
       keywords: [
+        `best gifts for ${yr} year old`,
         `gifts for ${yr} year old ${isBoy ? 'boy' : 'girl'}`,
         `best gift for ${yr} year old ${isBoy ? 'boy' : 'girl'}`,
+        `gift ideas for a ${yr} year old ${isBoy ? 'boy' : 'girl'}`,
         `${yr} year old ${isBoy ? 'boy' : 'girl'} birthday gift ideas`,
         ui.brandName,
       ],
