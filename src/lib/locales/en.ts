@@ -744,6 +744,26 @@ export const EN_HUBS: Record<string, HubCopy> = {
     breadcrumbLabel: 'Group Voting',
     keywords: ['vote group gift whatsapp', 'group gift poll online free', 'decide joint birthday gift'],
   },
+  reacondicionados: {
+    title: 'Certified Amazon Renewed Deals 【2026】 Up to 50% OFF + 1-Year Official Warranty',
+    socialTitle: '♻️ Certified Amazon Renewed Tech & Gifts (1-Year Official Warranty) | A Good Gift',
+    description: 'Save up to 50% on Certified Refurbished iPhones, iPads, laptops, Sony headphones, and espresso machines from Amazon Renewed. 40-point lab inspection, >80% battery health, and full 1-Year Official Amazon Guarantee.',
+    eyebrow: 'Amazon Renewed · 1-Year Official Warranty',
+    h1: 'Certified Amazon Renewed Products Like New (1-Year Official Guarantee)',
+    subtitle: '40-point hardware inspection, zero visible scratches at 12 inches, certified >80% battery capacity, and 365-day official replacement or full refund guarantee.',
+    breadcrumbLabel: 'Amazon Renewed (Refurbished)',
+    keywords: ['amazon renewed deals', 'certified refurbished iphone amazon', 'amazon renewed 1 year warranty', 'refurbished ipad laptops'],
+  },
+  'black-friday': {
+    title: 'Verified Amazon Black Friday Deals 2026 【Up to 60% OFF】 Tech, Gaming & Gifts',
+    socialTitle: '🔥 Verified Amazon Black Friday Deals 2026 | A Good Gift',
+    description: 'Compare real, verified Black Friday deals on Amazon with zero inflated prices: top-rated tech, gaming gear, coffee machines, and holiday gifts.',
+    eyebrow: 'Verified Black Friday Discounts',
+    h1: 'Best Verified Amazon Black Friday Deals 2026 (Real Discounts Only)',
+    subtitle: 'Hand-picked 4.5★+ products with genuine price drops and fast Prime delivery.',
+    breadcrumbLabel: 'Black Friday',
+    keywords: ['verified amazon black friday deals', 'best black friday tech deals 2026', 'black friday gift deals'],
+  },
 };
 
 export const EN_GB_UI_OVERRIDES: Partial<UiStrings> = {

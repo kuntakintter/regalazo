@@ -35,7 +35,7 @@ import {
   ShoppingBag,
 } from 'lucide-react';
 
-const PRICE_PRESETS = [
+const PRICE_PRESETS_ES = [
   { id: 'all', label: 'Todos los precios', min: '', max: '' },
   { id: '<100', label: 'Menos de 100 €', min: '', max: '100' },
   { id: '100-250', label: '100 € – 250 €', min: '100', max: '250' },
@@ -43,7 +43,15 @@ const PRICE_PRESETS = [
   { id: '>500', label: 'Más de 500 €', min: '500', max: '' },
 ];
 
-const REAC_FAQS = [
+const PRICE_PRESETS_EN = [
+  { id: 'all', label: 'All prices', min: '', max: '' },
+  { id: '<100', label: 'Under $100 / €100', min: '', max: '100' },
+  { id: '100-250', label: '$100 – $250', min: '100', max: '250' },
+  { id: '250-500', label: '$250 – $500', min: '250', max: '500' },
+  { id: '>500', label: 'Over $500', min: '500', max: '' },
+];
+
+const REAC_FAQS_ES = [
   {
     q: '¿Qué son exactamente los productos Reacondicionados de Amazon (Amazon Renewed)?',
     a: 'Son productos de primeras marcas (Apple, Samsung, Sony, Lenovo, Garmin, DeLonghi, etc.) que han sido inspeccionados, probados, limpiados e higienizados profesionalmente por proveedores cualificados por Amazon para funcionar y lucir como nuevos, con un ahorro de hasta el 50% frente a su precio nuevo.',
@@ -62,8 +70,62 @@ const REAC_FAQS = [
   },
 ];
 
+const REAC_FAQS_EN = [
+  {
+    q: 'What exactly are Certified Amazon Renewed (Refurbished) products?',
+    a: 'They are top-brand devices (Apple, Samsung, Sony, Lenovo, Garmin, DeLonghi, etc.) professionally inspected, tested, cleaned, and sanitized by Amazon-qualified technicians to work and look like new—saving you up to 50% off the brand-new retail price.',
+  },
+  {
+    q: 'How long is the official Amazon warranty after buying a refurbished product?',
+    a: 'Every product includes a full 1-Year (12-Month) Official Amazon Renewed Guarantee after purchase: you are entitled to a free replacement or 100% full refund if the device does not perform as expected, plus a 30-day free home trial.',
+  },
+  {
+    q: 'Are they 100% functional, and what condition are the battery and screen in?',
+    a: 'Yes, 100% of devices are fully functional. For smartphones, tablets, laptops, and smartwatches, Amazon tests and guarantees a real battery capacity above 80% compared to a brand-new battery, with zero screen cracks or dead pixels.',
+  },
+  {
+    q: 'What do "Excellent (Grade A+)" and "Very Good" mean when tapping "Read More" on a product?',
+    a: '"Excellent (Grade A+)" means the device has zero visible cosmetic scratches from 12 inches (30 cm) away and looks like new. "Very Good" is 100% functional with >80% verified battery health and may only have minor micro-marks barely noticeable up close.',
+  },
+];
+
+const CATEGORY_LABEL_EN: Record<string, string> = {
+  all: 'All Certified Refurbished',
+  smartphones: 'iPhone & Smartphones',
+  portatiles: 'Laptops, iPad & Tablets',
+  audio: 'Smartwatches & Audio',
+  hogar: 'Coffee Machines & Home',
+  gaming: 'Consoles & Gaming',
+  'Smartphones e iPhone': 'Smartphones & iPhone',
+  'Portátiles, iPad y Tablets': 'Laptops, iPad & Tablets',
+  'Smartwatches y Audio': 'Smartwatches & Audio',
+  'Cafeteras y Hogar': 'Coffee Machines & Home',
+  'Consolas y Gaming': 'Consoles & Gaming',
+};
+
+function translateConditionText(text: string, isEs: boolean): string {
+  if (isEs || !text) return text;
+  return text
+    .replace('Estado: Excelente (Grado A+ · Como nuevo)', 'Condition: Excellent (Grade A+ · Like New)')
+    .replace('Estado: Muy Bueno (Grado A · Revisado)', 'Condition: Very Good (Grade A · Certified)')
+    .replace(
+      '100% funcional · Batería testada con capacidad superior al 85% garantizada por Amazon Renewed.',
+      '100% functional · Tested battery with >85% real capacity guaranteed by Amazon Renewed.'
+    )
+    .replace(
+      '100% funcional · Diagnóstico electrónico y mecánico de 40 puntos superado.',
+      '100% functional · Passed 40-point electronic and hardware diagnostic inspection.'
+    )
+    .replace(
+      '1 año de Garantía Oficial Amazon Renewed + 30 días de prueba con devolución gratuita.',
+      '1-Year Official Amazon Renewed Warranty + 30-day free home trial & returns.'
+    )
+    .replace('(Reacondicionado)', '(Certified Refurbished)');
+}
+
 function RefurbishedProductCard({ item }: { item: RefurbishedProduct }) {
-  const { ui, langCode, amazonRegion, formatPrice } = useActiveLocale();
+  const { ui, localeKey, langCode, amazonRegion, formatPrice } = useActiveLocale();
+  const isEs = localeKey === 'es' || localeKey === 'es-us';
   const { toggleItem, isItemInList } = useVoting();
   const isInVote = isItemInList(item.id);
   const [copied, setCopied] = useState(false);
@@ -147,7 +209,7 @@ function RefurbishedProductCard({ item }: { item: RefurbishedProduct }) {
       <div className="absolute top-2.5 left-2.5 z-20 flex flex-col items-start gap-1 pointer-events-none">
         <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-emerald-700 text-white font-black text-[10px] tracking-tight shadow-sm">
           <span>♻️</span>
-          <span>1 Año Garantía</span>
+          <span>{isEs ? '1 Año Garantía' : '1-Year Warranty'}</span>
         </span>
         {item.discountPercent && item.discountPercent > 0 && (
           <span className="inline-flex items-center px-2 py-0.5 rounded-lg bg-black border border-amber-400 text-amber-300 font-black text-[10px] shadow-sm">
@@ -211,7 +273,7 @@ function RefurbishedProductCard({ item }: { item: RefurbishedProduct }) {
       <div className="flex flex-col flex-1 justify-between">
         <div>
           <span className="text-[10px] text-emerald-800 font-bold uppercase tracking-wider truncate block mb-0.5">
-            {item.categoryLabel}
+            {isEs ? item.categoryLabel : CATEGORY_LABEL_EN[item.categoryLabel] || item.categoryLabel}
           </span>
 
           <p className="font-semibold text-xs sm:text-[13px] leading-snug text-slate-900 group-hover:text-emerald-800 transition-colors mb-1 min-h-[2.1rem]">
@@ -221,7 +283,7 @@ function RefurbishedProductCard({ item }: { item: RefurbishedProduct }) {
               rel="nofollow sponsored noopener noreferrer"
               className="block line-clamp-2 hover:underline"
             >
-              {item.title}
+              {translateConditionText(item.title, isEs)}
             </a>
           </p>
 
@@ -229,7 +291,7 @@ function RefurbishedProductCard({ item }: { item: RefurbishedProduct }) {
           <div className="mb-1.5">
             <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-emerald-50 border border-emerald-200 text-emerald-900 font-bold text-[10px] truncate max-w-full">
               <CheckCircle2 className="w-3 h-3 text-emerald-600 shrink-0" />
-              <span className="truncate">{item.conditionGrade}</span>
+              <span className="truncate">{translateConditionText(item.conditionGrade, isEs)}</span>
             </span>
           </div>
 
@@ -277,7 +339,9 @@ function RefurbishedProductCard({ item }: { item: RefurbishedProduct }) {
             >
               <span className="flex items-center gap-1.5 truncate">
                 <Info className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
-                <span className="truncate">Leer más: Estado y Garantía</span>
+                <span className="truncate">
+                  {isEs ? 'Leer más: Estado y Garantía' : 'Read More: Condition & Warranty'}
+                </span>
               </span>
               <ChevronDown
                 className={`w-3 h-3 text-emerald-700 transition-transform duration-200 shrink-0 ml-1 ${
@@ -291,7 +355,7 @@ function RefurbishedProductCard({ item }: { item: RefurbishedProduct }) {
                 <div className="flex items-center justify-between pb-1.5 border-b border-emerald-100 gap-1">
                   <span className="text-[10px] font-black uppercase tracking-wider text-emerald-800 flex items-center gap-1">
                     <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                    <span>Ficha Oficial Amazon Renewed</span>
+                    <span>{isEs ? 'Ficha Oficial Amazon Renewed' : 'Official Amazon Renewed Spec'}</span>
                   </span>
                   <button
                     type="button"
@@ -300,7 +364,7 @@ function RefurbishedProductCard({ item }: { item: RefurbishedProduct }) {
                       e.stopPropagation();
                       setShowDetails(false);
                     }}
-                    aria-label="Cerrar"
+                    aria-label={isEs ? 'Cerrar' : 'Close'}
                     className="p-0.5 rounded-md text-slate-400 hover:text-slate-700 hover:bg-slate-100 cursor-pointer"
                   >
                     <X className="w-3.5 h-3.5" />
@@ -308,25 +372,37 @@ function RefurbishedProductCard({ item }: { item: RefurbishedProduct }) {
                 </div>
 
                 <div className="p-2 rounded-lg bg-emerald-50/80 border border-emerald-200">
-                  <p className="text-[11px] font-black text-emerald-950">{item.conditionGrade}</p>
+                  <p className="text-[11px] font-black text-emerald-950">
+                    {translateConditionText(item.conditionGrade, isEs)}
+                  </p>
                   <p className="text-[11px] text-emerald-900 mt-0.5 leading-snug">
-                    100% funcional, higienizado y verificado por técnicos certificados de Amazon.
+                    {isEs
+                      ? '100% funcional, higienizado y verificado por técnicos certificados de Amazon.'
+                      : '100% functional, sanitized, and verified by Amazon-certified technicians.'}
                   </p>
                 </div>
 
                 <ul className="space-y-1 text-[11px] text-slate-700 pl-3.5 list-disc marker:text-emerald-600 leading-snug">
                   {item.pros.map((pro, idx) => (
-                    <li key={idx}>{pro}</li>
+                    <li key={idx}>{translateConditionText(pro, isEs)}</li>
                   ))}
                 </ul>
 
                 <div className="pt-1.5 border-t border-emerald-100">
                   <p className="text-[10px] font-extrabold text-slate-900 flex items-center gap-1">
                     <Award className="w-3.5 h-3.5 text-amber-600 shrink-0" />
-                    <span>Garantía tras la compra:</span>
+                    <span>{isEs ? 'Garantía tras la compra:' : 'Post-Purchase Warranty:'}</span>
                   </p>
                   <p className="text-[11px] text-slate-700 leading-snug mt-0.5">
-                    <strong>1 año (12 meses) de Garantía Amazon Renewed</strong> con reemplazo o reembolso total + 30 días de prueba gratuita.
+                    {isEs ? (
+                      <>
+                        <strong>1 año (12 meses) de Garantía Amazon Renewed</strong> con reemplazo o reembolso total + 30 días de prueba gratuita.
+                      </>
+                    ) : (
+                      <>
+                        <strong>1-Year (12-Month) Official Amazon Renewed Guarantee</strong> with free replacement or 100% full refund + 30-day free trial.
+                      </>
+                    )}
                   </p>
                 </div>
               </div>
@@ -349,7 +425,9 @@ function RefurbishedProductCard({ item }: { item: RefurbishedProduct }) {
 
           <div className="flex items-center gap-1 text-[10px] sm:text-[11px] text-slate-600 font-normal mb-2">
             <span className="text-[#007185] font-black text-xs">✓prime</span>
-            <span className="text-slate-700 font-medium">1 Año de Garantía Oficial</span>
+            <span className="text-slate-700 font-medium">
+              {isEs ? '1 Año de Garantía Oficial' : '1-Year Official Warranty'}
+            </span>
           </div>
 
           <a
@@ -374,7 +452,10 @@ function RefurbishedProductCard({ item }: { item: RefurbishedProduct }) {
 }
 
 export default function ReacondicionadosView() {
-  const { localePath, amazonRegion, amazonSiteName, isRtl, formatPrice } = useActiveLocale();
+  const { localeKey, localePath, amazonRegion, amazonSiteName, isRtl, formatPrice } = useActiveLocale();
+  const isEs = localeKey === 'es' || localeKey === 'es-us';
+  const activeFaqs = isEs ? REAC_FAQS_ES : REAC_FAQS_EN;
+  const activePricePresets = isEs ? PRICE_PRESETS_ES : PRICE_PRESETS_EN;
 
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(false);
@@ -396,15 +477,25 @@ export default function ReacondicionadosView() {
     return () => document.removeEventListener('mousedown', handleOutsideClick);
   }, []);
 
-  const QUICK_REAC_CHIPS = [
-    { label: '📱 iPhone 13 / 15', query: 'iPhone', cat: 'smartphones' },
-    { label: '📲 Apple iPad', query: 'iPad', cat: 'tablets' },
-    { label: '💻 Portátiles 32GB', query: 'Portátil', cat: 'laptops' },
-    { label: '⌚ Apple Watch / Garmin', query: 'Watch', cat: 'smartwatches' },
-    { label: '🎧 Sony / AirPods', query: 'Auriculares', cat: 'audio' },
-    { label: '☕ Cafeteras DeLonghi', query: 'Cafetera', cat: 'home' },
-    { label: '🎮 Consolas y Gaming', query: 'Consola', cat: 'gaming' },
-  ];
+  const QUICK_REAC_CHIPS = isEs
+    ? [
+        { label: '📱 iPhone 13 / 15', query: 'iPhone', cat: 'smartphones' },
+        { label: '📲 Apple iPad', query: 'iPad', cat: 'portatiles' },
+        { label: '💻 Portátiles 32GB', query: 'Portátil', cat: 'portatiles' },
+        { label: '⌚ Apple Watch / Garmin', query: 'Watch', cat: 'audio' },
+        { label: '🎧 Sony / AirPods', query: 'Auriculares', cat: 'audio' },
+        { label: '☕ Cafeteras DeLonghi', query: 'Cafetera', cat: 'hogar' },
+        { label: '🎮 Consolas y Gaming', query: 'Consola', cat: 'gaming' },
+      ]
+    : [
+        { label: '📱 iPhone 13 / 15', query: 'iPhone', cat: 'smartphones' },
+        { label: '📲 Apple iPad', query: 'iPad', cat: 'portatiles' },
+        { label: '💻 32GB Laptops', query: 'Lenovo', cat: 'portatiles' },
+        { label: '⌚ Apple Watch / Garmin', query: 'Watch', cat: 'audio' },
+        { label: '🎧 Sony / AirPods', query: 'Sony', cat: 'audio' },
+        { label: '☕ DeLonghi Coffee', query: 'DeLonghi', cat: 'hogar' },
+        { label: '🎮 Consoles & Gaming', query: 'Gaming', cat: 'gaming' },
+      ];
 
   const liveSearchSuggestions = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
@@ -420,7 +511,9 @@ export default function ReacondicionadosView() {
     const q = searchQuery.trim().toLowerCase();
     if (q.length < 1) return REACONDICIONADOS_CATEGORIES.filter((c) => c.id !== 'all');
     return REACONDICIONADOS_CATEGORIES.filter(
-      (c) => c.id !== 'all' && (`${c.label} ${c.query}`.toLowerCase().includes(q))
+      (c) =>
+        c.id !== 'all' &&
+        `${c.label} ${CATEGORY_LABEL_EN[c.id] || ''} ${c.query}`.toLowerCase().includes(q)
     );
   }, [searchQuery]);
 
@@ -428,6 +521,10 @@ export default function ReacondicionadosView() {
     () => REACONDICIONADOS_CATEGORIES.find((c) => c.id === selectedCategory) || REACONDICIONADOS_CATEGORIES[0],
     [selectedCategory]
   );
+
+  const selectedCatLabel = isEs
+    ? selectedCatObj.label
+    : CATEGORY_LABEL_EN[selectedCatObj.id] || selectedCatObj.label;
 
   const filteredProducts = useMemo(() => {
     const minVal = parseFloat(minPrice) || 0;
@@ -460,7 +557,7 @@ export default function ReacondicionadosView() {
     return list;
   }, [selectedCategory, minPrice, maxPrice, searchQuery, sortBy]);
 
-  const handleSelectPricePreset = (preset: (typeof PRICE_PRESETS)[number]) => {
+  const handleSelectPricePreset = (preset: (typeof PRICE_PRESETS_ES)[number]) => {
     setActivePricePreset(preset.id);
     setMinPrice(preset.min);
     setMaxPrice(preset.max);
@@ -481,11 +578,16 @@ export default function ReacondicionadosView() {
       '@graph': [
         {
           '@type': 'CollectionPage',
-          name: 'Productos Reacondicionados Certificados de Amazon (Amazon Renewed) con 1 Año de Garantía',
-          url: 'https://www.unbuenregalo.es/reacondicionados',
-          description:
-            'Catálogo de productos reacondicionados certificados de Amazon 100% funcionales: iPhones, iPads, portátiles, consolas, smartwatches y cafeteras con 1 año de Garantía Oficial Amazon Renewed.',
-          inLanguage: 'es-ES',
+          name: isEs
+            ? 'Productos Reacondicionados Certificados de Amazon (Amazon Renewed) con 1 Año de Garantía'
+            : 'Certified Amazon Renewed Products (Refurbished) with 1-Year Official Warranty',
+          url: isEs
+            ? 'https://www.unbuenregalo.es/reacondicionados'
+            : 'https://www.unbuenregalo.es/en/refurbished',
+          description: isEs
+            ? 'Catálogo de productos reacondicionados certificados de Amazon 100% funcionales: iPhones, iPads, portátiles, consolas, smartwatches y cafeteras con 1 año de Garantía Oficial Amazon Renewed.'
+            : 'Catalog of 100% functional Certified Amazon Renewed devices: iPhones, iPads, laptops, consoles, smartwatches, and coffee machines with a 1-Year Official Amazon Renewed Guarantee.',
+          inLanguage: isEs ? 'es-ES' : 'en-US',
         },
         {
           '@type': 'BreadcrumbList',
@@ -493,20 +595,22 @@ export default function ReacondicionadosView() {
             {
               '@type': 'ListItem',
               position: 1,
-              name: 'Inicio',
-              item: 'https://www.unbuenregalo.es/',
+              name: isEs ? 'Inicio' : 'Home',
+              item: isEs ? 'https://www.unbuenregalo.es/' : 'https://www.unbuenregalo.es/en',
             },
             {
               '@type': 'ListItem',
               position: 2,
-              name: 'Reacondicionados Certificados Amazon',
-              item: 'https://www.unbuenregalo.es/reacondicionados',
+              name: isEs ? 'Reacondicionados Certificados Amazon' : 'Certified Amazon Renewed',
+              item: isEs
+                ? 'https://www.unbuenregalo.es/reacondicionados'
+                : 'https://www.unbuenregalo.es/en/refurbished',
             },
           ],
         },
         {
           '@type': 'FAQPage',
-          mainEntity: REAC_FAQS.map((f) => ({
+          mainEntity: activeFaqs.map((f) => ({
             '@type': 'Question',
             name: f.q,
             acceptedAnswer: {
@@ -517,7 +621,7 @@ export default function ReacondicionadosView() {
         },
       ],
     }),
-    []
+    [isEs, activeFaqs]
   );
 
   return (
@@ -534,10 +638,12 @@ export default function ReacondicionadosView() {
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-10 relative z-10">
           <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-emerald-200 mb-2 sm:mb-4 flex-nowrap overflow-x-auto whitespace-nowrap">
             <Link href={localePath('/')} className="hover:text-white transition-colors font-medium">
-              Inicio
+              {isEs ? 'Inicio' : 'Home'}
             </Link>
             <ChevronRight className="w-3.5 h-3.5 text-emerald-500" />
-            <span className="text-emerald-300 font-bold">Reacondicionados Certificados Amazon</span>
+            <span className="text-emerald-300 font-bold">
+              {isEs ? 'Reacondicionados Certificados Amazon' : 'Certified Amazon Renewed (Refurbished)'}
+            </span>
           </nav>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-6 items-center mb-3 sm:mb-6">
@@ -545,30 +651,62 @@ export default function ReacondicionadosView() {
               <div className="hidden sm:flex flex-wrap items-center gap-2 mb-3">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500 text-slate-950 font-black text-xs uppercase tracking-wider shadow-md">
                   <span>♻️</span>
-                  <span>AMAZON RENEWED · CERTIFICADOS</span>
+                  <span>{isEs ? 'AMAZON RENEWED · CERTIFICADOS' : 'AMAZON RENEWED · CERTIFIED'}</span>
                 </span>
                 <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/10 border border-emerald-400/40 text-emerald-200 font-bold text-[11px]">
                   <ShieldCheck className="w-3.5 h-3.5 text-emerald-300" />
-                  <span>1 Año de Garantía Oficial Amazon + 100% Funcionales</span>
+                  <span>
+                    {isEs
+                      ? '1 Año de Garantía Oficial Amazon + 100% Funcionales'
+                      : '1-Year Official Amazon Warranty + 100% Functional'}
+                  </span>
                 </span>
               </div>
 
               <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight mb-2 sm:mb-3">
-                Productos{' '}
-                <span className="bg-gradient-to-r from-emerald-300 via-teal-200 to-amber-300 bg-clip-text text-transparent">
-                  Reacondicionados de Amazon
-                </span>{' '}
-                Como Nuevos
+                {isEs ? (
+                  <>
+                    Productos{' '}
+                    <span className="bg-gradient-to-r from-emerald-300 via-teal-200 to-amber-300 bg-clip-text text-transparent">
+                      Reacondicionados de Amazon
+                    </span>{' '}
+                    Como Nuevos
+                  </>
+                ) : (
+                  <>
+                    Certified{' '}
+                    <span className="bg-gradient-to-r from-emerald-300 via-teal-200 to-amber-300 bg-clip-text text-transparent">
+                      Amazon Renewed Tech
+                    </span>{' '}
+                    Like New
+                  </>
+                )}
               </h1>
 
               <p className="text-sm sm:text-base text-slate-200 leading-relaxed max-w-2xl line-clamp-2 sm:line-clamp-none">
-                Ahorra hasta un 50% en tecnología de primeras marcas (Apple iPhone, iPad, Samsung, portátiles,
-                consolas, relojes y cafeteras). Cada dispositivo ha sido <strong>probado, limpiado y certificado como 100% funcional</strong> y
-                cuenta con <strong>1 año completo de Garantía Oficial Amazon Renewed</strong> tras tu compra.
+                {isEs ? (
+                  <>
+                    Ahorra hasta un 50% en tecnología de primeras marcas (Apple iPhone, iPad, Samsung, portátiles,
+                    consolas, relojes y cafeteras). Cada dispositivo ha sido{' '}
+                    <strong>probado, limpiado y certificado como 100% funcional</strong> y cuenta con{' '}
+                    <strong>1 año completo de Garantía Oficial Amazon Renewed</strong> tras tu compra.
+                  </>
+                ) : (
+                  <>
+                    Save up to 50% on top-brand tech (Apple iPhone, iPad, Samsung, laptops, consoles, smartwatches,
+                    and espresso machines). Every device is{' '}
+                    <strong>40-point tested, sanitized, and certified 100% functional</strong>, backed by a{' '}
+                    <strong>full 1-Year Official Amazon Renewed Guarantee</strong> after your purchase.
+                  </>
+                )}
               </p>
               <p className="sm:hidden mt-2 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-400/50 text-[11px] font-bold text-emerald-200">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-300" aria-hidden="true" />
-                <span>1 año de garantía Amazon · 100% funcionales</span>
+                <span>
+                  {isEs
+                    ? '1 año de garantía Amazon · 100% funcionales'
+                    : '1-Year Amazon Warranty · 100% functional'}
+                </span>
               </p>
             </div>
 
@@ -577,40 +715,54 @@ export default function ReacondicionadosView() {
               <div className="p-3.5 rounded-2xl bg-white/10 border border-emerald-400/35 backdrop-blur-xs">
                 <div className="flex items-center gap-2 text-emerald-300 font-black text-xs uppercase mb-1">
                   <ShieldCheck className="w-4 h-4 shrink-0" />
-                  <span>1 Año de Garantía Amazon</span>
+                  <span>{isEs ? '1 Año de Garantía Amazon' : '1-Year Amazon Warranty'}</span>
                 </div>
                 <p className="text-[11px] text-slate-200 leading-snug">
-                  Reemplazo o reembolso total durante <strong>12 meses tras la compra</strong> si no funciona como se espera.
+                  {isEs ? (
+                    <>
+                      Reemplazo o reembolso total durante <strong>12 meses tras la compra</strong> si no funciona como se espera.
+                    </>
+                  ) : (
+                    <>
+                      Free replacement or 100% full refund for <strong>12 months after purchase</strong> if anything fails.
+                    </>
+                  )}
                 </p>
               </div>
 
               <div className="p-3.5 rounded-2xl bg-white/10 border border-emerald-400/35 backdrop-blur-xs">
                 <div className="flex items-center gap-2 text-emerald-300 font-black text-xs uppercase mb-1">
                   <CheckCircle2 className="w-4 h-4 shrink-0" />
-                  <span>100% Funcionales</span>
+                  <span>{isEs ? '100% Funcionales' : '100% Functional (40-Pt)'}</span>
                 </div>
                 <p className="text-[11px] text-slate-200 leading-snug">
-                  Inspección técnica profesional de 40 puntos: pantalla, sensores, cámaras, audio y conectividad.
+                  {isEs
+                    ? 'Inspección técnica profesional de 40 puntos: pantalla, sensores, cámaras, audio y conectividad.'
+                    : 'Professional 40-point diagnostic inspection: display, sensors, cameras, audio, and connectivity.'}
                 </p>
               </div>
 
               <div className="p-3.5 rounded-2xl bg-white/10 border border-emerald-400/35 backdrop-blur-xs">
                 <div className="flex items-center gap-2 text-emerald-300 font-black text-xs uppercase mb-1">
                   <BatteryCharging className="w-4 h-4 shrink-0" />
-                  <span>Batería &gt;80% Certificada</span>
+                  <span>{isEs ? 'Batería >80% Certificada' : 'Battery >80% Certified'}</span>
                 </div>
                 <p className="text-[11px] text-slate-200 leading-snug">
-                  Todos los móviles, tablets y portátiles garantizan una salud de batería superior al 80% respecto a una nueva.
+                  {isEs
+                    ? 'Todos los móviles, tablets y portátiles garantizan una salud de batería superior al 80% respecto a una nueva.'
+                    : 'All phones, tablets, and laptops guarantee real battery capacity above 80% compared to brand new.'}
                 </p>
               </div>
 
               <div className="p-3.5 rounded-2xl bg-white/10 border border-emerald-400/35 backdrop-blur-xs">
                 <div className="flex items-center gap-2 text-emerald-300 font-black text-xs uppercase mb-1">
                   <RefreshCw className="w-4 h-4 shrink-0" />
-                  <span>30 Días Prueba Gratis</span>
+                  <span>{isEs ? '30 Días Prueba Gratis' : '30-Day Free Home Trial'}</span>
                 </div>
                 <p className="text-[11px] text-slate-200 leading-snug">
-                  Pruébalo en casa con envío rápido Prime. Si no te convence su estado, lo devuelves gratis sin preguntas.
+                  {isEs
+                    ? 'Pruébalo en casa con envío rápido Prime. Si no te convence su estado, lo devuelves gratis sin preguntas.'
+                    : 'Try it at home with fast Prime delivery. Not happy with the condition? Return it free, no questions asked.'}
                 </p>
               </div>
             </div>
@@ -628,8 +780,12 @@ export default function ReacondicionadosView() {
                   setSearchQuery(e.target.value);
                   setIsSearchFocused(true);
                 }}
-                placeholder="Busca en Reacondicionados... (ej: iPhone 13, iPad, Samsung, portátil, Watch, cafetera)"
-                aria-label="Buscar productos reacondicionados"
+                placeholder={
+                  isEs
+                    ? 'Busca en Reacondicionados... (ej: iPhone 13, iPad, Samsung, portátil, Watch, cafetera)'
+                    : 'Search Certified Refurbished... (e.g.: iPhone 13, iPad, Samsung, laptop, Watch, DeLonghi)'
+                }
+                aria-label={isEs ? 'Buscar productos reacondicionados' : 'Search certified refurbished products'}
                 className="w-full py-2.5 px-1 text-sm sm:text-base text-slate-900 placeholder-slate-500 focus:outline-none bg-transparent font-medium"
               />
               {searchQuery && (
@@ -639,19 +795,21 @@ export default function ReacondicionadosView() {
                     setSearchQuery('');
                     setIsSearchFocused(true);
                   }}
-                  aria-label="Limpiar búsqueda"
+                  aria-label={isEs ? 'Limpiar búsqueda' : 'Clear search'}
                   className="p-2 text-slate-500 hover:text-slate-900 cursor-pointer"
                 >
                   <X className="w-4 h-4" />
                 </button>
               )}
               <a
-                href={getAmazonSearchUrl(`${searchQuery.trim() || 'amazon renewed'} reacondicionado`, amazonRegion)}
+                href={getAmazonSearchUrl(`${searchQuery.trim() || 'amazon renewed'} ${isEs ? 'reacondicionado' : 'renewed'}`, amazonRegion)}
                 target="_blank"
                 rel="nofollow sponsored noopener noreferrer"
                 className="px-3.5 sm:px-6 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-black text-xs sm:text-sm shadow-sm transition-all shrink-0 flex items-center gap-1.5"
               >
-                <span className="hidden xs:inline">Buscar en {amazonSiteName}</span>
+                <span className="hidden xs:inline">
+                  {isEs ? `Buscar en ${amazonSiteName}` : `Search on ${amazonSiteName}`}
+                </span>
                 <span className="xs:hidden">Amazon</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
@@ -660,7 +818,7 @@ export default function ReacondicionadosView() {
             {/* Quick clickable filter chips right under the search bar (mobile & desktop) */}
             <div className="flex items-center gap-1.5 sm:gap-2 flex-nowrap sm:flex-wrap overflow-x-auto mt-2.5 pb-1 [&>*]:shrink-0 [&>*]:whitespace-nowrap">
               <span className="text-[11px] font-bold text-emerald-200 uppercase tracking-wider">
-                Filtros rápidos:
+                {isEs ? 'Filtros rápidos:' : 'Quick filters:'}
               </span>
               {QUICK_REAC_CHIPS.map((chip) => {
                 const isActive =
@@ -694,14 +852,14 @@ export default function ReacondicionadosView() {
                 <div className="p-2.5 sm:p-3 bg-emerald-50/70 border-b border-emerald-100">
                   <div className="flex items-center justify-between mb-1.5">
                     <span className="text-[10px] font-black uppercase tracking-wider text-emerald-900">
-                      Filtrar por categoría reacondicionada:
+                      {isEs ? 'Filtrar por categoría reacondicionada:' : 'Filter by refurbished category:'}
                     </span>
                     <button
                       type="button"
                       onClick={() => setIsSearchFocused(false)}
                       className="text-[11px] font-bold text-slate-500 hover:text-slate-900 flex items-center gap-0.5 cursor-pointer"
                     >
-                      <span>Cerrar</span>
+                      <span>{isEs ? 'Cerrar' : 'Close'}</span>
                       <X className="w-3.5 h-3.5" />
                     </button>
                   </div>
@@ -725,7 +883,7 @@ export default function ReacondicionadosView() {
                         }`}
                       >
                         <span>{cat.emoji}</span>
-                        <span>{cat.label}</span>
+                        <span>{isEs ? cat.label : CATEGORY_LABEL_EN[cat.id] || cat.label}</span>
                       </button>
                     ))}
                   </div>
@@ -736,8 +894,14 @@ export default function ReacondicionadosView() {
                   liveSearchSuggestions.length > 0 ? (
                     <div className="divide-y divide-slate-100">
                       <div className="px-3 py-1.5 bg-slate-50 text-[10px] font-black uppercase tracking-wider text-slate-500 flex items-center justify-between">
-                        <span>Productos Reacondicionados encontrados ({liveSearchSuggestions.length}+)</span>
-                        <span className="text-emerald-700">Toca para abrir en Amazon</span>
+                        <span>
+                          {isEs
+                            ? `Productos Reacondicionados encontrados (${liveSearchSuggestions.length}+)`
+                            : `Certified Refurbished matches (${liveSearchSuggestions.length}+)`}
+                        </span>
+                        <span className="text-emerald-700">
+                          {isEs ? 'Toca para abrir en Amazon' : 'Tap to open on Amazon'}
+                        </span>
                       </div>
                       {liveSearchSuggestions.map((item) => {
                         const itemUrl = getAmazonProductUrl(item.asin, item.title, amazonRegion);
@@ -761,14 +925,14 @@ export default function ReacondicionadosView() {
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center gap-1.5 mb-0.5">
                                 <span className="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-900 font-black text-[9px] uppercase">
-                                  ♻️ 1 Año Garantía
+                                  ♻️ {isEs ? '1 Año Garantía' : '1-Year Warranty'}
                                 </span>
                                 <span className="text-[10px] font-bold text-slate-500 truncate">
-                                  {item.conditionGrade}
+                                  {translateConditionText(item.conditionGrade, isEs)}
                                 </span>
                               </div>
                               <p className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-emerald-800 line-clamp-1">
-                                {item.title}
+                                {translateConditionText(item.title, isEs)}
                               </p>
                               <div className="flex items-center gap-2 mt-0.5">
                                 <span className="text-sm font-black text-emerald-800">
@@ -787,7 +951,7 @@ export default function ReacondicionadosView() {
                               </div>
                             </div>
                             <span className="px-2.5 py-1.5 rounded-xl bg-[#ffd814] group-hover:bg-[#f7ca00] text-slate-950 font-black text-[11px] shrink-0 flex items-center gap-1 shadow-2xs">
-                              <span className="hidden sm:inline">Ver oferta</span>
+                              <span className="hidden sm:inline">{isEs ? 'Ver oferta' : 'View deal'}</span>
                               <ExternalLink className="w-3.5 h-3.5" />
                             </span>
                           </a>
@@ -797,16 +961,22 @@ export default function ReacondicionadosView() {
                   ) : (
                     <div className="p-4 text-center space-y-2">
                       <p className="text-xs font-bold text-slate-700">
-                        No hay coincidencias exactas en el catálogo local para &ldquo;{searchQuery}&rdquo;
+                        {isEs
+                          ? `No hay coincidencias exactas en el catálogo local para “${searchQuery}”`
+                          : `No exact local catalog match for “${searchQuery}”`}
                       </p>
                       <a
-                        href={getAmazonSearchUrl(`${searchQuery.trim()} reacondicionado amazon renewed`, amazonRegion)}
+                        href={getAmazonSearchUrl(`${searchQuery.trim()} ${isEs ? 'reacondicionado' : ''} amazon renewed`, amazonRegion)}
                         target="_blank"
                         rel="nofollow sponsored noopener noreferrer"
                         onClick={() => setIsSearchFocused(false)}
                         className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-black text-xs shadow-sm"
                       >
-                        <span>Buscar &ldquo;{searchQuery}&rdquo; en Amazon Renewed ({amazonSiteName})</span>
+                        <span>
+                          {isEs
+                            ? `Buscar “${searchQuery}” en Amazon Renewed (${amazonSiteName})`
+                            : `Search “${searchQuery}” on Amazon Renewed (${amazonSiteName})`}
+                        </span>
                         <ExternalLink className="w-3.5 h-3.5" />
                       </a>
                     </div>
@@ -814,7 +984,9 @@ export default function ReacondicionadosView() {
                 ) : (
                   <div className="divide-y divide-slate-100">
                     <div className="px-3 py-1.5 bg-slate-50 text-[10px] font-black uppercase tracking-wider text-slate-500">
-                      Reacondicionados más buscados hoy (1 Año de Garantía Oficial)
+                      {isEs
+                        ? 'Reacondicionados más buscados hoy (1 Año de Garantía Oficial)'
+                        : 'Most searched Certified Refurbished deals today (1-Year Official Warranty)'}
                     </div>
                     {REACONDICIONADOS_PRODUCTS.slice(0, 5).map((item) => {
                       const itemUrl = getAmazonProductUrl(item.asin, item.title, amazonRegion);
@@ -832,11 +1004,13 @@ export default function ReacondicionadosView() {
                           </div>
                           <div className="flex-1 min-w-0">
                             <p className="text-xs font-bold text-slate-900 group-hover:text-emerald-800 line-clamp-1">
-                              {item.title}
+                              {translateConditionText(item.title, isEs)}
                             </p>
                             <div className="flex items-center gap-2 mt-0.5">
                               <span className="text-xs font-black text-emerald-800">{formatPrice(item.priceText)}</span>
-                              <span className="text-[10px] font-semibold text-emerald-700">{item.conditionGrade}</span>
+                              <span className="text-[10px] font-semibold text-emerald-700">
+                                {translateConditionText(item.conditionGrade, isEs)}
+                              </span>
                             </div>
                           </div>
                           <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-emerald-700 shrink-0" />
@@ -848,13 +1022,16 @@ export default function ReacondicionadosView() {
 
                 {/* Direct Amazon Renewed search footer link inside dropdown */}
                 <a
-                  href={getAmazonSearchUrl(`${searchQuery.trim() || 'amazon renewed'} reacondicionado`, amazonRegion)}
+                  href={getAmazonSearchUrl(`${searchQuery.trim() || 'amazon renewed'} ${isEs ? 'reacondicionado' : 'renewed'}`, amazonRegion)}
                   target="_blank"
                   rel="nofollow sponsored noopener noreferrer"
                   onClick={() => setIsSearchFocused(false)}
                   className="block p-3 bg-slate-900 hover:bg-slate-800 text-center text-xs font-black text-emerald-300 transition-colors"
                 >
-                  🔍 Ver todos los resultados de &ldquo;{searchQuery.trim() || 'Amazon Renewed'}&rdquo; en {amazonSiteName} →
+                  🔍{' '}
+                  {isEs
+                    ? `Ver todos los resultados de “${searchQuery.trim() || 'Amazon Renewed'}” en ${amazonSiteName} →`
+                    : `See all “${searchQuery.trim() || 'Amazon Renewed'}” results on ${amazonSiteName} →`}
                 </a>
               </div>
             )}
@@ -866,24 +1043,24 @@ export default function ReacondicionadosView() {
       <main className="flex-1 max-w-[1600px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-8">
         {/* FILTERS */}
         <section
-          aria-label="Filtros de productos reacondicionados"
+          aria-label={isEs ? 'Filtros de productos reacondicionados' : 'Refurbished product filters'}
           className="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-3 sm:p-6 mb-4 sm:mb-7 space-y-3 sm:space-y-5"
         >
           <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4 pb-4 border-b border-slate-100">
             <div className="flex flex-wrap items-center gap-2.5">
               <div className="flex items-center gap-2 bg-slate-50 border border-emerald-200 rounded-xl px-3 py-2">
                 <ArrowDownWideNarrow className="w-4 h-4 text-emerald-700 shrink-0" />
-                <span className="text-xs font-black text-slate-700">Ordenar:</span>
+                <span className="text-xs font-black text-slate-700">{isEs ? 'Ordenar:' : 'Sort by:'}</span>
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value as 'featured' | 'price-asc' | 'price-desc' | 'rating')}
-                  aria-label="Ordenar productos reacondicionados"
+                  aria-label={isEs ? 'Ordenar productos reacondicionados' : 'Sort refurbished products'}
                   className="text-xs sm:text-sm font-bold text-slate-900 bg-transparent focus:outline-none cursor-pointer"
                 >
-                  <option value="featured">Destacados Amazon Renewed</option>
-                  <option value="price-asc">Precio: menor a mayor</option>
-                  <option value="price-desc">Precio: mayor a menor</option>
-                  <option value="rating">Mejor valorados (★)</option>
+                  <option value="featured">{isEs ? 'Destacados Amazon Renewed' : 'Featured Amazon Renewed'}</option>
+                  <option value="price-asc">{isEs ? 'Precio: menor a mayor' : 'Price: low to high'}</option>
+                  <option value="price-desc">{isEs ? 'Precio: mayor a menor' : 'Price: high to low'}</option>
+                  <option value="rating">{isEs ? 'Mejor valorados (★)' : 'Top rated (★)'}</option>
                 </select>
               </div>
             </div>
@@ -891,7 +1068,7 @@ export default function ReacondicionadosView() {
             <div className="flex flex-wrap items-center gap-2">
               <span className="text-xs font-black text-slate-700 flex items-center gap-1">
                 <Tag className="w-3.5 h-3.5 text-emerald-700" />
-                <span>Rango de precio:</span>
+                <span>{isEs ? 'Rango de precio:' : 'Price range:'}</span>
               </span>
               <input
                 type="number"
@@ -901,8 +1078,8 @@ export default function ReacondicionadosView() {
                   setMinPrice(e.target.value);
                   setActivePricePreset('custom');
                 }}
-                placeholder="Mín €"
-                aria-label="Precio mínimo"
+                placeholder={isEs ? 'Mín €' : 'Min $'}
+                aria-label={isEs ? 'Precio mínimo' : 'Minimum price'}
                 className="w-24 px-3 py-1.5 rounded-xl border border-emerald-200 bg-slate-50 text-xs sm:text-sm font-bold text-slate-900 focus:outline-none focus:border-emerald-500"
               />
               <span className="text-slate-400 font-bold">–</span>
@@ -914,8 +1091,8 @@ export default function ReacondicionadosView() {
                   setMaxPrice(e.target.value);
                   setActivePricePreset('custom');
                 }}
-                placeholder="Máx €"
-                aria-label="Precio máximo"
+                placeholder={isEs ? 'Máx €' : 'Max $'}
+                aria-label={isEs ? 'Precio máximo' : 'Maximum price'}
                 className="w-24 px-3 py-1.5 rounded-xl border border-emerald-200 bg-slate-50 text-xs sm:text-sm font-bold text-slate-900 focus:outline-none focus:border-emerald-500"
               />
               {(searchQuery || selectedCategory !== 'all' || minPrice || maxPrice) && (
@@ -925,7 +1102,7 @@ export default function ReacondicionadosView() {
                   className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold cursor-pointer"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
-                  <span>Reiniciar</span>
+                  <span>{isEs ? 'Reiniciar' : 'Reset'}</span>
                 </button>
               )}
             </div>
@@ -934,7 +1111,7 @@ export default function ReacondicionadosView() {
           {/* Categories */}
           <div>
             <p className="text-[11px] font-black uppercase tracking-wider text-slate-600 mb-2">
-              Categorías de Reacondicionados Certificados:
+              {isEs ? 'Categorías de Reacondicionados Certificados:' : 'Certified Refurbished Categories:'}
             </p>
             <div className="flex items-center gap-2 flex-nowrap sm:flex-wrap overflow-x-auto [&>*]:shrink-0 [&>*]:whitespace-nowrap">
               {REACONDICIONADOS_CATEGORIES.map((cat) => {
@@ -951,7 +1128,7 @@ export default function ReacondicionadosView() {
                     }`}
                   >
                     <span aria-hidden="true">{cat.emoji}</span>
-                    <span>{cat.label}</span>
+                    <span>{isEs ? cat.label : CATEGORY_LABEL_EN[cat.id] || cat.label}</span>
                   </button>
                 );
               })}
@@ -961,10 +1138,10 @@ export default function ReacondicionadosView() {
           {/* Quick Price Presets */}
           <div>
             <p className="text-[11px] font-black uppercase tracking-wider text-slate-600 mb-2">
-              Presupuesto:
+              {isEs ? 'Presupuesto:' : 'Budget:'}
             </p>
             <div className="flex items-center gap-2 flex-nowrap sm:flex-wrap overflow-x-auto [&>*]:shrink-0 [&>*]:whitespace-nowrap">
-              {PRICE_PRESETS.map((preset) => {
+              {activePricePresets.map((preset) => {
                 const isActive = activePricePreset === preset.id;
                 return (
                   <button
@@ -986,17 +1163,25 @@ export default function ReacondicionadosView() {
         </section>
 
         {/* PRODUCTS GRID */}
-        <section aria-label="Catálogo de productos reacondicionados" className="mb-12">
+        <section aria-label={isEs ? 'Catálogo de productos reacondicionados' : 'Certified refurbished catalog'} className="mb-12">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
             <div>
               <h2 className="text-xl sm:text-2xl font-black text-slate-950 flex items-center gap-2">
                 <span>♻️</span>
                 <span>
-                  {selectedCatObj.label} ({filteredProducts.length} verificados)
+                  {selectedCatLabel} ({filteredProducts.length} {isEs ? 'verificados' : 'verified'})
                 </span>
               </h2>
               <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
-                Pulsa en <strong>&ldquo;Leer más: Estado y Garantía&rdquo;</strong> en cualquier producto para ver su grado estético, salud de batería y el año completo de garantía de Amazon.
+                {isEs ? (
+                  <>
+                    Pulsa en <strong>&ldquo;Leer más: Estado y Garantía&rdquo;</strong> en cualquier producto para ver su grado estético, salud de batería y el año completo de garantía de Amazon.
+                  </>
+                ) : (
+                  <>
+                    Tap <strong>&ldquo;Read More: Condition &amp; Warranty&rdquo;</strong> on any product to inspect its cosmetic grade, battery health, and full 1-year official Amazon warranty.
+                  </>
+                )}
               </p>
             </div>
 
@@ -1006,7 +1191,7 @@ export default function ReacondicionadosView() {
               rel="nofollow sponsored noopener noreferrer"
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-xs transition-all shrink-0 self-start sm:self-auto"
             >
-              <span>Ver todos en Amazon Renewed</span>
+              <span>{isEs ? 'Ver todos en Amazon Renewed' : 'Browse all on Amazon Renewed'}</span>
               <ExternalLink className="w-3.5 h-3.5" />
             </a>
           </div>
@@ -1026,7 +1211,9 @@ export default function ReacondicionadosView() {
                     onClick={() => setVisibleCount((v) => v + 24)}
                     className="px-7 py-3.5 rounded-2xl bg-emerald-700 hover:bg-emerald-800 text-white font-black text-sm shadow-md cursor-pointer transition-all"
                   >
-                    Mostrar más reacondicionados (+24 · {Math.min(visibleCount, filteredProducts.length)}/{filteredProducts.length})
+                    {isEs
+                      ? `Mostrar más reacondicionados (+24 · ${Math.min(visibleCount, filteredProducts.length)}/${filteredProducts.length})`
+                      : `Load more refurbished deals (+24 · ${Math.min(visibleCount, filteredProducts.length)}/${filteredProducts.length})`}
                   </button>
                 </div>
               )}
@@ -1034,7 +1221,9 @@ export default function ReacondicionadosView() {
           ) : (
             <div className="bg-white rounded-3xl border border-dashed border-slate-300 p-10 text-center space-y-3">
               <p className="text-base font-bold text-slate-900">
-                No hay productos en el listado actual con ese filtro exacto
+                {isEs
+                  ? 'No hay productos en el listado actual con ese filtro exacto'
+                  : 'No products in the current list match that exact filter'}
               </p>
               <div className="flex items-center justify-center gap-2 pt-2">
                 <button
@@ -1042,15 +1231,15 @@ export default function ReacondicionadosView() {
                   onClick={handleResetFilters}
                   className="px-4 py-2 rounded-xl bg-emerald-700 text-white text-xs font-bold cursor-pointer"
                 >
-                  Ver todos los Reacondicionados
+                  {isEs ? 'Ver todos los Reacondicionados' : 'Show all Certified Refurbished'}
                 </button>
                 <a
-                  href={getAmazonSearchUrl(`${searchQuery || selectedCatObj.query} reacondicionado`, amazonRegion)}
+                  href={getAmazonSearchUrl(`${searchQuery || selectedCatObj.query} ${isEs ? 'reacondicionado' : 'renewed'}`, amazonRegion)}
                   target="_blank"
                   rel="nofollow sponsored noopener noreferrer"
                   className="px-4 py-2 rounded-xl bg-amber-400 text-slate-950 text-xs font-black inline-flex items-center gap-1"
                 >
-                  <span>Buscar en {amazonSiteName}</span>
+                  <span>{isEs ? `Buscar en ${amazonSiteName}` : `Search on ${amazonSiteName}`}</span>
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               </div>
@@ -1062,10 +1251,20 @@ export default function ReacondicionadosView() {
         <section className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-xs space-y-6">
           <div>
             <h2 className="text-xl sm:text-2xl font-black text-slate-950 mb-2">
-              Guía Oficial: ¿Qué estado tienen los Reacondicionados de Amazon y qué cubre su Garantía?
+              {isEs
+                ? 'Guía Oficial: ¿Qué estado tienen los Reacondicionados de Amazon y qué cubre su Garantía?'
+                : 'Official Guide: What Condition Are Amazon Renewed Devices In & What Does the Warranty Cover?'}
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Comprar o regalar un dispositivo de <strong>Amazon Renewed</strong> es la forma más inteligente de conseguir un iPhone, iPad, MacBook, Samsung Galaxy o cafetera de gama alta ahorrando entre un 30% y un 50%, con total tranquilidad postventa.
+              {isEs ? (
+                <>
+                  Comprar o regalar un dispositivo de <strong>Amazon Renewed</strong> es la forma más inteligente de conseguir un iPhone, iPad, MacBook, Samsung Galaxy o cafetera de gama alta ahorrando entre un 30% y un 50%, con total tranquilidad postventa.
+                </>
+              ) : (
+                <>
+                  Buying or gifting a certified device from <strong>Amazon Renewed</strong> is the smartest way to get a flagship iPhone, iPad, MacBook, Samsung Galaxy, or espresso machine at 30% to 50% off retail—with complete post-purchase peace of mind.
+                </>
+              )}
             </p>
           </div>
 
@@ -1073,40 +1272,54 @@ export default function ReacondicionadosView() {
             <div className="p-4 rounded-2xl bg-emerald-50/60 border border-emerald-200 space-y-1.5">
               <h3 className="text-sm font-black text-emerald-950 flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                <span>Estado Excelente (Como Nuevo)</span>
+                <span>{isEs ? 'Estado Excelente (Como Nuevo)' : 'Excellent Condition (Like New · Grade A+)'}</span>
               </h3>
               <p className="text-xs text-slate-700 leading-relaxed">
-                Pantalla 100% libre de arañazos y cuerpo sin marcas estéticas visibles a 30 centímetros de distancia. Batería comprobada con capacidad superior al 80%-85% de una nueva.
+                {isEs
+                  ? 'Pantalla 100% libre de arañazos y cuerpo sin marcas estéticas visibles a 30 centímetros de distancia. Batería comprobada con capacidad superior al 80%-85% de una nueva.'
+                  : '100% scratch-free screen and body with zero visible cosmetic marks from 12 inches (30 cm) away. Verified battery capacity guaranteed above 80%–85% of a brand-new battery.'}
               </p>
             </div>
 
             <div className="p-4 rounded-2xl bg-emerald-50/60 border border-emerald-200 space-y-1.5">
               <h3 className="text-sm font-black text-emerald-950 flex items-center gap-1.5">
                 <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                <span>1 Año de Garantía Oficial Amazon</span>
+                <span>{isEs ? '1 Año de Garantía Oficial Amazon' : '1-Year Official Amazon Guarantee'}</span>
               </h3>
               <p className="text-xs text-slate-700 leading-relaxed">
-                Después de tu compra tienes <strong>1 año entero (365 días) de cobertura directa con Amazon Renewed</strong>: si surge cualquier fallo técnico, Amazon gestiona el reemplazo o el reembolso íntegro de tu dinero.
+                {isEs ? (
+                  <>
+                    Después de tu compra tienes <strong>1 año entero (365 días) de cobertura directa con Amazon Renewed</strong>: si surge cualquier fallo técnico, Amazon gestiona el reemplazo o el reembolso íntegro de tu dinero.
+                  </>
+                ) : (
+                  <>
+                    After your purchase you get a <strong>full 1-Year (365-Day) direct Amazon Renewed Guarantee</strong>: if any technical issue arises, Amazon provides a free replacement or a 100% full refund.
+                  </>
+                )}
               </p>
             </div>
 
             <div className="p-4 rounded-2xl bg-emerald-50/60 border border-emerald-200 space-y-1.5">
               <h3 className="text-sm font-black text-emerald-950 flex items-center gap-1.5">
                 <Award className="w-4 h-4 text-emerald-600" />
-                <span>100% Funcionales e Higienizados</span>
+                <span>{isEs ? '100% Funcionales e Higienizados' : '100% Functional & Professionally Sanitized'}</span>
               </h3>
               <p className="text-xs text-slate-700 leading-relaxed">
-                Cada producto supera un diagnóstico completo de hardware, limpieza profesional, borrado seguro de datos de fábrica e incluye los accesorios de carga compatibles listos para usar o regalar.
+                {isEs
+                  ? 'Cada producto supera un diagnóstico completo de hardware, limpieza profesional, borrado seguro de datos de fábrica e incluye los accesorios de carga compatibles listos para usar o regalar.'
+                  : 'Every product passes a full 40-point hardware diagnostic, professional cleaning, factory data wipe, and includes compatible charging accessories ready to use or gift.'}
               </p>
             </div>
           </div>
 
           <div className="pt-4 border-t border-slate-100">
             <h2 className="text-lg sm:text-xl font-black text-slate-900 mb-4">
-              Preguntas frecuentes sobre los Reacondicionados de Amazon
+              {isEs
+                ? 'Preguntas frecuentes sobre los Reacondicionados de Amazon'
+                : 'Frequently Asked Questions about Certified Amazon Renewed'}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {REAC_FAQS.map((faq, idx) => (
+              {activeFaqs.map((faq, idx) => (
                 <div key={idx} className="p-4 rounded-2xl bg-slate-50/80 border border-slate-200/70 space-y-1.5">
                   <h3 className="text-sm font-bold text-slate-900">{faq.q}</h3>
                   <p className="text-xs text-slate-600 leading-relaxed">{faq.a}</p>

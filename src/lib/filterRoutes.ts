@@ -30,6 +30,8 @@ export const ALL_STATIC_HUB_SLUGS: string[] = [
   'mascotas',
   'halloween',
   'navidad',
+  'black-friday',
+  'reacondicionados',
   'carta-papa-noel',
   'regalos-gta-6',
   'que-regalar-a-un-hombre',

@@ -431,6 +431,26 @@ export const ES_HUBS: Record<string, HubCopy> = {
     breadcrumbLabel: 'Votar en Grupo',
     keywords: ['votar regalo en grupo por whatsapp', 'elegir regalo en grupo whatsapp', 'encuesta regalo amigos'],
   },
+  reacondicionados: {
+    title: 'Reacondicionados Certificados de Amazon (Amazon Renewed) 【2026】 Hasta -50% y 1 Año de Garantía Oficial',
+    socialTitle: '♻️ Reacondicionados Certificados de Amazon (1 Año de Garantía Oficial) | Un Buen Regalo',
+    description: 'Ahorra hasta un 50% en iPhones, iPads, portátiles, auriculares Sony y cafeteras Reacondicionados Certificados de Amazon (Amazon Renewed) con inspección de 40 puntos, batería >80% y 1 año de Garantía Oficial.',
+    eyebrow: 'Amazon Renewed · 1 Año de Garantía Oficial',
+    h1: 'Productos Reacondicionados de Amazon Como Nuevos (1 Año de Garantía)',
+    subtitle: 'Inspección técnica de 40 puntos, 0 arañazos a 30 cm, salud de batería certificada >80% y 365 días de garantía oficial de reemplazo o reembolso.',
+    breadcrumbLabel: 'Reacondicionados Amazon',
+    keywords: ['reacondicionados amazon', 'amazon renewed espana', 'iphone reacondicionado garantia 1 ano', 'ipad reacondicionado amazon'],
+  },
+  'black-friday': {
+    title: 'Ofertas Black Friday 2026 Verificadas en Amazon 【Hasta -60% Real】 Tecnología, Hogar y Regalos',
+    socialTitle: '🔥 Ofertas Black Friday 2026 Verificadas en Amazon | Un Buen Regalo',
+    description: 'Chollos y ofertas reales de Black Friday verificadas en Amazon: tecnología, gaming, cafeteras, juguetes y regalos originales con descuento histórico comprobado.',
+    eyebrow: 'Ofertas Verificadas Black Friday',
+    h1: 'Mejores Ofertas de Black Friday 2026 en Amazon (Descuentos Reales)',
+    subtitle: 'Selección filtrada sin precios inflados: solo productos con valoración 4.5★+ y rebaja real verificada.',
+    breadcrumbLabel: 'Black Friday',
+    keywords: ['ofertas black friday amazon', 'chollos black friday 2026', 'regalos black friday'],
+  },
 };
 
 export const ES_US_HUB_OVERRIDES: Partial<Record<string, Partial<HubCopy>>> = {

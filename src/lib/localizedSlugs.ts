@@ -98,6 +98,8 @@ const EN_TOP_LEVEL_SLUGS: Record<string, string> = {
   'regalos-menos-20-euros': 'gifts-under-20',
   'halloween': 'halloween-gifts',
   'navidad': 'christmas-gifts',
+  'black-friday': 'black-friday',
+  'reacondicionados': 'refurbished',
   'carta-papa-noel': 'letter-to-santa',
   'regalos-gta-6': 'gta-6-gifts',
   'que-regalar-a-un-hombre': 'what-to-gift-a-man',
@@ -440,6 +442,8 @@ const NATIVE_STAGE_AND_HUB_OVERRIDES: Record<string, Record<string, string>> = {
  * Legacy/alias Spanish slugs that should also resolve cleanly to their canonical Spanish slug.
  */
 const ES_SLUG_ALIASES: Record<string, string> = {
+  'refurbished': 'reacondicionados',
+  'amazon-renewed': 'reacondicionados',
   'adolescentes-13-a-15-anos': 'jovenes-13-a-15-anos',
   'preadolescentes-10-a-12-anos': 'ninos-10-a-12-anos',
   'adolescentes-16-a-18-anos': 'jovenes-16-a-18-anos',
