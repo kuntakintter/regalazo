@@ -9,6 +9,7 @@ import { MASCOTAS_PRODUCTS } from '@/data/mascotasData';
 import { MOTORISTA_PRODUCTS } from '@/data/motoristasData';
 import { NAVIDAD_PRODUCTS } from '@/data/navidadData';
 import { HALLOWEEN_PRODUCTS } from '@/data/halloweenData';
+import { REACONDICIONADOS_PRODUCTS } from '@/data/reacondicionadosData';
 import { I18N_SEO_ROUTES } from '@/lib/i18nRoutes';
 import {
   ALL_STATIC_HUB_SLUGS,
@@ -131,6 +132,7 @@ const HUB_COLLECTION_MAP: Record<string, StockLikeItem[]> = {
   'navidad': NAVIDAD_PRODUCTS,
   'carta-papa-noel': NAVIDAD_PRODUCTS,
   'regalos-gta-6': GTA_PRODUCTS,
+  'reacondicionados': REACONDICIONADOS_PRODUCTS,
 };
 
 /**
@@ -234,7 +236,7 @@ export function getActiveStockForRoute(
 export function getAllCanonicalRouteSpecs(): CanonicalRouteSpec[] {
   const specs: CanonicalRouteSpec[] = [];
 
-  // 1. OCASIONES & HERRAMIENTAS: Home + Black Friday Bazaar + Static Hubs (excluding budget hub) + Gender Filters
+  // 1. OCASIONES & HERRAMIENTAS: Home + Static Hubs (including Black Friday & Reacondicionados) + Gender Filters
   specs.push({
     id: 'home',
     baseEsPath: '/',
@@ -244,33 +246,15 @@ export function getAllCanonicalRouteSpecs(): CanonicalRouteSpec[] {
     kind: 'home',
   });
 
-  specs.push({
-    id: 'hub:reacondicionados',
-    baseEsPath: '/reacondicionados',
-    category: 'ocasiones',
-    priority: 0.94,
-    changefreq: 'daily',
-    kind: 'hub',
-    slug: 'reacondicionados',
-  });
-
-  specs.push({
-    id: 'hub:black-friday',
-    baseEsPath: '/black-friday',
-    category: 'ocasiones',
-    priority: 0.95,
-    changefreq: 'daily',
-    kind: 'hub',
-    slug: 'black-friday',
-  });
-
   for (const hubSlug of ALL_STATIC_HUB_SLUGS) {
     const isBudgetHub = hubSlug === 'regalos-menos-20-euros';
+    const hubPriority =
+      hubSlug === 'black-friday' ? 0.95 : hubSlug === 'reacondicionados' ? 0.94 : 0.9;
     specs.push({
       id: `hub:${hubSlug}`,
       baseEsPath: `/${hubSlug}`,
       category: isBudgetHub ? 'presupuestos' : 'ocasiones',
-      priority: 0.9,
+      priority: hubPriority,
       changefreq: 'daily',
       kind: 'hub',
       slug: hubSlug,

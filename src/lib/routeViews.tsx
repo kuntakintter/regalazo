@@ -103,7 +103,7 @@ function renderStaticHubComponent(
     case 'halloween':
       return <HalloweenView omitSchema={false} initialCategory={initialCategory} />;
     case 'reacondicionados':
-      return <ReacondicionadosView />;
+      return <ReacondicionadosView initialCategory={initialCategory} />;
     case 'black-friday':
       return <BlackFridayView />;
     case 'navidad':

@@ -70,13 +70,13 @@ export const HUB_OG_SNIPPETS: Record<string, SocialHubSnippet> = {
     imageAlt: 'Setup gamer con luces de neón rosa y azul estilo retro Vice City de GTA 6',
   },
   reacondicionados: {
-    title: 'Reacondicionados Certificados de Amazon (Amazon Renewed) con 1 Año de Garantía | Un Buen Regalo',
-    socialTitle: '♻️ Reacondicionados de Amazon: 100% Funcionales + 1 Año de Garantía Oficial | Un Buen Regalo',
+    title: 'Reacondicionados y Segunda Mano con 1 Año de Garantía Oficial Amazon 【Hasta -50% · Desde 29€】',
+    socialTitle: '♻️ Reacondicionados Certificados vs Segunda Mano: 1 Año de Garantía Oficial Amazon | Un Buen Regalo',
     description:
-      'Descubre los mejores productos reacondicionados certificados de Amazon (iPhone, iPad, Samsung, portátiles, smartwatches y cafeteras) 100% funcionales, con estado verificado y 1 año de Garantía Oficial Amazon Renewed.',
+      '¿Buscas un móvil, iPhone, iPad, portátil o cafetera reacondicionado o de segunda mano con garantía real? Compara +70 productos Amazon Renewed 100% funcionales (batería >80%, 0 arañazos a 30 cm y 1 año de Garantía Oficial Amazon).',
     imageUrl:
       'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1200&h=630&q=85',
-    imageAlt: 'Dispositivos reacondicionados certificados de Amazon Renewed con 1 año de garantía oficial',
+    imageAlt: 'Productos reacondicionados certificados y segunda mano con 1 año de garantía oficial de Amazon',
   },
   'black-friday': {
     title: 'Black Friday 2026: Mayores Descuentos Reales (%) en Directo | Un Buen Regalo',

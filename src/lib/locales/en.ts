@@ -424,6 +424,11 @@ export const EN_TERMS: Record<string, string> = {
   'Carta a Papá Noel': 'Letter to Santa Claus',
   'Regalos GTA 6 / GTA VI': 'GTA 6 / GTA VI Merch',
   'Votación en Grupo': 'Group Gift Voting',
+  'iPhone y Smartphones': 'iPhone & Smartphones',
+  'Portátiles, iPad y Tablets': 'Laptops, iPad & Tablets',
+  'Smartwatches y Audio': 'Smartwatches & Audio',
+  'Cafeteras y Hogar': 'Coffee Machines & Home',
+  'Consolas y Gaming': 'Consoles & Gaming',
 
   // Subfilter Short Labels & Price Filter Labels
   'Cualquier Presupuesto': 'Any Budget',
@@ -745,14 +750,14 @@ export const EN_HUBS: Record<string, HubCopy> = {
     keywords: ['vote group gift whatsapp', 'group gift poll online free', 'decide joint birthday gift'],
   },
   reacondicionados: {
-    title: 'Certified Amazon Renewed Deals 【2026】 Up to 50% OFF + 1-Year Official Warranty',
-    socialTitle: '♻️ Certified Amazon Renewed Tech & Gifts (1-Year Official Warranty) | A Good Gift',
-    description: 'Save up to 50% on Certified Refurbished iPhones, iPads, laptops, Sony headphones, and espresso machines from Amazon Renewed. 40-point lab inspection, >80% battery health, and full 1-Year Official Amazon Guarantee.',
-    eyebrow: 'Amazon Renewed · 1-Year Official Warranty',
-    h1: 'Certified Amazon Renewed Products Like New (1-Year Official Guarantee)',
+    title: 'Certified Refurbished & Second-Hand Tech with 1-Year Official Amazon Warranty 【Up to 50% OFF】',
+    socialTitle: '♻️ Certified Amazon Renewed vs Used Second-Hand Tech (1-Year Official Warranty) | A Good Gift',
+    description: 'Looking for a refurbished or second-hand iPhone, iPad, laptop, Sony headphone, or espresso machine with real warranty? Save up to 50% on Certified Amazon Renewed with 40-point testing, >80% battery health, and a 1-Year Official Guarantee.',
+    eyebrow: 'Amazon Renewed · Safer Than Second-Hand · 1-Year Official Warranty',
+    h1: 'Certified Amazon Renewed Tech Like New (The Safe 1-Year Warranty Alternative to Used Second-Hand)',
     subtitle: '40-point hardware inspection, zero visible scratches at 12 inches, certified >80% battery capacity, and 365-day official replacement or full refund guarantee.',
     breadcrumbLabel: 'Amazon Renewed (Refurbished)',
-    keywords: ['amazon renewed deals', 'certified refurbished iphone amazon', 'amazon renewed 1 year warranty', 'refurbished ipad laptops'],
+    keywords: ['refurbished', 'amazon renewed deals', 'refurbished vs second hand', 'used iphone with warranty', 'certified refurbished iphone amazon', 'amazon renewed 1 year warranty', 'refurbished ipad laptops'],
   },
   'black-friday': {
     title: 'Verified Amazon Black Friday Deals 2026 【Up to 60% OFF】 Tech, Gaming & Gifts',

@@ -15,6 +15,10 @@ import { HALLOWEEN_CATEGORIES, HALLOWEEN_PRODUCTS } from '@/data/halloweenData';
 import { MASCOTAS_CATEGORIES, MASCOTAS_PRODUCTS } from '@/data/mascotasData';
 import { MOTORISTA_CATEGORIES, MOTORISTA_PRODUCTS } from '@/data/motoristasData';
 import { NAVIDAD_CATEGORIES, NAVIDAD_PRODUCTS } from '@/data/navidadData';
+import {
+  REACONDICIONADOS_CATEGORIES,
+  REACONDICIONADOS_PRODUCTS,
+} from '@/data/reacondicionadosData';
 
 export interface PassionHubFilterItem {
   hubSlug: string;
@@ -47,6 +51,11 @@ const RAW_HUB_CATEGORIES: Record<
   'halloween': HALLOWEEN_CATEGORIES,
   'navidad': NAVIDAD_CATEGORIES,
   'regalos-gta-6': GTA_CATEGORIES,
+  'reacondicionados': REACONDICIONADOS_CATEGORIES.map((c) => ({
+    id: c.id,
+    label: c.label,
+    icon: c.emoji,
+  })),
 };
 
 export const PASSION_HUB_PRODUCTS_MAP: Record<string, PassionProductItem[]> = {
@@ -60,6 +69,7 @@ export const PASSION_HUB_PRODUCTS_MAP: Record<string, PassionProductItem[]> = {
   'halloween': HALLOWEEN_PRODUCTS,
   'navidad': NAVIDAD_PRODUCTS,
   'regalos-gta-6': GTA_PRODUCTS,
+  'reacondicionados': REACONDICIONADOS_PRODUCTS,
 };
 
 export const PASSION_HUB_FILTERS_MAP: Record<string, PassionHubFilterItem[]> =

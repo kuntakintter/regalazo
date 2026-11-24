@@ -68,6 +68,10 @@ const REAC_FAQS_ES = [
     q: '¿Qué significan los estados "Excelente" y "Muy Bueno" al pulsar en "Leer más" en cada producto?',
     a: 'El estado "Excelente" significa que el producto no presenta ningún daño estético ni arañazo visible a 30 cm de distancia (luce como nuevo). El estado "Muy Bueno" es 100% funcional con batería verificada >80% y solo puede tener micro-marcas estéticas muy leves apenas perceptibles de cerca.',
   },
+  {
+    q: '¿Cuál es la diferencia entre un producto Reacondicionado de Amazon y comprar de Segunda Mano a un particular?',
+    a: 'Al comprar de segunda mano a un particular no tienes garantía, la batería no está certificada y no puedes devolverlo si falla. En cambio, un Reacondicionado Certificado de Amazon (Amazon Renewed) pasa un test técnico oficial de 40 puntos, garantiza una batería con más del 80% de salud real, incluye 30 días de devolución gratuita y 1 año completo (365 días) de Garantía Oficial de Amazon con reemplazo o reembolso del 100%.',
+  },
 ];
 
 const REAC_FAQS_EN = [
@@ -86,6 +90,10 @@ const REAC_FAQS_EN = [
   {
     q: 'What do "Excellent (Grade A+)" and "Very Good" mean when tapping "Read More" on a product?',
     a: '"Excellent (Grade A+)" means the device has zero visible cosmetic scratches from 12 inches (30 cm) away and looks like new. "Very Good" is 100% functional with >80% verified battery health and may only have minor micro-marks barely noticeable up close.',
+  },
+  {
+    q: 'What is the difference between Certified Amazon Renewed and buying Used / Second-Hand from a private seller?',
+    a: 'Buying second-hand from a random private seller comes with 0 days of warranty, an untested battery, and zero return rights. Certified Amazon Renewed devices pass a 40-point lab inspection, guarantee >80% real battery health, and include a 30-day free trial plus a full 1-Year (365-Day) Official Amazon Guarantee with free replacement or 100% refund.',
   },
 ];
 
@@ -451,8 +459,12 @@ function RefurbishedProductCard({ item }: { item: RefurbishedProduct }) {
   );
 }
 
-export default function ReacondicionadosView() {
-  const { localeKey, localePath, amazonRegion, amazonSiteName, isRtl, formatPrice } = useActiveLocale();
+export default function ReacondicionadosView({
+  initialCategory,
+}: {
+  initialCategory?: string;
+} = {}) {
+  const { localeKey, localePath, activeCurrency, amazonRegion, amazonSiteName, isRtl, formatPrice } = useActiveLocale();
   const isEs = localeKey === 'es' || localeKey === 'es-us';
   const activeFaqs = isEs ? REAC_FAQS_ES : REAC_FAQS_EN;
   const activePricePresets = isEs ? PRICE_PRESETS_ES : PRICE_PRESETS_EN;
@@ -460,12 +472,18 @@ export default function ReacondicionadosView() {
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const searchBoxRef = useRef<HTMLDivElement>(null);
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedCategory, setSelectedCategory] = useState(initialCategory || 'all');
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
   const [activePricePreset, setActivePricePreset] = useState('all');
   const [sortBy, setSortBy] = useState<'featured' | 'price-asc' | 'price-desc' | 'rating'>('featured');
   const [visibleCount, setVisibleCount] = useState(24);
+
+  useEffect(() => {
+    if (initialCategory) {
+      setSelectedCategory(initialCategory);
+    }
+  }, [initialCategory]);
 
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {
@@ -572,22 +590,82 @@ export default function ReacondicionadosView() {
     setSortBy('featured');
   };
 
-  const structuredData = useMemo(
-    () => ({
+  const structuredData = useMemo(() => {
+    const schemaCurrency = activeCurrency === 'USD' ? 'USD' : 'EUR';
+    const countryCode = schemaCurrency === 'USD' ? 'US' : 'ES';
+    const topItems = filteredProducts.slice(0, 30);
+
+    return {
       '@context': 'https://schema.org',
       '@graph': [
         {
           '@type': 'CollectionPage',
           name: isEs
-            ? 'Productos Reacondicionados Certificados de Amazon (Amazon Renewed) con 1 Año de Garantía'
-            : 'Certified Amazon Renewed Products (Refurbished) with 1-Year Official Warranty',
+            ? 'Productos Reacondicionados Certificados de Amazon y Segunda Mano con 1 Año de Garantía Oficial'
+            : 'Certified Amazon Renewed & Second-Hand Tech with 1-Year Official Warranty',
           url: isEs
             ? 'https://www.unbuenregalo.es/reacondicionados'
             : 'https://www.unbuenregalo.es/en/refurbished',
           description: isEs
-            ? 'Catálogo de productos reacondicionados certificados de Amazon 100% funcionales: iPhones, iPads, portátiles, consolas, smartwatches y cafeteras con 1 año de Garantía Oficial Amazon Renewed.'
-            : 'Catalog of 100% functional Certified Amazon Renewed devices: iPhones, iPads, laptops, consoles, smartwatches, and coffee machines with a 1-Year Official Amazon Renewed Guarantee.',
+            ? 'Catálogo comparativo de productos reacondicionados certificados de Amazon (la alternativa segura a la segunda mano) 100% funcionales: iPhones, iPads, portátiles, consolas, smartwatches y cafeteras con 1 año de Garantía Oficial Amazon Renewed.'
+            : 'Catalog of 100% functional Certified Amazon Renewed devices (the safe alternative to second-hand): iPhones, iPads, laptops, consoles, smartwatches, and coffee machines with a 1-Year Official Amazon Renewed Guarantee.',
           inLanguage: isEs ? 'es-ES' : 'en-US',
+        },
+        {
+          '@type': 'ItemList',
+          name: isEs
+            ? `${selectedCatLabel} — Reacondicionados Certificados Amazon Renewed (1 Año Garantía)`
+            : `${selectedCatLabel} — Certified Amazon Renewed (1-Year Official Warranty)`,
+          numberOfItems: filteredProducts.length,
+          itemListElement: topItems.map((prod, idx) => {
+            const directUrl = getAmazonProductUrl(prod.asin, prod.title, amazonRegion);
+            const cleanTitle = translateConditionText(prod.title, isEs);
+            const cleanDesc = translateConditionText(prod.description, isEs);
+            const priceVal =
+              schemaCurrency === 'USD' ? (prod.priceNumeric * 1.08).toFixed(2) : prod.priceNumeric.toFixed(2);
+            return {
+              '@type': 'ListItem',
+              position: idx + 1,
+              item: {
+                '@type': 'Product',
+                name: cleanTitle,
+                image: prod.imageUrl,
+                description: cleanDesc,
+                sku: prod.asin,
+                mpn: prod.asin,
+                itemCondition: 'https://schema.org/RefurbishedCondition',
+                brand: {
+                  '@type': 'Brand',
+                  name: prod.title.split(' ')[0] || 'Amazon Renewed',
+                },
+                offers: {
+                  '@type': 'Offer',
+                  price: priceVal,
+                  priceCurrency: schemaCurrency,
+                  itemCondition: 'https://schema.org/RefurbishedCondition',
+                  availability: 'https://schema.org/InStock',
+                  url: directUrl,
+                  validFrom: '2026-01-01',
+                  priceValidUntil: '2026-12-31',
+                  hasMerchantReturnPolicy: {
+                    '@type': 'MerchantReturnPolicy',
+                    applicableCountry: countryCode,
+                    returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+                    merchantReturnDays: 30,
+                    returnMethod: 'https://schema.org/ReturnByMail',
+                    returnFees: 'https://schema.org/FreeReturn',
+                  },
+                },
+                aggregateRating: {
+                  '@type': 'AggregateRating',
+                  ratingValue: (prod.rating || 4.5).toString(),
+                  reviewCount: (prod.reviewsCount || 50).toString(),
+                  bestRating: '5',
+                  worstRating: '1',
+                },
+              },
+            };
+          }),
         },
         {
           '@type': 'BreadcrumbList',
@@ -620,9 +698,8 @@ export default function ReacondicionadosView() {
           })),
         },
       ],
-    }),
-    [isEs, activeFaqs]
-  );
+    };
+  }, [isEs, activeFaqs, activeCurrency, filteredProducts, selectedCatLabel, amazonRegion]);
 
   return (
     <div dir={isRtl ? 'rtl' : 'ltr'} className="min-h-screen flex flex-col bg-[#f4f6f5] text-slate-900">
@@ -1313,10 +1390,82 @@ export default function ReacondicionadosView() {
           </div>
 
           <div className="pt-4 border-t border-slate-100">
+            <h2 className="text-lg sm:text-xl font-black text-slate-950 mb-2">
+              {isEs
+                ? 'Comparativa: Reacondicionado Certificado (Amazon Renewed) vs. Segunda Mano Particular'
+                : 'Comparison: Certified Amazon Renewed vs. Private Used / Second-Hand'}
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600 mb-4 leading-relaxed">
+              {isEs ? (
+                <>
+                  Si estás buscando un móvil, iPhone, iPad, portátil o reloj de <strong>segunda mano</strong> para ahorrar dinero, mira por qué un <strong>Reacondicionado Certificado de Amazon</strong> elimina todos los riesgos de comprar usado a un particular:
+                </>
+              ) : (
+                <>
+                  If you are searching for a <strong>used or second-hand</strong> iPhone, iPad, laptop, or smartwatch to save money, see why a <strong>Certified Amazon Renewed</strong> device eliminates every risk of buying from a random private seller:
+                </>
+              )}
+            </p>
+            <div className="overflow-x-auto rounded-2xl border border-emerald-200">
+              <table className="w-full text-left border-collapse text-xs sm:text-sm">
+                <thead>
+                  <tr className="bg-emerald-900 text-white">
+                    <th className="p-3 font-black">{isEs ? 'Criterio de Seguridad' : 'Safety & Quality Check'}</th>
+                    <th className="p-3 font-black bg-emerald-700">
+                      ♻️ {isEs ? 'Reacondicionado Certificado Amazon' : 'Certified Amazon Renewed'}
+                    </th>
+                    <th className="p-3 font-bold text-rose-200">
+                      ⚠️ {isEs ? 'Segunda Mano Particular (Apps/Foros)' : 'Private Used / Second-Hand Seller'}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-200 bg-white">
+                  <tr>
+                    <td className="p-3 font-bold text-slate-900">{isEs ? 'Garantía Oficial postventa' : 'Official Post-Purchase Warranty'}</td>
+                    <td className="p-3 font-black text-emerald-800 bg-emerald-50/50">
+                      ✅ {isEs ? '1 Año (365 días) de Garantía Oficial Amazon' : '1 Full Year (365 Days) Official Amazon Guarantee'}
+                    </td>
+                    <td className="p-3 text-slate-600">
+                      ❌ {isEs ? '0 días de garantía (si se apaga, pierdes tu dinero)' : '0 days warranty (if it fails, your money is gone)'}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-bold text-slate-900">{isEs ? 'Salud de la Batería' : 'Real Battery Health'}</td>
+                    <td className="p-3 font-black text-emerald-800 bg-emerald-50/50">
+                      ✅ {isEs ? 'Certificada >80% – 100% de capacidad real' : 'Certified >80% – 100% real battery capacity'}
+                    </td>
+                    <td className="p-3 text-slate-600">
+                      ❌ {isEs ? 'Desgastada o manipulada sin certificar' : 'Degraded or unverified battery health'}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-bold text-slate-900">{isEs ? 'Inspección y Estado Estético' : 'Hardware & Cosmetic Inspection'}</td>
+                    <td className="p-3 font-black text-emerald-800 bg-emerald-50/50">
+                      ✅ {isEs ? 'Test de 40 puntos + 0 arañazos a 30 cm (Grado A+)' : '40-point lab test + 0 scratches at 12 inches (Grade A+)'}
+                    </td>
+                    <td className="p-3 text-slate-600">
+                      ❌ {isEs ? 'Sin revisión técnica ni higienización profesional' : 'No lab diagnostic or professional sanitization'}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-bold text-slate-900">{isEs ? 'Devolución y Reembolso' : 'Returns & Full Refund'}</td>
+                    <td className="p-3 font-black text-emerald-800 bg-emerald-50/50">
+                      ✅ {isEs ? '30 días de prueba gratis + Reemplazo o 100% reembolso' : '30-day free trial + Free replacement or 100% refund'}
+                    </td>
+                    <td className="p-3 text-slate-600">
+                      ❌ {isEs ? 'Sin devolución una vez entregado en mano' : 'No returns once handed over'}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div className="pt-4 border-t border-slate-100">
             <h2 className="text-lg sm:text-xl font-black text-slate-900 mb-4">
               {isEs
-                ? 'Preguntas frecuentes sobre los Reacondicionados de Amazon'
-                : 'Frequently Asked Questions about Certified Amazon Renewed'}
+                ? 'Preguntas frecuentes sobre los Reacondicionados de Amazon y Segunda Mano con Garantía'
+                : 'Frequently Asked Questions about Certified Amazon Renewed vs. Second-Hand'}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {activeFaqs.map((faq, idx) => (

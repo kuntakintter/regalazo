@@ -24,7 +24,13 @@ export async function generateStaticParams() {
   const ageSlugs = Object.keys(SEO_AGE_ROUTES);
   const filterSlugs = Object.keys(SEO_FILTER_ROUTES);
 
-  const all = new Set([...i18nSlugs, ...ageSlugs, ...filterSlugs]);
+  const all = new Set([
+    ...i18nSlugs,
+    ...ageSlugs,
+    ...filterSlugs,
+    'reacondicionado',
+    'segunda-mano-con-garantia',
+  ]);
   const staticHubDirs = new Set(ALL_STATIC_HUB_SLUGS);
   for (const segs of getAllSitemapPathSegments()) {
     if (segs.length === 1 && !staticHubDirs.has(segs[0])) all.add(segs[0]);
