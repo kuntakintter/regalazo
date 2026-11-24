@@ -655,6 +655,33 @@ export default function ReacondicionadosView({
                     returnMethod: 'https://schema.org/ReturnByMail',
                     returnFees: 'https://schema.org/FreeReturn',
                   },
+                  shippingDetails: {
+                    '@type': 'OfferShippingDetails',
+                    shippingRate: {
+                      '@type': 'MonetaryAmount',
+                      value: '0.00',
+                      currency: schemaCurrency,
+                    },
+                    shippingDestination: {
+                      '@type': 'DefinedRegion',
+                      addressCountry: countryCode,
+                    },
+                    deliveryTime: {
+                      '@type': 'ShippingDeliveryTime',
+                      handlingTime: {
+                        '@type': 'QuantitativeValue',
+                        minValue: 0,
+                        maxValue: 1,
+                        unitCode: 'DAY',
+                      },
+                      transitTime: {
+                        '@type': 'QuantitativeValue',
+                        minValue: 1,
+                        maxValue: 3,
+                        unitCode: 'DAY',
+                      },
+                    },
+                  },
                 },
                 aggregateRating: {
                   '@type': 'AggregateRating',

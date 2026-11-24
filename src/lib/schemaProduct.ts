@@ -40,6 +40,10 @@ export function generateProductItemListSchema(
       const cleanAsin = prod.asin?.trim();
       const validAsin = cleanAsin && isValidActiveAsin(cleanAsin) ? cleanAsin : undefined;
       const directUrl = getAmazonProductUrl(prod.asin, prod.searchQuery || prod.title, region);
+      const itemConditionUrl =
+        prod.category === 'Reacondicionados'
+          ? 'https://schema.org/RefurbishedCondition'
+          : 'https://schema.org/NewCondition';
 
       return {
         '@type': 'ListItem',
@@ -51,6 +55,7 @@ export function generateProductItemListSchema(
             ? prod.imageUrl
             : `https://www.unbuenregalo.es${prod.imageUrl}`,
           description: prod.description || prod.title,
+          itemCondition: itemConditionUrl,
           ...(validAsin ? { sku: validAsin, mpn: validAsin } : {}),
           brand: {
             '@type': 'Brand',
@@ -60,6 +65,7 @@ export function generateProductItemListSchema(
             '@type': 'Offer',
             price: finalPrice.toFixed(2),
             priceCurrency: currency,
+            itemCondition: itemConditionUrl,
             availability: 'https://schema.org/InStock',
             url: directUrl,
             validFrom: '2026-01-01',
