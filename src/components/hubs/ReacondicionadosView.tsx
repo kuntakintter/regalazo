@@ -374,15 +374,55 @@ function RefurbishedProductCard({ item }: { item: RefurbishedProduct }) {
 }
 
 export default function ReacondicionadosView() {
-  const { localePath, amazonRegion, amazonSiteName, isRtl } = useActiveLocale();
+  const { localePath, amazonRegion, amazonSiteName, isRtl, formatPrice } = useActiveLocale();
 
   const [searchQuery, setSearchQuery] = useState('');
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const searchBoxRef = useRef<HTMLDivElement>(null);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
   const [activePricePreset, setActivePricePreset] = useState('all');
   const [sortBy, setSortBy] = useState<'featured' | 'price-asc' | 'price-desc' | 'rating'>('featured');
   const [visibleCount, setVisibleCount] = useState(24);
+
+  useEffect(() => {
+    const handleOutsideClick = (e: MouseEvent) => {
+      if (searchBoxRef.current && !searchBoxRef.current.contains(e.target as Node)) {
+        setIsSearchFocused(false);
+      }
+    };
+    document.addEventListener('mousedown', handleOutsideClick);
+    return () => document.removeEventListener('mousedown', handleOutsideClick);
+  }, []);
+
+  const QUICK_REAC_CHIPS = [
+    { label: '📱 iPhone 13 / 15', query: 'iPhone', cat: 'smartphones' },
+    { label: '📲 Apple iPad', query: 'iPad', cat: 'tablets' },
+    { label: '💻 Portátiles 32GB', query: 'Portátil', cat: 'laptops' },
+    { label: '⌚ Apple Watch / Garmin', query: 'Watch', cat: 'smartwatches' },
+    { label: '🎧 Sony / AirPods', query: 'Auriculares', cat: 'audio' },
+    { label: '☕ Cafeteras DeLonghi', query: 'Cafetera', cat: 'home' },
+    { label: '🎮 Consolas y Gaming', query: 'Consola', cat: 'gaming' },
+  ];
+
+  const liveSearchSuggestions = useMemo(() => {
+    const q = searchQuery.trim().toLowerCase();
+    if (q.length < 1) return [];
+    const tokens = q.split(/\s+/).filter(Boolean);
+    return REACONDICIONADOS_PRODUCTS.filter((item) => {
+      const hay = `${item.title} ${item.categoryLabel} ${item.conditionGrade}`.toLowerCase();
+      return tokens.every((t) => hay.includes(t));
+    }).slice(0, 7);
+  }, [searchQuery]);
+
+  const matchingCategoryChips = useMemo(() => {
+    const q = searchQuery.trim().toLowerCase();
+    if (q.length < 1) return REACONDICIONADOS_CATEGORIES.filter((c) => c.id !== 'all');
+    return REACONDICIONADOS_CATEGORIES.filter(
+      (c) => c.id !== 'all' && (`${c.label} ${c.query}`.toLowerCase().includes(q))
+    );
+  }, [searchQuery]);
 
   const selectedCatObj = useMemo(
     () => REACONDICIONADOS_CATEGORIES.find((c) => c.id === selectedCategory) || REACONDICIONADOS_CATEGORIES[0],
@@ -490,7 +530,7 @@ export default function ReacondicionadosView() {
       <Header currentTheme="classic" />
 
       {/* 1. HERO & OFFICIAL AMAZON RENEWED WARRANTY EXPLANATION */}
-      <section className="relative bg-gradient-to-br from-[#062019] via-[#0a2e23] to-[#0f172a] text-white border-b-4 border-emerald-400 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-[#062019] via-[#0a2e23] to-[#0f172a] text-white border-b-4 border-emerald-400 overflow-visible z-30">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-10 relative z-10">
           <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-emerald-200 mb-2 sm:mb-4 flex-nowrap overflow-x-auto whitespace-nowrap">
             <Link href={localePath('/')} className="hover:text-white transition-colors font-medium">
@@ -576,22 +616,29 @@ export default function ReacondicionadosView() {
             </div>
           </div>
 
-          {/* Search Bar */}
-          <div className="max-w-4xl">
+          {/* Search Bar with Live Autocomplete Dropdown & Quick Filter Chips */}
+          <div ref={searchBoxRef} className="max-w-4xl relative z-40">
             <div className="relative flex items-center bg-white rounded-2xl p-1.5 shadow-2xl border-2 border-emerald-400 focus-within:ring-4 focus-within:ring-emerald-400/30 transition-all">
               <Search className="w-5 h-5 text-slate-500 ml-3 mr-2 shrink-0" />
               <input
                 type="text"
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Busca en Reacondicionados... (ej: iPhone 13, iPhone 15, iPad, Samsung, portátil, Apple Watch, Sony)"
+                onFocus={() => setIsSearchFocused(true)}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                  setIsSearchFocused(true);
+                }}
+                placeholder="Busca en Reacondicionados... (ej: iPhone 13, iPad, Samsung, portátil, Watch, cafetera)"
                 aria-label="Buscar productos reacondicionados"
                 className="w-full py-2.5 px-1 text-sm sm:text-base text-slate-900 placeholder-slate-500 focus:outline-none bg-transparent font-medium"
               />
               {searchQuery && (
                 <button
                   type="button"
-                  onClick={() => setSearchQuery('')}
+                  onClick={() => {
+                    setSearchQuery('');
+                    setIsSearchFocused(true);
+                  }}
                   aria-label="Limpiar búsqueda"
                   className="p-2 text-slate-500 hover:text-slate-900 cursor-pointer"
                 >
@@ -602,12 +649,215 @@ export default function ReacondicionadosView() {
                 href={getAmazonSearchUrl(`${searchQuery.trim() || 'amazon renewed'} reacondicionado`, amazonRegion)}
                 target="_blank"
                 rel="nofollow sponsored noopener noreferrer"
-                className="px-4 sm:px-6 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-black text-xs sm:text-sm shadow-sm transition-all shrink-0 flex items-center gap-1.5"
+                className="px-3.5 sm:px-6 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-black text-xs sm:text-sm shadow-sm transition-all shrink-0 flex items-center gap-1.5"
               >
-                <span>Buscar en {amazonSiteName}</span>
+                <span className="hidden xs:inline">Buscar en {amazonSiteName}</span>
+                <span className="xs:hidden">Amazon</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
             </div>
+
+            {/* Quick clickable filter chips right under the search bar (mobile & desktop) */}
+            <div className="flex items-center gap-1.5 sm:gap-2 flex-nowrap sm:flex-wrap overflow-x-auto mt-2.5 pb-1 [&>*]:shrink-0 [&>*]:whitespace-nowrap">
+              <span className="text-[11px] font-bold text-emerald-200 uppercase tracking-wider">
+                Filtros rápidos:
+              </span>
+              {QUICK_REAC_CHIPS.map((chip) => {
+                const isActive =
+                  searchQuery.toLowerCase() === chip.query.toLowerCase() ||
+                  (selectedCategory === chip.cat && !searchQuery);
+                return (
+                  <button
+                    key={chip.label}
+                    type="button"
+                    onClick={() => {
+                      setSearchQuery(chip.query);
+                      setSelectedCategory('all');
+                      setIsSearchFocused(false);
+                    }}
+                    className={`px-2.5 py-1 rounded-full text-xs font-bold border transition-all cursor-pointer ${
+                      isActive
+                        ? 'bg-emerald-400 text-slate-950 border-emerald-300 shadow-sm'
+                        : 'bg-white/10 hover:bg-white/20 text-white border-emerald-400/40'
+                    }`}
+                  >
+                    {chip.label}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Live Autocomplete Dropdown while typing or focusing (Mobile & Desktop) */}
+            {isSearchFocused && (
+              <div className="absolute left-0 right-0 top-[58px] mt-1 bg-white text-slate-900 rounded-2xl shadow-2xl border-2 border-emerald-500 overflow-hidden z-50 max-h-[72vh] overflow-y-auto">
+                {/* Quick category filter pills inside dropdown */}
+                <div className="p-2.5 sm:p-3 bg-emerald-50/70 border-b border-emerald-100">
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="text-[10px] font-black uppercase tracking-wider text-emerald-900">
+                      Filtrar por categoría reacondicionada:
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setIsSearchFocused(false)}
+                      className="text-[11px] font-bold text-slate-500 hover:text-slate-900 flex items-center gap-0.5 cursor-pointer"
+                    >
+                      <span>Cerrar</span>
+                      <X className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                  <div className="flex items-center gap-1.5 overflow-x-auto pb-1 [&>*]:shrink-0 [&>*]:whitespace-nowrap">
+                    {(matchingCategoryChips.length > 0
+                      ? matchingCategoryChips
+                      : REACONDICIONADOS_CATEGORIES.filter((c) => c.id !== 'all')
+                    ).map((cat) => (
+                      <button
+                        key={cat.id}
+                        type="button"
+                        onClick={() => {
+                          setSelectedCategory(cat.id);
+                          setSearchQuery('');
+                          setIsSearchFocused(false);
+                        }}
+                        className={`px-2.5 py-1 rounded-lg text-xs font-bold border transition-all cursor-pointer flex items-center gap-1 ${
+                          selectedCategory === cat.id
+                            ? 'bg-emerald-700 text-white border-emerald-700'
+                            : 'bg-white hover:bg-emerald-50 text-slate-800 border-emerald-200'
+                        }`}
+                      >
+                        <span>{cat.emoji}</span>
+                        <span>{cat.label}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Matching clickable product suggestions */}
+                {searchQuery.trim().length > 0 ? (
+                  liveSearchSuggestions.length > 0 ? (
+                    <div className="divide-y divide-slate-100">
+                      <div className="px-3 py-1.5 bg-slate-50 text-[10px] font-black uppercase tracking-wider text-slate-500 flex items-center justify-between">
+                        <span>Productos Reacondicionados encontrados ({liveSearchSuggestions.length}+)</span>
+                        <span className="text-emerald-700">Toca para abrir en Amazon</span>
+                      </div>
+                      {liveSearchSuggestions.map((item) => {
+                        const itemUrl = getAmazonProductUrl(item.asin, item.title, amazonRegion);
+                        return (
+                          <a
+                            key={item.id}
+                            href={itemUrl}
+                            target="_blank"
+                            rel="nofollow sponsored noopener noreferrer"
+                            onClick={() => setIsSearchFocused(false)}
+                            className="flex items-center gap-3 p-2.5 sm:p-3 hover:bg-emerald-50/70 active:bg-emerald-100/70 transition-colors cursor-pointer group"
+                          >
+                            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-white border border-slate-200 p-1 shrink-0 flex items-center justify-center overflow-hidden">
+                              <img
+                                src={item.imageUrl}
+                                alt={item.title}
+                                className="w-full h-full object-contain"
+                                loading="lazy"
+                              />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-1.5 mb-0.5">
+                                <span className="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-900 font-black text-[9px] uppercase">
+                                  ♻️ 1 Año Garantía
+                                </span>
+                                <span className="text-[10px] font-bold text-slate-500 truncate">
+                                  {item.conditionGrade}
+                                </span>
+                              </div>
+                              <p className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-emerald-800 line-clamp-1">
+                                {item.title}
+                              </p>
+                              <div className="flex items-center gap-2 mt-0.5">
+                                <span className="text-sm font-black text-emerald-800">
+                                  {formatPrice(item.priceText)}
+                                </span>
+                                {item.originalPriceText && (
+                                  <span className="text-[11px] text-slate-400 line-through">
+                                    {formatPrice(item.originalPriceText)}
+                                  </span>
+                                )}
+                                {item.discountPercent && item.discountPercent > 0 && (
+                                  <span className="px-1.5 py-0.2 rounded bg-black border border-amber-400 text-amber-300 font-black text-[10px]">
+                                    -{item.discountPercent}%
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+                            <span className="px-2.5 py-1.5 rounded-xl bg-[#ffd814] group-hover:bg-[#f7ca00] text-slate-950 font-black text-[11px] shrink-0 flex items-center gap-1 shadow-2xs">
+                              <span className="hidden sm:inline">Ver oferta</span>
+                              <ExternalLink className="w-3.5 h-3.5" />
+                            </span>
+                          </a>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <div className="p-4 text-center space-y-2">
+                      <p className="text-xs font-bold text-slate-700">
+                        No hay coincidencias exactas en el catálogo local para &ldquo;{searchQuery}&rdquo;
+                      </p>
+                      <a
+                        href={getAmazonSearchUrl(`${searchQuery.trim()} reacondicionado amazon renewed`, amazonRegion)}
+                        target="_blank"
+                        rel="nofollow sponsored noopener noreferrer"
+                        onClick={() => setIsSearchFocused(false)}
+                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-black text-xs shadow-sm"
+                      >
+                        <span>Buscar &ldquo;{searchQuery}&rdquo; en Amazon Renewed ({amazonSiteName})</span>
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </a>
+                    </div>
+                  )
+                ) : (
+                  <div className="divide-y divide-slate-100">
+                    <div className="px-3 py-1.5 bg-slate-50 text-[10px] font-black uppercase tracking-wider text-slate-500">
+                      Reacondicionados más buscados hoy (1 Año de Garantía Oficial)
+                    </div>
+                    {REACONDICIONADOS_PRODUCTS.slice(0, 5).map((item) => {
+                      const itemUrl = getAmazonProductUrl(item.asin, item.title, amazonRegion);
+                      return (
+                        <a
+                          key={item.id}
+                          href={itemUrl}
+                          target="_blank"
+                          rel="nofollow sponsored noopener noreferrer"
+                          onClick={() => setIsSearchFocused(false)}
+                          className="flex items-center gap-3 p-2.5 hover:bg-emerald-50/70 transition-colors cursor-pointer group"
+                        >
+                          <div className="w-11 h-11 rounded-xl bg-white border border-slate-200 p-1 shrink-0 flex items-center justify-center overflow-hidden">
+                            <img src={item.imageUrl} alt={item.title} className="w-full h-full object-contain" loading="lazy" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-xs font-bold text-slate-900 group-hover:text-emerald-800 line-clamp-1">
+                              {item.title}
+                            </p>
+                            <div className="flex items-center gap-2 mt-0.5">
+                              <span className="text-xs font-black text-emerald-800">{formatPrice(item.priceText)}</span>
+                              <span className="text-[10px] font-semibold text-emerald-700">{item.conditionGrade}</span>
+                            </div>
+                          </div>
+                          <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-emerald-700 shrink-0" />
+                        </a>
+                      );
+                    })}
+                  </div>
+                )}
+
+                {/* Direct Amazon Renewed search footer link inside dropdown */}
+                <a
+                  href={getAmazonSearchUrl(`${searchQuery.trim() || 'amazon renewed'} reacondicionado`, amazonRegion)}
+                  target="_blank"
+                  rel="nofollow sponsored noopener noreferrer"
+                  onClick={() => setIsSearchFocused(false)}
+                  className="block p-3 bg-slate-900 hover:bg-slate-800 text-center text-xs font-black text-emerald-300 transition-colors"
+                >
+                  🔍 Ver todos los resultados de &ldquo;{searchQuery.trim() || 'Amazon Renewed'}&rdquo; en {amazonSiteName} →
+                </a>
+              </div>
+            )}
           </div>
         </div>
       </section>

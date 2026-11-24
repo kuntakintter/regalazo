@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo, useEffect, useCallback } from 'react';
+import React, { useState, useMemo, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -238,11 +238,33 @@ function BlackFridayCountdown() {
 }
 
 export default function BlackFridayView() {
-  const { localeKey, localePath, amazonRegion, amazonSiteName, isRtl } = useActiveLocale();
+  const { localeKey, localePath, amazonRegion, amazonSiteName, isRtl, formatPrice } = useActiveLocale();
   const isEs = localeKey === 'es' || localeKey === 'es-us';
 
   const [searchInput, setSearchInput] = useState('');
   const [activeQuery, setActiveQuery] = useState('');
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const searchBoxRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleOutside = (e: MouseEvent) => {
+      if (searchBoxRef.current && !searchBoxRef.current.contains(e.target as Node)) {
+        setIsSearchFocused(false);
+      }
+    };
+    document.addEventListener('mousedown', handleOutside);
+    return () => document.removeEventListener('mousedown', handleOutside);
+  }, []);
+
+  const bfAutocompleteMatches = useMemo(() => {
+    const q = searchInput.trim().toLowerCase();
+    if (q.length < 1) return [];
+    const tokens = q.split(/\s+/).filter(Boolean);
+    return VERIFIED_BLACK_FRIDAY_DEALS.filter((d) => {
+      const hay = `${d.title} ${d.dealBadge} ${d.categoryId}`.toLowerCase();
+      return tokens.every((t) => hay.includes(t));
+    }).slice(0, 7);
+  }, [searchInput]);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedAge, setSelectedAge] = useState<string>('all');
   const [minPrice, setMinPrice] = useState<string>('');
@@ -549,7 +571,7 @@ export default function BlackFridayView() {
       <Header currentTheme="classic" />
 
       {/* 1. BLACK FRIDAY HERO */}
-      <section className="relative bg-gradient-to-br from-black via-slate-950 to-black text-white border-b-4 border-amber-400 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-black via-slate-950 to-black text-white border-b-4 border-amber-400 overflow-visible z-30">
         <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-amber-500/10 blur-3xl pointer-events-none" />
         <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-amber-400/10 blur-3xl pointer-events-none" />
 
@@ -605,14 +627,20 @@ export default function BlackFridayView() {
             </div>
           </div>
 
-          {/* DEDICATED BLACK FRIDAY SEARCH BAR */}
-          <div className="max-w-4xl">
+          {/* DEDICATED BLACK FRIDAY SEARCH BAR WITH LIVE AUTOCOMPLETE DROPDOWN */}
+          <div ref={searchBoxRef} className="max-w-4xl relative z-40">
             <form onSubmit={handleSearchSubmit} className="relative flex items-center bg-white rounded-2xl p-1.5 shadow-2xl border-2 border-amber-400/90 focus-within:ring-4 focus-within:ring-amber-400/30 transition-all">
               <Search className="w-5 h-5 text-slate-500 ml-3 mr-2 shrink-0" />
               <input
                 type="text"
                 value={searchInput}
-                onChange={(e) => setSearchInput(e.target.value)}
+                onFocus={() => setIsSearchFocused(true)}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  setSearchInput(val);
+                  setActiveQuery(val);
+                  setIsSearchFocused(true);
+                }}
                 placeholder="Busca cualquier oferta de Black Friday... (ej: AirPods, freidora aire, LEGO, PS5, perfume, reloj)"
                 aria-label="Buscar ofertas Black Friday"
                 className="w-full py-2.5 px-1 text-sm sm:text-base text-slate-900 placeholder-slate-500 focus:outline-none bg-transparent font-medium"
@@ -623,6 +651,7 @@ export default function BlackFridayView() {
                   onClick={() => {
                     setSearchInput('');
                     setActiveQuery('');
+                    setIsSearchFocused(true);
                   }}
                   aria-label="Limpiar búsqueda"
                   className="p-2 text-slate-500 hover:text-slate-900 cursor-pointer"
@@ -632,12 +661,123 @@ export default function BlackFridayView() {
               )}
               <button
                 type="submit"
-                className="px-5 sm:px-7 py-2.5 rounded-xl bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-black text-xs sm:text-sm shadow-md transition-all cursor-pointer shrink-0 flex items-center gap-1.5"
+                onClick={() => setIsSearchFocused(false)}
+                className="px-4 sm:px-7 py-2.5 rounded-xl bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-black text-xs sm:text-sm shadow-md transition-all cursor-pointer shrink-0 flex items-center gap-1.5"
               >
                 <Search className="w-4 h-4 stroke-[2.5]" />
                 <span>Buscar Chollos</span>
               </button>
             </form>
+
+            {/* Live Autocomplete Dropdown for Black Friday (Mobile & Desktop) */}
+            {isSearchFocused && (
+              <div className="absolute left-0 right-0 top-[58px] mt-1 bg-white text-slate-900 rounded-2xl shadow-2xl border-2 border-amber-400 overflow-hidden z-50 max-h-[72vh] overflow-y-auto">
+                <div className="p-2.5 sm:p-3 bg-slate-950 text-white border-b border-amber-400/40">
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="text-[10px] font-black uppercase tracking-wider text-amber-300">
+                      Filtrar por categoría Black Friday:
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setIsSearchFocused(false)}
+                      className="text-[11px] font-bold text-slate-300 hover:text-white flex items-center gap-0.5 cursor-pointer"
+                    >
+                      <span>Cerrar</span>
+                      <X className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                  <div className="flex items-center gap-1.5 overflow-x-auto pb-1 [&>*]:shrink-0 [&>*]:whitespace-nowrap">
+                    {BAZAAR_CATEGORIES.filter((c) => c.id !== 'all').map((cat) => (
+                      <button
+                        key={cat.id}
+                        type="button"
+                        onClick={() => {
+                          setSelectedCategory(cat.id);
+                          setSearchInput('');
+                          setActiveQuery('');
+                          setIsSearchFocused(false);
+                        }}
+                        className={`px-2.5 py-1 rounded-lg text-xs font-bold border transition-all cursor-pointer flex items-center gap-1 ${
+                          selectedCategory === cat.id
+                            ? 'bg-amber-400 text-slate-950 border-amber-300'
+                            : 'bg-white/10 hover:bg-white/20 text-white border-amber-400/40'
+                        }`}
+                      >
+                        <span>{cat.emoji}</span>
+                        <span>{cat.label}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {searchInput.trim().length > 0 ? (
+                  bfAutocompleteMatches.length > 0 ? (
+                    <div className="divide-y divide-slate-100">
+                      <div className="px-3 py-1.5 bg-slate-50 text-[10px] font-black uppercase tracking-wider text-slate-500 flex items-center justify-between">
+                        <span>Ofertas Black Friday encontradas ({bfAutocompleteMatches.length}+)</span>
+                        <span className="text-amber-700">Toca para abrir en Amazon</span>
+                      </div>
+                      {bfAutocompleteMatches.map((item) => {
+                        const itemUrl = getAmazonProductUrl(item.asin, item.title, amazonRegion);
+                        return (
+                          <a
+                            key={item.asin}
+                            href={itemUrl}
+                            target="_blank"
+                            rel="nofollow sponsored noopener noreferrer"
+                            onClick={() => setIsSearchFocused(false)}
+                            className="flex items-center gap-3 p-2.5 sm:p-3 hover:bg-amber-50/70 active:bg-amber-100/70 transition-colors cursor-pointer group"
+                          >
+                            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-white border border-slate-200 p-1 shrink-0 flex items-center justify-center overflow-hidden">
+                              <img src={item.imageUrl} alt={item.title} className="w-full h-full object-contain" loading="lazy" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-1.5 mb-0.5">
+                                <span className="px-1.5 py-0.5 rounded bg-black border border-amber-400 text-amber-300 font-black text-[10px]">
+                                  -{item.discountPercent}%
+                                </span>
+                                <span className="text-[10px] font-bold text-emerald-700 truncate">
+                                  {item.savingsText}
+                                </span>
+                              </div>
+                              <p className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-amber-800 line-clamp-1">
+                                {item.title}
+                              </p>
+                              <div className="flex items-center gap-2 mt-0.5">
+                                <span className="text-sm font-black text-slate-950">{formatPrice(item.priceText)}</span>
+                                <span className="text-[11px] text-slate-400 line-through">
+                                  {formatPrice(item.originalPriceText)}
+                                </span>
+                              </div>
+                            </div>
+                            <span className="px-2.5 py-1.5 rounded-xl bg-black border border-amber-400 text-amber-300 font-black text-[11px] shrink-0 flex items-center gap-1">
+                              <span className="hidden sm:inline">Ver chollo</span>
+                              <ExternalLink className="w-3.5 h-3.5" />
+                            </span>
+                          </a>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <div className="p-4 text-center space-y-2">
+                      <p className="text-xs font-bold text-slate-700">
+                        Buscando más ofertas de &ldquo;{searchInput}&rdquo; en Amazon...
+                      </p>
+                      <a
+                        href={getAmazonSearchUrl(`${searchInput.trim()} black friday`, amazonRegion)}
+                        target="_blank"
+                        rel="nofollow sponsored noopener noreferrer"
+                        onClick={() => setIsSearchFocused(false)}
+                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-black border border-amber-400 text-amber-300 font-black text-xs"
+                      >
+                        <span>Ver todas las ofertas de &ldquo;{searchInput}&rdquo; en {amazonSiteName}</span>
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </a>
+                    </div>
+                  )
+                ) : null}
+              </div>
+            )}
 
             {/* Quick Trending Black Friday Search Chips */}
             <div className="flex items-center gap-2 flex-nowrap sm:flex-wrap overflow-x-auto mt-2 sm:mt-3 [&>*]:shrink-0 [&>*]:whitespace-nowrap">
