@@ -90,6 +90,54 @@ const buildAllSiteProducts = (): Product[] => {
   for (const p of AUTOMOVIL_PRODUCTS) pushUnique(adaptNicheProduct(p, 'Automóvil'));
   for (const p of CICLISMO_PRODUCTS) pushUnique(adaptNicheProduct(p, 'Ciclismo'));
   for (const p of HALLOWEEN_PRODUCTS) pushUnique(adaptNicheProduct(p, 'Halloween'));
+  for (const r of REACONDICIONADOS_PRODUCTS) {
+    pushUnique(
+      adaptNicheProduct(
+        {
+          id: r.id,
+          asin: r.asin,
+          title: r.title,
+          category: r.category,
+          categoryLabel: r.categoryLabel,
+          priceText: r.priceText,
+          priceNumeric: r.priceNumeric,
+          rating: r.rating,
+          reviewsCount: r.reviewsCount,
+          imageUrl: r.imageUrl,
+          badge: r.warrantyBadge,
+          description: r.description,
+          pros: r.pros,
+          idealFor: r.idealFor,
+          searchQuery: `${r.title} reacondicionado reacondicionados segunda mano con garantia amazon renewed refurbished`,
+        },
+        'Reacondicionados'
+      )
+    );
+  }
+  for (const bf of VERIFIED_BLACK_FRIDAY_DEALS) {
+    pushUnique(
+      adaptNicheProduct(
+        {
+          id: bf.asin,
+          asin: bf.asin,
+          title: bf.title,
+          category: bf.categoryId,
+          categoryLabel: 'Black Friday',
+          priceText: bf.priceText,
+          priceNumeric: bf.priceNumeric,
+          rating: bf.rating,
+          reviewsCount: bf.reviewsCount,
+          imageUrl: bf.imageUrl,
+          badge: bf.dealBadge,
+          description: bf.title,
+          pros: [`-${bf.discountPercent}% Descuento Real`, `Antes ${bf.originalPriceText}`],
+          idealFor: `Ahorras ${bf.savingsText} en Black Friday`,
+          searchQuery: `${bf.title} black friday oferta chollo descuento`,
+        },
+        'Black Friday'
+      )
+    );
+  }
 
   return unified;
 };

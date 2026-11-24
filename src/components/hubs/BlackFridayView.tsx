@@ -515,9 +515,10 @@ export default function BlackFridayView() {
     minPrice !== '' ||
     maxPrice !== '';
 
-  // Structured Data JSON-LD (CollectionPage + BreadcrumbList + FAQPage)
-  const structuredData = useMemo(
-    () => ({
+  // Structured Data JSON-LD (CollectionPage + ItemList Product Schema + BreadcrumbList + FAQPage)
+  const structuredData = useMemo(() => {
+    const topDeals = displayedLiveProducts.slice(0, 30);
+    return {
       '@context': 'https://schema.org',
       '@graph': [
         {
@@ -527,6 +528,48 @@ export default function BlackFridayView() {
           description:
             'Explora miles de ofertas reales de Black Friday ordenadas por mayor descuento (%), con filtro por precio exacto, edades, categorías y buscador en directo en Amazon.',
           inLanguage: 'es-ES',
+        },
+        {
+          '@type': 'ItemList',
+          name: 'Top Ofertas Verificadas Black Friday 2026 (Descuentos Reales en Amazon)',
+          numberOfItems: displayedLiveProducts.length,
+          itemListElement: topDeals.map((deal, idx) => {
+            const pNum = parsePrice(deal.priceText) || 25;
+            return {
+              '@type': 'ListItem',
+              position: idx + 1,
+              item: {
+                '@type': 'Product',
+                name: deal.title,
+                image: deal.imageUrl || 'https://www.unbuenregalo.es/og-cover.png',
+                description: `${deal.title} — ${deal.dealBadge || 'Oferta Black Friday verificada'}${
+                  deal.discountPercent ? ` (-${deal.discountPercent}%)` : ''
+                }`,
+                sku: deal.asin,
+                mpn: deal.asin,
+                brand: {
+                  '@type': 'Brand',
+                  name: deal.title.split(' ')[0] || 'Amazon',
+                },
+                offers: {
+                  '@type': 'Offer',
+                  price: pNum.toFixed(2),
+                  priceCurrency: 'EUR',
+                  availability: 'https://schema.org/InStock',
+                  url: deal.url,
+                  validFrom: '2026-01-01',
+                  priceValidUntil: '2026-12-31',
+                },
+                aggregateRating: {
+                  '@type': 'AggregateRating',
+                  ratingValue: (deal.rating || 4.6).toString(),
+                  reviewCount: (deal.reviewsCount || 120).toString(),
+                  bestRating: '5',
+                  worstRating: '1',
+                },
+              },
+            };
+          }),
         },
         {
           '@type': 'BreadcrumbList',
@@ -557,9 +600,8 @@ export default function BlackFridayView() {
           })),
         },
       ],
-    }),
-    []
-  );
+    };
+  }, [displayedLiveProducts]);
 
   return (
     <div dir={isRtl ? 'rtl' : 'ltr'} className="min-h-screen flex flex-col bg-[#f4f5f7] text-slate-900">

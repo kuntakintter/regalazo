@@ -331,35 +331,43 @@ export default function HeaderDesktop({
           <div className="flex items-center justify-center gap-3 py-2 text-xs">
             {/* Botón Destacado: Reacondicionados Certificados Amazon (a la izquierda de Black Friday) */}
             <Link
-              href="/reacondicionados"
+              href={localePath('/reacondicionados')}
               className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-950/90 hover:bg-emerald-900 border-2 border-emerald-400 hover:border-emerald-300 text-emerald-200 hover:text-white font-black text-xs tracking-wide transition-all shadow-md shadow-emerald-500/15 whitespace-nowrap shrink-0 hover:scale-105 active:scale-98"
-              title="Productos Reacondicionados Certificados de Amazon - 100% Funcionales con 1 Año de Garantía"
+              title={
+                localeKey === 'es' || localeKey === 'es-us'
+                  ? 'Productos Reacondicionados Certificados de Amazon - 100% Funcionales con 1 Año de Garantía'
+                  : 'Certified Amazon Renewed Tech - 100% Functional with 1-Year Official Warranty'
+              }
             >
               <span className="text-sm leading-none" aria-hidden="true">♻️</span>
-              <span>Reacondicionados</span>
+              <span>{localeKey === 'es' || localeKey === 'es-us' ? 'Reacondicionados' : 'Refurbished'}</span>
             </Link>
 
             {/* Botón Destacado: Black Friday */}
             <Link
-              href="/black-friday"
+              href={localePath('/black-friday')}
               className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-black hover:bg-slate-900 border-2 border-amber-400 hover:border-amber-300 text-amber-300 hover:text-amber-200 font-black text-xs tracking-wide transition-all shadow-md shadow-amber-500/15 whitespace-nowrap shrink-0 hover:scale-105 active:scale-98"
-              title="Black Friday 2026 - Ofertas con mayor descuento real"
+              title={
+                localeKey === 'es' || localeKey === 'es-us'
+                  ? 'Black Friday 2026 - Ofertas con mayor descuento real'
+                  : 'Black Friday 2026 - Top Verified Real Discounts'
+              }
             >
               <span className="inline-flex items-center justify-center px-1 rounded bg-amber-400/20 text-amber-300 font-black text-[11px] leading-none" aria-hidden="true">
                 %
               </span>
-              <span>Ver Black Friday</span>
+              <span>{localeKey === 'es' || localeKey === 'es-us' ? 'Ver Black Friday' : 'Black Friday'}</span>
             </Link>
 
             {/* Botón Destacado: Mundo de la Competición */}
             <Link
               href={localePath('/competicion')}
               className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-red-600/35 via-rose-700/25 to-amber-600/30 hover:from-red-600/60 hover:to-amber-500/50 border border-red-500/60 hover:border-red-400 text-white font-black text-xs tracking-wide transition-all shadow-md whitespace-nowrap shrink-0 hover:scale-105 active:scale-98 ring-1 ring-red-500/40 group"
-              title="Mundo de la Competición - Especial Carreras, F1, MotoGP y Scalextric"
+              title={tTerm('Mundo de la Competición')}
             >
               <span className="text-sm group-hover:scale-115 transition-transform" aria-hidden="true">🏁</span>
               <span className="font-black bg-gradient-to-r from-white via-red-100 to-amber-200 bg-clip-text text-transparent">
-                Mundo de la Competición
+                {tTerm('Mundo de la Competición')}
               </span>
             </Link>
 
