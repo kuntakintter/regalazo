@@ -56,13 +56,31 @@ export default function AnalyticsAndSeoBooster() {
     const getSessionDurationSec = () => Math.max(1, Math.round((Date.now() - sessionStartTime) / 1000));
 
     let pageEnterTime = performance.now();
+    let lastPageViewSentAt = Date.now();
     let firedScroll50 = false;
     let firedScroll85 = false;
     let lastFilterEventTime = 0;
 
-    pageEnterTime = performance.now();
-    firedScroll50 = false;
-    firedScroll85 = false;
+    // 0. Explicitly record page_view on every section navigation (once Next.js updates document.title)
+    // Skip duplicate firing on very first page load if gtag('config') just fired <1.5s ago,
+    // OR fire on every client-side route change so GA4 Realtime "Vistas por Título de página" always shows the active section.
+    const initialLoadHandled = sessionStorage.getItem('ubr_initial_pv_path') === window.location.pathname;
+    const pvTimer = setTimeout(() => {
+      try {
+        const lastPath = sessionStorage.getItem('ubr_initial_pv_path');
+        if (lastPath && lastPath !== window.location.pathname) {
+          sendGaEvent('page_view', {
+            page_title: document.title || 'Un Buen Regalo',
+            page_location: window.location.href,
+            page_path: window.location.pathname,
+          });
+        }
+        sessionStorage.setItem('ubr_initial_pv_path', window.location.pathname);
+        lastPageViewSentAt = Date.now();
+      } catch {
+        // ignore sessionStorage error
+      }
+    }, initialLoadHandled ? 100 : 250);
 
     // 1. Periodic Heartbeat to guarantee GA4 records exact session duration even if user doesn't click
     const heartbeatMilestones = [10, 25, 45, 60, 90, 120, 180, 240, 300];
@@ -91,10 +109,19 @@ export default function AnalyticsAndSeoBooster() {
         sendGaEvent('session_heartbeat', {
           event_category: 'session_engagement',
           page_path: window.location.pathname,
+          page_title: document.title || 'Un Buen Regalo',
           session_duration_sec: getSessionDurationSec(),
           time_on_page_sec: currentElapsedSec,
           engagement_time_msec: currentElapsedSec * 1000,
         });
+        if (Date.now() - lastPageViewSentAt > 25 * 60 * 1000) {
+          lastPageViewSentAt = Date.now();
+          sendGaEvent('page_view', {
+            page_title: document.title || 'Un Buen Regalo',
+            page_location: window.location.href,
+            page_path: window.location.pathname,
+          });
+        }
       }
     }, 60000);
 
@@ -191,6 +218,16 @@ export default function AnalyticsAndSeoBooster() {
       } else if (document.visibilityState === 'visible') {
         // Reset timer when user returns from Amazon tab so next chunk is counted cleanly
         pageEnterTime = performance.now();
+        // If the tab was open for >25 minutes (GA4 Realtime 30-min rolling window expired for initial page_view),
+        // re-send page_view with current page_title so "Vistas por Título de página" is never blank in Realtime
+        if (Date.now() - lastPageViewSentAt > 25 * 60 * 1000) {
+          lastPageViewSentAt = Date.now();
+          sendGaEvent('page_view', {
+            page_title: document.title || 'Un Buen Regalo',
+            page_location: window.location.href,
+            page_path: window.location.pathname,
+          });
+        }
       }
     };
 
@@ -213,6 +250,7 @@ export default function AnalyticsAndSeoBooster() {
     window.addEventListener('beforeunload', handleBeforeUnload);
 
     return () => {
+      clearTimeout(pvTimer);
       heartbeatTimeouts.forEach((t) => clearTimeout(t));
       clearInterval(longInterval);
       document.removeEventListener('click', handleClick, { capture: true });
