@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import SeoFaq from '@/components/SeoFaq';
 import {
   REACONDICIONADOS_PRODUCTS,
   REACONDICIONADOS_CATEGORIES,
@@ -1515,18 +1516,24 @@ export default function ReacondicionadosView({
           </div>
 
           <div className="pt-4 border-t border-slate-100">
-            <h2 className="text-lg sm:text-xl font-black text-slate-900 mb-4">
-              {isEs
-                ? 'Preguntas frecuentes sobre los Reacondicionados de Amazon y Segunda Mano con Garantía'
-                : 'Frequently Asked Questions about Certified Amazon Renewed vs. Second-Hand'}
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {activeFaqs.map((faq, idx) => (
-                <div key={idx} className="p-4 rounded-2xl bg-slate-50/80 border border-slate-200/70 space-y-1.5">
-                  <h3 className="text-sm font-bold text-slate-900">{faq.q}</h3>
-                  <p className="text-xs text-slate-600 leading-relaxed">{faq.a}</p>
-                </div>
-              ))}
+            <div className="max-w-4xl mx-auto p-6 sm:p-8 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl">
+              <div className="flex items-center gap-2.5 mb-2">
+                <Sparkles className="w-5 h-5 text-amber-400 shrink-0" />
+                <h2 className="text-xl sm:text-2xl font-black text-white">
+                  {isEs
+                    ? 'Preguntas Frecuentes sobre los Reacondicionados de Amazon y Segunda Mano con Garantía'
+                    : 'Frequently Asked Questions about Certified Amazon Renewed vs. Second-Hand'}
+                </h2>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-400 mb-6">
+                {isEs
+                  ? 'Consejos de expertos sobre la garantía de 1 año de Amazon Renewed, salud de batería y estados estéticos.'
+                  : 'Expert answers on the 1-year Amazon Renewed warranty, certified battery health, and cosmetic grades.'}
+              </p>
+              <SeoFaq
+                customFaqs={activeFaqs.map((f) => ({ question: f.q, answer: f.a }))}
+                omitSchema={true}
+              />
             </div>
           </div>
         </section>
