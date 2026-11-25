@@ -1,6 +1,14 @@
 import type { Metadata } from 'next';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  display: 'swap',
+  variable: '--font-jakarta',
+});
 import CookieBanner from '@/components/CookieBanner';
 import { CurrencyProvider } from '@/context/CurrencyContext';
 import { VotingProvider } from '@/context/VotingContext';
@@ -305,7 +313,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="es" className="scroll-smooth">
+    <html lang="es" className={`scroll-smooth ${plusJakartaSans.variable}`}>
       <head>
         <link rel="preconnect" href="https://www.google-analytics.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
@@ -327,7 +335,7 @@ export default function RootLayout({
         <link rel="icon" href="/icon.png" type="image/png" sizes="512x512" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </head>
-      <body className="antialiased font-sans selection:bg-indigo-500 selection:text-white">
+      <body className={`${plusJakartaSans.className} antialiased font-sans selection:bg-indigo-500 selection:text-white`}>
         {/* Google Analytics 4 (gtag.js) — Automated crawlers, headless browsers and preview bots are excluded so GA4 metrics reflect real human visitors only */}
         <Script
           strategy="afterInteractive"

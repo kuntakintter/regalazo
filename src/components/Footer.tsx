@@ -7,7 +7,6 @@ import BrandLogo from '@/components/BrandLogo';
 import LanguageSelector from '@/components/LanguageSelector';
 import SocialShareWidget from '@/components/SocialShareWidget';
 import FooterDirectory from '@/components/FooterDirectory';
-import { I18N_SEO_ROUTES } from '@/lib/i18nRoutes';
 import { AMAZON_AFFILIATE_TAG_ES, AMAZON_AFFILIATE_TAG_INTL } from '@/lib/amazon';
 import { getHubStrings } from '@/lib/i18nContent';
 import { useActiveLocale } from '@/hooks/useActiveLocale';
@@ -80,14 +79,24 @@ export default function Footer({ currentTheme }: FooterProps) {
         {/* 4 Columns Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-12">
           {/* Col 1: Brand */}
-          <div className="space-y-3">
+          <div className="space-y-3.5">
             <BrandLogo size="compact" showSubtitle={false} variant={isDark ? 'light' : 'dark'} />
-            <p className={`text-xs leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+            <p
+              className={`text-[13px] font-medium leading-relaxed tracking-[-0.01em] ${
+                isDark ? 'text-slate-300' : 'text-slate-600'
+              }`}
+            >
               {ui.footerTagline}
             </p>
-            <div className={`text-[11px] font-medium ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
-              <Heart className="w-3 h-3 text-rose-500 inline fill-rose-500 mr-1" aria-hidden="true" />
-              {ui.footerLoveNote}
+            <div
+              className={`inline-flex items-start gap-2 px-3 py-2 rounded-xl border text-[11.5px] font-semibold leading-snug ${
+                isDark
+                  ? 'bg-rose-950/30 border-rose-800/50 text-rose-200'
+                  : 'bg-rose-50/80 border-rose-200/80 text-rose-900'
+              }`}
+            >
+              <Heart className="w-3.5 h-3.5 text-rose-500 shrink-0 fill-rose-500 mt-0.5" aria-hidden="true" />
+              <span>{ui.footerLoveNote}</span>
             </div>
           </div>
 
@@ -175,35 +184,6 @@ export default function Footer({ currentTheme }: FooterProps) {
             </span>
           </div>
           <SocialShareWidget compact={false} dark={isDark} />
-        </div>
-
-        {/* International SEO Editions & Currencies Bar */}
-        <div className={`border-t pt-5 pb-5 mb-2 ${isDark ? 'border-slate-800' : 'border-slate-200/80'}`}>
-          <span className={`text-[11px] font-bold uppercase tracking-wider block mb-2.5 ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
-            {ui.footerEditionsTitle}
-          </span>
-          <div className={`flex flex-wrap items-center gap-x-2 gap-y-1.5 text-[11px] ${isDark ? 'text-slate-200' : 'text-slate-700'}`}>
-            <Link
-              href="/"
-              className={`inline-flex items-center min-h-6 px-2 py-1 hover:underline font-semibold ${
-                isDark ? 'hover:text-indigo-300' : 'hover:text-indigo-700'
-              }`}
-            >
-              🇪🇸 Español (€ EUR)
-            </Link>
-            {Object.values(I18N_SEO_ROUTES).map((route) => (
-              <Link
-                key={route.slug}
-                href={`/${route.slug}`}
-                className={`inline-flex items-center min-h-6 px-2 py-1 hover:underline transition-colors ${
-                  isDark ? 'hover:text-indigo-300' : 'hover:text-indigo-700'
-                }`}
-                title={`${route.brandTranslation} - ${route.title}`}
-              >
-                {route.flag} {route.nativeName} ({route.currencySymbol})
-              </Link>
-            ))}
-          </div>
         </div>
 
         {/* Bottom Bar */}

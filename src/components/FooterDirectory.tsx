@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ChevronDown, FolderTree, Compass } from 'lucide-react';
 import { SEO_AGE_ROUTES, getSubcategorySlugMap } from '@/lib/seoRoutes';
 import { ALL_STATIC_HUB_SLUGS, SEO_FILTER_ROUTES } from '@/lib/filterRoutes';
+import { I18N_SEO_ROUTES } from '@/lib/i18nRoutes';
 import { getHubStrings, getLocalizedAgeMeta } from '@/lib/i18nContent';
 import { useActiveLocale } from '@/hooks/useActiveLocale';
 
@@ -153,6 +154,39 @@ export default function FooterDirectory({ isDark = false }: { isDark?: boolean }
                 >
                   <span aria-hidden="true">{flt.icon} </span>
                   {tTerm(flt.label)}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* 4. International SEO Editions & Currencies (kept in DOM for crawlers, tucked inside directory) */}
+          <div className={`border-t pt-5 ${isDark ? 'border-slate-800' : 'border-slate-200/80'}`}>
+            <h3 className={`text-xs font-extrabold uppercase tracking-wider mb-3 ${isDark ? 'text-amber-300' : 'text-indigo-700'}`}>
+              {ui.footerEditionsTitle}
+            </h3>
+            <div className={`flex flex-wrap items-center gap-x-2 gap-y-1.5 text-[11px] ${isDark ? 'text-slate-200' : 'text-slate-700'}`}>
+              <Link
+                href="/"
+                className={`inline-flex items-center min-h-6 px-2.5 py-1 rounded-xl border font-semibold ${
+                  isDark
+                    ? 'bg-slate-800/60 border-slate-700 hover:text-indigo-300'
+                    : 'bg-slate-50 border-slate-200 hover:text-indigo-700'
+                }`}
+              >
+                🇪🇸 Español (€ EUR)
+              </Link>
+              {Object.values(I18N_SEO_ROUTES).map((route) => (
+                <Link
+                  key={route.slug}
+                  href={`/${route.slug}`}
+                  className={`inline-flex items-center min-h-6 px-2.5 py-1 rounded-xl border transition-colors ${
+                    isDark
+                      ? 'bg-slate-800/60 border-slate-700 hover:text-indigo-300'
+                      : 'bg-slate-50 border-slate-200 hover:text-indigo-700'
+                  }`}
+                  title={`${route.brandTranslation} - ${route.title}`}
+                >
+                  {route.flag} {route.nativeName} ({route.currencySymbol})
                 </Link>
               ))}
             </div>
