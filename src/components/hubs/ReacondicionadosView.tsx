@@ -1433,54 +1433,80 @@ export default function ReacondicionadosView({
                 </>
               )}
             </p>
-            <div className="overflow-x-auto rounded-2xl border border-emerald-200">
+            <div className="overflow-x-auto rounded-2xl border-2 border-emerald-400/80 shadow-md">
               <table className="w-full text-left border-collapse text-xs sm:text-sm">
                 <thead>
-                  <tr className="bg-emerald-900 text-white">
-                    <th className="p-3 font-black">{isEs ? 'Criterio de Seguridad' : 'Safety & Quality Check'}</th>
-                    <th className="p-3 font-black bg-emerald-700">
-                      ♻️ {isEs ? 'Reacondicionado Certificado Amazon' : 'Certified Amazon Renewed'}
+                  <tr>
+                    <th className="p-3.5 font-black bg-slate-900 text-slate-100 w-1/4">
+                      {isEs ? 'Criterio de Seguridad' : 'Safety & Quality Check'}
                     </th>
-                    <th className="p-3 font-bold text-rose-200">
-                      ⚠️ {isEs ? 'Segunda Mano Particular (Apps/Foros)' : 'Private Used / Second-Hand Seller'}
+                    <th className="p-3.5 font-black bg-gradient-to-r from-emerald-500 via-emerald-600 to-teal-500 text-white border-x-2 border-emerald-400 shadow-inner w-[38%]">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="text-base">♻️</span>
+                        <span>{isEs ? 'Reacondicionado Certificado Amazon' : 'Certified Amazon Renewed'}</span>
+                        <span className="px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-white text-emerald-800 shadow-2xs">
+                          {isEs ? '★ 100% Seguro' : '★ 100% Safe'}
+                        </span>
+                      </div>
+                    </th>
+                    <th className="p-3.5 font-bold bg-rose-950 text-rose-100 w-[37%]">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="text-base">⚠️</span>
+                        <span>
+                          {isEs
+                            ? 'Fuera de Amazon sin Garantía / Particular'
+                            : 'Outside Amazon without Warranty / Private Used'}
+                        </span>
+                        <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold uppercase bg-rose-800/90 text-rose-100 border border-rose-600">
+                          {isEs ? 'Alto Riesgo' : 'High Risk'}
+                        </span>
+                      </div>
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-200 bg-white">
+                <tbody className="divide-y divide-slate-200/90 bg-white">
                   <tr>
-                    <td className="p-3 font-bold text-slate-900">{isEs ? 'Garantía Oficial postventa' : 'Official Post-Purchase Warranty'}</td>
-                    <td className="p-3 font-black text-emerald-800 bg-emerald-50/50">
+                    <td className="p-3.5 font-bold text-slate-900 bg-slate-50/70">
+                      {isEs ? 'Garantía Oficial postventa' : 'Official Post-Purchase Warranty'}
+                    </td>
+                    <td className="p-3.5 font-black text-emerald-950 bg-gradient-to-r from-emerald-50 via-emerald-100/80 to-teal-50 border-x-2 border-emerald-400">
                       ✅ {isEs ? '1 Año (365 días) de Garantía Oficial Amazon' : '1 Full Year (365 Days) Official Amazon Guarantee'}
                     </td>
-                    <td className="p-3 text-slate-600">
-                      ❌ {isEs ? '0 días de garantía (si se apaga, pierdes tu dinero)' : '0 days warranty (if it fails, your money is gone)'}
+                    <td className="p-3.5 font-medium text-rose-900 bg-rose-50/70">
+                      ❌ {isEs ? 'Sin respaldo de Amazon (si falla al mes, pierdes tu dinero)' : 'No Amazon backing (if it fails, your money is gone)'}
                     </td>
                   </tr>
                   <tr>
-                    <td className="p-3 font-bold text-slate-900">{isEs ? 'Salud de la Batería' : 'Real Battery Health'}</td>
-                    <td className="p-3 font-black text-emerald-800 bg-emerald-50/50">
+                    <td className="p-3.5 font-bold text-slate-900 bg-slate-50/70">
+                      {isEs ? 'Salud de la Batería' : 'Real Battery Health'}
+                    </td>
+                    <td className="p-3.5 font-black text-emerald-950 bg-gradient-to-r from-emerald-50 via-emerald-100/80 to-teal-50 border-x-2 border-emerald-400">
                       ✅ {isEs ? 'Certificada >80% – 100% de capacidad real' : 'Certified >80% – 100% real battery capacity'}
                     </td>
-                    <td className="p-3 text-slate-600">
-                      ❌ {isEs ? 'Desgastada o manipulada sin certificar' : 'Degraded or unverified battery health'}
+                    <td className="p-3.5 font-medium text-rose-900 bg-rose-50/70">
+                      ❌ {isEs ? 'Batería degradada o manipulada sin certificar' : 'Degraded or unverified battery health'}
                     </td>
                   </tr>
                   <tr>
-                    <td className="p-3 font-bold text-slate-900">{isEs ? 'Inspección y Estado Estético' : 'Hardware & Cosmetic Inspection'}</td>
-                    <td className="p-3 font-black text-emerald-800 bg-emerald-50/50">
+                    <td className="p-3.5 font-bold text-slate-900 bg-slate-50/70">
+                      {isEs ? 'Inspección y Estado Estético' : 'Hardware & Cosmetic Inspection'}
+                    </td>
+                    <td className="p-3.5 font-black text-emerald-950 bg-gradient-to-r from-emerald-50 via-emerald-100/80 to-teal-50 border-x-2 border-emerald-400">
                       ✅ {isEs ? 'Test de 40 puntos + 0 arañazos a 30 cm (Grado A+)' : '40-point lab test + 0 scratches at 12 inches (Grade A+)'}
                     </td>
-                    <td className="p-3 text-slate-600">
-                      ❌ {isEs ? 'Sin revisión técnica ni higienización profesional' : 'No lab diagnostic or professional sanitization'}
+                    <td className="p-3.5 font-medium text-rose-900 bg-rose-50/70">
+                      ❌ {isEs ? 'Piezas no originales o fallos ocultos sin auditar' : 'Unverified parts or hidden defects without lab audit'}
                     </td>
                   </tr>
                   <tr>
-                    <td className="p-3 font-bold text-slate-900">{isEs ? 'Devolución y Reembolso' : 'Returns & Full Refund'}</td>
-                    <td className="p-3 font-black text-emerald-800 bg-emerald-50/50">
+                    <td className="p-3.5 font-bold text-slate-900 bg-slate-50/70">
+                      {isEs ? 'Devolución y Reembolso' : 'Returns & Full Refund'}
+                    </td>
+                    <td className="p-3.5 font-black text-emerald-950 bg-gradient-to-r from-emerald-50 via-emerald-100/80 to-teal-50 border-x-2 border-emerald-400 border-b-2">
                       ✅ {isEs ? '30 días de prueba gratis + Reemplazo o 100% reembolso' : '30-day free trial + Free replacement or 100% refund'}
                     </td>
-                    <td className="p-3 text-slate-600">
-                      ❌ {isEs ? 'Sin devolución una vez entregado en mano' : 'No returns once handed over'}
+                    <td className="p-3.5 font-medium text-rose-900 bg-rose-50/70">
+                      ❌ {isEs ? 'Trabas para devolver o sin devolución tras el pago' : 'Hard to return or zero refund once paid'}
                     </td>
                   </tr>
                 </tbody>
