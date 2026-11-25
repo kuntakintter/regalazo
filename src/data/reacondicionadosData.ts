@@ -19,13 +19,134 @@ export interface RefurbishedProduct {
   idealFor: string;
 }
 
-export const REACONDICIONADOS_CATEGORIES = [
-  { id: 'all', label: 'Todos los Reacondicionados', emoji: '♻️', query: 'reacondicionados amazon renewed' },
-  { id: 'smartphones', label: 'iPhone y Smartphones', emoji: '📱', query: 'iphone samsung reacondicionado amazon renewed' },
-  { id: 'portatiles', label: 'Portátiles, iPad y Tablets', emoji: '💻', query: 'ipad portatil macbook reacondicionado amazon renewed' },
-  { id: 'audio', label: 'Smartwatches y Audio', emoji: '⌚', query: 'apple watch garmin auriculares reacondicionado amazon renewed' },
-  { id: 'hogar', label: 'Cafeteras y Hogar', emoji: '☕', query: 'cafetera robot aspirador reacondicionado amazon' },
-  { id: 'gaming', label: 'Consolas y Gaming', emoji: '🎮', query: 'consola monitor gaming reacondicionado amazon' },
+export interface ReacondicionadoCategory {
+  id: string;
+  label: string;
+  emoji: string;
+  query: string;
+  circleImage: string;
+}
+
+export const REACONDICIONADOS_CATEGORIES: ReacondicionadoCategory[] = [
+  {
+    id: 'all',
+    label: 'Todo Segunda Mano y Renewed',
+    emoji: '♻️',
+    query: 'reacondicionados amazon segunda mano',
+    circleImage: 'https://m.media-amazon.com/images/I/51MKPhvvjmL._AC_UL320_.jpg',
+  },
+  {
+    id: 'portatiles',
+    label: 'Ordenador & Accesorios',
+    emoji: '💻',
+    query: 'ipad portatil macbook monitor reacondicionado amazon',
+    circleImage: 'https://m.media-amazon.com/images/I/713S72KCbFL._AC_UL320_.jpg',
+  },
+  {
+    id: 'smartphones',
+    label: 'Smartphones & Telefonía',
+    emoji: '📱',
+    query: 'iphone samsung smartphone reacondicionado amazon renewed',
+    circleImage: 'https://m.media-amazon.com/images/I/51nIKENY-jL._AC_UL320_.jpg',
+  },
+  {
+    id: 'audio',
+    label: 'Electrónica & Fotografía',
+    emoji: '🎧',
+    query: 'auriculares camara altavoz electronica reacondicionado amazon',
+    circleImage: 'https://m.media-amazon.com/images/I/71iWkjXCu9L._AC_UL320_.jpg',
+  },
+  {
+    id: 'hogar',
+    label: 'Hogar, Cocina y Jardín',
+    emoji: '☕',
+    query: 'cafetera robot aspirador freidora hogar reacondicionado amazon',
+    circleImage: 'https://m.media-amazon.com/images/I/61O+88bbbSL._AC_UL320_.jpg',
+  },
+  {
+    id: 'bricolaje',
+    label: 'Bricolaje & Herramientas',
+    emoji: '🛠️',
+    query: 'taladro bosch herramientas bricolaje segunda mano amazon',
+    circleImage: 'https://m.media-amazon.com/images/I/71p4tKSESbL._AC_UL320_.jpg',
+  },
+  {
+    id: 'juguetes',
+    label: 'Juguetes & Juegos',
+    emoji: '🧸',
+    query: 'lego juguetes juegos de mesa amazon segunda mano',
+    circleImage: 'https://m.media-amazon.com/images/I/71W+EgJPsuL._AC_UL320_.jpg',
+  },
+  {
+    id: 'bebe',
+    label: 'Bebé',
+    emoji: '🍼',
+    query: 'vigilabebes philips avent bebe amazon segunda mano',
+    circleImage: 'https://m.media-amazon.com/images/I/71gW53MjGzL._AC_UL320_.jpg',
+  },
+  {
+    id: 'libros',
+    label: 'Libros',
+    emoji: '📚',
+    query: 'libros bestseller edicion coleccionista amazon segunda mano',
+    circleImage: 'https://m.media-amazon.com/images/I/51bIXSAepNL._AC_UL320_.jpg',
+  },
+  {
+    id: 'deportes',
+    label: 'Deportes y aire libre',
+    emoji: '⌚',
+    query: 'reloj gps suunto garmin ciclismo deportes segunda mano amazon',
+    circleImage: 'https://m.media-amazon.com/images/I/61bTV1mgXAL._AC_UL320_.jpg',
+  },
+  {
+    id: 'musica',
+    label: 'Instrumentos musicales',
+    emoji: '🎙️',
+    query: 'microfono teclado yamaha instrumentos musicales segunda mano amazon',
+    circleImage: 'https://m.media-amazon.com/images/I/61fp8Pr0fsL._AC_UL320_.jpg',
+  },
+  {
+    id: 'moda',
+    label: 'Zapatos & Complementos',
+    emoji: '🥾',
+    query: 'botas timberland mochila samsonite zapatos complementos amazon',
+    circleImage: 'https://m.media-amazon.com/images/I/513NqSda2PL._AC_UL320_.jpg',
+  },
+  {
+    id: 'gaming',
+    label: 'Videojuegos & Consolas',
+    emoji: '🎮',
+    query: 'consola monitor gaming mando videojuegos reacondicionado amazon',
+    circleImage: 'https://m.media-amazon.com/images/I/71kvya-jApL._AC_UL320_.jpg',
+  },
+  {
+    id: 'motor',
+    label: 'Coche & Moto',
+    emoji: '🚗',
+    query: 'arrancador noco dashcam gps coche moto segunda mano amazon',
+    circleImage: 'https://m.media-amazon.com/images/I/71XsGNIxovL._AC_UL320_.jpg',
+  },
+  {
+    id: 'salud',
+    label: 'Salud & Cuidado personal',
+    emoji: '✨',
+    query: 'afeitadora braun cepillo oral b iO cuidado personal reacondicionado amazon',
+    circleImage: 'https://m.media-amazon.com/images/I/81Pl5phQzrL._AC_UL320_.jpg',
+  },
+  {
+    id: 'oficina',
+    label: 'Productos de oficina',
+    emoji: '🖨️',
+    query: 'impresora brother raton logitech mx master oficina reacondicionado amazon',
+    circleImage: 'https://m.media-amazon.com/images/I/618IJzC-fFL._AC_UL320_.jpg',
+  },
+  {
+    id: 'mascotas',
+    label: 'Productos para mascotas',
+    emoji: '🐾',
+    query: 'tractive gps comedero automatico petkit mascotas segunda mano amazon',
+    circleImage: 'https://m.media-amazon.com/images/I/717GWvDIq4L._AC_UL320_.jpg',
+  },
 ];
 
 export const REACONDICIONADOS_PRODUCTS: RefurbishedProduct[] = [
@@ -3100,5 +3221,568 @@ export const REACONDICIONADOS_PRODUCTS: RefurbishedProduct[] = [
       "1 año de Garantía Oficial Amazon Renewed (reemplazo o reembolso total) + Envío rápido Prime."
     ],
     "idealFor": "Aspecto exterior impecable, higienizado profesionalmente y verificado en 40 puntos de control técnico. Incluye 1 año de Garantía Oficial Amazon Renewed (reemplazo o reembolso total) + Envío rápido Prime."
+  },
+  // --- BRICOLAJE & HERRAMIENTAS ---
+  {
+    "id": "reac-bricolaje-bosch-laser-50c",
+    "asin": "B0CFVZ5V5T",
+    "title": "Bosch Medidor Láser Digital UniversalDistance 50 C con Pantalla a Color y Bluetooth (Reacondicionado / Segunda Mano Certificada)",
+    "category": "bricolaje",
+    "categoryLabel": "Bricolaje & Herramientas",
+    "priceText": "55,19 €",
+    "priceNumeric": 55.19,
+    "originalPriceText": "79,99 €",
+    "discountPercent": 31,
+    "savingsText": "24,80 €",
+    "rating": 4.7,
+    "reviewsCount": 1420,
+    "imageUrl": "https://m.media-amazon.com/images/I/71p4tKSESbL._AC_UL320_.jpg",
+    "conditionGrade": "Estado: Como Nuevo (Inspeccionado por Amazon)",
+    "warrantyBadge": "1 Año Garantía Oficial Amazon",
+    "description": "Medidor láser Bosch de hasta 50 metros con precisión milimétrica y conexión Bluetooth a la app Bosch MeasureOn. Revisado y garantizado por Amazon Segunda Mano.",
+    "pros": [
+      "Estado: Como Nuevo (Caja revisada, producto 100% intacto y calibrado)",
+      "Medición láser de alta precisión hasta 50 m con cálculo automático de áreas y volúmenes",
+      "Garantía Oficial Amazon + 30 días de devolución gratuita sin preguntas"
+    ],
+    "idealFor": "Reformas, bricolaje doméstico y medición profesional con ahorro certificado."
+  },
+  {
+    "id": "reac-bricolaje-bosch-gsb-12v-15",
+    "asin": "B00YYBBUBY",
+    "title": "Bosch Professional 12V System Taladro Percutor a Batería GSB 12V-15 + 2 Baterías 2.0Ah + Maletín y Accesorios",
+    "category": "bricolaje",
+    "categoryLabel": "Bricolaje & Herramientas",
+    "priceText": "114,99 €",
+    "priceNumeric": 114.99,
+    "originalPriceText": "159,99 €",
+    "discountPercent": 28,
+    "savingsText": "45,00 €",
+    "rating": 4.7,
+    "reviewsCount": 12450,
+    "imageUrl": "https://m.media-amazon.com/images/I/81a5+zxxQEL._AC_UL320_.jpg",
+    "conditionGrade": "Estado: Excelente (Inspeccionado y Certificado)",
+    "warrantyBadge": "1 Año Garantía Oficial Amazon",
+    "description": "Set completo Bosch Professional azul con taladro percutor inalámbrico GSB 12V-15, 2 baterías de litio, cargador rápido, 39 accesorios y bolsa de transporte.",
+    "pros": [
+      "Estado: Excelente · Motor y baterías de litio 12V verificados al 100%",
+      "Incluye 2 baterías 2.0Ah, cargador, juego de brocas para madera/metal/piedra y puntas",
+      "Respaldo completo de garantía postventa de Amazon y devolución gratuita 30 días"
+    ],
+    "idealFor": "Equipar el taller o casa con una herramienta profesional Bosch a mitad de precio."
+  },
+  {
+    "id": "reac-bricolaje-bosch-gsb-600",
+    "asin": "B0CCSJDMBD",
+    "title": "Bosch Professional Taladro Percutor GSB 600 (600 W, Perforación en Hormigón, Acero y Madera con Maletín)",
+    "category": "bricolaje",
+    "categoryLabel": "Bricolaje & Herramientas",
+    "priceText": "70,99 €",
+    "priceNumeric": 70.99,
+    "originalPriceText": "89,99 €",
+    "discountPercent": 21,
+    "savingsText": "19,00 €",
+    "rating": 4.6,
+    "reviewsCount": 2180,
+    "imageUrl": "https://m.media-amazon.com/images/I/618V8N0RM3L._AC_UL320_.jpg",
+    "conditionGrade": "Estado: Muy Bueno (100% Funcional Certificado)",
+    "warrantyBadge": "1 Año Garantía Oficial Amazon",
+    "description": "Taladro percutor con cable de la gama profesional Bosch de 600 W, portabrocas robusto de 13 mm y control electrónico de velocidad variable.",
+    "pros": [
+      "Motor de 600 W revisado con máxima fuerza de percusión en mampostería y hormigón",
+      "Empuñadura adicional y tope de profundidad incluidos y verificados",
+      "Cobertura oficial de garantía Amazon y envío rápido Prime"
+    ],
+    "idealFor": "Trabajos exigentes de taladrado sin depender de baterías."
+  },
+  // --- JUGUETES & JUEGOS ---
+  {
+    "id": "reac-juguetes-lego-stitch-43249",
+    "asin": "B0CFVZG5TR",
+    "title": "LEGO Disney Stitch 43249 — Figura Construible Articulada con Orejas Móviles y Cucurucho de Helado",
+    "category": "juguetes",
+    "categoryLabel": "Juguetes & Juegos",
+    "priceText": "44,99 €",
+    "priceNumeric": 44.99,
+    "originalPriceText": "64,99 €",
+    "discountPercent": 31,
+    "savingsText": "20,00 €",
+    "rating": 4.9,
+    "reviewsCount": 5840,
+    "imageUrl": "https://m.media-amazon.com/images/I/71W+EgJPsuL._AC_UL320_.jpg",
+    "conditionGrade": "Estado: Como Nuevo (Bolsas precintadas · Caja verificada)",
+    "warrantyBadge": "Garantía Oficial Amazon Segunda Mano",
+    "description": "El superventas LEGO Disney Stitch (730 piezas) con cabeza giratoria, orejas articuladas, camisa hawaiana, flor y helado construible. Piezas 100% íntegras y precintadas.",
+    "pros": [
+      "Estado: Como Nuevo · 100% de las bolsas interiores precintadas de fábrica",
+      "Ahorro del 31% por leve roce externo en la esquina de la caja de cartón",
+      "Devolución gratuita de 30 días y garantía total de Amazon"
+    ],
+    "idealFor": "Ahorrar en sets LEGO originales intactos por dentro con garantía Amazon."
+  },
+  {
+    "id": "reac-juguetes-catan-big-box",
+    "asin": "B0CN3J4CMZ",
+    "title": "Devir - Catan Big Box (Edición en Español con Juego Básico + Ampliación 5-6 Jugadores + 2 Expansiones)",
+    "category": "juguetes",
+    "categoryLabel": "Juguetes & Juegos",
+    "priceText": "51,34 €",
+    "priceNumeric": 51.34,
+    "originalPriceText": "69,99 €",
+    "discountPercent": 27,
+    "savingsText": "18,65 €",
+    "rating": 4.8,
+    "reviewsCount": 3120,
+    "imageUrl": "https://m.media-amazon.com/images/I/71YZFREV5+L._AC_UL320_.jpg",
+    "conditionGrade": "Estado: Como Nuevo (Componentes completos verificados)",
+    "warrantyBadge": "Garantía Oficial Amazon Segunda Mano",
+    "description": "La edición Big Box más completa de Catan en español: incluye el juego base, la expansión para 5 y 6 jugadores y escenarios adicionales.",
+    "pros": [
+      "Verificado por el control de calidad de Amazon Segunda Mano",
+      "Edición oficial Devir en español con todos los tableros, cartas y fichas completos",
+      "30 días de prueba y reembolso garantizado por Amazon"
+    ],
+    "idealFor": "Tardes de juegos de mesa en familia o con amigos al mejor precio."
+  },
+  // --- BEBÉ ---
+  {
+    "id": "reac-bebe-philips-avent-scd891",
+    "asin": "B0CF6457TN",
+    "title": "Philips Avent Vigilabebés con Vídeo Premium SCD891/26 — Pantalla 3.5\", Visión Nocturna, Zoom 4X y Audio Bidireccional",
+    "category": "bebe",
+    "categoryLabel": "Bebé",
+    "priceText": "119,99 €",
+    "priceNumeric": 119.99,
+    "originalPriceText": "179,99 €",
+    "discountPercent": 33,
+    "savingsText": "60,00 €",
+    "rating": 4.6,
+    "reviewsCount": 4290,
+    "imageUrl": "https://m.media-amazon.com/images/I/71gW53MjGzL._AC_UL320_.jpg",
+    "conditionGrade": "Estado: Excelente (Higienizado y Certificado)",
+    "warrantyBadge": "1 Año Garantía Oficial Amazon",
+    "description": "Vigilabebés con cámara privada cifrada (certificado DEKRA), pantalla a color de 3.5 pulgadas, visión nocturna automática por infrarrojos, nanas y sensor de temperatura de la habitación.",
+    "pros": [
+      "Inspeccionado, higienizado profesionalmente y testado en alcance y batería",
+      "Conexión 100% privada sin interferencias de hasta 300 metros de alcance",
+      "1 año de Garantía Oficial Amazon + 30 días de devolución gratuita"
+    ],
+    "idealFor": "Padres que buscan la máxima seguridad Philips Avent ahorrando 60 €."
+  },
+  {
+    "id": "reac-bebe-philips-avent-esterilizador",
+    "asin": "B08DPPY1SC",
+    "title": "Philips Avent Esterilizador y Secador de Biberones Eléctrico Premium SCF293/00 (Elimina el 99,9% de Bacterias)",
+    "category": "bebe",
+    "categoryLabel": "Bebé",
+    "priceText": "59,99 €",
+    "priceNumeric": 59.99,
+    "originalPriceText": "109,99 €",
+    "discountPercent": 45,
+    "savingsText": "50,00 €",
+    "rating": 4.7,
+    "reviewsCount": 6810,
+    "imageUrl": "https://m.media-amazon.com/images/I/51chAAswa+L._AC_UL320_.jpg",
+    "conditionGrade": "Estado: Como Nuevo (Higienizado y Revisado)",
+    "warrantyBadge": "1 Año Garantía Oficial Amazon",
+    "description": "Esteriliza con vapor natural y seca con aire filtrado hasta 6 biberones y accesorios en un ciclo completo de 40 minutos, manteniéndolos estériles durante 24 horas.",
+    "pros": [
+      "Ahorro del 45% respecto al PVP nuevo con revisión e higienización certificada",
+      "Secado con filtro de aire integrado libre de productos químicos",
+      "Garantía Oficial Amazon de 1 año y devolución gratuita"
+    ],
+    "idealFor": "Ahorrar casi la mitad en equipamiento esencial de primera marca para recién nacidos."
+  },
+  // --- LIBROS ---
+  {
+    "id": "reac-libros-gta-v-gangster-virtual",
+    "asin": "8410572605",
+    "title": "Libro Grand Theft Auto V: Vida de Gangster Virtual (Edición Tapa Dura · Colección Videojuegos Legendarios)",
+    "category": "libros",
+    "categoryLabel": "Libros",
+    "priceText": "9,99 €",
+    "priceNumeric": 9.99,
+    "originalPriceText": "14,95 €",
+    "discountPercent": 33,
+    "savingsText": "4,96 €",
+    "rating": 4.8,
+    "reviewsCount": 410,
+    "imageUrl": "https://m.media-amazon.com/images/I/51bIXSAepNL._AC_UL320_.jpg",
+    "conditionGrade": "Estado: Como Nuevo (Sin marcas de lectura)",
+    "warrantyBadge": "Garantía Oficial Amazon Segunda Mano",
+    "description": "Edición ilustrada en tapa dura que analiza la creación, arquitectura, guion y secretos de Grand Theft Auto V y la historia de Rockstar Games.",
+    "pros": [
+      "Ejemplar verificado por Amazon en estado impecable de encuadernación y páginas",
+      "Edición de coleccionista en tapa dura por menos de 10 €",
+      "Envío rápido Prime y devolución gratuita garantizada"
+    ],
+    "idealFor": "Lectores y coleccionistas que buscan ediciones en tapa dura a precio reducido."
+  },
+  {
+    "id": "reac-libros-pack-coleccion-gta",
+    "asin": "B0HR9N5TFC",
+    "title": "Pack Colección Videojuegos Legendarios (2 Libros Tapa Dura): Grand Theft Auto Acción Urbana + GTA V",
+    "category": "libros",
+    "categoryLabel": "Libros",
+    "priceText": "19,95 €",
+    "priceNumeric": 19.95,
+    "originalPriceText": "27,90 €",
+    "discountPercent": 28,
+    "savingsText": "7,95 €",
+    "rating": 4.9,
+    "reviewsCount": 320,
+    "imageUrl": "https://m.media-amazon.com/images/I/61BxTEUBisL._AC_UL320_.jpg",
+    "conditionGrade": "Estado: Como Nuevo (Pack 2 volúmenes)",
+    "warrantyBadge": "Garantía Oficial Amazon Segunda Mano",
+    "description": "Estuche con los dos libros ilustrados en español dedicados a la historia completa de la saga Grand Theft Auto.",
+    "pros": [
+      "Dos volúmenes en tapa dura revisados por Amazon",
+      "Ahorro del 28% sobre la compra por separado",
+      "30 días de devolución gratuita con Amazon"
+    ],
+    "idealFor": "Regalar lectura ilustrada sobre la historia de los videojuegos."
+  },
+  // --- DEPORTES Y AIRE LIBRE ---
+  {
+    "id": "reac-deportes-suunto-run-gps",
+    "asin": "B0FDPZ2PVZ",
+    "title": "SUUNTO Reloj Deportivo GPS Multideporte Outdoor — Sumergible, Navegación de Rutas y 4 GB Música",
+    "category": "deportes",
+    "categoryLabel": "Deportes y aire libre",
+    "priceText": "149,00 €",
+    "priceNumeric": 149.0,
+    "originalPriceText": "229,00 €",
+    "discountPercent": 35,
+    "savingsText": "80,00 €",
+    "rating": 4.7,
+    "reviewsCount": 1850,
+    "imageUrl": "https://m.media-amazon.com/images/I/61bTV1mgXAL._AC_UL320_.jpg",
+    "conditionGrade": "Estado: Excelente (Grado A+ · Batería >90%)",
+    "warrantyBadge": "1 Año Garantía Oficial Amazon",
+    "description": "Reloj GPS deportivo Suunto de alta precisión para running, trail, ciclismo y montaña con métricas de recuperación, altímetro y reproducción de música Bluetooth.",
+    "pros": [
+      "Inspeccionado por Amazon Renewed: sensores ópticos, GPS y estanqueidad verificados",
+      "Ahorro directo de 80 € frente a su PVP nuevo en tienda",
+      "1 año de Garantía Oficial Amazon + 30 días de prueba"
+    ],
+    "idealFor": "Deportistas de running, montaña y ciclismo que quieren un Suunto de gama alta por mucho menos."
+  },
+  {
+    "id": "reac-deportes-garmin-edge-540",
+    "asin": "B0C2KMXRFV",
+    "title": "Garmin Edge 540 — Ciclocomputador GPS Compacto con Mapas, ClimbPro y Entrenamiento Adaptativo",
+    "category": "deportes",
+    "categoryLabel": "Deportes y aire libre",
+    "priceText": "236,49 €",
+    "priceNumeric": 236.49,
+    "originalPriceText": "399,99 €",
+    "discountPercent": 41,
+    "savingsText": "163,50 €",
+    "rating": 4.7,
+    "reviewsCount": 2340,
+    "imageUrl": "https://m.media-amazon.com/images/I/61-jVPq+O0L._AC_UL320_.jpg",
+    "conditionGrade": "Estado: Excelente (Inspeccionado y Certificado)",
+    "warrantyBadge": "1 Año Garantía Oficial Amazon",
+    "description": "Ciclocomputador GPS multibanda Garmin Edge 540 con hasta 42 horas de autonomía, planificación de puertos ClimbPro y métricas avanzadas de potencia y resistencia.",
+    "pros": [
+      "Ahorro masivo de más de 160 € respecto al precio oficial de lanzamiento",
+      "Batería, pantalla y soportes de manillar verificados al 100%",
+      "1 año completo de Garantía Oficial de Amazon"
+    ],
+    "idealFor": "Ciclistas de carretera y MTB que buscan el mejor GPS Garmin con un 41% de descuento."
+  },
+  // --- INSTRUMENTOS MUSICALES ---
+  {
+    "id": "reac-musica-microfono-estudio-usb",
+    "asin": "B0DMLP3GQH",
+    "title": "Micrófono de Condensador USB Profesional de Estudio con Cancelación de Ruido, Ganancia y Soporte Metálico",
+    "category": "musica",
+    "categoryLabel": "Instrumentos musicales",
+    "priceText": "71,99 €",
+    "priceNumeric": 71.99,
+    "originalPriceText": "99,99 €",
+    "discountPercent": 28,
+    "savingsText": "28,00 €",
+    "rating": 4.7,
+    "reviewsCount": 940,
+    "imageUrl": "https://m.media-amazon.com/images/I/61fp8Pr0fsL._AC_UL320_.jpg",
+    "conditionGrade": "Estado: Como Nuevo (Cápsula de audio testada)",
+    "warrantyBadge": "1 Año Garantía Oficial Amazon",
+    "description": "Micrófono cardioide de condensador por USB-C para grabación vocal, instrumentos acústicos, podcast y streaming en PC, Mac y PS5 sin necesidad de interfaz externa.",
+    "pros": [
+      "Cápsula de condensador de alta sensibilidad verificada e higienizada",
+      "Monitorización en tiempo real sin latencia mediante salida de auriculares integrada",
+      "1 año de Garantía Oficial Amazon y 30 días de prueba en casa"
+    ],
+    "idealFor": "Músicos, creadores de contenido y podcasters que buscan sonido de estudio."
+  },
+  {
+    "id": "reac-musica-yamaha-psr-e383",
+    "asin": "B0CY2Q6DF5",
+    "title": "Yamaha PSR-E383 — Teclado Musical Portátil de 61 Teclas Sensibles a la Pulsación (650 Voces Instrumentales)",
+    "category": "musica",
+    "categoryLabel": "Instrumentos musicales",
+    "priceText": "156,90 €",
+    "priceNumeric": 156.9,
+    "originalPriceText": "219,00 €",
+    "discountPercent": 28,
+    "savingsText": "62,10 €",
+    "rating": 4.8,
+    "reviewsCount": 3670,
+    "imageUrl": "https://m.media-amazon.com/images/I/71YPVhKpI3L._AC_UL320_.jpg",
+    "conditionGrade": "Estado: Excelente (61 teclas y sonido verificados)",
+    "warrantyBadge": "1 Año Garantía Oficial Amazon",
+    "description": "El teclado de aprendizaje y práctica más recomendado de Yamaha con 61 teclas sensibles a la velocidad, 650 sonidos de instrumentos reales, lecciones integradas y conexión USB-MIDI.",
+    "pros": [
+      "Las 61 teclas con sensibilidad dinámica y los altavoces estéreo testados por técnicos",
+      "Incluye atril de partituras y fuente de alimentación original verificada",
+      "1 año de Garantía Oficial Amazon + Devolución gratuita 30 días"
+    ],
+    "idealFor": "Aprender piano y teclado con calidad oficial Yamaha ahorrando más de 60 €."
+  },
+  // --- ZAPATOS & COMPLEMENTOS ---
+  {
+    "id": "reac-moda-timberland-botas-cuero",
+    "asin": "B0D6BWQJR7",
+    "title": "Timberland Botas de Piel Impermeables — Cuero Premium Better Leather con Suela de Tracción y Plantilla Confort",
+    "category": "moda",
+    "categoryLabel": "Zapatos & Complementos",
+    "priceText": "89,29 €",
+    "priceNumeric": 89.29,
+    "originalPriceText": "150,00 €",
+    "discountPercent": 40,
+    "savingsText": "60,71 €",
+    "rating": 4.7,
+    "reviewsCount": 5120,
+    "imageUrl": "https://m.media-amazon.com/images/I/513NqSda2PL._AC_UL320_.jpg",
+    "conditionGrade": "Estado: Como Nuevo (Sin uso exterior · Caja revisada)",
+    "warrantyBadge": "Devolución Gratuita Amazon",
+    "description": "Botas originales Timberland confeccionadas en piel nobuk impermeable de curtiduría sostenible con cuello acolchado y suela dentada antideslizante.",
+    "pros": [
+      "Estado: Como Nuevo · Suela y piel 100% intactas procedentes de cambio de talla",
+      "Descuento del 40% sobre su precio de temporada en zapatería",
+      "Cambio o devolución gratuita durante 30 días con Amazon Prime"
+    ],
+    "idealFor": "Conseguir calzado original Timberland sin estrenar en calle a precio de outlet."
+  },
+  {
+    "id": "reac-moda-samsonite-guardit-3",
+    "asin": "B0DXVNRXNL",
+    "title": "Samsonite Guardit 3.0 — Mochila Ejecutiva para Portátil hasta 17.3\" (27.5 L, Impermeable y Ergonómica)",
+    "category": "moda",
+    "categoryLabel": "Zapatos & Complementos",
+    "priceText": "49,89 €",
+    "priceNumeric": 49.89,
+    "originalPriceText": "75,00 €",
+    "discountPercent": 33,
+    "savingsText": "25,11 €",
+    "rating": 4.8,
+    "reviewsCount": 8940,
+    "imageUrl": "https://m.media-amazon.com/images/I/71FGhrKHaoL._AC_UL320_.jpg",
+    "conditionGrade": "Estado: Como Nuevo (Con etiquetas originales)",
+    "warrantyBadge": "Garantía Oficial Amazon",
+    "description": "Mochila profesional Samsonite con compartimento acolchado para portátil y tablet, bolsillo suave para gafas, banda trasera para trolley y tejido repelente al agua.",
+    "pros": [
+      "Estado impecable con cremalleras, costuras y acolchado revisados por Amazon",
+      "Ahorro del 33% en la mochila business más vendida de Samsonite",
+      "Devolución gratuita de 30 días y garantía oficial"
+    ],
+    "idealFor": "Trabajo, universidad y viajes en avión con la calidad de Samsonite."
+  },
+  // --- COCHE & MOTO ---
+  {
+    "id": "reac-motor-noco-boost-gb40",
+    "asin": "B015TKUPIC",
+    "title": "NOCO Boost Plus GB40 — Arrancador de Batería de Coche y Moto de Litio 1000A UltraSafe + Powerbank USB",
+    "category": "motor",
+    "categoryLabel": "Coche & Moto",
+    "priceText": "111,15 €",
+    "priceNumeric": 111.15,
+    "originalPriceText": "139,95 €",
+    "discountPercent": 21,
+    "savingsText": "28,80 €",
+    "rating": 4.7,
+    "reviewsCount": 94200,
+    "imageUrl": "https://m.media-amazon.com/images/I/71XsGNIxovL._AC_UL320_.jpg",
+    "conditionGrade": "Estado: Excelente (Batería de litio 100% verificada)",
+    "warrantyBadge": "1 Año Garantía Oficial Amazon",
+    "description": "El arrancador portátil de emergencia nº 1 del mundo: 1.000 amperios para arrancar motores gasolina hasta 6.0L y diésel hasta 3.0L en segundos, con tecnología antichispas.",
+    "pros": [
+      "Capacidad de carga de litio, pinzas HD y linterna LED de 100 lúmenes testadas al 100%",
+      "Protección electrónica contra inversión de polaridad y cortocircuitos",
+      "1 año de Garantía Oficial Amazon + 30 días de prueba"
+    ],
+    "idealFor": "Llevar en la guantera del coche o baúl de la moto y no quedarse nunca tirado."
+  },
+  {
+    "id": "reac-motor-azdome-dashcam-4k",
+    "asin": "B0CQTC5RSL",
+    "title": "AZDOME Dashcam Cámara de Coche 4K Frontal + 1080P Trasera con WiFi, GPS Integrado y Tarjeta SD 64 GB",
+    "category": "motor",
+    "categoryLabel": "Coche & Moto",
+    "priceText": "85,49 €",
+    "priceNumeric": 85.49,
+    "originalPriceText": "129,99 €",
+    "discountPercent": 34,
+    "savingsText": "44,50 €",
+    "rating": 4.6,
+    "reviewsCount": 3420,
+    "imageUrl": "https://m.media-amazon.com/images/I/71T1+e1agZL._AC_UL320_.jpg",
+    "conditionGrade": "Estado: Excelente (Incluye tarjeta SD 64GB verificada)",
+    "warrantyBadge": "1 Año Garantía Oficial Amazon",
+    "description": "Cámara dual de salpicadero con grabación Ultra HD 4K, visión nocturna WDR, registro de ruta por GPS, sensor G de impacto y vigilancia de aparcamiento 24h.",
+    "pros": [
+      "Óptica 4K, pantalla IPS y conectividad WiFi con el móvil comprobadas",
+      "Incluye tarjeta microSD de 64 GB lista para grabar desde el primer día",
+      "1 año de Garantía Oficial Amazon y devolución gratuita"
+    ],
+    "idealFor": "Proteger tu coche en carretera y mientras está aparcado con prueba en vídeo 4K."
+  },
+  // --- SALUD & CUIDADO PERSONAL ---
+  {
+    "id": "reac-salud-braun-series-9-sport",
+    "asin": "B0H2S7T2K7",
+    "title": "Braun Series 9 Sport+ Afeitadora Eléctrica Hombre 100% Impermeable con Recortadora de Precisión ProTrimmer",
+    "category": "salud",
+    "categoryLabel": "Salud & Cuidado personal",
+    "priceText": "189,99 €",
+    "priceNumeric": 189.99,
+    "originalPriceText": "329,99 €",
+    "discountPercent": 42,
+    "savingsText": "140,00 €",
+    "rating": 4.7,
+    "reviewsCount": 4120,
+    "imageUrl": "https://m.media-amazon.com/images/I/81Pl5phQzrL._AC_UL320_.jpg",
+    "conditionGrade": "Estado: Como Nuevo (Precinto higiénico intacto)",
+    "warrantyBadge": "1 Año Garantía Oficial Amazon",
+    "description": "El buque insignia del afeitado alemán fabricado en Alemania: cabezal sincronizado de 4+1 elementos de corte con tecnología sónica de 10.000 microvibraciones.",
+    "pros": [
+      "Unidad sin uso con cabezal nuevo e higienización certificada por Amazon",
+      "Ahorro espectacular de 140 € respecto a su PVP oficial",
+      "1 año de Garantía Oficial Amazon + 30 días de devolución gratuita"
+    ],
+    "idealFor": "Conseguir la mejor afeitadora de gama alta de Braun con un 42% de ahorro."
+  },
+  {
+    "id": "reac-salud-oral-b-io-3n",
+    "asin": "B0C6MD27CG",
+    "title": "Oral-B iO 3N — Cepillo de Dientes Eléctrico Magnético con Sensor de Presión Inteligente y Estuche",
+    "category": "salud",
+    "categoryLabel": "Salud & Cuidado personal",
+    "priceText": "59,95 €",
+    "priceNumeric": 59.95,
+    "originalPriceText": "99,95 €",
+    "discountPercent": 40,
+    "savingsText": "40,00 €",
+    "rating": 4.7,
+    "reviewsCount": 9850,
+    "imageUrl": "https://m.media-amazon.com/images/I/81a2i2Uhb+L._AC_UL320_.jpg",
+    "conditionGrade": "Estado: Como Nuevo (Cabezal iO precintado de fábrica)",
+    "warrantyBadge": "1 Año Garantía Oficial Amazon",
+    "description": "Tecnología magnética iO de Oral-B con microvibraciones suaves y sensor luminoso de presión que protege las encías.",
+    "pros": [
+      "Incluye cabezal de recambio original sellado de fábrica sin abrir",
+      "Ahorro del 40% por caja exterior reacondicionada en almacén Amazon",
+      "1 año de Garantía Oficial Amazon"
+    ],
+    "idealFor": "Dar el salto a la gama magnética Oral-B iO a mitad de precio."
+  },
+  // --- PRODUCTOS DE OFICINA ---
+  {
+    "id": "reac-oficina-logitech-mx-master-3s",
+    "asin": "B0FHHV6YR5",
+    "title": "Logitech MX Master 3S — Ratón Inalámbrico Ergonómico de Alto Rendimiento (8K DPI en Cristal y Clics Silenciosos)",
+    "category": "oficina",
+    "categoryLabel": "Productos de oficina",
+    "priceText": "69,33 €",
+    "priceNumeric": 69.33,
+    "originalPriceText": "115,00 €",
+    "discountPercent": 40,
+    "savingsText": "45,67 €",
+    "rating": 4.8,
+    "reviewsCount": 27400,
+    "imageUrl": "https://m.media-amazon.com/images/I/618IJzC-fFL._AC_UL320_.jpg",
+    "conditionGrade": "Estado: Excelente (Rueda MagSpeed y batería verificadas)",
+    "warrantyBadge": "1 Año Garantía Amazon Renewed",
+    "description": "El ratón de productividad y programación más famoso del mundo: rueda electromagnética MagSpeed capaz de desplazar 1.000 líneas por segundo y clics un 90% más silenciosos.",
+    "pros": [
+      "Sensor óptico de 8.000 DPI que funciona incluso sobre mesas de cristal",
+      "Conecta hasta 3 ordenadores (Windows, Mac, Linux) por Bluetooth o receptor Logi Bolt",
+      "1 año de Garantía Oficial Amazon Renewed + 30 días de prueba"
+    ],
+    "idealFor": "Teletrabajo, oficina, diseño y programación durante horas sin fatiga en la muñeca."
+  },
+  {
+    "id": "reac-oficina-brother-laser-wifi",
+    "asin": "B0FFVQW7RZ",
+    "title": "Brother HL-L1240W — Impresora Láser Monocromo Compacta con WiFi, AirPrint e Impresión Móvil Rápida",
+    "category": "oficina",
+    "categoryLabel": "Productos de oficina",
+    "priceText": "109,00 €",
+    "priceNumeric": 109.0,
+    "originalPriceText": "139,99 €",
+    "discountPercent": 22,
+    "savingsText": "30,99 €",
+    "rating": 4.6,
+    "reviewsCount": 5430,
+    "imageUrl": "https://m.media-amazon.com/images/I/31RcZFtxYXL._AC_UL320_.jpg",
+    "conditionGrade": "Estado: Excelente (Tóner incluido · Revisada)",
+    "warrantyBadge": "1 Año Garantía Oficial Amazon",
+    "description": "Impresora láser WiFi ultracompacta que nunca se seca aunque pases meses sin imprimir. Velocidad de 20 páginas por minuto desde PC o smartphone.",
+    "pros": [
+      "Rodillos, fusor y conectividad WiFi testados al 100% con tóner inicial incluido",
+      "Tecnología láser sin cartuchos de tinta líquida que se obstruyan",
+      "1 año de Garantía Oficial Amazon y envío Prime"
+    ],
+    "idealFor": "Imprimir documentos en casa o despacho con coste por página mínimo."
+  },
+  // --- PRODUCTOS PARA MASCOTAS ---
+  {
+    "id": "reac-mascotas-petkit-comedero-camara",
+    "asin": "B0GSZ6WJHQ",
+    "title": "PETKIT Comedero Automático Inteligente 5L con Cámara HD 1080P, Visión Nocturna, Audio y Control por App WiFi",
+    "category": "mascotas",
+    "categoryLabel": "Productos para mascotas",
+    "priceText": "119,99 €",
+    "priceNumeric": 119.99,
+    "originalPriceText": "169,99 €",
+    "discountPercent": 29,
+    "savingsText": "50,00 €",
+    "rating": 4.7,
+    "reviewsCount": 2190,
+    "imageUrl": "https://m.media-amazon.com/images/I/717GWvDIq4L._AC_UL320_.jpg",
+    "conditionGrade": "Estado: Como Nuevo (Higienizado con cuenco Inox 304)",
+    "warrantyBadge": "1 Año Garantía Oficial Amazon",
+    "description": "Dispensador inteligente de comida con cámara gran angular 1080P con IA, grabación de voz para llamar a tu mascota y comedero de acero inoxidable.",
+    "pros": [
+      "Higienizado profesionalmente y verificado en motor dispensador y cámara WiFi",
+      "Triple sellado hermético para mantener el pienso fresco y crujiente",
+      "1 año de Garantía Oficial Amazon + 30 días de devolución gratuita"
+    ],
+    "idealFor": "Vigilar y alimentar a tu gato o perro desde el móvil cuando estás fuera de casa."
+  },
+  {
+    "id": "reac-mascotas-tractive-gps-perros",
+    "asin": "B0D6Z74WJY",
+    "title": "Tractive GPS Perros (Última Edición) — Localizador en Tiempo Real en el Móvil con Alertas Antifuga y Monitor de Salud",
+    "category": "mascotas",
+    "categoryLabel": "Productos para mascotas",
+    "priceText": "40,49 €",
+    "priceNumeric": 40.49,
+    "originalPriceText": "69,00 €",
+    "discountPercent": 41,
+    "savingsText": "28,51 €",
+    "rating": 4.6,
+    "reviewsCount": 31800,
+    "imageUrl": "https://m.media-amazon.com/images/I/71xqc1ZAmYL._AC_UL320_.jpg",
+    "conditionGrade": "Estado: Excelente (100% Impermeable · Batería testada)",
+    "warrantyBadge": "1 Año Garantía Oficial Amazon",
+    "description": "El collar localizador GPS nº 1 para perros: sigue cada paso en directo desde el móvil sin límite de distancia, configura vallas virtuales y monitoriza su sueño y actividad.",
+    "pros": [
+      "Ahorro del 41% frente a su PVP con batería y antena GPS verificadas",
+      "100% impermeable (IPX8) y ultraligero para cualquier collar o arnés",
+      "1 año de Garantía Oficial Amazon"
+    ],
+    "idealFor": "Tener tranquilidad total en paseos por el campo, playa o jardín."
   }
 ];

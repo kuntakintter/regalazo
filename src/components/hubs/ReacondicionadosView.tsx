@@ -22,6 +22,7 @@ import {
   BatteryCharging,
   RefreshCw,
   Award,
+  ChevronLeft,
   ChevronRight,
   ChevronDown,
   ExternalLink,
@@ -100,17 +101,39 @@ const REAC_FAQS_EN = [
 ];
 
 const CATEGORY_LABEL_EN: Record<string, string> = {
-  all: 'All Certified Refurbished',
-  smartphones: 'iPhone & Smartphones',
-  portatiles: 'Laptops, iPad & Tablets',
-  audio: 'Smartwatches & Audio',
-  hogar: 'Coffee Machines & Home',
-  gaming: 'Consoles & Gaming',
+  all: 'All Certified & Second-Hand',
+  smartphones: 'Smartphones & Phones',
+  portatiles: 'Computers & Accessories',
+  audio: 'Electronics & Photography',
+  hogar: 'Home, Kitchen & Garden',
+  bricolaje: 'DIY & Power Tools',
+  juguetes: 'Toys & Board Games',
+  bebe: 'Baby & Nursery',
+  libros: 'Books & Collectors',
+  deportes: 'Sports & Outdoors',
+  musica: 'Musical Instruments',
+  moda: 'Shoes & Accessories',
+  gaming: 'Video Games & Consoles',
+  motor: 'Car & Motorcycle',
+  salud: 'Health & Personal Care',
+  oficina: 'Office Products',
+  mascotas: 'Pet Supplies',
   'Smartphones e iPhone': 'Smartphones & iPhone',
-  'Portátiles, iPad y Tablets': 'Laptops, iPad & Tablets',
-  'Smartwatches y Audio': 'Smartwatches & Audio',
-  'Cafeteras y Hogar': 'Coffee Machines & Home',
-  'Consolas y Gaming': 'Consoles & Gaming',
+  'Portátiles, iPad y Tablets': 'Computers & Accessories',
+  'Smartwatches y Audio': 'Electronics & Audio',
+  'Cafeteras y Hogar': 'Home, Kitchen & Garden',
+  'Consolas y Gaming': 'Video Games & Consoles',
+  'Bricolaje & Herramientas': 'DIY & Power Tools',
+  'Juguetes & Juegos': 'Toys & Board Games',
+  Bebé: 'Baby & Nursery',
+  Libros: 'Books',
+  'Deportes y aire libre': 'Sports & Outdoors',
+  'Instrumentos musicales': 'Musical Instruments',
+  'Zapatos & Complementos': 'Shoes & Accessories',
+  'Coche & Moto': 'Car & Motorcycle',
+  'Salud & Cuidado personal': 'Health & Personal Care',
+  'Productos de oficina': 'Office Products',
+  'Productos para mascotas': 'Pet Supplies',
 };
 
 function translateConditionText(text: string, isEs: boolean): string {
@@ -474,7 +497,14 @@ export default function ReacondicionadosView({
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const searchBoxRef = useRef<HTMLDivElement>(null);
+  const categoryScrollRef = useRef<HTMLDivElement>(null);
   const [selectedCategory, setSelectedCategory] = useState(initialCategory || 'all');
+
+  const scrollCategoryCircles = (dir: 'left' | 'right') => {
+    if (!categoryScrollRef.current) return;
+    const offset = dir === 'left' ? -460 : 460;
+    categoryScrollRef.current.scrollBy({ left: offset, behavior: 'smooth' });
+  };
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
   const [activePricePreset, setActivePricePreset] = useState('all');
@@ -1147,12 +1177,95 @@ export default function ReacondicionadosView({
 
       {/* 2. MAIN WORKSPACE */}
       <main className="flex-1 max-w-[1600px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-8">
+        {/* COMPRAR POR CATEGORÍA — GLAMOROUS AMAZON SEGUNDA MANO PASTEL CIRCLES */}
+        <section
+          aria-label={isEs ? 'Comprar por categoría' : 'Shop by category'}
+          className="bg-white rounded-3xl border border-slate-200/90 shadow-xs px-4 sm:px-7 py-5 sm:py-6 mb-4 sm:mb-6 relative"
+        >
+          <div className="flex items-center justify-between gap-4 mb-4 sm:mb-5">
+            <div>
+              <h2 className="text-lg sm:text-2xl font-black text-slate-950 tracking-tight">
+                {isEs ? 'Comprar por categoría' : 'Shop by category'}
+              </h2>
+              <p className="text-xs text-slate-500 mt-0.5">
+                {isEs
+                  ? '16 departamentos oficiales de Amazon Segunda Mano y Amazon Renewed con garantía completa'
+                  : '16 official Amazon Second-Hand & Amazon Renewed departments with full warranty'}
+              </p>
+            </div>
+
+            <div className="hidden sm:flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => scrollCategoryCircles('left')}
+                aria-label={isEs ? 'Desplazar categorías a la izquierda' : 'Scroll categories left'}
+                className="w-9 h-9 rounded-full bg-slate-100 hover:bg-emerald-100 text-slate-800 hover:text-emerald-900 border border-slate-200 flex items-center justify-center transition-colors cursor-pointer shadow-2xs"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollCategoryCircles('right')}
+                aria-label={isEs ? 'Desplazar categorías a la derecha' : 'Scroll categories right'}
+                className="w-9 h-9 rounded-full bg-slate-100 hover:bg-emerald-100 text-slate-800 hover:text-emerald-900 border border-slate-200 flex items-center justify-center transition-colors cursor-pointer shadow-2xs"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+
+          <div
+            ref={categoryScrollRef}
+            className="flex items-start gap-4 sm:gap-6 overflow-x-auto pb-2 pt-1 scroll-smooth [scrollbar-width:thin]"
+          >
+            {REACONDICIONADOS_CATEGORIES.map((cat) => {
+              const isActive = selectedCategory === cat.id;
+              const displayLabel = isEs ? cat.label : CATEGORY_LABEL_EN[cat.id] || cat.label;
+              return (
+                <button
+                  key={cat.id}
+                  type="button"
+                  onClick={() => setSelectedCategory(cat.id)}
+                  aria-pressed={isActive}
+                  className="group flex flex-col items-center text-center w-[112px] sm:w-[144px] shrink-0 cursor-pointer focus:outline-none"
+                >
+                  <div
+                    className={`relative w-24 h-24 sm:w-32 sm:h-32 rounded-full flex items-center justify-center p-4 sm:p-5 transition-all duration-300 overflow-hidden ${
+                      isActive
+                        ? 'bg-[#b5dec3] ring-4 ring-emerald-700 shadow-lg scale-105'
+                        : 'bg-[#cde4d4] group-hover:bg-[#bde0c8] group-hover:scale-105 group-hover:shadow-md'
+                    }`}
+                  >
+                    <Image
+                      src={cat.circleImage}
+                      alt={displayLabel}
+                      width={110}
+                      height={110}
+                      unoptimized
+                      className="w-full h-full object-contain mix-blend-multiply drop-shadow-[0_6px_8px_rgba(0,0,0,0.16)] transition-transform duration-300 group-hover:scale-108"
+                    />
+                  </div>
+                  <span
+                    className={`mt-2.5 text-xs sm:text-[13.5px] leading-snug line-clamp-2 transition-colors ${
+                      isActive
+                        ? 'font-black text-emerald-800 underline decoration-emerald-600 decoration-2 underline-offset-4'
+                        : 'font-semibold text-slate-800 group-hover:text-emerald-800'
+                    }`}
+                  >
+                    {displayLabel}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </section>
+
         {/* FILTERS */}
         <section
           aria-label={isEs ? 'Filtros de productos reacondicionados' : 'Refurbished product filters'}
-          className="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-3 sm:p-6 mb-4 sm:mb-7 space-y-3 sm:space-y-5"
+          className="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-3 sm:p-5 mb-4 sm:mb-7"
         >
-          <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4 pb-4 border-b border-slate-100">
+          <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4">
             <div className="flex flex-wrap items-center gap-2.5">
               <div className="flex items-center gap-2 bg-slate-50 border border-emerald-200 rounded-xl px-3 py-2">
                 <ArrowDownWideNarrow className="w-4 h-4 text-emerald-700 shrink-0" />
@@ -1168,6 +1281,27 @@ export default function ReacondicionadosView({
                   <option value="price-desc">{isEs ? 'Precio: mayor a menor' : 'Price: high to low'}</option>
                   <option value="rating">{isEs ? 'Mejor valorados (★)' : 'Top rated (★)'}</option>
                 </select>
+              </div>
+
+              {/* Quick Price Presets inline */}
+              <div className="flex items-center gap-1.5 flex-nowrap overflow-x-auto [&>*]:shrink-0 [&>*]:whitespace-nowrap">
+                {activePricePresets.map((preset) => {
+                  const isActive = activePricePreset === preset.id;
+                  return (
+                    <button
+                      key={preset.id}
+                      type="button"
+                      onClick={() => handleSelectPricePreset(preset)}
+                      className={`px-3 py-1.5 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
+                        isActive
+                          ? 'bg-emerald-800 text-white border-emerald-800 shadow-2xs'
+                          : 'bg-white text-slate-800 border-emerald-200/85 hover:border-emerald-400'
+                      }`}
+                    >
+                      {preset.label}
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
@@ -1211,59 +1345,6 @@ export default function ReacondicionadosView({
                   <span>{isEs ? 'Reiniciar' : 'Reset'}</span>
                 </button>
               )}
-            </div>
-          </div>
-
-          {/* Categories */}
-          <div>
-            <p className="text-[11px] font-black uppercase tracking-wider text-slate-600 mb-2">
-              {isEs ? 'Categorías de Reacondicionados Certificados:' : 'Certified Refurbished Categories:'}
-            </p>
-            <div className="flex items-center gap-2 flex-nowrap sm:flex-wrap overflow-x-auto [&>*]:shrink-0 [&>*]:whitespace-nowrap">
-              {REACONDICIONADOS_CATEGORIES.map((cat) => {
-                const isActive = selectedCategory === cat.id;
-                return (
-                  <button
-                    key={cat.id}
-                    type="button"
-                    onClick={() => setSelectedCategory(cat.id)}
-                    className={`px-3.5 py-2 rounded-xl text-xs font-bold border transition-all cursor-pointer flex items-center gap-1.5 ${
-                      isActive
-                        ? 'bg-emerald-700 text-white border-emerald-700 shadow-sm ring-2 ring-emerald-200'
-                        : 'bg-gradient-to-b from-white to-emerald-50/40 text-slate-800 border-emerald-200/90 hover:border-emerald-400 hover:bg-emerald-50/70'
-                    }`}
-                  >
-                    <span aria-hidden="true">{cat.emoji}</span>
-                    <span>{isEs ? cat.label : CATEGORY_LABEL_EN[cat.id] || cat.label}</span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Quick Price Presets */}
-          <div>
-            <p className="text-[11px] font-black uppercase tracking-wider text-slate-600 mb-2">
-              {isEs ? 'Presupuesto:' : 'Budget:'}
-            </p>
-            <div className="flex items-center gap-2 flex-nowrap sm:flex-wrap overflow-x-auto [&>*]:shrink-0 [&>*]:whitespace-nowrap">
-              {activePricePresets.map((preset) => {
-                const isActive = activePricePreset === preset.id;
-                return (
-                  <button
-                    key={preset.id}
-                    type="button"
-                    onClick={() => handleSelectPricePreset(preset)}
-                    className={`px-3.5 py-1.5 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
-                      isActive
-                        ? 'bg-slate-900 text-white border-slate-900 shadow-sm'
-                        : 'bg-gradient-to-b from-white to-slate-50 text-slate-800 border-emerald-200/85 hover:border-emerald-400'
-                    }`}
-                  >
-                    {preset.label}
-                  </button>
-                );
-              })}
             </div>
           </div>
         </section>
