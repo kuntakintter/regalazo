@@ -25,13 +25,17 @@ export default function SocialShareWidget({
   const effectiveUrl = url || `https://www.unbuenregalo.es${basePath === '/' ? '' : basePath}`;
   const effectiveTitle = title || `🎁 ${ui.brandName} · ${ui.badgeUpdated2026}`;
 
-  const encodedUrl = encodeURIComponent(effectiveUrl);
+  const buildShareUtmUrl = (source: string) => {
+    const sep = effectiveUrl.includes('?') ? '&' : '?';
+    return `${effectiveUrl}${sep}utm_source=${source}&utm_medium=social_share&utm_campaign=web_share`;
+  };
+
   const encodedTitle = encodeURIComponent(effectiveTitle);
 
   const shareLinks = [
     {
       name: ui.shareBtnWhatsApp,
-      href: `https://api.whatsapp.com/send?text=${encodedTitle}%20${encodedUrl}`,
+      href: `https://api.whatsapp.com/send?text=${encodedTitle}%20${encodeURIComponent(buildShareUtmUrl('whatsapp'))}`,
       bg: 'bg-emerald-700 hover:bg-emerald-800 text-white',
       icon: (
         <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
@@ -41,7 +45,7 @@ export default function SocialShareWidget({
     },
     {
       name: 'X',
-      href: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
+      href: `https://twitter.com/intent/tweet?url=${encodeURIComponent(buildShareUtmUrl('x_twitter'))}&text=${encodedTitle}`,
       bg: 'bg-black hover:bg-neutral-800 text-white',
       icon: (
         <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
@@ -51,7 +55,7 @@ export default function SocialShareWidget({
     },
     {
       name: 'Telegram',
-      href: `https://t.me/share/url?url=${encodedUrl}&text=${encodedTitle}`,
+      href: `https://t.me/share/url?url=${encodeURIComponent(buildShareUtmUrl('telegram'))}&text=${encodedTitle}`,
       bg: 'bg-sky-700 hover:bg-sky-800 text-white',
       icon: (
         <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
@@ -61,7 +65,7 @@ export default function SocialShareWidget({
     },
     {
       name: 'Facebook',
-      href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+      href: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(buildShareUtmUrl('facebook'))}`,
       bg: 'bg-blue-700 hover:bg-blue-800 text-white',
       icon: (
         <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
@@ -71,7 +75,7 @@ export default function SocialShareWidget({
     },
     {
       name: 'Pinterest',
-      href: `https://pinterest.com/pin/create/button/?url=${encodedUrl}&media=${encodeURIComponent('https://www.unbuenregalo.es/og-cover.png')}&description=${encodedTitle}`,
+      href: `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(buildShareUtmUrl('pinterest'))}&media=${encodeURIComponent('https://www.unbuenregalo.es/og-cover.png')}&description=${encodedTitle}`,
       bg: 'bg-rose-700 hover:bg-rose-800 text-white',
       icon: (
         <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
@@ -83,7 +87,7 @@ export default function SocialShareWidget({
 
   const handleCopy = () => {
     if (typeof navigator !== 'undefined' && navigator.clipboard) {
-      navigator.clipboard.writeText(effectiveUrl);
+      navigator.clipboard.writeText(buildShareUtmUrl('copy_link'));
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     }
