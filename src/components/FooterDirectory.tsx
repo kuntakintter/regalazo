@@ -10,7 +10,7 @@ import { useActiveLocale } from '@/hooks/useActiveLocale';
 
 export default function FooterDirectory({ isDark = false }: { isDark?: boolean }) {
   const { localeKey, activeCurrency, localePath, tTerm, ui } = useActiveLocale();
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const ageEntries = Object.entries(SEO_AGE_ROUTES).filter(([, meta]) => !meta.specificYear);
   const filterEntries = Object.values(SEO_FILTER_ROUTES);
@@ -67,12 +67,11 @@ export default function FooterDirectory({ isDark = false }: { isDark?: boolean }
         </button>
       </div>
 
-      {isOpen && (
-        <div
-          className={`space-y-6 p-5 rounded-3xl border shadow-xs animate-in fade-in duration-200 ${
-            isDark ? 'bg-slate-900/90 border-slate-800' : 'bg-white/90 border-slate-200/90'
-          }`}
-        >
+      <div
+        className={`${isOpen ? 'block' : 'hidden'} space-y-6 p-5 rounded-3xl border shadow-xs animate-in fade-in duration-200 ${
+          isDark ? 'bg-slate-900/90 border-slate-800' : 'bg-white/90 border-slate-200/90'
+        }`}
+      >
           {/* 1. Age Stages + All ~80 Subcategories */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {ageEntries.map(([ageSlug, meta]) => {
@@ -159,7 +158,6 @@ export default function FooterDirectory({ isDark = false }: { isDark?: boolean }
             </div>
           </div>
         </div>
-      )}
     </div>
   );
 }
