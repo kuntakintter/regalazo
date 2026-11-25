@@ -48,6 +48,7 @@ function VotingContent() {
 
   const {
     voteItems,
+    isLoaded,
     recipientName,
     setRecipientName,
     removeItem,
@@ -66,7 +67,73 @@ function VotingContent() {
     const sp = new URLSearchParams(window.location.search);
     setIdsParam(sp.get('ids') || '');
     setParaParam(sp.get('para') || '');
+
+    const handleUrlSync = (e: Event) => {
+      const custom = e as CustomEvent<{ ids: string; para: string }>;
+      if (custom.detail) {
+        setIdsParam(custom.detail.ids);
+        setParaParam(custom.detail.para);
+      }
+    };
+    window.addEventListener('voting-url-sync', handleUrlSync);
+    return () => window.removeEventListener('voting-url-sync', handleUrlSync);
   }, []);
+
+  // Automatically reconcile stale ?ids=... URL with live voteItems in the creator's browser
+  useEffect(() => {
+    if (!isLoaded || typeof window === 'undefined') return;
+    if (voteItems.length === 0) return;
+
+    const currentIds = idsParam
+      .split(',')
+      .map((s) => s.trim())
+      .filter(Boolean);
+    const liveIds = voteItems.map((item) => item.id);
+    const liveIdsJoined = liveIds.join(',');
+
+    // If URL has no ?ids= yet or overlaps with the creator's active drawer shortlist, keep URL & grid automatically synced with voteItems
+    const overlapsWithUrl =
+      currentIds.length === 0 ||
+      liveIds.some((id) => currentIds.includes(id)) ||
+      currentIds.some((id) => liveIds.includes(id));
+
+    if (overlapsWithUrl && liveIdsJoined !== idsParam) {
+      setIdsParam(liveIdsJoined);
+      const activeName = (recipientName || paraParam).trim();
+      if (activeName && activeName !== paraParam) {
+        setParaParam(activeName);
+      }
+      const nameQuery = activeName ? `&para=${encodeURIComponent(activeName)}` : '';
+      const nextUrl = `${window.location.pathname}?ids=${encodeURIComponent(liveIdsJoined)}${nameQuery}`;
+      window.history.replaceState(null, '', nextUrl);
+    }
+  }, [isLoaded, voteItems, recipientName, idsParam, paraParam]);
+
+  const handleRemoveCandidateFromPoll = (productId: string) => {
+    if (voteItems.some((item) => item.id === productId)) {
+      removeItem(productId);
+      return;
+    }
+    const nextIds = idsParam
+      .split(',')
+      .map((s) => s.trim())
+      .filter((id) => id && id !== productId);
+    const nextJoined = nextIds.join(',');
+    setIdsParam(nextJoined);
+    if (typeof window !== 'undefined') {
+      if (nextIds.length === 0) {
+        window.history.replaceState(null, '', window.location.pathname);
+      } else {
+        const activeName = (recipientName || paraParam).trim();
+        const nameQuery = activeName ? `&para=${encodeURIComponent(activeName)}` : '';
+        window.history.replaceState(
+          null,
+          '',
+          `${window.location.pathname}?ids=${encodeURIComponent(nextJoined)}${nameQuery}`
+        );
+      }
+    }
+  };
 
   const matchedProducts = useMemo(() => {
     if (!idsParam) return [];
@@ -238,6 +305,15 @@ function VotingContent() {
 
                 <div>
                   <div className="relative aspect-square w-full mb-3 bg-slate-50 rounded-2xl overflow-hidden p-2 flex items-center justify-center border border-slate-100">
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveCandidateFromPoll(product.id)}
+                      title={ui.removeFromVote}
+                      aria-label={`${ui.removeFromVote}: ${product.title}`}
+                      className="absolute top-2 right-2 z-20 w-7 h-7 rounded-full bg-white/90 hover:bg-rose-50 text-slate-500 hover:text-rose-600 border border-slate-200/90 shadow-2xs flex items-center justify-center transition-colors cursor-pointer"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
                     <Image
                       src={product.imageUrl}
                       alt={product.title}

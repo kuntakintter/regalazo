@@ -8,6 +8,7 @@ import { getLocaleHref, normalizeLocaleKey } from '@/lib/i18nContent';
 
 interface VotingContextType {
   voteItems: Product[];
+  isLoaded: boolean;
   recipientName: string;
   setRecipientName: (name: string) => void;
   addItem: (product: Product) => { success: boolean; message?: string };
@@ -55,7 +56,26 @@ export function VotingProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  // Sync to localStorage
+  // Sync to localStorage & keep /votar URL query string in sync when items or recipient change
+  const syncVotarUrlIfOnPollPage = (nextItems: Product[], nextRecipient: string) => {
+    if (typeof window === 'undefined') return;
+    if (!window.location.pathname.endsWith('/votar')) return;
+    const pollPath = getLocaleHref(activeLocaleKey, '/votar');
+    if (nextItems.length === 0) {
+      window.history.replaceState(null, '', pollPath);
+      window.dispatchEvent(new CustomEvent('voting-url-sync', { detail: { ids: '', para: '' } }));
+      return;
+    }
+    const ids = nextItems.map((item) => item.id).join(',');
+    const nameTrim = nextRecipient.trim();
+    const nameParam = nameTrim ? `&para=${encodeURIComponent(nameTrim)}` : '';
+    const nextUrl = `${pollPath}?ids=${encodeURIComponent(ids)}${nameParam}`;
+    window.history.replaceState(null, '', nextUrl);
+    window.dispatchEvent(
+      new CustomEvent('voting-url-sync', { detail: { ids, para: nameTrim } })
+    );
+  };
+
   useEffect(() => {
     if (!isLoaded) return;
     try {
@@ -71,6 +91,9 @@ export function VotingProvider({ children }: { children: React.ReactNode }) {
       localStorage.setItem(STORAGE_KEY_RECIPIENT, name);
     } catch {
       // ignore
+    }
+    if (voteItems.length > 0) {
+      syncVotarUrlIfOnPollPage(voteItems, name);
     }
   };
 
@@ -93,12 +116,16 @@ export function VotingProvider({ children }: { children: React.ReactNode }) {
             : `Max ${MAX_VOTE_ITEMS} items per group poll`,
       };
     }
-    setVoteItems((prev) => [...prev, product]);
+    const next = [...voteItems, product];
+    setVoteItems(next);
+    syncVotarUrlIfOnPollPage(next, recipientName);
     return { success: true };
   };
 
   const removeItem = (productId: string) => {
-    setVoteItems((prev) => prev.filter((item) => item.id !== productId));
+    const next = voteItems.filter((item) => item.id !== productId);
+    setVoteItems(next);
+    syncVotarUrlIfOnPollPage(next, recipientName);
   };
 
   const isItemInList = (productId: string) => {
@@ -115,13 +142,14 @@ export function VotingProvider({ children }: { children: React.ReactNode }) {
 
   const clearList = () => {
     setVoteItems([]);
-    setRecipientName('');
+    setRecipientNameState('');
     try {
       localStorage.removeItem(STORAGE_KEY_ITEMS);
       localStorage.removeItem(STORAGE_KEY_RECIPIENT);
     } catch {
       // ignore
     }
+    syncVotarUrlIfOnPollPage([], '');
   };
 
   const generateShareUrl = () => {
@@ -137,6 +165,7 @@ export function VotingProvider({ children }: { children: React.ReactNode }) {
     <VotingContext.Provider
       value={{
         voteItems,
+        isLoaded,
         recipientName,
         setRecipientName,
         addItem,

@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useVoting } from '@/context/VotingContext';
 import { trackShareEvent, trackAffiliateClick } from '@/lib/analytics';
 import { useActiveLocale } from '@/hooks/useActiveLocale';
-import { PRODUCTS } from '@/data/products';
+import { findProductById } from '@/data/allCatalogProducts';
 import { buildAmazonRemoteCartUrl, getAmazonProductUrl } from '@/lib/amazon';
 import {
   X,
@@ -44,7 +44,7 @@ export default function VotingDrawer() {
 
   const handleOpenAmazonCart = () => {
     const asins = voteItems.map(
-      (item) => item.asin || PRODUCTS.find((p) => p.id === item.id)?.asin
+      (item) => item.asin || findProductById(item.id)?.asin
     );
     const fallbackTitles = voteItems.map((item) => item.searchQuery || item.title);
     const cartUrl = buildAmazonRemoteCartUrl(asins, amazonTag, fallbackTitles, amazonRegion);
@@ -252,7 +252,7 @@ export default function VotingDrawer() {
               <div className="space-y-2.5">
                 {voteItems.map((item, idx) => {
                   const resolvedAsin =
-                    item.asin || PRODUCTS.find((p) => p.id === item.id)?.asin;
+                    item.asin || findProductById(item.id)?.asin;
                   const itemAmazonUrl = getAmazonProductUrl(
                     resolvedAsin,
                     item.searchQuery || item.title,
