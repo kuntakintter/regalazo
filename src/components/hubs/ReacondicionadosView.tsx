@@ -34,6 +34,7 @@ import {
   X,
   Info,
   ShoppingBag,
+  MessageCircle,
 } from 'lucide-react';
 
 const PRICE_PRESETS_ES = [
@@ -1518,7 +1519,7 @@ export default function ReacondicionadosView({
           <div className="pt-4 border-t border-slate-100">
             <div className="max-w-4xl mx-auto p-6 sm:p-8 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl">
               <div className="flex items-center gap-2.5 mb-2">
-                <Sparkles className="w-5 h-5 text-amber-400 shrink-0" />
+                <MessageCircle className="w-6 h-6 text-emerald-400 shrink-0" />
                 <h2 className="text-xl sm:text-2xl font-black text-white">
                   {isEs
                     ? 'Preguntas Frecuentes sobre los Reacondicionados de Amazon y Segunda Mano con Garantía'

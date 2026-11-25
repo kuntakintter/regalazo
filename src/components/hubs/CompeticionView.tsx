@@ -32,6 +32,7 @@ import {
   ArrowUpDown,
   Trophy,
   Sparkles,
+  MessageCircle,
 } from 'lucide-react';
 
 interface HubViewProps {
@@ -563,7 +564,7 @@ export default function CompeticionView({
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
           <div className="p-6 sm:p-8 rounded-3xl bg-slate-900/70 border border-slate-800 shadow-xl">
             <div className="flex items-center gap-2.5 mb-2">
-              <Sparkles className="w-5 h-5 text-amber-400" />
+              <MessageCircle className="w-6 h-6 text-indigo-400 shrink-0" />
               <h2 className="text-xl sm:text-2xl font-black text-white">
                 Preguntas Frecuentes sobre Regalos de Carreras y Competición
               </h2>
