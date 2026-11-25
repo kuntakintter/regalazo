@@ -2,12 +2,11 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ShieldCheck, Heart } from 'lucide-react';
+import { Heart } from 'lucide-react';
 import BrandLogo from '@/components/BrandLogo';
 import LanguageSelector from '@/components/LanguageSelector';
 import SocialShareWidget from '@/components/SocialShareWidget';
 import FooterDirectory from '@/components/FooterDirectory';
-import { AMAZON_AFFILIATE_TAG_ES, AMAZON_AFFILIATE_TAG_INTL } from '@/lib/amazon';
 import { getHubStrings } from '@/lib/i18nContent';
 import { useActiveLocale } from '@/hooks/useActiveLocale';
 
@@ -39,9 +38,8 @@ const AGE_STAGE_LINKS = [
 ];
 
 export default function Footer({ currentTheme }: FooterProps) {
-  const { localeKey, localePath, tTerm, ui, amazonRegion, amazonSiteName, isRtl } = useActiveLocale();
+  const { localeKey, localePath, tTerm, ui, isRtl } = useActiveLocale();
   const isDark = currentTheme === 'emo' || currentTheme === 'gamer';
-  const activeTag = amazonRegion === 'es' ? AMAZON_AFFILIATE_TAG_ES : AMAZON_AFFILIATE_TAG_INTL;
 
   const hubLabel = (slug: string) => getHubStrings(localeKey, slug).breadcrumbLabel;
 
@@ -59,23 +57,6 @@ export default function Footer({ currentTheme }: FooterProps) {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Amazon Affiliate Disclosure Callout */}
-        <div
-          className={`p-4 rounded-2xl border mb-10 text-xs leading-relaxed flex items-start gap-3 shadow-xs ${
-            isDark
-              ? 'bg-slate-900 border-slate-700 text-slate-200'
-              : 'bg-white border-slate-200 text-slate-700'
-          }`}
-        >
-          <ShieldCheck className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
-          <div>
-            <p className={`font-semibold mb-1 ${isDark ? 'text-white' : 'text-slate-900'}`}>
-              {ui.footerDisclosureTitle} · {amazonSiteName} ({activeTag})
-            </p>
-            <p>{ui.footerDisclosureText}</p>
-          </div>
-        </div>
-
         {/* 4 Columns Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-12">
           {/* Col 1: Brand */}
@@ -219,6 +200,11 @@ export default function Footer({ currentTheme }: FooterProps) {
             </button>
           </div>
         </div>
+
+        {/* Discrete 1-line legal sentence required by Amazon Associates Section 5 */}
+        <p className={`mt-3 text-center sm:text-left text-[11px] opacity-65 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+          {ui.footerDisclosureText}
+        </p>
       </div>
     </footer>
   );
