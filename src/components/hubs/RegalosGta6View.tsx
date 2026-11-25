@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import SeoFaq from '@/components/SeoFaq';
 import {
   GTA_PRODUCTS,
   GTA_CATEGORIES,
@@ -31,6 +32,7 @@ import {
   HelpCircle,
   ChevronRight,
   Zap,
+  MessageCircle,
 } from 'lucide-react';
 
 interface HubViewProps {
@@ -442,30 +444,15 @@ export default function RegalosGta6View({
         {/* FAQs SECTION */}
         {faqList.length > 0 && (
           <section className="mt-14 pt-10 border-t border-slate-800">
-            <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-8">
-                <span className="text-xs font-black uppercase tracking-wider text-pink-300 mb-2 block">
-                  {ui.faqEyebrow}
-                </span>
-                <h2 className="text-2xl sm:text-3xl font-black text-white">{ui.faqTitle}</h2>
+            <div className="max-w-4xl mx-auto p-6 sm:p-8 rounded-3xl bg-slate-900/80 border border-slate-800 shadow-xl">
+              <div className="flex items-center gap-2.5 mb-2">
+                <MessageCircle className="w-6 h-6 text-pink-400 shrink-0" />
+                <h2 className="text-xl sm:text-2xl font-black text-white">{ui.faqTitle}</h2>
               </div>
-
-              <div className="space-y-4">
-                {faqList.map((faq, idx) => (
-                  <div
-                    key={idx}
-                    className="p-5 rounded-2xl bg-slate-900/70 border border-slate-800"
-                  >
-                    <h3 className="text-base font-bold text-pink-300 flex items-center gap-2.5 mb-2">
-                      <HelpCircle className="w-4 h-4 text-pink-400 shrink-0" aria-hidden="true" />
-                      <span>{faq.question}</span>
-                    </h3>
-                    <p className="text-xs sm:text-sm text-slate-200 leading-relaxed pl-6">
-                      {faq.answer}
-                    </p>
-                  </div>
-                ))}
-              </div>
+              <p className="text-xs sm:text-sm text-slate-400 mb-6">
+                {hubMeta.subtitle}
+              </p>
+              <SeoFaq customFaqs={faqList} omitSchema={true} />
             </div>
           </section>
         )}

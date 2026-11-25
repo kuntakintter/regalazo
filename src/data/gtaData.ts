@@ -18,11 +18,11 @@ export interface GtaProduct {
 
 export const GTA_CATEGORIES = [
   { id: 'all', label: 'Todo el Catálogo GTA', icon: '🔥' },
-  { id: 'setup', label: 'Neón Vice City & Setup', icon: '💡' },
-  { id: 'mandos', label: 'Mandos PS5 & Periféricos', icon: '🎮' },
-  { id: 'merch', label: 'Ropa & Camisetas Retro', icon: '👕' },
-  { id: 'coleccion', label: 'Coleccionismo & Soportes', icon: '🏆' },
-  { id: 'juego', label: 'Reserva & Tarjetas Saldo', icon: '💳' },
+  { id: 'juego', label: 'Juegos GTA VI / GTA V & Consolas', icon: '🎮' },
+  { id: 'coleccion', label: 'Vinilos BSO, Libros & Coleccionismo', icon: '🏆' },
+  { id: 'setup', label: 'Pósters GTA, Neón Vice City & Setup', icon: '💡' },
+  { id: 'mandos', label: 'Mandos PS5 & Periféricos', icon: '🕹️' },
+  { id: 'merch', label: 'Ropa, Tazas & Llaveros GTA', icon: '👕' },
 ];
 
 export const GTA_PRICE_RANGES = [
@@ -34,6 +34,325 @@ export const GTA_PRICE_RANGES = [
 ];
 
 export const GTA_PRODUCTS: GtaProduct[] = [
+  // --- 0. NUEVOS LANZAMIENTOS OFICIALES: GRAND THEFT AUTO VI & GRAND THEFT AUTO V ---
+  {
+    id: 'gta-6-juego-ps5-fisico',
+    asin: 'B0HRFP48X1',
+    title: 'Grand Theft Auto VI (GTA 6) — PlayStation 5 Edición Estándar',
+    category: 'juego',
+    categoryLabel: 'Juegos GTA VI / GTA V & Consolas',
+    priceText: '99,90 €',
+    priceNumeric: 99.90,
+    rating: 4.9,
+    reviewsCount: 1420,
+    imageUrl: 'https://m.media-amazon.com/images/I/81dPqK1CHeL._AC_UL320_.jpg',
+    badge: 'Juego GTA VI PS5',
+    description: 'El esperado lanzamiento de Grand Theft Auto VI para PlayStation 5. Recorre Vice City y el estado de Leonida junto a Lucía y Jason en el mundo abierto más ambicioso de Rockstar Games.',
+    pros: [
+      'Versión para PlayStation 5 con gráficos 4K, trazado de rayos y respuesta háptica DualSense',
+      'Explora Vice City y Leonida con el mapa más vivo y detallado jamás creado',
+      'Enlace directo verificado en Amazon España con garantía oficial de entrega'
+    ],
+    idealFor: 'Todo jugador de PlayStation 5 que quiera vivir Grand Theft Auto VI desde el primer minuto.',
+    searchQuery: 'PS5 Grand Theft Auto 6'
+  },
+  {
+    id: 'gta-6-standard-edition-xbox-series',
+    asin: 'B0HRC1S356',
+    title: 'Grand Theft Auto VI Standard Edition | Xbox Series X|S (Código Oficial)',
+    category: 'juego',
+    categoryLabel: 'Juegos GTA VI / GTA V & Consolas',
+    priceText: '79,99 €',
+    priceNumeric: 79.99,
+    rating: 4.9,
+    reviewsCount: 980,
+    imageUrl: 'https://m.media-amazon.com/images/I/814V64YpY-L._AC_UL320_.jpg',
+    badge: 'GTA VI Xbox Series X|S',
+    description: 'Edición Estándar oficial de Grand Theft Auto VI para consolas Xbox Series X y Xbox Series S con código de descarga digital directo.',
+    pros: [
+      'Optimizado para la arquitectura Velocity de Xbox Series X|S con carga ultrarrápida',
+      'Código oficial de descarga digital sin esperas de envío físico',
+      'Incluye la campaña completa de Grand Theft Auto VI en Leonida y Vice City'
+    ],
+    idealFor: 'Jugadores de Xbox Series X y Xbox Series S que prefieren descarga digital directa.',
+    searchQuery: 'Grand Theft Auto VI Standard Edition Xbox Series'
+  },
+  {
+    id: 'gta-6-ultimate-edition-xbox-series',
+    asin: 'B0HRC564LR',
+    title: 'Grand Theft Auto VI Ultimate Edition | Xbox Series X|S (Edición Definitiva)',
+    category: 'juego',
+    categoryLabel: 'Juegos GTA VI / GTA V & Consolas',
+    priceText: '99,99 €',
+    priceNumeric: 99.99,
+    rating: 4.9,
+    reviewsCount: 740,
+    imageUrl: 'https://m.media-amazon.com/images/I/81ZPk2qqiwL._AC_UL320_.jpg',
+    badge: 'Edición Ultimate GTA VI',
+    description: 'La Ultimate Edition de Grand Theft Auto VI para Xbox Series X|S con el juego completo y los contenidos adicionales exclusivos de lanzamiento.',
+    pros: [
+      'La edición más completa de Grand Theft Auto VI con bonificaciones exclusivas',
+      'Compatible con Xbox Series X y Xbox Series S en máxima resolución',
+      'Regalo estrella para los fans más exigentes de la saga Rockstar'
+    ],
+    idealFor: 'Regalar la edición definitiva y más completa de GTA VI.',
+    searchQuery: 'Grand Theft Auto VI Ultimate Edition Xbox Series'
+  },
+  {
+    id: 'gta-6-vinilo-the-album-exclusivo-amazon',
+    asin: 'B0HJT4Z5RB',
+    title: 'Grand Theft Auto VI: The Album (2 LP Vinilo Rosa y Morado · Exclusivo Amazon)',
+    category: 'coleccion',
+    categoryLabel: 'Vinilos BSO, Libros & Coleccionismo',
+    priceText: '47,99 €',
+    priceNumeric: 47.99,
+    rating: 4.9,
+    reviewsCount: 620,
+    imageUrl: 'https://m.media-amazon.com/images/I/81MQdBbd3rL._AC_UL320_.jpg',
+    badge: 'Vinilo Exclusivo Amazon',
+    description: 'Edición exclusiva de Amazon en doble disco de vinilo (2 LP) a todo color rosa neón y morado Vice City con los temas oficiales de Grand Theft Auto VI.',
+    pros: [
+      'Doble vinilo prensado en colores rosa y morado exclusivos de Amazon',
+      'Carpeta desplegable de coleccionista con arte oficial de Vice City y Leonida',
+      'Pieza musical y decorativa de edición limitada para fans de GTA'
+    ],
+    idealFor: 'Coleccionistas y amantes de la banda sonora de las radios de Vice City.',
+    searchQuery: 'Grand Theft Auto VI The Album 2 LP Vinilo'
+  },
+  {
+    id: 'gta-6-vinilo-original-score',
+    asin: 'B0HPL85XWH',
+    title: 'Grand Theft Auto VI: Original Score (Edición Oficial en Vinilo LP)',
+    category: 'coleccion',
+    categoryLabel: 'Vinilos BSO, Libros & Coleccionismo',
+    priceText: '45,99 €',
+    priceNumeric: 45.99,
+    rating: 4.8,
+    reviewsCount: 410,
+    imageUrl: 'https://m.media-amazon.com/images/I/71gzrgH5-VL._AC_UL320_.jpg',
+    badge: 'Banda Sonora Oficial',
+    description: 'La música instrumental y composiciones originales (Original Score) de Grand Theft Auto VI editadas en formato vinilo de alta fidelidad.',
+    pros: [
+      'Prensado audiófilo con las composiciones cinematográficas de las misiones de GTA VI',
+      'Portada oficial de colección ideal para exponer en estantería o setup',
+      'Complemento perfecto del álbum de emisoras de radio de Vice City'
+    ],
+    idealFor: 'Amantes del vinilo y coleccionistas del universo Grand Theft Auto.',
+    searchQuery: 'Grand Theft Auto VI Original Score Vinilo'
+  },
+  {
+    id: 'gta-6-pack-coleccionista-ps5-poster-skinkura',
+    asin: 'B0HSC5G9TG',
+    title: 'Grand Theft Auto VI (GTA 6) Pack PS5 + Póster Doble Cara (91×66 cm) + Panel LED',
+    category: 'juego',
+    categoryLabel: 'Juegos GTA VI / GTA V & Consolas',
+    priceText: '195,95 €',
+    priceNumeric: 195.95,
+    rating: 4.8,
+    reviewsCount: 290,
+    imageUrl: 'https://m.media-amazon.com/images/I/61nZ0FjVp0L._AC_UL320_.jpg',
+    badge: 'Pack Gigante PS5',
+    description: 'Pack especial de lanzamiento para PlayStation 5 que incluye Grand Theft Auto VI (Code in a Box), póster gigante de doble cara de 91 × 66 cm y panel calefactor gaming con pantalla LED.',
+    pros: [
+      'Incluye póster gigante oficial de doble cara (91 x 66 cm) del mapa y arte de GTA VI',
+      'Juego para PlayStation 5 acompañado de equipamiento para tu habitación gamer',
+      'Edición pack de regalo muy llamativa para sorprender a lo grande'
+    ],
+    idealFor: 'Quienes buscan un pack de regalo de GTA VI completo y fuera de lo común.',
+    searchQuery: 'Grand Theft Auto VI GTA 6 Juego PS5 Poster Doble Cara'
+  },
+  {
+    id: 'gta-6-guia-trucos-secretos-espanol',
+    asin: 'B0HSBSV7JV',
+    title: 'Trucos, Secretos y Estrategias: Guía en Español para Jugadores de Grand Theft Auto VI',
+    category: 'coleccion',
+    categoryLabel: 'Vinilos BSO, Libros & Coleccionismo',
+    priceText: '14,55 €',
+    priceNumeric: 14.55,
+    rating: 4.7,
+    reviewsCount: 340,
+    imageUrl: 'https://m.media-amazon.com/images/I/71BeUOuzgvL._AC_UL320_.jpg',
+    badge: 'Guía en Español',
+    description: 'Manual práctico en español con rutas, secretos ocultos de Leonida, consejos para golpes, vehículos especiales y estrategias para dominar Grand Theft Auto VI.',
+    pros: [
+      'Íntegramente en español con tácticas para ganar dinero rápido y completar el 100%',
+      'Precio económico por debajo de 15 € ideal para acompañar el juego',
+      'Perfecto para descubrir todos los huevos de pascua de Vice City'
+    ],
+    idealFor: 'Exprimir al 100% cada rincón, misión secundaria y secreto del mapa de GTA VI.',
+    searchQuery: 'Trucos secretos y estrategias Guia Grand Theft Auto VI'
+  },
+  {
+    id: 'gta-6-foto-a4-enmarcada-firmada',
+    asin: 'B0HN5Q2F7X',
+    title: 'Grand Theft Auto VI Cuadro Foto A4 Enmarcada con Autógrafos Impresos',
+    category: 'setup',
+    categoryLabel: 'Pósters GTA, Neón Vice City & Setup',
+    priceText: '31,99 €',
+    priceNumeric: 31.99,
+    rating: 4.8,
+    reviewsCount: 280,
+    imageUrl: 'https://m.media-amazon.com/images/I/81JI0gL1QuL._AC_UL320_.jpg',
+    badge: 'Enmarcado A4 GTA VI',
+    description: 'Presentación enmarcada tamaño A4 con fotografía oficial de Grand Theft Auto VI, placa de aspecto metálico y firmas impresas lista para colgar o apoyar.',
+    pros: [
+      'Marco de policarbonato negro cepillado listo para colgar nada más abrir la caja',
+      'Tamaño A4 versátil para colocar sobre el escritorio o junto al monitor',
+      'Excelente acabado de regalo para fans de Rockstar Games'
+    ],
+    idealFor: 'Decorar escritorios gaming compactos con el arte oficial de GTA VI.',
+    searchQuery: 'Grand Theft Auto VI Autografo Firmado Foto A4 Enmarcada'
+  },
+  {
+    id: 'gta-6-llavero-logo-oficial',
+    asin: 'B0HS8S9FK9',
+    title: 'Llavero Coleccionable Logo Oficial GTA 6 / Grand Theft Auto VI Vice City',
+    category: 'merch',
+    categoryLabel: 'Ropa, Tazas & Llaveros GTA',
+    priceText: '6,00 €',
+    priceNumeric: 6.00,
+    rating: 4.7,
+    reviewsCount: 195,
+    imageUrl: 'https://m.media-amazon.com/images/I/6103pOZH35L._AC_UL320_.jpg',
+    badge: 'Detalle GTA VI (6 €)',
+    description: 'Llavero con el logotipo oficial de GTA VI en colores degradados Vice City y anilla metálica reforzada para llaves, mochila o funda de mando.',
+    pros: [
+      'El detalle más barato y original de Grand Theft Auto VI por solo 6 €',
+      'Colores vibrantes fieles al emblema oficial de Vice City',
+      'Ligero, resistente y perfecto para amigo invisible gamer'
+    ],
+    idealFor: 'Un detalle económico de GTA VI para llevar siempre encima.',
+    searchQuery: 'Llavero para GTA 6 Logo'
+  },
+
+  // --- EDICIONES Y COLECCIONISMO OFICIAL DE GRAND THEFT AUTO V (GTA 5) ---
+  {
+    id: 'gta-v-xbox-series-x-rockstar',
+    asin: 'B09Y369ZMD',
+    title: 'Rockstar Grand Theft Auto V (GTA 5) — Edición Oficial Xbox Series X',
+    category: 'juego',
+    categoryLabel: 'Juegos GTA VI / GTA V & Consolas',
+    priceText: '27,48 €',
+    priceNumeric: 27.48,
+    rating: 4.8,
+    reviewsCount: 9400,
+    imageUrl: 'https://m.media-amazon.com/images/I/71JgDYhxInL._AC_UL320_.jpg',
+    badge: 'GTA V Xbox Series X',
+    description: 'Edición física remasterizada de Grand Theft Auto V para Xbox Series X con resolución 4K hasta 60 FPS, mejoras visuales, tráfico denso y acceso a GTA Online.',
+    pros: [
+      'Versión de nueva generación con trazado de rayos e iluminación mejorada',
+      'Incluye tanto el Modo Historia de Grand Theft Auto V como GTA Online',
+      'Carga ultrarrápida y transferencia de progreso de personaje'
+    ],
+    idealFor: 'Disfrutar de Los Santos al máximo nivel gráfico en Xbox Series X.',
+    searchQuery: 'Rockstar Grand Theft Auto V GTA 5 Xbox Series X'
+  },
+  {
+    id: 'gta-v-premium-edition-oficial',
+    asin: 'B07CPB2PRC',
+    title: 'Grand Theft Auto V: Premium Edition (Juego Completo + Pack Criminal Enterprise)',
+    category: 'juego',
+    categoryLabel: 'Juegos GTA VI / GTA V & Consolas',
+    priceText: '23,94 €',
+    priceNumeric: 23.94,
+    rating: 4.8,
+    reviewsCount: 24600,
+    imageUrl: 'https://m.media-amazon.com/images/I/81Ow0EK3azL._AC_UL320_.jpg',
+    badge: 'GTA V Premium Edition',
+    description: 'La edición Premium de Grand Theft Auto V que incluye la historia completa, Grand Theft Auto Online y el Criminal Enterprise Starter Pack con propiedades, vehículos, armas y 1.000.000 GTA$.',
+    pros: [
+      'Incluye 1.000.000 GTA$ de bonificación y propiedades valoradas en más de 10.000.000 GTA$',
+      'Flota de superdeportivos, helicóptero, búnker y oficina ejecutiva desde el inicio',
+      'Uno de los videojuegos mejor valorados de la historia con más de 24.000 reseñas'
+    ],
+    idealFor: 'Empezar en GTA Online con un imperio completo y un millón en el banco.',
+    searchQuery: 'Grand Theft Auto V Premium Edition'
+  },
+  {
+    id: 'gta-v-poster-hwc-a3-enmarcado',
+    asin: 'B0HN53Y1KC',
+    title: 'HWC Trading Grand Theft Auto V Póster de Videojuego Enmarcado A3 Impreso',
+    category: 'setup',
+    categoryLabel: 'Pósters GTA, Neón Vice City & Setup',
+    priceText: '39,99 €',
+    priceNumeric: 39.99,
+    rating: 4.9,
+    reviewsCount: 530,
+    imageUrl: 'https://m.media-amazon.com/images/I/7109oTV3EGL._AC_UL320_.jpg',
+    badge: 'Póster A3 GTA V',
+    description: 'Cuadro coleccionable tamaño A3 enmarcado con el icónico arte de Michael, Franklin y Trevor de Grand Theft Auto V y reproducción de los autógrafos del reparto.',
+    pros: [
+      'Formato grande A3 (445 x 330 mm) con marco negro mate y passepartout de precisión',
+      'Frontal de perspex de alta claridad resistente a golpes',
+      'Hace pareja perfecta en la pared con el cuadro A3 de Grand Theft Auto VI'
+    ],
+    idealFor: 'Homenajear a los tres protagonistas legendarios de Grand Theft Auto V.',
+    searchQuery: 'HWC Trading Grand Theft Auto V Poster Enmarcado A3'
+  },
+  {
+    id: 'gta-v-libro-vida-gangster-virtual',
+    asin: '8410572605',
+    title: 'Libro Grand Theft Auto V: Vida de Gangster Virtual (Colección Videojuegos Legendarios)',
+    category: 'coleccion',
+    categoryLabel: 'Vinilos BSO, Libros & Coleccionismo',
+    priceText: '9,99 €',
+    priceNumeric: 9.99,
+    rating: 4.8,
+    reviewsCount: 410,
+    imageUrl: 'https://m.media-amazon.com/images/I/51bIXSAepNL._AC_UL320_.jpg',
+    badge: 'Libro en Español (9,99 €)',
+    description: 'Volumen ilustrado en tapa dura en español dedicado íntegramente a Grand Theft Auto V: cómo se creó Los Santos, secretos del desarrollo de Rockstar y análisis de sus protagonistas.',
+    pros: [
+      'Edición española de coleccionista de la serie Videojuegos Legendarios',
+      'Precio imbatible de solo 9,99 € para un libro de regalo gamer',
+      'Repleto de curiosidades, historia del desarrollo y claves de diseño de GTA V'
+    ],
+    idealFor: 'Fans de Grand Theft Auto V que quieren conocer todos los secretos detrás de Los Santos.',
+    searchQuery: 'Grand Theft Auto V Vida de gangster virtual libro'
+  },
+  {
+    id: 'gta-pack-2-libros-coleccion-videojuegos',
+    asin: 'B0HR9N5TFC',
+    title: 'Pack 2 Libros GTA: Grand Theft Auto Acción Urbana + Grand Theft Auto V (Español)',
+    category: 'coleccion',
+    categoryLabel: 'Vinilos BSO, Libros & Coleccionismo',
+    priceText: '19,95 €',
+    priceNumeric: 19.95,
+    rating: 4.9,
+    reviewsCount: 320,
+    imageUrl: 'https://m.media-amazon.com/images/I/61BxTEUBisL._AC_UL320_.jpg',
+    badge: 'Pack 2 Libros GTA',
+    description: 'Estuche con los 2 volúmenes oficiales en español de la colección Videojuegos Legendarios dedicados a la saga: "Grand Theft Auto: Acción urbana al límite" y "Grand Theft Auto V: Vida de gangster virtual".',
+    pros: [
+      'Incluye los 2 libros completos en español por menos de 20 €',
+      'Repasa toda la evolución de la franquicia desde el primer GTA hasta GTA V y VI',
+      'Presentación impecable para regalar a cualquier apasionado de los videojuegos'
+    ],
+    idealFor: 'Tener la biblioteca completa en español sobre la historia de Grand Theft Auto.',
+    searchQuery: 'Pack IV GTA Coleccion Videojuegos Grand Theft Auto V'
+  },
+  {
+    id: 'gta-coleccion-8-posters-enmarcados-hwc',
+    asin: 'B0HN71BWFQ',
+    title: 'HWC Trading Colección Completa GTA (Pack 8 Pósters de Videojuegos Enmarcados)',
+    category: 'setup',
+    categoryLabel: 'Pósters GTA, Neón Vice City & Setup',
+    priceText: '140,99 €',
+    priceNumeric: 140.99,
+    rating: 4.9,
+    reviewsCount: 215,
+    imageUrl: 'https://m.media-amazon.com/images/I/81tum65p5EL._AC_UL320_.jpg',
+    badge: 'Mural Completo 8 Cuadros',
+    description: 'La colección mural definitiva para un cuarto gamer: lote de 8 cuadros enmarcados y firmados que recorren las entregas más míticas de Grand Theft Auto (incluyendo Vice City, San Andreas, GTA V y GTA VI).',
+    pros: [
+      '8 cuadros individuales enmarcados listos para crear un mural completo en tu setup',
+      'Calidad de galería fotográfica con monturas biseladas negras',
+      'El regalo de coleccionismo más espectacular para fans incondicionales de GTA'
+    ],
+    idealFor: 'Transformar toda la pared de tu habitación gamer en un museo oficial de GTA.',
+    searchQuery: 'HWC Trading Coleccion GTA x8 Posters Enmarcados'
+  },
+
   // --- 1. SETUP & NEÓN VICE CITY ---
   {
     id: 'gta-poster-hwc-gta-6-a4',
@@ -444,45 +763,45 @@ export const GTA_PRODUCTS: GtaProduct[] = [
   // --- 5. JUEGOS, SALDO & CONSOLAS ---
   {
     id: 'gta-juego-gta-v-ps5',
-    asin: '8889164484',
-    title: 'Grand Theft Auto V (PS5) Versión Oficial Remasterizada',
+    asin: 'B09X5TX9CN',
+    title: 'Grand Theft Auto V (PS5) — Versión Oficial PlayStation 5 4K 60 FPS',
     category: 'juego',
-    categoryLabel: 'Reserva & Tarjetas Saldo',
+    categoryLabel: 'Juegos GTA VI / GTA V & Consolas',
     priceText: '18,99 €',
     priceNumeric: 18.99,
     rating: 4.8,
     reviewsCount: 16500,
     imageUrl: 'https://m.media-amazon.com/images/I/717n2jHZ7pL._AC_UL320_.jpg',
-    badge: 'Bestseller GTA V',
-    description: 'Edición oficial para PlayStation 5 con resolución 4K nativa, 60 fotogramas por segundo, trazado de rayos (ray tracing) y aprovechamiento de gatillos hápticos.',
+    badge: 'Bestseller GTA V PS5',
+    description: 'Edición oficial física para PlayStation 5 con resolución 4K nativa, 60 fotogramas por segundo, trazado de rayos (ray tracing) y aprovechamiento de gatillos hápticos DualSense.',
     pros: [
-      'Gráficos hiperdetallados y tiempos de carga instantáneos gracias al SSD',
-      'Incluye el modo historia completo y acceso a Grand Theft Auto Online',
-      'El calentamiento perfecto mientras esperamos el lanzamiento de GTA VI'
+      'Gráficos hiperdetallados y tiempos de carga instantáneos gracias al SSD de PS5',
+      'Incluye el modo historia completo de Grand Theft Auto V y acceso a GTA Online',
+      'Superventas oficial en Amazon España por solo 18,99 €'
     ],
-    idealFor: 'Revivir Los Santos en la máxima fidelidad gráfica en PlayStation 5.',
-    searchQuery: 'grand theft auto v ps5 version oficial'
+    idealFor: 'Vivir o coleccionar Grand Theft Auto V en la máxima fidelidad gráfica de PlayStation 5.',
+    searchQuery: 'Grand Theft Auto V PlayStation 5'
   },
   {
     id: 'gta-juego-trilogy-definitive-edition',
     asin: 'B09KTGP5C2',
-    title: 'Grand Theft Auto: The Trilogy – The Definitive Edition (PS4 / compatible PS5)',
+    title: 'Grand Theft Auto: The Trilogy – The Definitive Edition (PS4 / Compatible PS5)',
     category: 'juego',
-    categoryLabel: 'Reserva & Tarjetas Saldo',
-    priceText: '29,99 €',
-    priceNumeric: 29.99,
-    rating: 4.4,
+    categoryLabel: 'Juegos GTA VI / GTA V & Consolas',
+    priceText: '18,99 €',
+    priceNumeric: 18.99,
+    rating: 4.5,
     reviewsCount: 4210,
-    imageUrl: 'https://m.media-amazon.com/images/I/71JDOWUjztL._AC_UL320_.jpg',
-    badge: 'Trilogía Clásica',
-    description: 'La colección definitiva con los 3 clásicos que cambiaron la industria: GTA III, GTA Vice City y GTA San Andreas actualizados con controles modernos.',
+    imageUrl: 'https://m.media-amazon.com/images/I/81sWtmFwp9L._AC_UL320_.jpg',
+    badge: 'Trilogía Clásica (18,99 €)',
+    description: 'La colección definitiva con los 3 clásicos que cambiaron la industria: GTA III, GTA Vice City y GTA San Andreas actualizados con controles modernos inspirados en GTA V.',
     pros: [
-      'Tres juegos legendarios completos en un solo disco físico',
-      'Sistema de puntería y controles modernizados inspirados en GTA V',
+      'Tres juegos legendarios completos en un solo disco físico en oferta a 18,99 €',
+      'Sistema de puntería y controles modernizados inspirados en Grand Theft Auto V',
       'Texturas en alta resolución e iluminación mejorada'
     ],
-    idealFor: 'Recorrer Vice City original antes de descubrir la nueva entrega.',
-    searchQuery: 'grand theft auto the trilogy definitive edition ps4 ps5'
+    idealFor: 'Recorrer Vice City y San Andreas originales junto a las nuevas entregas.',
+    searchQuery: 'Grand Theft Auto The Trilogy The Definitive Edition PlayStation 4'
   },
   {
     id: 'gta-tarjeta-psn-50',

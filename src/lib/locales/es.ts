@@ -353,13 +353,13 @@ export const ES_HUBS: Record<string, HubCopy> = {
   },
   'regalos-gta-6': {
     title: 'Un Buen Regalo GTA VI y Regalos GTA 6 【2026】 Merchandising Grand Theft Auto',
-    socialTitle: '🌴 Un Buen Regalo GTA VI y GTA 6: Merch Oficial y Accesorios',
-    description: '¿Buscas un buen regalo de GTA VI o GTA 6? Descubre pósters enmarcados, mandos PS5 Nova Pink, luces neón Vice City y tarjetas de reserva disponibles en Amazon.',
+    socialTitle: '🌴 En Un Buen Regalo pensamos en los más Gamers: GTA VI y Regalos GTA 6',
+    description: 'En Un Buen Regalo pensamos en los más Gamers: descubre los mejores regalos de GTA VI, Grand Theft Auto V, pósters enmarcados, mandos PS5 Nova Pink, luces neón Vice City y ediciones oficiales en Amazon.',
     eyebrow: 'Colección Vice City & Leonida Edition',
-    h1: 'Un Buen Regalo GTA VI y Regalos GTA 6: Merchandising y Setup Vice City',
-    subtitle: 'Pósters temáticos Vice City, neones retro de palmera rosa y cian, mandos PlayStation 5 y accesorios para esperar el lanzamiento de GTA VI.',
+    h1: 'En Un Buen Regalo pensamos en los más Gamers: GTA VI y Regalos GTA 6, Merchandising y Setup Vice City',
+    subtitle: 'Pósters temáticos Vice City, ediciones oficiales de Grand Theft Auto, neones retro de palmera rosa y cian, mandos PlayStation 5 y accesorios gamer en Amazon.',
     breadcrumbLabel: 'Regalos GTA 6',
-    keywords: ['regalo gta 6', 'regalos gta 6', 'regalos gta vi', 'merchandising gta 6', 'vice city neon'],
+    keywords: ['regalo gta 6', 'regalos gta 6', 'regalos gta vi', 'merchandising gta 6', 'grand theft auto v', 'vice city neon'],
   },
   'que-regalar-a-un-hombre': {
     title: 'Regalos para Hombres 【2026】 ¿Qué Regalar a un Hombre? +60 Ideas Originales (Desde 12€)',
