@@ -42,7 +42,7 @@ export default function AnalyticsAndSeoBooster() {
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    // Track session start time in sessionStorage across SPA navigations
+    // Track session start time & UTM attribution in sessionStorage across SPA navigations
     let sessionStartTime = Number(sessionStorage.getItem('ubr_session_start'));
     if (!sessionStartTime || Number.isNaN(sessionStartTime)) {
       sessionStartTime = Date.now();
@@ -51,6 +51,23 @@ export default function AnalyticsAndSeoBooster() {
       } catch {
         // storage disabled or private mode
       }
+    }
+
+    const activeUtm: Record<string, string> = {};
+    try {
+      const sp = new URLSearchParams(window.location.search);
+      for (const k of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term']) {
+        const val = sp.get(k);
+        if (val) {
+          sessionStorage.setItem(`ubr_${k}`, val);
+        }
+        const stored = sessionStorage.getItem(`ubr_${k}`);
+        if (stored) {
+          activeUtm[k] = stored;
+        }
+      }
+    } catch {
+      // ignore storage errors
     }
 
     const getSessionDurationSec = () => Math.max(1, Math.round((Date.now() - sessionStartTime) / 1000));
@@ -154,6 +171,7 @@ export default function AnalyticsAndSeoBooster() {
             page_path: window.location.pathname,
             session_duration_sec: getSessionDurationSec(),
             time_on_page_sec: elapsedSec,
+            ...activeUtm,
           });
           return;
         }
