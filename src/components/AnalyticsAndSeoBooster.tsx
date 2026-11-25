@@ -56,14 +56,20 @@ export default function AnalyticsAndSeoBooster() {
     const getSessionDurationSec = () => Math.max(1, Math.round((Date.now() - sessionStartTime) / 1000));
 
     let pageEnterTime = performance.now();
+    let lastInteractionTime = Date.now();
     let lastPageViewSentAt = Date.now();
     let firedScroll50 = false;
     let firedScroll85 = false;
     let lastFilterEventTime = 0;
 
+    const markUserActive = () => {
+      lastInteractionTime = Date.now();
+    };
+    window.addEventListener('pointermove', markUserActive, { passive: true });
+    window.addEventListener('touchstart', markUserActive, { passive: true });
+    window.addEventListener('keydown', markUserActive, { passive: true });
+
     // 0. Explicitly record page_view on every section navigation (once Next.js updates document.title)
-    // Skip duplicate firing on very first page load if gtag('config') just fired <1.5s ago,
-    // OR fire on every client-side route change so GA4 Realtime "Vistas por Título de página" always shows the active section.
     const initialLoadHandled = sessionStorage.getItem('ubr_initial_pv_path') === window.location.pathname;
     const pvTimer = setTimeout(() => {
       try {
@@ -82,29 +88,30 @@ export default function AnalyticsAndSeoBooster() {
       }
     }, initialLoadHandled ? 100 : 250);
 
-    // 1. Periodic Heartbeat to guarantee GA4 records exact session duration even if user doesn't click
-    const heartbeatMilestones = [10, 25, 45, 60, 90, 120, 180, 240, 300];
+    // 1. Periodic Heartbeat to record real active session duration (only while user interacted within last 3 min)
+    // NOTE: Do NOT override GA4's reserved `engagement_time_msec` with cumulative page time, because GA4 sums
+    // `engagement_time_msec` across all events (which would turn a 30-min open tab into 1+2+...+30 = 465 mins!).
+    const heartbeatMilestones = [10, 25, 45, 60, 90, 120, 180];
     const heartbeatTimeouts: NodeJS.Timeout[] = [];
 
     heartbeatMilestones.forEach((sec) => {
       const timer = setTimeout(() => {
-        if (document.visibilityState === 'visible') {
+        if (document.visibilityState === 'visible' && Date.now() - lastInteractionTime < 180000) {
           const currentElapsedSec = Math.round((performance.now() - pageEnterTime) / 1000);
           sendGaEvent('session_heartbeat', {
             event_category: 'session_engagement',
             page_path: window.location.pathname,
             session_duration_sec: getSessionDurationSec(),
             time_on_page_sec: currentElapsedSec,
-            engagement_time_msec: currentElapsedSec * 1000,
           });
         }
       }, sec * 1000);
       heartbeatTimeouts.push(timer);
     });
 
-    // Steady heartbeat every 60s after 5 minutes
+    // Steady heartbeat every 60s only while user is actively interacting (within last 2 min)
     const longInterval = setInterval(() => {
-      if (document.visibilityState === 'visible') {
+      if (document.visibilityState === 'visible' && Date.now() - lastInteractionTime < 120000) {
         const currentElapsedSec = Math.round((performance.now() - pageEnterTime) / 1000);
         sendGaEvent('session_heartbeat', {
           event_category: 'session_engagement',
@@ -112,7 +119,6 @@ export default function AnalyticsAndSeoBooster() {
           page_title: document.title || 'Un Buen Regalo',
           session_duration_sec: getSessionDurationSec(),
           time_on_page_sec: currentElapsedSec,
-          engagement_time_msec: currentElapsedSec * 1000,
         });
         if (Date.now() - lastPageViewSentAt > 25 * 60 * 1000) {
           lastPageViewSentAt = Date.now();
@@ -148,7 +154,6 @@ export default function AnalyticsAndSeoBooster() {
             page_path: window.location.pathname,
             session_duration_sec: getSessionDurationSec(),
             time_on_page_sec: elapsedSec,
-            engagement_time_msec: Math.max(100, Math.round(performance.now() - pageEnterTime)),
           });
           return;
         }
@@ -171,12 +176,12 @@ export default function AnalyticsAndSeoBooster() {
           event_label: btnText,
           page_path: window.location.pathname,
           session_duration_sec: getSessionDurationSec(),
-          engagement_time_msec: Math.max(100, Math.round(now - pageEnterTime)),
         });
       }
     };
 
     const handleScroll = () => {
+      lastInteractionTime = Date.now();
       const doc = document.documentElement;
       const scrollTop = window.scrollY || doc.scrollTop;
       const maxScroll = Math.max(1, doc.scrollHeight - window.innerHeight);
@@ -189,7 +194,6 @@ export default function AnalyticsAndSeoBooster() {
           percent_scrolled: 50,
           page_path: window.location.pathname,
           session_duration_sec: getSessionDurationSec(),
-          engagement_time_msec: Math.max(100, Math.round(performance.now() - pageEnterTime)),
         });
       } else if (!firedScroll85 && ratio >= 0.85) {
         firedScroll85 = true;
@@ -198,7 +202,6 @@ export default function AnalyticsAndSeoBooster() {
           percent_scrolled: 85,
           page_path: window.location.pathname,
           session_duration_sec: getSessionDurationSec(),
-          engagement_time_msec: Math.max(100, Math.round(performance.now() - pageEnterTime)),
         });
       }
     };
@@ -212,12 +215,12 @@ export default function AnalyticsAndSeoBooster() {
             page_path: window.location.pathname,
             session_duration_sec: getSessionDurationSec(),
             active_seconds: Math.round(elapsedMs / 1000),
-            engagement_time_msec: elapsedMs,
           });
         }
       } else if (document.visibilityState === 'visible') {
         // Reset timer when user returns from Amazon tab so next chunk is counted cleanly
         pageEnterTime = performance.now();
+        lastInteractionTime = Date.now();
         // If the tab was open for >25 minutes (GA4 Realtime 30-min rolling window expired for initial page_view),
         // re-send page_view with current page_title so "Vistas por Título de página" is never blank in Realtime
         if (Date.now() - lastPageViewSentAt > 25 * 60 * 1000) {
@@ -239,7 +242,6 @@ export default function AnalyticsAndSeoBooster() {
           page_path: window.location.pathname,
           session_duration_sec: getSessionDurationSec(),
           active_seconds: Math.round(elapsedMs / 1000),
-          engagement_time_msec: elapsedMs,
         });
       }
     };
@@ -253,6 +255,9 @@ export default function AnalyticsAndSeoBooster() {
       clearTimeout(pvTimer);
       heartbeatTimeouts.forEach((t) => clearTimeout(t));
       clearInterval(longInterval);
+      window.removeEventListener('pointermove', markUserActive);
+      window.removeEventListener('touchstart', markUserActive);
+      window.removeEventListener('keydown', markUserActive);
       document.removeEventListener('click', handleClick, { capture: true });
       window.removeEventListener('scroll', handleScroll);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
