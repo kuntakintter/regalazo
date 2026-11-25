@@ -12,6 +12,9 @@ export const GAMING_CATEGORIES = [
 
 export const GAMING_BRANDS = [
   'Todas las marcas',
+  'PlayStation',
+  'Meta Quest',
+  'Elgato',
   'Logitech G',
   'Razer',
   'HyperX',
@@ -31,6 +34,94 @@ export const GAMING_PRICE_RANGES = [
 ];
 
 export const GAMING_PRODUCTS: HubProduct[] = [
+  {
+    id: 'game-sony-playstation-portal-ps5',
+    asin: 'B0CJT5DJ16',
+    title: 'Sony PlayStation Portal — Reproductor a Distancia Oficial para PS5 con Pantalla LCD 8" 1080p 60fps y DualSense',
+    category: 'mandos',
+    categoryLabel: 'Mandos Pro & Soporte',
+    brand: 'PlayStation',
+    priceText: '219,90 €',
+    priceNumeric: 219.9,
+    rating: 4.7,
+    reviewsCount: 9850,
+    imageUrl: 'https://m.media-amazon.com/images/I/61S0ZRxKJFL._AC_UL320_.jpg',
+    badge: 'Superventas PS5 2026',
+    description: 'Juega a tu consola PlayStation 5 desde cualquier habitación o fuera de casa por Wi-Fi con pantalla Full HD de 8 pulgadas a 60 fps y todos los controles hápticos y gatillos adaptativos de un mando DualSense.',
+    pros: [
+      'Integra los gatillos adaptativos y la vibración háptica completa del DualSense',
+      'Pantalla luminosa de 8 pulgadas 1080p a 60 fotogramas por segundo',
+      'Ideal para seguir jugando a GTA VI, EA Sports FC o Call of Duty aunque la tele esté ocupada'
+    ],
+    idealFor: 'Jugadores de PS5 que quieren libertad total para jugar en cualquier rincón.',
+    searchQuery: 'Sony PlayStation Portal Reproductor a Distancia PS5'
+  },
+  {
+    id: 'game-meta-quest-3s-128gb-vr',
+    asin: 'B09MJRPRR4',
+    title: 'Meta Quest 3S 128 GB — Gafas de Realidad Virtual y Mixta Todo en Uno Sin Cables',
+    category: 'mandos',
+    categoryLabel: 'Mandos Pro & Soporte',
+    brand: 'Meta Quest',
+    priceText: '305,99 €',
+    priceNumeric: 305.99,
+    rating: 4.8,
+    reviewsCount: 6420,
+    imageUrl: 'https://m.media-amazon.com/images/I/614hPcVf8IL._AC_UL320_.jpg',
+    badge: 'Realidad Virtual Nº 1',
+    description: 'El visor de realidad virtual y realidad mixta a todo color más vendido: procesador Snapdragon XR2 Gen 2 con el doble de potencia gráfica, mandos Touch Plus sin anillos y compatible con PC VR (SteamVR).',
+    pros: [
+      'Funciona de forma 100% autónoma sin cables y también conectado a tus juegos de Steam en PC',
+      'Realidad mixta en alta definición para ver tu habitación integrada con el videojuego',
+      'El regalo tecnológico más impactante del año para gamers'
+    ],
+    idealFor: 'Vivir videojuegos en primera persona y conectar con toda tu biblioteca de SteamVR.',
+    searchQuery: 'Meta Quest 3S 128 GB Gafas de VR'
+  },
+  {
+    id: 'game-elgato-stream-deck-mk2',
+    asin: 'B09738CV2G',
+    title: 'Elgato Stream Deck MK.2 — Controlador de Estudio y Setup con 15 Teclas LCD Personalizables (PC / Mac)',
+    category: 'teclados',
+    categoryLabel: 'Teclados Mecánicos',
+    brand: 'Elgato',
+    priceText: '113,05 €',
+    priceNumeric: 113.05,
+    rating: 4.8,
+    reviewsCount: 28900,
+    imageUrl: 'https://m.media-amazon.com/images/I/61kmUcPNlBL._AC_UL320_.jpg',
+    badge: 'Icono Setup & Streaming',
+    description: 'Panel de control con 15 teclas con pantalla LCD personalizable para lanzar macros, controlar OBS, Discord, Spotify, luces RGB e integraciones de juegos en un solo toque.',
+    pros: [
+      '15 pantallas LCD individuales cuyos iconos cambian dinámicamente según el perfil o juego',
+      'Soporte de escritorio antideslizante y cable USB-C desmontable',
+      'Eleva cualquier escritorio gaming al nivel de un streamer profesional'
+    ],
+    idealFor: 'Gamers de PC, creadores de contenido y amantes de los setups productivos.',
+    searchQuery: 'Elgato Stream Deck MK.2 controlador de estudio'
+  },
+  {
+    id: 'game-powera-base-carga-rgb-ps-portal',
+    asin: 'B0DBR7V3YR',
+    title: 'PowerA Estación de Carga Oficial con Iluminación RGB Lumectra para PlayStation Portal',
+    category: 'iluminacion',
+    categoryLabel: 'Iluminación RGB & Barras Monitor',
+    brand: 'PlayStation',
+    priceText: '29,99 €',
+    priceNumeric: 29.99,
+    rating: 4.8,
+    reviewsCount: 1840,
+    imageUrl: 'https://m.media-amazon.com/images/I/51JQOjb2nhL._AC_UL320_.jpg',
+    badge: 'Licencia Oficial PS5 (<30 €)',
+    description: 'Base expositora pesada con licencia oficial de PlayStation, conector magnético USB-C y barra de iluminación LED RGB Lumectra con 5 modos táctiles.',
+    pros: [
+      'Carga magnética sin desgastar el puerto USB-C y mantiene la consola expuesta',
+      'Iluminación RGB capacitativa regulable al tacto',
+      'Regalo oficial por menos de 30 € para cualquier dueño de PlayStation Portal'
+    ],
+    idealFor: 'Exponer y cargar tu PlayStation Portal en el escritorio con luz RGB.',
+    searchQuery: 'Estacion de Carga PowerA para PlayStation Portal Lumectra RGB'
+  },
   {
     id: 'game-auriculares-hyperx-cloud-2',
     asin: 'B0F844LMG3',

@@ -63,6 +63,116 @@ export const COMPETICION_PRICE_RANGES = [
 
 export const COMPETICION_PRODUCTS: CompeticionProduct[] = [
   {
+    "id": "f1-lego-speed-champions-ferrari-sf24",
+    "asin": "B0DHSBBV6R",
+    "title": "LEGO Speed Champions Coche de Carreras Ferrari SF-24 F1 (77242) — Monoplaza Oficial Scuderia Ferrari",
+    "category": "f1",
+    "categoryLabel": "Fórmula 1 & Escuderías",
+    "brand": "LEGO Speed Champions",
+    "priceText": "16,99 €",
+    "priceNumeric": 16.99,
+    "rating": 4.9,
+    "reviewsCount": 2480,
+    "imageUrl": "https://m.media-amazon.com/images/I/71SJzfPx9FL._AC_UL320_.jpg",
+    "badge": "Nº 1 Ventas F1 2026",
+    "description": "La nueva maqueta oficial LEGO Speed Champions del monoplaza Ferrari SF-24 de Fórmula 1 con halo abatible, alerón trasero, neumáticos Pirelli estampados y minifigura de piloto Ferrari con casco.",
+    "pros": [
+      "Licencia oficial Scuderia Ferrari y Formula 1 con detalles aerodinámicos reales",
+      "Incluye minifigura de piloto oficial Ferrari para sentar en el cockpit",
+      "Precio imbatible por debajo de 17 € para regalar a cualquier fan de la F1"
+    ],
+    "idealFor": "El regalo estrella de Fórmula 1 para exponer en el escritorio o coleccionar.",
+    "searchQuery": "LEGO Speed Champions Coche de Carreras Ferrari SF-24 F1 77242"
+  },
+  {
+    "id": "f1-lego-speed-champions-aston-martin-amr24",
+    "asin": "B0DHSDWPP2",
+    "title": "LEGO Speed Champions Coche de Carreras Aston Martin Aramco F1 AMR24 (77245) — Monoplaza Fernando Alonso",
+    "category": "f1",
+    "categoryLabel": "Fórmula 1 & Escuderías",
+    "brand": "Aston Martin F1",
+    "priceText": "15,99 €",
+    "priceNumeric": 15.99,
+    "rating": 4.9,
+    "reviewsCount": 3150,
+    "imageUrl": "https://m.media-amazon.com/images/I/717GupwNxQL._AC_UL320_.jpg",
+    "badge": "Monoplaza AMR24 Alonso",
+    "description": "Construye el monoplaza verde British Racing Green de Aston Martin Aramco F1 Team (AMR24) con patrocinadores reales, halo de seguridad, neumáticos anchos Pirelli y minifigura de piloto con mono oficial.",
+    "pros": [
+      "Réplica oficial LEGO Speed Champions del AMR24 de Fernando Alonso",
+      "269 piezas con detalles fieles del pontón, halo y alerón DRS",
+      "Top ventas absoluto en España entre aficionados al automovilismo"
+    ],
+    "idealFor": "Incondicionales de Fernando Alonso y coleccionistas de Fórmula 1.",
+    "searchQuery": "LEGO Speed Champions Aston Martin Aramco F1 AMR24 77245"
+  },
+  {
+    "id": "simracing-thrustmaster-t300rs-gt-edition",
+    "asin": "B01HRYFODO",
+    "title": "Thrustmaster T300RS GT Edition — Volante Simracing Force Feedback Brushless y 3 Pedales Metálicos (PS5 / PC)",
+    "category": "simracing",
+    "categoryLabel": "Simracing & Volantes",
+    "brand": "Thrustmaster",
+    "priceText": "351,32 €",
+    "priceNumeric": 351.32,
+    "rating": 4.7,
+    "reviewsCount": 14800,
+    "imageUrl": "https://m.media-amazon.com/images/I/71vf7FTHtAL._AC_UL320_.jpg",
+    "badge": "Servomotor Doble Correa",
+    "description": "El volante de referencia en simracing de competición con servomotor industrial brushless sin escobillas, sistema de doble correa ultra suave de 1080°, aro desmontable y pedalera metálica T3PA GT Edition.",
+    "pros": [
+      "Transmisión por doble correa sin zonas muertas ni traqueteo de engranajes",
+      "Ecosistema de aros intercambiables (puedes acoplar el aro de F1 Ferrari)",
+      "Incluye pedalera metálica de 3 pedales (acelerador, embrague y freno cónico)"
+    ],
+    "idealFor": "Pilotos virtuales de Assetto Corsa, iRacing, Gran Turismo 7 y F1 en PS5 y PC.",
+    "searchQuery": "Thrustmaster T300RS GT Volante Force Feedback PS5 PC"
+  },
+  {
+    "id": "simracing-logitech-g923-trueforce",
+    "asin": "B07W4DG81W",
+    "title": "Logitech G G923 Volante y Pedales de Carreras con Tecnología TRUEFORCE HD (900° en Cuero y Acero)",
+    "category": "simracing",
+    "categoryLabel": "Simracing & Volantes",
+    "brand": "Logitech G",
+    "priceText": "219,00 €",
+    "priceNumeric": 219.0,
+    "rating": 4.7,
+    "reviewsCount": 19400,
+    "imageUrl": "https://m.media-amazon.com/images/I/614pKhKDstL._AC_UL320_.jpg",
+    "badge": "Force Feedback TRUEFORCE",
+    "description": "Evolución directa del mítico G29 con retroalimentación cinética TRUEFORCE conectada directamente a la física del motor del juego (1000 veces por segundo), control de salida de doble embrague y cuentavueltas LED.",
+    "pros": [
+      "Siente las revoluciones del motor, los pianos del circuito y la pérdida de tracción",
+      "Aro de cuero cosido a mano con levas de cambio en aluminio anodizado",
+      "Pedal de freno con muelle progresivo que simula un sistema sensible a la presión"
+    ],
+    "idealFor": "Dar el salto a un cockpit de simulación serio con tacto de competición real.",
+    "searchQuery": "Logitech G G923 volante y pedales de carrera"
+  },
+  {
+    "id": "garaje-baliza-v16-homologada-dgt-geolocalizada",
+    "asin": "B0DYK28HQZ",
+    "title": "Baliza V16 Homologada DGT 3.0 con Geolocalización + Tarjeta SIM y Datos Gratis hasta 2038 + Funda",
+    "category": "garaje-lifestyle",
+    "categoryLabel": "Garaje Racing & Seguridad",
+    "brand": "Sparco",
+    "priceText": "19,90 €",
+    "priceNumeric": 19.9,
+    "rating": 4.7,
+    "reviewsCount": 6840,
+    "imageUrl": "https://m.media-amazon.com/images/I/7175naJBnPL._AC_UL320_.jpg",
+    "badge": "Obligatoria DGT 2026",
+    "description": "Luz de emergencia V16 conectada y homologada oficialmente por la DGT con geolocalización anónima DGT 3.0, eSIM Telefónica integrada con conectividad pagada hasta 2038, base magnética y visibilidad a 1 km.",
+    "pros": [
+      "Obligatoria en España en sustitución de los triángulos: regalo 100% útil para todo conductor",
+      "Incluye plan de datos móviles integrado gratis hasta el año 2038 sin cuotas ni suscripciones",
+      "Fijación magnética neodimio resistente a vientos fuertes y lluvia IP54"
+    ],
+    "idealFor": "El regalo práctico nº 1 en España para cualquier conductor de coche o furgoneta.",
+    "searchQuery": "Baliza V16 Homologada DGT con Geolocalizacion SIM 2038"
+  },
+  {
     "id": "f1-gorra-alonso-aston-martin",
     "asin": "B0CV7V5GDR",
     "title": "Gorra Oficial Aston Martin Aramco F1 Fernando Alonso 14 Verde Racing",

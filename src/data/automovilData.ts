@@ -47,6 +47,50 @@ export const AUTOMOVIL_PRICE_RANGES = [
 
 export const AUTOMOVIL_PRODUCTS: HubProduct[] = [
   {
+    id: 'auto-baliza-v16-dgt-geolocalizada-2038',
+    asin: 'B0DYK28HQZ',
+    title: 'Baliza V16 Homologada DGT 3.0 con Geolocalización + SIM Datos Gratis hasta 2038 + Funda',
+    category: 'arrancadores',
+    categoryLabel: 'Arrancadores & Baterías',
+    brand: 'Michelin',
+    priceText: '19,90 €',
+    priceNumeric: 19.9,
+    rating: 4.7,
+    reviewsCount: 6840,
+    imageUrl: 'https://m.media-amazon.com/images/I/7175naJBnPL._AC_UL320_.jpg',
+    badge: 'Obligatoria DGT 2026',
+    description: 'Luz de emergencia V16 conectada y homologada por la DGT con geolocalización DGT 3.0, tarjeta SIM integrada pagada hasta 2038 sin cuotas, base magnética y visibilidad LED 360° a 1 km.',
+    pros: [
+      'Sustituye legalmente a los triángulos de emergencia sin tener que bajar del coche',
+      'Conectividad móvil con la nube DGT 3.0 incluida gratis hasta el año 2038',
+      'Incluye funda protectora para guantera y base imantada de alta adherencia'
+    ],
+    idealFor: 'El regalo obligatorio y más vendido de 2026 para cualquier coche en España.',
+    searchQuery: 'Baliza V16 Homologada DGT con Geolocalizacion SIM 2038'
+  },
+  {
+    id: 'auto-pack-3-balizas-v16-dgt-bip-drive',
+    asin: 'B0G1492JDM',
+    title: 'Pack Familiar x3 Balizas V16 Homologadas DGT con Geolocalización 3.0 Bip&Drive (3 Coches)',
+    category: 'arrancadores',
+    categoryLabel: 'Arrancadores & Baterías',
+    brand: 'Michelin',
+    priceText: '30,80 €',
+    priceNumeric: 30.8,
+    rating: 4.8,
+    reviewsCount: 2190,
+    imageUrl: 'https://m.media-amazon.com/images/I/71VVLzws2yL._AC_UL320_.jpg',
+    badge: 'Pack Ahorro 3 Coches (10€/ud)',
+    description: 'Lote ahorro de 3 balizas V16 conectadas y homologadas por la DGT con geolocalización 3.0 e indicador de batería para equipar todos los coches de la familia por apenas 10 € cada una.',
+    pros: [
+      '3 unidades homologadas DGT 3.0 con geolocalización lista para usar',
+      'Sale a solo 10,26 € por baliza: ideal para repartir en familia',
+      'Resistente a lluvia, nieve y viento con alcance lumínico de 1 kilómetro'
+    ],
+    idealFor: 'Equipar los coches de toda la familia de una sola vez al precio más bajo de Amazon.',
+    searchQuery: 'Baliza V16 Homologada DGT con Geolocalizacion Pack x3'
+  },
+  {
     id: 'auto-arrancador-noco-gb40',
     asin: 'B015TKUPIC',
     title: 'NOCO Boost Plus GB40 Arrancador de Batería de Coche Litio 1000A 12V',
