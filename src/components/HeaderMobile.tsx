@@ -88,7 +88,6 @@ export const AGE_DROPDOWN_ITEMS = [
 ];
 
 export const PASSION_DROPDOWN_ITEMS = [
-  { termKey: 'Mundo de la Competición', descTermKey: 'Carreras, F1, MotoGP y Scalextric', slug: 'competicion', icon: '🏁' },
   { termKey: 'Motoristas', descTermKey: 'Motoristas', slug: 'motoristas', icon: '🏍️' },
   { termKey: 'Gaming', descTermKey: 'Videojuegos y Setup Gamer', slug: 'gaming', icon: '🎮' },
   { termKey: 'Amantes del Café', descTermKey: 'Gourmet, Café y Coctelería', slug: 'amantes-del-cafe', icon: '☕' },
