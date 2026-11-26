@@ -1552,9 +1552,9 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                 </div>
               </div>
 
-              <div className="w-full sm:w-auto grid grid-cols-2 sm:flex items-center gap-2">
-                <div className="flex items-center justify-between sm:justify-start gap-1.5 h-9 bg-slate-50 border border-slate-200 rounded-xl px-2.5 min-w-0">
-                  <span className="text-[11px] text-slate-600 font-bold shrink-0">{ui.sortLabel}:</span>
+              <div className="w-full sm:w-auto flex items-center gap-2">
+                <div className="flex-1 sm:flex-none flex items-center justify-between sm:justify-start gap-1.5 h-9 bg-slate-50 border border-slate-200 rounded-xl px-2.5 min-w-0">
+                  <span className="text-[11px] text-slate-600 font-bold shrink-0 whitespace-nowrap">{ui.sortLabel}:</span>
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value as 'featured' | 'price-asc' | 'price-desc' | 'rating')}
@@ -1573,14 +1573,15 @@ export function HomeCatalogView({ i18nConfig }: { i18nConfig?: I18nRouteConfig }
                   onClick={() => setShowAdvancedFilters((prev) => !prev)}
                   aria-expanded={showAdvancedFilters}
                   aria-label={showAdvancedFilters ? ui.hideFilters : ui.showMoreFilters}
-                  className={`inline-flex items-center justify-center gap-1.5 h-9 px-3 text-xs font-bold rounded-xl border transition-all cursor-pointer whitespace-nowrap ${
+                  title={showAdvancedFilters ? ui.hideFilters : ui.showMoreFilters}
+                  className={`inline-flex items-center justify-center gap-1.5 w-9 h-9 sm:w-auto sm:px-3 text-xs font-bold rounded-xl border transition-all cursor-pointer shrink-0 whitespace-nowrap ${
                     showAdvancedFilters
                       ? 'bg-amber-100 text-amber-950 border-amber-300'
                       : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'
                   }`}
                 >
-                  <SlidersHorizontal className="w-3.5 h-3.5 text-amber-700 shrink-0" aria-hidden="true" />
-                  <span className="truncate">
+                  <SlidersHorizontal className="w-4 h-4 sm:w-3.5 sm:h-3.5 text-amber-700 shrink-0" aria-hidden="true" />
+                  <span className="hidden sm:inline">
                     {showAdvancedFilters ? ui.hideFilters : ui.showMoreFilters}
                   </span>
                 </button>
