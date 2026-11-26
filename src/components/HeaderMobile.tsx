@@ -156,8 +156,8 @@ export default function HeaderMobile({
     <div className="w-full relative select-none">
       {/* 1. BARRA PRINCIPAL MÓVIL */}
       <div className="bg-[#131921] text-white px-3 py-2 relative z-30">
-        <div className="flex items-center justify-between gap-2">
-          <div className="shrink-0">
+        <div className="flex items-center justify-between gap-2 min-w-0">
+          <div className="shrink-0 min-w-0">
             <BrandLogo variant="light" size="compact" />
           </div>
 
@@ -165,12 +165,13 @@ export default function HeaderMobile({
             <button
               type="button"
               onClick={() => setIsDrawerOpen(true)}
-              className="flex items-center gap-1.5 px-3 h-8.5 rounded-xl bg-[#febd69] hover:bg-[#f3a847] text-slate-950 font-black text-xs transition-all shadow-sm cursor-pointer group active:scale-95 shrink-0 border border-amber-400"
+              className="flex items-center gap-1.5 px-2.5 h-9 rounded-xl bg-[#febd69] hover:bg-[#f3a847] text-slate-950 font-black text-xs transition-all shadow-sm cursor-pointer group active:scale-95 shrink-0 border border-amber-400 whitespace-nowrap"
               title={ui.navVoting}
             >
-              <span className="text-base leading-none" aria-hidden="true">🗳️</span>
-              <span className="font-extrabold text-xs tracking-normal text-slate-950">{ui.navVoting}</span>
-              {' '}
+              <span className="text-sm leading-none" aria-hidden="true">🗳️</span>
+              <span className="font-extrabold text-[11px] tracking-normal text-slate-950">
+                {localeKey === 'es' || localeKey === 'es-us' ? 'Votar' : 'Vote'}
+              </span>
               <span
                 className={`px-1.5 py-0.5 rounded-full text-[10px] font-black leading-none transition-colors ${
                   voteItems.length > 0

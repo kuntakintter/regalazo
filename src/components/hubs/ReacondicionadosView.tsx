@@ -1230,20 +1230,22 @@ export default function ReacondicionadosView({
                   className="group flex flex-col items-center text-center w-[112px] sm:w-[144px] shrink-0 cursor-pointer focus:outline-none"
                 >
                   <div
-                    className={`relative w-24 h-24 sm:w-32 sm:h-32 rounded-full flex items-center justify-center p-4 sm:p-5 transition-all duration-300 overflow-hidden ${
+                    className={`relative w-24 h-24 sm:w-32 sm:h-32 rounded-full flex items-center justify-center p-2 sm:p-2.5 transition-all duration-300 overflow-hidden ${
                       isActive
                         ? 'bg-[#b5dec3] ring-4 ring-emerald-700 shadow-lg scale-105'
                         : 'bg-[#cde4d4] group-hover:bg-[#bde0c8] group-hover:scale-105 group-hover:shadow-md'
                     }`}
                   >
-                    <Image
-                      src={cat.circleImage}
-                      alt={displayLabel}
-                      width={110}
-                      height={110}
-                      unoptimized
-                      className="w-full h-full object-contain mix-blend-multiply drop-shadow-[0_6px_8px_rgba(0,0,0,0.16)] transition-transform duration-300 group-hover:scale-108"
-                    />
+                    <div className="w-full h-full rounded-full bg-white p-2.5 sm:p-3 flex items-center justify-center shadow-xs overflow-hidden">
+                      <Image
+                        src={cat.circleImage}
+                        alt={displayLabel}
+                        width={110}
+                        height={110}
+                        unoptimized
+                        className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-108"
+                      />
+                    </div>
                   </div>
                   <span
                     className={`mt-2.5 text-xs sm:text-[13.5px] leading-snug line-clamp-2 transition-colors ${

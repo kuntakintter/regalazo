@@ -221,7 +221,7 @@ export default function LanguageSelector({ dark = false }: { dark?: boolean }) {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className={`flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 h-8 sm:h-9 rounded-full text-xs font-bold transition-all cursor-pointer shadow-2xs shrink-0 ${
+        className={`flex items-center justify-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 h-9 rounded-xl sm:rounded-full text-xs font-bold transition-all cursor-pointer shadow-2xs shrink-0 whitespace-nowrap ${
           dark
             ? 'bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 hover:border-slate-600'
             : 'bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200/90 hover:border-slate-300'
