@@ -127,13 +127,26 @@ export default function HeaderMobile({
   const { voteItems, setIsDrawerOpen } = useVoting();
   const [isAgesOpen, setIsAgesOpen] = useState(false);
   const [isPassionsOpen, setIsPassionsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const searchDropdownRef = useRef<HTMLDivElement>(null);
+  const stickySearchRef = useRef<HTMLDivElement>(null);
   const agesDropdownRef = useRef<HTMLDivElement>(null);
   const passionsDropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const onScroll = () => {
+      setIsScrolled(window.scrollY > 145);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (searchDropdownRef.current && !searchDropdownRef.current.contains(event.target as Node)) {
+      const inMain = searchDropdownRef.current?.contains(event.target as Node);
+      const inSticky = stickySearchRef.current?.contains(event.target as Node);
+      if (!inMain && !inSticky) {
         setIsFocused(false);
       }
       if (agesDropdownRef.current && !agesDropdownRef.current.contains(event.target as Node)) {
@@ -154,6 +167,103 @@ export default function HeaderMobile({
 
   return (
     <div className="w-full relative select-none">
+      {/* 0. BARRA FIJA ESTILO AMAZON AL HACER SCROLL EN MÓVIL (Buscador + Botón Votar siempre visibles) */}
+      <div
+        ref={stickySearchRef}
+        className={`fixed top-0 left-0 right-0 z-[85] md:hidden bg-[#131921]/98 backdrop-blur-md border-b border-slate-700/70 px-2.5 py-2 shadow-xl transition-transform duration-200 ${
+          isScrolled ? 'translate-y-0' : '-translate-y-full pointer-events-none'
+        }`}
+      >
+        <div className="flex items-center gap-2">
+          <form
+            onSubmit={onSearchSubmit}
+            className="relative flex-1 min-w-0 flex items-center rounded-xl overflow-hidden shadow-inner focus-within:ring-2 focus-within:ring-[#febd69] transition-all bg-white border border-slate-200 h-9.5"
+          >
+            <Search className="w-4 h-4 text-slate-600 ml-2.5 shrink-0" />
+            <input
+              type="text"
+              value={searchQuery}
+              onFocus={() => setIsFocused(true)}
+              onChange={(e) => {
+                onSearchChange?.(e.target.value);
+                setIsFocused(true);
+              }}
+              aria-label={ui.headerSearchPlaceholder}
+              placeholder={ui.headerSearchPlaceholder}
+              className="w-full px-2 py-1.5 text-xs text-slate-900 placeholder-slate-600 focus:outline-none bg-transparent min-w-0"
+            />
+            <div className="flex items-center shrink-0 h-full">
+              {isLoadingAmazon && (
+                <Loader2 className="w-3.5 h-3.5 text-slate-600 animate-spin mr-1" />
+              )}
+              {searchQuery.trim().length > 0 && (
+                <button
+                  type="button"
+                  onClick={clearSearch}
+                  aria-label={ui.headerClearSearch}
+                  className="min-w-7 min-h-7 flex items-center justify-center p-1 text-slate-600 hover:text-slate-900 cursor-pointer"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              )}
+              <button
+                type="submit"
+                aria-label={ui.headerSearchButton}
+                className="bg-[#febd69] hover:bg-[#f3a847] active:bg-[#e47911] text-slate-950 px-3 h-full flex items-center justify-center transition-colors cursor-pointer shrink-0"
+              >
+                <Search className="w-4 h-4 stroke-[2.5]" />
+              </button>
+            </div>
+          </form>
+
+          <button
+            type="button"
+            onClick={() => setIsDrawerOpen(true)}
+            className="flex items-center gap-1.5 px-2.5 h-9.5 rounded-xl bg-[#febd69] hover:bg-[#f3a847] text-slate-950 font-black text-xs transition-all shadow-sm cursor-pointer active:scale-95 shrink-0 border border-amber-400 whitespace-nowrap"
+            title={ui.navVoting}
+          >
+            <span className="text-sm leading-none" aria-hidden="true">🗳️</span>
+            <span className="font-extrabold text-[11px] text-slate-950">
+              {localeKey === 'es' || localeKey === 'es-us' ? 'Votar' : 'Vote'}
+            </span>
+            <span
+              className={`px-1.5 py-0.5 rounded-full text-[10px] font-black leading-none ${
+                voteItems.length > 0 ? 'bg-slate-950 text-white' : 'bg-black/15 text-slate-900'
+              }`}
+            >
+              {voteItems.length}
+            </span>
+          </button>
+        </div>
+
+        {isScrolled && isFocused && searchQuery.trim().length >= 2 && hasAnyResults && (
+          <div className="mt-2 bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden max-h-[65vh] overflow-y-auto">
+            {liveMatches.slice(0, 5).map((p) => (
+              <button
+                key={p.id}
+                type="button"
+                onClick={() => onSelectProduct?.(p)}
+                className="w-full flex items-center gap-2.5 px-3 py-2 text-left hover:bg-amber-50 border-b border-slate-100 cursor-pointer"
+              >
+                <span className="text-xs font-bold text-slate-900 line-clamp-1 flex-1">{p.title}</span>
+                <span className="text-xs font-black text-amber-800 shrink-0">{formatPrice(p.priceText)}</span>
+              </button>
+            ))}
+            <div className="p-2 bg-slate-50">
+              <a
+                href={amazonSearchUrl}
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className="w-full flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 text-xs font-black"
+              >
+                <span>{ui.searchDirectOn} {amazonSiteName}</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </div>
+        )}
+      </div>
+
       {/* 1. BARRA PRINCIPAL MÓVIL */}
       <div className="bg-[#131921] text-white px-3 py-2 relative z-30">
         <div className="flex items-center justify-between gap-2 min-w-0">
