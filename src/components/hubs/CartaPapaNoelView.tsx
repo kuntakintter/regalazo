@@ -249,39 +249,31 @@ function CartaContent() {
         <div className="absolute -top-10 left-[82%] w-2.5 h-2.5 bg-white rounded-full animate-[snowfall_10s_linear_infinite_0.5s]" />
       </div>
 
-      {/* Official 2D Cast Flanking Characters (Desktop sidebars — matches Reels/Shorts!) */}
+      {/* Official 2D Cast Flanking Characters (Anchored statically beside the letter card) */}
       <div
-        className="hidden xl:block pointer-events-none select-none fixed left-2 2xl:left-8 top-[54%] -translate-y-1/2 z-10 w-[230px] 2xl:w-[350px] print:hidden"
+        className="hidden xl:block pointer-events-none select-none absolute left-2 2xl:left-8 top-[530px] z-10 w-[230px] 2xl:w-[350px] print:hidden"
         aria-hidden="true"
       >
         <img
           src="/images/cast-familia-navidad.png"
           alt="Pedro, María y Juanito"
-          className="w-full h-auto drop-shadow-[0_14px_28px_rgba(0,0,0,0.55)] animate-[castFloat_5.5s_ease-in-out_infinite]"
+          className="w-full h-auto drop-shadow-[0_14px_28px_rgba(0,0,0,0.55)]"
           loading="lazy"
         />
       </div>
       <div
-        className="hidden xl:block pointer-events-none select-none fixed right-2 2xl:right-10 top-[63%] -translate-y-1/2 z-10 w-[205px] 2xl:w-[290px] print:hidden"
+        className="hidden xl:block pointer-events-none select-none absolute right-2 2xl:right-10 top-[575px] z-10 w-[205px] 2xl:w-[290px] print:hidden"
         aria-hidden="true"
       >
         <img
           src="/images/cast-papa-noel-rodolfo.png"
           alt="Papá Noel y Rodolfo"
-          className="w-full h-auto drop-shadow-[0_14px_28px_rgba(0,0,0,0.55)] animate-[castFloat_6.2s_ease-in-out_infinite_0.8s]"
+          className="w-full h-auto drop-shadow-[0_14px_28px_rgba(0,0,0,0.55)]"
           loading="lazy"
         />
       </div>
 
       <style jsx global>{`
-        @keyframes castFloat {
-          0%, 100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-10px);
-          }
-        }
         @keyframes snowfall {
           0% {
             transform: translateY(-10px) translateX(0);
